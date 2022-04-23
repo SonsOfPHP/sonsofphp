@@ -48,3 +48,10 @@ phpstan: ## Run phpstan
 
 php-cs-fixer: ## run php-cs-fixer
 	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHP_CS_FIXER) fix src/
+
+#-----------
+remote-add: # Add git remotes for all components
+	git remote add clock git@github.com:SonsOfPHP/clock.git
+
+subtree-push: # Push changes to all subtrees
+	git subtree push --prefix=src/SonsOfPHP/Component/Clock clock main
