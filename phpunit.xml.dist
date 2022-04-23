@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+    convertErrorsToExceptions="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+    convertDeprecationsToExceptions="false"
+    backupGlobals="false"
+    colors="true"
+    bootstrap="vendor/autoload.php">
+
+    <testsuites>
+        <testsuite name="all">
+            <directory>src</directory>
+        </testsuite>
+    </testsuites>
+
+    <coverage>
+        <include>
+            <directory>src/SonsOfPHP</directory>
+        </include>
+        <exclude>
+            <directory>src/SonsOfPHP/Component/*/Tests</directory>
+        </exclude>
+    </coverage>
+
+</phpunit>

@@ -1,0 +1,30 @@
+{
+    "name": "sonsofphp/sonsofphp",
+    "type": "library",
+    "description": "Sons of PHP Mother Repo",
+    "keywords": ["php", "sons of php"],
+    "homepage": "https://github.com/SonsOfPHP",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joshua Estes",
+            "email": "joshua@sonsofphp.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "provide": {},
+    "require": {
+        "php": ">=7.4.0"
+    },
+    "replace": {},
+    "require-dev": {},
+    "conflict": {},
+    "autoload": {
+        "psr-4": {
+            "SonsOfPHP\\Component\\": "src/SonsOfPHP/Component"
+        },
+        "exclude-from-classmap": [
+            "**/Tests/"
+        ]
+    }
+}

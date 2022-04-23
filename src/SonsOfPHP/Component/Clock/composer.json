@@ -1,0 +1,29 @@
+{
+    "name": "sonsofphp/clock",
+    "type": "library",
+    "description": "Provides a stadard way of accessing datetime functions",
+    "keywords": ["clock", "datetime", "stopwatch"],
+    "homepage": "https://github.com/SonsOfPHP/clock",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joshua Estes",
+            "email": "joshua@sonsofphp.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "SonsOfPHP\\Component\\Clock\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
