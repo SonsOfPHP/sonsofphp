@@ -2,7 +2,7 @@
     "name": "sonsofphp/clock",
     "type": "library",
     "description": "Provides a stadard way of accessing datetime functions",
-    "keywords": ["clock", "datetime", "stopwatch"],
+    "keywords": ["clock", "datetime"],
     "homepage": "https://github.com/SonsOfPHP/clock",
     "license": "MIT",
     "authors": [
