@@ -1,8 +1,8 @@
 {
     "name": "sonsofphp/clock",
     "type": "library",
-    "description": "Provides a stadard way of accessing datetime functions",
-    "keywords": ["clock", "datetime"],
+    "description": "Provides a standard way of accessing datetime functions",
+    "keywords": ["clock", "datetime", "date", "time"],
     "homepage": "https://github.com/SonsOfPHP/clock",
     "license": "MIT",
     "authors": [
@@ -11,6 +11,10 @@
             "email": "joshua@sonsofphp.com"
         }
     ],
+    "support": {
+        "issues": "https://github.com/SonsOfPHP/sonsofphp/issues",
+        "forum": "https://github.com/orgs/SonsOfPHP/discussions"
+    },
     "autoload": {
         "psr-4": {
             "SonsOfPHP\\Component\\Clock\\": ""
