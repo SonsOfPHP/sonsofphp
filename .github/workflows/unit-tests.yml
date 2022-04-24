@@ -16,4 +16,4 @@ jobs:
             - name: Install Deps
               run: make install
             - name: Run Tests
-              run: make tests
+              run: make test
