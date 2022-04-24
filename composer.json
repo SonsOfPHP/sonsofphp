@@ -2,7 +2,7 @@
     "name": "sonsofphp/sonsofphp",
     "type": "library",
     "description": "Sons of PHP Mother Repo",
-    "keywords": ["php", "sons of php"],
+    "keywords": ["php", "sons of php", "mother repo"],
     "homepage": "https://github.com/SonsOfPHP",
     "license": "MIT",
     "authors": [
@@ -11,6 +11,10 @@
             "email": "joshua@sonsofphp.com"
         }
     ],
+    "support": {
+        "issues": "https://github.com/SonsOfPHP/sonsofphp/issues",
+        "forum": "https://github.com/orgs/SonsOfPHP/discussions"
+    },
     "minimum-stability": "dev",
     "provide": {},
     "require": {
