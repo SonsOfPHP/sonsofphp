@@ -1,0 +1,19 @@
+name: Unit Tests
+on:
+    push:
+        branches: [main]
+    pull_requests:
+        branches: [main]
+
+permissions:
+    contents: read
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: Install Deps
+              run: make install
+            - name: Run Tests
+              run: make tests
