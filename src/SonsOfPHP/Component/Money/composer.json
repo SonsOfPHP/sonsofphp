@@ -2,7 +2,7 @@
     "name": "sonsofphp/money",
     "type": "library",
     "description": "Provides abstraction for projects working with money",
-    "keywords": ["money", "currency"],
+    "keywords": ["money", "currency", "ISO4217"],
     "homepage": "https://github.com/SonsOfPHP/money",
     "license": "MIT",
     "authors": [
