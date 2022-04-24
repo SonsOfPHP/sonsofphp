@@ -1,9 +1,9 @@
 {
-    "name": "sonsofphp/clock",
+    "name": "sonsofphp/feature-toggle",
     "type": "library",
-    "description": "Provides a standard way of accessing datetime functions",
-    "keywords": ["clock", "datetime", "date", "time"],
-    "homepage": "https://github.com/SonsOfPHP/clock",
+    "description": "Provides feature toggles in PHP",
+    "keywords": ["feature toggle", "flag", "toggle", "bit", "switch", "flipper", "flip"],
+    "homepage": "https://github.com/SonsOfPHP/feature-toggle",
     "license": "MIT",
     "authors": [
         {
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SonsOfPHP\\Component\\Clock\\": ""
+            "SonsOfPHP\\Component\\FeatureToggle\\": ""
         },
         "exclude-from-classmap": [
             "/Tests/"
