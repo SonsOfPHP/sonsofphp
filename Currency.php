@@ -31,6 +31,14 @@ class Currency implements CurrencyInterface
     }
 
     /**
+     * Example: Currency::USD();
+     */
+    public static function __callStatic(string $method, array $args)
+    {
+        return new static($method);
+    }
+
+    /**
      * Returns the Currency Code for this object
      *
      * @return string

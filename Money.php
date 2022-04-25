@@ -27,7 +27,15 @@ class Money implements MoneyInterface
      */
     public function __toString(): string
     {
-        return $this->amount.' '.$this->currency->getCurrencyCode();
+        return (string) $this->amount;
+    }
+
+    /**
+     * Example: Money::USD(100);
+     */
+    public static function __callStatic(string $method, array $args)
+    {
+        return new static($args[0], new Currency($method));
     }
 
     /**
