@@ -1,0 +1,8 @@
+Clock:
+    - src/SonsOfPHP/Component/Clock/*
+
+'Feature Toggle':
+    - src/SonsOfPHP/Component/FeatureToggle/*
+
+Money:
+    - src/SonsOfPHP/Component/Money/*
