@@ -52,15 +52,18 @@ php-cs-fixer: ## run php-cs-fixer
 #-----------
 remote-add: # Add git remotes for all components
 	git remote -v | grep -w clock || git remote add clock git@github.com:SonsOfPHP/clock.git
+	git remote -v | grep -w event-sourcing || git remote add event-sourcing git@github.com:SonsOfPHP/event-sourcing.git
 	git remote -v | grep -w feature-toggle || git remote add feature-toggle git@github.com:SonsOfPHP/feature-toggle.git
 	git remote -v | grep -w money || git remote add money git@github.com:SonsOfPHP/money.git
 
 subtree-push: # Push changes to all subtrees
 	git subtree push --prefix=src/SonsOfPHP/Component/Clock clock main
+	git subtree push --prefix=src/SonsOfPHP/Component/EventSourcing event-sourcing main
 	git subtree push --prefix=src/SonsOfPHP/Component/FeatureToggle feature-toggle main
 	git subtree push --prefix=src/SonsOfPHP/Component/Money money main
 
 copy-license: # copy the LICENSE file to all the libraries and projects
 	cp LICENSE src/SonsOfPHP/Component/Clock/LICENSE
+	cp LICENSE src/SonsOfPHP/Component/EventSourcing/LICENSE
 	cp LICENSE src/SonsOfPHP/Component/FeatureToggle/LICENSE
 	cp LICENSE src/SonsOfPHP/Component/Money/LICENSE
