@@ -43,10 +43,9 @@ final class TestClockTest extends TestCase
     {
         $clock = new TestClock();
         $tickOne = $clock->now();
+        usleep(100);
         $clock->tick();
-        usleep(1);
         $tickTwo = $clock->now();
-        $clock->tick();
         $this->assertTrue($tickOne < $tickTwo);
     }
 
