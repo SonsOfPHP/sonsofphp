@@ -18,7 +18,7 @@
     "minimum-stability": "dev",
     "provide": {},
     "require": {
-        "php": ">=7.4.0"
+        "php": ">=7.4"
     },
     "replace": {},
     "require-dev": {},
@@ -30,5 +30,10 @@
         "exclude-from-classmap": [
             "**/Tests/"
         ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "0.1.0-dev"
+        }
     }
 }
