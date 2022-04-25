@@ -1,7 +1,10 @@
 Clock:
     - src/SonsOfPHP/Component/Clock/*
 
-'Feature Toggle':
+EventSourcing:
+    - src/SonsOfPHP/Component/EventSourcing/*
+
+FeatureToggle:
     - src/SonsOfPHP/Component/FeatureToggle/*
 
 Money:
