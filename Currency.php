@@ -21,6 +21,10 @@ class Currency implements CurrencyInterface
         $this->currencyCode = strtoupper($currencyCode);
     }
 
+    /**
+     * @see self::getCurrencyCode()
+     * @return string
+     */
     public function __toString(): string
     {
         return $this->getCurrencyCode();
