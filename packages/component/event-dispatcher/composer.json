@@ -26,7 +26,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=7.4",
-        "psr/event-dispatcher": "1.0.x-dev"
+        "psr/event-dispatcher": "^1.0"
     },
     "provide": {
         "psr/event-dispatcher-implementation": "1.0"

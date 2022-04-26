@@ -25,7 +25,8 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "php": ">=7.4"
+        "php": ">=7.4",
+        "sonsofphp/event-dispatcher": "^0.1"
     },
     "extra": {
         "branch-alias": {

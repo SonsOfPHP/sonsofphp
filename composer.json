@@ -16,13 +16,20 @@
         "forum": "https://github.com/orgs/SonsOfPHP/discussions"
     },
     "minimum-stability": "dev",
-    "provide": {},
+    "provide": {
+        "psr/event-dispatcher-implementation": "1.0"
+    },
     "require": {
         "php": ">=7.4",
-        "psr/event-dispatcher": "1.0.x-dev"
+        "psr/event-dispatcher": "^1.0"
     },
-    "replace": {},
-    "conflict": {},
+    "replace": {
+        "sonsofphp/clock": "self.version",
+        "sonsofphp/event-dispatcher": "self.version",
+        "sonsofphp/event-sourcing": "self.version",
+        "sonsofphp/feature-toggle": "self.version",
+        "sonsofphp/money": "self.version"
+    },
     "autoload": {
         "psr-4": {
             "SonsOfPHP\\Component\\Clock\\": "packages/component/clock",
