@@ -58,6 +58,9 @@ remote-add: # Add git remotes for all components
 	git remote -v | grep -w money || git remote add money git@github.com:SonsOfPHP/money.git
 
 subtree-push: # Push changes to all subtrees
+	git checkout main
+	git pull -p origin main
+	git push origin main
 	git subtree push --prefix=src/SonsOfPHP/Component/Clock clock main
 	git subtree push --prefix=src/SonsOfPHP/Component/EventDispatcher event-dispatcher main
 	git subtree push --prefix=src/SonsOfPHP/Component/EventSourcing event-sourcing main
