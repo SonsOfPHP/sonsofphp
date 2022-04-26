@@ -57,19 +57,26 @@ remote-add: # Add git remotes for all components
 	git remote -v | grep -w feature-toggle || git remote add feature-toggle git@github.com:SonsOfPHP/feature-toggle.git
 	git remote -v | grep -w money || git remote add money git@github.com:SonsOfPHP/money.git
 
+subtree-add:
+	git subtree add --prefix=packages/component/clock clock main
+	git subtree add --prefix=packages/component/event-dispatcher event-dispatcher main
+	git subtree add --prefix=packages/component/event-sourcing event-sourcing main
+	git subtree add --prefix=packages/component/feature-toggle feature-toggle main
+	git subtree add --prefix=packages/component/money money main
+
 subtree-push: # Push changes to all subtrees
 	git checkout main
 	git pull -p origin main
 	git push origin main
-	git subtree push --prefix=src/SonsOfPHP/Component/Clock clock main
-	git subtree push --prefix=src/SonsOfPHP/Component/EventDispatcher event-dispatcher main
-	git subtree push --prefix=src/SonsOfPHP/Component/EventSourcing event-sourcing main
-	git subtree push --prefix=src/SonsOfPHP/Component/FeatureToggle feature-toggle main
-	git subtree push --prefix=src/SonsOfPHP/Component/Money money main
+	git subtree push --prefix=packages/component/clock clock main
+	git subtree push --prefix=packages/component/event-dispatcher event-dispatcher main
+	git subtree push --prefix=packages/component/event-sourcing event-sourcing main
+	git subtree push --prefix=packages/component/feature-toggle feature-toggle main
+	git subtree push --prefix=packages/component/money money main
 
 copy-license: # copy the LICENSE file to all the libraries and projects
-	cp LICENSE src/SonsOfPHP/Component/Clock/LICENSE
-	cp LICENSE src/SonsOfPHP/Component/EventDispatcher/LICENSE
-	cp LICENSE src/SonsOfPHP/Component/EventSourcing/LICENSE
-	cp LICENSE src/SonsOfPHP/Component/FeatureToggle/LICENSE
-	cp LICENSE src/SonsOfPHP/Component/Money/LICENSE
+	cp LICENSE packages/component/clock/LICENSE
+	cp LICENSE packages/component/event-dispatcher/LICENSE
+	cp LICENSE packages/component/event-sourcing/LICENSE
+	cp LICENSE packages/component/feature-toggle/LICENSE
+	cp LICENSE packages/component/money/LICENSE
