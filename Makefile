@@ -55,6 +55,7 @@ remote-add: # Add git remotes for all components
 	git remote -v | grep -w event-dispatcher || git remote add event-dispatcher git@github.com:SonsOfPHP/event-dispatcher.git
 	git remote -v | grep -w event-sourcing || git remote add event-sourcing git@github.com:SonsOfPHP/event-sourcing.git
 	git remote -v | grep -w feature-toggle || git remote add feature-toggle git@github.com:SonsOfPHP/feature-toggle.git
+	git remote -v | grep -w json || git remote add json git@github.com:SonsOfPHP/json.git
 	git remote -v | grep -w money || git remote add money git@github.com:SonsOfPHP/money.git
 
 subtree-push: # Push changes to all subtrees
@@ -65,6 +66,7 @@ subtree-push: # Push changes to all subtrees
 	git subtree push --prefix=packages/component/event-dispatcher event-dispatcher main
 	git subtree push --prefix=packages/component/event-sourcing event-sourcing main
 	git subtree push --prefix=packages/component/feature-toggle feature-toggle main
+	git subtree push --prefix=packages/component/json json main
 	git subtree push --prefix=packages/component/money money main
 
 copy-license: # copy the LICENSE file to all the libraries and projects
@@ -72,4 +74,5 @@ copy-license: # copy the LICENSE file to all the libraries and projects
 	cp LICENSE packages/component/event-dispatcher/LICENSE
 	cp LICENSE packages/component/event-sourcing/LICENSE
 	cp LICENSE packages/component/feature-toggle/LICENSE
+	cp LICENSE packages/component/json/LICENSE
 	cp LICENSE packages/component/money/LICENSE
