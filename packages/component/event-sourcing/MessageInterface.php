@@ -24,12 +24,6 @@ interface MessageInterface
     public static function new(): MessageInterface;
 
     /**
-     * @param array $metadata
-     * @return static
-     */
-    public function withMetadata(): MessageInterface;
-
-    /**
      * @return AggregateIdInterface|null
      */
     public function getAggregateId(): ?AggregateIdInterface;
@@ -38,6 +32,29 @@ interface MessageInterface
      * @return AggregateVersionInterface|null
      */
     public function getAggregateVersion(): ?AggregateVersionInterface;
+
+    /**
+     */
+    public function getEventId(): ?string;
+
+    /**
+     */
+    public function getEventType(): ?string;
+
+    /**
+     */
+    public function getTimestamp(): ?string;
+
+    /**
+     */
+    public function getTimestampFormat(): ?string;
+
+    /**
+     * @param array $metadata
+     *
+     * @return static
+     */
+    public function withMetadata(array $metadata): MessageInterface;
 
     /**
      * Returns the metadata for this message

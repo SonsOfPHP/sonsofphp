@@ -28,6 +28,9 @@
         "php": ">=7.4",
         "sonsofphp/event-dispatcher": "^0.1"
     },
+    "suggest": {
+        "symfony/uid": "Helps generate UUIDs and ULIDs"
+    },
     "extra": {
         "branch-alias": {
             "dev-main": "0.1.0-dev"
