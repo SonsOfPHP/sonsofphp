@@ -13,17 +13,17 @@
 
     <testsuites>
         <testsuite name="all">
-            <directory>src</directory>
+            <directory>packages</directory>
         </testsuite>
     </testsuites>
 
     <coverage>
         <include>
-            <directory>src/SonsOfPHP</directory>
+            <directory>packages/component</directory>
         </include>
         <exclude>
-            <directory>src/SonsOfPHP/Component/*/Tests</directory>
-            <directory>src/SonsOfPHP/Component/*/vendor</directory>
+            <directory>packages/component/*/Tests</directory>
+            <directory>packages/component/*/vendor</directory>
         </exclude>
     </coverage>
 

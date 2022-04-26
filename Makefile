@@ -57,13 +57,6 @@ remote-add: # Add git remotes for all components
 	git remote -v | grep -w feature-toggle || git remote add feature-toggle git@github.com:SonsOfPHP/feature-toggle.git
 	git remote -v | grep -w money || git remote add money git@github.com:SonsOfPHP/money.git
 
-subtree-add:
-	git subtree add --prefix=packages/component/clock clock main
-	git subtree add --prefix=packages/component/event-dispatcher event-dispatcher main
-	git subtree add --prefix=packages/component/event-sourcing event-sourcing main
-	git subtree add --prefix=packages/component/feature-toggle feature-toggle main
-	git subtree add --prefix=packages/component/money money main
-
 subtree-push: # Push changes to all subtrees
 	git checkout main
 	git pull -p origin main

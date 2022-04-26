@@ -25,7 +25,11 @@
     "conflict": {},
     "autoload": {
         "psr-4": {
-            "SonsOfPHP\\Component\\": "src/SonsOfPHP/Component"
+            "SonsOfPHP\\Component\\Clock\\": "packages/component/clock",
+            "SonsOfPHP\\Component\\EventDispatcher\\": "packages/component/event-dispatcher",
+            "SonsOfPHP\\Component\\EventSourcing\\": "packages/component/event-sourcing",
+            "SonsOfPHP\\Component\\FeatureToggle\\": "packages/component/feature-toggle",
+            "SonsOfPHP\\Component\\Money\\": "packages/component/money"
         },
         "exclude-from-classmap": [
             "**/Tests/"
