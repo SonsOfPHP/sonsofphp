@@ -1,21 +1,12 @@
-Sons of PHP - Money Component
-=============================
+Sons of PHP - Event Sourcing Component
+======================================
 
-Money Abstraction for projects working with money and currencies.
+The Event Sourcing Component helps build event sourcing into your application.
 
 ## Installation
 
 ```shell
-composer require sonsofphp/money
-```
-
-## Usage
-
-```php
-use SonsOfPHP\Component\Money\Money;
-use SonsOfPHP\Component\Money\CUrrency;
-
-$money = new Money(100, new Currency('USD'));
+composer require sonsofphp/event-sourcing
 ```
 
 ## Reporting Issues

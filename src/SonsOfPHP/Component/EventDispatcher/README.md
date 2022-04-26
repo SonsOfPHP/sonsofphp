@@ -1,21 +1,12 @@
-Sons of PHP - Money Component
-=============================
+Sons of PHP - Event Dispatcher Component
+========================================
 
-Money Abstraction for projects working with money and currencies.
+Simple PSR-14 Event Dispatcher
 
 ## Installation
 
 ```shell
-composer require sonsofphp/money
-```
-
-## Usage
-
-```php
-use SonsOfPHP\Component\Money\Money;
-use SonsOfPHP\Component\Money\CUrrency;
-
-$money = new Money(100, new Currency('USD'));
+composer require sonsofphp/event-dispatcher
 ```
 
 ## Reporting Issues
