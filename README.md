@@ -1,5 +1,5 @@
 Sons of PHP - Money Component
-======================================
+=============================
 
 Money Abstraction for projects working with money and currencies.
 
