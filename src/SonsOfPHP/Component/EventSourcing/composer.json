@@ -1,0 +1,35 @@
+{
+    "name": "sonsofphp/event-sourcing",
+    "type": "library",
+    "description": "Event Sourcing library",
+    "keywords": ["event-sourcing"],
+    "homepage": "https://github.com/SonsOfPHP/event-sourcing",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joshua Estes",
+            "email": "joshua@sonsofphp.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/SonsOfPHP/sonsofphp/issues",
+        "forum": "https://github.com/orgs/SonsOfPHP/discussions"
+    },
+    "autoload": {
+        "psr-4": {
+            "SonsOfPHP\\Component\\EventSourcing\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.4"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "0.1.0-dev"
+        }
+    }
+}
