@@ -8,6 +8,7 @@ namespace SonsOfPHP\Component\Json;
  * Json Encoder/Decoder
  *
  * Usage:
+ *   // Make it simple to drop in as replacement
  *   $json   = Json::encode($value);
  *   $object = Json::decode($json);
  *   $array  = Json::decode($json, true);

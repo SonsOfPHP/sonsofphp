@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Json;
 
 /**
+ * JSON Encoder will encode data to a json string
+ *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 class JsonEncoder
@@ -29,7 +31,7 @@ class JsonEncoder
     public function withoutFlags(int $flag)
     {
         $that = clone $this;
-        $that->flags = $this->flags ^ $flag;
+        $that->flags = $this->flags & ~$flag;
 
         return $that;
     }
@@ -44,7 +46,7 @@ class JsonEncoder
 
     public function encode($value): string
     {
-        $return = json_encode($json, $this->flags, $this->depth);
+        $return = json_encode($value, $this->flags, $this->depth);
 
         if (JSON_ERROR_NONE !== json_last_error()) {
             throw new JsonException(json_last_error_msg(), json_last_error());

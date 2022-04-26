@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Json;
 
 /**
+ * JSON Decoder will covert json to stdClass or array
+ *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 class JsonDecoder
@@ -33,7 +35,7 @@ class JsonDecoder
     public function withoutFlags(int $flag)
     {
         $that = clone $this;
-        $that->flags = $this->flags ^ $flag;
+        $that->flags = $this->flags & ~$flag;
 
         return $that;
     }
@@ -48,7 +50,7 @@ class JsonDecoder
 
     public function asArray()
     {
-        return $this->withFlag(JSON_OBJECT_AS_ARRAY);
+        return $this->withFlags(JSON_OBJECT_AS_ARRAY);
     }
 
     public function decode(string $json)
