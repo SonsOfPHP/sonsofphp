@@ -23,6 +23,7 @@
         </include>
         <exclude>
             <directory>src/SonsOfPHP/Component/*/Tests</directory>
+            <directory>src/SonsOfPHP/Component/*/vendor</directory>
         </exclude>
     </coverage>
 
