@@ -3,6 +3,7 @@
 
 # Components
 /src/SonsOfPHP/Component/Clock/ @JoshuaEstes
+/src/SonsOfPHP/Component/EventDispatcher/ @JoshuaEstes
 /src/SonsOfPHP/Component/EventSourcing/ @JoshuaEstes
 /src/SonsOfPHP/Component/FeatureToggle/ @JoshuaEstes
 /src/SonsOfPHP/Component/Money/ @JoshuaEstes
