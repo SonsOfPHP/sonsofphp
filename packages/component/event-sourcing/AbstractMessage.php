@@ -40,8 +40,8 @@ abstract class AbstractMessage implements MessageInterface
      */
     final public function getEventType(): ?string
     {
-        if (isset($this->metadata[Metadata::EVENT_ID])) {
-            return (string) $this->metadata[Metadata::EVENT_ID];
+        if (isset($this->metadata[Metadata::EVENT_TYPE])) {
+            return (string) $this->metadata[Metadata::EVENT_TYPE];
         }
 
         return null;

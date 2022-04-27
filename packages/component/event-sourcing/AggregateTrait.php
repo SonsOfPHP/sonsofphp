@@ -71,7 +71,19 @@ trait AggregateTrait
      */
     protected function raiseEvent(MessageInterface $event): void
     {
+        // 1. Apply Event
         $this->applyEvent($event);
+
+        // 2. Decorate event with Metadata
+        // note on version: because we do this after the event is applied, we don't
+        // need to next() the version. Example, 0 - empty state, 1 - first event that
+        // modified state
+        $event = $event->withMetadata([
+            Metadata::AGGREGATE_ID      => $this->getAggregateId()->toString(),
+            Metadata::AGGREGATE_Version => $this->getAggregateVersion()->toInt(),
+        ]);
+
+        // 3. append to pending events
         $this->pendingEvents[] = $event;
     }
 
