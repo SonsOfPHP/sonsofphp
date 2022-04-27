@@ -36,7 +36,7 @@ interface AggregateInterface
      *
      * @return DomainEventInterface[]
      */
-    public function yieldEvents(): Generator;
+    public function getPendingEvents(): array;
 
     /**
      * Build Aggregate from a collection of Domain Events

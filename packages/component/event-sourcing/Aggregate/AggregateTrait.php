@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Aggregate;
 
+use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
+use SonsOfPHP\Component\EventSourcing\Metadata;
 use Generator;
 
 /**
@@ -50,13 +52,12 @@ trait AggregateTrait
     /**
      * {@inheritdoc}
      */
-    public function yieldEvents(): Generator
+    public function getPendingEvents(): array
     {
-        foreach ($this->pendingEvents as $event) {
-            yield $event;
-        }
-
+        $events = $this->pendingEvents;
         $this->pendingEvents = [];
+
+        return $events;
     }
 
     /**
@@ -65,6 +66,11 @@ trait AggregateTrait
     public static function buildFromEvents(AggregateIdInterface $id, Generator $events): AggregateInterface
     {
         $aggregate = static::new($id);
+        foreach ($events as $event) {
+            $aggregate->applyEvent($event);
+        }
+
+        return $aggregate;
     }
 
     /**
@@ -80,7 +86,7 @@ trait AggregateTrait
         // modified state
         $event = $event->withMetadata([
             Metadata::AGGREGATE_ID      => $this->getAggregateId()->toString(),
-            Metadata::AGGREGATE_Version => $this->getAggregateVersion()->toInt(),
+            Metadata::AGGREGATE_VERSION => $this->getAggregateVersion()->toInt(),
         ]);
 
         // 3. append to pending events
