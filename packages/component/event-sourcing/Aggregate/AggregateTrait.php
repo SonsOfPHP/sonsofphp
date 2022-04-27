@@ -87,6 +87,8 @@ trait AggregateTrait
         $event = $event->withMetadata([
             Metadata::AGGREGATE_ID      => $this->getAggregateId()->toString(),
             Metadata::AGGREGATE_VERSION => $this->getAggregateVersion()->toInt(),
+            Metadata::TIMESTAMP         => (new \DateTimeImmutable())->format(Metadata::DEFAULT_TIMESTAMP_FORMAT),
+            Metadata::TIMESTAMP_FORMAT  => Metadata::DEFAULT_TIMESTAMP_FORMAT,
         ]);
 
         // 3. append to pending events

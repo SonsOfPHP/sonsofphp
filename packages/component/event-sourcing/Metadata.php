@@ -17,4 +17,7 @@ final class Metadata
     public const AGGREGATE_VERSION = '_aggregate_version';
     public const TIMESTAMP         = '_timestamp';
     public const TIMESTAMP_FORMAT  = '_timestamp_format';
+
+    // @see https://www.php.net/manual/en/datetime.format.php
+    public const DEFAULT_TIMESTAMP_FORMAT = 'c';
 }
