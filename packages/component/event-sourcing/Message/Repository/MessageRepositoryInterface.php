@@ -6,6 +6,7 @@ namespace SonsOfPHP\Component\EventSourcing\Message\Repository;
 
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
+use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use Generator;
 
 /**

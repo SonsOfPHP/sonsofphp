@@ -7,6 +7,7 @@ namespace SonsOfPHP\Component\EventSourcing\Message\Repository;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
+use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use Generator;
 
 /**
@@ -24,7 +25,7 @@ final class InMemoryMessageRepository implements MessageRepositoryInterface
         $id      = $message->getAggregateId();
         $version = $message->getAggregateVersion();
 
-        $this->storage[$id->toString()][$version->toInt] = $message;
+        $this->storage[$id->toString()][$version->toInt()] = $message;
     }
 
     /**
