@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\EventSourcing\Aggregate;
+namespace SonsOfPHP\Component\EventSourcing\Aggregate\Repository;
+
+use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateInterface;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 
 /**
  * Aggregate Repository Interface
@@ -21,8 +24,9 @@ interface AggregateRepositoryInterface
     /**
      * When an aggregate is persisted, it will dispatch pending events.
      *
-     * 1. Persist Event
-     * 2. Dispatch Event (Event Dispatcher, Event Bus, etc.)
+     * 1. Enrich Event Message
+     * 2. Persist Event
+     * 3. Dispatch Event (Event Dispatcher, Event Bus, etc.)
      */
     public function persist(AggregateInterface $aggregate): void;
 }

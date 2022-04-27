@@ -52,7 +52,7 @@ trait AggregateTrait
     /**
      * {@inheritdoc}
      */
-    public function getPendingEvents(): array
+    public function getPendingEvents(): iterable
     {
         $events = $this->pendingEvents;
         $this->pendingEvents = [];

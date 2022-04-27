@@ -7,15 +7,17 @@ namespace SonsOfPHP\Component\EventSourcing\Message\Enricher;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 
 /**
- * Message Enricher
+ * Message Enricher Handler Interface
  *
- * This will take a Message Enricher Provider and will enrich the message.
+ * Before a message is persisted, it can be enriched with extra metadata. Any
+ * class that needs to enrich the message must implement this interface.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface MessageEnricherInterface
+interface MessageEnricherHandlerInterface
 {
     /**
+     * Enrich and return the enriched message
      */
     public function enrich(MessageInterface $message): MessageInterface;
 }
