@@ -30,7 +30,7 @@ composer-install: composer.json # Install Dependencies via Composer
 	$(COMPOSER) install --working-dir=tools/phpstan --no-interaction --prefer-dist --optimize-autoloader
 
 purge: # Purge vendor and lock files
-	rm -rf vendor/* src/SonsOfPHP/*/*/vendor/* src/SonsOfPHP/*/*/composer.lock
+	rm -rf vendor/ packages/component/*/vendor/ packages/component/*/composer.lock
 
 test: ## Run Tests
 	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHPUNIT)
