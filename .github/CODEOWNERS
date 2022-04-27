@@ -1,9 +1,23 @@
+# Tools
+/tools/ @JoshuaEstes
+
 # Documentation
 /docs/ @JoshuaEstes
 
 # Components
-/src/SonsOfPHP/Component/Clock/ @JoshuaEstes
-/src/SonsOfPHP/Component/EventDispatcher/ @JoshuaEstes
-/src/SonsOfPHP/Component/EventSourcing/ @JoshuaEstes
-/src/SonsOfPHP/Component/FeatureToggle/ @JoshuaEstes
-/src/SonsOfPHP/Component/Money/ @JoshuaEstes
+/packages/component/autoloader/ @JoshuaEstes
+/packages/component/clock/ @JoshuaEstes
+/packages/component/cqrs/ @JoshuaEstes
+/packages/component/crypto/ @JoshuaEstes
+/packages/component/csv/ @JoshuaEstes
+/packages/component/event-dispatcher/ @JoshuaEstes
+/packages/component/event-sourcing/ @JoshuaEstes
+/packages/component/faker/ @JoshuaEstes
+/packages/component/feature-toggle/ @JoshuaEstes
+/packages/component/filesystem/ @JoshuaEstes
+/packages/component/json/ @JoshuaEstes
+/packages/component/money/ @JoshuaEstes
+/packages/component/pdf/ @JoshuaEstes
+/packages/component/semver/ @JoshuaEstes
+/packages/component/stopwatch/ @JoshuaEstes
+/packages/component/xml/ @JoshuaEstes
