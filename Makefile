@@ -52,6 +52,7 @@ php-cs-fixer: ## run php-cs-fixer
 #-----------
 remote-add: # Add git remotes for all components
 	git remote -v | grep -w clock || git remote add clock git@github.com:SonsOfPHP/clock.git
+	git remote -v | grep -w cqrs || git remote add cqrs git@github.com:SonsOfPHP/cqrs.git
 	git remote -v | grep -w event-dispatcher || git remote add event-dispatcher git@github.com:SonsOfPHP/event-dispatcher.git
 	git remote -v | grep -w event-sourcing || git remote add event-sourcing git@github.com:SonsOfPHP/event-sourcing.git
 	git remote -v | grep -w feature-toggle || git remote add feature-toggle git@github.com:SonsOfPHP/feature-toggle.git
@@ -63,6 +64,7 @@ subtree-push: # Push changes to all subtrees
 	git pull -p origin main
 	git push origin main
 	git subtree push --prefix=packages/component/clock clock main
+	git subtree push --prefix=packages/component/cqrs cqrs main
 	git subtree push --prefix=packages/component/event-dispatcher event-dispatcher main
 	git subtree push --prefix=packages/component/event-sourcing event-sourcing main
 	git subtree push --prefix=packages/component/feature-toggle feature-toggle main
@@ -71,6 +73,7 @@ subtree-push: # Push changes to all subtrees
 
 copy-license: # copy the LICENSE file to all the libraries and projects
 	cp LICENSE packages/component/clock/LICENSE
+	cp LICENSE packages/component/cqrs/LICENSE
 	cp LICENSE packages/component/event-dispatcher/LICENSE
 	cp LICENSE packages/component/event-sourcing/LICENSE
 	cp LICENSE packages/component/feature-toggle/LICENSE

@@ -27,6 +27,7 @@
     },
     "replace": {
         "sonsofphp/clock": "self.version",
+        "sonsofphp/cqrs": "self.version",
         "sonsofphp/event-dispatcher": "self.version",
         "sonsofphp/event-sourcing": "self.version",
         "sonsofphp/feature-toggle": "self.version",
@@ -36,6 +37,7 @@
     "autoload": {
         "psr-4": {
             "SonsOfPHP\\Component\\Clock\\": "packages/component/clock",
+            "SonsOfPHP\\Component\\Cqrs\\": "packages/component/cqrs",
             "SonsOfPHP\\Component\\EventDispatcher\\": "packages/component/event-dispatcher",
             "SonsOfPHP\\Component\\EventSourcing\\": "packages/component/event-sourcing",
             "SonsOfPHP\\Component\\FeatureToggle\\": "packages/component/feature-toggle",
