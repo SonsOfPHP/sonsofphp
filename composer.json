@@ -52,5 +52,9 @@
         "branch-alias": {
             "dev-main": "0.1.0-dev"
         }
+    },
+    "require-dev": {
+        "symfony/http-foundation": "*",
+        "symfony/security": "*"
     }
 }

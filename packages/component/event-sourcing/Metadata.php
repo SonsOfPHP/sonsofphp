@@ -11,12 +11,12 @@ namespace SonsOfPHP\Component\EventSourcing;
  */
 final class Metadata
 {
-    public const EVENT_ID          = '_event_id';
-    public const EVENT_TYPE        = '_event_type';
-    public const AGGREGATE_ID      = '_aggregate_id';
-    public const AGGREGATE_VERSION = '_aggregate_version';
-    public const TIMESTAMP         = '_timestamp';
-    public const TIMESTAMP_FORMAT  = '_timestamp_format';
+    public const EVENT_ID          = '__event_id';
+    public const EVENT_TYPE        = '__event_type';
+    public const AGGREGATE_ID      = '__aggregate_id';
+    public const AGGREGATE_VERSION = '__aggregate_version';
+    public const TIMESTAMP         = '__timestamp';
+    public const TIMESTAMP_FORMAT  = '__timestamp_format';
 
     // @see https://www.php.net/manual/en/datetime.format.php
     public const DEFAULT_TIMESTAMP_FORMAT = 'c';
