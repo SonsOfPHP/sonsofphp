@@ -24,7 +24,7 @@
         "php": ">=7.4",
         "ext-json": "*",
         "psr/event-dispatcher": "^1.0",
-        "doctrine/dbal": "^4.0"
+        "doctrine/dbal": "^3.3"
     },
     "replace": {
         "sonsofphp/clock": "self.version",
@@ -53,6 +53,9 @@
         "branch-alias": {
             "dev-main": "0.1.x-dev"
         }
+    },
+    "suggest": {
+        "symfony/uid": "Helps generate UUIDs and ULIDs"
     },
     "require-dev": {
         "symfony/http-foundation": "*",
