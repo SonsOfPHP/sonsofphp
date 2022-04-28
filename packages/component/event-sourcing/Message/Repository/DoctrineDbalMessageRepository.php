@@ -19,7 +19,7 @@ use Generator;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class DoctrineDbalMessageRepository implements MessageRepositoryInterface
+class DoctrineDbalMessageRepository implements MessageRepositoryInterface
 {
     private Connection $connection;
     private MessageSerializerInterface $serializer;
