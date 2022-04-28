@@ -91,7 +91,7 @@ class TableSchemaV1 implements TableSchemaInterface
             'event_type'             => $data['metadata'][Metadata::EVENT_TYPE],
             'aggregate_root_id'      => $data['metadata'][Metadata::AGGREGATE_ID],
             'aggregate_root_version' => $data['metadata'][Metadata::AGGREGATE_VERSION],
-            'created_at'             => $data['metadata'][Metadata::TIMESTAMP],
+            'created_at'             => new \DateTimeImmutable($data['metadata'][Metadata::TIMESTAMP]),
             'payload'                => $data['payload'],
             'metadata'               => $data['metadata'],
         ];
@@ -106,8 +106,8 @@ class TableSchemaV1 implements TableSchemaInterface
     public function mapColumnsToEventData(array $result): array
     {
         return [
-            'payload'  => $result['payload'],
-            'metadata' => $result['metadata'],
+            'payload'  => unserialize($result['payload']),
+            'metadata' => unserialize($result['metadata']),
         ];
     }
 }
