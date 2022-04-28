@@ -19,8 +19,8 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 class AggregateRepository implements AggregateRepositoryInterface
 {
     protected string $aggregateClass;
-    protected MessageRepositoryInterface $messageRepository;
     protected EventDispatcherInterface $eventDispatcher;
+    protected MessageRepositoryInterface $messageRepository;
     protected MessageEnricherInterface $messageEnricher;
 
     public function __construct(
