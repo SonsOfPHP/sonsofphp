@@ -9,7 +9,6 @@ use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\Serializer\MessageSerializerInterface;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
-use SonsOfPHP\Component\EventSourcing\Message\MessageProviderInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\ParameterType;
@@ -21,16 +20,14 @@ use Generator;
 final class DoctrineDbalMessageRepository implements MessageRepositoryInterface
 {
     private Connection $connection;
-    private MessageProviderInterface $messageProvider;
     private MessageSerializerInterface $serializer;
 
     /**
      */
-    public function __construct(Connection $connection, MessageProviderInterface $messageProvider, MessageSerializerInterface $serializer)
+    public function __construct(Connection $connection, MessageSerializerInterface $serializer)
     {
-        $this->connection      = $connection;
-        $this->messageProvider = $messageProvider;
-        $this->serializer      = $serializer;
+        $this->connection = $connection;
+        $this->serializer = $serializer;
     }
 
     /**
@@ -44,10 +41,6 @@ final class DoctrineDbalMessageRepository implements MessageRepositoryInterface
         if (null === $id || null === $version) {
             throw new EventSourcingException('No ID or Verion');
         }
-
-        $message = $message->withMetadata([
-            Metadata::EVENT_TYPE => $this->messageProvider->getEventTypeForMessage($message),
-        ]);
 
         $data = $this->serializer->serialize($message);
 
@@ -63,6 +56,12 @@ final class DoctrineDbalMessageRepository implements MessageRepositoryInterface
         if (count($requiredMetadata) != count(array_intersect_key(array_flip($requiredMetadata), $data['metadata']))) {
             throw new EventSourcingException('metadata is missing one or more required values');
         }
+
+        // returns int|string The number of aggected rows
+        $this->connection->insert(
+            $this->tableSchema->getTableName(),
+            $this->tableSchema->mapEventDataToColumns($data)
+        );
     }
 
     /**
@@ -70,5 +69,6 @@ final class DoctrineDbalMessageRepository implements MessageRepositoryInterface
      */
     public function find(AggregateIdInterface $id, ?AggregateVersionInterface $version = null): Generator
     {
+        // @todo
     }
 }

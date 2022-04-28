@@ -59,5 +59,6 @@ class TableSchema
 
     public function mapColumnsToEventData(array $result): array
     {
+        return $result['event_data'];
     }
 }
