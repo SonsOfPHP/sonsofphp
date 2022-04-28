@@ -23,12 +23,12 @@ class TableSchemaV1 implements TableSchemaInterface
         return 'event_store';
     }
 
-    public function getAggregateIdColumn()
+    public function getAggregateIdColumn(): string
     {
         return 'aggregate_root_id';
     }
 
-    public function getAggregateVersionColumn()
+    public function getAggregateVersionColumn(): string
     {
         return 'aggregate_root_version';
     }
