@@ -27,7 +27,7 @@
     "require": {
         "php": ">=7.4",
         "doctrine/dbal": "^4.0",
-        "sonsofphp/event-dispatcher": "^0.1"
+        "sonsofphp/event-dispatcher": "^0.1@dev"
     },
     "suggest": {
         "symfony/uid": "Helps generate UUIDs and ULIDs"
