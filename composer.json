@@ -50,7 +50,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-main": "0.1.0-dev"
+            "dev-main": "0.1.x-dev"
         }
     },
     "require-dev": {
