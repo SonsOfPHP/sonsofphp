@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\EventSourcing\Message\Enricher;
+namespace SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler;
 
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 

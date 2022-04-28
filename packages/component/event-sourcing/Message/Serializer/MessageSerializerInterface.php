@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Message\Serializer;
 
-use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
+use SonsOfPHP\Component\EventSourcing\Message\SerializableMessageInterface;
 
 /**
  * Message Serializer Interface
@@ -14,10 +14,19 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 interface MessageSerializerInterface
 {
     /**
+     * Returns an array
+     *
+     * Array Returned will be in the format:
+     * [
+     *   'payload' => [...],
+     *   'metadata' => [...],
+     * ]
+     *
+     * @return array
      */
-    public function serialize(MessageInterface $message): array;
+    public function serialize(SerializableMessageInterface $message): array;
 
     /**
      */
-    public function deserialize(array $data): MessageInterface;
+    public function deserialize(array $data): SerializableMessageInterface;
 }

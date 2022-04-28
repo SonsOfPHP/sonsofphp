@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Message\Serializer;
 
-use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
+use SonsOfPHP\Component\EventSourcing\Message\SerializableMessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\MessageProviderInterface;
+use SonsOfPHP\Component\EventSourcing\Metadata;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -22,24 +23,25 @@ class MessageSerializer implements MessageSerializerInterface
 
     /**
      */
-    public function serialize(MessageInterface $message): array
+    public function serialize(SerializableMessageInterface $message): array
     {
         $message = $message->withMetadata([
             Metadata::EVENT_TYPE => $this->messageProvider->getEventTypeForMessage($message),
         ]);
 
-        return [
-            'payload'  => $message->getPayload(),
-            'metadata' => $message->getMetadata(),
-        ];
+        return $message->serialize();
     }
 
     /**
      */
-    public function deserialize(array $data): MessageInterface
+    public function deserialize(array $data): SerializableMessageInterface
     {
-        $eventType = $data['metadata'][Metadata::EVENT_TYPE];
         // upcast data
-        // $data = $this->messageUpcaster->upcast($eventType, $data);
+        // $data = $this->messageUpcaster->upcast($data);
+        $eventType = $data['metadata'][Metadata::EVENT_TYPE];
+
+        $messageClass = $this->messageProvider->getMessageClassForEventType($eventType);
+
+        return $messageClass::deserialize($data);
     }
 }

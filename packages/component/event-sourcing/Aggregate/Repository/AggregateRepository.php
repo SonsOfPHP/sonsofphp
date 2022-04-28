@@ -9,8 +9,8 @@ use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricherInterface;
-use SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricher;;
-use SonsOfPHP\Component\EventSourcing\Message\Enricher\NullMessageEnricherProvider;;
+use SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricher;
+use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\NullMessageEnricherProvider;;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
 /**
