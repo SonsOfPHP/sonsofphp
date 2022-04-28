@@ -41,6 +41,8 @@ class NamespaceMessageProvider implements MessageProviderInterface
         if ($namespace !== $this->namespace) {
             throw new EventSourcingException(sprintf('Message "%s" is not in the Namespace "%s"', $message, $this->namespace));
         }
+
+        return $eventType;
     }
 
     /**
