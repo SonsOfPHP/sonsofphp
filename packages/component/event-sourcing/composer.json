@@ -31,6 +31,7 @@
         "sonsofphp/event-dispatcher": "^0.1@dev"
     },
     "suggest": {
+        "symfony/messenger": "Allows you to handle events asynchronously",
         "symfony/uid": "Helps generate UUIDs and ULIDs"
     },
     "extra": {
