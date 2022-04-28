@@ -16,6 +16,7 @@
         "forum": "https://github.com/orgs/SonsOfPHP/discussions"
     },
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "provide": {
         "psr/event-dispatcher-implementation": "1.0"
     },
