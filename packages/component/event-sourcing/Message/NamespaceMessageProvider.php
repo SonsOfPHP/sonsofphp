@@ -12,7 +12,7 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class NamespaceMessageProvider implements MessageProviderInterface
+class NamespaceMessageProvider implements MessageProviderInterface
 {
     private string $namespace;
 
