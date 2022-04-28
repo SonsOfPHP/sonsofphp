@@ -10,7 +10,7 @@ use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricherInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricher;;
-use SonsOfPHP\Component\EventSourcing\Message\Enricher\NullProvider;;
+use SonsOfPHP\Component\EventSourcing\Message\Enricher\NullMessageEnricherProvider;;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
 /**
@@ -33,7 +33,7 @@ class AggregateRepository implements AggregateRepositoryInterface
         $this->aggregateClass    = $aggregateClass;
         $this->eventDispatcher   = $eventDispatcher;
         $this->messageRepository = $messageRepository;
-        $this->messageEnricher   = $messageEnricher ?? new MessageEnricher(new NullProvider());
+        $this->messageEnricher   = $messageEnricher ?? new MessageEnricher(new NullMessageEnricherProvider());
     }
 
     /**

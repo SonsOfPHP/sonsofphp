@@ -22,7 +22,8 @@
     "require": {
         "php": ">=7.4",
         "ext-json": "*",
-        "psr/event-dispatcher": "^1.0"
+        "psr/event-dispatcher": "^1.0",
+        "doctrine/dbal": "^4.0"
     },
     "replace": {
         "sonsofphp/clock": "self.version",

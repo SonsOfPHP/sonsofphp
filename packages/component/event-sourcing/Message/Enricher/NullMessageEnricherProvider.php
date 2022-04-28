@@ -1,0 +1,25 @@
+<?php
+
+declare(strict_types=1);
+
+namespace SonsOfPHP\Component\EventSourcing\Message\Enricher;
+
+use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
+
+/**
+ * Null Provider
+ *
+ * Used when there isn't any need for message enrichers
+ *
+ * @author Joshua Estes <joshua@sonsofphp.com>
+ */
+final class NullMessageEnricherProvider implements MessageEnricherProviderInterface
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function getEnrichersForMessage(MessageInterface $message): iterable
+    {
+        return [];
+    }
+}

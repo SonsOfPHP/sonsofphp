@@ -13,13 +13,13 @@
 
     <testsuites>
         <testsuite name="all">
-            <directory>packages</directory>
+            <directory>packages/component/*/Tests</directory>
         </testsuite>
     </testsuites>
 
     <coverage>
         <include>
-            <directory>packages/component</directory>
+            <directory>packages/component/*</directory>
         </include>
         <exclude>
             <directory>packages/component/*/Tests</directory>
