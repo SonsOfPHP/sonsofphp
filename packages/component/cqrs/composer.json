@@ -29,6 +29,12 @@
         "php": ">=7.4",
         "symfony/options-resolver": "^5.4"
     },
+    "require-dev": {
+        "symfony/messenger": "^5.4"
+    },
+    "suggest": {
+        "symfony/messenger": "Use message buses"
+    },
     "extra": {
         "branch-alias": {
             "dev-main": "0.1.x-dev"
