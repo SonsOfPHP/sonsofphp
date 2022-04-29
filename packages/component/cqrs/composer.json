@@ -26,7 +26,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.4"
+        "php": ">=7.4",
+        "symfony/options-resolver": "^5.4"
     },
     "extra": {
         "branch-alias": {
