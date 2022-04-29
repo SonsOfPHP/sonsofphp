@@ -56,10 +56,12 @@
         }
     },
     "suggest": {
-        "symfony/uid": "Helps generate UUIDs and ULIDs"
+        "symfony/messenger": "Use with CQRS & Event Sourcing component to handle commands & events in the asynchronously.",
+        "symfony/uid": "Use with Event Sourcing component to generate UUIDs and ULIDs"
     },
     "require-dev": {
         "symfony/http-foundation": "*",
-        "symfony/security": "*"
+        "symfony/security": "*",
+        "symfony/messenger": "^5.4"
     }
 }
