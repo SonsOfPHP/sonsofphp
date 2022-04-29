@@ -25,7 +25,7 @@
         "ext-json": "*",
         "psr/event-dispatcher": "^1.0",
         "doctrine/dbal": "^3.3",
-        "symfony/options-resolver": "^5.4"
+        "symfony/options-resolver": "^5.4|^6.0"
     },
     "replace": {
         "sonsofphp/clock": "self.version",
