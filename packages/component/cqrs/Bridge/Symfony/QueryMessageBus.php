@@ -10,7 +10,7 @@ use Symfony\Component\Messenger\MessageBusInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class QueryMessageBus
+class QueryMessageBus
 {
     use HandleTrait {
         handle as handleQuery;

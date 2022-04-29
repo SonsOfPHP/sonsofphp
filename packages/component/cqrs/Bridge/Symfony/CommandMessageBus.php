@@ -11,7 +11,7 @@ use Symfony\Component\Messenger\Stamp\StampInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class CommandMessageBus
+class CommandMessageBus
 {
     private MessageBusInterface $messageBus;
     private array $stamps = [];
