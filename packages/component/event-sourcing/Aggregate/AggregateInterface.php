@@ -10,6 +10,9 @@ use Generator;
 /**
  * Aggregate
  *
+ * Usage:
+ *   $aggregate = DummyAggregate::new(AggregateId::fromString('uuid'));
+ *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 interface AggregateInterface

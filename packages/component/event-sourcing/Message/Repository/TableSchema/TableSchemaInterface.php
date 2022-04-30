@@ -5,6 +5,12 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Message\Repository\TableSchema;
 
 /**
+ * Table Schema Interface
+ *
+ * Because each implementation is different, we need a way to define how we
+ * want to use a database table. Using this interface we can define where
+ * and how we want to store the information.
+ *
  * NOTE: In the future, the table schema can be used to create the table if it
  *       does not exist. Migrations should be done by hand
  *

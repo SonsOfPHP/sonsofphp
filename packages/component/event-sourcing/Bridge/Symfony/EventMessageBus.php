@@ -10,7 +10,7 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class MessageBusBridge implements EventDispatcherInterface
+class EventMessageBus implements EventDispatcherInterface
 {
     private MessageBusInterface $eventBus;
 

@@ -6,6 +6,7 @@ namespace SonsOfPHP\Component\EventSourcing\Aggregate\Repository;
 
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
+use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 
 /**
  * Aggregate Repository Interface
@@ -18,6 +19,13 @@ use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 interface AggregateRepositoryInterface
 {
     /**
+     * Finds and builds the aggregate from the events in storage
+     *
+     * @param AggregateIdInterface $id
+     *
+     * @thorws EventSourcingException
+     *
+     * @return AggregateInterface
      */
     public function find(AggregateIdInterface $id): AggregateInterface;
 
@@ -27,6 +35,12 @@ interface AggregateRepositoryInterface
      * 1. Enrich Event Message
      * 2. Persist Event
      * 3. Dispatch Event (Event Dispatcher, Event Bus, etc.)
+     *
+     * @param AggregateInterface $aggregate
+     *
+     * @throws EventSourcingException
+     *
+     * @return void
      */
     public function persist(AggregateInterface $aggregate): void;
 }

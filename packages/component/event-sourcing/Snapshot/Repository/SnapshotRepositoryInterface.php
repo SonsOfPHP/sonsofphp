@@ -12,6 +12,9 @@ use SonsOfPHP\Component\EventSourcing\Snapshot\SnapshotInterface;
  *
  * Similar to the Message Repository, however this is just for snapshots
  *
+ * note: There should be different "SnapshotStrategy" that can be used to
+ * automatically take a snapshot of the aggregate
+ *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 interface SnapshotRepositoryInterface
