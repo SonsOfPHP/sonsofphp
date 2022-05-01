@@ -7,11 +7,13 @@ namespace SonsOfPHP\Component\Money;
 /**
  * Money Interface
  *
+ * Main API for interactiving with Money
+ *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 interface MoneyInterface
 {
-    //public function getAmount();
+    //public function getAmount(): AmountInterface;
     //public function getCurrency(): CurrencyInterface;
 
     //public function isGreaterThan(MoneyInterface $money): bool;
