@@ -13,4 +13,16 @@ namespace SonsOfPHP\Component\Money;
  */
 interface CurrencyInterface
 {
+    //ie USD
+    //public function getCurrencyCode(): string;
+
+    // ie 840
+    //public function getNumericCode(): int;
+
+    // ie 2
+    //public function getMinorUnit(): int;
+
+    /**
+     */
+    //public function equals(CurrencyInterface $currency): bool;
 }
