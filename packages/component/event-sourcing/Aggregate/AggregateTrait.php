@@ -50,6 +50,18 @@ trait AggregateTrait
     }
 
     /**
+     * Returns true if there are pending events that need to be persisted.
+     * This will not clear any pending events and just says if there are or are
+     * not any pending events
+     *
+     * @return bool
+     */
+    public function hasPendingEvents(): bool
+    {
+        return count($this->pendingEvents) > 0;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getPendingEvents(): iterable
