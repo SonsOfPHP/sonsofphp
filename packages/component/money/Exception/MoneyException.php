@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\Money;
+namespace SonsOfPHP\Component\Money\Exception;
 
 use Exception;
 

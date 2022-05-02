@@ -24,4 +24,18 @@ final class CurrencyTest extends TestCase
         $currency = Currency::USD();
         $this->assertSame('USD', $currency->getCurrencyCode());
     }
+
+    public function testDefaults(): void
+    {
+        $currency = Currency::USD();
+        $this->assertNull($currency->getNumericCode());
+        $this->assertNull($currency->getMinorUnit());
+    }
+
+    public function testToStringMagicMethod(): void
+    {
+        $currency = Currency::USD();
+
+        $this->assertSame('USD', (string) $currency);
+    }
 }

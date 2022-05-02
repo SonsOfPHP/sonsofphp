@@ -13,7 +13,13 @@ namespace SonsOfPHP\Component\Money;
  */
 interface CurrencyInterface
 {
-    //ie USD
+    /**
+     * Returns the Alphabetic Code of the currency
+     *
+     * ie USD
+     *
+     * @return string
+     */
     //public function getCurrencyCode(): string;
 
     // ie 840
@@ -23,6 +29,9 @@ interface CurrencyInterface
     //public function getMinorUnit(): int;
 
     /**
+     * Returns true if the currencies are the same
+     *
+     * @return bool
      */
     //public function equals(CurrencyInterface $currency): bool;
 }

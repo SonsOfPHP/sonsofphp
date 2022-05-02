@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\Query;
 
-use SonsOfPHP\Component\Money\MoneyInterface;
+use SonsOfPHP\Component\Money\CurrencyProviderInterface;
 use SonsOfPHP\Component\Money\Exception\MoneyException;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface MoneyQueryInterface extends QueryInterface
+interface CurrencyProviderQueryInterface extends QueryInterface
 {
     /**
-     * @param MoneyInterface $money
+     * @param CurrecnyProviderInterface $provider
      *
      * @throws MoneyException
      *
      * @return mixed
      */
-    public function queryFrom(MoneyInterface $money);
+    public function queryFrom(CurrencyProviderInterface $provider);
 }

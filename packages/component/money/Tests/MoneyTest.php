@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\Tests;
 
+use SonsOfPHP\Component\Money\Exception\MoneyException;
 use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\Money;
 use SonsOfPHP\Component\Money\MoneyInterface;
@@ -74,6 +75,15 @@ final class MoneyTest extends TestCase
         $this->assertFalse($money1->greaterThan($money1));
     }
 
+    public function testGreaterThanWithDifferentCurrencies(): void
+    {
+        $money1 = Money::USD(100);
+        $money2 = Money::EUR(100);
+
+        $this->expectException(MoneyException::class);
+        $money1->greaterThan($money2);
+    }
+
     public function testGreaterThanOrEquals(): void
     {
         $money1 = Money::USD(100);
@@ -83,6 +93,15 @@ final class MoneyTest extends TestCase
         $this->assertFalse($money1->greaterThanOrEquals($money2));
         $this->assertTrue($money2->greaterThanOrEquals($money1));
         $this->assertTrue($money3->greaterThanOrEquals($money2));
+    }
+
+    public function testGreaterThanOrEqualsWithDifferentCurrencies(): void
+    {
+        $money1 = Money::USD(100);
+        $money2 = Money::EUR(100);
+
+        $this->expectException(MoneyException::class);
+        $money1->greaterThanOrEquals($money2);
     }
 
     public function testLessThan(): void
@@ -95,6 +114,15 @@ final class MoneyTest extends TestCase
         $this->assertFalse($money1->lessThan($money1));
     }
 
+    public function testLessThanWithDifferentCurrencies(): void
+    {
+        $money1 = Money::USD(100);
+        $money2 = Money::EUR(100);
+
+        $this->expectException(MoneyException::class);
+        $money1->lessThan($money2);
+    }
+
     public function testLessThanOrEquals(): void
     {
         $money1 = Money::USD(100);
@@ -104,6 +132,15 @@ final class MoneyTest extends TestCase
         $this->assertTrue($money1->lessThanOrEquals($money2));
         $this->assertFalse($money2->lessThanOrEquals($money1));
         $this->assertTrue($money3->lessThanOrEquals($money2));
+    }
+
+    public function testLessThanOrEqualsWithDifferentCurrencies(): void
+    {
+        $money1 = Money::USD(100);
+        $money2 = Money::EUR(100);
+
+        $this->expectException(MoneyException::class);
+        $money1->lessThanOrEquals($money2);
     }
 
     public function testIsNegative(): void
@@ -148,6 +185,15 @@ final class MoneyTest extends TestCase
         $this->assertSame(200, $output->getAmount());
     }
 
+    public function testAddWithDifferenctCurrencies(): void
+    {
+        $money1 = Money::USD(100);
+        $money2 = Money::EUR(100);
+
+        $this->expectException(MoneyException::class);
+        $money1->add($money2);
+    }
+
     public function testSubtract(): void
     {
         $money1 = Money::USD(100);
@@ -155,6 +201,15 @@ final class MoneyTest extends TestCase
 
         $output = $money1->subtract($money2);
         $this->assertSame(0, $output->getAmount());
+    }
+
+    public function testSubtractWithDifferenctCurrencies(): void
+    {
+        $money1 = Money::USD(100);
+        $money2 = Money::EUR(100);
+
+        $this->expectException(MoneyException::class);
+        $money1->subtract($money2);
     }
 
     public function testSubtractWithLargerAmount(): void

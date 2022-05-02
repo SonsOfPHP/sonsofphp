@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\Operator;
 
-use SonsOfPHP\Component\Money\MoneyException;
+use SonsOfPHP\Component\Money\Exception\MoneyException;
 use SonsOfPHP\Component\Money\MoneyInterface;
 use SonsOfPHP\Component\Money\Money;
 

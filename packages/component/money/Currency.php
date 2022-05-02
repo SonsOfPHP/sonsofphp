@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money;
 
+//use SonsOfPHP\Component\Money\Operator\CurrencyOperatorInterface;
+use SonsOfPHP\Component\Money\Query\CurrencyQueryInterface;
+use SonsOfPHP\Component\Money\Query\IsEqualToCurrencyQuery;
+
 /**
  * Currency
  *
@@ -12,13 +16,17 @@ namespace SonsOfPHP\Component\Money;
 class Currency implements CurrencyInterface
 {
     private string $currencyCode;
+    private ?int $numericCode;
+    private ?int $minorUnit;
 
     /**
      * @param string $currencyCode
      */
-    public function __construct(string $currencyCode)
+    public function __construct(string $currencyCode, ?int $numericCode = null, ?int $minorUnit = null)
     {
         $this->currencyCode = strtoupper($currencyCode);
+        $this->numericCode  = $numericCode;
+        $this->minorUnit    = $minorUnit;
     }
 
     /**
@@ -33,9 +41,25 @@ class Currency implements CurrencyInterface
     /**
      * Example: Currency::USD();
      */
-    public static function __callStatic(string $method, array $args)
+    public static function __callStatic(string $currencyCode, array $args)
     {
-        return new static($method);
+        $numericCode = isset($args[0]) ? $args[0] : null;
+        $minorUnit   = isset($args[1]) ? $args[1] : null;
+
+        return new static($currencyCode, $numericCode, $minorUnit);
+    }
+
+    //public function with(CurrencyOperatorInterface $operator): CurrencyInterface
+    //{
+    //    return $operator->apply($this);
+    //}
+
+    /**
+     * {@inheritdoc}
+     */
+    public function query(CurrencyQueryInterface $query)
+    {
+        return $query->queryFrom($this);
     }
 
     /**
@@ -48,15 +72,25 @@ class Currency implements CurrencyInterface
         return $this->currencyCode;
     }
 
+    public function getNumericCode(): ?int
+    {
+        return $this->numericCode;
+    }
+
+    public function getMinorUnit(): ?int
+    {
+        return $this->minorUnit;
+    }
+
     /**
      * Compare two currencies to see if they are the same
      *
-     * @param CurrencyInterface $that
+     * @param CurrencyInterface $currency
      *
      * @return bool
      */
-    public function equals(CurrencyInterface $that): bool
+    public function equals(CurrencyInterface $currency): bool
     {
-        return $this->getCurrencyCode() === $that->getCurrencyCode();
+        return $this->query(new IsEqualToCurrencyQuery($currency));
     }
 }
