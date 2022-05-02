@@ -94,6 +94,7 @@ class DoctrineDbalMessageRepository implements MessageRepositoryInterface
 
         $resultCount = 0;
         foreach ($results as $result) {
+            $resultCount++;
             $data    = $this->tableSchema->mapColumnsToEventData($result);
             $message = $this->serializer->deserialize($data);
 
