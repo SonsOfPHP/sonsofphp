@@ -42,14 +42,14 @@ class AggregateRepository implements AggregateRepositoryInterface
     public function find(AggregateIdInterface $id): ?AggregateInterface
     {
         try {
-            $events = $this->messageRepository->find($id);
+            $events         = $this->messageRepository->find($id);
+            $aggregateClass = $this->aggregateClass;
+
+            return $aggregateClass::buildFromEvents($id, $events);
         } catch (EventSourcingException $e) {
-            return null;
         }
 
-        $aggregateClass = $this->aggregateClass;
-
-        return $aggregateClass::buildFromEvents($id, $events);
+        return null;
     }
 
     /**
