@@ -19,15 +19,16 @@ use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 interface AggregateRepositoryInterface
 {
     /**
-     * Finds and builds the aggregate from the events in storage
+     * Finds and builds the aggregate from the events in storage. If no
+     * Aggregate events found in storage, this will return null
      *
      * @param AggregateIdInterface $id
      *
      * @thorws EventSourcingException
      *
-     * @return AggregateInterface
+     * @return AggregateInterface|null
      */
-    public function find(AggregateIdInterface $id): AggregateInterface;
+    public function find(AggregateIdInterface $id): ?AggregateInterface;
 
     /**
      * When an aggregate is persisted, it will dispatch pending events.

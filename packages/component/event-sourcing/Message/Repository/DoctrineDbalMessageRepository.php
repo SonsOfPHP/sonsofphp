@@ -92,11 +92,16 @@ class DoctrineDbalMessageRepository implements MessageRepositoryInterface
 
         $results = $builder->executeQuery()->iterateAssociative(); // Generator
 
+        $resultCount = 0;
         foreach ($results as $result) {
             $data    = $this->tableSchema->mapColumnsToEventData($result);
             $message = $this->serializer->deserialize($data);
 
             yield $message;
+        }
+
+        if (0 === $resultCount) {
+            throw new EventSourcingException('No Result were found');
         }
     }
 }

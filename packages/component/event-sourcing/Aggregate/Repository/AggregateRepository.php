@@ -39,9 +39,14 @@ class AggregateRepository implements AggregateRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function find(AggregateIdInterface $id): AggregateInterface
+    public function find(AggregateIdInterface $id): ?AggregateInterface
     {
-        $events = $this->messageRepository->find($id);
+        try {
+            $events = $this->messageRepository->find($id);
+        } catch (EventSourcingException $e) {
+            return null;
+        }
+
         $aggregateClass = $this->aggregateClass;
 
         return $aggregateClass::buildFromEvents($id, $events);
