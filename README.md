@@ -3,20 +3,12 @@ Sons of PHP
 
 Sons of PHP is a collective the builds reusable components and tools using PHP.
 
-## Reporting Issues
+* Documentation can be found at [docs.SonsOfPHP.com][docs]
+* Please [Report Issues][issues] and send [Pull Requests][pull-requests] in the [Mother Repository][mother-repo]
+* You can get more help by posting questions in the [Organization Discussions][disucssions]
 
-Please report issues in the mother repository, [sonsofphp/sonsofphp][mother].
-
-## Getting Help
-
-You can get help by using the [Discussions][discussions] link on our
-[site][homepage].
-
-## Contributing
-
-Just fork [SonsOfPHP/SonsOfPHP][mother] and create a PR with the updates you
-want.
-
-[mother]: <https://github.com/SonsOfPHP/sonsofphp> "Sons of PHP Mother Repository"
+[mother-repo]: <https://github.com/SonsOfPHP/sonsofphp> "Sons of PHP Mother Repository"
 [discussions]: https://github.com/orgs/SonsOfPHP/discussions
-[homepage]: https://github.com/SonsOfPHP
+[issues]: https://github.com/SonsOfPHP/sonsofphp/issues
+[pull-requests]: https://github.com/SonsOfPHP/sonsofphp/pulls
+[docs]: https://docs.sonsofphp.com

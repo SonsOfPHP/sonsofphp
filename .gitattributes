@@ -1,0 +1,6 @@
+/.github export-ignore
+/tools export-ignore
+/.gitattributes export-ignore
+/.gitignore export-ignore
+/Makefile export-ignore
+/phpunit.xml.dist export-ignore
