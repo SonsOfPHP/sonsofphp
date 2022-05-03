@@ -54,4 +54,79 @@ class JsonEncoder
 
         return $return;
     }
+
+    public function forceObject()
+    {
+        return $this->withFlags(JSON_FORCE_OBJECT);
+    }
+
+    public function hexQuot()
+    {
+        return $this->withFlags(JSON_HEX_QUOTE);
+    }
+
+    public function hexTag()
+    {
+        return $this->withFlags(JSON_HEX_TAG);
+    }
+
+    public function hexAmp()
+    {
+        return $this->withFlags(JSON_HEX_AMP);
+    }
+
+    public function hexApos()
+    {
+        return $this->withFlags(JSON_HEX_APOS);
+    }
+
+    public function invalidUtf8Ignore()
+    {
+        return $this->withFlags(JSON_INVALID_UTF8_IGNORE);
+    }
+
+    public function invalidUtf8Substitute()
+    {
+        return $this->withFlags(JSON_INVALID_UTF8_SUBSTITUTE);
+    }
+
+    public function numericCheck()
+    {
+        return $this->withFlags(JSON_NUMERIC_CHECK);
+    }
+
+    public function partialOutputOnError()
+    {
+        return $this->withFlags(JSON_PARTIAL_OUTPUT_ON_ERROR);
+    }
+
+    public function preserveZeroFraction()
+    {
+        return $this->withFlags(JSON_PRESERVE_ZERO_FRACTION);
+    }
+
+    public function prettyPrint()
+    {
+        return $this->withFlags(JSON_PRETTY_PRINT);
+    }
+
+    public function unescapedLineTerminators()
+    {
+        return $this->withFlags(JSON_UNESCAPED_LINE_TERMINATORS);
+    }
+
+    public function unescapedSlashes()
+    {
+        return $this->withFlags(JSON_UNESCAPED_SLASHES);
+    }
+
+    public function unescapedUnicode()
+    {
+        return $this->withFlags(JSON_UNESCAPED_UNICODE);
+    }
+
+    public function throwOnError()
+    {
+        return $this->withFlags(JSON_THROW_ON_ERROR);
+    }
 }
