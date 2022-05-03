@@ -38,7 +38,7 @@ test: ## Run Tests
 lint: lint-php ## Lint files
 
 lint-php: # lint php files
-	@! find src/ -name "*.php" -not -path "src/SonsOfPHP/**/vendor/*" | xargs -I{} $(PHP) -l '{}' | grep -v "No syntax errors detected"
+	@! find packages/ -name "*.php" -not -path "packages/**/vendor/*" | xargs -I{} $(PHP) -l '{}' | grep -v "No syntax errors detected"
 
 coverage: ## Build Code Coverage Report
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --coverage-html $(COVERAGE_DIR)
@@ -58,6 +58,7 @@ remote-add: # Add git remotes for all components
 	git remote -v | grep -w feature-toggle || git remote add feature-toggle git@github.com:SonsOfPHP/feature-toggle.git
 	git remote -v | grep -w json || git remote add json git@github.com:SonsOfPHP/json.git
 	git remote -v | grep -w money || git remote add money git@github.com:SonsOfPHP/money.git
+	git remote -v | grep -w version || git remote add version git@github.com:SonsOfPHP/version.git
 
 subtree-push: # Push changes to all subtrees
 	git checkout main
@@ -70,6 +71,7 @@ subtree-push: # Push changes to all subtrees
 	git subtree push --prefix=packages/component/feature-toggle feature-toggle main
 	git subtree push --prefix=packages/component/json json main
 	git subtree push --prefix=packages/component/money money main
+	git subtree push --prefix=packages/component/version version main
 
 copy-license: # copy the LICENSE file to all the libraries and projects
 	cp LICENSE packages/component/clock/LICENSE
@@ -79,3 +81,4 @@ copy-license: # copy the LICENSE file to all the libraries and projects
 	cp LICENSE packages/component/feature-toggle/LICENSE
 	cp LICENSE packages/component/json/LICENSE
 	cp LICENSE packages/component/money/LICENSE
+	cp LICENSE packages/component/version/LICENSE

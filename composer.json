@@ -39,7 +39,8 @@
         "sonsofphp/event-sourcing": "self.version",
         "sonsofphp/feature-toggle": "self.version",
         "sonsofphp/json": "self.version",
-        "sonsofphp/money": "self.version"
+        "sonsofphp/money": "self.version",
+        "sonsofphp/version": "self.version"
     },
     "autoload": {
         "psr-4": {
@@ -49,7 +50,8 @@
             "SonsOfPHP\\Component\\EventSourcing\\": "packages/component/event-sourcing",
             "SonsOfPHP\\Component\\FeatureToggle\\": "packages/component/feature-toggle",
             "SonsOfPHP\\Component\\Json\\": "packages/component/json",
-            "SonsOfPHP\\Component\\Money\\": "packages/component/money"
+            "SonsOfPHP\\Component\\Money\\": "packages/component/money",
+            "SonsOfPHP\\Component\\Version\\": "packages/component/version"
         },
         "exclude-from-classmap": [
             "**/Tests/"
