@@ -1,0 +1,23 @@
+{
+    "name": "sonsofphp/bard",
+    "description": "Tool to help manage PHP monorepos using GitHub",
+    "type": "project",
+    "bin": ["bin/bard"],
+    "require": {
+        "sonsofphp/json": "^0.1@dev",
+        "symfony/console": "^6.1"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "SonsOfPHP\\Bard\\": "src/"
+        }
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-main": "0.1.x-dev"
+        }
+    }
+}
