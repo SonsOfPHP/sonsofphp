@@ -5,7 +5,10 @@
     "bin": ["bin/bard"],
     "require": {
         "sonsofphp/json": "^0.1@dev",
-        "symfony/console": "^6.1"
+        "symfony/console": "^6.1",
+        "symfony/dotenv": "^6.0",
+        "symfony/finder": "^6.0",
+        "symfony/process": "^6.0"
     },
     "license": "MIT",
     "autoload": {
