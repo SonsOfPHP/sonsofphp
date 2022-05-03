@@ -1,6 +1,7 @@
 {
     "name": "sonsofphp/bard",
     "description": "Tool to help manage PHP monorepos using GitHub",
+    "keywords": ["bard", "sonsofphp", "monorepo", "manager"],
     "type": "project",
     "bin": ["bin/bard"],
     "require": {
@@ -18,6 +19,9 @@
     },
     "prefer-stable": true,
     "minimum-stability": "dev",
+    "config": {
+        "sort-packages": true
+    },
     "extra": {
         "branch-alias": {
             "dev-main": "0.1.x-dev"
