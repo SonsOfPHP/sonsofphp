@@ -35,12 +35,18 @@ final class SystemClockTest extends TestCase
     public function testDefaultTimezone(): void
     {
         $clock = new SystemClock();
-        $this->assertSame('UTC', $clock->timezone()->getName());
+        $this->assertSame('UTC', $clock->getZone()->getName());
     }
 
     public function testSetTimezoneWithObject(): void
     {
         $clock = new SystemClock(new DateTimeZone('America/New_York'));
-        $this->assertSame('America/New_York', $clock->timezone()->getName());
+        $this->assertSame('America/New_York', $clock->getZone()->getName());
+    }
+
+    public function testToStringMagicMethod(): void
+    {
+        $clock = new SystemClock();
+        $this->assertSame('SystemClock[UTC]', (string) $clock);
     }
 }

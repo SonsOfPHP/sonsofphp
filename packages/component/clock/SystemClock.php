@@ -15,13 +15,18 @@ use DateTimeZone;
  */
 class SystemClock implements ClockInterface
 {
-    private DateTimeZone $timezone;
+    private DateTimeZone $zone;
 
     /**
      */
-    public function __construct(?DateTimeZone $timezone = null)
+    public function __construct(?DateTimeZone $zone = null)
     {
-        $this->timezone = $timezone ?? new DateTimeZone('UTC');
+        $this->zone = $zone ?? new DateTimeZone('UTC');
+    }
+
+    public function __toString(): string
+    {
+        return 'SystemClock['.$this->zone->getName().']';
     }
 
     /**
@@ -29,14 +34,14 @@ class SystemClock implements ClockInterface
      */
     public function now(): DateTimeInterface
     {
-        return new DateTimeImmutable('now', $this->timezone);
+        return new DateTimeImmutable('now', $this->zone);
     }
 
     /**
      * @return DateTimeZone
      */
-    public function timezone(): DateTimeZone
+    public function getZone(): DateTimeZone
     {
-        return $this->timezone;
+        return $this->zone;
     }
 }

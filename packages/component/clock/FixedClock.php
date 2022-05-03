@@ -9,25 +9,30 @@ use DateTimeInterface;
 use DateTimeZone;
 
 /**
- * Test Clock
+ * Fixed Clock
  *
  * The test clock is used for testing purposes. It freezes time in place and has the ability
  * to update or set the time to whatever you want.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class TestClock implements ClockInterface
+final class FixedClock implements ClockInterface
 {
-    private DateTimeZone $timezone;
+    private DateTimeZone $zone;
     private DateTimeInterface $time;
 
     /**
-     * @param DateTimeZone $timezone
+     * @param DateTimeZone $zone
      */
-    public function __construct(?DateTimeZone $timezone = null)
+    public function __construct(?DateTimeZone $zone = null)
     {
-        $this->timezone = $timezone ?? new DateTimeZone('UTC');
+        $this->zone = $zone ?? new DateTimeZone('UTC');
         $this->tick();
+    }
+
+    public function __toString(): string
+    {
+        return 'FixedClock['.$this->zone->getName().']';
     }
 
     /**
@@ -41,9 +46,9 @@ class TestClock implements ClockInterface
     /**
      * @return DateTimeZone
      */
-    public function timezone(): DateTimeZone
+    public function getZone(): DateTimeZone
     {
-        return $this->timezone;
+        return $this->zone;
     }
 
     /**
@@ -53,7 +58,7 @@ class TestClock implements ClockInterface
      */
     public function tick(): void
     {
-        $this->time = new DateTimeImmutable('now', $this->timezone);
+        $this->time = new DateTimeImmutable('now', $this->zone);
     }
 
     /**
@@ -73,7 +78,7 @@ class TestClock implements ClockInterface
      */
     public function tickTo(string $input): void
     {
-        $time = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $input, $this->timezone);
+        $time = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $input, $this->zone);
         if (false === $time) {
             throw new ClockException(sprintf('The input "%s" is invalid', $input));
         }
