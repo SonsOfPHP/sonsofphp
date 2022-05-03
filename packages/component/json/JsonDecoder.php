@@ -63,4 +63,29 @@ class JsonDecoder
 
         return $return;
     }
+
+    public function bigintAsString()
+    {
+        return $this->withFlags(JSON_BIGINT_AS_STRING);
+    }
+
+    public function invalidUtf8Ignore()
+    {
+        return $this->withFlags(JSON_INVALID_UTF8_IGNORE);
+    }
+
+    public function invalidUtf8Substitute()
+    {
+        return $this->withFlags(JSON_INVALID_UTF8_SUBSTITUTE);
+    }
+
+    public function objectAsArray()
+    {
+        return $this->withFlags(JSON_OBJECT_AS_ARRAY);
+    }
+
+    public function throwOnError()
+    {
+        return $this->withFlags(JSON_THROW_ON_ERROR);
+    }
 }
