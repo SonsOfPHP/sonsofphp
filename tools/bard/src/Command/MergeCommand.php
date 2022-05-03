@@ -3,7 +3,6 @@
 namespace SonsOfPHP\Bard\Command;
 
 use SonsOfPHP\Component\Json\Json;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -12,10 +11,13 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class MergeCommand extends Command
+final class MergeCommand extends AbstractCommand
 {
     protected static $defaultName = 'merge';
     private Json $json;
+    private array $bardConfig;
+    private string $mainComposerFile;
+    private array $mainComposerConfig;
 
     public function __construct()
     {
@@ -24,84 +26,120 @@ class MergeCommand extends Command
         parent::__construct();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function configure(): void
     {
         $this
             // options for dry-run, by default it should be a dry-run
-            ->setHelp('Merges package composer.json files into main composer.json file')
+            ->setDescription('Merges package composer.json files into main composer.json file')
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    protected function initialize(InputInterface $input, OutputInterface $output)
+    {
+        $bardConfigFile = $input->getOption('working-dir').'/bard.json';
+        if (!file_exists($bardConfigFile)) {
+            throw new \RunTimeException(sprintf('"%s" file does not exist', $bardConfigFile));
+        }
+
+        $this->bardConfig = $this->json->getDecoder()
+            ->objectAsArray()
+            ->decode(file_get_contents($bardConfigFile));
+
+        $this->mainComposerFile = $input->getOption('working-dir').'/composer.json';
+        if (!file_exists($this->mainComposerFile)) {
+            throw new \RunTimeException(sprintf('"%s" file does not exist', $this->mainComposerFile));
+        }
+
+        $this->mainComposerConfig = $this->json->getDecoder()
+            ->objectAsArray()
+            ->decode(file_get_contents($this->mainComposerFile));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $pwd = getenv('PWD');
-        $bardJsonFile = $pwd.'/bard.json';
-        $mainComposerJsonFile = $pwd.'/composer.json';
-
-        if (!file_exists($bardJsonFile)) {
-            $output->writeln(sprintf('"%s" file does not exist', $bardJsonFile));
-            return COMMAND::FAILURE;
-        }
-
-        if (!file_exists($mainComposerJsonFile)) {
-            $output->writeln(sprintf('"%s" file does not exist', $composerJsonFile));
-            return COMMAND::FAILURE;
-        }
-
-        $bardJson = $this->json->getDecoder()
-            ->objectAsArray()
-            ->decode(file_get_contents($bardJsonFile));
-
-        $mainComposerJson = $this->json->getDecoder()
-            ->objectAsArray()
-            ->decode(file_get_contents($mainComposerJsonFile));
         // Purge main composer.json sections?
         // replace
         // require, require-dev
         // autoload, autoload-dev
         // repositories
         // extra
-
-        foreach ($bardJson['packages'] as $dir => $repo) {
-            $packageComposerJsonFile = $pwd.'/'.$dir.'/composer.json';
-            if (!file_exists($packageComposerJsonFile)) {
-                $output->writeln(sprintf('No "%s" found', $packageComposerJsonFile));
+        $packageNames = [];
+        foreach ($this->bardConfig['packages'] as $dir => $repo) {
+            $packageComposerFile = $input->getOption('working-dir').'/'.$dir.'/composer.json';
+            if (!file_exists($packageComposerFile)) {
+                $output->writeln(sprintf('No "%s" found, skipping', $packageComposerFile));
                 continue;
             }
-            $packageComposerJson = $this->json->getDecoder()
-                ->objectAsArray()
-                ->decode(file_get_contents($packageComposerJsonFile));
+
+            $packageComposerConfig = $this->json->getDecoder()->objectAsArray()
+                ->decode(file_get_contents($packageComposerFile));
+            $packageNames[] = $packageComposerConfig['name'];
 
             //###> Update "replace" in main
-            $mainComposerJson['replace'][$packageComposerJson['name']] = 'self.version';
+            $this->mainComposerConfig['replace'][$packageComposerConfig['name']] = 'self.version';
             //###<
 
             //###> merge pkg "require" to main "require"
-            if (isset($packageComposerJson['require'])) {
-                foreach ($packageComposerJson['require'] as $pkg => $ver) {
+            if (isset($packageComposerConfig['require'])) {
+                foreach ($packageComposerConfig['require'] as $pkg => $ver) {
                     // @todo check versions
-                    $mainComposerJson['require'][$pkg] = $ver;
+                    $this->mainComposerConfig['require'][$pkg] = $ver;
                 }
             }
             //###<
 
             //###> merge pkg "require-dev" to main "require-dev"
             //var_dump($packageComposerJson['require']);
-            if (isset($packageComposerJson['require-dev'])) {
-                foreach ($packageComposerJson['require-dev'] as $pkg => $ver) {
+            if (isset($packageComposerConfig['require-dev'])) {
+                foreach ($packageComposerConfig['require-dev'] as $pkg => $ver) {
                     // @todo check versions
-                    $mainComposerJson['require-dev'][$pkg] = $ver;
+                    $this->mainComposerConfig['require-dev'][$pkg] = $ver;
                 }
             }
             //###<
 
             //###> autoload => pkg to main
+            $pathPrefix = str_replace('/composer.json', '', str_replace($input->getOption('working-dir').'/', '', $packageComposerFile));
+            foreach ($packageComposerConfig['autoload'] as $section => $sectionConfig) {
+                if ($section === 'psr-4') {
+                    foreach ($sectionConfig as $namespace => $path) {
+                        $this->mainComposerConfig['autoload']['psr-4'][$namespace] = $pathPrefix.$path;
+                    }
+                }
+
+                if ($section === 'exclude-from-classmap') {
+                    foreach ($sectionConfig as $path) {
+                        $this->mainComposerConfig['autoload']['exclude-from-classmap'][] = $pathPrefix.$path;
+                    }
+                }
+            }
+            if (isset($this->mainComposerConfig['autoload']['psr-4'])) {
+                $this->mainComposerConfig['autoload']['psr-4'] = array_unique($this->mainComposerConfig['autoload']['psr-4']);
+            }
+            if (isset($this->mainComposerConfig['autoload']['exclude-from-classmap'])) {
+                $this->mainComposerConfig['autoload']['exclude-from-classmap'] = array_unique($this->mainComposerConfig['autoload']['exclude-from-classmap']);
+            }
             //###<
 
             //###> autoload-dev => pkg to main
             //###<
 
             //###> provide => pkg to main
+            if (isset($packageComposerConfig['provide'])) {
+                foreach ($packageComposerConfig['provide'] as $provide => $provideVersion) {
+                    $this->mainComposerConfig['provide'][$provide] = $provideVersion;
+                }
+                $this->mainComposerConfig['provide'] = array_unique($this->mainComposerConfig['provide']);
+            }
             //###<
 
             //###> ?? authors => main to pkg
@@ -119,13 +157,18 @@ class MergeCommand extends Command
             // save pkg composer.json
         }
 
-        file_put_contents($mainComposerJsonFile,
+        //###> Clean main componser config "require" if packages are already included
+        $this->mainComposerConfig['require'] = array_diff_key($this->mainComposerConfig['require'], array_flip($packageNames));
+        //###<
+
+        file_put_contents($this->mainComposerFile,
             $this->json->getEncoder()
                 ->prettyPrint()
                 ->unescapedSlashes()
-                ->encode($mainComposerJson)
+                ->encode($this->mainComposerConfig)
         );
 
-        return Command::SUCCESS;
+        $output->writeln('complete');
+        return self::SUCCESS;
     }
 }

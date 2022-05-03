@@ -3,7 +3,6 @@
 namespace SonsOfPHP\Bard\Command;
 
 use SonsOfPHP\Component\Json\Json;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -12,11 +11,14 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class InitCommand extends Command
+final class InitCommand extends AbstractCommand
 {
     protected static $defaultName = 'init';
     private Json $json;
 
+    /**
+     * {@inheritdoc}
+     */
     public function __construct()
     {
         $this->json = new Json();
@@ -24,17 +26,33 @@ class InitCommand extends Command
         parent::__construct();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function configure(): void
     {
         $this
-            ->setHelp('Creates the initial bard.json file')
+            ->setDescription('Creates the initial bard.json file')
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    protected function initialize(InputInterface $input, OutputInterface $output)
+    {
+        $configFile = $input->getOption('working-dir').'/bard.json';
+        if (file_exists($configFile)) {
+            throw new \RunTimeException(sprintf('"%s" file already exists', $configFile));
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $pwd = getenv('PWD');
-        $filename = $pwd.'/bard.json';
+        $filename = $intput->getOption('working-dir').'/bard.json';
 
         if (file_exists($filename)) {
             $output->writeln('bard.json file already exists');
@@ -58,6 +76,6 @@ class InitCommand extends Command
 
         $output->writeln(sprintf('File written to "%s"', $filename));
 
-        return Command::SUCCESS;
+        return self::SUCCESS;
     }
 }
