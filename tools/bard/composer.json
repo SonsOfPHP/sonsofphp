@@ -6,6 +6,7 @@
     "bin": ["bin/bard"],
     "require": {
         "sonsofphp/json": "^0.1@dev",
+        "sonsofphp/version": "^0.1@dev",
         "symfony/console": "^6.1",
         "symfony/dotenv": "^6.0",
         "symfony/finder": "^6.0",
