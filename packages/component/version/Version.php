@@ -151,4 +151,76 @@ final class Version implements VersionInterface
 
         return 0;
     }
+
+    /**
+     * @param VersionInterface $version
+     *
+     * @return bool
+     */
+    public function isGreaterThan(VersionInterface $version): bool
+    {
+        return 1 === $this->compare($version);
+    }
+
+    /**
+     * @param VersionInterface $version
+     *
+     * @return bool
+     */
+    public function isLessThan(VersionInterface $version): bool
+    {
+        return -1 === $this->compare($version);
+    }
+
+    /**
+     * @param VersionInterface $version
+     *
+     * @return bool
+     */
+    public function isEqualTo(VersionInterface $version): bool
+    {
+        return 0 === $this->compare($version);
+    }
+
+    /**
+     * Bumps the patch version by one
+     *
+     * @return static
+     */
+    public function nextPatch(): VersionInterface
+    {
+        $ver = clone $this;
+        $ver->patch++;
+
+        return $ver;
+    }
+
+    /**
+     * Bumps the minor version by one
+     *
+     * @return static
+     */
+    public function nextMinor(): VersionInterface
+    {
+        $ver = clone $this;
+        $ver->patch = 0;
+        $ver->minor++;
+
+        return $ver;
+    }
+
+    /**
+     * Bumps the major version by one
+     *
+     * @return static
+     */
+    public function nextMajor(): VersionInterface
+    {
+        $ver = clone $this;
+        $ver->patch = 0;
+        $ver->minor = 0;
+        $ver->major++;
+
+        return $ver;
+    }
 }

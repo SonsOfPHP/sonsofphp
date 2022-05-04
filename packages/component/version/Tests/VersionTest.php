@@ -57,6 +57,57 @@ final class VersionTest extends TestCase
         $this->assertSame($result, $v1->compare($v2));
     }
 
+    public function testNextPatch(): void
+    {
+        $version = new Version('1.2.3');
+        $newVer = $version->nextPatch();
+
+        $this->assertNotSame($version, $newVer);
+        $this->assertSame('1.2.3', $version->toString());
+        $this->assertSame('1.2.4', $newVer->toString());
+    }
+
+    public function testNextMinor(): void
+    {
+        $version = new Version('1.2.3');
+        $newVer = $version->nextMinor();
+
+        $this->assertNotSame($version, $newVer);
+        $this->assertSame('1.2.3', $version->toString());
+        $this->assertSame('1.3.0', $newVer->toString());
+    }
+
+    public function testNextMajor(): void
+    {
+        $version = new Version('1.2.3');
+        $newVer = $version->nextMajor();
+
+        $this->assertNotSame($version, $newVer);
+        $this->assertSame('1.2.3', $version->toString());
+        $this->assertSame('2.0.0', $newVer->toString());
+    }
+
+    public function testIsGreaterThan(): void
+    {
+        $version = new Version('1.2.3');
+
+        $this->assertTrue($version->isGreaterThan(new Version('1.2.0')));
+    }
+
+    public function testIsLessThan(): void
+    {
+        $version = new Version('1.2.3');
+
+        $this->assertTrue($version->isLessThan(new Version('1.2.4')));
+    }
+
+    public function testIsEqualTo(): void
+    {
+        $version = new Version('1.2.3');
+
+        $this->assertTrue($version->isEqualTo(new Version('1.2.3')));
+    }
+
     public function validVersions(): iterable
     {
         yield ['0.0.4', 0, 0, 4];
