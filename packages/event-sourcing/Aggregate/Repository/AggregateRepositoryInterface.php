@@ -7,6 +7,7 @@ namespace SonsOfPHP\Component\EventSourcing\Aggregate\Repository;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
+use SonsOfPHP\Component\EventSourcing\Exception\AggregateNotFoundException;
 
 /**
  * Aggregate Repository Interface

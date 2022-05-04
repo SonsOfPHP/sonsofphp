@@ -7,6 +7,7 @@ namespace SonsOfPHP\Component\EventSourcing\Aggregate\Repository;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
+use SonsOfPHP\Component\EventSourcing\Exception\AggregateNotFoundException;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricherInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricher;
@@ -46,7 +47,8 @@ class AggregateRepository implements AggregateRepositoryInterface
             $aggregateClass = $this->aggregateClass;
 
             return $aggregateClass::buildFromEvents($id, $events);
-        } catch (EventSourcingException $e) {
+        } catch (AggregateNotFoundException $e) {
+            return null;
         }
 
         return null;

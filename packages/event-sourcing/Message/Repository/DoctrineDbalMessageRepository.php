@@ -6,7 +6,7 @@ namespace SonsOfPHP\Component\EventSourcing\Message\Repository;
 
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
-use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
+use SonsOfPHP\Component\EventSourcing\Exception\AggregateNotFoundException;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\TableSchema\TableSchemaInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Serializer\MessageSerializerInterface;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
@@ -102,7 +102,12 @@ class DoctrineDbalMessageRepository implements MessageRepositoryInterface
         }
 
         if (0 === $resultCount) {
-            throw new EventSourcingException('No Result were found');
+            throw new AggregateNotFoundException(
+                sprintf(
+                    'Aggregate "%s" could not be found',
+                    $id->toString(),
+                )
+            );
         }
     }
 }
