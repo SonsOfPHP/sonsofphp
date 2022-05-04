@@ -63,9 +63,10 @@ final class InitCommand extends AbstractCommand
             ->prettyPrint()
             ->unescapedSlashes()
             ->encode([
+                'name' => 'example/example',
                 'version' => '0.0.0',
                 'packages' => [
-                    'packages/example' => 'git@github.com:user/repo',
+                    'packages/example',
                 ],
             ])
         ;

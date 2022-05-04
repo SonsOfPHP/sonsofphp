@@ -23,6 +23,7 @@ final class Bard extends Application
         return array_merge(parent::getDefaultCommands(), [
             new \SonsOfPHP\Bard\Command\ConfigCommand(),
             new \SonsOfPHP\Bard\Command\InitCommand(),
+            new \SonsOfPHP\Bard\Command\InstallCommand(),
             new \SonsOfPHP\Bard\Command\MergeCommand(),
             new \SonsOfPHP\Bard\Command\ReleaseCommand(),
             new \SonsOfPHP\Bard\Command\ReleaseMajorCommand(),
@@ -30,6 +31,7 @@ final class Bard extends Application
             new \SonsOfPHP\Bard\Command\ReleasePatchCommand(),
             new \SonsOfPHP\Bard\Command\RunCommand(),
             new \SonsOfPHP\Bard\Command\SplitCommand(),
+            new \SonsOfPHP\Bard\Command\UpdateCommand(),
             new \SonsOfPHP\Bard\Command\ValidateCommand(),
         ]);
     }

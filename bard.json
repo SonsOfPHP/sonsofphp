@@ -1,13 +1,15 @@
 {
-    "name": "sonsofphp/sonsofphp",
     "version": "0.0.0",
-    "packages": {
-        "packages/component/clock": "git@github.com:SonsOfPHP/clock.git",
-        "packages/component/cqrs": "git@github.com:SonsOfPHP/cqrs.git",
-        "packages/component/event-dispatcher": "git@github.com:SonsOfPHP/event-dispatcher.git",
-        "packages/component/event-sourcing": "git@github.com:SonsOfPHP/event-sourcing.git",
-        "packages/component/feature-toggle": "git@github.com:SonsOfPHP/feature-toggle.git",
-        "packages/component/json": "git@github.com:SonsOfPHP/json.git",
-        "packages/component/money": "git@github.com:SonsOfPHP/money.git"
-    }
+    "command": {
+        "audit": {},
+        "clean": {},
+        "install": {},
+        "update": {},
+        "release": {},
+        "test": {},
+        "merge": {}
+    },
+    "packages": [
+        "packages/**"
+    ]
 }
