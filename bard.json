@@ -10,6 +10,13 @@
         "merge": {}
     },
     "packages": [
-        "packages/**"
+        "packages/clock/",
+        "packages/cqrs/",
+        "packages/event-dispatcher/",
+        "packages/event-sourcing/",
+        "packages/feature-toggle/",
+        "packages/json/",
+        "packages/money/",
+        "packages/version/"
     ]
 }

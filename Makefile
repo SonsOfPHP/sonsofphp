@@ -30,7 +30,7 @@ composer-install: composer.json # Install Dependencies via Composer
 	$(COMPOSER) install --working-dir=tools/phpstan --no-interaction --prefer-dist --optimize-autoloader
 
 purge: # Purge vendor and lock files
-	rm -rf vendor/ packages/component/*/vendor/ packages/component/*/composer.lock
+	rm -rf vendor/ packages/*/vendor/ packages/*/composer.lock
 
 test: ## Run Tests
 	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHPUNIT)
@@ -64,21 +64,21 @@ subtree-push: # Push changes to all subtrees
 	git checkout main
 	git pull -p origin main
 	git push origin main
-	git subtree push --prefix=packages/component/clock clock main
-	git subtree push --prefix=packages/component/cqrs cqrs main
-	git subtree push --prefix=packages/component/event-dispatcher event-dispatcher main
-	git subtree push --prefix=packages/component/event-sourcing event-sourcing main
-	git subtree push --prefix=packages/component/feature-toggle feature-toggle main
-	git subtree push --prefix=packages/component/json json main
-	git subtree push --prefix=packages/component/money money main
-	git subtree push --prefix=packages/component/version version main
+	git subtree push --prefix=packages/clock clock main
+	git subtree push --prefix=packages/cqrs cqrs main
+	git subtree push --prefix=packages/event-dispatcher event-dispatcher main
+	git subtree push --prefix=packages/event-sourcing event-sourcing main
+	git subtree push --prefix=packages/feature-toggle feature-toggle main
+	git subtree push --prefix=packages/json json main
+	git subtree push --prefix=packages/money money main
+	git subtree push --prefix=packages/version version main
 
 copy-license: # copy the LICENSE file to all the libraries and projects
-	cp LICENSE packages/component/clock/LICENSE
-	cp LICENSE packages/component/cqrs/LICENSE
-	cp LICENSE packages/component/event-dispatcher/LICENSE
-	cp LICENSE packages/component/event-sourcing/LICENSE
-	cp LICENSE packages/component/feature-toggle/LICENSE
-	cp LICENSE packages/component/json/LICENSE
-	cp LICENSE packages/component/money/LICENSE
-	cp LICENSE packages/component/version/LICENSE
+	cp LICENSE packages/clock/LICENSE
+	cp LICENSE packages/cqrs/LICENSE
+	cp LICENSE packages/event-dispatcher/LICENSE
+	cp LICENSE packages/event-sourcing/LICENSE
+	cp LICENSE packages/feature-toggle/LICENSE
+	cp LICENSE packages/json/LICENSE
+	cp LICENSE packages/money/LICENSE
+	cp LICENSE packages/version/LICENSE
