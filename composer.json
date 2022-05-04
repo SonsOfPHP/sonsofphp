@@ -45,14 +45,14 @@
     },
     "autoload": {
         "psr-4": {
-            "SonsOfPHP\\Component\\Clock\\": "packages/component/clock",
-            "SonsOfPHP\\Component\\Cqrs\\": "packages/component/cqrs",
-            "SonsOfPHP\\Component\\EventDispatcher\\": "packages/component/event-dispatcher",
-            "SonsOfPHP\\Component\\EventSourcing\\": "packages/component/event-sourcing",
-            "SonsOfPHP\\Component\\FeatureToggle\\": "packages/component/feature-toggle",
-            "SonsOfPHP\\Component\\Json\\": "packages/component/json",
-            "SonsOfPHP\\Component\\Money\\": "packages/component/money",
-            "SonsOfPHP\\Component\\Version\\": "packages/component/version"
+            "SonsOfPHP\\Component\\Clock\\": "packages/clock",
+            "SonsOfPHP\\Component\\Cqrs\\": "packages/cqrs",
+            "SonsOfPHP\\Component\\EventDispatcher\\": "packages/event-dispatcher",
+            "SonsOfPHP\\Component\\EventSourcing\\": "packages/event-sourcing",
+            "SonsOfPHP\\Component\\FeatureToggle\\": "packages/feature-toggle",
+            "SonsOfPHP\\Component\\Json\\": "packages/json",
+            "SonsOfPHP\\Component\\Money\\": "packages/money",
+            "SonsOfPHP\\Component\\Version\\": "packages/version"
         },
         "exclude-from-classmap": [
             "**/Tests/"
