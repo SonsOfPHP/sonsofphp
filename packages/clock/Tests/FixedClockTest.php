@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock\Tests;
 
-use SonsOfPHP\Component\Clock\ClockException;
+use SonsOfPHP\Component\Clock\Exception\ClockException;
 use SonsOfPHP\Component\Clock\ClockInterface;
 use SonsOfPHP\Component\Clock\FixedClock;
 use PHPUnit\Framework\TestCase;

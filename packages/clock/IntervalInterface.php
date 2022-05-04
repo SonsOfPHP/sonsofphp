@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock;
 
-use Exception;
-
 /**
- * Clock Exception
+ * <start>/<end>
+ * <start>/<duration>
+ * <duration>/<end>
+ * <duration>
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class ClockException extends Exception
+interface IntervalInterface
 {
 }

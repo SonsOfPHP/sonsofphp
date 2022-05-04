@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock;
 
+use SonsOfPHP\Component\Clock\Exception\ClockException;
 use DateTimeImmutable;
 use DateTimeInterface;
 use DateTimeZone;
