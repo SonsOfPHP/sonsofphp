@@ -82,3 +82,29 @@ copy-license: # copy the LICENSE file to all the libraries and projects
 	cp LICENSE packages/json/LICENSE
 	cp LICENSE packages/money/LICENSE
 	cp LICENSE packages/version/LICENSE
+
+joshua-fucked-up:
+	git subtree split --prefix packages/clock -b clock
+	git push -f clock clock:main
+	git branch -D clock
+	git subtree split --prefix packages/cqrs -b cqrs
+	git push -f cqrs cqrs:main
+	git branch -D cqrs
+	git subtree split --prefix packages/event-dispatcher -b event-dispatcher
+	git push -f event-dispatcher event-dispatcher:main
+	git branch -D event-dispatcher
+	git subtree split --prefix packages/event-sourcing -b event-sourcing
+	git push -f event-sourcing event-sourcing:main
+	git branch -D event-sourcing
+	git subtree split --prefix packages/feature-toggle -b feature-toggle
+	git push -f feature-toggle feature-toggle:main
+	git branch -D feature-toggle
+	git subtree split --prefix packages/json -b json
+	git push -f json json:main
+	git branch -D json
+	git subtree split --prefix packages/money -b money
+	git push -f money money:main
+	git branch -D money
+	git subtree split --prefix packages/version -b version
+	git push -f version version:main
+	git branch -D version
