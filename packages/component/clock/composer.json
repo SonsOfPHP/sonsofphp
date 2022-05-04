@@ -2,7 +2,7 @@
     "name": "sonsofphp/clock",
     "type": "library",
     "description": "Provides a standard way of accessing datetime functions",
-    "keywords": ["clock", "datetime", "date", "time"],
+    "keywords": ["clock", "datetime", "date", "time", "psr20", "psr-20", "clock-interface"],
     "homepage": "https://github.com/SonsOfPHP/clock",
     "license": "MIT",
     "authors": [
@@ -22,6 +22,9 @@
         "exclude-from-classmap": [
             "/Tests/"
         ]
+    },
+    "provide": {
+        "psr/clock-implementation": "1.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

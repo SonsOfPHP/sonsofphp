@@ -22,7 +22,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "provide": {
-        "psr/event-dispatcher-implementation": "1.0"
+        "psr/event-dispatcher-implementation": "1.0",
+        "psr/clock-implementation": "1.0"
     },
     "require": {
         "php": ">=7.4",
