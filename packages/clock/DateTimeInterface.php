@@ -11,7 +11,7 @@ namespace SonsOfPHP\Component\Clock;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface DateTimeInterface// extends BaseDateTimeInterface
+interface DateTimeInterface // extends BaseDateTimeInterface
 {
     /**
      * Returns the DateTime in ISO 8601 format

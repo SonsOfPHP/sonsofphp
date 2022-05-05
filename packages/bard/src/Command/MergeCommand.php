@@ -161,7 +161,8 @@ final class MergeCommand extends AbstractCommand
         $this->mainComposerConfig['require'] = array_diff_key($this->mainComposerConfig['require'], array_flip($packageNames));
         //###<
 
-        file_put_contents($this->mainComposerFile,
+        file_put_contents(
+            $this->mainComposerFile,
             $this->json->getEncoder()
                 ->prettyPrint()
                 ->unescapedSlashes()

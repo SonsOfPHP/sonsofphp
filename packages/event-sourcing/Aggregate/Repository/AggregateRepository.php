@@ -11,7 +11,9 @@ use SonsOfPHP\Component\EventSourcing\Exception\AggregateNotFoundException;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricherInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricher;
-use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\NullMessageEnricherProvider;;
+use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\NullMessageEnricherProvider;
+
+;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
 /**
@@ -29,8 +31,7 @@ class AggregateRepository implements AggregateRepositoryInterface
         EventDispatcherInterface $eventDispatcher,
         MessageRepositoryInterface $messageRepository,
         ?MessageEnricherInterface $messageEnricher = null
-    )
-    {
+    ) {
         $this->aggregateClass    = $aggregateClass;
         $this->eventDispatcher   = $eventDispatcher;
         $this->messageRepository = $messageRepository;

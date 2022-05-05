@@ -19,7 +19,9 @@ abstract class AbstractMessage implements MessageInterface
 {
     private array $metadata = [];
 
-    final private function __construct() {}
+    final private function __construct()
+    {
+    }
 
     /**
      * {@inheritdoc}

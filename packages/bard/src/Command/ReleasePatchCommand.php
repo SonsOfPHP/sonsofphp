@@ -24,7 +24,6 @@ final class ReleasePatchCommand extends AbstractCommand
         $this->json = new Json();
 
         parent::__construct();
-
     }
 
     /**

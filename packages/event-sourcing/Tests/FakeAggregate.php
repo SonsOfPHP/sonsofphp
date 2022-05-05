@@ -16,5 +16,7 @@ class FakeAggregate implements AggregateInterface
         applyEvent as public;
     }
 
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 }
