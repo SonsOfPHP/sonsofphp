@@ -1,11 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Method SonsOfPHP\\\\Bard\\\\Command\\\\ConfigCommand\\:\\:initialize\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/bard/src/Command/ConfigCommand.php
-
-		-
 			message: "#^Property SonsOfPHP\\\\Bard\\\\Command\\\\ConfigCommand\\:\\:\\$json is never read, only written\\.$#"
 			count: 1
 			path: packages/bard/src/Command/ConfigCommand.php
@@ -16,32 +11,7 @@ parameters:
 			path: packages/bard/src/Command/InitCommand.php
 
 		-
-			message: "#^Method SonsOfPHP\\\\Bard\\\\Command\\\\InitCommand\\:\\:initialize\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/bard/src/Command/InitCommand.php
-
-		-
-			message: "#^Cannot call method run\\(\\) on mixed\\.$#"
-			count: 1
-			path: packages/bard/src/Command/InstallCommand.php
-
-		-
 			message: "#^Class RuntimeException referenced with incorrect case\\: RunTimeException\\.$#"
-			count: 1
-			path: packages/bard/src/Command/InstallCommand.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Bard\\\\Command\\\\InstallCommand\\:\\:initialize\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/bard/src/Command/InstallCommand.php
-
-		-
-			message: "#^Property SonsOfPHP\\\\Bard\\\\Command\\\\InstallCommand\\:\\:\\$bardConfig type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/bard/src/Command/InstallCommand.php
-
-		-
-			message: "#^Property SonsOfPHP\\\\Bard\\\\Command\\\\InstallCommand\\:\\:\\$formatter has no type specified\\.$#"
 			count: 1
 			path: packages/bard/src/Command/InstallCommand.php
 
@@ -51,32 +21,7 @@ parameters:
 			path: packages/bard/src/Command/MergeCommand.php
 
 		-
-			message: "#^Method SonsOfPHP\\\\Bard\\\\Command\\\\MergeCommand\\:\\:initialize\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/bard/src/Command/MergeCommand.php
-
-		-
-			message: "#^Property SonsOfPHP\\\\Bard\\\\Command\\\\MergeCommand\\:\\:\\$bardConfig type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/bard/src/Command/MergeCommand.php
-
-		-
-			message: "#^Property SonsOfPHP\\\\Bard\\\\Command\\\\MergeCommand\\:\\:\\$mainComposerConfig type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/bard/src/Command/MergeCommand.php
-
-		-
 			message: "#^Class RuntimeException referenced with incorrect case\\: RunTimeException\\.$#"
-			count: 1
-			path: packages/bard/src/Command/ReleaseCommand.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Bard\\\\Command\\\\ReleaseCommand\\:\\:initialize\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/bard/src/Command/ReleaseCommand.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Bard\\\\Command\\\\ReleaseCommand\\:\\:interact\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: packages/bard/src/Command/ReleaseCommand.php
 
@@ -86,29 +31,9 @@ parameters:
 			path: packages/bard/src/Command/ReleaseCommand.php
 
 		-
-			message: "#^Property SonsOfPHP\\\\Bard\\\\Command\\\\ReleaseCommand\\:\\:\\$bardConfig type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/bard/src/Command/ReleaseCommand.php
-
-		-
-			message: "#^Property SonsOfPHP\\\\Bard\\\\Command\\\\ReleaseCommand\\:\\:\\$formatter has no type specified\\.$#"
-			count: 1
-			path: packages/bard/src/Command/ReleaseCommand.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Bard\\\\Command\\\\ReleaseMajorCommand\\:\\:initialize\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/bard/src/Command/ReleaseMajorCommand.php
-
-		-
 			message: "#^Property SonsOfPHP\\\\Bard\\\\Command\\\\ReleaseMajorCommand\\:\\:\\$json is never read, only written\\.$#"
 			count: 1
 			path: packages/bard/src/Command/ReleaseMajorCommand.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Bard\\\\Command\\\\ReleaseMinorCommand\\:\\:initialize\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/bard/src/Command/ReleaseMinorCommand.php
 
 		-
 			message: "#^Property SonsOfPHP\\\\Bard\\\\Command\\\\ReleaseMinorCommand\\:\\:\\$json is never read, only written\\.$#"
@@ -116,19 +41,9 @@ parameters:
 			path: packages/bard/src/Command/ReleaseMinorCommand.php
 
 		-
-			message: "#^Method SonsOfPHP\\\\Bard\\\\Command\\\\ReleasePatchCommand\\:\\:initialize\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/bard/src/Command/ReleasePatchCommand.php
-
-		-
 			message: "#^Property SonsOfPHP\\\\Bard\\\\Command\\\\ReleasePatchCommand\\:\\:\\$json is never read, only written\\.$#"
 			count: 1
 			path: packages/bard/src/Command/ReleasePatchCommand.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Bard\\\\Command\\\\RunCommand\\:\\:initialize\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/bard/src/Command/RunCommand.php
 
 		-
 			message: "#^Property SonsOfPHP\\\\Bard\\\\Command\\\\RunCommand\\:\\:\\$json is never read, only written\\.$#"
@@ -136,44 +51,14 @@ parameters:
 			path: packages/bard/src/Command/RunCommand.php
 
 		-
-			message: "#^Method SonsOfPHP\\\\Bard\\\\Command\\\\SplitCommand\\:\\:initialize\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/bard/src/Command/SplitCommand.php
-
-		-
 			message: "#^Property SonsOfPHP\\\\Bard\\\\Command\\\\SplitCommand\\:\\:\\$json is never read, only written\\.$#"
 			count: 1
 			path: packages/bard/src/Command/SplitCommand.php
 
 		-
-			message: "#^Cannot call method run\\(\\) on mixed\\.$#"
-			count: 1
-			path: packages/bard/src/Command/UpdateCommand.php
-
-		-
 			message: "#^Class RuntimeException referenced with incorrect case\\: RunTimeException\\.$#"
 			count: 1
 			path: packages/bard/src/Command/UpdateCommand.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Bard\\\\Command\\\\UpdateCommand\\:\\:initialize\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/bard/src/Command/UpdateCommand.php
-
-		-
-			message: "#^Property SonsOfPHP\\\\Bard\\\\Command\\\\UpdateCommand\\:\\:\\$bardConfig type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/bard/src/Command/UpdateCommand.php
-
-		-
-			message: "#^Property SonsOfPHP\\\\Bard\\\\Command\\\\UpdateCommand\\:\\:\\$formatter has no type specified\\.$#"
-			count: 1
-			path: packages/bard/src/Command/UpdateCommand.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Bard\\\\Command\\\\ValidateCommand\\:\\:initialize\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/bard/src/Command/ValidateCommand.php
 
 		-
 			message: "#^Property SonsOfPHP\\\\Bard\\\\Command\\\\ValidateCommand\\:\\:\\$json is never read, only written\\.$#"
@@ -241,51 +126,6 @@ parameters:
 			path: packages/clock/Zone.php
 
 		-
-			message: "#^Property SonsOfPHP\\\\Component\\\\Cqrs\\\\Bridge\\\\Symfony\\\\CommandMessageBus\\:\\:\\$stamps type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/cqrs/Bridge/Symfony/CommandMessageBus.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Cqrs\\\\Command\\\\AbstractCommandMessage\\:\\:__construct\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/cqrs/Command/AbstractCommandMessage.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Cqrs\\\\Command\\\\AbstractCommandMessage\\:\\:getOptions\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/cqrs/Command/AbstractCommandMessage.php
-
-		-
-			message: "#^Property SonsOfPHP\\\\Component\\\\Cqrs\\\\Command\\\\AbstractCommandMessage\\:\\:\\$options type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/cqrs/Command/AbstractCommandMessage.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventDispatcher\\\\ListenerInterface\\:\\:__invoke\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/event-dispatcher/ListenerInterface.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventDispatcher\\\\ListenerProvider\\:\\:add\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/event-dispatcher/ListenerProvider.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventDispatcher\\\\ListenerProvider\\:\\:add\\(\\) has parameter \\$listener with no type specified\\.$#"
-			count: 1
-			path: packages/event-dispatcher/ListenerProvider.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventDispatcher\\\\ListenerProvider\\:\\:getListenersForEvent\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: packages/event-dispatcher/ListenerProvider.php
-
-		-
-			message: "#^Property SonsOfPHP\\\\Component\\\\EventDispatcher\\\\ListenerProvider\\:\\:\\$listeners type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-dispatcher/ListenerProvider.php
-
-		-
 			message: "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\) with 'Psr\\\\\\\\EventDispatcher\\\\\\\\EventDispatcherInterface' and SonsOfPHP\\\\Component\\\\EventDispatcher\\\\EventDispatcher will always evaluate to true\\.$#"
 			count: 1
 			path: packages/event-dispatcher/Tests/EventDispatcherTest.php
@@ -351,94 +191,14 @@ parameters:
 			path: packages/event-sourcing/Bridge/Symfony/MessageEnricherHandler/BlameableEnricher.php
 
 		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\AbstractGenericMessage\\:\\:deserialize\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/AbstractGenericMessage.php
-
-		-
 			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\AbstractGenericMessage\\:\\:deserialize\\(\\) should return static\\(SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\AbstractGenericMessage\\) but returns SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\MessageInterface\\.$#"
 			count: 1
 			path: packages/event-sourcing/Message/AbstractGenericMessage.php
 
 		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\AbstractGenericMessage\\:\\:getPayload\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/AbstractGenericMessage.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\AbstractGenericMessage\\:\\:serialize\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/AbstractGenericMessage.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\AbstractGenericMessage\\:\\:withPayload\\(\\) has parameter \\$payload with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/AbstractGenericMessage.php
-
-		-
-			message: "#^Property SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\AbstractGenericMessage\\:\\:\\$payload type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/AbstractGenericMessage.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\AbstractMessage\\:\\:getMetadata\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/AbstractMessage.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\AbstractMessage\\:\\:withMetadata\\(\\) has parameter \\$metadata with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/AbstractMessage.php
-
-		-
-			message: "#^Property SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\AbstractMessage\\:\\:\\$metadata type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/AbstractMessage.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Enricher\\\\Provider\\\\AllMessageEnricherProvider\\:\\:getEnrichersForMessage\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Enricher/Provider/AllMessageEnricherProvider.php
-
-		-
-			message: "#^Property SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Enricher\\\\Provider\\\\AllMessageEnricherProvider\\:\\:\\$enrichers type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Enricher/Provider/AllMessageEnricherProvider.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Enricher\\\\Provider\\\\MessageEnricherProviderInterface\\:\\:getEnrichersForMessage\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Enricher/Provider/MessageEnricherProviderInterface.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Enricher\\\\Provider\\\\NullMessageEnricherProvider\\:\\:getEnrichersForMessage\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Enricher/Provider/NullMessageEnricherProvider.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\MessageInterface\\:\\:getMetadata\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/MessageInterface.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\MessageInterface\\:\\:withMetadata\\(\\) has parameter \\$metadata with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/MessageInterface.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\MessageProviderInterface\\:\\:getEventTypeForMessage\\(\\) has parameter \\$message with no type specified\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/MessageProviderInterface.php
-
-		-
 			message: "#^PHPDoc tag @param has invalid value \\(MessageInterface\\|string\\)\\: Unexpected token \"\\\\n     \\*\", expected variable at offset 94$#"
 			count: 1
 			path: packages/event-sourcing/Message/MessageProviderInterface.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\NamespaceMessageProvider\\:\\:getEventTypeForMessage\\(\\) has parameter \\$message with no type specified\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/NamespaceMessageProvider.php
 
 		-
 			message: "#^Only booleans are allowed in an if condition, SonsOfPHP\\\\Component\\\\EventSourcing\\\\Aggregate\\\\AggregateVersionInterface\\|null given\\.$#"
@@ -451,159 +211,14 @@ parameters:
 			path: packages/event-sourcing/Message/Repository/DoctrineDbalMessageRepository.php
 
 		-
-			message: "#^Cannot call method toInt\\(\\) on SonsOfPHP\\\\Component\\\\EventSourcing\\\\Aggregate\\\\AggregateVersionInterface\\|null\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Repository/InMemoryMessageRepository.php
-
-		-
-			message: "#^Cannot call method toString\\(\\) on SonsOfPHP\\\\Component\\\\EventSourcing\\\\Aggregate\\\\AggregateIdInterface\\|null\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Repository/InMemoryMessageRepository.php
-
-		-
 			message: "#^Only booleans are allowed in &&, SonsOfPHP\\\\Component\\\\EventSourcing\\\\Aggregate\\\\AggregateVersionInterface\\|null given on the left side\\.$#"
 			count: 1
 			path: packages/event-sourcing/Message/Repository/InMemoryMessageRepository.php
 
 		-
-			message: "#^Property SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Repository\\\\InMemoryMessageRepository\\:\\:\\$storage type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Repository/InMemoryMessageRepository.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Repository\\\\TableSchema\\\\TableSchemaInterface\\:\\:getColumns\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Repository/TableSchema/TableSchemaInterface.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Repository\\\\TableSchema\\\\TableSchemaInterface\\:\\:mapColumnsToEventData\\(\\) has parameter \\$result with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Repository/TableSchema/TableSchemaInterface.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Repository\\\\TableSchema\\\\TableSchemaInterface\\:\\:mapColumnsToEventData\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Repository/TableSchema/TableSchemaInterface.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Repository\\\\TableSchema\\\\TableSchemaInterface\\:\\:mapEventDataToColumns\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Repository/TableSchema/TableSchemaInterface.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Repository\\\\TableSchema\\\\TableSchemaInterface\\:\\:mapEventDataToColumns\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Repository/TableSchema/TableSchemaInterface.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Repository\\\\TableSchema\\\\TableSchemaV1\\:\\:getColumns\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Repository/TableSchema/TableSchemaV1.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Repository\\\\TableSchema\\\\TableSchemaV1\\:\\:mapColumnsToEventData\\(\\) has parameter \\$result with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Repository/TableSchema/TableSchemaV1.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Repository\\\\TableSchema\\\\TableSchemaV1\\:\\:mapColumnsToEventData\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Repository/TableSchema/TableSchemaV1.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Repository\\\\TableSchema\\\\TableSchemaV1\\:\\:mapEventDataToColumns\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Repository/TableSchema/TableSchemaV1.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Repository\\\\TableSchema\\\\TableSchemaV1\\:\\:mapEventDataToColumns\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Repository/TableSchema/TableSchemaV1.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Repository\\\\TableSchema\\\\TableSchemaV2\\:\\:getColumns\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Repository/TableSchema/TableSchemaV2.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Repository\\\\TableSchema\\\\TableSchemaV2\\:\\:mapColumnsToEventData\\(\\) has parameter \\$result with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Repository/TableSchema/TableSchemaV2.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Repository\\\\TableSchema\\\\TableSchemaV2\\:\\:mapColumnsToEventData\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Repository/TableSchema/TableSchemaV2.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Repository\\\\TableSchema\\\\TableSchemaV2\\:\\:mapColumnsToEventData\\(\\) should return array but returns mixed\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Repository/TableSchema/TableSchemaV2.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Repository\\\\TableSchema\\\\TableSchemaV2\\:\\:mapEventDataToColumns\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Repository/TableSchema/TableSchemaV2.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Repository\\\\TableSchema\\\\TableSchemaV2\\:\\:mapEventDataToColumns\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Repository/TableSchema/TableSchemaV2.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\SerializableMessageInterface\\:\\:deserialize\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/SerializableMessageInterface.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\SerializableMessageInterface\\:\\:serialize\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/SerializableMessageInterface.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Serializer\\\\MessageSerializer\\:\\:deserialize\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Serializer/MessageSerializer.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Serializer\\\\MessageSerializer\\:\\:serialize\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Serializer/MessageSerializer.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Serializer\\\\MessageSerializerInterface\\:\\:deserialize\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Serializer/MessageSerializerInterface.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Serializer\\\\MessageSerializerInterface\\:\\:serialize\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Serializer/MessageSerializerInterface.php
-
-		-
 			message: "#^PHPDoc tag @throws with type SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Serializer\\\\EventSourcingException is not subtype of Throwable$#"
 			count: 2
 			path: packages/event-sourcing/Message/Serializer/MessageSerializerInterface.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Upcaster\\\\MessageUpcasterProviderInterface\\:\\:getUpcastersForMessage\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: packages/event-sourcing/Message/Upcaster/MessageUpcasterProviderInterface.php
-
-		-
-			message: "#^Property SonsOfPHP\\\\Component\\\\EventSourcing\\\\Snapshot\\\\Repository\\\\InMemorySnapshotRepository\\:\\:\\$storage type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/event-sourcing/Snapshot/Repository/InMemorySnapshotRepository.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Snapshot\\\\Snapshot\\:\\:__construct\\(\\) has parameter \\$state with no type specified\\.$#"
-			count: 1
-			path: packages/event-sourcing/Snapshot/Snapshot.php
-
-		-
-			message: "#^Property SonsOfPHP\\\\Component\\\\EventSourcing\\\\Snapshot\\\\Snapshot\\:\\:\\$state has no type specified\\.$#"
-			count: 1
-			path: packages/event-sourcing/Snapshot/Snapshot.php
 
 		-
 			message: "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\) with 'SonsOfPHP\\\\\\\\Component\\\\\\\\EventSourcing\\\\\\\\Aggregate\\\\\\\\AggregateIdInterface' and SonsOfPHP\\\\Component\\\\EventSourcing\\\\Aggregate\\\\AggregateId will always evaluate to true\\.$#"
@@ -636,27 +251,12 @@ parameters:
 			path: packages/event-sourcing/Tests/Aggregate/Repository/AggregateRepositoryTest.php
 
 		-
-			message: "#^Cannot call method getAggregateId\\(\\) on SonsOfPHP\\\\Component\\\\EventSourcing\\\\Aggregate\\\\AggregateInterface\\|null\\.$#"
-			count: 1
-			path: packages/event-sourcing/Tests/Aggregate/Repository/AggregateRepositoryTest.php
-
-		-
 			message: "#^Method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Tests\\\\FakeAggregate\\:\\:getPendingEvents\\(\\) has invalid return type SonsOfPHP\\\\Component\\\\EventSourcing\\\\Aggregate\\\\DomainEventInterface\\.$#"
 			count: 1
 			path: packages/event-sourcing/Tests/FakeAggregate.php
 
 		-
-			message: "#^Parameter \\#1 \\$event of method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Tests\\\\FakeAggregate\\:\\:applyEvent\\(\\) expects SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\MessageInterface, mixed given\\.$#"
-			count: 1
-			path: packages/event-sourcing/Tests/FakeAggregate.php
-
-		-
 			message: "#^Parameter \\$events of method SonsOfPHP\\\\Component\\\\EventSourcing\\\\Tests\\\\FakeAggregate\\:\\:buildFromEvents\\(\\) has invalid type SonsOfPHP\\\\Component\\\\EventSourcing\\\\Aggregate\\\\MessageInterface\\.$#"
-			count: 1
-			path: packages/event-sourcing/Tests/FakeAggregate.php
-
-		-
-			message: "#^Property SonsOfPHP\\\\Component\\\\EventSourcing\\\\Tests\\\\FakeAggregate\\:\\:\\$pendingEvents type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: packages/event-sourcing/Tests/FakeAggregate.php
 
@@ -691,16 +291,6 @@ parameters:
 			path: packages/event-sourcing/Tests/Message/AbstractGenericMessageTest.php
 
 		-
-			message: "#^Cannot call method toInt\\(\\) on SonsOfPHP\\\\Component\\\\EventSourcing\\\\Aggregate\\\\AggregateVersionInterface\\|null\\.$#"
-			count: 1
-			path: packages/event-sourcing/Tests/Message/AbstractGenericMessageTest.php
-
-		-
-			message: "#^Cannot call method toString\\(\\) on SonsOfPHP\\\\Component\\\\EventSourcing\\\\Aggregate\\\\AggregateIdInterface\\|null\\.$#"
-			count: 1
-			path: packages/event-sourcing/Tests/Message/AbstractGenericMessageTest.php
-
-		-
 			message: "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\) with 'SonsOfPHP\\\\\\\\Component\\\\\\\\EventSourcing\\\\\\\\Message\\\\\\\\MessageInterface' and PHPUnit\\\\Framework\\\\MockObject\\\\MockObject&SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\AbstractMessage will always evaluate to true\\.$#"
 			count: 1
 			path: packages/event-sourcing/Tests/Message/AbstractMessageTest.php
@@ -711,22 +301,7 @@ parameters:
 			path: packages/event-sourcing/Tests/Message/AbstractMessageTest.php
 
 		-
-			message: "#^Cannot call method toInt\\(\\) on SonsOfPHP\\\\Component\\\\EventSourcing\\\\Aggregate\\\\AggregateVersionInterface\\|null\\.$#"
-			count: 1
-			path: packages/event-sourcing/Tests/Message/AbstractMessageTest.php
-
-		-
-			message: "#^Cannot call method toString\\(\\) on SonsOfPHP\\\\Component\\\\EventSourcing\\\\Aggregate\\\\AggregateIdInterface\\|null\\.$#"
-			count: 1
-			path: packages/event-sourcing/Tests/Message/AbstractMessageTest.php
-
-		-
 			message: "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\) with 'SonsOfPHP\\\\\\\\Component\\\\\\\\EventSourcing\\\\\\\\Message\\\\\\\\Enricher\\\\\\\\Provider\\\\\\\\MessageEnricherProviderInterface' and SonsOfPHP\\\\Component\\\\EventSourcing\\\\Message\\\\Enricher\\\\Provider\\\\AllMessageEnricherProvider will always evaluate to true\\.$#"
-			count: 1
-			path: packages/event-sourcing/Tests/Message/Enricher/Provider/AllMessageEnricherProviderTest.php
-
-		-
-			message: "#^Cannot access offset 0 on iterable\\.$#"
 			count: 1
 			path: packages/event-sourcing/Tests/Message/Enricher/Provider/AllMessageEnricherProviderTest.php
 
@@ -771,194 +346,9 @@ parameters:
 			path: packages/feature-toggle/Tests/FeatureToggleTest.php
 
 		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\Json\\:\\:decode\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/Json.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\Json\\:\\:encode\\(\\) has parameter \\$value with no type specified\\.$#"
-			count: 1
-			path: packages/json/Json.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonDecoder\\:\\:asArray\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonDecoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonDecoder\\:\\:bigintAsString\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonDecoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonDecoder\\:\\:decode\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonDecoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonDecoder\\:\\:invalidUtf8Ignore\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonDecoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonDecoder\\:\\:invalidUtf8Substitute\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonDecoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonDecoder\\:\\:objectAsArray\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonDecoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonDecoder\\:\\:throwOnError\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonDecoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonDecoder\\:\\:withDepth\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonDecoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonDecoder\\:\\:withFlags\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonDecoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonDecoder\\:\\:withoutFlags\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonDecoder.php
-
-		-
-			message: "#^Parameter \\#3 \\$depth of function json_decode expects int\\<1, max\\>, int given\\.$#"
-			count: 1
-			path: packages/json/JsonDecoder.php
-
-		-
 			message: "#^Constant JSON_HEX_QUOTE not found\\.$#"
 			count: 1
 			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonEncoder\\:\\:encode\\(\\) has parameter \\$value with no type specified\\.$#"
-			count: 1
-			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonEncoder\\:\\:encode\\(\\) should return string but returns string\\|false\\.$#"
-			count: 1
-			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonEncoder\\:\\:forceObject\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonEncoder\\:\\:hexAmp\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonEncoder\\:\\:hexApos\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonEncoder\\:\\:hexQuot\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonEncoder\\:\\:hexTag\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonEncoder\\:\\:invalidUtf8Ignore\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonEncoder\\:\\:invalidUtf8Substitute\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonEncoder\\:\\:numericCheck\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonEncoder\\:\\:partialOutputOnError\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonEncoder\\:\\:preserveZeroFraction\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonEncoder\\:\\:prettyPrint\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonEncoder\\:\\:throwOnError\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonEncoder\\:\\:unescapedLineTerminators\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonEncoder\\:\\:unescapedSlashes\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonEncoder\\:\\:unescapedUnicode\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonEncoder\\:\\:withDepth\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonEncoder\\:\\:withFlags\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonEncoder\\:\\:withoutFlags\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Parameter \\#3 \\$depth of function json_encode expects int\\<1, max\\>, int given\\.$#"
-			count: 1
-			path: packages/json/JsonEncoder.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonReader\\:\\:read\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/json/JsonReader.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonWriter\\:\\:write\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/json/JsonWriter.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Json\\\\JsonWriter\\:\\:write\\(\\) has parameter \\$value with no type specified\\.$#"
-			count: 1
-			path: packages/json/JsonWriter.php
 
 		-
 			message: "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertIsString\\(\\) with string will always evaluate to true\\.$#"
@@ -981,107 +371,12 @@ parameters:
 			path: packages/json/Tests/JsonTest.php
 
 		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\Currency\\:\\:__callStatic\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/money/Currency.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\Currency\\:\\:__callStatic\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/money/Currency.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\Currency\\:\\:query\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/money/Currency.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\CurrencyProvider\\:\\:getCurrencies\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: packages/money/CurrencyProvider.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\CurrencyProvider\\:\\:getCurrency\\(\\) should return SonsOfPHP\\\\Component\\\\Money\\\\CurrencyInterface but returns mixed\\.$#"
-			count: 1
-			path: packages/money/CurrencyProvider.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\CurrencyProvider\\:\\:hasCurrency\\(\\) should return bool but returns mixed\\.$#"
-			count: 1
-			path: packages/money/CurrencyProvider.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\CurrencyProviderInterface\\:\\:getCurrencies\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: packages/money/CurrencyProviderInterface.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\Money\\:\\:__callStatic\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: packages/money/Money.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\Money\\:\\:__callStatic\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/money/Money.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\Money\\:\\:__construct\\(\\) has parameter \\$amount with no type specified\\.$#"
-			count: 1
-			path: packages/money/Money.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\Money\\:\\:equals\\(\\) should return bool but returns mixed\\.$#"
-			count: 1
-			path: packages/money/Money.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\Money\\:\\:greaterThan\\(\\) should return bool but returns mixed\\.$#"
-			count: 1
-			path: packages/money/Money.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\Money\\:\\:greaterThanOrEquals\\(\\) should return bool but returns mixed\\.$#"
-			count: 1
-			path: packages/money/Money.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\Money\\:\\:isNegative\\(\\) should return bool but returns mixed\\.$#"
-			count: 1
-			path: packages/money/Money.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\Money\\:\\:isPositive\\(\\) should return bool but returns mixed\\.$#"
-			count: 1
-			path: packages/money/Money.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\Money\\:\\:isZero\\(\\) should return bool but returns mixed\\.$#"
-			count: 1
-			path: packages/money/Money.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\Money\\:\\:lessThan\\(\\) should return bool but returns mixed\\.$#"
-			count: 1
-			path: packages/money/Money.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\Money\\:\\:lessThanOrEquals\\(\\) should return bool but returns mixed\\.$#"
-			count: 1
-			path: packages/money/Money.php
-
-		-
 			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\Money\\:\\:with\\(\\) should return SonsOfPHP\\\\Component\\\\Money\\\\Money but returns SonsOfPHP\\\\Component\\\\Money\\\\MoneyInterface\\.$#"
 			count: 1
 			path: packages/money/Money.php
 
 		-
 			message: "#^PHPDoc tag @param references unknown parameter\\: \\$that$#"
-			count: 1
-			path: packages/money/Money.php
-
-		-
-			message: "#^Property SonsOfPHP\\\\Component\\\\Money\\\\Money\\:\\:\\$amount has no type specified\\.$#"
 			count: 1
 			path: packages/money/Money.php
 
@@ -1106,32 +401,12 @@ parameters:
 			path: packages/money/Operator/DivideMoneyOperator.php
 
 		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\Operator\\\\DivideMoneyOperator\\:\\:__construct\\(\\) has parameter \\$divisor with no type specified\\.$#"
-			count: 1
-			path: packages/money/Operator/DivideMoneyOperator.php
-
-		-
-			message: "#^Property SonsOfPHP\\\\Component\\\\Money\\\\Operator\\\\DivideMoneyOperator\\:\\:\\$divisor has no type specified\\.$#"
-			count: 1
-			path: packages/money/Operator/DivideMoneyOperator.php
-
-		-
 			message: "#^Call to an undefined method SonsOfPHP\\\\Component\\\\Money\\\\MoneyInterface\\:\\:getAmount\\(\\)\\.$#"
 			count: 1
 			path: packages/money/Operator/MultiplyMoneyOperator.php
 
 		-
 			message: "#^Call to an undefined method SonsOfPHP\\\\Component\\\\Money\\\\MoneyInterface\\:\\:getCurrency\\(\\)\\.$#"
-			count: 1
-			path: packages/money/Operator/MultiplyMoneyOperator.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\Operator\\\\MultiplyMoneyOperator\\:\\:__construct\\(\\) has parameter \\$multiplier with no type specified\\.$#"
-			count: 1
-			path: packages/money/Operator/MultiplyMoneyOperator.php
-
-		-
-			message: "#^Property SonsOfPHP\\\\Component\\\\Money\\\\Operator\\\\MultiplyMoneyOperator\\:\\:\\$multiplier has no type specified\\.$#"
 			count: 1
 			path: packages/money/Operator/MultiplyMoneyOperator.php
 
@@ -1166,19 +441,9 @@ parameters:
 			path: packages/money/Query/CurrencyQueryInterface.php
 
 		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\Query\\\\GetCurrencyQuery\\:\\:__construct\\(\\) has parameter \\$currency with no type specified\\.$#"
-			count: 1
-			path: packages/money/Query/GetCurrencyQuery.php
-
-		-
 			message: "#^Parameter \\$provider of method SonsOfPHP\\\\Component\\\\Money\\\\Query\\\\GetCurrencyQuery\\:\\:queryFrom\\(\\) has invalid type SonsOfPHP\\\\Component\\\\Money\\\\Query\\\\CurrecnyProviderInterface\\.$#"
 			count: 1
 			path: packages/money/Query/GetCurrencyQuery.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Money\\\\Query\\\\HasCurrencyQuery\\:\\:__construct\\(\\) has parameter \\$currency with no type specified\\.$#"
-			count: 1
-			path: packages/money/Query/HasCurrencyQuery.php
 
 		-
 			message: "#^Parameter \\$provider of method SonsOfPHP\\\\Component\\\\Money\\\\Query\\\\HasCurrencyQuery\\:\\:queryFrom\\(\\) has invalid type SonsOfPHP\\\\Component\\\\Money\\\\Query\\\\CurrecnyProviderInterface\\.$#"
@@ -1281,11 +546,6 @@ parameters:
 			path: packages/money/Tests/CurrencyProviderTest.php
 
 		-
-			message: "#^Property SonsOfPHP\\\\Component\\\\Money\\\\Tests\\\\CurrencyProviderTest\\:\\:\\$provider has no type specified\\.$#"
-			count: 1
-			path: packages/money/Tests/CurrencyProviderTest.php
-
-		-
 			message: "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\) with 'SonsOfPHP\\\\\\\\Component\\\\\\\\Money\\\\\\\\CurrencyInterface' and SonsOfPHP\\\\Component\\\\Money\\\\Currency will always evaluate to true\\.$#"
 			count: 1
 			path: packages/money/Tests/CurrencyTest.php
@@ -1308,21 +568,6 @@ parameters:
 		-
 			message: "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\) with 'SonsOfPHP\\\\\\\\Component\\\\\\\\Version\\\\\\\\VersionInterface' and SonsOfPHP\\\\Component\\\\Version\\\\Version will always evaluate to true\\.$#"
 			count: 2
-			path: packages/version/Tests/VersionTest.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Version\\\\Tests\\\\VersionTest\\:\\:compareVersions\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: packages/version/Tests/VersionTest.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Version\\\\Tests\\\\VersionTest\\:\\:invalidVersions\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: packages/version/Tests/VersionTest.php
-
-		-
-			message: "#^Method SonsOfPHP\\\\Component\\\\Version\\\\Tests\\\\VersionTest\\:\\:validVersions\\(\\) return type has no value type specified in iterable type iterable\\.$#"
-			count: 1
 			path: packages/version/Tests/VersionTest.php
 
 		-

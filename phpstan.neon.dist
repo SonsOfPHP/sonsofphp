@@ -7,7 +7,7 @@ includes:
     - tools/phpstan/vendor/phpstan/phpstan-phpunit/extension.neon
     - tools/phpstan/vendor/phpstan/phpstan-phpunit/rules.neon
 parameters:
-    level: 9
+    level: 5
     paths:
         - packages/
     bootstrapFiles:
