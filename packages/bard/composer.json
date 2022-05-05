@@ -5,6 +5,7 @@
     "type": "project",
     "bin": ["bin/bard"],
     "require": {
+        "sonsofphp/event-dispatcher": "^0.1@dev",
         "sonsofphp/json": "^0.1@dev",
         "sonsofphp/version": "^0.1@dev",
         "symfony/console": "^6.1",
@@ -24,6 +25,7 @@
         "sort-packages": true
     },
     "extra": {
+        "sort-packages": true,
         "branch-alias": {
             "dev-main": "0.1.x-dev"
         }

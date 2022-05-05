@@ -18,6 +18,7 @@ final class MergeCommand extends AbstractCommand
     private array $bardConfig;
     private string $mainComposerFile;
     private array $mainComposerConfig;
+    private $formatter;
 
     public function __construct()
     {
@@ -66,6 +67,7 @@ final class MergeCommand extends AbstractCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $this->formatter = $this->getHelper('formatter');
         // Purge main composer.json sections?
         // replace
         // require, require-dev
@@ -82,6 +84,7 @@ final class MergeCommand extends AbstractCommand
 
             $packageComposerConfig = $this->json->getDecoder()->objectAsArray()
                 ->decode(file_get_contents($packageComposerFile));
+            $output->writeln($this->formatter->formatSection('bard', sprintf('Working on "%s"', $packageComposerConfig['name'])));
             $packageNames[] = $packageComposerConfig['name'];
 
             //###> Update "replace" in main

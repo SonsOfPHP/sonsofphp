@@ -54,7 +54,6 @@ final class InstallCommand extends AbstractCommand
         $this->bardConfig = $this->json->getDecoder()->objectAsArray()
             ->decode(file_get_contents($bardConfigFile));
 
-        $this->formatter = $this->getHelper('formatter');
     }
 
     /**
@@ -62,6 +61,7 @@ final class InstallCommand extends AbstractCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $this->formatter = $this->getHelper('formatter');
         $output->writeln($this->formatter->formatSection('bard', 'Searching for composer.json files'));
         $rootDir = $input->getOption('working-dir');
         $finder = new Finder();
