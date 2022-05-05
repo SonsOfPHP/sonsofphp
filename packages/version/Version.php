@@ -69,11 +69,11 @@ final class Version implements VersionInterface
     {
         $version = sprintf('%d.%d.%d', $this->getMajor(), $this->getMinor(), $this->getPatch());
 
-        if ($this->getPreRelease()) {
+        if ('' !== $this->getPreRelease()) {
             $version = $version.'-'.$this->getPreRelease();
         }
 
-        if ($this->getBuild()) {
+        if ('' !== $this->getBuild()) {
             $version = $version.'+'.$this->getBuild();
         }
 
