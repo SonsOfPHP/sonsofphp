@@ -43,7 +43,7 @@ final class InitCommand extends AbstractCommand
     {
         $configFile = $input->getOption('working-dir').'/bard.json';
         if (file_exists($configFile)) {
-            throw new \RunTimeException(sprintf('"%s" file already exists', $configFile));
+            throw new \RuntimeException(sprintf('"%s" file already exists', $configFile));
         }
     }
 

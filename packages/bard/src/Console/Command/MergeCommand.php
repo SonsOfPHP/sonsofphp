@@ -52,7 +52,7 @@ final class MergeCommand extends AbstractCommand
     {
         $bardConfigFile = $input->getOption('working-dir').'/bard.json';
         if (!file_exists($bardConfigFile)) {
-            throw new \RunTimeException(sprintf('"%s" file does not exist', $bardConfigFile));
+            throw new \RuntimeException(sprintf('"%s" file does not exist', $bardConfigFile));
         }
 
         $this->bardConfig = $this->json->getDecoder()
@@ -61,7 +61,7 @@ final class MergeCommand extends AbstractCommand
 
         $this->mainComposerFile = $input->getOption('working-dir').'/composer.json';
         if (!file_exists($this->mainComposerFile)) {
-            throw new \RunTimeException(sprintf('"%s" file does not exist', $this->mainComposerFile));
+            throw new \RuntimeException(sprintf('"%s" file does not exist', $this->mainComposerFile));
         }
 
         $this->mainComposerConfig = $this->json->getDecoder()

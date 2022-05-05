@@ -48,7 +48,7 @@ final class UpdateCommand extends AbstractCommand
     {
         $bardConfigFile = $input->getOption('working-dir').'/bard.json';
         if (!file_exists($bardConfigFile)) {
-            throw new \RunTimeException(sprintf('"%s" file does not exist', $bardConfigFile));
+            throw new \RuntimeException(sprintf('"%s" file does not exist', $bardConfigFile));
         }
 
         $this->bardConfig = $this->json->getDecoder()->objectAsArray()
