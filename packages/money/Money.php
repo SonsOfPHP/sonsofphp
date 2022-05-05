@@ -24,7 +24,7 @@ use SonsOfPHP\Component\Money\Query\IsZeroMoneyQuery;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class Money implements MoneyInterface
+final class Money implements MoneyInterface
 {
     private $amount;
     private CurrencyInterface $currency;

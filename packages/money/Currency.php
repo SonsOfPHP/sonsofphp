@@ -13,7 +13,7 @@ use SonsOfPHP\Component\Money\Query\IsEqualToCurrencyQuery;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class Currency implements CurrencyInterface
+final class Currency implements CurrencyInterface
 {
     private string $currencyCode;
     private ?int $numericCode;
