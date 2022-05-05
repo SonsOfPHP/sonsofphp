@@ -38,7 +38,7 @@ final class JsonFile
         return $this->config[$section];
     }
 
-    public function setSection(string $section, $value): ComposerJsonFile
+    public function setSection(string $section, $value): JsonFile
     {
         $clone = clone $this;
         $clone->config[$section] = $value;
@@ -51,6 +51,7 @@ final class JsonFile
     public function toJson(): string
     {
         return $this->json
+            ->getEncoder()
             ->unescapedSlashes()
             ->prettyPrint()
             ->encode($this->config);
@@ -65,7 +66,7 @@ final class JsonFile
      * Can even use this for the package composer.json file
      * $newPkgComposerJsonFile = $pkgComposerJsonFile->with($updateSupportSection, $rootComposerJsonFile);
      */
-    public function with(/* ComposerJsonFileManipulatorInterface */$operator, ?ComposerJsonFile $composerJsonFile = null): ComposerJsonFile
+    public function with(/* ComposerJsonFileManipulatorInterface */$operator, ?JsonFile $composerJsonFile = null): JsonFile
     {
         return $operator->apply($this, $composerJsonFile);
     }
