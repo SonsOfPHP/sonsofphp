@@ -1,19 +1,19 @@
 <?php
 
-namespace SonsOfPHP\Bard\Command;
+namespace SonsOfPHP\Bard\Console\Command;
 
 use SonsOfPHP\Component\Json\Json;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Create a major release
+ * Validates composer.json files
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class ReleaseMajorCommand extends AbstractCommand
+final class ValidateCommand extends AbstractCommand
 {
-    protected static $defaultName = 'release:major';
+    protected static $defaultName = 'validate';
     private Json $json;
 
     /**
@@ -32,8 +32,7 @@ final class ReleaseMajorCommand extends AbstractCommand
     protected function configure(): void
     {
         $this
-            ->setHidden()
-            ->setDescription('')
+            ->setDescription('Validates composer.json files')
         ;
     }
 

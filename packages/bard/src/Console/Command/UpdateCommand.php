@@ -1,6 +1,6 @@
 <?php
 
-namespace SonsOfPHP\Bard\Command;
+namespace SonsOfPHP\Bard\Console\Command;
 
 use SonsOfPHP\Component\Json\Json;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,9 +14,9 @@ use Symfony\Component\Finder\Finder;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class InstallCommand extends AbstractCommand
+final class UpdateCommand extends AbstractCommand
 {
-    protected static $defaultName = 'install';
+    protected static $defaultName = 'update';
     private Json $json;
     private array $bardConfig;
     private $formatter;
@@ -37,7 +37,7 @@ final class InstallCommand extends AbstractCommand
     protected function configure(): void
     {
         $this
-            ->setDescription('Runs composer install for all packages')
+            ->setDescription('Runs composer update for all packages')
         ;
     }
 
@@ -54,6 +54,7 @@ final class InstallCommand extends AbstractCommand
         $this->bardConfig = $this->json->getDecoder()->objectAsArray()
             ->decode(file_get_contents($bardConfigFile));
 
+        $this->formatter = $this->getHelper('formatter');
     }
 
     /**
@@ -61,7 +62,6 @@ final class InstallCommand extends AbstractCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->formatter = $this->getHelper('formatter');
         $output->writeln($this->formatter->formatSection('bard', 'Searching for composer.json files'));
         $rootDir = $input->getOption('working-dir');
         $finder = new Finder();
@@ -77,7 +77,8 @@ final class InstallCommand extends AbstractCommand
             $output->writeln($this->formatter->formatBlock(sprintf('Working in "%s"', $file->getPath()), 'info', true));
             $process = new Process([
                 'composer',
-                'install',
+                'update',
+                '--with-all-dependencies',
                 '--optimize-autoloader',
                 '--no-progress',
                 '--no-interaction',

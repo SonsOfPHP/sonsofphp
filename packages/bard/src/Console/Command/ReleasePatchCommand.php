@@ -1,19 +1,19 @@
 <?php
 
-namespace SonsOfPHP\Bard\Command;
+namespace SonsOfPHP\Bard\Console\Command;
 
 use SonsOfPHP\Component\Json\Json;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Configure bard.json file
+ * Create a patch release
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class ConfigCommand extends AbstractCommand
+final class ReleasePatchCommand extends AbstractCommand
 {
-    protected static $defaultName = 'config';
+    protected static $defaultName = 'release:patch';
     private Json $json;
 
     /**
@@ -32,6 +32,7 @@ final class ConfigCommand extends AbstractCommand
     protected function configure(): void
     {
         $this
+            ->setHidden()
             ->setDescription('')
         ;
     }

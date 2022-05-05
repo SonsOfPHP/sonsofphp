@@ -3,7 +3,7 @@
 
 require __DIR__.'/../vendor/autoload.php';
 
-use SonsOfPHP\Bard\Bard;
+use SonsOfPHP\Bard\Console\Application;
 
-$bard = new Bard();
+$bard = new Application();
 $bard->run();

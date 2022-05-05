@@ -1,19 +1,19 @@
 <?php
 
-namespace SonsOfPHP\Bard\Command;
+namespace SonsOfPHP\Bard\Console\Command;
 
 use SonsOfPHP\Component\Json\Json;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Validates composer.json files
+ * Configure bard.json file
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class ValidateCommand extends AbstractCommand
+final class ConfigCommand extends AbstractCommand
 {
-    protected static $defaultName = 'validate';
+    protected static $defaultName = 'config';
     private Json $json;
 
     /**
@@ -32,7 +32,7 @@ final class ValidateCommand extends AbstractCommand
     protected function configure(): void
     {
         $this
-            ->setDescription('Validates composer.json files')
+            ->setDescription('')
         ;
     }
 

@@ -1,19 +1,19 @@
 <?php
 
-namespace SonsOfPHP\Bard\Command;
+namespace SonsOfPHP\Bard\Console\Command;
 
 use SonsOfPHP\Component\Json\Json;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Create a patch release
+ * Create a major release
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class ReleasePatchCommand extends AbstractCommand
+final class ReleaseMajorCommand extends AbstractCommand
 {
-    protected static $defaultName = 'release:patch';
+    protected static $defaultName = 'release:major';
     private Json $json;
 
     /**
