@@ -52,11 +52,11 @@ final class InitCommand extends AbstractCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $filename = $intput->getOption('working-dir').'/bard.json';
+        $filename = $input->getOption('working-dir').'/bard.json';
 
         if (file_exists($filename)) {
             $output->writeln('bard.json file already exists');
-            return COMMAND::FAILURE;
+            return self::FAILURE;
         }
 
         $json = $this->json->getEncoder()

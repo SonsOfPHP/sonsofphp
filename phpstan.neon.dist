@@ -12,3 +12,5 @@ parameters:
         - tools/phpunit/vendor/autoload.php
         - tools/phpstan/vendor/autoload.php
         - packages/bard/vendor/autoload.php
+    excludePaths:
+        - packages/*/vendor/*
