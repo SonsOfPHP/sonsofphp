@@ -31,11 +31,15 @@ final class JsonFile
     /**
      * @param string $section
      *
-     * @return array|int|string
+     * @return null|array|int|string
      */
     public function getSection(string $section)
     {
-        return $this->config[$section];
+        if (isset($this->config[$section])) {
+            return $this->config[$section];
+        }
+
+        return null;
     }
 
     public function setSection(string $section, $value): JsonFile
@@ -50,10 +54,10 @@ final class JsonFile
      */
     public function toJson(): string
     {
-        return $this->json
-            ->getEncoder()
-            ->unescapedSlashes()
+        return $this->json->getEncoder()
             ->prettyPrint()
+            ->unescapedUnicode()
+            ->unescapedSlashes()
             ->encode($this->config);
     }
 

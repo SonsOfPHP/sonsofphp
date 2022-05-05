@@ -2,6 +2,13 @@
 
 namespace SonsOfPHP\Bard\Console\Command;
 
+use SonsOfPHP\Bard\JsonFile;
+use SonsOfPHP\Bard\Manipulator\Composer\UpdateAutoloadDevSectionInRootComposer;
+use SonsOfPHP\Bard\Manipulator\Composer\UpdateAutoloadSectionInRootComposer;
+use SonsOfPHP\Bard\Manipulator\Composer\UpdateProvideSectionInRootComposer;
+use SonsOfPHP\Bard\Manipulator\Composer\UpdateReplaceSectionInRootComposer;
+use SonsOfPHP\Bard\Manipulator\Composer\UpdateRequireDevSectionInRootComposer;
+use SonsOfPHP\Bard\Manipulator\Composer\UpdateRequireSectionInRootComposer;
 use SonsOfPHP\Component\Json\Json;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -68,111 +75,43 @@ final class MergeCommand extends AbstractCommand
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->formatter = $this->getHelper('formatter');
-        // Purge main composer.json sections?
-        // replace
-        // require, require-dev
-        // autoload, autoload-dev
-        // repositories
-        // extra
-        $packageNames = [];
-        foreach ($this->bardConfig['packages'] as $dir => $repo) {
-            $packageComposerFile = $input->getOption('working-dir').'/'.$dir.'/composer.json';
+
+        $rootComposerJsonFile = new JsonFile($input->getOption('working-dir').'/composer.json');
+
+        foreach ($this->bardConfig['packages'] as $dir) {
+            $packageComposerFile = realpath($input->getOption('working-dir').'/'.$dir.'/composer.json');
             if (!file_exists($packageComposerFile)) {
                 $output->writeln(sprintf('No "%s" found, skipping', $packageComposerFile));
                 continue;
             }
 
-            $packageComposerConfig = $this->json->getDecoder()->objectAsArray()
-                ->decode(file_get_contents($packageComposerFile));
-            $output->writeln($this->formatter->formatSection('bard', sprintf('Working on "%s"', $packageComposerConfig['name'])));
-            $packageNames[] = $packageComposerConfig['name'];
+            $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir').'/'.$dir.'/composer.json'));
 
-            //###> Update "replace" in main
-            $this->mainComposerConfig['replace'][$packageComposerConfig['name']] = 'self.version';
-            //###<
+            $output->writeln($this->formatter->formatSection('bard', sprintf('Merging "%s" into root composer.json', $pkgComposerJsonFile->getSection('name'))));
 
-            //###> merge pkg "require" to main "require"
-            if (isset($packageComposerConfig['require'])) {
-                foreach ($packageComposerConfig['require'] as $pkg => $ver) {
-                    // @todo check versions
-                    $this->mainComposerConfig['require'][$pkg] = $ver;
-                }
-            }
-            //###<
+            //$output->writeln($this->formatter->formatSection('replace', 'pkg => root', 'comment'));
+            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateReplaceSectionInRootComposer(), $pkgComposerJsonFile);
 
-            //###> merge pkg "require-dev" to main "require-dev"
-            //var_dump($packageComposerJson['require']);
-            if (isset($packageComposerConfig['require-dev'])) {
-                foreach ($packageComposerConfig['require-dev'] as $pkg => $ver) {
-                    // @todo check versions
-                    $this->mainComposerConfig['require-dev'][$pkg] = $ver;
-                }
-            }
-            //###<
+            //$output->writeln($this->formatter->formatSection('require', 'pkg => root', 'comment'));
+            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateRequireSectionInRootComposer(), $pkgComposerJsonFile);
 
-            //###> autoload => pkg to main
-            $pathPrefix = str_replace('/composer.json', '', str_replace($input->getOption('working-dir').'/', '', $packageComposerFile));
-            foreach ($packageComposerConfig['autoload'] as $section => $sectionConfig) {
-                if ($section === 'psr-4') {
-                    foreach ($sectionConfig as $namespace => $path) {
-                        $this->mainComposerConfig['autoload']['psr-4'][$namespace] = $pathPrefix.$path;
-                    }
-                }
+            //$output->writeln($this->formatter->formatSection('require-dev', 'pkg => root', 'comment'));
+            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateRequireDevSectionInRootComposer(), $pkgComposerJsonFile);
 
-                if ($section === 'exclude-from-classmap') {
-                    foreach ($sectionConfig as $path) {
-                        $this->mainComposerConfig['autoload']['exclude-from-classmap'][] = $pathPrefix.$path;
-                    }
-                }
-            }
-            if (isset($this->mainComposerConfig['autoload']['psr-4'])) {
-                $this->mainComposerConfig['autoload']['psr-4'] = array_unique($this->mainComposerConfig['autoload']['psr-4']);
-            }
-            if (isset($this->mainComposerConfig['autoload']['exclude-from-classmap'])) {
-                $this->mainComposerConfig['autoload']['exclude-from-classmap'] = array_unique($this->mainComposerConfig['autoload']['exclude-from-classmap']);
-            }
-            //###<
+            //$output->writeln($this->formatter->formatSection('autoload', 'pkg => root', 'comment'));
+            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateAutoloadSectionInRootComposer(), $pkgComposerJsonFile);
 
-            //###> autoload-dev => pkg to main
-            //###<
+            //$output->writeln($this->formatter->formatSection('autoload-dev', 'pkg => root', 'comment'));
+            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateAutoloadDevSectionInRootComposer(), $pkgComposerJsonFile);
 
-            //###> provide => pkg to main
-            if (isset($packageComposerConfig['provide'])) {
-                foreach ($packageComposerConfig['provide'] as $provide => $provideVersion) {
-                    $this->mainComposerConfig['provide'][$provide] = $provideVersion;
-                }
-                $this->mainComposerConfig['provide'] = array_unique($this->mainComposerConfig['provide']);
-            }
-            //###<
-
-            //###> ?? authors => main to pkg
-            //###<
-
-            //###> support => main to pkg
-            //###<
-
-            //###> ?? extra.branch-alias => main to pkg
-            //###<
-
-            //###> ?? suggest => pkg to main
-            //###<
-
-            // save pkg composer.json
+            //$output->writeln($this->formatter->formatSection('provide', 'pkg => root', 'comment'));
+            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateProvideSectionInRootComposer(), $pkgComposerJsonFile);
         }
 
-        //###> Clean main componser config "require" if packages are already included
-        $this->mainComposerConfig['require'] = array_diff_key($this->mainComposerConfig['require'], array_flip($packageNames));
-        //###<
-
-        file_put_contents(
-            $this->mainComposerFile,
-            $this->json->getEncoder()
-                ->prettyPrint()
-                ->unescapedSlashes()
-                ->encode($this->mainComposerConfig)
-        );
+        file_put_contents($rootComposerJsonFile->getFilename(), $rootComposerJsonFile->toJson());
 
         $output->writeln('complete');
+
         return self::SUCCESS;
     }
 }

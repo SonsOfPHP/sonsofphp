@@ -66,7 +66,7 @@ final class InitCommand extends AbstractCommand
                 'name' => 'example/example',
                 'version' => '0.0.0',
                 'packages' => [
-                    'packages/example',
+                    'packages/example/',
                 ],
             ])
         ;
