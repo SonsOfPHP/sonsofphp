@@ -28,6 +28,7 @@ composer-install: composer.json # Install Dependencies via Composer
 	$(COMPOSER) install --working-dir=tools/php-cs-fixer --no-interaction --prefer-dist --optimize-autoloader
 	$(COMPOSER) install --working-dir=tools/phpunit --no-interaction --prefer-dist --optimize-autoloader
 	$(COMPOSER) install --working-dir=tools/phpstan --no-interaction --prefer-dist --optimize-autoloader
+	$(COMPOSER) install --working-dir=packages/bard --no-interaction --prefer-dist --optimize-autoloader
 
 purge: # Purge vendor and lock files
 	rm -rf vendor/ packages/*/vendor/ packages/*/composer.lock
@@ -44,7 +45,7 @@ coverage: ## Build Code Coverage Report
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --coverage-html $(COVERAGE_DIR)
 
 phpstan: ## Run phpstan
-	$(PHP) $(PHPSTAN) analyse src/
+	$(PHP) $(PHPSTAN) analyse packages/
 
 php-cs-fixer: ## run php-cs-fixer
 	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHP_CS_FIXER) fix src/
