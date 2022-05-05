@@ -1,7 +1,7 @@
 # -*- mode: yaml -*-
 # vi: set ft=yaml:
 includes:
-    - phpstan-baseline.neon
+    #- phpstan-baseline.neon
     - tools/phpstan/vendor/phpstan/phpstan-strict-rules/rules.neon
     - tools/phpstan/vendor/phpstan/phpstan-deprecation-rules/rules.neon
     - tools/phpstan/vendor/phpstan/phpstan-phpunit/extension.neon
