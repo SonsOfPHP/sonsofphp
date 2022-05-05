@@ -5,9 +5,9 @@ includes:
     - tools/phpstan/vendor/phpstan/phpstan-strict-rules/rules.neon
     - tools/phpstan/vendor/phpstan/phpstan-deprecation-rules/rules.neon
     - tools/phpstan/vendor/phpstan/phpstan-phpunit/extension.neon
-    - tools/phpstan/vendor/phpstan/phpstan-phpunit/rules.neon
+    #- tools/phpstan/vendor/phpstan/phpstan-phpunit/rules.neon
 parameters:
-    level: 5
+    level: 4
     paths:
         - packages/
     bootstrapFiles:
@@ -21,3 +21,4 @@ parameters:
         - '#Call to an undefined static method SonsOfPHP\\Component\\Money\\Money::[a-zA-Z]{3}\(\)#'
         - '#Dynamic call to static method PHPUnit\\Framework\\Assert::[a-zA-Z]+\(\)#'
         - '#Dynamic call to static method PHPUnit\\Framework\\TestCase::[a-zA-Z]+\(\)#'
+        - "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\) with 'SonsOfPHP[a-zA-Z0-9\\\\_]+Interface' and SonsOfPHP[a-zA-Z0-9\\\\_]+ will always evaluate to true\\.$#"
