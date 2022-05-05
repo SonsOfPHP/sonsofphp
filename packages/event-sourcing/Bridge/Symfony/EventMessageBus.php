@@ -20,7 +20,7 @@ class EventMessageBus implements EventDispatcherInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @return void
      */
     public function dispatch(object $event)
     {
