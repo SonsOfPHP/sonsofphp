@@ -1,11 +1,13 @@
 # -*- mode: yaml -*-
 # vi: set ft=yaml:
 includes:
-    #- tools/phpstan/vendor/phpstan/phpstan-deprecation-rules/rules.neon
-    #- tools/phpstan/vendor/phpstan/phpstan-phpunit/extension.neon
-    #- tools/phpstan/vendor/phpstan/phpstan-phpunit/rules.neon
+    - phpstan-baseline.neon
+    - tools/phpstan/vendor/phpstan/phpstan-strict-rules/rules.neon
+    - tools/phpstan/vendor/phpstan/phpstan-deprecation-rules/rules.neon
+    - tools/phpstan/vendor/phpstan/phpstan-phpunit/extension.neon
+    - tools/phpstan/vendor/phpstan/phpstan-phpunit/rules.neon
 parameters:
-    level: 0
+    level: 1
     paths:
         - packages/
     bootstrapFiles:
@@ -14,3 +16,8 @@ parameters:
         - packages/bard/vendor/autoload.php
     excludePaths:
         - packages/*/vendor/*
+    ignoreErrors:
+        - '#Call to an undefined static method SonsOfPHP\\Component\\Money\\Currency::[a-zA-Z]{3}\(\)#'
+        - '#Call to an undefined static method SonsOfPHP\\Component\\Money\\Money::[a-zA-Z]{3}\(\)#'
+        - '#Dynamic call to static method PHPUnit\\Framework\\Assert::[a-zA-Z]+\(\)#'
+        - '#Dynamic call to static method PHPUnit\\Framework\\TestCase::[a-zA-Z]+\(\)#'

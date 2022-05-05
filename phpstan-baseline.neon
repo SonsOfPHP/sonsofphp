@@ -1,0 +1,56 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Class RuntimeException referenced with incorrect case\\: RunTimeException\\.$#"
+			count: 1
+			path: packages/bard/src/Command/InitCommand.php
+
+		-
+			message: "#^Class RuntimeException referenced with incorrect case\\: RunTimeException\\.$#"
+			count: 1
+			path: packages/bard/src/Command/InstallCommand.php
+
+		-
+			message: "#^Class RuntimeException referenced with incorrect case\\: RunTimeException\\.$#"
+			count: 2
+			path: packages/bard/src/Command/MergeCommand.php
+
+		-
+			message: "#^Class RuntimeException referenced with incorrect case\\: RunTimeException\\.$#"
+			count: 1
+			path: packages/bard/src/Command/ReleaseCommand.php
+
+		-
+			message: "#^Only booleans are allowed in an if condition, mixed given\\.$#"
+			count: 2
+			path: packages/bard/src/Command/ReleaseCommand.php
+
+		-
+			message: "#^Class RuntimeException referenced with incorrect case\\: RunTimeException\\.$#"
+			count: 1
+			path: packages/bard/src/Command/UpdateCommand.php
+
+		-
+			message: "#^Casting to string something that's already string\\.$#"
+			count: 1
+			path: packages/event-sourcing/Aggregate/AggregateId.php
+
+		-
+			message: "#^Unsafe usage of new static\\(\\)\\.$#"
+			count: 3
+			path: packages/event-sourcing/Aggregate/AggregateId.php
+
+		-
+			message: "#^Unsafe usage of new static\\(\\)\\.$#"
+			count: 1
+			path: packages/event-sourcing/Tests/FakeAggregate.php
+
+		-
+			message: "#^Variable method call on \\$this\\(SonsOfPHP\\\\Component\\\\EventSourcing\\\\Tests\\\\FakeAggregate\\)\\.$#"
+			count: 1
+			path: packages/event-sourcing/Tests/FakeAggregate.php
+
+		-
+			message: "#^Constant JSON_HEX_QUOTE not found\\.$#"
+			count: 1
+			path: packages/json/JsonEncoder.php
