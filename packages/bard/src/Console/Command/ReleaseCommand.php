@@ -2,6 +2,8 @@
 
 namespace SonsOfPHP\Bard\Console\Command;
 
+use SonsOfPHP\Bard\JsonFile;
+use SonsOfPHP\Bard\Manipulator\Composer\UpdateReplaceSectionInRootComposer;
 use SonsOfPHP\Component\Json\Json;
 use SonsOfPHP\Component\Version\Version;
 use Symfony\Component\Console\Input\InputInterface;
@@ -22,6 +24,7 @@ final class ReleaseCommand extends AbstractCommand
     private Json $json;
     private array $bardConfig;
     private $formatter;
+    private $releaseVersion;
 
     /**
      * {@inheritdoc}
@@ -41,11 +44,7 @@ final class ReleaseCommand extends AbstractCommand
         $this
             ->setDescription('Create a new release')
             ->addOption('dry-run', null, InputOption::VALUE_NONE, 'Execute a dry-run with nothing being updated or released')
-            ->addOption('patch', null, InputOption::VALUE_NONE, 'Create realase for a patch version')
-            ->addOption('minor', null, InputOption::VALUE_NONE, 'Create realase for a minor version')
-            ->addOption('major', null, InputOption::VALUE_NONE, 'Create realase for a major version')
-            ->addOption('pre-release', null, InputOption::VALUE_REQUIRED, 'Attach Pre-release Data')
-            ->addOption('build-metadata', null, InputOption::VALUE_REQUIRED, 'Attach Build Metadata')
+            ->addArgument('release', InputArgument::REQUIRED, 'Use format <major>.<minor>.<patch>-<PreRelease>+<BuildMetadata> or "major", "minor", "patch"')
             ->setHelp(
                 <<<EOT
 This command allows you to create a new release and will update the various
@@ -65,15 +64,25 @@ EOT
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        $bardConfigFile = $input->getOption('working-dir').'/bard.json';
-        if (!file_exists($bardConfigFile)) {
-            throw new \RuntimeException(sprintf('"%s" file does not exist', $bardConfigFile));
+        $version = $input->getArgument('release');
+        if (in_array($version, ['major', 'minor', 'patch'])) {
+            $bardConfig = new JsonFile($input->getOption('working-dir').'/bard.json');
+            $currentVersion = new Version($bardConfig->getSection('version'));
+
+            switch ($version) {
+                case 'major':
+                    $this->releaseVersion = $currentVersion->nextMajor();
+                    break;
+                case 'minor':
+                    $this->releaseVersion = $currentVersion->nextMinor();
+                    break;
+                case 'patch':
+                    $this->releaseVersion = $currentVersion->nextPatch();
+                    break;
+            }
+        } else {
+            $this->releaseVersion = new Version($version);
         }
-
-        $this->bardConfig = $this->json->getDecoder()->objectAsArray()
-            ->decode(file_get_contents($bardConfigFile));
-
-        $this->formatter = $this->getHelper('formatter');
     }
 
     /**
@@ -88,10 +97,14 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $this->formatter = $this->getHelper('formatter');
+        $bardConfig = new JsonFile($input->getOption('working-dir').'/bard.json');
+
         if ($input->getOption('dry-run')) {
             $output->writeln($this->formatter->formatBlock('dry-run enabled no changes will be made', 'info', true));
         }
-        $output->writeln($this->formatter->formatSection('bard', sprintf('Current version <info>%s</info>', $this->bardConfig['version']), 'info'));
+
+        $output->writeln($this->formatter->formatSection('bard', sprintf('Current version <info>%s</info>', $bardConfig->getSection('version')), 'info'));
 
         // 1. Update "replace" in main composer.json with the Package Names
         // "package/name": "self.version"
@@ -107,21 +120,20 @@ EOT
         // git tag {version}
         // git push --tags
 
-        // 4. Update branch alias in composer.json files
+        // 4. Subtree Split for each package
+        // git subtree split --prefix packages/{component} -b {component/name}
+        // git push {repo} {component/name}:{remote-branch}
+        // git branch -D {component/name}
 
-        // 5. Next dev release
+        // 5. Update branch alias in all composer.json files
+
+        // 6. Next dev release
         // - Update composer.json file
-        $commands = [
-            // Add All Files
-            'git add .',
-            // Create a Commit with new version
-            sprintf('git commit --allow-empty -m "open %s"', $this->bardConfig['version']),
-            // Push up commit
-            sprintf('git push origin %s', 'main'),
-        ];
-        foreach ($commands as $cmd) {
-            $output->writeln($this->formatter->formatSection('exec', $cmd, 'comment'));
-        }
+
+        // 7. Commit and push updates
+        // git add .
+        // git commit -m 'starting new version'
+        // git push origin {branch}
 
         if ($input->getOption('dry-run')) {
             $output->writeln($this->formatter->formatBlock('no changes were made', 'info', true));

@@ -1,11 +1,11 @@
 {
     "version": "0.0.0",
-    "packages.v2": {
-        "sonsofphp/clock": {
+    "packages.v2": [
+        {
             "path": "packages/clock/",
             "repository": "git@github.com:SonsOfPHP/clock.git"
         }
-    },
+    ],
     "packages": [
         "packages/clock/",
         "packages/cqrs/",

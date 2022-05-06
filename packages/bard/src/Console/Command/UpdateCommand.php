@@ -86,6 +86,7 @@ final class UpdateCommand extends AbstractCommand
                 '--working-dir',
                 $file->getPath(),
             ]);
+            $output->writeln($this->formatter->formatSection('exec', $process->getCommandLine(), 'comment'));
             $this->getHelper('process')->run($output, $process);
         }
 
