@@ -1,13 +1,10 @@
 {
     "version": "0.0.0",
-    "command": {
-        "audit": {},
-        "clean": {},
-        "install": {},
-        "update": {},
-        "release": {},
-        "test": {},
-        "merge": {}
+    "packages.v2": {
+        "sonsofphp/clock": {
+            "path": "packages/clock/",
+            "repository": "git@github.com:SonsOfPHP/clock.git"
+        }
     },
     "packages": [
         "packages/clock/",
