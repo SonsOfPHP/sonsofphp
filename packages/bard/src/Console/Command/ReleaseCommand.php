@@ -218,6 +218,12 @@ EOT
                 $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
             }
 
+            $process = new Process(['git', 'tag', '-d', sprintf('%s_%s', $pkgName, $this->releaseVersion->toString())]);
+            $io->text($process->getCommandLine());
+            if (!$input->getOption('dry-run')) {
+                $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+            }
+
             $process = new Process(['git', 'branch', '-D', $pkgName]);
             $io->text($process->getCommandLine());
             if (!$input->getOption('dry-run')) {
