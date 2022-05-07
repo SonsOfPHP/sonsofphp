@@ -31,7 +31,7 @@ final class Amount implements AmountInterface
      */
     public function __construct($amount)
     {
-        $this->amount = (string) $amount;
+        $this->amount = strval($amount);
     }
 
     /**
@@ -49,6 +49,22 @@ final class Amount implements AmountInterface
     public function toString(): string
     {
         return $this->amount;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toInt(): int
+    {
+        return intval($this->amount);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toFloat(): float
+    {
+        return floatval($this->amount);
     }
 
     /**

@@ -25,6 +25,6 @@ class SubtractAmountOperator implements AmountOperatorInterface
      */
     public function apply(AmountInterface $amount): AmountInterface
     {
-        return new Amount($amount->getAmount() - $this->amount->getAmount());
+        return new Amount($amount->toFloat() - $this->amount->toFloat());
     }
 }

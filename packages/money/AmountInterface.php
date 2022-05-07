@@ -27,7 +27,7 @@ interface AmountInterface
      *
      * @param AmountOperatorInterface $operator
      *
-     * @return static
+     * @return AmountInterface
      */
     public function with(AmountOperatorInterface $operator): AmountInterface;
 
@@ -42,11 +42,25 @@ interface AmountInterface
     public function query(AmountQueryInterface $query);
 
     /**
-     * Returns the value for this amount
+     * Returns the value for this amount as a string
      *
      * @return string
      */
     public function toString(): string;
+
+    /**
+     * Returns the value for this amount as a integer
+     *
+     * @return int
+     */
+    public function toInt(): int;
+
+    /**
+     * Returns the value for this amount as a float
+     *
+     * @return float
+     */
+    public function toFloat(): float;
 
     /**
      * Returns the value that this is for the object

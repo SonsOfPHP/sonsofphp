@@ -29,7 +29,7 @@ interface MoneyInterface
     /**
      * @param MoneyOperatorInterface $operator
      *
-     * @return static
+     * @return MoneyInterface
      */
     public function with(MoneyOperatorInterface $operator): MoneyInterface;
 
@@ -88,7 +88,7 @@ interface MoneyInterface
      * @param MoneyInterface $money
      * @todo MoneyInterface|AmountInterface
      *
-     * @return static
+     * @return MoneyInterface
      */
     public function add(MoneyInterface $money): MoneyInterface;
 
@@ -98,7 +98,7 @@ interface MoneyInterface
      * @param MoneyInterface $money
      * @todo MoneyInterface|AmountInterface
      *
-     * @return static
+     * @return MoneyInterface
      */
     public function subtract(MoneyInterface $money): MoneyInterface;
 
@@ -107,7 +107,7 @@ interface MoneyInterface
      *
      * @param int|float|string $multiplier
      *
-     * @return static
+     * @return MoneyInterface
      */
     public function multiply($multiplier): MoneyInterface;
 
@@ -116,7 +116,7 @@ interface MoneyInterface
      *
      * @param int|float|string $divisor
      *
-     * @return static
+     * @return MoneyInterface
      */
     public function divide($divisor): MoneyInterface;
 }

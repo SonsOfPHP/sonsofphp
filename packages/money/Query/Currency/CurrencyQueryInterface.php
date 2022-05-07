@@ -14,7 +14,7 @@ use SonsOfPHP\Component\Money\Query\QueryInterface;
 interface CurrencyQueryInterface extends QueryInterface
 {
     /**
-     * @param CurrecnyInterface $currency
+     * @param CurrencyInterface $currency
      *
      * @throws MoneyException
      *

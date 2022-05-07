@@ -46,7 +46,7 @@ final class Money implements MoneyInterface
      */
     public function __toString(): string
     {
-        return (string) $this->amount;
+        return $this->amount->toString();
     }
 
     /**
@@ -58,7 +58,7 @@ final class Money implements MoneyInterface
     }
 
     /**
-     * @param MoneyInterface $that
+     * @param MoneyInterface $money
      *
      * @return int
      *  -1 = this less than that

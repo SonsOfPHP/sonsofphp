@@ -35,7 +35,6 @@ final class ChainCurrencyProviderTest extends TestCase
     {
         foreach ($this->provider->getCurrencies() as $currency) {
             $this->assertInstanceOf(CurrencyInterface::class, $currency);
-            $this->assertNotNull($currency->getCurrencyCode());
             $this->assertNotNull($currency->getNumericCode());
             $this->assertNotNull($currency->getMinorUnit());
         }
