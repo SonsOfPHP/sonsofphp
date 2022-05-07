@@ -33,8 +33,9 @@
         "psr/event-dispatcher-implementation": "1.0"
     },
     "extra": {
+        "sort-packages": true,
         "branch-alias": {
-            "dev-main": "0.1.x-dev"
+            "dev-main": "0.2.x-dev"
         }
     }
 }
