@@ -152,7 +152,7 @@ EOT
         $process = new Process(['git', 'commit', '-m', sprintf('"Preparing for Release v%s"', $this->releaseVersion->toString())]);
         $io->text($process->getCommandLine());
         if (!$input->getOption('dry-run')) {
-            $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+            $this->getHelper('process')->run($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
         }
 
         $process = new Process(['git', 'push', 'origin', $input->getOption('branch')]);
