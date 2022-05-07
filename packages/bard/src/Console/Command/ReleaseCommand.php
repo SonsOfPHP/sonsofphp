@@ -179,17 +179,51 @@ EOT
         $io->title(sprintf('updating package repos with release %s', $this->releaseVersion->toString()));
         foreach ($this->bardConfig->getSection('packages') as $pkg) {
             $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json'));
-            $pkgName = $pkgComposerJsonFile->getSection('name');
-            $io->text([
-                sprintf('Package <info>%s</> is being released', $pkgName),
-                sprintf('git subtree split --prefix %s -b %s', $pkg['path'], $pkgName),
-                sprintf('git checkout %s', $pkgName),
-                sprintf('git push %s %s:%s', $pkg['repository'], $pkgName, $input->getOption('branch')),
-                sprintf('git tag %s_%s', $pkgName, $this->releaseVersion->toString()),
-                sprintf('git push %s %s_%s:v%s', $pkg['repository'], $pkgName, $this->releaseVersion->toString(), $this->releaseVersion->toString()),
-                sprintf('git checkout %s', $input->getOption('branch')),
-                sprintf('git branch -D %s', $pkgName),
-            ]);
+            $pkgName             = $pkgComposerJsonFile->getSection('name');
+            $io->text(sprintf('Package <info>%s</> is being released', $pkgName));
+
+            $process = new Process(['git', 'subtree', 'split', '-P', $pkg['path'], '-b', $pkgName]);
+            $io->text($process->getCommandLine());
+            if (!$input->getOption('dry-run')) {
+                $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+            }
+
+            $process = new Process(['git', 'checkout', $pkgName]);
+            $io->text($process->getCommandLine());
+            if (!$input->getOption('dry-run')) {
+                $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+            }
+
+            $process = new Process(['git', 'push', $pkg['repository'], sprintf('%s:%s', $pkgName, $input->getOption('branch'))]);
+            $io->text($process->getCommandLine());
+            if (!$input->getOption('dry-run')) {
+                $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+            }
+
+            $process = new Process(['git', 'tag', sprintf('%s_%s', $pkgName, $this->releaseVersion->toString())]);
+            $io->text($process->getCommandLine());
+            if (!$input->getOption('dry-run')) {
+                $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+            }
+
+            $process = new Process(['git', 'push', $pkg['repository'], sprintf('%s_%s:v%s', $pkgName, $this->releaseVersion->toString(), $this->releaseVersion->toString())]);
+            $io->text($process->getCommandLine());
+            if (!$input->getOption('dry-run')) {
+                $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+            }
+
+            $process = new Process(['git', 'checkout', $input->getOption('branch')]);
+            $io->text($process->getCommandLine());
+            if (!$input->getOption('dry-run')) {
+                $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+            }
+
+            $process = new Process(['git', 'branch', '-D', $pkgName]);
+            $io->text($process->getCommandLine());
+            if (!$input->getOption('dry-run')) {
+                $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+            }
+
             $io->newLine();
         }
         $io->success('All Packages have been Released');
