@@ -25,7 +25,7 @@ final class MoneyTest extends TestCase
     {
         $money = Money::USD(100);
 
-        $this->assertSame(100, $money->getAmount());
+        $this->assertSame('100', (string) $money->getAmount());
         $this->assertSame('USD', $money->getCurrency()->getCurrencyCode());
     }
 
@@ -41,17 +41,17 @@ final class MoneyTest extends TestCase
         $money2 = Money::USD(100);
         $money3 = Money::USD(200);
 
-        $this->assertTrue($money1->equals($money1));
-        $this->assertTrue($money1->equals($money2));
-        $this->assertFalse($money1->equals($money3));
+        $this->assertTrue($money1->isEqualTo($money1));
+        $this->assertTrue($money1->isEqualTo($money2));
+        $this->assertFalse($money1->isEqualTo($money3));
 
-        $this->assertTrue($money2->equals($money1));
-        $this->assertTrue($money2->equals($money2));
-        $this->assertFalse($money2->equals($money3));
+        $this->assertTrue($money2->isEqualTo($money1));
+        $this->assertTrue($money2->isEqualTo($money2));
+        $this->assertFalse($money2->isEqualTo($money3));
 
-        $this->assertFalse($money3->equals($money1));
-        $this->assertFalse($money3->equals($money2));
-        $this->assertTrue($money3->equals($money3));
+        $this->assertFalse($money3->isEqualTo($money1));
+        $this->assertFalse($money3->isEqualTo($money2));
+        $this->assertTrue($money3->isEqualTo($money3));
     }
 
     public function testCompare(): void
@@ -70,9 +70,9 @@ final class MoneyTest extends TestCase
         $money1 = Money::USD(100);
         $money2 = Money::USD(200);
 
-        $this->assertTrue($money2->greaterThan($money1));
-        $this->assertFalse($money1->greaterThan($money2));
-        $this->assertFalse($money1->greaterThan($money1));
+        $this->assertTrue($money2->isGreaterThan($money1));
+        $this->assertFalse($money1->isGreaterThan($money2));
+        $this->assertFalse($money1->isGreaterThan($money1));
     }
 
     public function testGreaterThanWithDifferentCurrencies(): void
@@ -81,7 +81,7 @@ final class MoneyTest extends TestCase
         $money2 = Money::EUR(100);
 
         $this->expectException(MoneyException::class);
-        $money1->greaterThan($money2);
+        $money1->isGreaterThan($money2);
     }
 
     public function testGreaterThanOrEquals(): void
@@ -90,9 +90,9 @@ final class MoneyTest extends TestCase
         $money2 = Money::USD(200);
         $money3 = Money::USD(200);
 
-        $this->assertFalse($money1->greaterThanOrEquals($money2));
-        $this->assertTrue($money2->greaterThanOrEquals($money1));
-        $this->assertTrue($money3->greaterThanOrEquals($money2));
+        $this->assertFalse($money1->isGreaterThanOrEqualTo($money2));
+        $this->assertTrue($money2->isGreaterThanOrEqualTo($money1));
+        $this->assertTrue($money3->isGreaterThanOrEqualTo($money2));
     }
 
     public function testGreaterThanOrEqualsWithDifferentCurrencies(): void
@@ -101,7 +101,7 @@ final class MoneyTest extends TestCase
         $money2 = Money::EUR(100);
 
         $this->expectException(MoneyException::class);
-        $money1->greaterThanOrEquals($money2);
+        $money1->isGreaterThanOrEqualTo($money2);
     }
 
     public function testLessThan(): void
@@ -109,9 +109,9 @@ final class MoneyTest extends TestCase
         $money1 = Money::USD(100);
         $money2 = Money::USD(200);
 
-        $this->assertFalse($money2->lessThan($money1));
-        $this->assertTrue($money1->lessThan($money2));
-        $this->assertFalse($money1->lessThan($money1));
+        $this->assertFalse($money2->isLessThan($money1));
+        $this->assertTrue($money1->isLessThan($money2));
+        $this->assertFalse($money1->isLessThan($money1));
     }
 
     public function testLessThanWithDifferentCurrencies(): void
@@ -120,7 +120,7 @@ final class MoneyTest extends TestCase
         $money2 = Money::EUR(100);
 
         $this->expectException(MoneyException::class);
-        $money1->lessThan($money2);
+        $money1->isLessThan($money2);
     }
 
     public function testLessThanOrEquals(): void
@@ -129,9 +129,9 @@ final class MoneyTest extends TestCase
         $money2 = Money::USD(200);
         $money3 = Money::USD(200);
 
-        $this->assertTrue($money1->lessThanOrEquals($money2));
-        $this->assertFalse($money2->lessThanOrEquals($money1));
-        $this->assertTrue($money3->lessThanOrEquals($money2));
+        $this->assertTrue($money1->isLessThanOrEqualTo($money2));
+        $this->assertFalse($money2->isLessThanOrEqualTo($money1));
+        $this->assertTrue($money3->isLessThanOrEqualTo($money2));
     }
 
     public function testLessThanOrEqualsWithDifferentCurrencies(): void
@@ -140,7 +140,7 @@ final class MoneyTest extends TestCase
         $money2 = Money::EUR(100);
 
         $this->expectException(MoneyException::class);
-        $money1->lessThanOrEquals($money2);
+        $money1->isLessThanOrEqualTo($money2);
     }
 
     public function testIsNegative(): void
@@ -182,7 +182,7 @@ final class MoneyTest extends TestCase
         $money2 = Money::USD(100);
 
         $output = $money1->add($money2);
-        $this->assertSame(200, $output->getAmount());
+        $this->assertSame('200', (string) $output->getAmount());
     }
 
     public function testAddWithDifferenctCurrencies(): void
@@ -200,7 +200,7 @@ final class MoneyTest extends TestCase
         $money2 = Money::USD(100);
 
         $output = $money1->subtract($money2);
-        $this->assertSame(0, $output->getAmount());
+        $this->assertSame('0', (string) $output->getAmount());
     }
 
     public function testSubtractWithDifferenctCurrencies(): void
@@ -218,7 +218,7 @@ final class MoneyTest extends TestCase
         $money2 = Money::USD(200);
 
         $output = $money1->subtract($money2);
-        $this->assertSame(-100, $output->getAmount());
+        $this->assertSame('-100', (string) $output->getAmount());
     }
 
     public function testMultiply(): void
@@ -226,7 +226,7 @@ final class MoneyTest extends TestCase
         $money1 = Money::USD(100);
 
         $output = $money1->multiply(2);
-        $this->assertSame(200, $output->getAmount());
+        $this->assertSame('200', (string) $output->getAmount());
     }
 
     public function testDivide(): void
@@ -234,6 +234,6 @@ final class MoneyTest extends TestCase
         $money1 = Money::USD(100);
 
         $output = $money1->divide(5);
-        $this->assertSame(20, $output->getAmount());
+        $this->assertSame('20', (string) $output->getAmount());
     }
 }

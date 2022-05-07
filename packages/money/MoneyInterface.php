@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money;
 
+use SonsOfPHP\Component\Money\Operator\Money\MoneyOperatorInterface;
+use SonsOfPHP\Component\Money\Query\Money\MoneyQueryInterface;
+
 /**
  * Money Interface
  *
@@ -13,20 +16,107 @@ namespace SonsOfPHP\Component\Money;
  */
 interface MoneyInterface
 {
-    //public function getAmount(): AmountInterface;
-    //public function getCurrency(): CurrencyInterface;
+    /**
+     * @return AmountInterface
+     */
+    public function getAmount(): AmountInterface;
 
-    //public function isGreaterThan(MoneyInterface $money): bool;
-    //public function isGreaterThanOrEqualTo(MoneyInterface $money): bool;
-    //public function isLessThan(MoneyInterface $money): bool;
-    //public function isLessThanOrEqualTo(MoneyInterface $money): bool;
-    //public function isEqualTo(MoneyInterface $money): bool;
-    //public function isNegative(): bool;
-    //public function isPositive(): bool;
-    //public function isZero(): bool;
+    /**
+     * @return CurrencyInterface
+     */
+    public function getCurrency(): CurrencyInterface;
 
-    //public function add(MoneyInterface $money): MoneyInterface;
-    //public function subtract(MoneyInterface $money): MoneyInterface;
-    //public function multiple(int|float|string $multiplier): MoneyInterface;
-    //public function divide(int|float|string $divisor): MoneyInterface;
+    /**
+     * @param MoneyOperatorInterface $operator
+     *
+     * @return static
+     */
+    public function with(MoneyOperatorInterface $operator): MoneyInterface;
+
+    /**
+     * @param MoneyQueryInterface $query
+     *
+     * @return mixed
+     */
+    public function query(MoneyQueryInterface $query);
+
+    /**
+     * @return bool
+     */
+    public function isEqualTo(MoneyInterface $money): bool;
+
+    /**
+     * Returns true if this is greater than that
+     *
+     * @return bool
+     */
+    public function isGreaterThan(MoneyInterface $money): bool;
+
+    /**
+     * @return bool
+     */
+    public function isGreaterThanOrEqualTo(MoneyInterface $money): bool;
+
+    /**
+     * @return bool
+     */
+    public function isLessThan(MoneyInterface $money): bool;
+
+    /**
+     * @return bool
+     */
+    public function isLessThanOrEqualTo(MoneyInterface $money): bool;
+
+    /**
+     * @return bool
+     */
+    public function isNegative(): bool;
+
+    /**
+     * @return bool
+     */
+    public function isPositive(): bool;
+
+    /**
+     * @return bool
+     */
+    public function isZero(): bool;
+
+    /**
+     * Adds amount to existing amount and returns a new MoneyInterface
+     *
+     * @param MoneyInterface $money
+     * @todo MoneyInterface|AmountInterface
+     *
+     * @return static
+     */
+    public function add(MoneyInterface $money): MoneyInterface;
+
+    /**
+     * Subtracts amount to existing amount and returns a new MoneyInterface
+     *
+     * @param MoneyInterface $money
+     * @todo MoneyInterface|AmountInterface
+     *
+     * @return static
+     */
+    public function subtract(MoneyInterface $money): MoneyInterface;
+
+    /**
+     * Multiple by multiplier and returns new MoneyInterface
+     *
+     * @param int|float|string $multiplier
+     *
+     * @return static
+     */
+    public function multiply($multiplier): MoneyInterface;
+
+    /**
+     * Divide by divisor and returns new MoneyInterface
+     *
+     * @param int|float|string $divisor
+     *
+     * @return static
+     */
+    public function divide($divisor): MoneyInterface;
 }

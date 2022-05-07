@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money;
 
-//use SonsOfPHP\Component\Money\Operator\CurrencyOperatorInterface;
-use SonsOfPHP\Component\Money\Query\CurrencyQueryInterface;
-use SonsOfPHP\Component\Money\Query\IsEqualToCurrencyQuery;
+use SonsOfPHP\Component\Money\Query\Currency\CurrencyQueryInterface;
+use SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery;
 
 /**
- * Currency
- *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 final class Currency implements CurrencyInterface
@@ -21,6 +18,8 @@ final class Currency implements CurrencyInterface
 
     /**
      * @param string $currencyCode
+     * @param int    $numericCode
+     * @param int    $minorUnit
      */
     public function __construct(string $currencyCode, ?int $numericCode = null, ?int $minorUnit = null)
     {
@@ -39,20 +38,24 @@ final class Currency implements CurrencyInterface
     }
 
     /**
-     * Example: Currency::USD();
+     * Makes it easy to create new currencies
+     *
+     * Examples:
+     *   Currency::USD();
+     *   Currency::USD(840, 2);
+     *
+     * @param string $currencyCode
+     * @param array  $args
+     *
+     * @return CurrencyInterface
      */
-    public static function __callStatic(string $currencyCode, array $args)
+    public static function __callStatic(string $currencyCode, array $args): CurrencyInterface
     {
         $numericCode = isset($args[0]) ? $args[0] : null;
         $minorUnit   = isset($args[1]) ? $args[1] : null;
 
         return new static($currencyCode, $numericCode, $minorUnit);
     }
-
-    //public function with(CurrencyOperatorInterface $operator): CurrencyInterface
-    //{
-    //    return $operator->apply($this);
-    //}
 
     /**
      * {@inheritdoc}
@@ -63,33 +66,33 @@ final class Currency implements CurrencyInterface
     }
 
     /**
-     * Returns the Currency Code for this object
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getCurrencyCode(): string
     {
         return $this->currencyCode;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getNumericCode(): ?int
     {
         return $this->numericCode;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getMinorUnit(): ?int
     {
         return $this->minorUnit;
     }
 
     /**
-     * Compare two currencies to see if they are the same
-     *
-     * @param CurrencyInterface $currency
-     *
-     * @return bool
+     * {@inheritdoc}
      */
-    public function equals(CurrencyInterface $currency): bool
+    public function isEqualTo(CurrencyInterface $currency): bool
     {
         return $this->query(new IsEqualToCurrencyQuery($currency));
     }
