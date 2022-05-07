@@ -19,6 +19,11 @@
             "SonsOfPHP\\Bard\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "SonsOfPHP\\Bard\\Tests\\": "Tests/"
+        }
+    },
     "prefer-stable": true,
     "minimum-stability": "dev",
     "config": {
