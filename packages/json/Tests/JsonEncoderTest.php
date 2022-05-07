@@ -75,7 +75,6 @@ final class JsonEncoderTest extends TestCase
         $encoder = new JsonEncoder();
 
         $return = $encoder->encode($value);
-        $this->assertIsString($return);
         $this->assertSame('{"test":true}', $return);
     }
 

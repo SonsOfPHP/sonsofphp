@@ -9,48 +9,15 @@ namespace SonsOfPHP\Component\Json;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class JsonDecoder
+class JsonDecoder extends AbstractEncoderDecoder
 {
-    private int $depth = 512;
-    private int $flags = 0;
-
     public function __construct(?bool $associative = null, ?int $depth = null, ?int $flags = null)
     {
-        $this->depth = $depth ?? $this->depth;
-        $this->flags = $flags ?? $this->flags;
+        parent::__construct($flags, $depth);
 
         if (true === $associative) {
             $this->flags = $this->flags | JSON_OBJECT_AS_ARRAY;
         }
-    }
-
-    public function withFlags(int $flag)
-    {
-        $that = clone $this;
-        $that->flags = $this->flags | $flag;
-
-        return $that;
-    }
-
-    public function withoutFlags(int $flag)
-    {
-        $that = clone $this;
-        $that->flags = $this->flags & ~$flag;
-
-        return $that;
-    }
-
-    public function withDepth(int $depth)
-    {
-        $that = clone $this;
-        $that->depth = $depth;
-
-        return $that;
-    }
-
-    public function asArray()
-    {
-        return $this->withFlags(JSON_OBJECT_AS_ARRAY);
     }
 
     public function decode(string $json)
@@ -64,28 +31,24 @@ class JsonDecoder
         return $return;
     }
 
+    public function asArray()
+    {
+        return $this->withFlags(JSON_OBJECT_AS_ARRAY);
+    }
+
+    /**
+     * Decodes large integers as their original string value.
+     */
     public function bigintAsString()
     {
         return $this->withFlags(JSON_BIGINT_AS_STRING);
     }
 
-    public function invalidUtf8Ignore()
-    {
-        return $this->withFlags(JSON_INVALID_UTF8_IGNORE);
-    }
-
-    public function invalidUtf8Substitute()
-    {
-        return $this->withFlags(JSON_INVALID_UTF8_SUBSTITUTE);
-    }
-
+    /**
+     * Decodes JSON objects as PHP array.
+     */
     public function objectAsArray()
     {
         return $this->withFlags(JSON_OBJECT_AS_ARRAY);
-    }
-
-    public function throwOnError()
-    {
-        return $this->withFlags(JSON_THROW_ON_ERROR);
     }
 }
