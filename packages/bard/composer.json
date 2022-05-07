@@ -5,9 +5,9 @@
     "type": "project",
     "bin": ["bin/bard"],
     "require": {
-        "sonsofphp/event-dispatcher": "^0.1@dev",
-        "sonsofphp/json": "^0.1@dev",
-        "sonsofphp/version": "^0.1@dev",
+        "sonsofphp/event-dispatcher": "^0.2@dev",
+        "sonsofphp/json": "^0.2@dev",
+        "sonsofphp/version": "^0.2@dev",
         "symfony/console": "^6.1",
         "symfony/dotenv": "^6.0",
         "symfony/finder": "^6.0",

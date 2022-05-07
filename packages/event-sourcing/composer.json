@@ -28,7 +28,7 @@
     "require": {
         "php": ">=7.4",
         "doctrine/dbal": "^3.3",
-        "sonsofphp/event-dispatcher": "^0.1@dev",
+        "sonsofphp/event-dispatcher": "^0.2@dev",
         "symfony/uid": "^5.4|^6.0"
     },
     "require-dev": {
