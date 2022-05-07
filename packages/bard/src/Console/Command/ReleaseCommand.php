@@ -143,27 +143,35 @@ EOT
         // 3. Tag Release and push
         $io->newLine();
         $io->section(sprintf('updating mother repo for release %s', $this->releaseVersion->toString()));
-
         $process = new Process(['git', 'add', '.']);
         $io->text($process->getCommandLine());
-        $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+        if (!$input->getOption('dry-run')) {
+            $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+        }
 
         $process = new Process(['git', 'commit', '-m', sprintf('"Preparing for Release v%s"', $this->releaseVersion->toString())]);
         $io->text($process->getCommandLine());
-        $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+        if (!$input->getOption('dry-run')) {
+            $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+        }
 
         $process = new Process(['git', 'push', 'origin', $input->getOption('branch')]);
         $io->text($process->getCommandLine());
-        $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+        if (!$input->getOption('dry-run')) {
+            $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+        }
 
         $process = new Process(['git', 'tag', 'v'.$this->releaseVersion->toString()]);
         $io->text($process->getCommandLine());
-        $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+        if (!$input->getOption('dry-run')) {
+            $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+        }
 
         $process = new Process(['git', 'push', 'origin', 'v'.$this->releaseVersion->toString()]);
         $io->text($process->getCommandLine());
-        $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
-
+        if (!$input->getOption('dry-run')) {
+            $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+        }
         $io->success('Mother Repository Released');
 
         // 4. Subtree Split for each package
