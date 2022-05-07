@@ -16,14 +16,13 @@ final class AbstractGenericMessageTest extends TestCase
     public function testItHasTheRightInterfaces(): void
     {
         $message = $this->getMockForAbstractClass(AbstractGenericMessage::class, [], '', false);
-        $this->assertInstanceOf(MessageInterface::class, $message);
-        $this->assertInstanceOf(SerializableMessageInterface::class, $message);
+        $this->assertInstanceOf(MessageInterface::class, $message); // @phpstan-ignore-line
+        $this->assertInstanceOf(SerializableMessageInterface::class, $message); // @phpstan-ignore-line
     }
 
     public function testGetPayloadHasEmptyArraryAsDefaultValue(): void
     {
         $message = $this->getMockForAbstractClass(AbstractGenericMessage::class, [], '', false);
-        $this->assertIsArray($message->getPayload());
         $this->assertCount(0, $message->getPayload());
     }
 

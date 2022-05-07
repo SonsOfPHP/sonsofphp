@@ -49,7 +49,6 @@ class AggregateRepository implements AggregateRepositoryInterface
 
             return $aggregateClass::buildFromEvents($id, $events);
         } catch (AggregateNotFoundException $e) {
-            return null;
         }
 
         return null;

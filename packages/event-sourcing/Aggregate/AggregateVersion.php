@@ -76,7 +76,7 @@ final class AggregateVersion implements AggregateVersionInterface
     }
 
     /**
-     * @return true
+     * @return bool
      */
     private function isValid(): bool
     {

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Aggregate;
 
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
+use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use Generator;
 
 /**
@@ -37,7 +38,7 @@ interface AggregateInterface
      * Returned events should be persisted in the Event Store and dispatched
      * using the Event Dispatcher
      *
-     * @return DomainEventInterface[]
+     * @return MessageInterface[]
      */
     public function getPendingEvents(): iterable;
 
@@ -45,9 +46,9 @@ interface AggregateInterface
      * Build Aggregate from a collection of Domain Events
      *
      * @param AggregateIdInterface $id
-     * @param MessageInterface[] $events
+     * @param Generator            $events yields MessageInterface objects
      *
-     * @return static
+     * @return AggregateInterface
      *
      * @throws EventSourcingException
      */

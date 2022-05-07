@@ -20,10 +20,10 @@ class EventMessageBus implements EventDispatcherInterface
     }
 
     /**
-     * @return void
+     * @return object
      */
     public function dispatch(object $event)
     {
-        $this->eventBus->dispatch($event);
+        return $this->eventBus->dispatch($event);
     }
 }

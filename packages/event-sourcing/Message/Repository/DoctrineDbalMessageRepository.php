@@ -86,7 +86,7 @@ class DoctrineDbalMessageRepository implements MessageRepositoryInterface
         $builder->orderBy($aggregateVersionColumn, 'ASC');
         $builder->setParameter('aggregate_id', $id->toString(), $columnsWithTypes[$aggregateIdColumn]);
 
-        if ($version) {
+        if (null !== $version) {
             $builder->andWhere(sprintf('%s > :aggregate_version', $aggregateVersionColumn));
             $builder->setParameter('aggregate_version', $version->toInt(), $columnsWithTypes[$aggregateVersionColumn]);
         }

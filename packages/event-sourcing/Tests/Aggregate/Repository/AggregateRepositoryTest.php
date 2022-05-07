@@ -39,7 +39,7 @@ final class AggregateRepositoryTest extends TestCase
 
     public function testPersistWillUseEventDispatcher(): void
     {
-        $this->eventDispatcher->expects($this->once())->method('dispatch');
+        $this->eventDispatcher->expects($this->once())->method('dispatch'); // @phpstan-ignore-line
         $repository = new AggregateRepository(
             $this->aggregateClass,
             $this->eventDispatcher,

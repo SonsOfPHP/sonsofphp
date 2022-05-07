@@ -16,13 +16,12 @@ final class AbstractMessageTest extends TestCase
     public function testItHasTheRightInterface(): void
     {
         $message = $this->getMockForAbstractClass(AbstractMessage::class, [], '', false);
-        $this->assertInstanceOf(MessageInterface::class, $message);
+        $this->assertInstanceOf(MessageInterface::class, $message); // @phpstan-ignore-line
     }
 
     public function testGetMetadataHasEmptyArraryAsDefaultValue(): void
     {
         $message = $this->getMockForAbstractClass(AbstractMessage::class, [], '', false);
-        $this->assertIsArray($message->getMetadata());
         $this->assertCount(0, $message->getMetadata());
     }
 

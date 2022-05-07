@@ -23,7 +23,7 @@ interface MessageProviderInterface
     /**
      * Returns the event type for the message
      *
-     * @param MessageInterface|string
+     * @param MessageInterface|string $message
      *
      * @throws EventSourcingException If there is no event type defined for this message
      */
@@ -31,6 +31,8 @@ interface MessageProviderInterface
 
     /**
      * Returns the FQCN for the Message
+     *
+     * @param string $eventType
      *
      * @throws EventSourcingException If there is no Message Class for the event type
      */

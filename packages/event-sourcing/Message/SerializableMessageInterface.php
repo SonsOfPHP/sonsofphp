@@ -22,7 +22,7 @@ interface SerializableMessageInterface extends MessageInterface
      *
      * @param array $data
      *
-     * @return static
+     * @return SerializableMessageInterface
      */
     public static function deserialize(array $data): SerializableMessageInterface;
 }
