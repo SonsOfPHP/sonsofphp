@@ -1,19 +1,9 @@
 {
     "version": "0.0.0",
-    "packages.v2": [
+    "packages": [
         {
             "path": "packages/clock/",
             "repository": "git@github.com:SonsOfPHP/clock.git"
         }
-    ],
-    "packages": [
-        "packages/clock/",
-        "packages/cqrs/",
-        "packages/event-dispatcher/",
-        "packages/event-sourcing/",
-        "packages/feature-toggle/",
-        "packages/json/",
-        "packages/money/",
-        "packages/version/"
     ]
 }

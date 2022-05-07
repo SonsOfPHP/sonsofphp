@@ -10,6 +10,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
@@ -22,8 +23,7 @@ final class ReleaseCommand extends AbstractCommand
 {
     protected static $defaultName = 'release';
     private Json $json;
-    private array $bardConfig;
-    private $formatter;
+    private JsonFile $bardConfig;
     private $releaseVersion;
 
     /**
@@ -44,7 +44,8 @@ final class ReleaseCommand extends AbstractCommand
         $this
             ->setDescription('Create a new release')
             ->addOption('dry-run', null, InputOption::VALUE_NONE, 'Execute a dry-run with nothing being updated or released')
-            ->addArgument('release', InputArgument::REQUIRED, 'Use format <major>.<minor>.<patch>-<PreRelease>+<BuildMetadata> or "major", "minor", "patch"')
+            ->addOption('branch', null, InputOption::VALUE_REQUIRED, 'What branch we working with?', 'main')
+            ->addArgument('release', InputArgument::REQUIRED, 'Next Release you want to start? Use format <major>.<minor>.<patch>-<PreRelease>+<BuildMetadata> or "major", "minor", "patch"')
             ->setHelp(
                 <<<EOT
 This command allows you to create a new release and will update the various
@@ -64,11 +65,11 @@ EOT
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        $version = $input->getArgument('release');
-        if (in_array($version, ['major', 'minor', 'patch'])) {
-            $bardConfig = new JsonFile($input->getOption('working-dir').'/bard.json');
-            $currentVersion = new Version($bardConfig->getSection('version'));
+        $version          = $input->getArgument('release');
+        $this->bardConfig = new JsonFile($input->getOption('working-dir').'/bard.json');
+        $currentVersion   = new Version($this->bardConfig->getSection('version'));
 
+        if (in_array($version, ['major', 'minor', 'patch'])) {
             switch ($version) {
                 case 'major':
                     $this->releaseVersion = $currentVersion->nextMajor();
@@ -82,6 +83,10 @@ EOT
             }
         } else {
             $this->releaseVersion = new Version($version);
+        }
+
+        if ($currentVersion->isGreaterThan($this->releaseVersion)) {
+            throw new \RuntimeException('Cannot release a lower version');
         }
     }
 
@@ -97,47 +102,111 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->formatter = $this->getHelper('formatter');
-        $bardConfig = new JsonFile($input->getOption('working-dir').'/bard.json');
-
+        $formatter = $this->getHelper('formatter');
+        $io = new SymfonyStyle($input, $output);
         if ($input->getOption('dry-run')) {
-            $output->writeln($this->formatter->formatBlock('dry-run enabled no changes will be made', 'info', true));
+            $io->note('dry-run enabled no changes will be made');
         }
+        $io->text([
+            sprintf('Bumping release from <info>%s</> to <info>%s</>', $this->bardConfig->getSection('version'), $this->releaseVersion->toString()),
+        ]);
 
-        $output->writeln($this->formatter->formatSection('bard', sprintf('Current version <info>%s</info>', $bardConfig->getSection('version')), 'info'));
+        $rootComposerJsonFile = new JsonFile($input->getOption('working-dir').'/composer.json');
 
         // 1. Update "replace" in main composer.json with the Package Names
         // "package/name": "self.version"
+        $io->section('updating root composer.json "replace" section with package information');
+        foreach ($this->bardConfig->getSection('packages') as $pkg) {
+            $pkgComposerJsonFile  = new JsonFile(realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json'));
+            $output->writeln([
+                $formatter->formatSection($pkgComposerJsonFile->getSection('name'), 'Updating root <info>composer.json</info>'),
+            ]);
+            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateReplaceSectionInRootComposer(), $pkgComposerJsonFile);
+        }
+        $output->writeln([
+            'saving root composer.json'
+        ]);
+        if (!$input->getOption('dry-run')) {
+            file_put_contents($rootComposerJsonFile->getFilename(), $rootComposerJsonFile->toJson());
+        }
+        $output->writeln([
+            'root composer.json file saved'
+        ]);
+        $io->newLine();
+        $io->success('root "composer.json" update complete');
 
+        // @todo
         // 2. Update Changelog
         // Changes the "Unreleased" headline to the version we are releaseing
         // Adds new headline at top for unreleased features
 
         // 3. Tag Release and push
-        // git add .
-        // git commit -m 'prepare release {version}'
-        // git push origin {branch}
-        // git tag {version}
-        // git push --tags
+        $io->newLine();
+        $io->section(sprintf('updating mother repo for release %s', $this->releaseVersion->toString()));
+
+        //$process = new Process(['git', 'add', '.']);
+        $process = new Process(['git']);
+        $io->text('git add .');
+        $this->getHelper('process')->run($output, $process);
+
+        $process = new Process(['git']);
+        $io->text(sprintf('git commit -m "Preparing for Release v%s"', $this->releaseVersion->toString()));
+        $this->getHelper('process')->run($output, $process);
+
+        $process = new Process(['git']);
+        $io->text(sprintf('git push origin %s', $input->getOption('branch')));
+        $this->getHelper('process')->run($output, $process);
+
+        $process = new Process(['git']);
+        $io->text(sprintf('git tag v%s', $this->releaseVersion->toString()));
+        $this->getHelper('process')->run($output, $process);
+
+        $process = new Process(['git']);
+        $io->text(sprintf('git push origin v%s', $this->releaseVersion->toString()));
+        $this->getHelper('process')->run($output, $process);
+
+        $io->success('Mother Repository Released');
 
         // 4. Subtree Split for each package
-        // git subtree split --prefix packages/{component} -b {component/name}
-        // git push {repo} {component/name}:{remote-branch}
-        // git branch -D {component/name}
+        $io->newLine();
+        $io->title(sprintf('updating package repos with release %s', $this->releaseVersion->toString()));
+        foreach ($this->bardConfig->getSection('packages') as $pkg) {
+            $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json'));
+            $pkgName = $pkgComposerJsonFile->getSection('name');
+            $io->text([
+                sprintf('Package <info>%s</> is being released', $pkgName),
+                sprintf('git subtree split --prefix %s -b %s', $pkg['path'], $pkgName),
+                sprintf('git checkout %s', $pkgName),
+                sprintf('git push %s %s:%s', $pkg['repository'], $pkgName, $input->getOption('branch')),
+                sprintf('git tag %s_%s', $pkgName, $this->releaseVersion->toString()),
+                sprintf('git push %s %s_%s:v%s', $pkg['repository'], $pkgName, $this->releaseVersion->toString(), $this->releaseVersion->toString()),
+                sprintf('git checkout %s', $input->getOption('branch')),
+                sprintf('git branch -D %s', $pkgName),
+            ]);
+            $io->newLine();
+        }
+        $io->success('All Packages have been Released');
 
         // 5. Update branch alias in all composer.json files
+        $io->section('Updating Branch Alias in root and packages');
+        $io->success('All files have been saved');
 
         // 6. Next dev release
-        // - Update composer.json file
+        // Update composer.json file
 
         // 7. Commit and push updates
         // git add .
         // git commit -m 'starting new version'
         // git push origin {branch}
 
+        $io->newLine();
+        $io->success('Congrations on your new release');
         if ($input->getOption('dry-run')) {
-            $output->writeln($this->formatter->formatBlock('no changes were made', 'info', true));
+            $io->note([
+                'dry-run was enabled so no files were changed and no code was pushed'
+            ]);
         }
+
         return self::SUCCESS;
     }
 }
