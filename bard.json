@@ -4,6 +4,34 @@
         {
             "path": "packages/clock/",
             "repository": "git@github.com:SonsOfPHP/clock.git"
+        },
+        {
+            "path": "packages/cqrs/",
+            "repository": "git@github.com:SonsOfPHP/cqrs.git"
+        },
+        {
+            "path": "packages/event-dispatcher/",
+            "repository": "git@github.com:SonsOfPHP/event-dispatcher.git"
+        },
+        {
+            "path": "packages/event-sourcing/",
+            "repository": "git@github.com:SonsOfPHP/event-sourcing.git"
+        },
+        {
+            "path": "packages/feature-toggle/",
+            "repository": "git@github.com:SonsOfPHP/feature-toggle.git"
+        },
+        {
+            "path": "packages/json/",
+            "repository": "git@github.com:SonsOfPHP/json.git"
+        },
+        {
+            "path": "packages/money/",
+            "repository": "git@github.com:SonsOfPHP/money.git"
+        },
+        {
+            "path": "packages/version/",
+            "repository": "git@github.com:SonsOfPHP/version.git"
         }
     ]
 }
