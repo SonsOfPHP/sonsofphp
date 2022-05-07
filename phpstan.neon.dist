@@ -8,6 +8,7 @@ includes:
     #- tools/phpstan/vendor/phpstan/phpstan-phpunit/rules.neon
 parameters:
     level: 4
+    treatPhpDocTypesAsCertain: false
     paths:
         - packages/
     bootstrapFiles:
