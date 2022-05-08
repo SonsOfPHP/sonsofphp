@@ -9,6 +9,8 @@ use Generator;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
+ *
+ * @todo Make AbstractSnapshotableAggregate and deprecate this trait
  */
 trait SnapshotableAggregateTrait
 {

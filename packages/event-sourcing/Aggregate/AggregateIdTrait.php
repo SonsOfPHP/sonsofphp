@@ -7,9 +7,9 @@ namespace SonsOfPHP\Component\EventSourcing\Aggregate;
 /**
  * Aggregate ID Trait
  *
- * Using this trait, you can create a "UserId" class for type hinting
- *
  * @author Joshua Estes <joshua@sonsofphp.com>
+ *
+ * @deprecated Use AbstractAggregateId or AggregateId
  */
 trait AggregateIdTrait
 {

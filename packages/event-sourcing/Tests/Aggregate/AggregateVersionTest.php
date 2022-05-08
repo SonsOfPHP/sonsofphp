@@ -13,11 +13,26 @@ final class AggregateVersionTest extends TestCase
 {
     public function testItHasTheRightInterface(): void
     {
+        $version = new AggregateVersion();
+        $this->assertInstanceOf(AggregateVersionInterface::class, $version);
+
         $version = AggregateVersion::zero();
         $this->assertInstanceOf(AggregateVersionInterface::class, $version);
 
         $version = AggregateVersion::fromInt(99);
         $this->assertInstanceOf(AggregateVersionInterface::class, $version);
+    }
+
+    public function testDefaultVersionIsZero(): void
+    {
+        $version = new AggregateVersion();
+        $this->assertSame(0, $version->toInt());
+    }
+
+    public function testVersionCanBePassedIntoConstructor(): void
+    {
+        $version = new AggregateVersion(420);
+        $this->assertSame(420, $version->toInt());
     }
 
     public function testFromInt(): void
@@ -60,10 +75,16 @@ final class AggregateVersionTest extends TestCase
         $this->assertTrue($versionB->equals($versionA));
     }
 
-    public function testInvalidVersion(): void
+    public function testInvalidVersionUsingFromInt(): void
     {
         $this->expectException(EventSourcingException::class);
 
         $version = AggregateVersion::fromInt(-1);
+    }
+
+    public function testInvalidVersionUsingConstructor(): void
+    {
+        $this->expectException(EventSourcingException::class);
+        $version = new AggregateVersion(-1);
     }
 }

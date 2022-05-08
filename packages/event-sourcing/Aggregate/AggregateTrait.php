@@ -12,6 +12,8 @@ use Generator;
  * Aggregate Trait
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
+ *
+ * @deprecated Use AbstractAggregate
  */
 trait AggregateTrait
 {
