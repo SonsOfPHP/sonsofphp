@@ -18,7 +18,7 @@ final class AggregateVersion implements AggregateVersionInterface
     /**
      * @param int $version
      */
-    private function __construct(int $version)
+    public function __construct(int $version = 0)
     {
         $this->version = $version;
 

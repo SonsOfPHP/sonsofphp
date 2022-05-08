@@ -10,8 +10,6 @@ use Symfony\Component\Uid\Ulid;
 /**
  * Aggregate ID
  *
- * You can extend this class to make "UserId" class or anything else.
- *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 class AggregateId implements AggregateIdInterface
