@@ -23,6 +23,7 @@ interface AggregateRepositoryInterface
      * Finds and builds the aggregate from the events in storage. If no
      * Aggregate events found in storage, this will return null
      *
+     * @todo Make the parameter take either an AggregateIdInterface or string
      * @param AggregateIdInterface $id
      *
      * @thorws EventSourcingException

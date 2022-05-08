@@ -25,6 +25,7 @@ interface MessageRepositoryInterface
      *
      * @param MessageInterface $message
      *
+     * @todo Return the $message. This way, the serializer can enrich the message
      * @return void
      */
     public function persist(MessageInterface $message): void;
@@ -33,6 +34,10 @@ interface MessageRepositoryInterface
      * Return all messages for the aggregate.
      *
      * If a version is passed in, it will find all messages AFTER that message.
+     *
+     * @todo Make $id take either AggregateIdInterface or string
+     * @todo Make $version take either AggregateVersionInterface or int
+     * @todo Return 'iterable' instead of Generator
      *
      * @param AggregateIdInterface      $id
      * @param AggregateVersionInterface $version If the Version is passed in, it will return all

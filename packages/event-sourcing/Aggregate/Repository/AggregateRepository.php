@@ -12,8 +12,6 @@ use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterf
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricherInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricher;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\NullMessageEnricherProvider;
-
-;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
 /**
@@ -61,6 +59,8 @@ class AggregateRepository implements AggregateRepositoryInterface
     {
         $events = $aggregate->getPendingEvents();
         foreach ($events as $message) {
+            // We want to enrich the message BEFORE sending to dispatcher or being
+            // persisted
             $message = $this->messageEnricher->enrich($message);
             $this->messageRepository->persist($message);
             $this->eventDispatcher->dispatch($message);
