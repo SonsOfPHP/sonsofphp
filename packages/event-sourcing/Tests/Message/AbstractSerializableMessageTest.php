@@ -5,48 +5,24 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message;
 
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
-use SonsOfPHP\Component\EventSourcing\Message\AbstractGenericMessage;
+use SonsOfPHP\Component\EventSourcing\Message\AbstractSerializableMessage;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\SerializableMessageInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 use PHPUnit\Framework\TestCase;
 
-final class AbstractGenericMessageTest extends TestCase
+final class AbstractSerializableMessageTest extends TestCase
 {
     public function testItHasTheRightInterfaces(): void
     {
-        $message = $this->getMockForAbstractClass(AbstractGenericMessage::class, [], '', false);
+        $message = $this->getMockForAbstractClass(AbstractSerializableMessage::class, [], '', false);
         $this->assertInstanceOf(MessageInterface::class, $message); // @phpstan-ignore-line
         $this->assertInstanceOf(SerializableMessageInterface::class, $message); // @phpstan-ignore-line
     }
 
-    public function testGetPayloadHasEmptyArraryAsDefaultValue(): void
-    {
-        $message = $this->getMockForAbstractClass(AbstractGenericMessage::class, [], '', false);
-        $this->assertCount(0, $message->getPayload());
-    }
-
-    public function testWithPayloadReturnsNewStatic(): void
-    {
-        $message = $this->getMockForAbstractClass(AbstractGenericMessage::class, [], '', false);
-        $return = $message->withPayload([
-            'key' => 'val',
-        ]);
-        $this->assertNotSame($return, $message);
-    }
-
-    public function testWithPayloadWorksCorrectly(): void
-    {
-        $message = $this->getMockForAbstractClass(AbstractGenericMessage::class, [], '', false)->withPayload([
-            'key' => 'val',
-        ]);
-
-        $this->assertArrayHasKey('key', $message->getPayload());
-    }
-
     public function testSerializeOnEmptyMessage(): void
     {
-        $message = $this->getMockForAbstractClass(AbstractGenericMessage::class, [], '', false);
+        $message = $this->getMockForAbstractClass(AbstractSerializableMessage::class, [], '', false);
         $return = $message->serialize();
         $this->assertArrayHasKey('payload', $return);
         $this->assertArrayHasKey('metadata', $return);
@@ -54,14 +30,14 @@ final class AbstractGenericMessageTest extends TestCase
 
     public function testDeserializeWithEmptyData(): void
     {
-        $message = $this->getMockForAbstractClass(AbstractGenericMessage::class, [], '', false);
+        $message = $this->getMockForAbstractClass(AbstractSerializableMessage::class, [], '', false);
         $this->expectException(EventSourcingException::class);
         $message::deserialize([]);
     }
 
     public function testDeserializeWithNoPayloadData(): void
     {
-        $message = $this->getMockForAbstractClass(AbstractGenericMessage::class, [], '', false);
+        $message = $this->getMockForAbstractClass(AbstractSerializableMessage::class, [], '', false);
         $this->expectException(EventSourcingException::class);
         $message::deserialize([
             'metadata' => [],
@@ -70,7 +46,7 @@ final class AbstractGenericMessageTest extends TestCase
 
     public function testDeserializeWithNoMetadataData(): void
     {
-        $message = $this->getMockForAbstractClass(AbstractGenericMessage::class, [], '', false);
+        $message = $this->getMockForAbstractClass(AbstractSerializableMessage::class, [], '', false);
         $this->expectException(EventSourcingException::class);
         $message::deserialize([
             'payload' => [],
@@ -79,7 +55,7 @@ final class AbstractGenericMessageTest extends TestCase
 
     public function testDeserialize(): void
     {
-        $message = $this->getMockForAbstractClass(AbstractGenericMessage::class, [], '', false);
+        $message = $this->getMockForAbstractClass(AbstractSerializableMessage::class, [], '', false);
         $msg = $message::deserialize([
             'payload' => [
                 'key' => 'value',

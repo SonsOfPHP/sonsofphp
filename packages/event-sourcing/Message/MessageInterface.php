@@ -27,28 +27,38 @@ interface MessageInterface
     public static function new(): MessageInterface;
 
     /**
+     * Returns the Aggregate ID, if the aggregate ID is unknown, it
+     * will return null
+     *
      * @return AggregateIdInterface|null
      */
     public function getAggregateId(): ?AggregateIdInterface;
 
     /**
+     * Returns the Aggregate Version, if the aggregate Version is unknown, it
+     * will return null
+     *
      * @return AggregateVersionInterface|null
      */
     public function getAggregateVersion(): ?AggregateVersionInterface;
 
     /**
+     * @return string|null
      */
     public function getEventId(): ?string;
 
     /**
+     * @return string|null
      */
     public function getEventType(): ?string;
 
     /**
+     * @return string|null
      */
     public function getTimestamp(): ?string;
 
     /**
+     * @return string|null
      */
     public function getTimestampFormat(): ?string;
 
@@ -62,7 +72,26 @@ interface MessageInterface
     /**
      * Returns the metadata for this message
      *
+     * Metadata is the extra information about the message. For example, the
+     * Event Type is stored in the metadata.
+     *
      * @return array
      */
     public function getMetadata(): array;
+
+    /**
+     * @param array $payload
+     *
+     * @return static
+     */
+    public function withPayload(array $payload): MessageInterface;
+
+    /**
+     * Returns the payload
+     *
+     * The payload is the data required be a handler.
+     *
+     * @return array
+     */
+    public function getPayload(): array;
 }

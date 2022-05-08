@@ -91,4 +91,28 @@ final class AbstractMessageTest extends TestCase
 
         $this->assertInstanceOf(AggregateVersionInterface::class, $message->getAggregateVersion());
     }
+
+    public function testGetPayloadHasEmptyArraryAsDefaultValue(): void
+    {
+        $message = $this->getMockForAbstractClass(AbstractMessage::class, [], '', false);
+        $this->assertCount(0, $message->getPayload());
+    }
+
+    public function testWithPayloadReturnsNewStatic(): void
+    {
+        $message = $this->getMockForAbstractClass(AbstractMessage::class, [], '', false);
+        $return = $message->withPayload([
+            'key' => 'val',
+        ]);
+        $this->assertNotSame($return, $message);
+    }
+
+    public function testWithPayloadWorksCorrectly(): void
+    {
+        $message = $this->getMockForAbstractClass(AbstractMessage::class, [], '', false)->withPayload([
+            'key' => 'val',
+        ]);
+
+        $this->assertArrayHasKey('key', $message->getPayload());
+    }
 }

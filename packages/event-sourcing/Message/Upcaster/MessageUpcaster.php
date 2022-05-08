@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Message\Upcaster;
 
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
+use SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\MessageUpcasterProviderInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -21,13 +22,13 @@ final class MessageUpcaster implements MessageUpcasterInterface
     /**
      * {@inheritdoc}
      */
-    public function upcast(MessageInterface $message): MessageInterface
+    public function upcast(array $data): array
     {
-        $upcasters = $this->provider->getUpcastersForMessage($message);
-        foreach ($upcasters as $msgUpcaster) {
-            $message = $msgUpcaster->upcast($message);
+        $handlers = $this->provider->getUpcastersForEventData($data);
+        foreach ($handlers as $handler) {
+            $data = $handler->upcast($data);
         }
 
-        return $message;
+        return $data;
     }
 }
