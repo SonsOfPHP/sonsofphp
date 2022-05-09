@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Aggregate\Repository;
 
+use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Aggregate\Repository\AggregateRepository;
 use SonsOfPHP\Component\EventSourcing\Aggregate\Repository\AggregateRepositoryInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
@@ -90,5 +91,28 @@ final class AggregateRepositoryTest extends TestCase
 
         $result = $repository->find('unique-id');
         $this->assertTrue($aggregate->getAggregateId()->equals($result->getAggregateId()));
+    }
+
+    public function testItThrowsExceptionWhenPassingInIncorrectArgumentType(): void
+    {
+        $repository = new AggregateRepository(
+            $this->aggregateClass,
+            $this->eventDispatcher,
+            $this->messageRepository
+        );
+
+        $this->expectException(EventSourcingException::class);
+        $result = $repository->find(123);
+    }
+
+    public function testItReturnsNullWhenAggregateNotFound(): void
+    {
+        $repository = new AggregateRepository(
+            $this->aggregateClass,
+            $this->eventDispatcher,
+            $this->messageRepository
+        );
+
+        $this->assertNull($repository->find('unique-id'));
     }
 }

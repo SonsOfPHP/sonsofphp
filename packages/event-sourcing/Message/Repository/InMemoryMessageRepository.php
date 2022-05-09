@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Message\Repository;
 
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
+use SonsOfPHP\Component\EventSourcing\Exception\AggregateNotFoundException;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
@@ -34,7 +35,7 @@ final class InMemoryMessageRepository implements MessageRepositoryInterface
     public function find(AggregateIdInterface $id, ?AggregateVersionInterface $version = null): Generator
     {
         if (!isset($this->storage[$id->toString()])) {
-            throw new EventSourcingException('no aggregate found in storage');
+            throw new AggregateNotFoundException('no aggregate found in storage');
         }
 
         foreach ($this->storage[$id->toString()] as $ver => $message) {

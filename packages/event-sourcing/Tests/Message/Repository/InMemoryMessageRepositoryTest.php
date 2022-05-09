@@ -7,6 +7,7 @@ namespace SonsOfPHP\Component\EventSourcing\Tests\Message\Repository;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
+use SonsOfPHP\Component\EventSourcing\Exception\AggregateNotFoundException;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\InMemoryMessageRepository;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterface;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
@@ -38,7 +39,7 @@ final class InMemoryMessageRepositoryTest extends TestCase
     {
         $repository = new InMemoryMessageRepository();
 
-        $this->expectException(EventSourcingException::class);
+        $this->expectException(AggregateNotFoundException::class);
         $repository->find(AggregateId::fromString('hit'))->current();
     }
 
