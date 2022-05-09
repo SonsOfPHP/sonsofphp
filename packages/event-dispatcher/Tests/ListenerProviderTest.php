@@ -13,7 +13,7 @@ final class ListenerProviderTest extends TestCase
     public function testItHasTheCorrectInterface(): void
     {
         $provider = new ListenerProvider();
-        $this->assertInstanceOf(ListenerProviderInterface::class, $provider);
+        $this->assertInstanceOf(ListenerProviderInterface::class, $provider); // @phpstan-ignore-line
     }
 
     public function testGetListenersForUnknownEventReturnsEmptyArray(): void

@@ -10,7 +10,7 @@ namespace SonsOfPHP\Component\Clock;
 final class Zone implements ZoneInterface
 {
     private string $name;
-    private ZoneOffset $offset;
+    private ZoneOffsetInterface $offset;
 
     /**
      */

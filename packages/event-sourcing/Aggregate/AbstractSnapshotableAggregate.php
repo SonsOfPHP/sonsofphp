@@ -5,17 +5,14 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Aggregate;
 
 use SonsOfPHP\Component\EventSourcing\Snapshot\SnapshotInterface;
+use SonsOfPHP\Component\EventSourcing\Snapshot\Snapshot;
 use Generator;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
- *
- * @todo Make AbstractSnapshotableAggregate and deprecate this trait
  */
-trait SnapshotableAggregateTrait
+abstract class AbstractSnapshotableAggregate extends AbstractAggregate
 {
-    use AggregateTrait;
-
     /**
      * Return the current state of the aggregate. This is
      * used as the snapshot state.
@@ -44,7 +41,7 @@ trait SnapshotableAggregateTrait
     {
         $aggregate = static::buildFromSnapshot($snapshot);
         foreach ($messages as $msg) {
-            $aggregate->applyEvent($msg);
+            $aggregate->applyEvent($msg); // @phpstan-ignore-line
         }
 
         return $aggregate;

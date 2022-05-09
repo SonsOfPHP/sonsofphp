@@ -19,7 +19,7 @@ final class AbstractCommandMessageTest extends TestCase
     {
         $command = $this->getMockForAbstractClass(AbstractCommandMessage::class);
 
-        $this->assertInstanceOf(CommandMessageInterface::class, $command);
+        $this->assertInstanceOf(CommandMessageInterface::class, $command); // @phpstan-ignore-line
     }
 
     public function testConstructor(): void

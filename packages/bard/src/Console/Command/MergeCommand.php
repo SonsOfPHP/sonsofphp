@@ -28,7 +28,6 @@ final class MergeCommand extends AbstractCommand
     private Json $json;
     private array $bardConfig;
     private string $mainComposerFile;
-    private array $mainComposerConfig;
     private $formatter;
 
     public function __construct()
@@ -67,10 +66,6 @@ final class MergeCommand extends AbstractCommand
         if (!file_exists($this->mainComposerFile)) {
             throw new \RuntimeException(sprintf('"%s" file does not exist', $this->mainComposerFile));
         }
-
-        $this->mainComposerConfig = $this->json->getDecoder()
-            ->objectAsArray()
-            ->decode(file_get_contents($this->mainComposerFile));
     }
 
     /**

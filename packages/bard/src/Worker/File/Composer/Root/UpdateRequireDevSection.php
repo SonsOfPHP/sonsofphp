@@ -28,7 +28,7 @@ final class UpdateRequireDevSection implements WorkerInterface
         $rootRequireDev = $rootComposerJsonFile->getSection('require-dev');
         $pkgRequireDev  = $this->pkgComposerJsonFile->getSection('require-dev');
 
-        if (!$pkgRequireDev) {
+        if (null === $pkgRequireDev) {
             return $rootComposerJsonFile;
         }
 

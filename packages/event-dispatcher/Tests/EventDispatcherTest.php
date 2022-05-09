@@ -15,7 +15,7 @@ final class EventDispatcherTest extends TestCase
     {
         $dispatcher = new EventDispatcher(new ListenerProvider());
 
-        $this->assertInstanceOf(EventDispatcherInterface::class, $dispatcher);
+        $this->assertInstanceOf(EventDispatcherInterface::class, $dispatcher); // @phpstan-ignore-line
     }
 
     public function testDispatchReturnsEvent(): void
