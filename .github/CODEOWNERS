@@ -28,7 +28,10 @@
 /packages/money/ @JoshuaEstes
 /packages/money-doctrine-bridge/ @JoshuaEstes
 /packages/pdf/ @JoshuaEstes
+/packages/phonenumber/ @JoshuaEstes
 /packages/queue/ @JoshuaEstes
 /packages/semver/ @JoshuaEstes
 /packages/stopwatch/ @JoshuaEstes
+/packages/stripe/ @JoshuaEstes
+/packages/stripe-bundle/ @JoshuaEstes
 /packages/xml/ @JoshuaEstes
