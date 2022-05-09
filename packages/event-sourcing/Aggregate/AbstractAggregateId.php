@@ -14,5 +14,45 @@ namespace SonsOfPHP\Component\EventSourcing\Aggregate;
  */
 abstract class AbstractAggregateId implements AggregateIdInterface
 {
-    use AggregateIdTrait;
+    private string $id;
+
+    /**
+     * @param string $id
+     */
+    final public function __construct(string $id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @see AggregateIdInterface::toString()
+     */
+    final public function __toString(): string
+    {
+        return $this->toString();
+    }
+
+    /**
+     * @see AggregateIdInterface::toString()
+     */
+    final public function toString(): string
+    {
+        return $this->id;
+    }
+
+    /**
+     * @see AggregateIdInterface::fromString()
+     */
+    final public static function fromString(string $id): AggregateIdInterface
+    {
+        return new static($id);
+    }
+
+    /**
+     * @see AggregateIdInterface::equals()
+     */
+    public function equals(AggregateIdInterface $that): bool
+    {
+        return ($this->toString() === $that->toString());
+    }
 }

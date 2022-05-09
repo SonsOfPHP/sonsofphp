@@ -36,7 +36,7 @@ trait AggregateIdTrait
      */
     public function toString(): string
     {
-        return (string) $this->id;
+        return $this->id;
     }
 
     /**
