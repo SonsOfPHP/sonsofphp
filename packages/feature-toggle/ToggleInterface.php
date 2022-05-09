@@ -5,16 +5,14 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\FeatureToggle;
 
 /**
- * Feature Toggle Interface
- *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface FeatureToggleInterface
+interface ToggleInterface
 {
     /**
-     * Returns true or false if the toggle is enabled
+     * Returns true if this strategy is enabled
      *
      * @return bool
      */
-    public function isEnabled(): bool;
+    public function isEnabled(ContextInterface $context): bool;
 }
