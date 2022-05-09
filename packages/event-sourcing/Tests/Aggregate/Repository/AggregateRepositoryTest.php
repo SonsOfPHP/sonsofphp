@@ -72,4 +72,23 @@ final class AggregateRepositoryTest extends TestCase
         $result = $repository->find(AggregateId::fromString('unique-id'));
         $this->assertTrue($aggregate->getAggregateId()->equals($result->getAggregateId()));
     }
+
+    public function testPersistAndFindWithoutUsingAggregateId(): void
+    {
+        $repository = new AggregateRepository(
+            $this->aggregateClass,
+            $this->eventDispatcher,
+            $this->messageRepository
+        );
+
+        $aggregate = FakeAggregate::new(AggregateId::fromString('unique-id'));
+
+        $message = $this->createMock(AbstractSerializableMessage::class);
+        $aggregate->raiseEvent($message);
+
+        $repository->persist($aggregate);
+
+        $result = $repository->find('unique-id');
+        $this->assertTrue($aggregate->getAggregateId()->equals($result->getAggregateId()));
+    }
 }

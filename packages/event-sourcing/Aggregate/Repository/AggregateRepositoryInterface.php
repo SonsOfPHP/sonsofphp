@@ -23,14 +23,13 @@ interface AggregateRepositoryInterface
      * Finds and builds the aggregate from the events in storage. If no
      * Aggregate events found in storage, this will return null
      *
-     * @todo Make the parameter take either an AggregateIdInterface or string
-     * @param AggregateIdInterface $id
+     * @param AggregateIdInterface|string $id
      *
      * @thorws EventSourcingException
      *
      * @return AggregateInterface|null
      */
-    public function find(AggregateIdInterface $id): ?AggregateInterface;
+    public function find($id): ?AggregateInterface;
 
     /**
      * When an aggregate is persisted, it will dispatch pending events.
