@@ -23,3 +23,5 @@ parameters:
         - '#Dynamic call to static method PHPUnit\\Framework\\Assert::[a-zA-Z]+\(\)#'
         - '#Dynamic call to static method PHPUnit\\Framework\\TestCase::[a-zA-Z]+\(\)#'
         - "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\) with 'SonsOfPHP[a-zA-Z0-9\\\\_]+Interface' and SonsOfPHP[a-zA-Z0-9\\\\_]+ will always evaluate to true\\.$#"
+        - '#Construct empty\(\) is not allowed. Use more strict comparison.#'
+        - '#Call to function in_array\(\) requires parameter \#3 to be set.#'
