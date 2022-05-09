@@ -3,6 +3,7 @@
 namespace SonsOfPHP\Bard\Console\Command;
 
 use SonsOfPHP\Bard\JsonFile;
+use SonsOfPHP\Bard\Worker\File\Composer\Package\BranchAlias;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateAutoloadDevSection;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateAutoloadSection;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateProvideSection;
@@ -89,12 +90,19 @@ final class MergeCommand extends AbstractCommand
 
             $output->writeln($this->formatter->formatSection('bard', sprintf('Merging "%s" into root composer.json', $pkgComposerJsonFile->getSection('name'))));
 
+            // Update root composer.json
             $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateReplaceSection($pkgComposerJsonFile));
             $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateRequireSection($pkgComposerJsonFile));
             $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateRequireDevSection($pkgComposerJsonFile));
             $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateAutoloadSection($pkgComposerJsonFile));
             $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateAutoloadDevSection($pkgComposerJsonFile));
             $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateProvideSection($pkgComposerJsonFile));
+
+            // Update package composer.json
+            $pkgComposerJsonFile = $pkgComposerJsonFile->with(new BranchAlias($rootComposerJsonFile));
+            //$pkgComposerJsonFile = $pkgComposerJsonFile->with(new Funding($rootComposerJsonFile));
+
+            file_put_contents($pkgComposerJsonFile->getFilename(), $pkgComposerJsonFile->toJson());
         }
 
         file_put_contents($rootComposerJsonFile->getFilename(), $rootComposerJsonFile->toJson());

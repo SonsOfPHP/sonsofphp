@@ -238,8 +238,7 @@ EOT
         $io->section('Updating Branch Alias in root and packages');
         $io->success('All files have been saved');
 
-        // 6. Next dev release
-        // Update composer.json file
+        // 6. Update bard.json with current version
 
         // 7. Commit and push updates
         // git add .

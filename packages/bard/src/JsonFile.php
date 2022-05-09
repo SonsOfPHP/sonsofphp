@@ -10,7 +10,7 @@ use SonsOfPHP\Component\Json\Json;
 final class JsonFile
 {
     private string $filename;
-    private array $config = [];
+    private array $config;
     private Json $json;
 
     /**
