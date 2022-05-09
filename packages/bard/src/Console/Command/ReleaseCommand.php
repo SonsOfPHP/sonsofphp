@@ -115,6 +115,13 @@ EOT
             sprintf('Bumping release from <info>%s</> to <info>%s</>', $this->bardConfig->getSection('version'), $this->releaseVersion->toString()),
         ]);
 
+        // Make sure we have the latest changes
+        $process = new Process(['git', 'pull', 'origin', $input->getOption('branch')]);
+        $io->text($process->getCommandLine());
+        if (!$input->getOption('dry-run')) {
+            $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+        }
+
         $rootComposerJsonFile = new JsonFile($input->getOption('working-dir').'/composer.json');
 
         // 1. Update "replace" in main composer.json with the Package Names
