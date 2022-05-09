@@ -3,12 +3,12 @@
 namespace SonsOfPHP\Bard\Console\Command;
 
 use SonsOfPHP\Bard\JsonFile;
-use SonsOfPHP\Bard\Manipulator\Composer\UpdateAutoloadDevSectionInRootComposer;
-use SonsOfPHP\Bard\Manipulator\Composer\UpdateAutoloadSectionInRootComposer;
-use SonsOfPHP\Bard\Manipulator\Composer\UpdateProvideSectionInRootComposer;
-use SonsOfPHP\Bard\Manipulator\Composer\UpdateReplaceSectionInRootComposer;
-use SonsOfPHP\Bard\Manipulator\Composer\UpdateRequireDevSectionInRootComposer;
-use SonsOfPHP\Bard\Manipulator\Composer\UpdateRequireSectionInRootComposer;
+use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateAutoloadDevSection;
+use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateAutoloadSection;
+use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateProvideSection;
+use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateReplaceSection;
+use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateRequireDevSection;
+use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateRequireSection;
 use SonsOfPHP\Component\Json\Json;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -78,35 +78,23 @@ final class MergeCommand extends AbstractCommand
 
         $rootComposerJsonFile = new JsonFile($input->getOption('working-dir').'/composer.json');
 
-        foreach ($this->bardConfig['packages'] as $dir) {
-            die(var_dump($dir));
-            $packageComposerFile = realpath($input->getOption('working-dir').'/'.$dir.'/composer.json');
+        foreach ($this->bardConfig['packages'] as $pkg) {
+            $packageComposerFile = realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json');
             if (!file_exists($packageComposerFile)) {
                 $output->writeln(sprintf('No "%s" found, skipping', $packageComposerFile));
                 continue;
             }
 
-            $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir').'/'.$dir.'/composer.json'));
+            $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json'));
 
             $output->writeln($this->formatter->formatSection('bard', sprintf('Merging "%s" into root composer.json', $pkgComposerJsonFile->getSection('name'))));
 
-            //$output->writeln($this->formatter->formatSection('replace', 'pkg => root', 'comment'));
-            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateReplaceSectionInRootComposer(), $pkgComposerJsonFile);
-
-            //$output->writeln($this->formatter->formatSection('require', 'pkg => root', 'comment'));
-            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateRequireSectionInRootComposer(), $pkgComposerJsonFile);
-
-            //$output->writeln($this->formatter->formatSection('require-dev', 'pkg => root', 'comment'));
-            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateRequireDevSectionInRootComposer(), $pkgComposerJsonFile);
-
-            //$output->writeln($this->formatter->formatSection('autoload', 'pkg => root', 'comment'));
-            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateAutoloadSectionInRootComposer(), $pkgComposerJsonFile);
-
-            //$output->writeln($this->formatter->formatSection('autoload-dev', 'pkg => root', 'comment'));
-            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateAutoloadDevSectionInRootComposer(), $pkgComposerJsonFile);
-
-            //$output->writeln($this->formatter->formatSection('provide', 'pkg => root', 'comment'));
-            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateProvideSectionInRootComposer(), $pkgComposerJsonFile);
+            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateReplaceSection($pkgComposerJsonFile));
+            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateRequireSection($pkgComposerJsonFile));
+            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateRequireDevSection($pkgComposerJsonFile));
+            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateAutoloadSection($pkgComposerJsonFile));
+            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateAutoloadDevSection($pkgComposerJsonFile));
+            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateProvideSection($pkgComposerJsonFile));
         }
 
         file_put_contents($rootComposerJsonFile->getFilename(), $rootComposerJsonFile->toJson());

@@ -1,28 +1,36 @@
 <?php
 
-namespace SonsOfPHP\Bard\Manipulator\Composer;
+namespace SonsOfPHP\Bard\Worker\File\Composer\Root;
 
 use SonsOfPHP\Bard\JsonFile;
+use SonsOfPHP\Bard\Worker\WorkerInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class UpdateAutoloadDevSectionInRootComposer implements ComposerJsonFileManipulatorInterface
+final class UpdateAutoloadDevSection implements WorkerInterface
 {
+    private JsonFile $pkgComposerJsonFile;
+
+    public function __construct(JsonFile $pkgComposerJsonFile)
+    {
+        $this->pkgComposerJsonFile = $pkgComposerJsonFile;
+    }
+
     /**
      * {@inheritdoc}
      */
-    public function apply(JsonFile $primary, ?JsonFile $reference = null): JsonFile
+    public function apply(JsonFile $rootComposerJsonFile): JsonFile
     {
-        $primaryDir = pathinfo($primary->getFilename(), PATHINFO_DIRNAME);
-        $pkgDir     = pathinfo($reference->getFilename(), PATHINFO_DIRNAME);
-        $path       = ltrim(str_replace($primaryDir, '', $pkgDir), '/');
+        $rootDir = pathinfo($rootComposerJsonFile->getFilename(), PATHINFO_DIRNAME);
+        $pkgDir  = pathinfo($this->pkgComposerJsonFile->getFilename(), PATHINFO_DIRNAME);
+        $path    = ltrim(str_replace($rootDir, '', $pkgDir), '/');
 
-        $rootAutoloadSection = $primary->getSection('autoload-dev');
-        $pkgAutoloadSection  = $reference->getSection('autoload-dev');
+        $rootAutoloadSection = $rootComposerJsonFile->getSection('autoload-dev');
+        $pkgAutoloadSection  = $this->pkgComposerJsonFile->getSection('autoload-dev');
 
         if (null === $pkgAutoloadSection) {
-            return $primary;
+            return $rootComposerJsonFile;
         }
 
         foreach ($pkgAutoloadSection as $section => $config) {
@@ -47,6 +55,6 @@ final class UpdateAutoloadDevSectionInRootComposer implements ComposerJsonFileMa
             $rootAutoloadSection['exclude-from-classmap'] = array_unique($rootAutoloadSection['exclude-from-classmap']);
         }
 
-        return $primary->setSection('autoload-dev', $rootAutoloadSection);
+        return $rootComposerJsonFile->setSection('autoload-dev', $rootAutoloadSection);
     }
 }

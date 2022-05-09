@@ -2,7 +2,7 @@
 
 namespace SonsOfPHP\Bard\Console\Command;
 
-use SonsOfPHP\Component\Json\Json;
+use SonsOfPHP\Bard\JsonFile;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -14,17 +14,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class InitCommand extends AbstractCommand
 {
     protected static $defaultName = 'init';
-    private Json $json;
 
     /**
      * {@inheritdoc}
      */
-    public function __construct()
-    {
-        $this->json = new Json();
-
-        parent::__construct();
-    }
+    //public function __construct()
+    //{
+    //    parent::__construct();
+    //}
 
     /**
      * {@inheritdoc}
@@ -41,10 +38,6 @@ final class InitCommand extends AbstractCommand
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        $configFile = $input->getOption('working-dir').'/bard.json';
-        if (file_exists($configFile)) {
-            throw new \RuntimeException(sprintf('"%s" file already exists', $configFile));
-        }
     }
 
     /**
@@ -59,21 +52,19 @@ final class InitCommand extends AbstractCommand
             return self::FAILURE;
         }
 
-        $json = $this->json->getEncoder()
-            ->prettyPrint()
-            ->unescapedSlashes()
-            ->encode([
-                'name' => 'example/example',
-                'version' => '0.0.0',
-                'packages' => [
-                    'packages/example/',
-                ],
-            ])
-        ;
+        touch($filename);
 
-        $output->writeln($json);
+        $bardJsonFile = new JsonFile($filename);
+        $bardJsonFile = $bardJsonFile->setSection('version', '0.0.0');
+        $bardJsonFile = $bardJsonFile->setSection('packages', [
+            ['path' => 'packages/component', 'repository' => 'git@github.com/org/component'],
+            ['path' => 'packages/component', 'repository' => 'git@github.com/org/component'],
+            ['path' => 'packages/component', 'repository' => 'git@github.com/org/component'],
+        ]);
 
-        file_put_contents($filename, $json);
+        $output->writeln($bardJsonFile->toJson());
+
+        file_put_contents($bardJsonFile->getFilename(), $bardJsonFile->toJson());
 
         $output->writeln(sprintf('File written to "%s"', $filename));
 

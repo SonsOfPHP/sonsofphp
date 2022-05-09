@@ -20,7 +20,13 @@ final class JsonFile
     {
         $this->filename = $filename;
         $this->json     = new Json();
-        $this->config   = $this->json->getDecoder()->objectAsArray()->decode(file_get_contents($filename));
+    }
+
+    private function load(): void
+    {
+        $this->config = $this->json->getDecoder()
+            ->objectAsArray()
+            ->decode(file_get_contents($this->filename));
     }
 
     public function getFilename(): string
@@ -35,6 +41,10 @@ final class JsonFile
      */
     public function getSection(string $section)
     {
+        if (!isset($this->config)) {
+            $this->load();
+        }
+
         if (isset($this->config[$section])) {
             return $this->config[$section];
         }
@@ -44,6 +54,10 @@ final class JsonFile
 
     public function setSection(string $section, $value): JsonFile
     {
+        if (!isset($this->config)) {
+            $this->load();
+        }
+
         $clone = clone $this;
         $clone->config[$section] = $value;
 
@@ -70,8 +84,8 @@ final class JsonFile
      * Can even use this for the package composer.json file
      * $newPkgComposerJsonFile = $pkgComposerJsonFile->with($updateSupportSection, $rootComposerJsonFile);
      */
-    public function with(/* ComposerJsonFileManipulatorInterface */$operator, ?JsonFile $composerJsonFile = null): JsonFile
+    public function with($operator): JsonFile
     {
-        return $operator->apply($this, $composerJsonFile);
+        return $operator->apply($this);
     }
 }
