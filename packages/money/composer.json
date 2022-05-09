@@ -18,7 +18,8 @@
     ],
     "support": {
         "issues": "https://github.com/SonsOfPHP/sonsofphp/issues",
-        "forum": "https://github.com/orgs/SonsOfPHP/discussions"
+        "forum": "https://github.com/orgs/SonsOfPHP/discussions",
+        "docs": "https://docs.sonsofphp.com"
     },
     "autoload": {
         "psr-4": {
@@ -38,5 +39,11 @@
         "branch-alias": {
             "dev-main": "0.2.x-dev"
         }
-    }
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/JoshuaEstes"
+        }
+    ]
 }

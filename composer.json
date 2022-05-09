@@ -17,8 +17,15 @@
     ],
     "support": {
         "issues": "https://github.com/SonsOfPHP/sonsofphp/issues",
-        "forum": "https://github.com/orgs/SonsOfPHP/discussions"
+        "forum": "https://github.com/orgs/SonsOfPHP/discussions",
+        "docs": "https://docs.sonsofphp.com"
     },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/JoshuaEstes"
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "provide": {
@@ -55,7 +62,14 @@
             "SonsOfPHP\\Component\\Version\\": "packages/version"
         },
         "exclude-from-classmap": [
-            "**/Tests/"
+            "packages/clock/Tests/",
+            "packages/cqrs/Tests/",
+            "packages/event-dispatcher/Tests/",
+            "packages/event-sourcing/Tests/",
+            "packages/feature-toggle/Tests/",
+            "packages/json/Tests/",
+            "packages/money/Tests/",
+            "packages/version/Tests/"
         ]
     },
     "extra": {
