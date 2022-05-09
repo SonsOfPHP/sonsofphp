@@ -15,7 +15,7 @@ abstract class AbstractEncoderDecoder
     protected int $flags = 0;
     protected int $depth = 512;
 
-    public function __construct(?int $flags = null, ?int $depth = null)
+    public function __construct(int $flags = null, int $depth = null)
     {
         $this->flags = $flags ?? $this->flags;
         $this->depth = $depth ?? $this->depth;
