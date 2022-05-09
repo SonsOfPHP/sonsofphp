@@ -2,7 +2,9 @@
     "name": "sonsofphp/json",
     "type": "library",
     "description": "Wrapper around native json php functions",
-    "keywords": ["json"],
+    "keywords": [
+        "json"
+    ],
     "homepage": "https://github.com/SonsOfPHP/json",
     "license": "MIT",
     "authors": [

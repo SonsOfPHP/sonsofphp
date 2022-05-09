@@ -2,7 +2,9 @@
     "name": "sonsofphp/cqrs",
     "type": "library",
     "description": "CQRS Compents",
-    "keywords": ["cqrs"],
+    "keywords": [
+        "cqrs"
+    ],
     "homepage": "https://github.com/SonsOfPHP/cqrs",
     "license": "MIT",
     "authors": [

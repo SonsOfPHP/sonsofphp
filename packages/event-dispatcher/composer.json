@@ -2,7 +2,10 @@
     "name": "sonsofphp/event-dispatcher",
     "type": "library",
     "description": "Simple PSR-14 dispatcher",
-    "keywords": ["event dispatcher", "psr-14"],
+    "keywords": [
+        "event dispatcher",
+        "psr-14"
+    ],
     "homepage": "https://github.com/SonsOfPHP/event-dispatcher",
     "license": "MIT",
     "authors": [

@@ -2,7 +2,12 @@
     "name": "sonsofphp/money",
     "type": "library",
     "description": "Provides abstraction for projects working with money inspired by JSR 354",
-    "keywords": ["money", "currency", "ISO4217", "jsr-354"],
+    "keywords": [
+        "money",
+        "currency",
+        "ISO4217",
+        "jsr-354"
+    ],
     "homepage": "https://github.com/SonsOfPHP/money",
     "license": "MIT",
     "authors": [

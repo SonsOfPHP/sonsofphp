@@ -2,7 +2,15 @@
     "name": "sonsofphp/feature-toggle",
     "type": "library",
     "description": "Provides feature toggles in PHP",
-    "keywords": ["feature toggle", "flag", "toggle", "bit", "switch", "flipper", "flip"],
+    "keywords": [
+        "feature toggle",
+        "flag",
+        "toggle",
+        "bit",
+        "switch",
+        "flipper",
+        "flip"
+    ],
     "homepage": "https://github.com/SonsOfPHP/feature-toggle",
     "license": "MIT",
     "authors": [
