@@ -45,7 +45,7 @@ coverage: ## Build Code Coverage Report
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --coverage-html $(COVERAGE_DIR)
 
 phpstan: ## Run phpstan
-	$(PHP) $(PHPSTAN) analyse packages/
+	$(PHP) $(PHPSTAN) analyse --no-progress --no-interaction packages/
 
 php-cs-fixer: ## run php-cs-fixer
 	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHP_CS_FIXER) fix -vvv packages/
