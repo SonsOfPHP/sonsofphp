@@ -8,7 +8,7 @@ use SonsOfPHP\Bard\Worker\WorkerInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class BranchAlias implements WorkerInterface
+final class Authors implements WorkerInterface
 {
     private JsonFile $rootComposerJsonFile;
 
@@ -22,11 +22,8 @@ final class BranchAlias implements WorkerInterface
      */
     public function apply(JsonFile $pkgComposerJsonFile): JsonFile
     {
-        $rootExtraSection = $this->rootComposerJsonFile->getSection('extra');
-        $pkgExtraSection  = $pkgComposerJsonFile->getSection('extra');
+        $rootSection = $this->rootComposerJsonFile->getSection('authors');
 
-        $pkgExtraSection['branch-alias'] = $rootExtraSection['branch-alias'];
-
-        return $pkgComposerJsonFile->setSection('extra', $pkgExtraSection);
+        return $pkgComposerJsonFile->setSection('authors', $rootSection);
     }
 }
