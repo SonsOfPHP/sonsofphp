@@ -63,7 +63,7 @@ final class AggregateTraitTest extends TestCase
             yield $this->createMock(MessageInterface::class);
         };
 
-        $aggregate = FakeAggregate::buildFromEvents(AggregateId::fromString('id'), $events());
+        $aggregate = FakeAggregate::buildFromEvents(new AggregateId('id'), $events());
         $this->assertSame('id', $aggregate->getAggregateId()->toString());
         $this->assertSame(1, $aggregate->getAggregateVersion()->toInt());
     }

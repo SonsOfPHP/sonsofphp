@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Message\Serializer;
 
+use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\SerializableMessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\MessageProviderInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricherInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricher;
-use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\NullMessageEnricherProvider;
+use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\EventTypeMessageEnricherHandler;
+use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\AllMessageEnricherProvider;
 use SonsOfPHP\Component\EventSourcing\Message\Upcaster\MessageUpcasterInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Upcaster\MessageUpcaster;
 use SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\NullMessageUpcasterProvider;
@@ -23,26 +25,37 @@ class MessageSerializer implements MessageSerializerInterface
     private MessageEnricherInterface $messageEnricher;
     private MessageUpcasterInterface $messageUpcaster;
 
-    public function __construct(MessageProviderInterface $messageProvider)
+    /**
+     * @param MessageProviderInterface $messageProvider
+     * @param MessageEnricherInterface $messageEnricher
+     * @param MessageUpcasterInterface $messageUpcaster
+     */
+    public function __construct(
+        MessageProviderInterface $messageProvider,
+        MessageEnricherInterface $messageEnricher = null,
+        MessageUpcasterInterface $messageUpcaster = null
+    )
     {
         $this->messageProvider = $messageProvider;
-        $this->messageEnricher = new MessageEnricher(new NullMessageEnricherProvider());
-        $this->messageUpcaster = new MessageUpcaster(new NullMessageUpcasterProvider());
+        $this->messageEnricher = $messageEnricher ?? new MessageEnricher(new AllMessageEnricherProvider([new EventTypeMessageEnricherHandler($this->messageProvider)]));
+        $this->messageUpcaster = $messageUpcaster ?? new MessageUpcaster(new NullMessageUpcasterProvider());
     }
 
     /**
+     * {@inheritdoc}
      */
     public function serialize(SerializableMessageInterface $message): array
     {
+        // @var SerializableMessageInterface $message
         $message = $this->messageEnricher->enrich($message);
-        $message = $message->withMetadata([
-            Metadata::EVENT_TYPE => $this->messageProvider->getEventTypeForMessage($message),
-        ]);
 
-        return $message->serialize();
+        $this->ensureRequiredMetadataExists($message);
+
+        return $message->serialize(); // @phpstan-ignore-line
     }
 
     /**
+     * {@inheritdoc}
      */
     public function deserialize(array $data): SerializableMessageInterface
     {
@@ -51,5 +64,25 @@ class MessageSerializer implements MessageSerializerInterface
             ->getMessageClassForEventType($data['metadata'][Metadata::EVENT_TYPE]);
 
         return $messageClass::deserialize($data);
+    }
+
+    /**
+     * @internal
+     * @throws EventSourcingException
+     */
+    private function ensureRequiredMetadataExists(SerializableMessageInterface $message): void
+    {
+        $requiredMetadata = [
+            Metadata::EVENT_ID,
+            Metadata::EVENT_TYPE,
+            Metadata::AGGREGATE_ID,
+            Metadata::AGGREGATE_VERSION,
+            Metadata::TIMESTAMP,
+            Metadata::TIMESTAMP_FORMAT,
+        ];
+
+        if (count($requiredMetadata) != count(array_intersect_key(array_flip($requiredMetadata), $message->getMetadata()))) {
+            throw new EventSourcingException('Message Metadata is missing one or more required values');
+        }
     }
 }

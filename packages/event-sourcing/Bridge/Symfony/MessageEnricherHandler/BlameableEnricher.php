@@ -37,7 +37,7 @@ class BlameableEnricher implements MessageEnricherHandlerInterface
         if ($user instanceof UserInterface) {
             return $message->withMetadata([
                 self::METADATA_BLAMEABLE => [
-                    'identifier' => $user->getUserIdentifier(),
+                    'identifier' => $user->getUsername(),
                 ]
             ]);
         }

@@ -42,7 +42,7 @@ class AggregateRepository implements AggregateRepositoryInterface
      */
     public function find($id): ?AggregateInterface
     {
-        if (!$id instanceof AggregateIdInterface and !is_string($id)) {
+        if (!$id instanceof AggregateIdInterface && !is_string($id)) {
             throw new EventSourcingException(sprintf('Argument #1 ($id) must be of of type string or "%s". Type "%s" passed in.', AggregateIdInterface::class, gettype($id)));
         }
 

@@ -27,11 +27,22 @@ final class MessageSerializerTest extends TestCase
         $provider->expects($this->once())->method('getEventTypeForMessage');
         $serializer = new MessageSerializer($provider);
 
-        $message = $this->createMock(SerializableMessageInterface::class);
-        $message->expects($this->once())->method('withMetadata')->willReturnSelf();
-        $message->expects($this->once())->method('serialize');
+        $message = FakeSerializableMessage::new()->withPayload([
+            'key' => 'value',
+        ])->withMetadata([
+            Metadata::EVENT_ID          => 'event-id',
+            Metadata::TIMESTAMP         => '2022-04-20',
+            Metadata::TIMESTAMP_FORMAT  => 'Y-m-d',
+            Metadata::AGGREGATE_ID      => 'aggregate-id',
+            Metadata::AGGREGATE_VERSION => 123,
+        ]);
 
         $data = $serializer->serialize($message);
+
+        $this->assertArrayHasKey('payload', $data);
+        $this->assertArrayHasKey('metadata', $data);
+
+        $this->assertArrayHasKey(Metadata::EVENT_TYPE, $data['metadata'], 'Assert that "event_type" is added to metadata');
     }
 
     public function testDeserialize(): void

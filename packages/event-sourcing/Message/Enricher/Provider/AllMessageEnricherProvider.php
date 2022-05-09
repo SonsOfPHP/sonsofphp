@@ -8,15 +8,23 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\MessageEnricherHandlerInterface;
 
 /**
- * All Message Enricher
+ * All Message Enricher Provider
  *
  * This will enrich ALL messages and is not limited to specific message types
  *
+ * @todo All vs Any? Should the class name be updated?
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 final class AllMessageEnricherProvider implements MessageEnricherProviderInterface
 {
     private array $enrichers = [];
+
+    public function __construct(array $enrichers = [])
+    {
+        foreach ($enrichers as $enricher) {
+            $this->register($enricher);
+        }
+    }
 
     /**
      */

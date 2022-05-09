@@ -50,7 +50,7 @@ final class AggregateRepositoryTest extends TestCase
         $aggregate = FakeAggregate::new(AggregateId::fromString('unique-id'));
 
         $message = $this->createMock(AbstractSerializableMessage::class);
-        $aggregate->raiseEvent($message);
+        $aggregate->raiseThisEvent($message);
 
         $repository->persist($aggregate);
     }
@@ -66,7 +66,7 @@ final class AggregateRepositoryTest extends TestCase
         $aggregate = FakeAggregate::new(AggregateId::fromString('unique-id'));
 
         $message = $this->createMock(AbstractSerializableMessage::class);
-        $aggregate->raiseEvent($message);
+        $aggregate->raiseThisEvent($message);
 
         $repository->persist($aggregate);
 
@@ -85,7 +85,7 @@ final class AggregateRepositoryTest extends TestCase
         $aggregate = FakeAggregate::new(AggregateId::fromString('unique-id'));
 
         $message = $this->createMock(AbstractSerializableMessage::class);
-        $aggregate->raiseEvent($message);
+        $aggregate->raiseThisEvent($message);
 
         $repository->persist($aggregate);
 
