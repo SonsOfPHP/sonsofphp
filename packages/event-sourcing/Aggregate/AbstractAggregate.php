@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Aggregate;
 
+use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 use Generator;
@@ -128,7 +129,7 @@ abstract class AbstractAggregate implements AggregateInterface
         $method = 'apply'.end($parts);
 
         if (method_exists($this, $method)) {
-            $this->$method($event);
+            $this->$method($event); // @phpstan-ignore-line
         }
 
         $this->version = $this->version->next();
