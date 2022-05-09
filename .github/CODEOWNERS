@@ -16,6 +16,8 @@
 /packages/faker/ @JoshuaEstes
 /packages/feature-toggle/ @JoshuaEstes
 /packages/feature-toggle-bundle/ @JoshuaEstes
+/packages/feature-toggle-doctrine-bridge/ @JoshuaEstes
+/packages/feature-toggle-symfony-bridge/ @JoshuaEstes
 /packages/filesystem/ @JoshuaEstes
 /packages/filesystem-bundle/ @JoshuaEstes
 /packages/http-client/ @JoshuaEstes
