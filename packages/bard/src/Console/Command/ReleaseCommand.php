@@ -3,7 +3,7 @@
 namespace SonsOfPHP\Bard\Console\Command;
 
 use SonsOfPHP\Bard\JsonFile;
-use SonsOfPHP\Bard\Manipulator\Composer\UpdateReplaceSectionInRootComposer;
+use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateReplaceSection;
 use SonsOfPHP\Component\Json\Json;
 use SonsOfPHP\Component\Version\Version;
 use Symfony\Component\Console\Input\InputInterface;
@@ -65,7 +65,11 @@ EOT
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        $version          = $input->getArgument('release');
+        $version = $input->getArgument('release');
+        if (null === $version) {
+            return;
+        }
+
         $this->bardConfig = new JsonFile($input->getOption('working-dir').'/bard.json');
         $currentVersion   = new Version($this->bardConfig->getSection('version'));
 
@@ -121,7 +125,7 @@ EOT
             $output->writeln([
                 $formatter->formatSection($pkgComposerJsonFile->getSection('name'), 'Updating root <info>composer.json</info>'),
             ]);
-            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateReplaceSectionInRootComposer(), $pkgComposerJsonFile);
+            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateReplaceSection($pkgComposerJsonFile));
         }
         $output->writeln([
             'saving root composer.json'
