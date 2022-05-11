@@ -49,7 +49,7 @@ class MessageSerializer implements MessageSerializerInterface
         // @var SerializableMessageInterface $message
         $message = $this->messageEnricher->enrich($message);
 
-        $this->ensureRequiredMetadataExists($message);
+        $this->ensureRequiredMetadataExists($message->getMetadata());
 
         return $message->serialize(); // @phpstan-ignore-line
     }
@@ -59,7 +59,10 @@ class MessageSerializer implements MessageSerializerInterface
      */
     public function deserialize(array $data): SerializableMessageInterface
     {
-        $data         = $this->messageUpcaster->upcast($data);
+        $data = $this->messageUpcaster->upcast($data);
+
+        $this->ensureRequiredMetadataExists($data['metadata']);
+
         $messageClass = $this->messageProvider
             ->getMessageClassForEventType($data['metadata'][Metadata::EVENT_TYPE]);
 
@@ -70,7 +73,7 @@ class MessageSerializer implements MessageSerializerInterface
      * @internal
      * @throws EventSourcingException
      */
-    private function ensureRequiredMetadataExists(SerializableMessageInterface $message): void
+    private function ensureRequiredMetadataExists(array $metadata): void
     {
         $requiredMetadata = [
             Metadata::EVENT_ID,
@@ -81,8 +84,12 @@ class MessageSerializer implements MessageSerializerInterface
             Metadata::TIMESTAMP_FORMAT,
         ];
 
-        if (count($requiredMetadata) != count(array_intersect_key(array_flip($requiredMetadata), $message->getMetadata()))) {
-            throw new EventSourcingException('Message Metadata is missing one or more required values');
+        if (count($requiredMetadata) != count(array_intersect_key(array_flip($requiredMetadata), $metadata))) {
+            $values = [];
+            foreach ($metadata as $k => $v) {
+                $values[] = $k.' => '.$v;
+            }
+            throw new EventSourcingException('Message Metadata is missing one or more required values. Current metadata: '.implode(',', $values));
         }
     }
 }
