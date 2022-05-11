@@ -50,7 +50,12 @@ final class MessageSerializerTest extends TestCase
         $data = [
             'payload'  => [],
             'metadata' => [
-                Metadata::EVENT_TYPE => 'user.registered',
+                Metadata::EVENT_TYPE        => 'user.registered',
+                Metadata::EVENT_ID          => 'event-id',
+                Metadata::TIMESTAMP         => '2022-04-20',
+                Metadata::TIMESTAMP_FORMAT  => 'Y-m-d',
+                Metadata::AGGREGATE_ID      => 'aggregate-id',
+                Metadata::AGGREGATE_VERSION => 123,
             ],
         ];
 
