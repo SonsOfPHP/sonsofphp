@@ -1,7 +1,7 @@
 {
-    "name": "sonsofphp/event-sourcing",
+    "name": "sonsofphp/event-sourcing-doctrine",
     "type": "library",
-    "description": "Event Sourcing library",
+    "description": "Adds additional functionality to the Sons of PHP Event Sourcing library",
     "keywords": [
         "event-sourcing"
     ],
@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SonsOfPHP\\Component\\EventSourcing\\": ""
+            "SonsOfPHP\\Component\\EventSourcing\\Bridge\\Doctrine\\": ""
         },
         "exclude-from-classmap": [
             "/Tests/"
@@ -30,11 +30,8 @@
     "prefer-stable": true,
     "require": {
         "php": ">=7.4",
-        "sonsofphp/event-dispatcher": "^0.2@dev"
-    },
-    "suggest": {
-        "sonsofphp/event-sourcing-doctrine": "Adds additional functionality using Doctrine",
-        "sonsofphp/event-sourcing-symfony": "Adds additional functionality using Symfony Components"
+        "doctrine/dbal": "^3.3",
+        "sonsofphp/event-sourcing": "^0.2@dev"
     },
     "extra": {
         "sort-packages": true,
