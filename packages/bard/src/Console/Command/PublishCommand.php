@@ -46,9 +46,7 @@ final class PublishCommand extends AbstractCommand
         $io         = new SymfonyStyle($input, $output);
 
         foreach ($bardConfig->getSection('packages') as $pkg) {
-            $pkgComposerFile = realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json');
-            var_dump($pkgComposerFile);
-
+            $pkgComposerFile     = realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json');
             $pkgComposerJsonFile = new JsonFile($pkgComposerFile);
             $pkgName             = $pkgComposerJsonFile->getSection('name');
             $io->text(sprintf('Pushing <info>%s</>', $pkgName));
