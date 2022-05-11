@@ -46,7 +46,10 @@ final class PublishCommand extends AbstractCommand
         $io         = new SymfonyStyle($input, $output);
 
         foreach ($bardConfig->getSection('packages') as $pkg) {
-            $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json'));
+            $pkgComposerFile = realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json');
+            var_dump($pkgComposerFile);
+
+            $pkgComposerJsonFile = new JsonFile($pkgComposerFile);
             $pkgName             = $pkgComposerJsonFile->getSection('name');
             $io->text(sprintf('Pushing <info>%s</>', $pkgName));
 
@@ -59,7 +62,9 @@ final class PublishCommand extends AbstractCommand
             foreach ($commands as $cmd) {
                 $process = new Process($cmd);
                 $io->text($process->getCommandLine());
-                $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+                $this->getHelper('process')
+                    ->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()))
+                    ->wait();
             }
         }
 
