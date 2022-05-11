@@ -46,6 +46,10 @@
         {
             "type": "github",
             "url": "https://github.com/sponsors/JoshuaEstes"
+        },
+        {
+            "type": "tidelift",
+            "url": "https://tidelift.com/subscription/pkg/packagist-sonsofphp-sonsofphp"
         }
     ]
 }

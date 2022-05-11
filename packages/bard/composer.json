@@ -1,9 +1,16 @@
 {
     "name": "sonsofphp/bard",
     "description": "Tool to help manage PHP monorepos using GitHub",
-    "keywords": ["bard", "sonsofphp", "monorepo", "manager"],
+    "keywords": [
+        "bard",
+        "sonsofphp",
+        "monorepo",
+        "manager"
+    ],
     "type": "project",
-    "bin": ["bin/bard"],
+    "bin": [
+        "bin/bard"
+    ],
     "require": {
         "sonsofphp/event-dispatcher": "^0.2@dev",
         "sonsofphp/json": "^0.2@dev",
@@ -17,7 +24,10 @@
     "autoload": {
         "psr-4": {
             "SonsOfPHP\\Bard\\": "src/"
-        }
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -34,5 +44,26 @@
         "branch-alias": {
             "dev-main": "0.2.x-dev"
         }
-    }
+    },
+    "support": {
+        "issues": "https://github.com/SonsOfPHP/sonsofphp/issues",
+        "forum": "https://github.com/orgs/SonsOfPHP/discussions",
+        "docs": "https://docs.sonsofphp.com"
+    },
+    "authors": [
+        {
+            "name": "Joshua Estes",
+            "email": "joshua@sonsofphp.com"
+        }
+    ],
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/JoshuaEstes"
+        },
+        {
+            "type": "tidelift",
+            "url": "https://tidelift.com/subscription/pkg/packagist-sonsofphp-sonsofphp"
+        }
+    ]
 }
