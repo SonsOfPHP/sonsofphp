@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\EventSourcing\Bridge\Symfony\MessageEnricherHandler;
+namespace SonsOfPHP\Component\EventSourcing\Bridge\Symfony;
 
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\MessageEnricherHandlerInterface;
@@ -16,7 +16,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class BlameableEnricher implements MessageEnricherHandlerInterface
+class BlameableMessageEnricherHandler implements MessageEnricherHandlerInterface
 {
     public const METADATA_BLAMEABLE = '__user';
 

@@ -60,6 +60,8 @@
             "SonsOfPHP\\Component\\Cqrs\\": "packages/cqrs",
             "SonsOfPHP\\Component\\EventDispatcher\\": "packages/event-dispatcher",
             "SonsOfPHP\\Component\\EventSourcing\\": "packages/event-sourcing",
+            "SonsOfPHP\\Component\\EventSourcing\\Bridge\\Doctrine\\": "packages/event-sourcing-doctrine",
+            "SonsOfPHP\\Component\\EventSourcing\\Bridge\\Symfony\\": "packages/event-sourcing-symfony",
             "SonsOfPHP\\Component\\FeatureToggle\\": "packages/feature-toggle",
             "SonsOfPHP\\Component\\Json\\": "packages/json",
             "SonsOfPHP\\Component\\Money\\": "packages/money",
