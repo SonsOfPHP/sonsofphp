@@ -57,6 +57,8 @@ final class PublishCommand extends AbstractCommand
                 ['git', 'subtree', 'split', '-P', $pkg['path'], '-b', $pkgName],
                 ['git', 'checkout', $pkgName],
                 ['git', 'push', $pkg['repository'], sprintf('%s:%s', $pkgName, $input->getOption('branch'))],
+                ['git', 'checkout', $input->getOption('branch')],
+                ['git', 'branch', '-D', $pkgName],
             ];
 
             foreach ($commands as $cmd) {
