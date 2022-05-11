@@ -4,6 +4,7 @@ namespace SonsOfPHP\Bard\Console\Command;
 
 use SonsOfPHP\Bard\JsonFile;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateReplaceSection;
+use SonsOfPHP\Bard\Worker\File\Bard\UpdateVersion;
 use SonsOfPHP\Component\Json\Json;
 use SonsOfPHP\Component\Version\Version;
 use Symfony\Component\Console\Input\InputInterface;
@@ -177,69 +178,55 @@ EOT
             $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json'));
             $pkgName             = $pkgComposerJsonFile->getSection('name');
             $io->text(sprintf('Package <info>%s</> is being released', $pkgName));
-
-            $process = new Process(['git', 'subtree', 'split', '-P', $pkg['path'], '-b', $pkgName]);
-            $io->text($process->getCommandLine());
-            if (!$this->isDryRun) {
-                $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+            $processCommands = [
+                ['git', 'subtree', 'split', '-P', $pkg['path'], '-b', $pkgName],
+                ['git', 'checkout', $pkgName],
+                ['git', 'push', $pkg['repository'], sprintf('%s:%s', $pkgName, $input->getOption('branch'))],
+                ['git', 'tag', sprintf('%s_%s', $pkgName, $this->releaseVersion->toString())],
+                ['git', 'push', $pkg['repository'], sprintf('%s_%s:v%s', $pkgName, $this->releaseVersion->toString(), $this->releaseVersion->toString())],
+                ['git', 'checkout', $input->getOption('branch')],
+                ['git', 'tag', '-d', sprintf('%s_%s', $pkgName, $this->releaseVersion->toString())],
+                ['git', 'branch', '-D', $pkgName],
+            ];
+            foreach ($processCommands as $cmd) {
+                $process = new Process($cmd);
+                $io->text($process->getCommandLine());
+                if (!$this->isDryRun) {
+                    $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+                }
             }
-
-            $process = new Process(['git', 'checkout', $pkgName]);
-            $io->text($process->getCommandLine());
-            if (!$this->isDryRun) {
-                $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
-            }
-
-            $process = new Process(['git', 'push', $pkg['repository'], sprintf('%s:%s', $pkgName, $input->getOption('branch'))]);
-            $io->text($process->getCommandLine());
-            if (!$this->isDryRun) {
-                $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
-            }
-
-            $process = new Process(['git', 'tag', sprintf('%s_%s', $pkgName, $this->releaseVersion->toString())]);
-            $io->text($process->getCommandLine());
-            if (!$this->isDryRun) {
-                $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
-            }
-
-            $process = new Process(['git', 'push', $pkg['repository'], sprintf('%s_%s:v%s', $pkgName, $this->releaseVersion->toString(), $this->releaseVersion->toString())]);
-            $io->text($process->getCommandLine());
-            if (!$this->isDryRun) {
-                $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
-            }
-
-            $process = new Process(['git', 'checkout', $input->getOption('branch')]);
-            $io->text($process->getCommandLine());
-            if (!$this->isDryRun) {
-                $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
-            }
-
-            $process = new Process(['git', 'tag', '-d', sprintf('%s_%s', $pkgName, $this->releaseVersion->toString())]);
-            $io->text($process->getCommandLine());
-            if (!$this->isDryRun) {
-                $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
-            }
-
-            $process = new Process(['git', 'branch', '-D', $pkgName]);
-            $io->text($process->getCommandLine());
-            if (!$this->isDryRun) {
-                $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
-            }
-
             $io->newLine();
         }
-        $io->success('All Packages have been Released');
+        $io->text('All Packages have been Released');
+        //$io->success('All Packages have been Released');
 
         // 5. Update branch alias in all composer.json files
-        $io->section('Updating Branch Alias in root and packages');
-        $io->success('All files have been saved');
+        // - Only if update is major or minor
+        //$io->section('Updating Branch Alias in root and packages');
 
         // 6. Update bard.json with current version
+        $io->section('Updating version in bard.json');
+        $this->bardConfig = $this->bardConfig->with(new UpdateVersion($this->releaseVersion));
+        if (!$this->isDryRun) {
+            file_put_contents($this->bardConfig->getFilename(), $this->bardConfig->toJson());
+        }
+        $io->text('bard.json updated with new version');
 
         // 7. Commit and push updates
-        // git add .
-        // git commit -m 'starting new version'
-        // git push origin {branch}
+        //$io->section('Updating mother repo');
+        //$processCommands = [
+        //    ['git', 'add', '.'],
+        //    ['git', 'commit', '-m', '"starting release"'],
+        //    ['git', 'push', 'origin', $input->getOption('branch')],
+        //];
+        //foreach ($processCommands as $cmd) {
+        //    $process = new Process($cmd);
+        //    $io->text($process->getCommandLine());
+        //    if (!$this->isDryRun) {
+        //        $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+        //    }
+        //}
+        //$io->text('done');
 
         $io->newLine();
         $io->success('Congrations on your new release');
