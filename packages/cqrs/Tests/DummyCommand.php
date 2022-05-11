@@ -12,7 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 final class DummyCommand extends AbstractCommandMessage
 {
-    static $configureOptions;
+    public static $configureOptions;
 
     /**
      * DummyCommand::setConfigureOptionsCallback(function ($resolver) {

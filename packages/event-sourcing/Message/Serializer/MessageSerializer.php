@@ -34,8 +34,7 @@ class MessageSerializer implements MessageSerializerInterface
         MessageProviderInterface $messageProvider,
         MessageEnricherInterface $messageEnricher = null,
         MessageUpcasterInterface $messageUpcaster = null
-    )
-    {
+    ) {
         $this->messageProvider = $messageProvider;
         $this->messageEnricher = $messageEnricher ?? new MessageEnricher(new AllMessageEnricherProvider([new EventTypeMessageEnricherHandler($this->messageProvider)]));
         $this->messageUpcaster = $messageUpcaster ?? new MessageUpcaster(new NullMessageUpcasterProvider());

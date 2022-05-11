@@ -11,7 +11,7 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class NullMessageEnricherHandler implements  MessageEnricherHandlerInterface
+final class NullMessageEnricherHandler implements MessageEnricherHandlerInterface
 {
     /**
      * {@inheritdoc}
