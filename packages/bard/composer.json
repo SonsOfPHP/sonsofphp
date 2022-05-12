@@ -15,7 +15,7 @@
         "sonsofphp/event-dispatcher": "^0.2@dev",
         "sonsofphp/json": "^0.2@dev",
         "sonsofphp/version": "^0.2@dev",
-        "symfony/console": "^6",
+        "symfony/console": "^4|^5|^6",
         "symfony/dotenv": "^6",
         "symfony/finder": "^6",
         "symfony/process": "^6"
