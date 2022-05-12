@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Aggregate;
 
+use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
+
 /**
  * Abstract Aggregate ID
  *
@@ -19,8 +21,12 @@ abstract class AbstractAggregateId implements AggregateIdInterface
     /**
      * @param string $id
      */
-    final public function __construct(string $id)
+    public function __construct(?string $id = null)
     {
+        if (null === $id) {
+            throw new EventSourcingException('Argument (#1) $id cannot be null');
+        }
+
         $this->id = $id;
     }
 

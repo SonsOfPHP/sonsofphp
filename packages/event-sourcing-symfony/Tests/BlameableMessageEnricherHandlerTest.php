@@ -42,7 +42,7 @@ final class BlameableMessageEnricherHandlerTest extends TestCase
         $user = $this->createMock(UserInterface::class);
         $user->expects($this->once())->method('getUsername')->willReturn('satoshi');
 
-        $this->security->expects($this->once())->method('getUser')->willReturn($user);
+        $this->security->expects($this->once())->method('getUser')->willReturn($user); // @phpstan-ignore-line
 
         $handler = new BlameableMessageEnricherHandler($this->security);
 

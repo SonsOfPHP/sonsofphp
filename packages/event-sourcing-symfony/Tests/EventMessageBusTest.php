@@ -7,7 +7,9 @@ namespace SonsOfPHP\Component\EventSourcing\Bridge\Symfony\Tests;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use SonsOfPHP\Component\EventSourcing\Bridge\Symfony\EventMessageBus;
+use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Messenger\Envelope;
 
 final class EventMessageBusTest extends TestCase
 {
@@ -22,6 +24,19 @@ final class EventMessageBusTest extends TestCase
     {
         $eventBus = new EventMessageBus($this->messageBus);
 
-        $this->assertInstanceOf(EventDispatcherInterface::class, $eventBus);
+        $this->assertInstanceOf(EventDispatcherInterface::class, $eventBus); // @phpstan-ignore-line
+    }
+
+    public function testItWillDispatch(): void
+    {
+        $message = $this->createMock(MessageInterface::class);
+        // @phpstan-ignore-next-line
+        $this->messageBus
+            ->expects($this->once())
+            ->method('dispatch')
+            ->willReturn(new Envelope($message));
+
+        $eventBus = new EventMessageBus($this->messageBus);
+        $eventBus->dispatch($message);
     }
 }
