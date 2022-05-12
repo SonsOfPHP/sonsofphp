@@ -14,6 +14,15 @@ use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 interface AggregateIdInterface
 {
     /**
+     * Create a new AggregateID
+     *
+     * @param string $id The value of the ID to use, some Aggregate ID classes can auto-generate an ID
+     *
+     * @throws EventSourcingException If the class does not support auto-generating IDs
+     */
+    public function __construct(?string $id = null);
+
+    /**
      * @return string
      * @see self::toString
      */
