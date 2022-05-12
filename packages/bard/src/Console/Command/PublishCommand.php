@@ -52,11 +52,15 @@ final class PublishCommand extends AbstractCommand
             $io->text(sprintf('Pushing <info>%s</>', $pkgName));
 
             $commands = [
-                ['git', 'subtree', 'split', '-P', $pkg['path'], '-b', $pkgName],
-                ['git', 'checkout', $pkgName],
-                ['git', 'push', $pkg['repository'], sprintf('%s:%s', $pkgName, $input->getOption('branch'))],
-                ['git', 'checkout', $input->getOption('branch')],
-                ['git', 'branch', '-D', $pkgName],
+                // subtree push
+                ['git', 'subtree', 'push', '-P', $pkg['path'], $pkg['repository'], $input->getOption('branch')],
+                // -- OR --
+                // subtree split
+                //['git', 'subtree', 'split', '-P', $pkg['path'], '-b', $pkgName],
+                //['git', 'checkout', $pkgName],
+                //['git', 'push', $pkg['repository'], sprintf('%s:%s', $pkgName, $input->getOption('branch'))],
+                //['git', 'checkout', $input->getOption('branch')],
+                //['git', 'branch', '-D', $pkgName],
             ];
 
             foreach ($commands as $cmd) {
