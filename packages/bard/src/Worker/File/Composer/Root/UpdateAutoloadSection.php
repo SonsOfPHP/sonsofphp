@@ -24,21 +24,27 @@ final class UpdateAutoloadSection implements WorkerInterface
     {
         $rootDir = pathinfo($rootComposerJsonFile->getFilename(), PATHINFO_DIRNAME);
         $pkgDir  = pathinfo($this->pkgComposerJsonFile->getFilename(), PATHINFO_DIRNAME);
-        $path    = ltrim(str_replace($rootDir, '', $pkgDir), '/');
+        $path    = trim(str_replace($rootDir, '', $pkgDir), '/');
 
         $rootAutoloadSection = $rootComposerJsonFile->getSection('autoload');
         $pkgAutoloadSection  = $this->pkgComposerJsonFile->getSection('autoload');
 
         foreach ($pkgAutoloadSection as $section => $config) {
             if ('psr-4' === $section) {
+                if (!isset($rootAutoloadSection['psr-4'])) {
+                    $rootAutoloadSection['psr-4'] = [];
+                }
                 foreach ($config as $namespace => $pkgPath) {
-                    $rootAutoloadSection['psr-4'][$namespace] = $path.$pkgPath;
+                    $rootAutoloadSection['psr-4'][$namespace] = trim($path.'/'.trim($pkgPath, '/'), '/');
                 }
             }
 
             if ('exclude-from-classmap' === $section) {
+                if (!isset($rootAutoloadSection['exclude-from-classmap'])) {
+                    $rootAutoloadSection['exclude-from-classmap'] = [];
+                }
                 foreach ($config as $pkgPath) {
-                    $rootAutoloadSection['exclude-from-classmap'][] = $path.$pkgPath;
+                    $rootAutoloadSection['exclude-from-classmap'][] = trim($path.'/'.trim($pkgPath, '/'), '/');
                 }
             }
         }

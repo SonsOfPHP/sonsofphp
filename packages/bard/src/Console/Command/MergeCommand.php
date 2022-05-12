@@ -77,6 +77,10 @@ final class MergeCommand extends AbstractCommand
 
         $rootComposerJsonFile = new JsonFile($input->getOption('working-dir').'/composer.json');
 
+        // Clean out a few of the sections in root composer.json file
+        $rootComposerJsonFile = $rootComposerJsonFile->setSection('autoload', []);
+        $rootComposerJsonFile = $rootComposerJsonFile->setSection('autoload-dev', []);
+
         foreach ($this->bardConfig['packages'] as $pkg) {
             $packageComposerFile = realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json');
             if (!file_exists($packageComposerFile)) {
