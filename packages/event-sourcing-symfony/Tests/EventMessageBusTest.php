@@ -24,12 +24,13 @@ final class EventMessageBusTest extends TestCase
     {
         $eventBus = new EventMessageBus($this->messageBus);
 
-        $this->assertInstanceOf(EventDispatcherInterface::class, $eventBus);
+        $this->assertInstanceOf(EventDispatcherInterface::class, $eventBus); // @phpstan-ignore-line
     }
 
     public function testItWillDispatch(): void
     {
         $message = $this->createMock(MessageInterface::class);
+        // @phpstan-ignore-next-line
         $this->messageBus
             ->expects($this->once())
             ->method('dispatch')
