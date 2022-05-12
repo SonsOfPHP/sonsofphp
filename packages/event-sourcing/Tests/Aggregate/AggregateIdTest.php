@@ -6,6 +6,7 @@ namespace SonsOfPHP\Component\EventSourcing\Tests\Aggregate;
 
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
+use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use PHPUnit\Framework\TestCase;
 
 final class AggregateIdTest extends TestCase
@@ -38,5 +39,12 @@ final class AggregateIdTest extends TestCase
         $this->assertFalse($idOne->equals($idThree));
         $this->assertFalse($idThree->equals($idOne));
         $this->assertFalse($idThree->equals($idTwo));
+    }
+
+    public function testItThrowsAnExceptionWhenNoIDPassingInConstructor(): void
+    {
+        $this->expectException(EventSourcingException::class);
+
+        new AggregateId();
     }
 }
