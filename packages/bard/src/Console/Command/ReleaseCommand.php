@@ -157,7 +157,7 @@ EOT
         $io->section(sprintf('updating mother repo for release %s', $this->releaseVersion->toString()));
         $processCommands = [
             ['git', 'add', '.'],
-            ['git', 'commit', '-m', sprintf('"Preparing for Release v%s"', $this->releaseVersion->toString())],
+            ['git', 'commit', '--allow-empty', '-m', sprintf('"Preparing for Release v%s"', $this->releaseVersion->toString())],
             ['git', 'push', 'origin', $input->getOption('branch')],
             ['git', 'tag', 'v'.$this->releaseVersion->toString()],
             ['git', 'push', 'origin', 'v'.$this->releaseVersion->toString()],
