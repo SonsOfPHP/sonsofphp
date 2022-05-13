@@ -19,7 +19,8 @@
     "support": {
         "issues": "https://github.com/SonsOfPHP/sonsofphp/issues",
         "forum": "https://github.com/orgs/SonsOfPHP/discussions",
-        "docs": "https://docs.sonsofphp.com"
+        "docs": "https://docs.sonsofphp.com",
+        "chat": "https://discord.gg/sdVxNhFqND"
     },
     "autoload": {
         "psr-4": {
