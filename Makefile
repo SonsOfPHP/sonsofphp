@@ -48,7 +48,7 @@ phpstan: ## Run phpstan
 	$(PHP) $(PHPSTAN) analyse --no-progress --no-interaction packages/
 
 php-cs-fixer: ## run php-cs-fixer
-	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHP_CS_FIXER) fix -vvv packages/
+	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHP_CS_FIXER) fix -vv --diff --allow-risky=no --config=.php-cs-fixer.dist.php
 
 #-----------
 remote-add: # Add git remotes for all components
