@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Snapshot;
 
+use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
-use SonsOfPHP\Component\EventSourcing\Snapshot\SnapshotInterface;
 use SonsOfPHP\Component\EventSourcing\Snapshot\Snapshot;
-use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\EventSourcing\Snapshot\SnapshotInterface;
 
 final class SnapshotTest extends TestCase
 {

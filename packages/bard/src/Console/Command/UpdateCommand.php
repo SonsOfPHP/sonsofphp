@@ -4,10 +4,7 @@ namespace SonsOfPHP\Bard\Console\Command;
 
 use SonsOfPHP\Bard\JsonFile;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
 /**
@@ -20,10 +17,10 @@ final class UpdateCommand extends AbstractCommand
     /**
      * {@inheritdoc}
      */
-    //public function __construct()
-    //{
+    // public function __construct()
+    // {
     //    parent::__construct();
-    //}
+    // }
 
     /**
      * {@inheritdoc}

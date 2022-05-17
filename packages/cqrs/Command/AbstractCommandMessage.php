@@ -7,7 +7,7 @@ namespace SonsOfPHP\Component\Cqrs\Command;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Abstract Command Message
+ * Abstract Command Message.
  *
  * Usage:
  *   $command = new UpdateSmtpSettingsCommand([
@@ -24,15 +24,12 @@ abstract class AbstractCommandMessage implements CommandMessageInterface
     private array $options = [];
 
     /**
-     * Configure Options that are allowed to be passed into the command
+     * Configure Options that are allowed to be passed into the command.
      *
      * @see https://symfony.com/doc/current/components/options_resolver.html
      */
     abstract protected function configureOptions(OptionsResolver $resolver): void;
 
-    /**
-     * @param array $options
-     */
     final public function __construct(array $options = [])
     {
         $resolver = new OptionsResolver();
@@ -41,9 +38,7 @@ abstract class AbstractCommandMessage implements CommandMessageInterface
     }
 
     /**
-     * Returns all the options that are defined
-     *
-     * @return array
+     * Returns all the options that are defined.
      */
     public function getOptions(): array
     {
@@ -51,7 +46,7 @@ abstract class AbstractCommandMessage implements CommandMessageInterface
     }
 
     /**
-     * Returns a single option. If the option wasn't set, it returns null
+     * Returns a single option. If the option wasn't set, it returns null.
      *
      * @return mixed
      */

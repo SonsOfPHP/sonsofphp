@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Json;
 
 /**
- * JSON Decoder will covert json to stdClass or array
+ * JSON Decoder will covert json to stdClass or array.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */

@@ -27,7 +27,7 @@ final class UpdateRequireSection implements WorkerInterface
     {
         $rootReplace = $rootComposerJsonFile->getSection('replace');
         $rootRequire = $rootComposerJsonFile->getSection('require');
-        $pkgRequire  = $this->pkgComposerJsonFile->getSection('require');
+        $pkgRequire = $this->pkgComposerJsonFile->getSection('require');
 
         if (null === $pkgRequire) {
             return $rootComposerJsonFile;

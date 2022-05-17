@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\FeatureToggle\Tests;
 
+use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\FeatureToggle\Context;
 use SonsOfPHP\Component\FeatureToggle\Feature;
 use SonsOfPHP\Component\FeatureToggle\FeatureInterface;
 use SonsOfPHP\Component\FeatureToggle\ToggleInterface;
-use PHPUnit\Framework\TestCase;
 
 final class FeatureTest extends TestCase
 {

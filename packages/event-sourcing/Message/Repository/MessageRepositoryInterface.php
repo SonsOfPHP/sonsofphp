@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Message\Repository;
 
+use Generator;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
-use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Exception\AggregateNotFoundException;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
-use Generator;
 
 /**
- * Message Repository Interface
+ * Message Repository Interface.
  *
  * A Message Repository is responsible for saving and retrieving messages
  *
@@ -21,12 +20,9 @@ use Generator;
 interface MessageRepositoryInterface
 {
     /**
-     * Store the message
-     *
-     * @param MessageInterface $message
+     * Store the message.
      *
      * @todo Return the $message. This way, the serializer can enrich the message
-     * @return void
      */
     public function persist(MessageInterface $message): void;
 
@@ -39,13 +35,10 @@ interface MessageRepositoryInterface
      * @todo Make $version take either AggregateVersionInterface or int
      * @todo Return 'iterable' instead of Generator
      *
-     * @param AggregateIdInterface      $id
-     * @param AggregateVersionInterface $version If the Version is passed in, it will return all
-     *                                           messages greater than the version passed in.
+     * @param AggregateVersionInterface $version if the Version is passed in, it will return all
+     *                                           messages greater than the version passed in
      *
      * @thorws AggregateNotFoundException
-     *
-     * @return Generator
      */
     public function find(AggregateIdInterface $id, ?AggregateVersionInterface $version = null): Generator;
 }

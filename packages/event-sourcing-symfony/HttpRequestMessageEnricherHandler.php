@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Bridge\Symfony;
 
-use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\MessageEnricherHandlerInterface;
+use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
- * Http Request Enricher
+ * Http Request Enricher.
  *
  * Adds HTTP Request information to the event message's metadata
  *
@@ -36,14 +36,14 @@ class HttpRequestMessageEnricherHandler implements MessageEnricherHandlerInterfa
         if (null !== $request) {
             return $message->withMetadata([
                 self::METADATA_HTTP_REQUEST => [
-                    'http_user_agent'     => $request->server->get('HTTP_USER_AGENT'),
-                    'client_ip'           => $request->getClientIp(),
-                    'content_type'        => $request->getContentType(),
-                    'method'              => $request->getMethod(),
-                    'host'                => $request->getHost(),
-                    'path_info'           => $request->getPathInfo(),
-                    'query_string'        => $request->getQueryString(),
-                    'locale'              => $request->getLocale(),
+                    'http_user_agent' => $request->server->get('HTTP_USER_AGENT'),
+                    'client_ip' => $request->getClientIp(),
+                    'content_type' => $request->getContentType(),
+                    'method' => $request->getMethod(),
+                    'host' => $request->getHost(),
+                    'path_info' => $request->getPathInfo(),
+                    'query_string' => $request->getQueryString(),
+                    'locale' => $request->getLocale(),
                     'is_xml_http_request' => $request->isXmlHttpRequest(),
                 ],
             ]);

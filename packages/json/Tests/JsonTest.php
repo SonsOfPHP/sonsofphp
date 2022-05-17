@@ -4,32 +4,29 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Json\Tests;
 
-use SonsOfPHP\Component\Json\Json;
-use SonsOfPHP\Component\Json\JsonDecoder;
-use SonsOfPHP\Component\Json\JsonEncoder;
-use SonsOfPHP\Component\Json\JsonException;
 use PHPUnit\Framework\TestCase;
-use ReflectionObject;
+use SonsOfPHP\Component\Json\Json;
+use SonsOfPHP\Component\Json\JsonException;
 
 final class JsonTest extends TestCase
 {
     // @todo make JsonEncoderInterface
-    //public function testGetEncoderReturnsTheCorrectInstanceOf(): void
-    //{
+    // public function testGetEncoderReturnsTheCorrectInstanceOf(): void
+    // {
     //    $json = new Json();
     //    $this->assertInstanceOf(JsonEncoderInterface::class, $json->getEncoder());
-    //}
+    // }
 
     // @todo make JsonEncoderInterface
-    //public function testGetDecoderReturnsTheCorrectInstanceOf(): void
-    //{
+    // public function testGetDecoderReturnsTheCorrectInstanceOf(): void
+    // {
     //    $json = new Json();
     //    $this->assertInstanceOf(JsonDecoderInterface::class, $json->getDecoder());
-    //}
+    // }
 
     public function testEncode(): void
     {
-        $value  = ['test' => true];
+        $value = ['test' => true];
         $return = Json::encode($value);
         $this->assertSame('{"test":true}', $return);
     }

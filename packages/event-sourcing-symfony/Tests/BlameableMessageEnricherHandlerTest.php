@@ -32,7 +32,7 @@ final class BlameableMessageEnricherHandlerTest extends TestCase
         $handler = new BlameableMessageEnricherHandler($this->security);
 
         $message = $this->createMock(MessageInterface::class);
-        $output  = $handler->enrich($message);
+        $output = $handler->enrich($message);
 
         $this->assertSame($message, $output);
     }

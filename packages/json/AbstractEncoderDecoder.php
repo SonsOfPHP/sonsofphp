@@ -21,8 +21,6 @@ abstract class AbstractEncoderDecoder
         $this->depth = $depth ?? $this->depth;
     }
 
-    /**
-     */
     public function withFlags(int $flag)
     {
         $that = clone $this;
@@ -31,8 +29,6 @@ abstract class AbstractEncoderDecoder
         return $that;
     }
 
-    /**
-     */
     public function withoutFlags(int $flag)
     {
         $that = clone $this;
@@ -41,8 +37,6 @@ abstract class AbstractEncoderDecoder
         return $that;
     }
 
-    /**
-     */
     public function withDepth(int $depth)
     {
         $that = clone $this;

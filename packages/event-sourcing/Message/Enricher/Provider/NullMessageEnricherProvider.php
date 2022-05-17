@@ -7,7 +7,7 @@ namespace SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 
 /**
- * Null Provider
+ * Null Provider.
  *
  * Used when there isn't any need for message enrichers
  *

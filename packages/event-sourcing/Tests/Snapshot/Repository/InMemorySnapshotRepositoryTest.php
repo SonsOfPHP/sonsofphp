@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Snapshot\Repository;
 
-use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
+use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Snapshot\Repository\InMemorySnapshotRepository;
 use SonsOfPHP\Component\EventSourcing\Snapshot\Repository\SnapshotRepositoryInterface;
 use SonsOfPHP\Component\EventSourcing\Snapshot\Snapshot;
-use PHPUnit\Framework\TestCase;
 
 final class InMemorySnapshotRepositoryTest extends TestCase
 {

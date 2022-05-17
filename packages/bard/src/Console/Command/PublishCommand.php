@@ -3,19 +3,14 @@
 namespace SonsOfPHP\Bard\Console\Command;
 
 use SonsOfPHP\Bard\JsonFile;
-use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateReplaceSection;
-use SonsOfPHP\Component\Json\Json;
-use SonsOfPHP\Component\Version\Version;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
 /**
- * Publish Command
+ * Publish Command.
  *
  * Push up changes to all package repos
  *
@@ -42,13 +37,13 @@ final class PublishCommand extends AbstractCommand
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $bardConfig = new JsonFile($input->getOption('working-dir').'/bard.json');
-        $formatter  = $this->getHelper('formatter');
-        $io         = new SymfonyStyle($input, $output);
+        $formatter = $this->getHelper('formatter');
+        $io = new SymfonyStyle($input, $output);
 
         foreach ($bardConfig->getSection('packages') as $pkg) {
-            $pkgComposerFile     = realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json');
+            $pkgComposerFile = realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json');
             $pkgComposerJsonFile = new JsonFile($pkgComposerFile);
-            $pkgName             = $pkgComposerJsonFile->getSection('name');
+            $pkgName = $pkgComposerJsonFile->getSection('name');
             $io->text(sprintf('Pushing <info>%s</>', $pkgName));
 
             $commands = [
@@ -56,11 +51,11 @@ final class PublishCommand extends AbstractCommand
                 ['git', 'subtree', 'push', '-P', $pkg['path'], $pkg['repository'], $input->getOption('branch')],
                 // -- OR --
                 // subtree split
-                //['git', 'subtree', 'split', '-P', $pkg['path'], '-b', $pkgName],
-                //['git', 'checkout', $pkgName],
-                //['git', 'push', $pkg['repository'], sprintf('%s:%s', $pkgName, $input->getOption('branch'))],
-                //['git', 'checkout', $input->getOption('branch')],
-                //['git', 'branch', '-D', $pkgName],
+                // ['git', 'subtree', 'split', '-P', $pkg['path'], '-b', $pkgName],
+                // ['git', 'checkout', $pkgName],
+                // ['git', 'push', $pkg['repository'], sprintf('%s:%s', $pkgName, $input->getOption('branch'))],
+                // ['git', 'checkout', $input->getOption('branch')],
+                // ['git', 'branch', '-D', $pkgName],
             ];
 
             foreach ($commands as $cmd) {

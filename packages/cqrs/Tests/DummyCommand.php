@@ -17,7 +17,7 @@ final class DummyCommand extends AbstractCommandMessage
     /**
      * DummyCommand::setConfigureOptionsCallback(function ($resolver) {
      *    // can now define options
-     * });
+     * });.
      */
     public static function setConfigureOptionsCallback($callback)
     {

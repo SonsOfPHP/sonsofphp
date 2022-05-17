@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\FeatureToggle\Tests;
 
+use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\FeatureToggle\Context;
 use SonsOfPHP\Component\FeatureToggle\ContextInterface;
-use PHPUnit\Framework\TestCase;
 
 final class ContextTest extends TestCase
 {

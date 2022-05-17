@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\Tests;
 
+use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\CurrencyInterface;
-use PHPUnit\Framework\TestCase;
 
 final class CurrencyTest extends TestCase
 {

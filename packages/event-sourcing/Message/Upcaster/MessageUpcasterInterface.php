@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Message\Upcaster;
 
-use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
-use SonsOfPHP\Component\EventSourcing\Message\Upcaster\Handler\MessageUpcasterHandler;
-
 /**
- * Message Upcaster
+ * Message Upcaster.
  *
  * This is the main Message Upcaster, it will take a Provider which will
  * return the Handlers that need to be used.
@@ -17,7 +14,5 @@ use SonsOfPHP\Component\EventSourcing\Message\Upcaster\Handler\MessageUpcasterHa
  */
 interface MessageUpcasterInterface
 {
-    /**
-     */
     public function upcast(array $data): array;
 }

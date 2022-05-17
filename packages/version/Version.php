@@ -19,9 +19,6 @@ final class Version implements VersionInterface
     private string $preRelease = '';
     private string $build = '';
 
-    /**
-     * @param string $version
-     */
     public function __construct(string $version)
     {
         if (0 === preg_match(self::REGEX, $version, $matches)) {
@@ -47,7 +44,6 @@ final class Version implements VersionInterface
 
     /**
      * @see self::toString()
-     * @return string
      */
     public function __toString(): string
     {
@@ -152,51 +148,36 @@ final class Version implements VersionInterface
         return 0;
     }
 
-    /**
-     * @param VersionInterface $version
-     *
-     * @return bool
-     */
     public function isGreaterThan(VersionInterface $version): bool
     {
         return 1 === $this->compare($version);
     }
 
-    /**
-     * @param VersionInterface $version
-     *
-     * @return bool
-     */
     public function isLessThan(VersionInterface $version): bool
     {
         return -1 === $this->compare($version);
     }
 
-    /**
-     * @param VersionInterface $version
-     *
-     * @return bool
-     */
     public function isEqualTo(VersionInterface $version): bool
     {
         return 0 === $this->compare($version);
     }
 
     /**
-     * Bumps the patch version by one
+     * Bumps the patch version by one.
      *
      * @return static
      */
     public function nextPatch(): VersionInterface
     {
         $ver = clone $this;
-        $ver->patch++;
+        ++$ver->patch;
 
         return $ver;
     }
 
     /**
-     * Bumps the minor version by one
+     * Bumps the minor version by one.
      *
      * @return static
      */
@@ -204,13 +185,13 @@ final class Version implements VersionInterface
     {
         $ver = clone $this;
         $ver->patch = 0;
-        $ver->minor++;
+        ++$ver->minor;
 
         return $ver;
     }
 
     /**
-     * Bumps the major version by one
+     * Bumps the major version by one.
      *
      * @return static
      */
@@ -219,7 +200,7 @@ final class Version implements VersionInterface
         $ver = clone $this;
         $ver->patch = 0;
         $ver->minor = 0;
-        $ver->major++;
+        ++$ver->major;
 
         return $ver;
     }

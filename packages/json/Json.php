@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Json;
 
 /**
- * Json Encoder/Decoder
+ * Json Encoder/Decoder.
  *
  * Usage:
  *   // Make it simple to drop in as replacement

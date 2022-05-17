@@ -14,8 +14,6 @@ use SonsOfPHP\Component\Money\Query\QueryInterface;
 interface AmountQueryInterface extends QueryInterface
 {
     /**
-     * @param AmountInterface $amount
-     *
      * @throws MoneyException
      *
      * @return mixed

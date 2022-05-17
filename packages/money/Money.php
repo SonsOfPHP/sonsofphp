@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money;
 
-use SonsOfPHP\Component\Money\Operator\Money\MoneyOperatorInterface;
 use SonsOfPHP\Component\Money\Operator\Money\AddMoneyOperator;
-use SonsOfPHP\Component\Money\Operator\Money\SubtractMoneyOperator;
-use SonsOfPHP\Component\Money\Operator\Money\MultiplyMoneyOperator;
 use SonsOfPHP\Component\Money\Operator\Money\DivideMoneyOperator;
-use SonsOfPHP\Component\Money\Query\Money\MoneyQueryInterface;
+use SonsOfPHP\Component\Money\Operator\Money\MoneyOperatorInterface;
+use SonsOfPHP\Component\Money\Operator\Money\MultiplyMoneyOperator;
+use SonsOfPHP\Component\Money\Operator\Money\SubtractMoneyOperator;
 use SonsOfPHP\Component\Money\Query\Money\IsEqualToMoneyQuery;
 use SonsOfPHP\Component\Money\Query\Money\IsGreaterThanMoneyQuery;
 use SonsOfPHP\Component\Money\Query\Money\IsGreaterThanOrEqualToMoneyQuery;
@@ -18,6 +17,7 @@ use SonsOfPHP\Component\Money\Query\Money\IsLessThanOrEqualToMoneyQuery;
 use SonsOfPHP\Component\Money\Query\Money\IsNegativeMoneyQuery;
 use SonsOfPHP\Component\Money\Query\Money\IsPositiveMoneyQuery;
 use SonsOfPHP\Component\Money\Query\Money\IsZeroMoneyQuery;
+use SonsOfPHP\Component\Money\Query\Money\MoneyQueryInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -28,8 +28,7 @@ final class Money implements MoneyInterface
     private CurrencyInterface $currency;
 
     /**
-     * @param mixed             $amount
-     * @param CurrencyInterface $currency
+     * @param mixed $amount
      */
     public function __construct($amount, CurrencyInterface $currency)
     {
@@ -37,20 +36,17 @@ final class Money implements MoneyInterface
             $amount = new Amount($amount);
         }
 
-        $this->amount   = $amount;
+        $this->amount = $amount;
         $this->currency = $currency;
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->amount->toString();
     }
 
     /**
-     * Example: Money::USD(100);
+     * Example: Money::USD(100);.
      */
     public static function __callStatic(string $method, array $args)
     {
@@ -58,12 +54,10 @@ final class Money implements MoneyInterface
     }
 
     /**
-     * @param MoneyInterface $money
-     *
      * @return int
-     *  -1 = this less than that
-     *   0 = this equals that
-     *   1 = this greater than that
+     *             -1 = this less than that
+     *             0 = this equals that
+     *             1 = this greater than that
      */
     public function compare(MoneyInterface $money): int
     {

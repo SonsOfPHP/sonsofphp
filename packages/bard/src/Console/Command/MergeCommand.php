@@ -3,10 +3,10 @@
 namespace SonsOfPHP\Bard\Console\Command;
 
 use SonsOfPHP\Bard\JsonFile;
-use SonsOfPHP\Bard\Worker\File\Composer\Package\BranchAlias;
-use SonsOfPHP\Bard\Worker\File\Composer\Package\Support;
 use SonsOfPHP\Bard\Worker\File\Composer\Package\Authors;
+use SonsOfPHP\Bard\Worker\File\Composer\Package\BranchAlias;
 use SonsOfPHP\Bard\Worker\File\Composer\Package\Funding;
+use SonsOfPHP\Bard\Worker\File\Composer\Package\Support;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateAutoloadDevSection;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateAutoloadSection;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateProvideSection;
@@ -18,7 +18,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Merges composer.json files
+ * Merges composer.json files.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
@@ -99,7 +99,7 @@ final class MergeCommand extends AbstractCommand
             $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateAutoloadSection($pkgComposerJsonFile));
             $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateAutoloadDevSection($pkgComposerJsonFile));
             $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateProvideSection($pkgComposerJsonFile));
-            //$rootComposerJsonFile = $rootComposerJsonFile->with(new Conflict($pkgComposerJsonFile));
+            // $rootComposerJsonFile = $rootComposerJsonFile->with(new Conflict($pkgComposerJsonFile));
 
             // Update package composer.json
             $pkgComposerJsonFile = $pkgComposerJsonFile->with(new BranchAlias($rootComposerJsonFile));

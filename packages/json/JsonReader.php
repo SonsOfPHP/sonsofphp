@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Json;
 
 /**
- * Reads json files
+ * Reads json files.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
@@ -18,8 +18,6 @@ class JsonReader
         $this->decoder = $decoder ?? new JsonDecoder();
     }
 
-    /**
-     */
     public function read(string $filename, ?bool $associative = null, ?int $depth = null, ?int $flags = null): array
     {
         if (!is_readable($filename)) {

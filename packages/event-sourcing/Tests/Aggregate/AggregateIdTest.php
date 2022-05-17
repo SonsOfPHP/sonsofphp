@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Aggregate;
 
+use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
-use PHPUnit\Framework\TestCase;
 
 final class AggregateIdTest extends TestCase
 {
@@ -30,8 +30,8 @@ final class AggregateIdTest extends TestCase
 
     public function testEquals(): void
     {
-        $idOne   = AggregateId::fromString('1ecb77a6-4b15-6a2e-a38c-3758fccf8ba6');
-        $idTwo   = AggregateId::fromString('1ecb77a6-4b15-6a2e-a38c-3758fccf8ba6');
+        $idOne = AggregateId::fromString('1ecb77a6-4b15-6a2e-a38c-3758fccf8ba6');
+        $idTwo = AggregateId::fromString('1ecb77a6-4b15-6a2e-a38c-3758fccf8ba6');
         $idThree = AggregateId::fromString('1ecb77ad-b0d9-6660-b450-311fcc0e1a8e');
 
         $this->assertTrue($idOne->equals($idOne));

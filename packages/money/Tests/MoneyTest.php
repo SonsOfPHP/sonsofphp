@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\Tests;
 
-use SonsOfPHP\Component\Money\Exception\MoneyException;
+use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
+use SonsOfPHP\Component\Money\Exception\MoneyException;
 use SonsOfPHP\Component\Money\Money;
 use SonsOfPHP\Component\Money\MoneyInterface;
-use PHPUnit\Framework\TestCase;
 
 final class MoneyTest extends TestCase
 {

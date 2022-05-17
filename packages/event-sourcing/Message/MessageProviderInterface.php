@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Message;
 
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
-use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 
 /**
- * Message Provider Interface
+ * Message Provider Interface.
  *
  * A message provider is responsible for mapping a Message to an Event Type and
  * an Event Type to a Message FQCN.
@@ -21,7 +20,7 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 interface MessageProviderInterface
 {
     /**
-     * Returns the event type for the message
+     * Returns the event type for the message.
      *
      * @param MessageInterface|string $message
      *
@@ -30,9 +29,7 @@ interface MessageProviderInterface
     public function getEventTypeForMessage($message): string;
 
     /**
-     * Returns the FQCN for the Message
-     *
-     * @param string $eventType
+     * Returns the FQCN for the Message.
      *
      * @throws EventSourcingException If there is no Message Class for the event type
      */

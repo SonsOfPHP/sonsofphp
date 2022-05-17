@@ -17,20 +17,18 @@ final class Currency implements CurrencyInterface
     private ?int $minorUnit;
 
     /**
-     * @param string $currencyCode
-     * @param int    $numericCode
-     * @param int    $minorUnit
+     * @param int $numericCode
+     * @param int $minorUnit
      */
     public function __construct(string $currencyCode, ?int $numericCode = null, ?int $minorUnit = null)
     {
         $this->currencyCode = strtoupper($currencyCode);
-        $this->numericCode  = $numericCode;
-        $this->minorUnit    = $minorUnit;
+        $this->numericCode = $numericCode;
+        $this->minorUnit = $minorUnit;
     }
 
     /**
      * @see self::getCurrencyCode()
-     * @return string
      */
     public function __toString(): string
     {
@@ -38,21 +36,16 @@ final class Currency implements CurrencyInterface
     }
 
     /**
-     * Makes it easy to create new currencies
+     * Makes it easy to create new currencies.
      *
      * Examples:
      *   Currency::USD();
      *   Currency::USD(840, 2);
-     *
-     * @param string $currencyCode
-     * @param array  $args
-     *
-     * @return CurrencyInterface
      */
     public static function __callStatic(string $currencyCode, array $args): CurrencyInterface
     {
         $numericCode = $args[0] ?? null;
-        $minorUnit   = $args[1] ?? null;
+        $minorUnit = $args[1] ?? null;
 
         return new static($currencyCode, $numericCode, $minorUnit);
     }

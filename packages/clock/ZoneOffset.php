@@ -26,13 +26,14 @@ final class ZoneOffset implements ZoneOffsetInterface
      */
     public function toString(): string
     {
-        $lead    = '+';
-        $hours   = $this->getHours();
+        $lead = '+';
+        $hours = $this->getHours();
         $minutes = (abs($this->getSeconds()) % (60 * 60)) / 60;
         if ($hours < 0) {
-            $lead  = '-';
+            $lead = '-';
             $hours = abs($hours);
         }
+
         return sprintf(
             '%s%02d:%02d',
             $lead,

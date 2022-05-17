@@ -8,7 +8,7 @@ use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId;
 use Symfony\Component\Uid\Uuid;
 
 /**
- * Aggregate ID
+ * Aggregate ID.
  *
  * This Aggregate ID will autogenerate a UUID as the ID when none is passed in. This
  * makes it easier to use without having to use a UUID component.

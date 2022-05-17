@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Aggregate;
 
+use Generator;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
-use Generator;
 
 /**
- * Aggregate
+ * Aggregate.
  *
  * Usage:
  *   $aggregate = DummyAggregate::new(AggregateId::fromString('uuid'));
@@ -19,16 +19,12 @@ use Generator;
 interface AggregateInterface
 {
     /**
-     * Returns the Aggregate ID
-     *
-     * @return AggregateIdInterface
+     * Returns the Aggregate ID.
      */
     public function getAggregateId(): AggregateIdInterface;
 
     /**
-     * Returns the Aggregate Version
-     *
-     * @return AggregateVersionInterface
+     * Returns the Aggregate Version.
      */
     public function getAggregateVersion(): AggregateVersionInterface;
 
@@ -43,12 +39,9 @@ interface AggregateInterface
     public function getPendingEvents(): iterable;
 
     /**
-     * Build Aggregate from a collection of Domain Events
+     * Build Aggregate from a collection of Domain Events.
      *
-     * @param AggregateIdInterface $id
-     * @param Generator            $events yields MessageInterface objects
-     *
-     * @return AggregateInterface
+     * @param Generator $events yields MessageInterface objects
      *
      * @throws EventSourcingException
      */

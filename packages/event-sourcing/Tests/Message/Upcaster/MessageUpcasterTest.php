@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message;
 
-use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
+use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Message\Upcaster\Handler\NullUpcasterHandler;
+use SonsOfPHP\Component\EventSourcing\Message\Upcaster\MessageUpcaster;
+use SonsOfPHP\Component\EventSourcing\Message\Upcaster\MessageUpcasterInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\EventTypeMessageUpcasterProvider;
 use SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\NullMessageUpcasterProvider;
-use SonsOfPHP\Component\EventSourcing\Message\Upcaster\MessageUpcasterInterface;
-use SonsOfPHP\Component\EventSourcing\Message\Upcaster\MessageUpcaster;
 use SonsOfPHP\Component\EventSourcing\Metadata;
-use PHPUnit\Framework\TestCase;
 
 final class MessageUpcasterTest extends TestCase
 {
@@ -43,7 +42,7 @@ final class MessageUpcasterTest extends TestCase
                 Metadata::EVENT_TYPE => 'sons',
             ],
         ];
-        $upcaster     = new MessageUpcaster($provider);
+        $upcaster = new MessageUpcaster($provider);
         $upcastedData = $upcaster->upcast($eventData);
 
         $this->assertSame($eventData, $upcastedData);

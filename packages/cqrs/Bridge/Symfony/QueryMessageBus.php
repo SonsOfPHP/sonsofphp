@@ -16,18 +16,13 @@ class QueryMessageBus
         handle as handleQuery;
     }
 
-    /**
-     * @param MessageBusInterface $queryBus
-     */
     public function __construct(MessageBusInterface $queryBus)
     {
         $this->messageBus = $queryBus;
     }
 
     /**
-     * Handle the Query and return the results
-     *
-     * @param object $query
+     * Handle the Query and return the results.
      *
      * @return mixed
      */

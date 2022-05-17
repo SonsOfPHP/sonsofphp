@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Message\Upcaster;
 
-use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\MessageUpcasterProviderInterface;
 
 /**

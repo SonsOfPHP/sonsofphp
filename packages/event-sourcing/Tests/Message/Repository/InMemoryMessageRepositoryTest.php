@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message\Repository;
 
+use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
-use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Exception\AggregateNotFoundException;
+use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\InMemoryMessageRepository;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterface;
-use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
-use PHPUnit\Framework\TestCase;
 
 final class InMemoryMessageRepositoryTest extends TestCase
 {

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventDispatcher\Tests;
 
-use SonsOfPHP\Component\EventDispatcher\ListenerProvider;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\ListenerProviderInterface;
+use SonsOfPHP\Component\EventDispatcher\ListenerProvider;
 
 final class ListenerProviderTest extends TestCase
 {

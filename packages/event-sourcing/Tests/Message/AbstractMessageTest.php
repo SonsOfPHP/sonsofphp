@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message;
 
+use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
 use SonsOfPHP\Component\EventSourcing\Message\AbstractMessage;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
-use PHPUnit\Framework\TestCase;
 
 final class AbstractMessageTest extends TestCase
 {
@@ -58,11 +58,11 @@ final class AbstractMessageTest extends TestCase
     public function testGettersWithMetadata(): void
     {
         $message = $this->getMockForAbstractClass(AbstractMessage::class, [], '', false)->withMetadata([
-            Metadata::EVENT_ID          => 'event-id',
-            Metadata::EVENT_TYPE        => 'event.type',
-            Metadata::TIMESTAMP         => '2022-04-20',
-            Metadata::TIMESTAMP_FORMAT  => 'Y-m-d',
-            Metadata::AGGREGATE_ID      => 'aggregate-id',
+            Metadata::EVENT_ID => 'event-id',
+            Metadata::EVENT_TYPE => 'event.type',
+            Metadata::TIMESTAMP => '2022-04-20',
+            Metadata::TIMESTAMP_FORMAT => 'Y-m-d',
+            Metadata::AGGREGATE_ID => 'aggregate-id',
             Metadata::AGGREGATE_VERSION => 123,
         ]);
 

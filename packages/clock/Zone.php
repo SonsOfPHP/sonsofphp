@@ -12,11 +12,9 @@ final class Zone implements ZoneInterface
     private string $name;
     private ZoneOffsetInterface $offset;
 
-    /**
-     */
     public function __construct(string $name, ZoneOffsetInterface $offset)
     {
-        $this->name   = $name;
+        $this->name = $name;
         $this->offset = $offset;
     }
 

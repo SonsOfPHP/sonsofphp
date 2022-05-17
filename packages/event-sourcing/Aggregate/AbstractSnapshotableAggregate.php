@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Aggregate;
 
-use SonsOfPHP\Component\EventSourcing\Snapshot\SnapshotInterface;
-use SonsOfPHP\Component\EventSourcing\Snapshot\Snapshot;
 use Generator;
+use SonsOfPHP\Component\EventSourcing\Snapshot\Snapshot;
+use SonsOfPHP\Component\EventSourcing\Snapshot\SnapshotInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Message;
 
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
-use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 
 /**
- * Namespace Provider
+ * Namespace Provider.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
@@ -34,7 +33,7 @@ class NamespaceMessageProvider implements MessageProviderInterface
             $message = $class;
         }
 
-        $parts     = explode('\\', $message);
+        $parts = explode('\\', $message);
         $eventType = array_pop($parts);
         $namespace = implode('\\', $parts);
 

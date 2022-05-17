@@ -7,7 +7,7 @@ namespace SonsOfPHP\Component\Money\CurrencyProvider;
 use SonsOfPHP\Component\Money\Currency;
 
 /**
- * Currency Provider
+ * Currency Provider.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */

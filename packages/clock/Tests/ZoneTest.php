@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock\Tests;
 
-use SonsOfPHP\Component\Clock\ZoneInterface;
-use SonsOfPHP\Component\Clock\Zone;
-use SonsOfPHP\Component\Clock\ZoneOffset;
 use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\Clock\Zone;
+use SonsOfPHP\Component\Clock\ZoneInterface;
+use SonsOfPHP\Component\Clock\ZoneOffset;
 
 final class ZoneTest extends TestCase
 {
@@ -36,7 +36,7 @@ final class ZoneTest extends TestCase
     public function testOffset(): void
     {
         $offset = new ZoneOffset(0);
-        $zone   = new Zone('UTC', $offset);
+        $zone = new Zone('UTC', $offset);
 
         $this->assertSame($offset, $zone->getOffset());
     }

@@ -7,7 +7,7 @@ namespace SonsOfPHP\Component\Clock\Exception;
 use Exception;
 
 /**
- * Clock Exception
+ * Clock Exception.
  *
  * Generic Exception thrown
  *

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Aggregate;
 
+use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
-use PHPUnit\Framework\TestCase;
 
 final class AggregateVersionTest extends TestCase
 {

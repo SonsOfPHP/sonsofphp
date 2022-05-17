@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\FeatureToggle;
 
 /**
- * Feature
+ * Feature.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
@@ -16,7 +16,7 @@ final class Feature implements FeatureInterface
 
     public function __construct(string $key, ToggleInterface $toggle)
     {
-        $this->key    = $key;
+        $this->key = $key;
         $this->toggle = $toggle;
     }
 

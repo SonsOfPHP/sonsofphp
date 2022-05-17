@@ -11,18 +11,12 @@ interface SerializableMessageInterface extends MessageInterface
 {
     /**
      * Serialize the message and return the serialized data that needs to be
-     * stored
-     *
-     * @return array
+     * stored.
      */
     public function serialize(): array;
 
     /**
-     * Rebuild the Message from the serialized data
-     *
-     * @param array $data
-     *
-     * @return SerializableMessageInterface
+     * Rebuild the Message from the serialized data.
      */
     public static function deserialize(array $data): SerializableMessageInterface;
 }

@@ -9,7 +9,7 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageProviderInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 
 /**
- * Event Type Enricher
+ * Event Type Enricher.
  *
  * This will add the Event Type to the message
  *
@@ -19,9 +19,6 @@ final class EventTypeMessageEnricherHandler implements MessageEnricherHandlerInt
 {
     private MessageProviderInterface $messageProvider;
 
-    /**
-     * @param MessageProviderInterface $messageProvider
-     */
     public function __construct(MessageProviderInterface $messageProvider)
     {
         $this->messageProvider = $messageProvider;

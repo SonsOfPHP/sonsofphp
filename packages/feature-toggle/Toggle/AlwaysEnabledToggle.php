@@ -8,7 +8,7 @@ use SonsOfPHP\Component\FeatureToggle\ContextInterface;
 use SonsOfPHP\Component\FeatureToggle\ToggleInterface;
 
 /**
- * Always enabled
+ * Always enabled.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */

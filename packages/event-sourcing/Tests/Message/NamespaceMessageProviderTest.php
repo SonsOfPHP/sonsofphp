@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message;
 
+use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\MessageProviderInterface;
 use SonsOfPHP\Component\EventSourcing\Message\NamespaceMessageProvider;
 use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;
-use PHPUnit\Framework\TestCase;
 
 final class NamespaceMessageProviderTest extends TestCase
 {

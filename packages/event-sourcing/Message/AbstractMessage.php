@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Message;
 
-use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
-use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 
 /**
- * Abstract Domain Event Message
+ * Abstract Domain Event Message.
  *
  * Usage:
  *   $message = MessageClass::new();
@@ -25,7 +25,7 @@ use SonsOfPHP\Component\EventSourcing\Metadata;
  */
 abstract class AbstractMessage implements MessageInterface
 {
-    private array $payload  = [];
+    private array $payload = [];
     private array $metadata = [];
 
     /**
@@ -34,7 +34,7 @@ abstract class AbstractMessage implements MessageInterface
      */
     final private function __construct(?array $payload = null, ?array $metadata = null)
     {
-        $this->payload  = $payload ?? [];
+        $this->payload = $payload ?? [];
         $this->metadata = $metadata ?? [];
     }
 

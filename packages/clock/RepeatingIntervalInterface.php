@@ -6,7 +6,7 @@ namespace SonsOfPHP\Component\Clock;
 
 /**
  * Rn/<interval>
- * R/<interval>
+ * R/<interval>.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */

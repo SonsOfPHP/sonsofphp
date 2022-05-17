@@ -7,7 +7,7 @@ namespace SonsOfPHP\Component\EventSourcing\Message\Enricher;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 
 /**
- * Message Enricher
+ * Message Enricher.
  *
  * This is used to add extra metadata to a message. Message should be
  * enriched before they are stored and before the message is dispatched
@@ -21,10 +21,5 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
  */
 interface MessageEnricherInterface
 {
-    /**
-     * @param MessageInterface $message
-     *
-     * @return MessageInterface
-     */
     public function enrich(MessageInterface $message): MessageInterface;
 }

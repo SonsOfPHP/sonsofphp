@@ -8,7 +8,7 @@ namespace SonsOfPHP\Component\Clock;
  * <start>/<end>
  * <start>/<duration>
  * <duration>/<end>
- * <duration>
+ * <duration>.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Json;
 
 /**
- * JSON Encoder will encode data to a json string
+ * JSON Encoder will encode data to a json string.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */

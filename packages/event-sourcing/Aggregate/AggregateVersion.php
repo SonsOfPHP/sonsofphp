@@ -7,7 +7,7 @@ namespace SonsOfPHP\Component\EventSourcing\Aggregate;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 
 /**
- * Aggregate Version
+ * Aggregate Version.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
@@ -15,9 +15,6 @@ final class AggregateVersion implements AggregateVersionInterface
 {
     private int $version;
 
-    /**
-     * @param int $version
-     */
     public function __construct(int $version = 0)
     {
         $this->version = $version;
@@ -75,9 +72,6 @@ final class AggregateVersion implements AggregateVersionInterface
         return $this->version;
     }
 
-    /**
-     * @return bool
-     */
     private function isValid(): bool
     {
         return $this->version >= 0;

@@ -7,7 +7,7 @@ namespace SonsOfPHP\Component\Clock;
 /**
  * PnYnMnDTnHnMnS
  * PnW
- * P<date>T<time>
+ * P<date>T<time>.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */

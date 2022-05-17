@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\FeatureToggle\Provider;
 
-use SonsOfPHP\Component\FeatureToggle\Exception\FeatureToggleException;
 use SonsOfPHP\Component\FeatureToggle\FeatureInterface;
 
 /**

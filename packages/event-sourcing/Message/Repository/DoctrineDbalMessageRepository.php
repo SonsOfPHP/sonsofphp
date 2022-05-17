@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Message\Repository;
 
+use Doctrine\DBAL\Connection;
+use Generator;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
-use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Exception\AggregateNotFoundException;
+use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
+use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\TableSchema\TableSchemaInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Serializer\MessageSerializerInterface;
-use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
-use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\ParameterType;
-use Doctrine\DBAL\Query\QueryBuilder;
-use Generator;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -26,12 +24,10 @@ class DoctrineDbalMessageRepository implements MessageRepositoryInterface
     private MessageSerializerInterface $serializer;
     private TableSchemaInterface $tableSchema;
 
-    /**
-     */
     public function __construct(Connection $connection, MessageSerializerInterface $serializer, TableSchemaInterface $tableSchema)
     {
-        $this->connection  = $connection;
-        $this->serializer  = $serializer;
+        $this->connection = $connection;
+        $this->serializer = $serializer;
         $this->tableSchema = $tableSchema;
     }
 
@@ -40,7 +36,7 @@ class DoctrineDbalMessageRepository implements MessageRepositoryInterface
      */
     public function persist(MessageInterface $message): void
     {
-        $id      = $message->getAggregateId();
+        $id = $message->getAggregateId();
         $version = $message->getAggregateVersion();
 
         if (null === $id || null === $version) {
@@ -75,8 +71,8 @@ class DoctrineDbalMessageRepository implements MessageRepositoryInterface
      */
     public function find(AggregateIdInterface $id, ?AggregateVersionInterface $version = null): Generator
     {
-        $columnsWithTypes       = $this->tableSchema->getColumns();
-        $aggregateIdColumn      = $this->tableSchema->getAggregateIdColumn();
+        $columnsWithTypes = $this->tableSchema->getColumns();
+        $aggregateIdColumn = $this->tableSchema->getAggregateIdColumn();
         $aggregateVersionColumn = $this->tableSchema->getAggregateVersionColumn();
 
         $builder = $this->connection->createQueryBuilder();
@@ -95,20 +91,15 @@ class DoctrineDbalMessageRepository implements MessageRepositoryInterface
 
         $resultCount = 0;
         foreach ($results as $result) {
-            $resultCount++;
-            $data    = $this->tableSchema->mapColumnsToEventData($result);
+            ++$resultCount;
+            $data = $this->tableSchema->mapColumnsToEventData($result);
             $message = $this->serializer->deserialize($data);
 
             yield $message;
         }
 
         if (0 === $resultCount) {
-            throw new AggregateNotFoundException(
-                sprintf(
-                    'Aggregate "%s" could not be found',
-                    $id->toString(),
-                )
-            );
+            throw new AggregateNotFoundException(sprintf('Aggregate "%s" could not be found', $id->toString()));
         }
     }
 }

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\Tests\CurrencyProvider;
 
-use SonsOfPHP\Component\Money\Exception\MoneyException;
-use SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProviderInterface;
-use SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProvider;
-use SonsOfPHP\Component\Money\CurrencyInterface;
-use SonsOfPHP\Component\Money\Currency;
 use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\Money\Currency;
+use SonsOfPHP\Component\Money\CurrencyInterface;
+use SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProvider;
+use SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProviderInterface;
+use SonsOfPHP\Component\Money\Exception\MoneyException;
 
 final class CurrencyProviderTest extends TestCase
 {

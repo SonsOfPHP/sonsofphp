@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock\Tests;
 
-use SonsOfPHP\Component\Clock\Exception\ClockException;
+use DateTimeImmutable;
+use DateTimeZone;
+use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Clock\ClockInterface;
 use SonsOfPHP\Component\Clock\SystemClock;
-use PHPUnit\Framework\TestCase;
-use DateTimeZone;
-use DateTimeImmutable;
 
 final class SystemClockTest extends TestCase
 {

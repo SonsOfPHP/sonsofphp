@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Bridge\Symfony;
 
-use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\MessageEnricherHandlerInterface;
+use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Blamable Enricher
+ * Blamable Enricher.
  *
  * Adds User information to the event message's metadata
  *

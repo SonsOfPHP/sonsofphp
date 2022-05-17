@@ -8,7 +8,7 @@ use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
 
 /**
- * Snapshot Interface
+ * Snapshot Interface.
  *
  * Snapshots are created by Aggregates and stored using a SnapshotRepository
  *
@@ -16,12 +16,8 @@ use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
  */
 interface SnapshotInterface
 {
-    /**
-     */
     public function getAggregateId(): AggregateIdInterface;
 
-    /**
-     */
     public function getAggregateVersion(): AggregateVersionInterface;
 
     /**

@@ -16,9 +16,6 @@ class CommandMessageBus
     private MessageBusInterface $messageBus;
     private array $stamps = [];
 
-    /**
-     * @param MessageBusInterface $commandBus
-     */
     public function __construct(MessageBusInterface $commandBus)
     {
         $this->messageBus = $commandBus;
@@ -26,7 +23,7 @@ class CommandMessageBus
 
     /**
      * Allows you to dispatch the command with additional stamps if
-     * needed
+     * needed.
      *
      * @param StampInterface[] $stamps
      *
@@ -41,11 +38,7 @@ class CommandMessageBus
     }
 
     /**
-     * Dispatch the command
-     *
-     * @param object $command
-     *
-     * @return Envelope
+     * Dispatch the command.
      */
     public function dispatch(object $command): Envelope
     {

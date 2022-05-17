@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Creates the initial bard.json file
+ * Creates the initial bard.json file.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
@@ -18,10 +18,10 @@ final class InitCommand extends AbstractCommand
     /**
      * {@inheritdoc}
      */
-    //public function __construct()
-    //{
+    // public function __construct()
+    // {
     //    parent::__construct();
-    //}
+    // }
 
     /**
      * {@inheritdoc}
@@ -49,6 +49,7 @@ final class InitCommand extends AbstractCommand
 
         if (file_exists($filename)) {
             $output->writeln('bard.json file already exists');
+
             return self::FAILURE;
         }
 

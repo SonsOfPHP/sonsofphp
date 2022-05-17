@@ -13,11 +13,7 @@ use SonsOfPHP\Component\Money\Exception\MoneyException;
 interface AmountOperatorInterface
 {
     /**
-     * @param AmountInterface $amount
-     *
      * @throws MoneyException
-     *
-     * @return AmountInterface
      */
     public function apply(AmountInterface $amount): AmountInterface;
 }

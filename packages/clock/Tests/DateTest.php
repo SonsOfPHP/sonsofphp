@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock\Tests;
 
+use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Clock\Date;
 use SonsOfPHP\Component\Clock\DateInterface;
-use PHPUnit\Framework\TestCase;
 
 final class DateTest extends TestCase
 {

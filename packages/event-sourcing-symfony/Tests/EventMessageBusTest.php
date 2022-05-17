@@ -8,8 +8,8 @@ use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use SonsOfPHP\Component\EventSourcing\Bridge\Symfony\EventMessageBus;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
-use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Envelope;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 final class EventMessageBusTest extends TestCase
 {

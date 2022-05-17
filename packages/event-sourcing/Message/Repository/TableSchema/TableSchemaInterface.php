@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Message\Repository\TableSchema;
 
 /**
- * Table Schema Interface
+ * Table Schema Interface.
  *
  * Because each implementation is different, we need a way to define how we
  * want to use a database table. Using this interface we can define where
@@ -19,23 +19,23 @@ namespace SonsOfPHP\Component\EventSourcing\Message\Repository\TableSchema;
 interface TableSchemaInterface
 {
     /**
-     * Returns the table name where events are stored
+     * Returns the table name where events are stored.
      */
     public function getTableName(): string;
 
     /**
-     * Returns the column name for where the Aggregate ID is kept
+     * Returns the column name for where the Aggregate ID is kept.
      */
     public function getAggregateIdColumn(): string;
 
     /**
-     * Returns the column name for where the Aggregate Version is kept
+     * Returns the column name for where the Aggregate Version is kept.
      */
     public function getAggregateVersionColumn(): string;
 
     /**
      * Returns a key => value array. Keys are the column names and the values
-     * are the column types
+     * are the column types.
      *
      * NOTE: The returned order of the columns should match the same order as the
      *       mapping
@@ -44,7 +44,7 @@ interface TableSchemaInterface
 
     /**
      * After a MessageInterface is serialized, it will use this to map the
-     * event data to the correct database columns
+     * event data to the correct database columns.
      *
      * NOTE: The returned order should match the same order as the getColumns
      */
@@ -52,7 +52,7 @@ interface TableSchemaInterface
 
     /**
      * When retrieving rows from the database, the row will be passed in here. The
-     * output of this will then be deserialized using the MessageSerializer
+     * output of this will then be deserialized using the MessageSerializer.
      */
     public function mapColumnsToEventData(array $result): array;
 }

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Message;
 
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
-use SonsOfPHP\Component\EventSourcing\Metadata;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -18,7 +17,7 @@ abstract class AbstractSerializableMessage extends AbstractMessage implements Se
     final public function serialize(): array
     {
         return [
-            'payload'  => $this->getPayload(),
+            'payload' => $this->getPayload(),
             'metadata' => $this->getMetadata(),
         ];
     }

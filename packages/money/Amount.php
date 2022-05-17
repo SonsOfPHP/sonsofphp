@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money;
 
-use SonsOfPHP\Component\Money\Operator\Amount\AmountOperatorInterface;
 use SonsOfPHP\Component\Money\Operator\Amount\AddAmountOperator;
-use SonsOfPHP\Component\Money\Operator\Amount\SubtractAmountOperator;
-use SonsOfPHP\Component\Money\Operator\Amount\MultiplyAmountOperator;
+use SonsOfPHP\Component\Money\Operator\Amount\AmountOperatorInterface;
 use SonsOfPHP\Component\Money\Operator\Amount\DivideAmountOperator;
+use SonsOfPHP\Component\Money\Operator\Amount\MultiplyAmountOperator;
+use SonsOfPHP\Component\Money\Operator\Amount\SubtractAmountOperator;
 use SonsOfPHP\Component\Money\Query\Amount\AmountQueryInterface;
 use SonsOfPHP\Component\Money\Query\Amount\IsEqualToAmountQuery;
 use SonsOfPHP\Component\Money\Query\Amount\IsGreaterThanAmountQuery;
@@ -36,7 +36,6 @@ final class Amount implements AmountInterface
 
     /**
      * @see AmountInterface::toString()
-     * @return string
      */
     public function __toString(): string
     {

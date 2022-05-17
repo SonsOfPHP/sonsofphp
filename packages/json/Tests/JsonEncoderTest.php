@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Json\Tests;
 
-use SonsOfPHP\Component\Json\JsonEncoder;
-use SonsOfPHP\Component\Json\JsonException;
 use PHPUnit\Framework\TestCase;
 use ReflectionObject;
+use SonsOfPHP\Component\Json\JsonEncoder;
+use SonsOfPHP\Component\Json\JsonException;
 
 final class JsonEncoderTest extends TestCase
 {

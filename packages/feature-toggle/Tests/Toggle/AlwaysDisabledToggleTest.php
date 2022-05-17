@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\FeatureToggle\Tests\Toggle;
 
-use SonsOfPHP\Component\FeatureToggle\Toggle\AlwaysDisabledToggle;
-use SonsOfPHP\Component\FeatureToggle\Context;
-use SonsOfPHP\Component\FeatureToggle\ToggleInterface;
 use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\FeatureToggle\Context;
+use SonsOfPHP\Component\FeatureToggle\Toggle\AlwaysDisabledToggle;
+use SonsOfPHP\Component\FeatureToggle\ToggleInterface;
 
 final class AlwaysDisabledToggleTest extends TestCase
 {

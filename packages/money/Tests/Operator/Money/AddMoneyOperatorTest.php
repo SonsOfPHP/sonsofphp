@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\Tests\Operator\Money;
 
-use SonsOfPHP\Component\Money\Money;
+use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
+use SonsOfPHP\Component\Money\Money;
 use SonsOfPHP\Component\Money\Operator\Money\AddMoneyOperator;
 use SonsOfPHP\Component\Money\Operator\Money\MoneyOperatorInterface;
-use PHPUnit\Framework\TestCase;
 
 final class AddMoneyOperatorTest extends TestCase
 {

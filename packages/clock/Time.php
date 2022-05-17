@@ -16,9 +16,9 @@ final class Time implements TimeInterface
 
     public function __construct(int $hour, int $minute, int $second, int $millisecond)
     {
-        $this->hour        = $hour;
-        $this->minute      = $minute;
-        $this->second      = $second;
+        $this->hour = $hour;
+        $this->minute = $minute;
+        $this->second = $second;
         $this->millisecond = $millisecond;
     }
 

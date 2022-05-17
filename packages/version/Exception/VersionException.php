@@ -7,7 +7,7 @@ namespace SonsOfPHP\Component\Version\Exception;
 use Exception;
 
 /**
- * General Exception thrown by this library
+ * General Exception thrown by this library.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */

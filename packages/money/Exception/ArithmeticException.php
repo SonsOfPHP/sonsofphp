@@ -7,7 +7,7 @@ namespace SonsOfPHP\Component\Money\Exception;
 use Exception;
 
 /**
- * Arithmetic Exception
+ * Arithmetic Exception.
  *
  * This is thrown when the math is fucked up like dividing by zero
  *

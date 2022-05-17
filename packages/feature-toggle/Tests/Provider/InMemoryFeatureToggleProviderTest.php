@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\FeatureToggle\Tests\Provider;
 
+use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\FeatureToggle\Feature;
 use SonsOfPHP\Component\FeatureToggle\Provider\FeatureToggleProviderInterface;
 use SonsOfPHP\Component\FeatureToggle\Provider\InMemoryFeatureToggleProvider;
-use SonsOfPHP\Component\FeatureToggle\Feature;
 use SonsOfPHP\Component\FeatureToggle\ToggleInterface;
-use PHPUnit\Framework\TestCase;
 
 final class InMemoryFeatureToggleProviderTest extends TestCase
 {

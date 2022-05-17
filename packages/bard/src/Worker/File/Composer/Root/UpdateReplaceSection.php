@@ -23,7 +23,7 @@ final class UpdateReplaceSection implements WorkerInterface
     public function apply(JsonFile $rootComposerJsonFile): JsonFile
     {
         $rootReplace = $rootComposerJsonFile->getSection('replace');
-        $pkgName     = $this->pkgComposerJsonFile->getSection('name');
+        $pkgName = $this->pkgComposerJsonFile->getSection('name');
 
         $rootReplace[$pkgName] = 'self.version';
 

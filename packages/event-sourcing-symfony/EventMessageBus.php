@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Bridge\Symfony;
 
-use Symfony\Component\Messenger\MessageBusInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

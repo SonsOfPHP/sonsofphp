@@ -3,20 +3,19 @@
 namespace SonsOfPHP\Bard\Console\Command;
 
 use SonsOfPHP\Bard\JsonFile;
-use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateReplaceSection;
 use SonsOfPHP\Bard\Worker\File\Bard\UpdateVersion;
+use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateReplaceSection;
 use SonsOfPHP\Component\Json\Json;
 use SonsOfPHP\Component\Version\Version;
-use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
 /**
- * Release command will take in user input and call the other release commands
+ * Release command will take in user input and call the other release commands.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
@@ -30,10 +29,10 @@ final class ReleaseCommand extends AbstractCommand
     /**
      * {@inheritdoc}
      */
-    //public function __construct()
-    //{
+    // public function __construct()
+    // {
     //    parent::__construct();
-    //}
+    // }
 
     /**
      * {@inheritdoc}
@@ -70,7 +69,7 @@ final class ReleaseCommand extends AbstractCommand
         }
 
         $this->bardConfig = new JsonFile($input->getOption('working-dir').'/bard.json');
-        $currentVersion   = new Version($this->bardConfig->getSection('version'));
+        $currentVersion = new Version($this->bardConfig->getSection('version'));
 
         if (in_array($version, ['major', 'minor', 'patch'])) {
             switch ($version) {
@@ -129,7 +128,7 @@ final class ReleaseCommand extends AbstractCommand
         // "package/name": "self.version"
         $io->section('updating root composer.json "replace" section with package information');
         foreach ($this->bardConfig->getSection('packages') as $pkg) {
-            $pkgComposerJsonFile  = new JsonFile(realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json'));
+            $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json'));
             $output->writeln([
                 $formatter->formatSection($pkgComposerJsonFile->getSection('name'), 'Updating root <info>composer.json</info>'),
             ]);
@@ -176,7 +175,7 @@ final class ReleaseCommand extends AbstractCommand
         $io->title(sprintf('updating package repos with release %s', $this->releaseVersion->toString()));
         foreach ($this->bardConfig->getSection('packages') as $pkg) {
             $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json'));
-            $pkgName             = $pkgComposerJsonFile->getSection('name');
+            $pkgName = $pkgComposerJsonFile->getSection('name');
             $io->text(sprintf('Package <info>%s</> is being released', $pkgName));
             $processCommands = [
                 ['git', 'subtree', 'split', '-P', $pkg['path'], '-b', $pkgName],
@@ -198,11 +197,11 @@ final class ReleaseCommand extends AbstractCommand
             $io->newLine();
         }
         $io->text('All Packages have been Released');
-        //$io->success('All Packages have been Released');
+        // $io->success('All Packages have been Released');
 
         // 5. Update branch alias in all composer.json files
         // - Only if update is major or minor
-        //$io->section('Updating Branch Alias in root and packages');
+        // $io->section('Updating Branch Alias in root and packages');
 
         // 6. Update bard.json with current version
         $io->section('Updating version in bard.json');
@@ -213,20 +212,20 @@ final class ReleaseCommand extends AbstractCommand
         $io->text('bard.json updated with new version');
 
         // 7. Commit and push updates
-        //$io->section('Updating mother repo');
-        //$processCommands = [
+        // $io->section('Updating mother repo');
+        // $processCommands = [
         //    ['git', 'add', '.'],
         //    ['git', 'commit', '-m', '"starting release"'],
         //    ['git', 'push', 'origin', $input->getOption('branch')],
-        //];
-        //foreach ($processCommands as $cmd) {
+        // ];
+        // foreach ($processCommands as $cmd) {
         //    $process = new Process($cmd);
         //    $io->text($process->getCommandLine());
         //    if (!$this->isDryRun) {
         //        $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
         //    }
-        //}
-        //$io->text('done');
+        // }
+        // $io->text('done');
 
         $io->newLine();
         $io->success('Congrations on your new release');

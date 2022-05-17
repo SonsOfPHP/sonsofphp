@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Message\Repository\TableSchema;
 
-use SonsOfPHP\Component\EventSourcing\Metadata;
+use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\DBAL\Schema\Table;
 use Doctrine\DBAL\Types\Type;
-use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\ParameterType;
+use SonsOfPHP\Component\EventSourcing\Metadata;
 
 /**
- * V1 Table Schema
+ * V1 Table Schema.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
@@ -33,20 +32,18 @@ class TableSchemaV1 implements TableSchemaInterface
         return 'aggregate_root_version';
     }
 
-    /**
-     */
-    //public function createTable(): void
-    //{
+    // public function createTable(): void
+    // {
     //    $schema = new Schema();
     //    $this->configureSchema($schema);
 
     //    //foreach ($schema->toSql($this->connection->getDatabasePlatform()) as $sql) {
     //    //    $this->connection->executeStatement($sql);
     //    //}
-    //}
+    // }
 
-    //public function configureSchema(Schema $schema): void
-    //{
+    // public function configureSchema(Schema $schema): void
+    // {
     //    if ($schema->hasTable($this->getTableName())) {
     //        return;
     //    }
@@ -60,40 +57,40 @@ class TableSchemaV1 implements TableSchemaInterface
     //    $table->setPrimaryKey(['event_id']);
     //    $table->addIndex(['aggregate_id']); // All Events
     //    $table->addIndex(['aggregate_id', 'aggregate_version']); // All Events with Version
-    //}
+    // }
 
     /**
      * Getting the columns with the Types helps to map things when doing selects and
-     * inserts
+     * inserts.
      */
     public function getColumns(): array
     {
         return [
-            'event_id'               => Type::getType('string'),
-            'event_type'             => Type::getType('string'),
-            'aggregate_root_id'      => Type::getType('string'),
+            'event_id' => Type::getType('string'),
+            'event_type' => Type::getType('string'),
+            'aggregate_root_id' => Type::getType('string'),
             'aggregate_root_version' => Type::getType('integer'),
-            'created_at'             => Type::getType('datetime'),
-            'payload'                => Type::getType('array'),
-            'metadata'               => Type::getType('array'),
+            'created_at' => Type::getType('datetime'),
+            'payload' => Type::getType('array'),
+            'metadata' => Type::getType('array'),
         ];
     }
 
     /**
      * The input is the serialized data and the output is key value array
      * where the key is the column and the value is the data to insert
-     * into that column
+     * into that column.
      */
     public function mapEventDataToColumns(array $data): array
     {
         return [
-            'event_id'               => $data['metadata'][Metadata::EVENT_ID],
-            'event_type'             => $data['metadata'][Metadata::EVENT_TYPE],
-            'aggregate_root_id'      => $data['metadata'][Metadata::AGGREGATE_ID],
+            'event_id' => $data['metadata'][Metadata::EVENT_ID],
+            'event_type' => $data['metadata'][Metadata::EVENT_TYPE],
+            'aggregate_root_id' => $data['metadata'][Metadata::AGGREGATE_ID],
             'aggregate_root_version' => $data['metadata'][Metadata::AGGREGATE_VERSION],
-            'created_at'             => new \DateTimeImmutable($data['metadata'][Metadata::TIMESTAMP]),
-            'payload'                => $data['payload'],
-            'metadata'               => $data['metadata'],
+            'created_at' => new \DateTimeImmutable($data['metadata'][Metadata::TIMESTAMP]),
+            'payload' => $data['payload'],
+            'metadata' => $data['metadata'],
         ];
     }
 
@@ -106,7 +103,7 @@ class TableSchemaV1 implements TableSchemaInterface
     public function mapColumnsToEventData(array $result): array
     {
         return [
-            'payload'  => unserialize($result['payload']),
+            'payload' => unserialize($result['payload']),
             'metadata' => unserialize($result['metadata']),
         ];
     }

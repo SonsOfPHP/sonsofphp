@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\CurrencyProvider;
 
-use SonsOfPHP\Component\Money\Exception\MoneyException;
-use SonsOfPHP\Component\Money\Exception\UnknownCurrencyException;
 use SonsOfPHP\Component\Money\CurrencyInterface;
 use SonsOfPHP\Component\Money\Query\CurrencyProvider\CurrencyProviderQueryInterface;
 use SonsOfPHP\Component\Money\Query\CurrencyProvider\GetCurrencyQuery;

@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Message\Repository;
 
-use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
-use SonsOfPHP\Component\EventSourcing\Exception\AggregateNotFoundException;
+use Generator;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
+use SonsOfPHP\Component\EventSourcing\Exception\AggregateNotFoundException;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
-use Generator;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -23,7 +22,7 @@ final class InMemoryMessageRepository implements MessageRepositoryInterface
      */
     public function persist(MessageInterface $message): void
     {
-        $id      = $message->getAggregateId();
+        $id = $message->getAggregateId();
         $version = $message->getAggregateVersion();
 
         $this->storage[$id->toString()][$version->toInt()] = $message;

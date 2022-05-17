@@ -7,7 +7,7 @@ namespace SonsOfPHP\Component\Money\Exception;
 use Exception;
 
 /**
- * Money Exception
+ * Money Exception.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */

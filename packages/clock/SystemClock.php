@@ -9,7 +9,7 @@ use DateTimeInterface;
 use DateTimeZone;
 
 /**
- * System Clock
+ * System Clock.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
@@ -17,8 +17,6 @@ class SystemClock implements ClockInterface
 {
     private DateTimeZone $zone;
 
-    /**
-     */
     public function __construct(?DateTimeZone $zone = null)
     {
         $this->zone = $zone ?? new DateTimeZone('UTC');
@@ -37,9 +35,6 @@ class SystemClock implements ClockInterface
         return new DateTimeImmutable('now', $this->zone);
     }
 
-    /**
-     * @return DateTimeZone
-     */
     public function getZone(): DateTimeZone
     {
         return $this->zone;

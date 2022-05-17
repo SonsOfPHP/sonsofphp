@@ -13,21 +13,15 @@ final class Date implements DateInterface
     private int $month;
     private int $day;
 
-    /**
-     * @param int $year
-     * @param int $month
-     * @param int $day
-     */
     public function __construct(int $year, int $month, int $day)
     {
-        $this->year  = $year;
+        $this->year = $year;
         $this->month = $month;
-        $this->day   = $day;
+        $this->day = $day;
     }
 
     /**
      * @see self::toString()
-     * @return string
      */
     public function __toString(): string
     {

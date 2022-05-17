@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider;
 
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
-use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\MessageEnricherHandlerInterface;
 
 /**
- * Chain Message Enricher Provider
+ * Chain Message Enricher Provider.
  *
  * Allows you to use multiple Message Enricher Providers
  *
@@ -28,9 +27,6 @@ final class ChainMessageEnricherProvider implements MessageEnricherProviderInter
         }
     }
 
-    /**
-     * @param MessageEnricherProviderInterface $provider
-     */
     public function registerProvider(MessageEnricherProviderInterface $provider): void
     {
         $this->providers[] = $provider;

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock;
 
-use SonsOfPHP\Component\Clock\Exception\ClockException;
 use DateTimeImmutable;
 use DateTimeInterface;
 use DateTimeZone;
+use SonsOfPHP\Component\Clock\Exception\ClockException;
 
 /**
- * Fixed Clock
+ * Fixed Clock.
  *
  * The test clock is used for testing purposes. It freezes time in place and has the ability
  * to update or set the time to whatever you want.
@@ -44,9 +44,6 @@ final class FixedClock implements ClockInterface
         return $this->time;
     }
 
-    /**
-     * @return DateTimeZone
-     */
     public function getZone(): DateTimeZone
     {
         return $this->zone;
@@ -54,8 +51,6 @@ final class FixedClock implements ClockInterface
 
     /**
      * Updates the current clock time to be when the tick happened.
-     *
-     * @return void
      */
     public function tick(): void
     {
@@ -70,10 +65,6 @@ final class FixedClock implements ClockInterface
      *
      * Example:
      *   $clock->tickTo('2022-04-20 04:20:00');
-     *
-     * @param string $input
-     *
-     * @return void
      *
      * @throws ClockException
      */

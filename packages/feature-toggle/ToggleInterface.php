@@ -10,9 +10,7 @@ namespace SonsOfPHP\Component\FeatureToggle;
 interface ToggleInterface
 {
     /**
-     * Returns true if this strategy is enabled
-     *
-     * @return bool
+     * Returns true if this strategy is enabled.
      */
     public function isEnabled(ContextInterface $context): bool;
 }

@@ -13,8 +13,6 @@ class ListenerProvider implements ListenerProviderInterface
 {
     private array $listeners = [];
 
-    /**
-     */
     public function add(string $event, $listener)
     {
         $this->listeners[$event][] = $listener;

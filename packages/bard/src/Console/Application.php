@@ -34,7 +34,7 @@ final class Application extends BaseApplication
     {
         $definition = parent::getDefaultInputDefinition();
         $definition->addOption(new InputOption('working-dir', 'd', InputOption::VALUE_REQUIRED, 'Working Directory', getcwd()));
-        //$definition->addOption(new InputOption('branch', 'b', InputOption::VALUE_REQUIRED, 'Mainline Branch', 'main'));
+        // $definition->addOption(new InputOption('branch', 'b', InputOption::VALUE_REQUIRED, 'Mainline Branch', 'main'));
 
         return $definition;
     }

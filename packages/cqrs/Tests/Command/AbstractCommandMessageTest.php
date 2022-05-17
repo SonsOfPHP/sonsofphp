@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Cqrs\Tests\Command;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Cqrs\Tests\DummyCommand;
 use SonsOfPHP\Component\Cqrs\Command\AbstractCommandMessage;
 use SonsOfPHP\Component\Cqrs\Command\CommandMessageInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use SonsOfPHP\Component\Cqrs\Tests\DummyCommand;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

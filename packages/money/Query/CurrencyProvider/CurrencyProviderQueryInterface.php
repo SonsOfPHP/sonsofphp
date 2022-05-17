@@ -14,8 +14,6 @@ use SonsOfPHP\Component\Money\Query\QueryInterface;
 interface CurrencyProviderQueryInterface extends QueryInterface
 {
     /**
-     * @param CurrencyProviderInterface $provider
-     *
      * @throws MoneyException
      *
      * @return mixed

@@ -23,11 +23,11 @@ final class UpdateAutoloadDevSection implements WorkerInterface
     public function apply(JsonFile $rootComposerJsonFile): JsonFile
     {
         $rootDir = pathinfo($rootComposerJsonFile->getFilename(), PATHINFO_DIRNAME);
-        $pkgDir  = pathinfo($this->pkgComposerJsonFile->getFilename(), PATHINFO_DIRNAME);
-        $path    = trim(str_replace($rootDir, '', $pkgDir), '/');
+        $pkgDir = pathinfo($this->pkgComposerJsonFile->getFilename(), PATHINFO_DIRNAME);
+        $path = trim(str_replace($rootDir, '', $pkgDir), '/');
 
         $rootAutoloadSection = $rootComposerJsonFile->getSection('autoload-dev');
-        $pkgAutoloadSection  = $this->pkgComposerJsonFile->getSection('autoload-dev');
+        $pkgAutoloadSection = $this->pkgComposerJsonFile->getSection('autoload-dev');
 
         if (null === $pkgAutoloadSection) {
             return $rootComposerJsonFile;

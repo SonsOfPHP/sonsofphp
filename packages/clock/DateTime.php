@@ -13,11 +13,6 @@ final class DateTime implements DateTimeInterface
     private TimeInterface $time;
     private ZoneInterface $zone;
 
-    /**
-     * @param DateInterface $date
-     * @param TimeInterface $time
-     * @param ZoneInterface $zone
-     */
     public function __construct(DateInterface $date, TimeInterface $time, ZoneInterface $zone)
     {
         $this->date = $date;
@@ -27,7 +22,6 @@ final class DateTime implements DateTimeInterface
 
     /**
      * @see self::toString()
-     * @return string
      */
     public function __toString(): string
     {

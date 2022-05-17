@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Message\Serializer;
 
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
-use SonsOfPHP\Component\EventSourcing\Message\SerializableMessageInterface;
-use SonsOfPHP\Component\EventSourcing\Message\MessageProviderInterface;
-use SonsOfPHP\Component\EventSourcing\Metadata;
-use SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricherInterface;
-use SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricher;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\EventTypeMessageEnricherHandler;
+use SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricher;
+use SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricherInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\AllMessageEnricherProvider;
-use SonsOfPHP\Component\EventSourcing\Message\Upcaster\MessageUpcasterInterface;
+use SonsOfPHP\Component\EventSourcing\Message\MessageProviderInterface;
+use SonsOfPHP\Component\EventSourcing\Message\SerializableMessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Upcaster\MessageUpcaster;
+use SonsOfPHP\Component\EventSourcing\Message\Upcaster\MessageUpcasterInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\NullMessageUpcasterProvider;
+use SonsOfPHP\Component\EventSourcing\Metadata;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -26,7 +26,6 @@ class MessageSerializer implements MessageSerializerInterface
     private MessageUpcasterInterface $messageUpcaster;
 
     /**
-     * @param MessageProviderInterface $messageProvider
      * @param MessageEnricherInterface $messageEnricher
      * @param MessageUpcasterInterface $messageUpcaster
      */
@@ -70,6 +69,7 @@ class MessageSerializer implements MessageSerializerInterface
 
     /**
      * @internal
+     *
      * @throws EventSourcingException
      */
     private function ensureRequiredMetadataExists(array $metadata): void

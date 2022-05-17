@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock\Tests;
 
-use SonsOfPHP\Component\Clock\DateTimeInterface;
-use SonsOfPHP\Component\Clock\DateTime;
+use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Clock\Date;
+use SonsOfPHP\Component\Clock\DateTime;
+use SonsOfPHP\Component\Clock\DateTimeInterface;
 use SonsOfPHP\Component\Clock\Time;
 use SonsOfPHP\Component\Clock\Zone;
 use SonsOfPHP\Component\Clock\ZoneOffset;
-use PHPUnit\Framework\TestCase;
 
 final class DateTimeTest extends TestCase
 {

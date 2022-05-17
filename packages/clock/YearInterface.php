@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Clock;
 
 /**
- * YYYY
+ * YYYY.
  *
  * Valid range = 0000 to 9999
  *
@@ -14,16 +14,12 @@ namespace SonsOfPHP\Component\Clock;
 interface YearInterface
 {
     /**
-     * Returns the Year as a string
-     *
-     * @return string
+     * Returns the Year as a string.
      */
     public function toString(): string;
 
     /**
-     * Returns the Year as an integer
-     *
-     * @return int
+     * Returns the Year as an integer.
      */
     public function toInt(): int;
 }

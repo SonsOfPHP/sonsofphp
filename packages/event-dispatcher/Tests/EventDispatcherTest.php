@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventDispatcher\Tests;
 
-use SonsOfPHP\Component\EventDispatcher\EventDispatcher;
-use SonsOfPHP\Component\EventDispatcher\ListenerProvider;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use SonsOfPHP\Component\EventDispatcher\EventDispatcher;
+use SonsOfPHP\Component\EventDispatcher\ListenerProvider;
 
 final class EventDispatcherTest extends TestCase
 {
@@ -29,7 +29,7 @@ final class EventDispatcherTest extends TestCase
     {
         $dispatcher = new EventDispatcher(new ListenerProvider());
 
-        $event  = new \stdClass();
+        $event = new \stdClass();
         $return = $dispatcher->dispatch($event);
         $this->assertSame($event, $return);
     }

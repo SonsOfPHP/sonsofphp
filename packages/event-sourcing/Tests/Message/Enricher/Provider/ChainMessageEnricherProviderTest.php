@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message\Enricher\Provider;
 
+use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\NullMessageEnricherHandler;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\ChainMessageEnricherProvider;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\MessageEnricherProviderInterface;
-use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\MessageEnricherHandlerInterface;
-use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\NullMessageEnricherHandler;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
-use PHPUnit\Framework\TestCase;
 
 final class ChainMessageEnricherProviderTest extends TestCase
 {

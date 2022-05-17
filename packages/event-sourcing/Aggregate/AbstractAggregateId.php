@@ -7,7 +7,7 @@ namespace SonsOfPHP\Component\EventSourcing\Aggregate;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 
 /**
- * Abstract Aggregate ID
+ * Abstract Aggregate ID.
  *
  * This class is used for when you want to extend it and create your own
  * class like a "UserAggregateId"
@@ -59,6 +59,6 @@ abstract class AbstractAggregateId implements AggregateIdInterface
      */
     public function equals(AggregateIdInterface $that): bool
     {
-        return ($this->toString() === $that->toString());
+        return $this->toString() === $that->toString();
     }
 }

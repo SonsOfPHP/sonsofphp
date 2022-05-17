@@ -19,9 +19,9 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->connection        = $this->createStub(Connection::class);
+        $this->connection = $this->createStub(Connection::class);
         $this->messageSerializer = $this->createMock(MessageSerializerInterface::class);
-        $this->tableSchema       = $this->createMock(TableSchemaInterface::class);
+        $this->tableSchema = $this->createMock(TableSchemaInterface::class);
     }
 
     public function testItHasTheRightInterface(): void

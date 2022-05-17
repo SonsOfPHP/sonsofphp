@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Message\Upcaster\Handler;
 
-use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
-
 /**
- * Null Upcast Handler
+ * Null Upcast Handler.
  *
  * This handler will just pass data through it.
  *

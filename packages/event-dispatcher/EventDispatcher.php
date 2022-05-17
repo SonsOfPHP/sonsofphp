@@ -9,7 +9,7 @@ use Psr\EventDispatcher\ListenerProviderInterface;
 use Psr\EventDispatcher\StoppableEventInterface;
 
 /**
- * Event Dispatcher
+ * Event Dispatcher.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */

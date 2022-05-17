@@ -13,13 +13,10 @@ final class JsonFile
     private array $config;
     private Json $json;
 
-    /**
-     * @param string $filename
-     */
     public function __construct(string $filename)
     {
         $this->filename = $filename;
-        $this->json     = new Json();
+        $this->json = new Json();
     }
 
     private function load(): void
@@ -35,9 +32,7 @@ final class JsonFile
     }
 
     /**
-     * @param string $section
-     *
-     * @return null|array|int|string
+     * @return array|int|string|null
      */
     public function getSection(string $section)
     {
@@ -64,8 +59,6 @@ final class JsonFile
         return $clone;
     }
 
-    /**
-     */
     public function toJson(): string
     {
         return $this->json->getEncoder()
@@ -79,7 +72,7 @@ final class JsonFile
      * The idea is something like this
      * $newRootComposerJsonFile = $rootComposerJsonFile->with($updateReplaceSection, $pkgComposerJsonFile);
      * or
-     * $newRootComposerJsonFile = $rootComposerJsonFile->with($bumpBranchAlias);
+     * $newRootComposerJsonFile = $rootComposerJsonFile->with($bumpBranchAlias);.
      *
      * Can even use this for the package composer.json file
      * $newPkgComposerJsonFile = $pkgComposerJsonFile->with($updateSupportSection, $rootComposerJsonFile);

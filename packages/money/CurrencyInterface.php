@@ -7,7 +7,7 @@ namespace SonsOfPHP\Component\Money;
 use SonsOfPHP\Component\Money\Query\Currency\CurrencyQueryInterface;
 
 /**
- * Currency Interface
+ * Currency Interface.
  *
  * @see https://en.wikipedia.org/wiki/ISO_4217
  *
@@ -16,16 +16,14 @@ use SonsOfPHP\Component\Money\Query\Currency\CurrencyQueryInterface;
 interface CurrencyInterface
 {
     /**
-     * Returns the Alphabetic Code of the currency
+     * Returns the Alphabetic Code of the currency.
      *
      * Defined by the ISO 4217 standard
-     *
-     * @return string
      */
     public function getCurrencyCode(): string;
 
     /**
-     * The Currency's Numeric Code
+     * The Currency's Numeric Code.
      *
      * Defined by the ISO 4217 standard
      *
@@ -34,7 +32,7 @@ interface CurrencyInterface
     public function getNumericCode(): ?int;
 
     /**
-     * The Currency's Minor Unit
+     * The Currency's Minor Unit.
      *
      * Defined by the ISO 4217 standard
      *
@@ -46,17 +44,11 @@ interface CurrencyInterface
     public function getMinorUnit(): ?int;
 
     /**
-     * Compare two currencies to see if they are the same
-     *
-     * @param CurrencyInterface $currency
-     *
-     * @return bool
+     * Compare two currencies to see if they are the same.
      */
     public function isEqualTo(CurrencyInterface $currency): bool;
 
     /**
-     * @param CurrencyQueryInterface $query
-     *
      * @return mixed
      */
     public function query(CurrencyQueryInterface $query);

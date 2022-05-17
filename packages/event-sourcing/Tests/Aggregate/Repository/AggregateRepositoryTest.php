@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Aggregate\Repository;
 
-use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
-use SonsOfPHP\Component\EventSourcing\Aggregate\Repository\AggregateRepository;
-use SonsOfPHP\Component\EventSourcing\Aggregate\Repository\AggregateRepositoryInterface;
-use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
-use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterface;
-use SonsOfPHP\Component\EventSourcing\Message\Repository\InMemoryMessageRepository;
-use SonsOfPHP\Component\EventSourcing\Message\AbstractSerializableMessage;
-use SonsOfPHP\Component\EventSourcing\Tests\FakeAggregate;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
+use SonsOfPHP\Component\EventSourcing\Aggregate\Repository\AggregateRepository;
+use SonsOfPHP\Component\EventSourcing\Aggregate\Repository\AggregateRepositoryInterface;
+use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
+use SonsOfPHP\Component\EventSourcing\Message\AbstractSerializableMessage;
+use SonsOfPHP\Component\EventSourcing\Message\Repository\InMemoryMessageRepository;
+use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterface;
+use SonsOfPHP\Component\EventSourcing\Tests\FakeAggregate;
 
 final class AggregateRepositoryTest extends TestCase
 {
@@ -23,8 +23,8 @@ final class AggregateRepositoryTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->aggregateClass    = FakeAggregate::class;
-        $this->eventDispatcher   = $this->createMock(EventDispatcherInterface::class);
+        $this->aggregateClass = FakeAggregate::class;
+        $this->eventDispatcher = $this->createMock(EventDispatcherInterface::class);
         $this->messageRepository = new InMemoryMessageRepository();
     }
 

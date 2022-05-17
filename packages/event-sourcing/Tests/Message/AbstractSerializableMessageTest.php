@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message;
 
+use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\AbstractSerializableMessage;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\SerializableMessageInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
-use PHPUnit\Framework\TestCase;
 
 final class AbstractSerializableMessageTest extends TestCase
 {
@@ -61,11 +61,11 @@ final class AbstractSerializableMessageTest extends TestCase
                 'key' => 'value',
             ],
             'metadata' => [
-                Metadata::EVENT_ID          => 'event-id',
-                Metadata::EVENT_TYPE        => 'event.type',
-                Metadata::TIMESTAMP         => '2022-04-20',
-                Metadata::TIMESTAMP_FORMAT  => 'Y-m-d',
-                Metadata::AGGREGATE_ID      => 'aggregate-id',
+                Metadata::EVENT_ID => 'event-id',
+                Metadata::EVENT_TYPE => 'event.type',
+                Metadata::TIMESTAMP => '2022-04-20',
+                Metadata::TIMESTAMP_FORMAT => 'Y-m-d',
+                Metadata::AGGREGATE_ID => 'aggregate-id',
                 Metadata::AGGREGATE_VERSION => 123,
             ],
         ]);

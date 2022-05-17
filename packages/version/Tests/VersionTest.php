@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Version\Tests;
 
+use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Version\Exception\VersionException;
 use SonsOfPHP\Component\Version\Version;
 use SonsOfPHP\Component\Version\VersionInterface;
-use PHPUnit\Framework\TestCase;
 
 final class VersionTest extends TestCase
 {

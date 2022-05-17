@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Aggregate;
 
+use Generator;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
-use Generator;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -31,7 +31,7 @@ abstract class AbstractAggregate implements AggregateInterface
             $id = new AggregateId($id);
         }
 
-        $this->id      = $id;
+        $this->id = $id;
         $this->version = new AggregateVersion();
     }
 
@@ -66,9 +66,7 @@ abstract class AbstractAggregate implements AggregateInterface
     /**
      * Returns true if there are pending events that need to be persisted.
      * This will not clear any pending events and just says if there are or are
-     * not any pending events
-     *
-     * @return bool
+     * not any pending events.
      */
     final public function hasPendingEvents(): bool
     {
@@ -99,8 +97,6 @@ abstract class AbstractAggregate implements AggregateInterface
         return $aggregate;
     }
 
-    /**
-     */
     final protected function raiseEvent(MessageInterface $event): void
     {
         // 1. Apply Event
@@ -111,21 +107,19 @@ abstract class AbstractAggregate implements AggregateInterface
         // need to next() the version. Example, 0 - empty state, 1 - first event that
         // modified state
         $event = $event->withMetadata([
-            Metadata::AGGREGATE_ID      => $this->getAggregateId()->toString(),
+            Metadata::AGGREGATE_ID => $this->getAggregateId()->toString(),
             Metadata::AGGREGATE_VERSION => $this->getAggregateVersion()->toInt(),
-            Metadata::TIMESTAMP         => (new \DateTimeImmutable())->format(Metadata::DEFAULT_TIMESTAMP_FORMAT),
-            Metadata::TIMESTAMP_FORMAT  => Metadata::DEFAULT_TIMESTAMP_FORMAT,
+            Metadata::TIMESTAMP => (new \DateTimeImmutable())->format(Metadata::DEFAULT_TIMESTAMP_FORMAT),
+            Metadata::TIMESTAMP_FORMAT => Metadata::DEFAULT_TIMESTAMP_FORMAT,
         ]);
 
         // 3. append to pending events
         $this->pendingEvents[] = $event;
     }
 
-    /**
-     */
     final protected function applyEvent(MessageInterface $event): void
     {
-        $parts  = explode('\\', get_class($event));
+        $parts = explode('\\', get_class($event));
         $method = 'apply'.end($parts);
 
         if (method_exists($this, $method)) {
