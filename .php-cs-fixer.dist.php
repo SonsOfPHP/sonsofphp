@@ -9,6 +9,9 @@ return $config->setRules([
         // Rule sets
         '@PHP74Migration' => true,
         '@Symfony' => true,
+        // Rules
+        'phpdoc_order' => true,
+        //'php_unit_test_class_requires_covers' => true, // @todo
     ])
     ->setFinder($finder)
 ;
