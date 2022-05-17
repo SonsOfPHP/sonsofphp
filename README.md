@@ -1,7 +1,7 @@
 Sons of PHP
 ===========
 
-Sons of PHP is a collective the builds reusable components and tools using PHP.
+Sons of PHP is builds reusable components and tools using PHP.
 
 * Documentation can be found at [docs.SonsOfPHP.com][docs]
 * Please [Report Issues][issues] and send [Pull Requests][pull-requests] in the [Mother Repository][mother-repo]
