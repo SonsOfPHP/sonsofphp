@@ -41,7 +41,7 @@ final class MessageUpcasterTest extends TestCase
         $eventData = [
             'metadata' => [
                 Metadata::EVENT_TYPE => 'sons',
-            ]
+            ],
         ];
         $upcaster     = new MessageUpcaster($provider);
         $upcastedData = $upcaster->upcast($eventData);

@@ -67,7 +67,7 @@ final class AbstractSerializableMessageTest extends TestCase
                 Metadata::TIMESTAMP_FORMAT  => 'Y-m-d',
                 Metadata::AGGREGATE_ID      => 'aggregate-id',
                 Metadata::AGGREGATE_VERSION => 123,
-            ]
+            ],
         ]);
 
         $this->assertArrayHasKey('key', $msg->getPayload());

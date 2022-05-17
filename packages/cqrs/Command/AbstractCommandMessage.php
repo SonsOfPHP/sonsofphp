@@ -57,6 +57,6 @@ abstract class AbstractCommandMessage implements CommandMessageInterface
      */
     public function getOption(string $key)
     {
-        return isset($this->options[$key]) ? $this->options[$key] : null;
+        return $this->options[$key] ?? null;
     }
 }

@@ -26,7 +26,7 @@ final class EventTypeMessageUpcasterProviderTest extends TestCase
         $eventData = [
             'metadata' => [
                 Metadata::EVENT_TYPE => 'sons',
-            ]
+            ],
         ];
         $handlers = $provider->getUpcastersForEventData($eventData);
 
@@ -49,7 +49,7 @@ final class EventTypeMessageUpcasterProviderTest extends TestCase
         $eventData = [
             'metadata' => [
                 Metadata::EVENT_TYPE => 'sons',
-            ]
+            ],
         ];
         $handlers = $provider->getUpcastersForEventData($eventData);
         $this->assertCount(1, $handlers);

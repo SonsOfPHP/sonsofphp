@@ -47,15 +47,15 @@ final class ReleaseCommand extends AbstractCommand
             ->addArgument('release', InputArgument::REQUIRED, 'Next Release you want to start? Use format <major>.<minor>.<patch>-<PreRelease>+<BuildMetadata> or "major", "minor", "patch"')
             ->setHelp(
                 <<<EOT
-This command allows you to create a new release and will update the various
-repos that have been configured. The current version can be found in the
-`bard.json` file. This will will update the version based on the type of release
-that you are doing.
+                    This command allows you to create a new release and will update the various
+                    repos that have been configured. The current version can be found in the
+                    `bard.json` file. This will will update the version based on the type of release
+                    that you are doing.
 
-    <comment>%command.full_name%</comment>
+                        <comment>%command.full_name%</comment>
 
-Read more at https://docs.SonsOfPHP.com
-EOT
+                    Read more at https://docs.SonsOfPHP.com
+                    EOT
             );
     }
 
@@ -136,13 +136,13 @@ EOT
             $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateReplaceSection($pkgComposerJsonFile));
         }
         $output->writeln([
-            'saving root composer.json'
+            'saving root composer.json',
         ]);
         if (!$this->isDryRun) {
             file_put_contents($rootComposerJsonFile->getFilename(), $rootComposerJsonFile->toJson());
         }
         $output->writeln([
-            'root composer.json file saved'
+            'root composer.json file saved',
         ]);
         $io->newLine();
         $io->success('root "composer.json" update complete');
@@ -232,7 +232,7 @@ EOT
         $io->success('Congrations on your new release');
         if ($this->isDryRun) {
             $io->note([
-                'dry-run was enabled so no files were changed and no code was pushed'
+                'dry-run was enabled so no files were changed and no code was pushed',
             ]);
         }
 

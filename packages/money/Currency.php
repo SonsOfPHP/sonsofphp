@@ -51,8 +51,8 @@ final class Currency implements CurrencyInterface
      */
     public static function __callStatic(string $currencyCode, array $args): CurrencyInterface
     {
-        $numericCode = isset($args[0]) ? $args[0] : null;
-        $minorUnit   = isset($args[1]) ? $args[1] : null;
+        $numericCode = $args[0] ?? null;
+        $minorUnit   = $args[1] ?? null;
 
         return new static($currencyCode, $numericCode, $minorUnit);
     }
