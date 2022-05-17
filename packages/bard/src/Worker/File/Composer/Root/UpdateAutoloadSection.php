@@ -49,8 +49,13 @@ final class UpdateAutoloadSection implements WorkerInterface
             }
         }
 
-        $rootAutoloadSection['psr-4'] = array_unique($rootAutoloadSection['psr-4']);
-        $rootAutoloadSection['exclude-from-classmap'] = array_unique($rootAutoloadSection['exclude-from-classmap']);
+        if (isset($rootAutoloadSection['psr-4'])) {
+            $rootAutoloadSection['psr-4'] = array_unique($rootAutoloadSection['psr-4']);
+        }
+
+        if (isset($rootAutoloadSection['exclude-from-classmap'])) {
+            $rootAutoloadSection['exclude-from-classmap'] = array_unique($rootAutoloadSection['exclude-from-classmap']);
+        }
 
         return $rootComposerJsonFile->setSection('autoload', $rootAutoloadSection);
     }
