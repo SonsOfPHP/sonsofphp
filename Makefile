@@ -34,7 +34,7 @@ purge: # Purge vendor and lock files
 	rm -rf vendor/ packages/*/vendor/ packages/*/composer.lock
 
 test: ## Run Tests
-	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHPUNIT)
+	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHPUNIT) --order-by=defects
 
 lint: lint-php ## Lint files
 
@@ -49,6 +49,9 @@ phpstan: ## Run phpstan
 
 php-cs-fixer: ## run php-cs-fixer
 	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHP_CS_FIXER) fix -vv --diff --allow-risky=no --config=.php-cs-fixer.dist.php
+
+testdox: ## Run tests and output testdox
+	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHPUNIT) --testdox
 
 #-----------
 remote-add: # Add git remotes for all components

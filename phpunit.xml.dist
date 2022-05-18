@@ -9,7 +9,10 @@
     convertDeprecationsToExceptions="false"
     backupGlobals="false"
     colors="true"
-    bootstrap="vendor/autoload.php">
+    bootstrap="vendor/autoload.php"
+    beStrictAboutCoversAnnotation="false"
+    forceCoversAnnotation="false"
+>
 
     <testsuites>
         <testsuite name="all">
