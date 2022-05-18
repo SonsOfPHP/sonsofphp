@@ -9,8 +9,14 @@ use SonsOfPHP\Component\Version\Exception\VersionException;
 use SonsOfPHP\Component\Version\Version;
 use SonsOfPHP\Component\Version\VersionInterface;
 
+/**
+ * @coversDefaultClass \SonsOfPHP\Component\Version\Version
+ */
 final class VersionTest extends TestCase
 {
+    /**
+     * @covers ::__construct
+     */
     public function testItHasTheCorrectInterface(): void
     {
         $version = new Version('1.2.3');
@@ -18,6 +24,10 @@ final class VersionTest extends TestCase
         $this->assertInstanceOf(VersionInterface::class, $version);
     }
 
+    /**
+     * @covers ::__construct
+     * @covers ::from
+     */
     public function testItHasTheCorrectInterfaceWhenUsingFrom(): void
     {
         $version = Version::from('1.2.3');
@@ -27,6 +37,14 @@ final class VersionTest extends TestCase
 
     /**
      * @dataProvider validVersions
+     * @covers ::__construct
+     * @covers ::__toString
+     * @covers ::getMajor
+     * @covers ::getMinor
+     * @covers ::getPatch
+     * @covers ::getPreRelease
+     * @covers ::getBuild
+     * @covers ::toString
      */
     public function testItParsesCorrectly(string $ver, int $major, int $minor, int $patch, ?string $preRelease = '', ?string $build = ''): void
     {
@@ -42,6 +60,7 @@ final class VersionTest extends TestCase
 
     /**
      * @dataProvider invalidVersions
+     * @covers ::__construct
      */
     public function testItThrowsExceptionForInvalidVersions(string $ver): void
     {
@@ -51,12 +70,16 @@ final class VersionTest extends TestCase
 
     /**
      * @dataProvider compareVersions
+     * @covers ::compare
      */
     public function testCompareWorksCorrectly(VersionInterface $v1, VersionInterface $v2, int $result): void
     {
         $this->assertSame($result, $v1->compare($v2));
     }
 
+    /**
+     * @covers ::nextPatch
+     */
     public function testNextPatch(): void
     {
         $version = new Version('1.2.3');
@@ -67,6 +90,9 @@ final class VersionTest extends TestCase
         $this->assertSame('1.2.4', $newVer->toString());
     }
 
+    /**
+     * @covers ::nextMinor
+     */
     public function testNextMinor(): void
     {
         $version = new Version('1.2.3');
@@ -77,6 +103,9 @@ final class VersionTest extends TestCase
         $this->assertSame('1.3.0', $newVer->toString());
     }
 
+    /**
+     * @covers ::nextMajor
+     */
     public function testNextMajor(): void
     {
         $version = new Version('1.2.3');
@@ -87,6 +116,9 @@ final class VersionTest extends TestCase
         $this->assertSame('2.0.0', $newVer->toString());
     }
 
+    /**
+     * @covers ::isGreaterThan
+     */
     public function testIsGreaterThan(): void
     {
         $version = new Version('1.2.3');
@@ -94,6 +126,9 @@ final class VersionTest extends TestCase
         $this->assertTrue($version->isGreaterThan(new Version('1.2.0')));
     }
 
+    /**
+     * @covers ::isLessThan
+     */
     public function testIsLessThan(): void
     {
         $version = new Version('1.2.3');
@@ -101,6 +136,9 @@ final class VersionTest extends TestCase
         $this->assertTrue($version->isLessThan(new Version('1.2.4')));
     }
 
+    /**
+     * @covers ::isEqualTo
+     */
     public function testIsEqualTo(): void
     {
         $version = new Version('1.2.3');
