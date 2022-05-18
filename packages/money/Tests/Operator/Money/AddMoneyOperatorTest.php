@@ -10,6 +10,9 @@ use SonsOfPHP\Component\Money\Money;
 use SonsOfPHP\Component\Money\Operator\Money\AddMoneyOperator;
 use SonsOfPHP\Component\Money\Operator\Money\MoneyOperatorInterface;
 
+/**
+ * @coversDefaultClass SonsOfPHP\Component\Money\Operator\Money\AddMoneyOperator
+ */
 final class AddMoneyOperatorTest extends TestCase
 {
     public function testItHasTheCorrectInterface(): void

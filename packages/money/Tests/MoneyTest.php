@@ -10,6 +10,9 @@ use SonsOfPHP\Component\Money\Exception\MoneyException;
 use SonsOfPHP\Component\Money\Money;
 use SonsOfPHP\Component\Money\MoneyInterface;
 
+/**
+ * @coversDefaultClass SonsOfPHP\Component\Money\Money
+ */
 final class MoneyTest extends TestCase
 {
     public function testItHasTheCorrectInterface(): void
