@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\EventSourcing\Bridge\Doctrine;
+namespace SonsOfPHP\Bridge\Doctrine\EventSourcing;
 
 /**
  * Table Schema Interface.

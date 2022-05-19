@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\EventSourcing\Bridge\Doctrine\Tests;
+namespace SonsOfPHP\Bridge\Doctrine\EventSourcing\Tests;
 
 use Doctrine\DBAL\Connection;
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\EventSourcing\Bridge\Doctrine\DoctrineDbalMessageRepository;
-use SonsOfPHP\Component\EventSourcing\Bridge\Doctrine\TableSchemaInterface;
+use SonsOfPHP\Bridge\Doctrine\EventSourcing\DoctrineDbalMessageRepository;
+use SonsOfPHP\Bridge\Doctrine\EventSourcing\TableSchemaInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Serializer\MessageSerializerInterface;
 
