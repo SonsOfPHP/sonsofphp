@@ -12,6 +12,7 @@ use SonsOfPHP\Component\Money\MoneyInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Money
+ *
  * @uses \SonsOfPHP\Component\Money\Amount
  * @uses \SonsOfPHP\Component\Money\Currency
  */

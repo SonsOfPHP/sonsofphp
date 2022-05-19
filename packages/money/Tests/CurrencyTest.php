@@ -63,9 +63,9 @@ final class CurrencyTest extends TestCase
      */
     public function testIsEqualTo(): void
     {
-        $usd   = Currency::USD();
+        $usd = Currency::USD();
         $other = Currency::USD();
-        $jpy   = Currency::JPY();
+        $jpy = Currency::JPY();
 
         $this->assertFalse($usd->isEqualTo($jpy));
         $this->assertNotSame($usd, $other);

@@ -16,8 +16,6 @@ use SonsOfPHP\Component\Money\Exception\MoneyException;
  */
 final class CurrencyProviderTest extends TestCase
 {
-    /**
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $provider = new CurrencyProvider();
