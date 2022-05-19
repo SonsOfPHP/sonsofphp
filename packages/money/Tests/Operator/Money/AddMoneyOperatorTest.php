@@ -15,6 +15,9 @@ use SonsOfPHP\Component\Money\Operator\Money\MoneyOperatorInterface;
  */
 final class AddMoneyOperatorTest extends TestCase
 {
+    /**
+     * @covers ::__construct
+     */
     public function testItHasTheCorrectInterface(): void
     {
         $money = new Money(100, new Currency('usd'));
@@ -23,6 +26,9 @@ final class AddMoneyOperatorTest extends TestCase
         $this->assertInstanceOf(MoneyOperatorInterface::class, $operator);
     }
 
+    /**
+     * @covers ::apply
+     */
     public function testApplyWithSameCurrencies(): void
     {
         $money = new Money(100, new Currency('usd'));

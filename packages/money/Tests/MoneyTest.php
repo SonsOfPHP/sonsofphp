@@ -12,9 +12,15 @@ use SonsOfPHP\Component\Money\MoneyInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Money
+ * @uses \SonsOfPHP\Component\Money\Amount
+ * @uses \SonsOfPHP\Component\Money\Currency
  */
 final class MoneyTest extends TestCase
 {
+    /**
+     * @covers ::__construct
+     * @covers ::__callStatic
+     */
     public function testItHasTheCorrectInterface(): void
     {
         $money = new Money(100, new Currency('usd'));
@@ -24,6 +30,12 @@ final class MoneyTest extends TestCase
         $this->assertInstanceOf(MoneyInterface::class, $money);
     }
 
+    /**
+     * @covers ::__construct
+     * @covers ::__callStatic
+     * @covers ::getAmount
+     * @covers ::getCurrency
+     */
     public function testMoneyFactoryMagicMethod(): void
     {
         $money = Money::USD(100);
@@ -32,12 +44,19 @@ final class MoneyTest extends TestCase
         $this->assertSame('USD', $money->getCurrency()->getCurrencyCode());
     }
 
+    /**
+     * @covers ::__toString
+     */
     public function testToStringMagicMethod(): void
     {
         $money = Money::USD(100);
         $this->assertSame('100', (string) $money);
     }
 
+    /**
+     * @covers ::isEqualTo
+     * @covers ::query
+     */
     public function testEquals(): void
     {
         $money1 = Money::USD(100);
@@ -57,6 +76,12 @@ final class MoneyTest extends TestCase
         $this->assertTrue($money3->isEqualTo($money3));
     }
 
+    /**
+     * @covers ::compare
+     * @covers ::query
+     * @covers ::isLessThan
+     * @covers ::isGreaterThan
+     */
     public function testCompare(): void
     {
         $money1 = Money::USD(100);
@@ -68,6 +93,10 @@ final class MoneyTest extends TestCase
         $this->assertSame(0, $money3->compare($money2));
     }
 
+    /**
+     * @covers ::isGreaterThan
+     * @covers ::query
+     */
     public function testGreaterThan(): void
     {
         $money1 = Money::USD(100);
@@ -78,6 +107,10 @@ final class MoneyTest extends TestCase
         $this->assertFalse($money1->isGreaterThan($money1));
     }
 
+    /**
+     * @covers ::isGreaterThan
+     * @covers ::query
+     */
     public function testGreaterThanWithDifferentCurrencies(): void
     {
         $money1 = Money::USD(100);
@@ -87,6 +120,10 @@ final class MoneyTest extends TestCase
         $money1->isGreaterThan($money2);
     }
 
+    /**
+     * @covers ::isGreaterThanOrEqualTo
+     * @covers ::query
+     */
     public function testGreaterThanOrEquals(): void
     {
         $money1 = Money::USD(100);
@@ -98,6 +135,10 @@ final class MoneyTest extends TestCase
         $this->assertTrue($money3->isGreaterThanOrEqualTo($money2));
     }
 
+    /**
+     * @covers ::isGreaterThanOrEqualTo
+     * @covers ::query
+     */
     public function testGreaterThanOrEqualsWithDifferentCurrencies(): void
     {
         $money1 = Money::USD(100);
@@ -107,6 +148,10 @@ final class MoneyTest extends TestCase
         $money1->isGreaterThanOrEqualTo($money2);
     }
 
+    /**
+     * @covers ::isLessThan
+     * @covers ::query
+     */
     public function testLessThan(): void
     {
         $money1 = Money::USD(100);
@@ -117,6 +162,10 @@ final class MoneyTest extends TestCase
         $this->assertFalse($money1->isLessThan($money1));
     }
 
+    /**
+     * @covers ::isLessThan
+     * @covers ::query
+     */
     public function testLessThanWithDifferentCurrencies(): void
     {
         $money1 = Money::USD(100);
@@ -126,6 +175,10 @@ final class MoneyTest extends TestCase
         $money1->isLessThan($money2);
     }
 
+    /**
+     * @covers ::isLessThanOrEqualTo
+     * @covers ::query
+     */
     public function testLessThanOrEquals(): void
     {
         $money1 = Money::USD(100);
@@ -137,6 +190,10 @@ final class MoneyTest extends TestCase
         $this->assertTrue($money3->isLessThanOrEqualTo($money2));
     }
 
+    /**
+     * @covers ::isLessThanOrEqualTo
+     * @covers ::query
+     */
     public function testLessThanOrEqualsWithDifferentCurrencies(): void
     {
         $money1 = Money::USD(100);
@@ -146,6 +203,10 @@ final class MoneyTest extends TestCase
         $money1->isLessThanOrEqualTo($money2);
     }
 
+    /**
+     * @covers ::isNegative
+     * @covers ::query
+     */
     public function testIsNegative(): void
     {
         $money1 = Money::USD(-100);
@@ -157,6 +218,10 @@ final class MoneyTest extends TestCase
         $this->assertFalse($money3->isNegative());
     }
 
+    /**
+     * @covers ::isPositive
+     * @covers ::query
+     */
     public function testIsPositive(): void
     {
         $money1 = Money::USD(-100);
@@ -168,6 +233,10 @@ final class MoneyTest extends TestCase
         $this->assertFalse($money3->isPositive());
     }
 
+    /**
+     * @covers ::isZero
+     * @covers ::query
+     */
     public function testIsZero(): void
     {
         $money1 = Money::USD(-100);
@@ -179,6 +248,10 @@ final class MoneyTest extends TestCase
         $this->assertTrue($money3->isZero());
     }
 
+    /**
+     * @covers ::add
+     * @covers ::with
+     */
     public function testAdd(): void
     {
         $money1 = Money::USD(100);
@@ -188,6 +261,10 @@ final class MoneyTest extends TestCase
         $this->assertSame('200', (string) $output->getAmount());
     }
 
+    /**
+     * @covers ::add
+     * @covers ::with
+     */
     public function testAddWithDifferenctCurrencies(): void
     {
         $money1 = Money::USD(100);
@@ -197,6 +274,10 @@ final class MoneyTest extends TestCase
         $money1->add($money2);
     }
 
+    /**
+     * @covers ::subtract
+     * @covers ::with
+     */
     public function testSubtract(): void
     {
         $money1 = Money::USD(100);
@@ -206,6 +287,10 @@ final class MoneyTest extends TestCase
         $this->assertSame('0', (string) $output->getAmount());
     }
 
+    /**
+     * @covers ::subtract
+     * @covers ::with
+     */
     public function testSubtractWithDifferenctCurrencies(): void
     {
         $money1 = Money::USD(100);
@@ -215,6 +300,10 @@ final class MoneyTest extends TestCase
         $money1->subtract($money2);
     }
 
+    /**
+     * @covers ::subtract
+     * @covers ::with
+     */
     public function testSubtractWithLargerAmount(): void
     {
         $money1 = Money::USD(100);
@@ -224,6 +313,10 @@ final class MoneyTest extends TestCase
         $this->assertSame('-100', (string) $output->getAmount());
     }
 
+    /**
+     * @covers ::multiply
+     * @covers ::with
+     */
     public function testMultiply(): void
     {
         $money1 = Money::USD(100);
@@ -232,6 +325,10 @@ final class MoneyTest extends TestCase
         $this->assertSame('200', (string) $output->getAmount());
     }
 
+    /**
+     * @covers ::divide
+     * @covers ::with
+     */
     public function testDivide(): void
     {
         $money1 = Money::USD(100);

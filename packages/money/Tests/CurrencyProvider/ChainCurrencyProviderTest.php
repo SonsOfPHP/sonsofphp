@@ -18,82 +18,169 @@ use SonsOfPHP\Component\Money\Exception\MoneyException;
  */
 final class ChainCurrencyProviderTest extends TestCase
 {
-    private $provider;
-
-    protected function setUp(): void
-    {
-        $this->provider = new ChainCurrencyProvider([
-            new CurrencyProvider(),
-            new XCurrencyProvider(),
-        ]);
-    }
-
+    /**
+     * @covers ::__construct
+     */
     public function testItHasTheCorrectInterface(): void
     {
         $provider = new ChainCurrencyProvider();
         $this->assertInstanceOf(CurrencyProviderInterface::class, $provider);
     }
 
+    /**
+     * @covers ::__construct
+     * @covers ::addProvider
+     */
+    public function testPassingInProvidersViaConstructWillAddProviders(): void
+    {
+        $provider = new ChainCurrencyProvider([
+            new CurrencyProvider(),
+            new XCurrencyProvider(),
+        ]);
+
+        $this->assertGreaterThan(0, iterator_count($provider->getCurrencies()));
+    }
+
+    /**
+     * @covers ::getCurrencies
+     */
     public function testGetCurrencies(): void
     {
-        foreach ($this->provider->getCurrencies() as $currency) {
+        $provider = new ChainCurrencyProvider([
+            new CurrencyProvider(),
+            new XCurrencyProvider(),
+        ]);
+
+        foreach ($provider->getCurrencies() as $currency) {
             $this->assertInstanceOf(CurrencyInterface::class, $currency);
             $this->assertNotNull($currency->getNumericCode());
             $this->assertNotNull($currency->getMinorUnit());
         }
     }
 
+    /**
+     * @covers \SonsOfPHP\Component\Money\CurrencyProvider\AbstractCurrencyProvider::hasCurrency
+     * @covers \SonsOfPHP\Component\Money\CurrencyProvider\AbstractCurrencyProvider::query
+     */
     public function testHasCurrencyWithString(): void
     {
-        $this->assertTrue($this->provider->hasCurrency('usd')); // CurrencyProvider
-        $this->assertTrue($this->provider->hasCurrency('xts')); // XCurrencyProvider
+        $provider = new ChainCurrencyProvider([
+            new CurrencyProvider(),
+            new XCurrencyProvider(),
+        ]);
 
-        $this->assertFalse($this->provider->hasCurrency('zzz'));
+        $this->assertTrue($provider->hasCurrency('usd')); // CurrencyProvider
+        $this->assertTrue($provider->hasCurrency('xts')); // XCurrencyProvider
+
+        $this->assertFalse($provider->hasCurrency('zzz'));
     }
 
+    /**
+     * @covers \SonsOfPHP\Component\Money\CurrencyProvider\AbstractCurrencyProvider::hasCurrency
+     * @covers \SonsOfPHP\Component\Money\CurrencyProvider\AbstractCurrencyProvider::query
+     */
     public function testHasCurrencyWithCurrencyObject(): void
     {
-        $this->assertTrue($this->provider->hasCurrency(Currency::USD()));
+        $provider = new ChainCurrencyProvider([
+            new CurrencyProvider(),
+            new XCurrencyProvider(),
+        ]);
 
-        $this->assertFalse($this->provider->hasCurrency('zzz'));
+        $this->assertTrue($provider->hasCurrency(Currency::USD()));
+
+        $this->assertFalse($provider->hasCurrency('zzz'));
     }
 
+    /**
+     * @covers \SonsOfPHP\Component\Money\CurrencyProvider\AbstractCurrencyProvider::hasCurrency
+     * @covers \SonsOfPHP\Component\Money\CurrencyProvider\AbstractCurrencyProvider::query
+     */
     public function testHasCurrencyWithValidUnknowString(): void
     {
-        $this->assertFalse($this->provider->hasCurrency('zzz'));
+        $provider = new ChainCurrencyProvider([
+            new CurrencyProvider(),
+            new XCurrencyProvider(),
+        ]);
+
+        $this->assertFalse($provider->hasCurrency('zzz'));
     }
 
+    /**
+     * @covers \SonsOfPHP\Component\Money\CurrencyProvider\AbstractCurrencyProvider::hasCurrency
+     * @covers \SonsOfPHP\Component\Money\CurrencyProvider\AbstractCurrencyProvider::query
+     */
     public function testHasCurrencyWithInvalidInput(): void
     {
+        $provider = new ChainCurrencyProvider([
+            new CurrencyProvider(),
+            new XCurrencyProvider(),
+        ]);
+
         $this->expectException(MoneyException::class);
-        $this->assertFalse($this->provider->hasCurrency('xxxxxx'));
+        $this->assertFalse($provider->hasCurrency('xxxxxx'));
     }
 
+    /**
+     * @covers \SonsOfPHP\Component\Money\CurrencyProvider\AbstractCurrencyProvider::getCurrency
+     * @covers \SonsOfPHP\Component\Money\CurrencyProvider\AbstractCurrencyProvider::query
+     */
     public function testGetCurrencyWithString(): void
     {
-        $currency = $this->provider->getCurrency('usd');
+        $provider = new ChainCurrencyProvider([
+            new CurrencyProvider(),
+            new XCurrencyProvider(),
+        ]);
+
+        $currency = $provider->getCurrency('usd');
         $this->assertInstanceOf(CurrencyInterface::class, $currency);
         $this->assertSame(840, $currency->getNumericCode());
         $this->assertSame(2, $currency->getMinorUnit());
     }
 
+    /**
+     * @covers \SonsOfPHP\Component\Money\CurrencyProvider\AbstractCurrencyProvider::getCurrency
+     * @covers \SonsOfPHP\Component\Money\CurrencyProvider\AbstractCurrencyProvider::query
+     */
     public function testGetCurrencyWithObject(): void
     {
-        $currency = $this->provider->getCurrency(Currency::USD());
+        $provider = new ChainCurrencyProvider([
+            new CurrencyProvider(),
+            new XCurrencyProvider(),
+        ]);
+
+        $currency = $provider->getCurrency(Currency::USD());
         $this->assertInstanceOf(CurrencyInterface::class, $currency);
         $this->assertSame(840, $currency->getNumericCode());
         $this->assertSame(2, $currency->getMinorUnit());
     }
 
+    /**
+     * @covers \SonsOfPHP\Component\Money\CurrencyProvider\AbstractCurrencyProvider::getCurrency
+     * @covers \SonsOfPHP\Component\Money\CurrencyProvider\AbstractCurrencyProvider::query
+     */
     public function testGetCurrencyWithUnknowCurrency(): void
     {
+        $provider = new ChainCurrencyProvider([
+            new CurrencyProvider(),
+            new XCurrencyProvider(),
+        ]);
+
         $this->expectException(MoneyException::class);
-        $this->provider->getCurrency('zzz');
+        $provider->getCurrency('zzz');
     }
 
+    /**
+     * @covers \SonsOfPHP\Component\Money\CurrencyProvider\AbstractCurrencyProvider::getCurrency
+     * @covers \SonsOfPHP\Component\Money\CurrencyProvider\AbstractCurrencyProvider::query
+     */
     public function testGetCurrencyWithValueError(): void
     {
+        $provider = new ChainCurrencyProvider([
+            new CurrencyProvider(),
+            new XCurrencyProvider(),
+        ]);
+
         $this->expectException(MoneyException::class);
-        $this->provider->getCurrency('xxxxxxxx');
+        $provider->getCurrency('xxxxxxxx');
     }
 }
