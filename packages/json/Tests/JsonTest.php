@@ -8,6 +8,9 @@ use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Json\Json;
 use SonsOfPHP\Component\Json\JsonException;
 
+/**
+ * @coversDefaultClass \SonsOfPHP\Component\Json\Json
+ */
 final class JsonTest extends TestCase
 {
     // @todo make JsonEncoderInterface
@@ -24,6 +27,9 @@ final class JsonTest extends TestCase
     //    $this->assertInstanceOf(JsonDecoderInterface::class, $json->getDecoder());
     // }
 
+    /**
+     * @covers ::encode
+     */
     public function testEncode(): void
     {
         $value = ['test' => true];
@@ -31,6 +37,9 @@ final class JsonTest extends TestCase
         $this->assertSame('{"test":true}', $return);
     }
 
+    /**
+     * @covers ::encode
+     */
     public function testEncodeOnFuckedUpJson(): void
     {
         $value = "\xB1\x31"; // invalid UTF8
@@ -38,6 +47,9 @@ final class JsonTest extends TestCase
         Json::encode($value);
     }
 
+    /**
+     * @covers ::decode
+     */
     public function testDecode(): void
     {
         $json = '{"test":true}';
@@ -46,6 +58,9 @@ final class JsonTest extends TestCase
         $this->assertTrue($return->test);
     }
 
+    /**
+     * @covers ::decode
+     */
     public function testDecodeOnFuckedUpJson(): void
     {
         $json = '{"test:true}';
@@ -53,6 +68,9 @@ final class JsonTest extends TestCase
         Json::decode($json);
     }
 
+    /**
+     * @covers ::decode
+     */
     public function testDecodeWillReturnAnArray(): void
     {
         $json = '{"test":true}';

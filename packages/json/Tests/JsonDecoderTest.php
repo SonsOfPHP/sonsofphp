@@ -9,8 +9,15 @@ use ReflectionObject;
 use SonsOfPHP\Component\Json\JsonDecoder;
 use SonsOfPHP\Component\Json\JsonException;
 
+/**
+ * @coversDefaultClass \SonsOfPHP\Component\Json\JsonDecoder
+ */
 final class JsonDecoderTest extends TestCase
 {
+    /**
+     * @covers ::__construct
+     * @covers \SonsOfPHP\Component\Json\AbstractEncoderDecoder::__construct
+     */
     public function testConstructCanReturnArray(): void
     {
         $decoder = new JsonDecoder(true);
@@ -21,6 +28,9 @@ final class JsonDecoderTest extends TestCase
         $this->assertSame(JSON_OBJECT_AS_ARRAY, $prop->getValue($decoder));
     }
 
+    /**
+     * @covers \SonsOfPHP\Component\Json\AbstractEncoderDecoder::withFlags
+     */
     public function testWithFlagsReturnsNewObject(): void
     {
         $decoder = new JsonDecoder();
@@ -29,6 +39,9 @@ final class JsonDecoderTest extends TestCase
         $this->assertNotSame($decoder, $decoderOther);
     }
 
+    /**
+     * @covers \SonsOfPHP\Component\Json\AbstractEncoderDecoder::withoutFlags
+     */
     public function testWithoutFlagsReturnsNewObject(): void
     {
         $decoder = new JsonDecoder();
@@ -37,6 +50,10 @@ final class JsonDecoderTest extends TestCase
         $this->assertNotSame($decoder, $decoderOther);
     }
 
+    /**
+     * @covers \SonsOfPHP\Component\Json\AbstractEncoderDecoder::withFlags
+     * @covers \SonsOfPHP\Component\Json\AbstractEncoderDecoder::withoutFlags
+     */
     public function testWithoutFlagsDoesntRemoveMoreThanItShould(): void
     {
         $decoder = new JsonDecoder();
@@ -54,6 +71,10 @@ final class JsonDecoderTest extends TestCase
         $this->assertSame(0, $prop->getValue($decoder));
     }
 
+    /**
+     * @covers \SonsOfPHP\Component\Json\AbstractEncoderDecoder::withFlags
+     * @covers \SonsOfPHP\Component\Json\AbstractEncoderDecoder::withoutFlags
+     */
     public function testWithoutFlagsRemovesFlag(): void
     {
         $decoder = new JsonDecoder();
@@ -68,6 +89,9 @@ final class JsonDecoderTest extends TestCase
         $this->assertSame(0, $prop->getValue($decoder));
     }
 
+    /**
+     * @covers ::asArray
+     */
     public function testAsArrayAddsCorrectFlag(): void
     {
         $decoder = new JsonDecoder();
@@ -79,6 +103,9 @@ final class JsonDecoderTest extends TestCase
         $this->assertSame(JSON_OBJECT_AS_ARRAY, $prop->getValue($decoder));
     }
 
+    /**
+     * @covers \SonsOfPHP\Component\Json\AbstractEncoderDecoder::withDepth
+     */
     public function testChangingDepthActuallyChangesDepth(): void
     {
         $decoder = new JsonDecoder();
@@ -90,6 +117,9 @@ final class JsonDecoderTest extends TestCase
         $this->assertSame(123, $prop->getValue($decoder));
     }
 
+    /**
+     * @covers ::decode
+     */
     public function testDecodeOnSimpleJsonString(): void
     {
         $json = '{"test":true}';
@@ -100,6 +130,9 @@ final class JsonDecoderTest extends TestCase
         $this->assertTrue($return->test);
     }
 
+    /**
+     * @covers ::decode
+     */
     public function testDecodeOnFuckedUpJson(): void
     {
         $json = '{"test:true}';
