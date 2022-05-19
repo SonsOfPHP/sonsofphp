@@ -9,7 +9,7 @@ use SonsOfPHP\Component\Money\Amount;
 use SonsOfPHP\Component\Money\AmountInterface;
 
 /**
- * @coversDefaultClass SonsOfPHP\Component\Money\Amount
+ * @coversDefaultClass \SonsOfPHP\Component\Money\Amount
  */
 final class AmountTest extends TestCase
 {

@@ -12,7 +12,7 @@ use SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProviderInterface;
 use SonsOfPHP\Component\Money\Exception\MoneyException;
 
 /**
- * @coversDefaultClass SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProvider
+ * @coversDefaultClass \SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProvider
  */
 final class CurrencyProviderTest extends TestCase
 {

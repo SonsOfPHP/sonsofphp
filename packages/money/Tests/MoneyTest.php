@@ -11,7 +11,7 @@ use SonsOfPHP\Component\Money\Money;
 use SonsOfPHP\Component\Money\MoneyInterface;
 
 /**
- * @coversDefaultClass SonsOfPHP\Component\Money\Money
+ * @coversDefaultClass \SonsOfPHP\Component\Money\Money
  */
 final class MoneyTest extends TestCase
 {

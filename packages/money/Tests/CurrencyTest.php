@@ -9,7 +9,7 @@ use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\CurrencyInterface;
 
 /**
- * @coversDefaultClass SonsOfPHP\Component\Money\Currency
+ * @coversDefaultClass \SonsOfPHP\Component\Money\Currency
  */
 final class CurrencyTest extends TestCase
 {

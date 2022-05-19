@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Bridge\Symfony\EventSourcing\AggregateId;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use Symfony\Component\Uid\Uuid;
 
 final class AggregateIdTest extends TestCase

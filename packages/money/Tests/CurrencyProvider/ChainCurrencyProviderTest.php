@@ -14,7 +14,7 @@ use SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider;
 use SonsOfPHP\Component\Money\Exception\MoneyException;
 
 /**
- * @coversDefaultClass SonsOfPHP\Component\Money\CurrencyProvider\ChainCurrencyProvider
+ * @coversDefaultClass \SonsOfPHP\Component\Money\CurrencyProvider\ChainCurrencyProvider
  */
 final class ChainCurrencyProviderTest extends TestCase
 {
