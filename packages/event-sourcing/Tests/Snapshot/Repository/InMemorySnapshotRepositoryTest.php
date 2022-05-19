@@ -11,14 +11,24 @@ use SonsOfPHP\Component\EventSourcing\Snapshot\Repository\InMemorySnapshotReposi
 use SonsOfPHP\Component\EventSourcing\Snapshot\Repository\SnapshotRepositoryInterface;
 use SonsOfPHP\Component\EventSourcing\Snapshot\Snapshot;
 
+/**
+ * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Snapshot\Repository\InMemorySnapshotRepository
+ */
 final class InMemorySnapshotRepositoryTest extends TestCase
 {
+    /**
+     * @coversNothing
+     */
     public function testItHasTheRightInterface(): void
     {
         $repository = new InMemorySnapshotRepository();
         $this->assertInstanceOf(SnapshotRepositoryInterface::class, $repository);
     }
 
+    /**
+     * @covers ::persist
+     * @covers ::find
+     */
     public function testPersistAndFind(): void
     {
         $repository = new InMemorySnapshotRepository();
@@ -30,6 +40,9 @@ final class InMemorySnapshotRepositoryTest extends TestCase
         $this->assertSame($snapshot, $result);
     }
 
+    /**
+     * @covers ::find
+     */
     public function testFindReturnsNullIfNoSnapshotFound(): void
     {
         $repository = new InMemorySnapshotRepository();

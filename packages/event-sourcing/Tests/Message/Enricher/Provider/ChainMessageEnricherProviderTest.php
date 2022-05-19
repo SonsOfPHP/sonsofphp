@@ -10,14 +10,25 @@ use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\ChainMessageEnri
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\MessageEnricherProviderInterface;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 
+/**
+ * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\ChainMessageEnricherProvider
+ */
 final class ChainMessageEnricherProviderTest extends TestCase
 {
+    /**
+     * @covers ::__construct
+     */
     public function testItHasTheRightInterface(): void
     {
         $provider = new ChainMessageEnricherProvider();
         $this->assertInstanceOf(MessageEnricherProviderInterface::class, $provider);
     }
 
+    /**
+     * @covers ::__construct
+     * @covers ::registerProvider
+     * @covers ::getEnrichersForMessage
+     */
     public function testRegisteredHandlerWillReturnWhenGettingEnrichers(): void
     {
         $providers = [

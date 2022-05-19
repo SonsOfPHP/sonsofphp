@@ -12,14 +12,23 @@ use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\AllMessageEnrich
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\NullMessageEnricherProvider;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 
+/**
+ * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricher
+ */
 final class MessageEnricherTest extends TestCase
 {
+    /**
+     * @covers ::__construct
+     */
     public function testItHasTheRightInterface(): void
     {
         $enricher = new MessageEnricher(new NullMessageEnricherProvider());
         $this->assertInstanceOf(MessageEnricherInterface::class, $enricher); // @phpstan-ignore-line
     }
 
+    /**
+     * @covers ::enrich
+     */
     public function testItWillReturnMessageUntouchedWithNoHandlers(): void
     {
         $enricher = new MessageEnricher(new NullMessageEnricherProvider());
@@ -29,6 +38,9 @@ final class MessageEnricherTest extends TestCase
         $this->assertSame($enrichedMessage, $message);
     }
 
+    /**
+     * @covers ::enrich
+     */
     public function testItWillCanEnrichMessage(): void
     {
         $provider = new AllMessageEnricherProvider();

@@ -13,8 +13,17 @@ use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Tests\FakeAggregate;
 
+/**
+ * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregate
+ */
 final class AbstractAggregateTest extends TestCase
 {
+    /**
+     * @covers ::new
+     * @covers ::__construct
+     * @covers ::getAggregateId
+     * @covers ::getAggregateVersion
+     */
     public function testNewStaticWithAggregateId(): void
     {
         $abstract = $this->getMockForAbstractClass(AbstractAggregate::class, ['id']);
@@ -27,6 +36,9 @@ final class AbstractAggregateTest extends TestCase
         $this->assertSame(0, $aggregate->getAggregateVersion()->toInt());
     }
 
+    /**
+     * @covers ::hasPendingEvents
+     */
     public function testItHasPendingEvents()
     {
         $abstract = $this->getMockForAbstractClass(AbstractAggregate::class, ['id']);
@@ -40,6 +52,10 @@ final class AbstractAggregateTest extends TestCase
         $this->assertTrue($abstract->hasPendingEvents());
     }
 
+    /**
+     * @covers ::raiseEvent
+     * @covers ::applyEvent
+     */
     public function testRaiseEventWillApplyMetadata(): void
     {
         $abstract = $this->getMockForAbstractClass(AbstractAggregate::class, ['id']);
@@ -53,6 +69,11 @@ final class AbstractAggregateTest extends TestCase
         $refMet->invoke($aggregate, $message);
     }
 
+    /**
+     * @covers ::raiseEvent
+     * @covers ::getPendingEvents
+     * @covers ::applyEvent
+     */
     public function testRaiseEventWillAddEventToPendingEvents(): void
     {
         $abstract = $this->getMockForAbstractClass(AbstractAggregate::class, ['id']);
@@ -68,6 +89,11 @@ final class AbstractAggregateTest extends TestCase
         $this->assertCount(1, $aggregate->getPendingEvents());
     }
 
+    /**
+     * @covers ::buildFromEvents
+     * @covers ::getAggregateId
+     * @covers ::getAggregateVersion
+     */
     public function testBuildFromEvents(): void
     {
         $abstract = $this->getMockForAbstractClass(AbstractAggregate::class, ['id']);
@@ -81,6 +107,9 @@ final class AbstractAggregateTest extends TestCase
         $this->assertSame(1, $aggregate->getAggregateVersion()->toInt());
     }
 
+    /**
+     * @covers ::__construct
+     */
     public function testItWillRaiseExceptionWithInvalidId(): void
     {
         $this->expectException(EventSourcingException::class);

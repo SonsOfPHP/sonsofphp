@@ -11,8 +11,14 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\SerializableMessageInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 
+/**
+ * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\AbstractSerializableMessage
+ */
 final class AbstractSerializableMessageTest extends TestCase
 {
+    /**
+     * @coversNothing
+     */
     public function testItHasTheRightInterfaces(): void
     {
         $message = $this->getMockForAbstractClass(AbstractSerializableMessage::class, [], '', false);
@@ -20,6 +26,9 @@ final class AbstractSerializableMessageTest extends TestCase
         $this->assertInstanceOf(SerializableMessageInterface::class, $message); // @phpstan-ignore-line
     }
 
+    /**
+     * @covers ::serialize
+     */
     public function testSerializeOnEmptyMessage(): void
     {
         $message = $this->getMockForAbstractClass(AbstractSerializableMessage::class, [], '', false);
@@ -28,6 +37,9 @@ final class AbstractSerializableMessageTest extends TestCase
         $this->assertArrayHasKey('metadata', $return);
     }
 
+    /**
+     * @covers ::deserialize
+     */
     public function testDeserializeWithEmptyData(): void
     {
         $message = $this->getMockForAbstractClass(AbstractSerializableMessage::class, [], '', false);
@@ -35,6 +47,9 @@ final class AbstractSerializableMessageTest extends TestCase
         $message::deserialize([]);
     }
 
+    /**
+     * @covers ::deserialize
+     */
     public function testDeserializeWithNoPayloadData(): void
     {
         $message = $this->getMockForAbstractClass(AbstractSerializableMessage::class, [], '', false);
@@ -44,6 +59,9 @@ final class AbstractSerializableMessageTest extends TestCase
         ]);
     }
 
+    /**
+     * @covers ::deserialize
+     */
     public function testDeserializeWithNoMetadataData(): void
     {
         $message = $this->getMockForAbstractClass(AbstractSerializableMessage::class, [], '', false);
@@ -53,6 +71,9 @@ final class AbstractSerializableMessageTest extends TestCase
         ]);
     }
 
+    /**
+     * @covers ::deserialize
+     */
     public function testDeserialize(): void
     {
         $message = $this->getMockForAbstractClass(AbstractSerializableMessage::class, [], '', false);

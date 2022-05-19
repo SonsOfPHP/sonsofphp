@@ -12,8 +12,14 @@ use SonsOfPHP\Component\EventSourcing\Message\Serializer\MessageSerializerInterf
 use SonsOfPHP\Component\EventSourcing\Metadata;
 use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;
 
+/**
+ * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\Serializer\MessageSerializer
+ */
 final class MessageSerializerTest extends TestCase
 {
+    /**
+     * @covers ::__construct
+     */
     public function testItHasTheRightInterface(): void
     {
         $provider = $this->createMock(MessageProviderInterface::class);
@@ -21,6 +27,10 @@ final class MessageSerializerTest extends TestCase
         $this->assertInstanceOf(MessageSerializerInterface::class, $serializer);
     }
 
+    /**
+     * @covers ::serialize
+     * @covers ::ensureRequiredMetadataExists
+     */
     public function testSerialize(): void
     {
         $provider = $this->createMock(MessageProviderInterface::class);
@@ -45,6 +55,10 @@ final class MessageSerializerTest extends TestCase
         $this->assertArrayHasKey(Metadata::EVENT_TYPE, $data['metadata'], 'Assert that "event_type" is added to metadata');
     }
 
+    /**
+     * @covers ::deserialize
+     * @covers ::ensureRequiredMetadataExists
+     */
     public function testDeserialize(): void
     {
         $data = [

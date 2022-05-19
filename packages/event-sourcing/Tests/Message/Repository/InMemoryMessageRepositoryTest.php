@@ -12,14 +12,24 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\InMemoryMessageRepository;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterface;
 
+/**
+ * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\Repository\InMemoryMessageRepository
+ */
 final class InMemoryMessageRepositoryTest extends TestCase
 {
+    /**
+     * @coversNothing
+     */
     public function testItHasTheRightInterface(): void
     {
         $repository = new InMemoryMessageRepository();
         $this->assertInstanceOf(MessageRepositoryInterface::class, $repository);
     }
 
+    /**
+     * @covers ::persist
+     * @covers ::find
+     */
     public function testPersistAndFind(): void
     {
         $repository = new InMemoryMessageRepository();
@@ -34,6 +44,9 @@ final class InMemoryMessageRepositoryTest extends TestCase
         $this->assertSame($message, $result->current());
     }
 
+    /**
+     * @covers ::find
+     */
     public function testFindWhenAggregateIdIsNotFound(): void
     {
         $repository = new InMemoryMessageRepository();
@@ -42,6 +55,9 @@ final class InMemoryMessageRepositoryTest extends TestCase
         $repository->find(AggregateId::fromString('hit'))->current();
     }
 
+    /**
+     * @covers ::find
+     */
     public function testFindWithVersion(): void
     {
         $repository = new InMemoryMessageRepository();
