@@ -9,8 +9,14 @@ use SonsOfPHP\Bridge\Symfony\EventSourcing\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use Symfony\Component\Uid\Uuid;
 
+/**
+ * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\AggregateId
+ */
 final class AggregateIdTest extends TestCase
 {
+    /**
+     * @coversNothing
+     */
     public function testItHasTheRightInterface(): void
     {
         $id = new AggregateId();
@@ -18,6 +24,9 @@ final class AggregateIdTest extends TestCase
         $this->assertInstanceOf(AggregateIdInterface::class, $id);
     }
 
+    /**
+     * @covers ::__construct
+     */
     public function testItGeneratesValidUuidWhenNoArgument(): void
     {
         $id = new AggregateId();
@@ -25,6 +34,9 @@ final class AggregateIdTest extends TestCase
         $this->assertTrue(Uuid::isValid($id->toString()));
     }
 
+    /**
+     * @covers ::__construct
+     */
     public function testItWillNotAutogenerateWhenValuePassedIn(): void
     {
         $id = new AggregateId('example-id');

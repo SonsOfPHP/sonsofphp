@@ -11,8 +11,14 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 use Symfony\Component\Uid\Uuid;
 
+/**
+ * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\UuidEventIdMessageEnricherHandler
+ */
 final class UuidEventIdMessageEnricherHandlerTest extends TestCase
 {
+    /**
+     * @coversNothing
+     */
     public function testItHasTheRightInterface(): void
     {
         $handler = new UuidEventIdMessageEnricherHandler();
@@ -20,6 +26,9 @@ final class UuidEventIdMessageEnricherHandlerTest extends TestCase
         $this->assertInstanceOf(MessageEnricherHandlerInterface::class, $handler);
     }
 
+    /**
+     * @covers ::enrich
+     */
     public function testItWillGenerateUuid(): void
     {
         $handler = new UuidEventIdMessageEnricherHandler();

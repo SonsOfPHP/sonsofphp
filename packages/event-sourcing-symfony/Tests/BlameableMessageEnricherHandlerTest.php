@@ -11,6 +11,9 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\BlameableMessageEnricherHandler
+ */
 final class BlameableMessageEnricherHandlerTest extends TestCase
 {
     private Security $security;
@@ -20,6 +23,9 @@ final class BlameableMessageEnricherHandlerTest extends TestCase
         $this->security = $this->createStub(Security::class);
     }
 
+    /**
+     * @covers ::__construct
+     */
     public function testItHasTheRightInterface(): void
     {
         $handler = new BlameableMessageEnricherHandler($this->security);
@@ -27,6 +33,9 @@ final class BlameableMessageEnricherHandlerTest extends TestCase
         $this->assertInstanceOf(MessageEnricherHandlerInterface::class, $handler);
     }
 
+    /**
+     * @covers ::enrich
+     */
     public function testEnrichWithoutUserWillNotEnrichMessage(): void
     {
         $handler = new BlameableMessageEnricherHandler($this->security);
@@ -37,6 +46,9 @@ final class BlameableMessageEnricherHandlerTest extends TestCase
         $this->assertSame($message, $output);
     }
 
+    /**
+     * @covers ::enrich
+     */
     public function testEnrichWithUserWillEnrichTheMessage(): void
     {
         $user = $this->createMock(UserInterface::class);

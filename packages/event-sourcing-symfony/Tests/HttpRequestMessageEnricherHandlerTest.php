@@ -9,6 +9,9 @@ use SonsOfPHP\Bridge\Symfony\EventSourcing\HttpRequestMessageEnricherHandler;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\MessageEnricherHandlerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
+/**
+ * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\HttpRequestMessageEnricherHandler
+ */
 final class HttpRequestMessageEnricherHandlerTest extends TestCase
 {
     private RequestStack $requestStack;
@@ -18,6 +21,9 @@ final class HttpRequestMessageEnricherHandlerTest extends TestCase
         $this->requestStack = $this->createStub(RequestStack::class);
     }
 
+    /**
+     * @covers ::__construct
+     */
     public function testItHasTheRightInterface(): void
     {
         $handler = new HttpRequestMessageEnricherHandler($this->requestStack);
