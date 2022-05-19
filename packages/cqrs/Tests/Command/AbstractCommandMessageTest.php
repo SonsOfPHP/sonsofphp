@@ -10,10 +10,13 @@ use SonsOfPHP\Component\Cqrs\Command\CommandMessageInterface;
 use SonsOfPHP\Component\Cqrs\Tests\DummyCommand;
 
 /**
- * @author Joshua Estes <joshua@sonsofphp.com>
+ * @coversDefaultClass \SonsOfPHP\Component\Cqrs\Command\AbstractCommandMessage
  */
 final class AbstractCommandMessageTest extends TestCase
 {
+    /**
+     * @coversNothing
+     */
     public function testItHasTheCorrectInterface(): void
     {
         $command = $this->getMockForAbstractClass(AbstractCommandMessage::class);
@@ -21,6 +24,12 @@ final class AbstractCommandMessageTest extends TestCase
         $this->assertInstanceOf(CommandMessageInterface::class, $command); // @phpstan-ignore-line
     }
 
+    /**
+     * @covers ::__construct
+     * @covers ::configureOptions
+     * @covers ::getOptions
+     * @covers ::getOption
+     */
     public function testConstructor(): void
     {
         DummyCommand::setConfigureOptionsCallback(function ($resolver) {
