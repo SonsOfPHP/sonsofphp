@@ -10,6 +10,9 @@ use SonsOfPHP\Component\FeatureToggle\Feature;
 use SonsOfPHP\Component\FeatureToggle\FeatureInterface;
 use SonsOfPHP\Component\FeatureToggle\ToggleInterface;
 
+/**
+ * @coversDefaultClass \SonsOfPHP\Component\FeatureToggle\Feature
+ */
 final class FeatureTest extends TestCase
 {
     private $toggle;
@@ -19,6 +22,9 @@ final class FeatureTest extends TestCase
         $this->toggle = $this->createMock(ToggleInterface::class);
     }
 
+    /**
+     * @coversNothing
+     */
     public function testItHasTheCorrectInterface(): void
     {
         $feature = new Feature('example', $this->toggle);
@@ -26,6 +32,10 @@ final class FeatureTest extends TestCase
         $this->assertInstanceOf(FeatureInterface::class, $feature);
     }
 
+    /**
+     * @covers ::__construct
+     * @covers ::getKey
+     */
     public function testItReturnsTheCorrectKey(): void
     {
         $feature = new Feature('example', $this->toggle);
@@ -33,6 +43,10 @@ final class FeatureTest extends TestCase
         $this->assertSame('example', $feature->getKey());
     }
 
+    /**
+     * @covers ::__construct
+     * @covers ::isEnabled
+     */
     public function testIsEnabled(): void
     {
         $this->toggle->expects($this->once())->method('isEnabled')->willReturn(true);

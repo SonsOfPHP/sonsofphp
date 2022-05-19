@@ -8,8 +8,14 @@ use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\FeatureToggle\Context;
 use SonsOfPHP\Component\FeatureToggle\ContextInterface;
 
+/**
+ * @coversDefaultClass \SonsOfPHP\Component\FeatureToggle\Context
+ */
 final class ContextTest extends TestCase
 {
+    /**
+     * @coversNothing
+     */
     public function testItHasTheCorrectInterface(): void
     {
         $context = new Context();
@@ -17,6 +23,11 @@ final class ContextTest extends TestCase
         $this->assertInstanceOf(ContextInterface::class, $context);
     }
 
+    /**
+     * @covers ::get
+     * @covers ::has
+     * @covers ::set
+     */
     public function testItWorksCorrectly(): void
     {
         $context = new Context();

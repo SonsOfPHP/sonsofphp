@@ -9,8 +9,14 @@ use SonsOfPHP\Component\FeatureToggle\Context;
 use SonsOfPHP\Component\FeatureToggle\Toggle\AlwaysDisabledToggle;
 use SonsOfPHP\Component\FeatureToggle\ToggleInterface;
 
+/**
+ * @coversDefaultClass \SonsOfPHP\Component\FeatureToggle\Toggle\AlwaysDisabledToggle
+ */
 final class AlwaysDisabledToggleTest extends TestCase
 {
+    /**
+     * @coversNothing
+     */
     public function testItHasTheCorrectInterface(): void
     {
         $toggle = new AlwaysDisabledToggle();
@@ -18,6 +24,9 @@ final class AlwaysDisabledToggleTest extends TestCase
         $this->assertInstanceOf(ToggleInterface::class, $toggle);
     }
 
+    /**
+     * @covers ::isEnabled
+     */
     public function testItReturnsFalse(): void
     {
         $toggle = new AlwaysDisabledToggle();
