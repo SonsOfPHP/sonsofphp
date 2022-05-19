@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\EventSourcing\Bridge\Symfony;
+namespace SonsOfPHP\Bridge\Symfony\EventSourcing;
 
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\MessageEnricherHandlerInterface;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;

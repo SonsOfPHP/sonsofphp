@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SonsOfPHP\\Component\\EventSourcing\\Bridge\\Symfony\\": ""
+            "SonsOfPHP\\Bridge\\Symfony\\EventSourcing\\": ""
         },
         "exclude-from-classmap": [
             "/Tests/"

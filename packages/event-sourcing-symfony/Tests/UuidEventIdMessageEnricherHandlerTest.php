@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\EventSourcing\Bridge\Symfony\Tests;
+namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\EventSourcing\Bridge\Symfony\UuidEventIdMessageEnricherHandler;
+use SonsOfPHP\Bridge\Symfony\EventSourcing\UuidEventIdMessageEnricherHandler;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\MessageEnricherHandlerInterface;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;

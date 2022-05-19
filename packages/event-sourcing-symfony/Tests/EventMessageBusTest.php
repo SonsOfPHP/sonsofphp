@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\EventSourcing\Bridge\Symfony\Tests;
+namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
-use SonsOfPHP\Component\EventSourcing\Bridge\Symfony\EventMessageBus;
+use SonsOfPHP\Bridge\Symfony\EventSourcing\EventMessageBus;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBusInterface;

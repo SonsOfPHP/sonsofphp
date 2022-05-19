@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\EventSourcing\Bridge\Symfony\Tests;
+namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
-use SonsOfPHP\Component\EventSourcing\Bridge\Symfony\AggregateId;
+use SonsOfPHP\Bridge\Symfony\EventSourcing\AggregateId;
 use Symfony\Component\Uid\Uuid;
 
 final class AggregateIdTest extends TestCase
