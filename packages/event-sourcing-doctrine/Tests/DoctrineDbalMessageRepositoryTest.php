@@ -11,6 +11,9 @@ use SonsOfPHP\Bridge\Doctrine\EventSourcing\TableSchemaInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Serializer\MessageSerializerInterface;
 
+/**
+ * @coversDefaultClass \SonsOfPHP\Bridge\Doctrine\EventSourcing\DoctrineDbalMessageRepository
+ */
 final class DoctrineDbalMessageRepositoryTest extends TestCase
 {
     private Connection $connection;
@@ -24,6 +27,9 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
         $this->tableSchema = $this->createMock(TableSchemaInterface::class);
     }
 
+    /**
+     * @covers ::__construct
+     */
     public function testItHasTheRightInterface(): void
     {
         $repository = new DoctrineDbalMessageRepository(
