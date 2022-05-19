@@ -8,14 +8,23 @@ use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\ListenerProviderInterface;
 use SonsOfPHP\Component\EventDispatcher\ListenerProvider;
 
+/**
+ * @coversDefaultClass \SonsOfPHP\Component\EventDispatcher\ListenerProvider
+ */
 final class ListenerProviderTest extends TestCase
 {
+    /**
+     * @coversNothing
+     */
     public function testItHasTheCorrectInterface(): void
     {
         $provider = new ListenerProvider();
         $this->assertInstanceOf(ListenerProviderInterface::class, $provider); // @phpstan-ignore-line
     }
 
+    /**
+     * @covers ::getListenersForEvent
+     */
     public function testGetListenersForUnknownEventReturnsEmptyArray(): void
     {
         $provider = new ListenerProvider();
@@ -24,6 +33,10 @@ final class ListenerProviderTest extends TestCase
         $this->assertCount(0, $listeners);
     }
 
+    /**
+     * @covers ::add
+     * @covers ::getListenersForEvent
+     */
     public function testGetListenersForEvent(): void
     {
         $provider = new ListenerProvider();
