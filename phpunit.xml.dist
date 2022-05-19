@@ -11,7 +11,7 @@
     colors="true"
     bootstrap="vendor/autoload.php"
     beStrictAboutCoversAnnotation="false"
-    forceCoversAnnotation="false"
+    forceCoversAnnotation="true"
 >
 
     <testsuites>
