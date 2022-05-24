@@ -6,8 +6,8 @@ namespace SonsOfPHP\Bridge\Doctrine\EventSourcing\Tests;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Query\QueryBuilder;
-use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Result;
+use Doctrine\DBAL\Types\Type;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Doctrine\EventSourcing\DoctrineDbalMessageRepository;
 use SonsOfPHP\Bridge\Doctrine\EventSourcing\TableSchemaInterface;
@@ -16,8 +16,8 @@ use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Exception\AggregateNotFoundException;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterface;
-use SonsOfPHP\Component\EventSourcing\Message\Serializer\MessageSerializerInterface;
 use SonsOfPHP\Component\EventSourcing\Message\SerializableMessageInterface;
+use SonsOfPHP\Component\EventSourcing\Message\Serializer\MessageSerializerInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 
 /**
@@ -221,7 +221,6 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
             ->method('createQueryBuilder')
             ->willReturn($builder);
 
-
         $repository = new DoctrineDbalMessageRepository(
             $this->connection,
             $this->messageSerializer,
@@ -338,7 +337,6 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
             ->expects($this->once())
             ->method('createQueryBuilder')
             ->willReturn($builder);
-
 
         $repository = new DoctrineDbalMessageRepository(
             $this->connection,
