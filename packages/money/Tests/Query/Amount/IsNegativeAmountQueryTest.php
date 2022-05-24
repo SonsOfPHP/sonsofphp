@@ -21,8 +21,7 @@ final class IsNegativeAmountQueryTest extends TestCase
      */
     public function testItHasTheCorrectInterface(): void
     {
-        $amount = new Amount(100);
-        $query = new IsNegativeAmountQuery($amount);
+        $query = new IsNegativeAmountQuery();
 
         $this->assertInstanceOf(AmountQueryInterface::class, $query);
     }

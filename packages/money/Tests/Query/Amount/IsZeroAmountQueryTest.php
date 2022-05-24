@@ -21,8 +21,7 @@ final class IsZeroAmountQueryTest extends TestCase
      */
     public function testItHasTheCorrectInterface(): void
     {
-        $amount = new Amount(100);
-        $query = new IsZeroAmountQuery($amount);
+        $query = new IsZeroAmountQuery();
 
         $this->assertInstanceOf(AmountQueryInterface::class, $query);
     }

@@ -58,10 +58,12 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
      */
     public function testPersist(): void
     {
+        // @phpstan-ignore-next-line
         $this->connection
             ->expects($this->once())
             ->method('insert');
 
+        // @phpstan-ignore-next-line
         $this->messageSerializer
             ->expects($this->once())
             ->method('serialize')
@@ -143,6 +145,7 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
      */
     public function testPersistWillThrowExceptionWhenThereIsMissingMetadata(): void
     {
+        // @phpstan-ignore-next-line
         $this->messageSerializer
             ->expects($this->once())
             ->method('serialize')
@@ -176,6 +179,7 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
      */
     public function testFindWithoutVersion(): void
     {
+        // @phpstan-ignore-next-line
         $this->tableSchema
             ->expects($this->once())
             ->method('getColumns')
@@ -185,10 +189,12 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
                 'aggregate_version' => Type::getType('integer'),
                 'data' => Type::getType('json'),
             ]);
+        // @phpstan-ignore-next-line
         $this->tableSchema
             ->expects($this->once())
             ->method('getAggregateIdColumn')
             ->willReturn('aggregate_id');
+        // @phpstan-ignore-next-line
         $this->tableSchema
             ->expects($this->once())
             ->method('mapColumnsToEventData')
@@ -216,6 +222,7 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
             ->method('executeQuery')
             ->willReturn($result);
 
+        // @phpstan-ignore-next-line
         $this->connection
             ->expects($this->once())
             ->method('createQueryBuilder')
@@ -228,6 +235,7 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
         );
 
         $message = $this->createMock(SerializableMessageInterface::class);
+        // @phpstan-ignore-next-line
         $this->messageSerializer
             ->expects($this->once())
             ->method('deserialize')
@@ -243,6 +251,7 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
      */
     public function testFindWillThrowExceptionWhenAggregateNotFound(): void
     {
+        // @phpstan-ignore-next-line
         $this->tableSchema
             ->expects($this->once())
             ->method('getColumns')
@@ -252,6 +261,7 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
                 'aggregate_version' => Type::getType('integer'),
                 'data' => Type::getType('json'),
             ]);
+        // @phpstan-ignore-next-line
         $this->tableSchema
             ->expects($this->once())
             ->method('getAggregateIdColumn')
@@ -269,6 +279,7 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
             ->method('executeQuery')
             ->willReturn($result);
 
+        // @phpstan-ignore-next-line
         $this->connection
             ->expects($this->once())
             ->method('createQueryBuilder')
@@ -289,6 +300,7 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
      */
     public function testFindWithVersion(): void
     {
+        // @phpstan-ignore-next-line
         $this->tableSchema
             ->expects($this->once())
             ->method('getColumns')
@@ -298,14 +310,17 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
                 'aggregate_version' => Type::getType('integer'),
                 'data' => Type::getType('json'),
             ]);
+        // @phpstan-ignore-next-line
         $this->tableSchema
             ->expects($this->once())
             ->method('getAggregateIdColumn')
             ->willReturn('aggregate_id');
+        // @phpstan-ignore-next-line
         $this->tableSchema
             ->expects($this->once())
             ->method('getAggregateVersionColumn')
             ->willReturn('aggregate_version');
+        // @phpstan-ignore-next-line
         $this->tableSchema
             ->expects($this->once())
             ->method('mapColumnsToEventData')
@@ -333,6 +348,7 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
             ->method('executeQuery')
             ->willReturn($result);
 
+        // @phpstan-ignore-next-line
         $this->connection
             ->expects($this->once())
             ->method('createQueryBuilder')
@@ -345,6 +361,7 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
         );
 
         $message = $this->createMock(SerializableMessageInterface::class);
+        // @phpstan-ignore-next-line
         $this->messageSerializer
             ->expects($this->once())
             ->method('deserialize')
