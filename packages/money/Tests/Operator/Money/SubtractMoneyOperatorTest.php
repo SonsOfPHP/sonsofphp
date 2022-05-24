@@ -8,17 +8,17 @@ use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\Exception\MoneyException;
 use SonsOfPHP\Component\Money\Money;
-use SonsOfPHP\Component\Money\Operator\Money\AddMoneyOperator;
 use SonsOfPHP\Component\Money\Operator\Money\MoneyOperatorInterface;
+use SonsOfPHP\Component\Money\Operator\Money\SubtractMoneyOperator;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Money\Operator\Money\AddMoneyOperator
+ * @coversDefaultClass \SonsOfPHP\Component\Money\Operator\Money\SubtractMoneyOperator
  *
  * @uses \SonsOfPHP\Component\Money\Amount
  * @uses \SonsOfPHP\Component\Money\Currency
  * @uses \SonsOfPHP\Component\Money\Money
  */
-final class AddMoneyOperatorTest extends TestCase
+final class SubtractMoneyOperatorTest extends TestCase
 {
     /**
      * @coversNothing
@@ -26,7 +26,7 @@ final class AddMoneyOperatorTest extends TestCase
     public function testItHasTheCorrectInterface(): void
     {
         $money = new Money(100, new Currency('usd'));
-        $operator = new AddMoneyOperator($money);
+        $operator = new SubtractMoneyOperator($money);
 
         $this->assertInstanceOf(MoneyOperatorInterface::class, $operator);
     }
@@ -38,9 +38,9 @@ final class AddMoneyOperatorTest extends TestCase
     public function testApplyWithSameCurrencies(): void
     {
         $money = new Money(100, new Currency('usd'));
-        $operator = new AddMoneyOperator($money);
+        $operator = new SubtractMoneyOperator($money);
 
-        $output = $operator->apply($money);
+        $output = $operator->apply(Money::USD(300));
 
         $this->assertNotSame($money, $output);
         $this->assertSame('200', $output->getAmount()->toString());
@@ -52,7 +52,7 @@ final class AddMoneyOperatorTest extends TestCase
     public function testApplyWillThrowExceptionWhenCurrenciesAreDifferent(): void
     {
         $money = new Money(100, new Currency('usd'));
-        $operator = new AddMoneyOperator(Money::JPY(1000));
+        $operator = new SubtractMoneyOperator(Money::JPY(1000));
 
         $this->expectException(MoneyException::class);
         $operator->apply($money);

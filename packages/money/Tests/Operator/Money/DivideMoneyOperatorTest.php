@@ -6,27 +6,25 @@ namespace SonsOfPHP\Component\Money\Tests\Operator\Money;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
-use SonsOfPHP\Component\Money\Exception\MoneyException;
 use SonsOfPHP\Component\Money\Money;
-use SonsOfPHP\Component\Money\Operator\Money\AddMoneyOperator;
+use SonsOfPHP\Component\Money\Operator\Money\DivideMoneyOperator;
 use SonsOfPHP\Component\Money\Operator\Money\MoneyOperatorInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Money\Operator\Money\AddMoneyOperator
+ * @coversDefaultClass \SonsOfPHP\Component\Money\Operator\Money\DivideMoneyOperator
  *
  * @uses \SonsOfPHP\Component\Money\Amount
  * @uses \SonsOfPHP\Component\Money\Currency
  * @uses \SonsOfPHP\Component\Money\Money
  */
-final class AddMoneyOperatorTest extends TestCase
+final class DivideMoneyOperatorTest extends TestCase
 {
     /**
      * @coversNothing
      */
     public function testItHasTheCorrectInterface(): void
     {
-        $money = new Money(100, new Currency('usd'));
-        $operator = new AddMoneyOperator($money);
+        $operator = new DivideMoneyOperator(5);
 
         $this->assertInstanceOf(MoneyOperatorInterface::class, $operator);
     }
@@ -38,23 +36,11 @@ final class AddMoneyOperatorTest extends TestCase
     public function testApplyWithSameCurrencies(): void
     {
         $money = new Money(100, new Currency('usd'));
-        $operator = new AddMoneyOperator($money);
+        $operator = new DivideMoneyOperator(5);
 
         $output = $operator->apply($money);
 
         $this->assertNotSame($money, $output);
-        $this->assertSame('200', $output->getAmount()->toString());
-    }
-
-    /**
-     * @covers ::apply
-     */
-    public function testApplyWillThrowExceptionWhenCurrenciesAreDifferent(): void
-    {
-        $money = new Money(100, new Currency('usd'));
-        $operator = new AddMoneyOperator(Money::JPY(1000));
-
-        $this->expectException(MoneyException::class);
-        $operator->apply($money);
+        $this->assertSame('20', $output->getAmount()->toString());
     }
 }
