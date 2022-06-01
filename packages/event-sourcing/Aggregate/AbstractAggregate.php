@@ -97,8 +97,21 @@ abstract class AbstractAggregate implements AggregateInterface
         return $aggregate;
     }
 
+    /**
+     * Raise New Event
+     *
+     * Raised Events will be apply to the aggregate and when the aggregate is persisted
+     * using the the Aggregate Repository, the event is stored
+     */
     final protected function raiseEvent(MessageInterface $event): void
     {
+        // Prepopulate with some metadata
+        $event = $event->withMetadata([
+            Metadata::AGGREGATE_ID     => $this->getAggregateId()->toString(),
+            Metadata::TIMESTAMP        => (new \DateTimeImmutable())->format(Metadata::DEFAULT_TIMESTAMP_FORMAT),
+            Metadata::TIMESTAMP_FORMAT => Metadata::DEFAULT_TIMESTAMP_FORMAT,
+        ]);
+
         // 1. Apply Event
         $this->applyEvent($event);
 
@@ -107,16 +120,19 @@ abstract class AbstractAggregate implements AggregateInterface
         // need to next() the version. Example, 0 - empty state, 1 - first event that
         // modified state
         $event = $event->withMetadata([
-            Metadata::AGGREGATE_ID => $this->getAggregateId()->toString(),
             Metadata::AGGREGATE_VERSION => $this->getAggregateVersion()->toInt(),
-            Metadata::TIMESTAMP => (new \DateTimeImmutable())->format(Metadata::DEFAULT_TIMESTAMP_FORMAT),
-            Metadata::TIMESTAMP_FORMAT => Metadata::DEFAULT_TIMESTAMP_FORMAT,
         ]);
 
         // 3. append to pending events
         $this->pendingEvents[] = $event;
     }
 
+    /**
+     * Apply Event
+     *
+     * Events are applied when they are raised and when rebuilding an aggregate
+     * from events stored in the database.
+     */
     final protected function applyEvent(MessageInterface $event): void
     {
         $parts = explode('\\', get_class($event));
