@@ -48,6 +48,18 @@ final class NamespaceMessageProviderTest extends TestCase
     /**
      * @covers ::getEventTypeForMessage
      */
+    public function testGetMessageClassForEventTypeWithSubnamespaces(): void
+    {
+        $provider = new NamespaceMessageProvider('SonsOfPHP\\Component\\EventSourcing');
+
+        $eventType = $provider->getEventTypeForMessage(FakeSerializableMessage::class);
+
+        $this->assertSame('FakeSerializableMessage', $eventType);
+    }
+
+    /**
+     * @covers ::getEventTypeForMessage
+     */
     public function testGetEventTypeForMessageWithUnknownMessageClassThrowsException(): void
     {
         $provider = new NamespaceMessageProvider('Tests');
