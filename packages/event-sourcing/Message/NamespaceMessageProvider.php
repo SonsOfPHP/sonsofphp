@@ -33,11 +33,9 @@ class NamespaceMessageProvider implements MessageProviderInterface
             $message = $class;
         }
 
-        $parts     = explode('\\', $message);
-        $eventType = array_pop($parts);
-        $namespace = implode('\\', $parts);
+        $eventType = trim(substr($message, strlen($this->namespace)), '\\');
 
-        if ($this->namespace !== substr($namespace, 0, strlen($this->namespace))) {
+        if ($this->namespace !== substr($message, 0, strlen($this->namespace))) {
             throw new EventSourcingException(sprintf('Message "%s" is not in the Namespace "%s"', $message, $this->namespace));
         }
 
