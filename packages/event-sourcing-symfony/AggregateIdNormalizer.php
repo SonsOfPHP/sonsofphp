@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing;
 
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -37,11 +38,15 @@ final class AggregateIdNormalizer implements NormalizerInterface, DenormalizerIn
 
     public function denormalize($data, string $type, string $format = null, array $context = [])
     {
+        if (AggregateIdInterface::class === $type) {
+            return new AggregateId($data);
+        }
+
         return $type::fromString($data);
     }
 
     public function supportsDenormalization($data, string $type, string $format = null)
     {
-        return is_subclass_of($type, AggregateIdInterface::class, true);
+        return is_a($type, AggregateIdInterface::class, true);
     }
 }

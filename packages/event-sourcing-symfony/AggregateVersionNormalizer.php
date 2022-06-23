@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing;
 
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -37,11 +38,15 @@ final class AggregateVersionNormalizer implements NormalizerInterface, Denormali
 
     public function denormalize($data, string $type, string $format = null, array $context = [])
     {
+        if (AggregateVersionInterface::class === $type) {
+            return new AggregateVersion($data);
+        }
+
         return $type::fromInt($data);
     }
 
     public function supportsDenormalization($data, string $type, string $format = null)
     {
-        return is_subclass_of($type, AggregateVersionInterface::class, true);
+        return is_a($type, AggregateVersionInterface::class, true);
     }
 }

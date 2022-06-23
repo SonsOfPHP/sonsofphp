@@ -42,21 +42,51 @@ final class AggregateIdNormalizerTest extends TestCase
     }
 
     /**
+     * @dataProvider providerForSupportsDenormalization
+     *
      * @covers ::supportsDenormalization
+     */
+    public function testSupportsDenormalize(
+        bool $expected,
+        $data,
+        string $type,
+        string $format = null
+    ): void {
+        $normalizer = new AggregateIdNormalizer();
+
+        $this->assertSame($expected, $normalizer->supportsDenormalization($data, $type, $format));
+    }
+
+    public function providerForSupportsDenormalization(): iterable
+    {
+        yield [true, 'aggregate-id', AggregateId::class];
+        yield [true, 'aggregate-id', AggregateIdInterface::class];
+        yield [false, 'aggregate-id', 'stdClass'];
+    }
+
+    /**
+     * @dataProvider providerForDenormalize
+     *
      * @covers ::denormalize
      */
-    public function testItWillDenormalize(): void
+    public function testDenormalize(
+        $data,
+        string $type,
+        string $format = null,
+        array $context = []
+    ): void
     {
         $normalizer = new AggregateIdNormalizer();
 
-        $data = 'aggregate-id';
-        $type = AggregateId::class;
+        $output = $normalizer->denormalize($data, $type, $format, $context);
 
-        $this->assertTrue($normalizer->supportsDenormalization($data, $type));
+        $this->assertInstanceOf(AggregateIdInterface::class, $output);
+        $this->assertSame($data, $output->toString());
+    }
 
-        $id = $normalizer->denormalize($data, $type);
-
-        $this->assertInstanceOf(AggregateIdInterface::class, $id);
-        $this->assertSame($data, $id->toString());
+    public function providerForDenormalize(): iterable
+    {
+        yield ['aggregate-id', AggregateId::class];
+        yield ['aggregate-id', AggregateIdInterface::class];
     }
 }

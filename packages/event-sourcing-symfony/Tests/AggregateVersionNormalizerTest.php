@@ -42,21 +42,51 @@ final class AggregateVersionNormalizerTest extends TestCase
     }
 
     /**
+     * @dataProvider providerForSupportsDenormalization
+     *
      * @covers ::supportsDenormalization
+     */
+    public function testItSupportsDenormalize(
+        bool $expected,
+        $data,
+        string $type,
+        string $format = null
+    ): void {
+        $normalizer = new AggregateVersionNormalizer();
+
+        $this->assertSame($expected, $normalizer->supportsDenormalization($data, $type, $format));
+    }
+
+    public function providerForSupportsDenormalization(): iterable
+    {
+        yield [true, 2131, AggregateVersion::class];
+        yield [true, 2131, AggregateVersionInterface::class];
+        yield [false, 2131, 'stdClass'];
+    }
+
+    /**
+     * @dataProvider providerForDenormalize
+     *
      * @covers ::denormalize
      */
-    public function testItWillDenormalize(): void
+    public function testItWillDenormalize(
+        $data,
+        string $type,
+        string $format = null,
+        array $context = []
+    ): void
     {
         $normalizer = new AggregateVersionNormalizer();
 
-        $data = 2131;
-        $type = AggregateVersion::class;
+        $output = $normalizer->denormalize($data, $type, $format, $context);
 
-        $this->assertTrue($normalizer->supportsDenormalization($data, $type));
+        $this->assertInstanceOf(AggregateVersionInterface::class, $output);
+        $this->assertSame($data, $output->toInt());
+    }
 
-        $id = $normalizer->denormalize($data, $type);
-
-        $this->assertInstanceOf(AggregateVersionInterface::class, $id);
-        $this->assertSame($data, $id->toInt());
+    public function providerForDenormalize(): iterable
+    {
+        yield [2131, AggregateVersion::class];
+        yield [2131, AggregateVersionInterface::class];
     }
 }
