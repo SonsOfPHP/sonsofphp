@@ -99,7 +99,8 @@
     "require-dev": {
         "symfony/messenger": "^5|^6",
         "symfony/http-foundation": "^5",
-        "symfony/security": "^4"
+        "symfony/security": "^4",
+        "symfony/serializer": "^5|^6"
     },
     "autoload-dev": {
         "psr-4": {

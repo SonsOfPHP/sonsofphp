@@ -37,7 +37,8 @@
     "require-dev": {
         "symfony/http-foundation": "^5",
         "symfony/messenger": "^5|^6",
-        "symfony/security": "^4"
+        "symfony/security": "^4",
+        "symfony/serializer": "^5|^6"
     },
     "extra": {
         "sort-packages": true,
