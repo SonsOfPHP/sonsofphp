@@ -6,7 +6,6 @@ namespace SonsOfPHP\Bridge\Symfony\EventSourcing;
 
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
-use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
