@@ -98,7 +98,7 @@ abstract class AbstractAggregate implements AggregateInterface
     }
 
     /**
-     * Raise New Event
+     * Raise New Event.
      *
      * Raised Events will be apply to the aggregate and when the aggregate is persisted
      * using the the Aggregate Repository, the event is stored
@@ -107,8 +107,8 @@ abstract class AbstractAggregate implements AggregateInterface
     {
         // Prepopulate with some metadata
         $event = $event->withMetadata([
-            Metadata::AGGREGATE_ID     => $this->getAggregateId()->toString(),
-            Metadata::TIMESTAMP        => (new \DateTimeImmutable())->format(Metadata::DEFAULT_TIMESTAMP_FORMAT),
+            Metadata::AGGREGATE_ID => $this->getAggregateId()->toString(),
+            Metadata::TIMESTAMP => (new \DateTimeImmutable())->format(Metadata::DEFAULT_TIMESTAMP_FORMAT),
             Metadata::TIMESTAMP_FORMAT => Metadata::DEFAULT_TIMESTAMP_FORMAT,
         ]);
 
@@ -128,7 +128,7 @@ abstract class AbstractAggregate implements AggregateInterface
     }
 
     /**
-     * Apply Event
+     * Apply Event.
      *
      * Events are applied when they are raised and when rebuilding an aggregate
      * from events stored in the database.

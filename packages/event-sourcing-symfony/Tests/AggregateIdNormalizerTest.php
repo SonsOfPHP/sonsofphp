@@ -8,8 +8,8 @@ use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Symfony\EventSourcing\AggregateIdNormalizer;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\AggregateIdNormalizer
@@ -74,8 +74,7 @@ final class AggregateIdNormalizerTest extends TestCase
         string $type,
         string $format = null,
         array $context = []
-    ): void
-    {
+    ): void {
         $normalizer = new AggregateIdNormalizer();
 
         $output = $normalizer->denormalize($data, $type, $format, $context);

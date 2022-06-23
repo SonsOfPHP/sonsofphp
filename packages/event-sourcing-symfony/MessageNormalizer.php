@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing;
 
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * Message Normalizer.
@@ -24,7 +24,7 @@ final class MessageNormalizer implements NormalizerInterface, DenormalizerInterf
     public function normalize($object, string $format = null, array $context = [])
     {
         return [
-            'payload'  => $object->getPayload(),
+            'payload' => $object->getPayload(),
             'metedata' => $object->getMetadata(),
         ];
     }

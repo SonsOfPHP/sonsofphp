@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing;
 
-use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
-use Symfony\Component\Uid\Uuid;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * Aggregate ID Normalizer.

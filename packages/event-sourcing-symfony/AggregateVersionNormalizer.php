@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing;
 
-use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * Aggregate Version Normalizer.

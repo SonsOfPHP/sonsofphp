@@ -8,8 +8,8 @@ use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Symfony\EventSourcing\AggregateVersionNormalizer;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\AggregateVersionNormalizer
@@ -74,8 +74,7 @@ final class AggregateVersionNormalizerTest extends TestCase
         string $type,
         string $format = null,
         array $context = []
-    ): void
-    {
+    ): void {
         $normalizer = new AggregateVersionNormalizer();
 
         $output = $normalizer->denormalize($data, $type, $format, $context);
