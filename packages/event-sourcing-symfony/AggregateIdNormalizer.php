@@ -15,6 +15,12 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
  * When using the Symfony Serializer Component, this will normalize/denormalize
  * the AggregateId object for the aggregate.
  *
+ * When using Symfony, add this into your `services.yaml` file:
+ * <code>
+ * SonsOfPHP\Bridge\Symfony\EventSourcing\AggregateIdNormalizer:
+ *     tags: [ serializer.normalizer ]
+ * </code>
+ *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 final class AggregateIdNormalizer implements NormalizerInterface, DenormalizerInterface
