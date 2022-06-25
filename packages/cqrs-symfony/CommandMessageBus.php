@@ -2,14 +2,26 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\Cqrs\Bridge\Symfony;
+namespace SonsOfPHP\Bridge\Symfony\Cqrs;
 
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Stamp\StampInterface;
 
 /**
+ * Command Bus that uses Symfony Messenger
+ *
+ * If using Symfony Framework, add to your services.yaml
+ * <code>
+ * SonsOfPHP\Bridge\Symfony\Cqrs\CommandMessageBus:
+ *     arguments: ['@command.bus']
+ * </code>
+ *
  * @author Joshua Estes <joshua@sonsofphp.com>
+ *
+ * @see https://symfony.com/doc/current/messenger/multiple_buses.html
+ * @see https://symfony.com/doc/current/messenger.html
+ * @see https://symfony.com/doc/current/components/messenger.html
  */
 class CommandMessageBus
 {
@@ -40,10 +52,8 @@ class CommandMessageBus
     /**
      * Dispatch the command.
      */
-    public function dispatch(object $command): Envelope
+    public function dispatch(object $command): object
     {
-        @trigger_error(sprintf('Using "%s" is deprecated. Use "SonsOfPHP\Bridge\Symfony\Cqrs\CommandMessageBus" instead.', CommandMessageBus::class), \E_USER_DEPRECATED);
-
         return $this->messageBus->dispatch($command, $this->stamps);
     }
 }

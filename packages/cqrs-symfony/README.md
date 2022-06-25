@@ -1,8 +1,7 @@
-Sons of PHP - CQRS - Symfony Bridge
-===================================
+Sons of PHP - CQRS Component
+============================
 
-Adds additional functionality using various Symfony Components to the Sons of
-PHP CQRS Component.
+Help implement CQRS
 
 ## Learn More
 

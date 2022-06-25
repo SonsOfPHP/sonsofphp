@@ -14,6 +14,10 @@
             "repository": "git@github.com:SonsOfPHP/cqrs.git"
         },
         {
+            "path": "packages/cqrs-symfony/",
+            "repository": "git@github.com:SonsOfPHP/cqrs-symfony.git"
+        },
+        {
             "path": "packages/event-dispatcher/",
             "repository": "git@github.com:SonsOfPHP/event-dispatcher.git"
         },
