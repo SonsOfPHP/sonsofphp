@@ -53,6 +53,7 @@
         "sonsofphp/bard": "self.version",
         "sonsofphp/clock": "self.version",
         "sonsofphp/cqrs": "self.version",
+        "sonsofphp/cqrs-symfony": "self.version",
         "sonsofphp/event-dispatcher": "self.version",
         "sonsofphp/event-sourcing": "self.version",
         "sonsofphp/event-sourcing-doctrine": "self.version",
@@ -65,12 +66,13 @@
     "autoload": {
         "psr-4": {
             "SonsOfPHP\\Bard\\": "packages/bard/src",
-            "SonsOfPHP\\Bridge\\Doctrine\\EventSourcing\\": "packages/event-sourcing-doctrine",
-            "SonsOfPHP\\Bridge\\Symfony\\EventSourcing\\": "packages/event-sourcing-symfony",
             "SonsOfPHP\\Component\\Clock\\": "packages/clock",
             "SonsOfPHP\\Component\\Cqrs\\": "packages/cqrs",
+            "SonsOfPHP\\Bridge\\Symfony\\Cqrs\\": "packages/cqrs-symfony",
             "SonsOfPHP\\Component\\EventDispatcher\\": "packages/event-dispatcher",
             "SonsOfPHP\\Component\\EventSourcing\\": "packages/event-sourcing",
+            "SonsOfPHP\\Bridge\\Doctrine\\EventSourcing\\": "packages/event-sourcing-doctrine",
+            "SonsOfPHP\\Bridge\\Symfony\\EventSourcing\\": "packages/event-sourcing-symfony",
             "SonsOfPHP\\Component\\FeatureToggle\\": "packages/feature-toggle",
             "SonsOfPHP\\Component\\Json\\": "packages/json",
             "SonsOfPHP\\Component\\Money\\": "packages/money",
@@ -80,6 +82,7 @@
             "packages/bard/Tests",
             "packages/clock/Tests",
             "packages/cqrs/Tests",
+            "packages/cqrs-symfony/Tests",
             "packages/event-dispatcher/Tests",
             "packages/event-sourcing/Tests",
             "packages/event-sourcing-doctrine/Tests",
@@ -104,7 +107,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "SonsOfPHP\\Bard\\Tests\\": "packages/bard/Tests"
+            "SonsOfPHP\\Bard\\Tests\\": "packages/bard/Tests",
+            "SonsOfPHP\\Bridge\\Symfony\\Cqrs\\Tests\\": "packages/cqrs-symfony/Tests"
         }
     }
 }

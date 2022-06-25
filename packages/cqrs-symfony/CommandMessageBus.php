@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Symfony\Cqrs;
 
-use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Stamp\StampInterface;
 
 /**
- * Command Bus that uses Symfony Messenger
+ * Command Bus that uses Symfony Messenger.
  *
  * If using Symfony Framework, add to your services.yaml
  * <code>

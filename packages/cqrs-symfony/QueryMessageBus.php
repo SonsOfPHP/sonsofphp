@@ -8,7 +8,7 @@ use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 /**
- * Query Bus that uses Symfony Messenger
+ * Query Bus that uses Symfony Messenger.
  *
  * If using Symfony Framework, add to your services.yaml
  * <code>
