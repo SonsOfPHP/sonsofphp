@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Symfony\Cqrs\Tests;
 
-use SonsOfPHP\Bridge\Symfony\Cqrs\Command\AbstractCommandMessage;
+use SonsOfPHP\Bridge\Symfony\Cqrs\Command\AbstractOptionsResolverCommandMessage;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class DummyCommand extends AbstractCommandMessage
+final class DummyCommand extends AbstractOptionsResolverCommandMessage
 {
     public static $configureOptions;
 

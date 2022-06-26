@@ -5,21 +5,21 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Symfony\Cqrs\Tests\Command;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Bridge\Symfony\Cqrs\Command\AbstractCommandMessage;
+use SonsOfPHP\Bridge\Symfony\Cqrs\Command\AbstractOptionsResolverCommandMessage;
 use SonsOfPHP\Bridge\Symfony\Cqrs\Tests\DummyCommand;
 use SonsOfPHP\Component\Cqrs\Command\CommandMessageInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\Cqrs\Command\AbstractCommandMessage
+ * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\Cqrs\Command\AbstractOptionsResolverCommandMessage
  */
-final class AbstractCommandMessageTest extends TestCase
+final class AbstractOptionsResolverCommandMessageTest extends TestCase
 {
     /**
      * @coversNothing
      */
     public function testItHasTheCorrectInterface(): void
     {
-        $command = $this->getMockForAbstractClass(AbstractCommandMessage::class);
+        $command = $this->getMockForAbstractClass(AbstractOptionsResolverCommandMessage::class);
 
         $this->assertInstanceOf(CommandMessageInterface::class, $command); // @phpstan-ignore-line
     }
