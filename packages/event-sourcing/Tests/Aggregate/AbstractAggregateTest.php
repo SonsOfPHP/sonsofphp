@@ -47,6 +47,7 @@ final class AbstractAggregateTest extends TestCase
         $message = $this->createMock(MessageInterface::class);
         $refObj = new \ReflectionObject($abstract);
         $refMet = $refObj->getMethod('raiseEvent');
+        $refMet->setAccessible(true);
         $refMet->invoke($abstract, $message);
 
         $this->assertTrue($abstract->hasPendingEvents());
@@ -66,6 +67,7 @@ final class AbstractAggregateTest extends TestCase
         $aggregate = $abstract::new(AggregateId::fromString('id'));
         $refObj = new \ReflectionObject($aggregate);
         $refMet = $refObj->getMethod('raiseEvent');
+        $refMet->setAccessible(true);
         $refMet->invoke($aggregate, $message);
     }
 
@@ -84,6 +86,7 @@ final class AbstractAggregateTest extends TestCase
 
         $refObj = new \ReflectionObject($aggregate);
         $refMet = $refObj->getMethod('raiseEvent');
+        $refMet->setAccessible(true);
         $refMet->invoke($aggregate, $message);
 
         $this->assertCount(1, $aggregate->getPendingEvents());
