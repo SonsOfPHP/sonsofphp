@@ -32,7 +32,7 @@ abstract class AbstractCommandMessage implements CommandMessageInterface
 
     final public function __construct(array $options = [])
     {
-        @trigger_error(sprintf('Using "%s" is deprecated. Use "SonsOfPHP\Bridge\Symfony\Cqrs\Command\AbstractCommandMessage" instead.', AbstractCommandMessage::class), \E_USER_DEPRECATED);
+        @trigger_error(sprintf('Using "%s" is deprecated. Use "SonsOfPHP\Bridge\Symfony\Cqrs\Command\AbstractOptionsResolverCommandMessage" instead.', AbstractCommandMessage::class), \E_USER_DEPRECATED);
 
         $resolver = new OptionsResolver();
         $this->configureOptions($resolver);
