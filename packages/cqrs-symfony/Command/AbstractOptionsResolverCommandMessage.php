@@ -20,7 +20,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-abstract class AbstractCommandMessage implements CommandMessageInterface
+abstract class AbstractOptionsResolverCommandMessage implements CommandMessageInterface
 {
     private array $options = [];
 
