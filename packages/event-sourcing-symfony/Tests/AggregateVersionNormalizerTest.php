@@ -23,8 +23,8 @@ final class AggregateVersionNormalizerTest extends TestCase
     {
         $normalizer = new AggregateVersionNormalizer();
 
-        $this->assertInstanceOf(NormalizerInterface::class, $normalizer);
-        $this->assertInstanceOf(DenormalizerInterface::class, $normalizer);
+        $this->assertInstanceOf(NormalizerInterface::class, $normalizer); // @phpstan-ignore-line
+        $this->assertInstanceOf(DenormalizerInterface::class, $normalizer); // @phpstan-ignore-line
     }
 
     /**

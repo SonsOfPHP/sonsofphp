@@ -31,7 +31,7 @@ final class MessageNormalizer implements NormalizerInterface, DenormalizerInterf
 
     public function supportsNormalization($data, string $format = null)
     {
-        return $data instanceof AggregateMessageInterface;
+        return $data instanceof MessageInterface;
     }
 
     public function denormalize($data, string $type, string $format = null, array $context = [])
