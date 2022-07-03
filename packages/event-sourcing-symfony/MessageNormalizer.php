@@ -24,8 +24,8 @@ final class MessageNormalizer implements NormalizerInterface, DenormalizerInterf
     public function normalize($object, string $format = null, array $context = [])
     {
         return [
-            'payload' => $object->getPayload(),
-            'metedata' => $object->getMetadata(),
+            'payload'  => $object->getPayload(),
+            'metadata' => $object->getMetadata(),
         ];
     }
 
