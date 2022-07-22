@@ -66,12 +66,18 @@ class AggregateRepository implements AggregateRepositoryInterface
      */
     public function persist(AggregateInterface $aggregate): void
     {
-        $events = $aggregate->getPendingEvents();
+        $events           = $aggregate->getPendingEvents();
+        $eventsToDispatch = [];
+
         foreach ($events as $message) {
             // We want to enrich the message BEFORE sending to dispatcher or being
             // persisted
             $message = $this->messageEnricher->enrich($message);
             $this->messageRepository->persist($message);
+            $eventsToDispatch[] = $message;
+        }
+
+        foreach ($eventsToDispatch as $message) {
             $this->eventDispatcher->dispatch($message);
         }
     }
