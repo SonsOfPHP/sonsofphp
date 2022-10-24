@@ -32,7 +32,7 @@
     "require": {
         "php": ">=7.4",
         "doctrine/dbal": "^3",
-        "sonsofphp/event-sourcing": "^0.2@dev"
+        "sonsofphp/event-sourcing": "^0.3@dev"
     },
     "extra": {
         "sort-packages": true,

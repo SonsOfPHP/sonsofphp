@@ -31,7 +31,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=7.4",
-        "sonsofphp/event-dispatcher": "^0.2@dev"
+        "sonsofphp/event-dispatcher": "^0.3@dev"
     },
     "suggest": {
         "sonsofphp/event-sourcing-doctrine": "Adds additional functionality using Doctrine",
