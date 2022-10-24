@@ -40,7 +40,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=7.4",
-        "sonsofphp/cqrs": "^0.2@dev",
+        "sonsofphp/cqrs": "^0.3@dev",
         "symfony/options-resolver": "^5|^6"
     },
     "require-dev": {
