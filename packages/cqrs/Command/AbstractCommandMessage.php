@@ -56,4 +56,32 @@ abstract class AbstractCommandMessage implements CommandMessageInterface
     {
         return $this->options[$key] ?? null;
     }
+
+    /**
+     * Returns true if Command Option exists
+     *
+     * @return bool
+     */
+    public function hasOption(string $key): bool
+    {
+        return isset($this->options[$key]);
+    }
+
+    /**
+     * @see ::getOption
+     * @return mixed
+     */
+    public function __get(string $name)
+    {
+        return $this->getOption($name);
+    }
+
+    /**
+     * @see ::hasOption
+     * @return mixed
+     */
+    public function __isset(string $name)
+    {
+        return $this->hasOption($name);
+    }
 }
