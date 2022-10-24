@@ -35,7 +35,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=7.4",
-        "sonsofphp/cqrs-symfony": "^0.2@dev"
+        "sonsofphp/cqrs-symfony": "^0.3@dev"
     },
     "require-dev": {
         "symfony/messenger": "^5"
