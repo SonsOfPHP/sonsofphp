@@ -43,4 +43,36 @@ final class AbstractOptionsResolverCommandMessageTest extends TestCase
         $this->assertArrayHasKey('id', $command->getOptions());
         $this->assertSame('unique-id', $command->getOption('id'));
     }
+
+    /**
+     * @covers ::__get
+     * @covers ::getOption
+     */
+    public function testMagicMethodGetWorks(): void
+    {
+        DummyCommand::setConfigureOptionsCallback(function ($resolver) {
+            $resolver->define('id');
+        });
+        $command = new DummyCommand([
+            'id' => 'unique-id',
+        ]);
+
+        $this->assertSame('unique-id', $command->id);
+    }
+
+    /**
+     * @covers ::__isset
+     * @covers ::hasOption
+     */
+    public function testMagicMethodIssetWorks(): void
+    {
+        DummyCommand::setConfigureOptionsCallback(function ($resolver) {
+            $resolver->define('id');
+        });
+        $command = new DummyCommand([
+            'id' => 'unique-id',
+        ]);
+
+        $this->assertTrue(isset($command->id));
+    }
 }

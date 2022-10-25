@@ -34,14 +34,12 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.4",
-        "sonsofphp/cqrs-symfony": "^0.3@dev"
+        "php": ">=7.4"
     },
     "require-dev": {
-        "symfony/messenger": "^5"
+        "symfony/messenger": "^5|^6"
     },
     "suggest": {
-        "symfony/messenger": "Use message buses to handle commands asynchronously",
         "sonsofphp/event-sourcing": "Use with event sourcing",
         "sonsofphp/cqrs-symfony": "Adds more functionality to the CQRS Component"
     },
