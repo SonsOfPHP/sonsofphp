@@ -57,9 +57,7 @@ abstract class AbstractOptionsResolverCommandMessage implements CommandMessageIn
     }
 
     /**
-     * Returns true if Command Option exists
-     *
-     * @return bool
+     * Returns true if Command Option exists.
      */
     public function hasOption(string $key): bool
     {
@@ -68,6 +66,7 @@ abstract class AbstractOptionsResolverCommandMessage implements CommandMessageIn
 
     /**
      * @see ::getOption
+     *
      * @return mixed
      */
     public function __get(string $name)
@@ -77,6 +76,7 @@ abstract class AbstractOptionsResolverCommandMessage implements CommandMessageIn
 
     /**
      * @see ::hasOption
+     *
      * @return mixed
      */
     public function __isset(string $name)

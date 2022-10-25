@@ -66,7 +66,7 @@ class AggregateRepository implements AggregateRepositoryInterface
      */
     public function persist(AggregateInterface $aggregate): void
     {
-        $events           = $aggregate->getPendingEvents();
+        $events = $aggregate->getPendingEvents();
         $eventsToDispatch = [];
 
         foreach ($events as $message) {

@@ -38,7 +38,7 @@
         "psr/clock-implementation": "1.0"
     },
     "require": {
-        "php": ">=7.4",
+        "php": ">=8.0",
         "ext-json": "*",
         "psr/event-dispatcher": "^1.0",
         "doctrine/dbal": "^3",
