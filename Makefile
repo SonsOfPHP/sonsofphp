@@ -55,6 +55,9 @@ coverage: ## Build Code Coverage Report
 psalm: ## Run psalm
 	XDEBUG_MODE=off $(PHP) $(PSALM)
 
+psalm-baseline: # Updates the baseline file
+	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PSALM) --update-baseline --set-baseline=$(PSALM_BASELINE_FILE)
+
 psalm-github: # used with GitHub
 	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PSALM) --long-progress --monochrome --output-format=github
 

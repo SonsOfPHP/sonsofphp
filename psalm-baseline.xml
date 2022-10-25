@@ -1,0 +1,1401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="4.29.0@7ec5ffbd5f68ae03782d7fd33fff0c45a69f95b3">
+  <file src="packages/bard/src/Console/Command/InitCommand.php">
+    <MissingReturnType occurrences="1">
+      <code>initialize</code>
+    </MissingReturnType>
+    <MixedInferredReturnType occurrences="1">
+      <code>int</code>
+    </MixedInferredReturnType>
+    <MixedOperand occurrences="1">
+      <code>$input-&gt;getOption('working-dir')</code>
+    </MixedOperand>
+    <MixedReturnStatement occurrences="2">
+      <code>self::FAILURE</code>
+      <code>self::SUCCESS</code>
+    </MixedReturnStatement>
+    <UndefinedConstant occurrences="2">
+      <code>self::FAILURE</code>
+      <code>self::SUCCESS</code>
+    </UndefinedConstant>
+  </file>
+  <file src="packages/bard/src/Console/Command/InstallCommand.php">
+    <MissingReturnType occurrences="1">
+      <code>initialize</code>
+    </MissingReturnType>
+    <MixedArrayAccess occurrences="1">
+      <code>$pkg['path']</code>
+    </MixedArrayAccess>
+    <MixedAssignment occurrences="1">
+      <code>$pkg</code>
+    </MixedAssignment>
+    <MixedInferredReturnType occurrences="1">
+      <code>int</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="1">
+      <code>run</code>
+    </MixedMethodCall>
+    <MixedOperand occurrences="1">
+      <code>$input-&gt;getOption('working-dir')</code>
+    </MixedOperand>
+    <MixedReturnStatement occurrences="1">
+      <code>self::SUCCESS</code>
+    </MixedReturnStatement>
+    <PossiblyNullIterator occurrences="1">
+      <code>$bardJsonFile-&gt;getSection('packages')</code>
+    </PossiblyNullIterator>
+    <UndefinedConstant occurrences="1">
+      <code>self::SUCCESS</code>
+    </UndefinedConstant>
+  </file>
+  <file src="packages/bard/src/Console/Command/MergeCommand.php">
+    <MissingPropertyType occurrences="1">
+      <code>$formatter</code>
+    </MissingPropertyType>
+    <MissingReturnType occurrences="1">
+      <code>initialize</code>
+    </MissingReturnType>
+    <MixedArgument occurrences="1">
+      <code>$this-&gt;formatter-&gt;formatSection('bard', sprintf('Merging "%s" into root composer.json', $pkgComposerJsonFile-&gt;getSection('name')))</code>
+    </MixedArgument>
+    <MixedArrayAccess occurrences="2">
+      <code>$pkg['path']</code>
+      <code>$pkg['path']</code>
+    </MixedArrayAccess>
+    <MixedAssignment occurrences="2">
+      <code>$pkg</code>
+      <code>$this-&gt;bardConfig</code>
+    </MixedAssignment>
+    <MixedInferredReturnType occurrences="1">
+      <code>int</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="2">
+      <code>decode</code>
+      <code>formatSection</code>
+    </MixedMethodCall>
+    <MixedOperand occurrences="7">
+      <code>$input-&gt;getOption('working-dir')</code>
+      <code>$input-&gt;getOption('working-dir')</code>
+      <code>$input-&gt;getOption('working-dir')</code>
+      <code>$input-&gt;getOption('working-dir')</code>
+      <code>$input-&gt;getOption('working-dir')</code>
+      <code>$pkg['path']</code>
+      <code>$pkg['path']</code>
+    </MixedOperand>
+    <MixedReturnStatement occurrences="1">
+      <code>self::SUCCESS</code>
+    </MixedReturnStatement>
+    <PossiblyInvalidArgument occurrences="1">
+      <code>$pkgComposerJsonFile-&gt;getSection('name')</code>
+    </PossiblyInvalidArgument>
+    <PropertyNotSetInConstructor occurrences="2">
+      <code>$bardConfig</code>
+      <code>$mainComposerFile</code>
+    </PropertyNotSetInConstructor>
+    <UndefinedConstant occurrences="1">
+      <code>self::SUCCESS</code>
+    </UndefinedConstant>
+  </file>
+  <file src="packages/bard/src/Console/Command/PublishCommand.php">
+    <MixedArrayAccess occurrences="3">
+      <code>$pkg['path']</code>
+      <code>$pkg['path']</code>
+      <code>$pkg['repository']</code>
+    </MixedArrayAccess>
+    <MixedAssignment occurrences="2">
+      <code>$formatter</code>
+      <code>$pkg</code>
+    </MixedAssignment>
+    <MixedInferredReturnType occurrences="1">
+      <code>int</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="2">
+      <code>mustRun</code>
+      <code>wait</code>
+    </MixedMethodCall>
+    <MixedOperand occurrences="3">
+      <code>$input-&gt;getOption('working-dir')</code>
+      <code>$input-&gt;getOption('working-dir')</code>
+      <code>$pkg['path']</code>
+    </MixedOperand>
+    <MixedReturnStatement occurrences="1">
+      <code>self::SUCCESS</code>
+    </MixedReturnStatement>
+    <PossiblyInvalidArgument occurrences="1">
+      <code>$pkgName</code>
+    </PossiblyInvalidArgument>
+    <PossiblyNullIterator occurrences="1">
+      <code>$bardConfig-&gt;getSection('packages')</code>
+    </PossiblyNullIterator>
+    <UndefinedConstant occurrences="1">
+      <code>self::SUCCESS</code>
+    </UndefinedConstant>
+    <UnusedVariable occurrences="1">
+      <code>$formatter</code>
+    </UnusedVariable>
+  </file>
+  <file src="packages/bard/src/Console/Command/ReleaseCommand.php">
+    <MissingPropertyType occurrences="1">
+      <code>$releaseVersion</code>
+    </MissingPropertyType>
+    <MissingReturnType occurrences="2">
+      <code>initialize</code>
+      <code>interact</code>
+    </MissingReturnType>
+    <MixedArgument occurrences="12">
+      <code>$input-&gt;getOption('branch')</code>
+      <code>$this-&gt;releaseVersion</code>
+      <code>$this-&gt;releaseVersion</code>
+      <code>$this-&gt;releaseVersion-&gt;toString()</code>
+      <code>$this-&gt;releaseVersion-&gt;toString()</code>
+      <code>$this-&gt;releaseVersion-&gt;toString()</code>
+      <code>$this-&gt;releaseVersion-&gt;toString()</code>
+      <code>$this-&gt;releaseVersion-&gt;toString()</code>
+      <code>$this-&gt;releaseVersion-&gt;toString()</code>
+      <code>$this-&gt;releaseVersion-&gt;toString()</code>
+      <code>$this-&gt;releaseVersion-&gt;toString()</code>
+      <code>$version</code>
+    </MixedArgument>
+    <MixedArrayAccess occurrences="5">
+      <code>$pkg['path']</code>
+      <code>$pkg['path']</code>
+      <code>$pkg['path']</code>
+      <code>$pkg['repository']</code>
+      <code>$pkg['repository']</code>
+    </MixedArrayAccess>
+    <MixedAssignment occurrences="5">
+      <code>$formatter</code>
+      <code>$pkg</code>
+      <code>$pkg</code>
+      <code>$this-&gt;isDryRun</code>
+      <code>$version</code>
+    </MixedAssignment>
+    <MixedInferredReturnType occurrences="1">
+      <code>int</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="14">
+      <code>formatSection</code>
+      <code>mustRun</code>
+      <code>mustRun</code>
+      <code>mustRun</code>
+      <code>toString</code>
+      <code>toString</code>
+      <code>toString</code>
+      <code>toString</code>
+      <code>toString</code>
+      <code>toString</code>
+      <code>toString</code>
+      <code>toString</code>
+      <code>toString</code>
+      <code>toString</code>
+    </MixedMethodCall>
+    <MixedOperand occurrences="8">
+      <code>$input-&gt;getOption('working-dir')</code>
+      <code>$input-&gt;getOption('working-dir')</code>
+      <code>$input-&gt;getOption('working-dir')</code>
+      <code>$input-&gt;getOption('working-dir')</code>
+      <code>$pkg['path']</code>
+      <code>$pkg['path']</code>
+      <code>$this-&gt;releaseVersion-&gt;toString()</code>
+      <code>$this-&gt;releaseVersion-&gt;toString()</code>
+    </MixedOperand>
+    <MixedReturnStatement occurrences="1">
+      <code>self::SUCCESS</code>
+    </MixedReturnStatement>
+    <PossiblyInvalidArgument occurrences="7">
+      <code>$pkgName</code>
+      <code>$pkgName</code>
+      <code>$pkgName</code>
+      <code>$pkgName</code>
+      <code>$pkgName</code>
+      <code>$this-&gt;bardConfig-&gt;getSection('version')</code>
+      <code>$this-&gt;bardConfig-&gt;getSection('version')</code>
+    </PossiblyInvalidArgument>
+    <PossiblyInvalidCast occurrences="1">
+      <code>$this-&gt;bardConfig-&gt;getSection('version')</code>
+    </PossiblyInvalidCast>
+    <PossiblyNullIterator occurrences="2">
+      <code>$this-&gt;bardConfig-&gt;getSection('packages')</code>
+      <code>$this-&gt;bardConfig-&gt;getSection('packages')</code>
+    </PossiblyNullIterator>
+    <PropertyNotSetInConstructor occurrences="1">
+      <code>$bardConfig</code>
+    </PropertyNotSetInConstructor>
+    <UndefinedConstant occurrences="1">
+      <code>self::SUCCESS</code>
+    </UndefinedConstant>
+  </file>
+  <file src="packages/bard/src/Console/Command/UpdateCommand.php">
+    <MissingReturnType occurrences="1">
+      <code>initialize</code>
+    </MissingReturnType>
+    <MixedArrayAccess occurrences="1">
+      <code>$pkg['path']</code>
+    </MixedArrayAccess>
+    <MixedAssignment occurrences="1">
+      <code>$pkg</code>
+    </MixedAssignment>
+    <MixedInferredReturnType occurrences="1">
+      <code>int</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="1">
+      <code>run</code>
+    </MixedMethodCall>
+    <MixedOperand occurrences="1">
+      <code>$input-&gt;getOption('working-dir')</code>
+    </MixedOperand>
+    <MixedReturnStatement occurrences="1">
+      <code>self::SUCCESS</code>
+    </MixedReturnStatement>
+    <PossiblyNullIterator occurrences="1">
+      <code>$bardJsonFile-&gt;getSection('packages')</code>
+    </PossiblyNullIterator>
+    <UndefinedConstant occurrences="1">
+      <code>self::SUCCESS</code>
+    </UndefinedConstant>
+  </file>
+  <file src="packages/bard/src/JsonFile.php">
+    <MissingParamType occurrences="2">
+      <code>$operator</code>
+      <code>$value</code>
+    </MissingParamType>
+    <MixedAssignment occurrences="1">
+      <code>$this-&gt;config</code>
+    </MixedAssignment>
+    <MixedInferredReturnType occurrences="3">
+      <code>JsonFile</code>
+      <code>array|int|string|null</code>
+      <code>string</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="5">
+      <code>apply</code>
+      <code>decode</code>
+      <code>encode</code>
+      <code>unescapedSlashes</code>
+      <code>unescapedUnicode</code>
+    </MixedMethodCall>
+    <MixedReturnStatement occurrences="3">
+      <code>$operator-&gt;apply($this)</code>
+      <code>$this-&gt;config[$section]</code>
+    </MixedReturnStatement>
+    <PropertyNotSetInConstructor occurrences="1">
+      <code>$config</code>
+    </PropertyNotSetInConstructor>
+    <RedundantPropertyInitializationCheck occurrences="2">
+      <code>isset($this-&gt;config)</code>
+      <code>isset($this-&gt;config)</code>
+    </RedundantPropertyInitializationCheck>
+  </file>
+  <file src="packages/bard/src/Worker/File/Composer/Package/BranchAlias.php">
+    <InvalidArrayOffset occurrences="1">
+      <code>$pkgExtraSection['branch-alias']</code>
+    </InvalidArrayOffset>
+    <MixedAssignment occurrences="1">
+      <code>$pkgExtraSection['branch-alias']</code>
+    </MixedAssignment>
+    <MixedStringOffsetAssignment occurrences="1">
+      <code>$pkgExtraSection['branch-alias']</code>
+    </MixedStringOffsetAssignment>
+    <PossiblyInvalidArrayAccess occurrences="1">
+      <code>$rootExtraSection['branch-alias']</code>
+    </PossiblyInvalidArrayAccess>
+    <PossiblyInvalidArrayAssignment occurrences="1">
+      <code>$pkgExtraSection['branch-alias']</code>
+    </PossiblyInvalidArrayAssignment>
+    <PossiblyInvalidArrayOffset occurrences="1">
+      <code>$rootExtraSection['branch-alias']</code>
+    </PossiblyInvalidArrayOffset>
+    <PossiblyNullArrayAccess occurrences="1">
+      <code>$rootExtraSection['branch-alias']</code>
+    </PossiblyNullArrayAccess>
+  </file>
+  <file src="packages/bard/src/Worker/File/Composer/Root/UpdateAutoloadDevSection.php">
+    <InvalidArrayOffset occurrences="3">
+      <code>$rootAutoloadSection['exclude-from-classmap']</code>
+      <code>$rootAutoloadSection['exclude-from-classmap']</code>
+      <code>$rootAutoloadSection['psr-4']</code>
+    </InvalidArrayOffset>
+    <MixedArgument occurrences="4">
+      <code>$pkgPath</code>
+      <code>$pkgPath</code>
+      <code>$rootAutoloadSection['exclude-from-classmap']</code>
+      <code>$rootAutoloadSection['psr-4']</code>
+    </MixedArgument>
+    <MixedArrayOffset occurrences="1">
+      <code>$rootAutoloadSection['psr-4'][$namespace]</code>
+    </MixedArrayOffset>
+    <MixedAssignment occurrences="4">
+      <code>$config</code>
+      <code>$namespace</code>
+      <code>$pkgPath</code>
+      <code>$pkgPath</code>
+    </MixedAssignment>
+    <PossiblyInvalidArrayAssignment occurrences="2">
+      <code>$rootAutoloadSection['exclude-from-classmap']</code>
+      <code>$rootAutoloadSection['psr-4']</code>
+    </PossiblyInvalidArrayAssignment>
+    <PossiblyInvalidIterator occurrences="1">
+      <code>$pkgAutoloadSection</code>
+    </PossiblyInvalidIterator>
+    <PossiblyNullArrayAssignment occurrences="2">
+      <code>$rootAutoloadSection['exclude-from-classmap']</code>
+      <code>$rootAutoloadSection['psr-4']</code>
+    </PossiblyNullArrayAssignment>
+  </file>
+  <file src="packages/bard/src/Worker/File/Composer/Root/UpdateAutoloadSection.php">
+    <InvalidArrayOffset occurrences="5">
+      <code>$rootAutoloadSection['exclude-from-classmap']</code>
+      <code>$rootAutoloadSection['exclude-from-classmap']</code>
+      <code>$rootAutoloadSection['exclude-from-classmap']</code>
+      <code>$rootAutoloadSection['psr-4']</code>
+      <code>$rootAutoloadSection['psr-4']</code>
+    </InvalidArrayOffset>
+    <MixedArgument occurrences="4">
+      <code>$pkgPath</code>
+      <code>$pkgPath</code>
+      <code>$rootAutoloadSection['exclude-from-classmap']</code>
+      <code>$rootAutoloadSection['psr-4']</code>
+    </MixedArgument>
+    <MixedArrayAssignment occurrences="2">
+      <code>$rootAutoloadSection['exclude-from-classmap'][]</code>
+      <code>$rootAutoloadSection['psr-4'][$namespace]</code>
+    </MixedArrayAssignment>
+    <MixedArrayOffset occurrences="1">
+      <code>$rootAutoloadSection['psr-4'][$namespace]</code>
+    </MixedArrayOffset>
+    <MixedAssignment occurrences="5">
+      <code>$config</code>
+      <code>$namespace</code>
+      <code>$pkgPath</code>
+      <code>$pkgPath</code>
+      <code>$section</code>
+    </MixedAssignment>
+    <PossiblyInvalidArrayAssignment occurrences="4">
+      <code>$rootAutoloadSection['exclude-from-classmap']</code>
+      <code>$rootAutoloadSection['exclude-from-classmap']</code>
+      <code>$rootAutoloadSection['psr-4']</code>
+      <code>$rootAutoloadSection['psr-4']</code>
+    </PossiblyInvalidArrayAssignment>
+    <PossiblyNullIterator occurrences="1">
+      <code>$pkgAutoloadSection</code>
+    </PossiblyNullIterator>
+  </file>
+  <file src="packages/bard/src/Worker/File/Composer/Root/UpdateProvideSection.php">
+    <InvalidArrayOffset occurrences="1">
+      <code>$rootProvideSection[$pkg]</code>
+    </InvalidArrayOffset>
+    <MixedAssignment occurrences="2">
+      <code>$rootProvideSection[$pkg]</code>
+      <code>$version</code>
+    </MixedAssignment>
+    <MixedStringOffsetAssignment occurrences="1">
+      <code>$rootProvideSection[$pkg]</code>
+    </MixedStringOffsetAssignment>
+    <PossiblyInvalidArrayAssignment occurrences="1">
+      <code>$rootProvideSection[$pkg]</code>
+    </PossiblyInvalidArrayAssignment>
+    <PossiblyInvalidIterator occurrences="1">
+      <code>$pkgProvideSection</code>
+    </PossiblyInvalidIterator>
+  </file>
+  <file src="packages/bard/src/Worker/File/Composer/Root/UpdateReplaceSection.php">
+    <InvalidArrayOffset occurrences="1">
+      <code>$rootReplace[$pkgName]</code>
+    </InvalidArrayOffset>
+    <PossiblyInvalidArrayAssignment occurrences="1">
+      <code>$rootReplace[$pkgName]</code>
+    </PossiblyInvalidArrayAssignment>
+    <PossiblyNullArrayOffset occurrences="1">
+      <code>$rootReplace</code>
+    </PossiblyNullArrayOffset>
+  </file>
+  <file src="packages/bard/src/Worker/File/Composer/Root/UpdateRequireDevSection.php">
+    <InvalidArrayOffset occurrences="1">
+      <code>$rootRequireDev[$package]</code>
+    </InvalidArrayOffset>
+    <MixedAssignment occurrences="2">
+      <code>$rootRequireDev[$package]</code>
+      <code>$version</code>
+    </MixedAssignment>
+    <MixedStringOffsetAssignment occurrences="1">
+      <code>$rootRequireDev[$package]</code>
+    </MixedStringOffsetAssignment>
+    <PossiblyInvalidArrayAssignment occurrences="1">
+      <code>$rootRequireDev[$package]</code>
+    </PossiblyInvalidArrayAssignment>
+    <PossiblyInvalidIterator occurrences="1">
+      <code>$pkgRequireDev</code>
+    </PossiblyInvalidIterator>
+  </file>
+  <file src="packages/bard/src/Worker/File/Composer/Root/UpdateRequireSection.php">
+    <InvalidArrayOffset occurrences="1">
+      <code>$rootRequire[$package]</code>
+    </InvalidArrayOffset>
+    <MixedAssignment occurrences="2">
+      <code>$rootRequire[$package]</code>
+      <code>$version</code>
+    </MixedAssignment>
+    <MixedStringOffsetAssignment occurrences="1">
+      <code>$rootRequire[$package]</code>
+    </MixedStringOffsetAssignment>
+    <PossiblyInvalidArgument occurrences="1">
+      <code>$rootReplace</code>
+    </PossiblyInvalidArgument>
+    <PossiblyInvalidArrayAssignment occurrences="1">
+      <code>$rootRequire[$package]</code>
+    </PossiblyInvalidArrayAssignment>
+    <PossiblyInvalidIterator occurrences="1">
+      <code>$pkgRequire</code>
+    </PossiblyInvalidIterator>
+  </file>
+  <file src="packages/clock/DateTime.php">
+    <InvalidArgument occurrences="3">
+      <code>$this-&gt;getDate()</code>
+      <code>$this-&gt;getTime()</code>
+      <code>$this-&gt;getZone()-&gt;getOffset()</code>
+    </InvalidArgument>
+  </file>
+  <file src="packages/clock/Tests/DateTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/clock/Tests/DateTimeTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/clock/Tests/FixedClockTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/clock/Tests/SystemClockTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/clock/Tests/TimeTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/clock/Tests/YearTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/clock/Tests/ZoneOffsetTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/clock/Tests/ZoneTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/cqrs-symfony/CommandMessageBus.php">
+    <MixedArgumentTypeCoercion occurrences="1">
+      <code>$this-&gt;stamps</code>
+    </MixedArgumentTypeCoercion>
+  </file>
+  <file src="packages/cqrs-symfony/Tests/Command/AbstractOptionsResolverCommandMessageTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/cqrs-symfony/Tests/CommandMessageBusTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/cqrs-symfony/Tests/DummyCommand.php">
+    <MissingParamType occurrences="1">
+      <code>$callback</code>
+    </MissingParamType>
+    <MissingPropertyType occurrences="1">
+      <code>$configureOptions</code>
+    </MissingPropertyType>
+    <MissingReturnType occurrences="1">
+      <code>setConfigureOptionsCallback</code>
+    </MissingReturnType>
+    <MixedAssignment occurrences="1">
+      <code>self::$configureOptions</code>
+    </MixedAssignment>
+  </file>
+  <file src="packages/cqrs-symfony/Tests/QueryMessageBusTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-dispatcher/EventDispatcher.php">
+    <MixedAssignment occurrences="1">
+      <code>$listener</code>
+    </MixedAssignment>
+    <MixedFunctionCall occurrences="1">
+      <code>$listener($event)</code>
+    </MixedFunctionCall>
+  </file>
+  <file src="packages/event-dispatcher/ListenerInterface.php">
+    <MissingReturnType occurrences="1">
+      <code>__invoke</code>
+    </MissingReturnType>
+  </file>
+  <file src="packages/event-dispatcher/ListenerProvider.php">
+    <MissingParamType occurrences="1">
+      <code>$listener</code>
+    </MissingParamType>
+    <MissingReturnType occurrences="1">
+      <code>add</code>
+    </MissingReturnType>
+    <MixedArrayAssignment occurrences="1">
+      <code>$this-&gt;listeners[$event][]</code>
+    </MixedArrayAssignment>
+    <MixedInferredReturnType occurrences="1">
+      <code>iterable</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="1">
+      <code>$this-&gt;listeners[$class]</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="packages/event-dispatcher/Tests/EventDispatcherTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-dispatcher/Tests/ListenerProviderTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing-doctrine/DoctrineDbalMessageRepository.php">
+    <ArgumentTypeCoercion occurrences="1">
+      <code>$message</code>
+    </ArgumentTypeCoercion>
+    <MixedArgument occurrences="3">
+      <code>$columnsWithTypes[$aggregateIdColumn]</code>
+      <code>$columnsWithTypes[$aggregateVersionColumn]</code>
+      <code>$data['metadata']</code>
+    </MixedArgument>
+    <MixedArgumentTypeCoercion occurrences="3">
+      <code>$this-&gt;tableSchema-&gt;mapEventDataToColumns($data)</code>
+      <code>array_keys($columnsWithTypes)</code>
+      <code>array_values($this-&gt;tableSchema-&gt;getColumns())</code>
+    </MixedArgumentTypeCoercion>
+  </file>
+  <file src="packages/event-sourcing-doctrine/TableSchemaV1.php">
+    <MixedArgument occurrences="3">
+      <code>$data['metadata'][Metadata::TIMESTAMP]</code>
+      <code>$result['metadata']</code>
+      <code>$result['payload']</code>
+    </MixedArgument>
+    <MixedArrayAccess occurrences="5">
+      <code>$data['metadata'][Metadata::AGGREGATE_ID]</code>
+      <code>$data['metadata'][Metadata::AGGREGATE_VERSION]</code>
+      <code>$data['metadata'][Metadata::EVENT_ID]</code>
+      <code>$data['metadata'][Metadata::EVENT_TYPE]</code>
+      <code>$data['metadata'][Metadata::TIMESTAMP]</code>
+    </MixedArrayAccess>
+  </file>
+  <file src="packages/event-sourcing-doctrine/TableSchemaV2.php">
+    <MixedArgument occurrences="2">
+      <code>$data['metadata'][Metadata::TIMESTAMP]</code>
+      <code>$result['event_data']</code>
+    </MixedArgument>
+    <MixedArrayAccess occurrences="5">
+      <code>$data['metadata'][Metadata::AGGREGATE_ID]</code>
+      <code>$data['metadata'][Metadata::AGGREGATE_VERSION]</code>
+      <code>$data['metadata'][Metadata::EVENT_ID]</code>
+      <code>$data['metadata'][Metadata::EVENT_TYPE]</code>
+      <code>$data['metadata'][Metadata::TIMESTAMP]</code>
+    </MixedArrayAccess>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="1">
+      <code>json_decode($result['event_data'], true)</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="packages/event-sourcing-doctrine/Tests/DoctrineDbalMessageRepositoryTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing-doctrine/Tests/TableSchemaV1Test.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing-symfony/AggregateIdNormalizer.php">
+    <MixedArgument occurrences="1">
+      <code>$data</code>
+    </MixedArgument>
+  </file>
+  <file src="packages/event-sourcing-symfony/AggregateVersionNormalizer.php">
+    <MixedArgument occurrences="1">
+      <code>$data</code>
+    </MixedArgument>
+    <MixedInferredReturnType occurrences="1">
+      <code>normalize</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="1">
+      <code>toInt</code>
+    </MixedMethodCall>
+    <MixedReturnStatement occurrences="1">
+      <code>$object-&gt;toInt()</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="packages/event-sourcing-symfony/MessageNormalizer.php">
+    <MixedArrayAccess occurrences="2">
+      <code>$data['metadata']</code>
+      <code>$data['payload']</code>
+    </MixedArrayAccess>
+    <MixedMethodCall occurrences="4">
+      <code>getMetadata</code>
+      <code>getPayload</code>
+      <code>withMetadata</code>
+      <code>withPayload</code>
+    </MixedMethodCall>
+  </file>
+  <file src="packages/event-sourcing-symfony/Tests/AggregateIdNormalizerTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing-symfony/Tests/AggregateIdTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing-symfony/Tests/AggregateVersionNormalizerTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing-symfony/Tests/BlameableMessageEnricherHandlerTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing-symfony/Tests/EventMessageBusTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing-symfony/Tests/HttpRequestMessageEnricherHandlerTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing-symfony/Tests/UlidEventIdMessageEnricherHandlerTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing-symfony/Tests/UuidEventIdMessageEnricherHandlerTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing/Aggregate/AbstractAggregate.php">
+    <DocblockTypeContradiction occurrences="1">
+      <code>!$id instanceof AggregateIdInterface &amp;&amp; !is_string($id)</code>
+    </DocblockTypeContradiction>
+    <MixedArgument occurrences="1">
+      <code>$event</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="1">
+      <code>$event</code>
+    </MixedAssignment>
+    <MixedReturnTypeCoercion occurrences="2">
+      <code>$events</code>
+      <code>iterable</code>
+    </MixedReturnTypeCoercion>
+  </file>
+  <file src="packages/event-sourcing/Aggregate/AbstractAggregateId.php">
+    <UnsafeInstantiation occurrences="1">
+      <code>new static($id)</code>
+    </UnsafeInstantiation>
+  </file>
+  <file src="packages/event-sourcing/Aggregate/AbstractSnapshotableAggregate.php">
+    <MixedAssignment occurrences="1">
+      <code>$msg</code>
+    </MixedAssignment>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>applyEvent</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="packages/event-sourcing/Aggregate/AggregateVersion.php">
+    <ParamNameMismatch occurrences="1">
+      <code>$version</code>
+    </ParamNameMismatch>
+  </file>
+  <file src="packages/event-sourcing/Aggregate/Repository/AggregateRepository.php">
+    <DocblockTypeContradiction occurrences="1">
+      <code>!$id instanceof AggregateIdInterface &amp;&amp; !is_string($id)</code>
+    </DocblockTypeContradiction>
+    <MixedInferredReturnType occurrences="1">
+      <code>?AggregateInterface</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="1">
+      <code>$aggregateClass::buildFromEvents($id, $events)</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="packages/event-sourcing/Message/AbstractSerializableMessage.php">
+    <MixedArgument occurrences="2">
+      <code>$data['metadata']</code>
+      <code>$data['payload']</code>
+    </MixedArgument>
+  </file>
+  <file src="packages/event-sourcing/Message/Enricher/MessageEnricher.php">
+    <MixedAssignment occurrences="2">
+      <code>$message</code>
+      <code>$msgEnricher</code>
+    </MixedAssignment>
+    <MixedInferredReturnType occurrences="1">
+      <code>MessageInterface</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="1">
+      <code>enrich</code>
+    </MixedMethodCall>
+    <MixedReturnStatement occurrences="1">
+      <code>$message</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="packages/event-sourcing/Message/Enricher/Provider/AllMessageEnricherProvider.php">
+    <MixedArgument occurrences="1">
+      <code>$enricher</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="1">
+      <code>$enricher</code>
+    </MixedAssignment>
+  </file>
+  <file src="packages/event-sourcing/Message/Enricher/Provider/ChainMessageEnricherProvider.php">
+    <MixedArgument occurrences="1">
+      <code>$provider</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="2">
+      <code>$provider</code>
+      <code>$provider</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="1">
+      <code>getEnrichersForMessage</code>
+    </MixedMethodCall>
+    <PossiblyNullIterator occurrences="1">
+      <code>$providers</code>
+    </PossiblyNullIterator>
+  </file>
+  <file src="packages/event-sourcing/Message/Repository/InMemoryMessageRepository.php">
+    <MixedArrayAssignment occurrences="1">
+      <code>$this-&gt;storage[$id-&gt;toString()][$version-&gt;toInt()]</code>
+    </MixedArrayAssignment>
+    <MixedAssignment occurrences="2">
+      <code>$message</code>
+      <code>$ver</code>
+    </MixedAssignment>
+    <PossiblyNullReference occurrences="2">
+      <code>toInt</code>
+      <code>toString</code>
+    </PossiblyNullReference>
+  </file>
+  <file src="packages/event-sourcing/Message/Serializer/MessageSerializer.php">
+    <MixedArgument occurrences="2">
+      <code>$data['metadata']</code>
+      <code>$data['metadata'][Metadata::EVENT_TYPE]</code>
+    </MixedArgument>
+    <MixedArrayAccess occurrences="1">
+      <code>$data['metadata'][Metadata::EVENT_TYPE]</code>
+    </MixedArrayAccess>
+    <MixedAssignment occurrences="1">
+      <code>$v</code>
+    </MixedAssignment>
+    <MixedInferredReturnType occurrences="2">
+      <code>SerializableMessageInterface</code>
+      <code>array</code>
+    </MixedInferredReturnType>
+    <MixedOperand occurrences="1">
+      <code>$v</code>
+    </MixedOperand>
+    <MixedReturnStatement occurrences="2">
+      <code>$message-&gt;serialize()</code>
+      <code>$messageClass::deserialize($data)</code>
+    </MixedReturnStatement>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>serialize</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="packages/event-sourcing/Message/Upcaster/MessageUpcaster.php">
+    <MixedAssignment occurrences="2">
+      <code>$data</code>
+      <code>$handler</code>
+    </MixedAssignment>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="1">
+      <code>upcast</code>
+    </MixedMethodCall>
+    <MixedReturnStatement occurrences="1">
+      <code>$data</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="packages/event-sourcing/Message/Upcaster/Provider/EventTypeMessageUpcasterProvider.php">
+    <MissingReturnType occurrences="1">
+      <code>register</code>
+    </MissingReturnType>
+    <MixedArrayAssignment occurrences="1">
+      <code>$this-&gt;upcasters[$eventType][]</code>
+    </MixedArrayAssignment>
+    <MixedArrayOffset occurrences="1">
+      <code>$this-&gt;upcasters[$eventType]</code>
+    </MixedArrayOffset>
+    <MixedAssignment occurrences="1">
+      <code>$eventType</code>
+    </MixedAssignment>
+  </file>
+  <file src="packages/event-sourcing/Snapshot/Repository/InMemorySnapshotRepository.php">
+    <MixedInferredReturnType occurrences="1">
+      <code>?SnapshotInterface</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="1">
+      <code>$this-&gt;storage[$id-&gt;toString()] ?? null</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="packages/event-sourcing/Snapshot/Snapshot.php">
+    <MissingParamType occurrences="1">
+      <code>$state</code>
+    </MissingParamType>
+    <MissingPropertyType occurrences="1">
+      <code>$state</code>
+    </MissingPropertyType>
+  </file>
+  <file src="packages/event-sourcing/Tests/Aggregate/AbstractAggregateTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing/Tests/Aggregate/AggregateIdTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing/Tests/Aggregate/AggregateVersionTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing/Tests/Aggregate/Repository/AggregateRepositoryTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing/Tests/FakeAggregate.php">
+    <MissingParamType occurrences="1">
+      <code>$event</code>
+    </MissingParamType>
+    <MissingReturnType occurrences="1">
+      <code>raiseThisEvent</code>
+    </MissingReturnType>
+    <MixedArgument occurrences="1">
+      <code>$event</code>
+    </MixedArgument>
+  </file>
+  <file src="packages/event-sourcing/Tests/Message/AbstractMessageTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing/Tests/Message/AbstractSerializableMessageTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing/Tests/Message/Enricher/MessageEnricherTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing/Tests/Message/Enricher/Provider/AllMessageEnricherProviderTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing/Tests/Message/Enricher/Provider/ChainMessageEnricherProviderTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing/Tests/Message/NamespaceMessageProviderTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing/Tests/Message/Repository/InMemoryMessageRepositoryTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing/Tests/Message/Serializer/MessageSerializerTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing/Tests/Message/Upcaster/MessageUpcasterTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing/Tests/Message/Upcaster/Provider/EventTypeMessageUpcasterProviderTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing/Tests/Snapshot/Repository/InMemorySnapshotRepositoryTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/event-sourcing/Tests/Snapshot/SnapshotTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/feature-toggle/Provider/InMemoryFeatureToggleProvider.php">
+    <InvalidReturnType occurrences="1">
+      <code>iterable</code>
+    </InvalidReturnType>
+    <MissingParamType occurrences="1">
+      <code>$features</code>
+    </MissingParamType>
+    <MissingReturnType occurrences="1">
+      <code>addFeature</code>
+    </MissingReturnType>
+    <MixedArgument occurrences="1">
+      <code>$feature</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="1">
+      <code>$feature</code>
+    </MixedAssignment>
+  </file>
+  <file src="packages/feature-toggle/Tests/ContextTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/feature-toggle/Tests/FeatureTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/feature-toggle/Tests/Provider/InMemoryFeatureToggleProviderTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/feature-toggle/Tests/Toggle/AlwaysDisabledToggleTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/feature-toggle/Tests/Toggle/AlwaysEnabledToggleTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/json/AbstractEncoderDecoder.php">
+    <MissingReturnType occurrences="6">
+      <code>invalidUtf8Ignore</code>
+      <code>invalidUtf8Substitute</code>
+      <code>throwOnError</code>
+      <code>withDepth</code>
+      <code>withFlags</code>
+      <code>withoutFlags</code>
+    </MissingReturnType>
+  </file>
+  <file src="packages/json/Json.php">
+    <MissingParamType occurrences="1">
+      <code>$value</code>
+    </MissingParamType>
+    <MissingReturnType occurrences="1">
+      <code>decode</code>
+    </MissingReturnType>
+  </file>
+  <file src="packages/json/JsonDecoder.php">
+    <MissingReturnType occurrences="4">
+      <code>asArray</code>
+      <code>bigintAsString</code>
+      <code>decode</code>
+      <code>objectAsArray</code>
+    </MissingReturnType>
+    <MixedAssignment occurrences="1">
+      <code>$return</code>
+    </MixedAssignment>
+  </file>
+  <file src="packages/json/JsonEncoder.php">
+    <MissingParamType occurrences="1">
+      <code>$value</code>
+    </MissingParamType>
+    <MissingReturnType occurrences="12">
+      <code>forceObject</code>
+      <code>hexAmp</code>
+      <code>hexApos</code>
+      <code>hexQuot</code>
+      <code>hexTag</code>
+      <code>numericCheck</code>
+      <code>partialOutputOnError</code>
+      <code>preserveZeroFraction</code>
+      <code>prettyPrint</code>
+      <code>unescapedLineTerminators</code>
+      <code>unescapedSlashes</code>
+      <code>unescapedUnicode</code>
+    </MissingReturnType>
+  </file>
+  <file src="packages/json/JsonReader.php">
+    <MixedAssignment occurrences="3">
+      <code>$decoder</code>
+      <code>$decoder</code>
+      <code>$decoder</code>
+    </MixedAssignment>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="3">
+      <code>decode</code>
+      <code>withDepth</code>
+      <code>withFlags</code>
+    </MixedMethodCall>
+    <MixedReturnStatement occurrences="1">
+      <code>$decoder-&gt;decode(file_get_contents($filename))</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="packages/json/JsonWriter.php">
+    <MissingParamType occurrences="1">
+      <code>$value</code>
+    </MissingParamType>
+    <MissingReturnType occurrences="1">
+      <code>write</code>
+    </MissingReturnType>
+    <MixedArgument occurrences="1">
+      <code>$encoder-&gt;encode($value)</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="2">
+      <code>$encoder</code>
+      <code>$encoder</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="2">
+      <code>encode</code>
+      <code>withFlags</code>
+    </MixedMethodCall>
+  </file>
+  <file src="packages/json/Tests/JsonDecoderTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/json/Tests/JsonEncoderTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/json/Tests/JsonTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Amount.php">
+    <MixedArgument occurrences="1">
+      <code>$amount</code>
+    </MixedArgument>
+    <MixedInferredReturnType occurrences="8">
+      <code>bool</code>
+      <code>bool</code>
+      <code>bool</code>
+      <code>bool</code>
+      <code>bool</code>
+      <code>bool</code>
+      <code>bool</code>
+      <code>bool</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="8">
+      <code>$this-&gt;query(new IsEqualToAmountQuery($amount))</code>
+      <code>$this-&gt;query(new IsGreaterThanAmountQuery($amount))</code>
+      <code>$this-&gt;query(new IsGreaterThanOrEqualToAmountQuery($amount))</code>
+      <code>$this-&gt;query(new IsLessThanAmountQuery($amount))</code>
+      <code>$this-&gt;query(new IsLessThanOrEqualToAmountQuery($amount))</code>
+      <code>$this-&gt;query(new IsNegativeAmountQuery())</code>
+      <code>$this-&gt;query(new IsPositiveAmountQuery())</code>
+      <code>$this-&gt;query(new IsZeroAmountQuery())</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="packages/money/Currency.php">
+    <MixedArgument occurrences="2">
+      <code>$minorUnit</code>
+      <code>$numericCode</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="2">
+      <code>$minorUnit</code>
+      <code>$numericCode</code>
+    </MixedAssignment>
+    <MixedInferredReturnType occurrences="1">
+      <code>bool</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="1">
+      <code>$this-&gt;query(new IsEqualToCurrencyQuery($currency))</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="packages/money/CurrencyProvider/AbstractCurrencyProvider.php">
+    <MixedInferredReturnType occurrences="2">
+      <code>CurrencyInterface</code>
+      <code>bool</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="2">
+      <code>$this-&gt;query(new GetCurrencyQuery($currency))</code>
+      <code>$this-&gt;query(new HasCurrencyQuery($currency))</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="packages/money/CurrencyProvider/ChainCurrencyProvider.php">
+    <InvalidReturnType occurrences="1">
+      <code>iterable</code>
+    </InvalidReturnType>
+    <MixedArgument occurrences="1">
+      <code>$provider</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="2">
+      <code>$provider</code>
+      <code>$provider</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="1">
+      <code>getCurrencies</code>
+    </MixedMethodCall>
+    <PossiblyNullIterator occurrences="1">
+      <code>$providers</code>
+    </PossiblyNullIterator>
+  </file>
+  <file src="packages/money/CurrencyProvider/CurrencyProvider.php">
+    <InvalidReturnType occurrences="1">
+      <code>iterable</code>
+    </InvalidReturnType>
+  </file>
+  <file src="packages/money/CurrencyProvider/XCurrencyProvider.php">
+    <InvalidReturnType occurrences="1">
+      <code>iterable</code>
+    </InvalidReturnType>
+  </file>
+  <file src="packages/money/Money.php">
+    <MixedInferredReturnType occurrences="8">
+      <code>bool</code>
+      <code>bool</code>
+      <code>bool</code>
+      <code>bool</code>
+      <code>bool</code>
+      <code>bool</code>
+      <code>bool</code>
+      <code>bool</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="8">
+      <code>$this-&gt;query(new IsEqualToMoneyQuery($money))</code>
+      <code>$this-&gt;query(new IsGreaterThanMoneyQuery($money))</code>
+      <code>$this-&gt;query(new IsGreaterThanOrEqualToMoneyQuery($money))</code>
+      <code>$this-&gt;query(new IsLessThanMoneyQuery($money))</code>
+      <code>$this-&gt;query(new IsLessThanOrEqualToMoneyQuery($money))</code>
+      <code>$this-&gt;query(new IsNegativeMoneyQuery())</code>
+      <code>$this-&gt;query(new IsPositiveMoneyQuery())</code>
+      <code>$this-&gt;query(new IsZeroMoneyQuery())</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="packages/money/Operator/Amount/DivideAmountOperator.php">
+    <MissingParamType occurrences="1">
+      <code>$divisor</code>
+    </MissingParamType>
+    <MissingPropertyType occurrences="1">
+      <code>$divisor</code>
+    </MissingPropertyType>
+    <MixedOperand occurrences="1">
+      <code>$this-&gt;divisor</code>
+    </MixedOperand>
+  </file>
+  <file src="packages/money/Operator/Amount/MultiplyAmountOperator.php">
+    <MissingParamType occurrences="1">
+      <code>$multiplier</code>
+    </MissingParamType>
+    <MissingPropertyType occurrences="1">
+      <code>$multiplier</code>
+    </MissingPropertyType>
+    <MixedOperand occurrences="1">
+      <code>$this-&gt;multiplier</code>
+    </MixedOperand>
+  </file>
+  <file src="packages/money/Operator/Money/DivideMoneyOperator.php">
+    <MissingParamType occurrences="1">
+      <code>$divisor</code>
+    </MissingParamType>
+    <MissingPropertyType occurrences="1">
+      <code>$divisor</code>
+    </MissingPropertyType>
+  </file>
+  <file src="packages/money/Operator/Money/MultiplyMoneyOperator.php">
+    <MissingParamType occurrences="1">
+      <code>$multiplier</code>
+    </MissingParamType>
+    <MissingPropertyType occurrences="1">
+      <code>$multiplier</code>
+    </MissingPropertyType>
+  </file>
+  <file src="packages/money/Query/CurrencyProvider/GetCurrencyQuery.php">
+    <MissingParamType occurrences="1">
+      <code>$currency</code>
+    </MissingParamType>
+    <PropertyNotSetInConstructor occurrences="1">
+      <code>$currency</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="packages/money/Query/CurrencyProvider/HasCurrencyQuery.php">
+    <MissingParamType occurrences="1">
+      <code>$currency</code>
+    </MissingParamType>
+    <PropertyNotSetInConstructor occurrences="1">
+      <code>$currency</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="packages/money/Tests/AmountTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/CurrencyProvider/ChainCurrencyProviderTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/CurrencyProvider/CurrencyProviderTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/CurrencyProvider/XCurrencyProviderTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/CurrencyTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/MoneyTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/Operator/Amount/AddAmountOperatorTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/Operator/Amount/DivideAmountOperatorTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/Operator/Amount/MultiplyAmountOperatorTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/Operator/Amount/SubtractAmountOperatorTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/Operator/Money/AddMoneyOperatorTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/Operator/Money/DivideMoneyOperatorTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/Operator/Money/MultiplyMoneyOperatorTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/Operator/Money/SubtractMoneyOperatorTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/Query/Amount/IsEqualToAmountQueryTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/Query/Amount/IsGreaterThanAmountQueryTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/Query/Amount/IsGreaterThanOrEqualToAmountQueryTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/Query/Amount/IsLessThanAmountQueryTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/Query/Amount/IsLessThanOrEqualToAmountQueryTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/Query/Amount/IsNegativeAmountQueryTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/Query/Amount/IsPositiveAmountQueryTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/Query/Amount/IsZeroAmountQueryTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/Query/Currency/IsEqualToCurrencyQueryTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/Query/CurrencyProvider/GetCurrencyQueryTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/money/Tests/Query/CurrencyProvider/HasCurrencyQueryTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/version/Tests/VersionTest.php">
+    <MissingDependency occurrences="1">
+      <code>TestCase</code>
+    </MissingDependency>
+  </file>
+  <file src="packages/version/Version.php">
+    <PossiblyNullOperand occurrences="2">
+      <code>$this-&gt;getBuild()</code>
+      <code>$this-&gt;getPreRelease()</code>
+    </PossiblyNullOperand>
+    <RedundantCast occurrences="2">
+      <code>(string) $matches['buildmetadata']</code>
+      <code>(string) $matches['prerelease']</code>
+    </RedundantCast>
+  </file>
+</files>

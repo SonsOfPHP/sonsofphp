@@ -35,4 +35,4 @@ jobs:
                   php-version: '${{ matrix.php-version }}'
                   coverage: none
             - run: make composer-install psalm-install
-            - run: make psalm
+            - run: make psalm-github
