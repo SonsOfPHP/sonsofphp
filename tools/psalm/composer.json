@@ -1,0 +1,12 @@
+{
+    "require": {
+        "vimeo/psalm": "^4.29",
+        "psalm/plugin-phpunit": "^0.17.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "vimeo/psalm": true,
+            "psalm/plugin-phpunit": true
+        }
+    }
+}

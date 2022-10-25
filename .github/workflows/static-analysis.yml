@@ -1,0 +1,38 @@
+name: Static Analysis
+on:
+    push:
+        branches: [main]
+        paths:
+            - '.github/workflows/static-analysis.yml'
+            - 'packages/**'
+            - 'psalm.xml'
+    pull_request:
+        branches: [main]
+        paths:
+            - '.github/workflows/static-analysis.yml'
+            - 'packages/**'
+            - 'psalm.xml'
+
+permissions:
+    contents: read
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+    cancel-in-progress: true
+
+jobs:
+    psalm:
+        name: Psalm
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                php-version: ['8.1']
+        steps:
+            - uses: actions/checkout@v3
+            - uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '${{ matrix.php-version }}'
+                  coverage: none
+            - run: make composer-install psalm-install
+            - run: make psalm
