@@ -9,11 +9,11 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\Repository\AggregateRepository;
 use SonsOfPHP\Component\EventSourcing\Aggregate\Repository\AggregateRepositoryInterface;
-use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\AbstractSerializableMessage;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\InMemoryMessageRepository;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterface;
 use SonsOfPHP\Component\EventSourcing\Tests\FakeAggregate;
+use TypeError;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Aggregate\Repository\AggregateRepository
@@ -121,7 +121,7 @@ final class AggregateRepositoryTest extends TestCase
             $this->messageRepository
         );
 
-        $this->expectException(EventSourcingException::class);
+        $this->expectException(TypeError::class);
         $result = $repository->find(123);
     }
 

@@ -9,7 +9,6 @@ use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateInterface;
 use SonsOfPHP\Component\EventSourcing\Exception\AggregateNotFoundException;
-use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricher;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricherInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\NullMessageEnricherProvider;
@@ -40,12 +39,8 @@ class AggregateRepository implements AggregateRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function find($id): ?AggregateInterface
+    public function find(AggregateIdInterface|string $id): ?AggregateInterface
     {
-        if (!$id instanceof AggregateIdInterface && !is_string($id)) {
-            throw new EventSourcingException(sprintf('Argument #1 ($id) must be of of type string or "%s". Type "%s" passed in.', AggregateIdInterface::class, gettype($id)));
-        }
-
         if (!$id instanceof AggregateIdInterface) {
             $id = new AggregateId($id);
         }

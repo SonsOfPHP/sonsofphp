@@ -37,6 +37,7 @@ final class VersionTest extends TestCase
 
     /**
      * @dataProvider validVersions
+     *
      * @covers ::__construct
      * @covers ::__toString
      * @covers ::getMajor
@@ -60,6 +61,7 @@ final class VersionTest extends TestCase
 
     /**
      * @dataProvider invalidVersions
+     *
      * @covers ::__construct
      */
     public function testItThrowsExceptionForInvalidVersions(string $ver): void
@@ -70,6 +72,7 @@ final class VersionTest extends TestCase
 
     /**
      * @dataProvider compareVersions
+     *
      * @covers ::compare
      */
     public function testCompareWorksCorrectly(VersionInterface $v1, VersionInterface $v2, int $result): void

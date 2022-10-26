@@ -6,7 +6,9 @@ namespace SonsOfPHP\Bridge\Doctrine\EventSourcing;
 
 use Doctrine\DBAL\Connection;
 use Generator;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
 use SonsOfPHP\Component\EventSourcing\Exception\AggregateNotFoundException;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
@@ -69,8 +71,16 @@ class DoctrineDbalMessageRepository implements MessageRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function find(AggregateIdInterface $id, ?AggregateVersionInterface $version = null): Generator
+    public function find(string|AggregateIdInterface $id, int|AggregateVersionInterface $version = null): iterable
     {
+        if (!$id instanceof AggregateIdInterface) {
+            $id = new AggregateId($id);
+        }
+
+        if (\is_int($version)) {
+            $version = new AggregateVersion($version);
+        }
+
         $columnsWithTypes = $this->tableSchema->getColumns();
         $aggregateIdColumn = $this->tableSchema->getAggregateIdColumn();
         $aggregateVersionColumn = $this->tableSchema->getAggregateVersionColumn();

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Message\Repository;
 
-use Generator;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
 use SonsOfPHP\Component\EventSourcing\Exception\AggregateNotFoundException;
@@ -31,14 +30,10 @@ interface MessageRepositoryInterface
      *
      * If a version is passed in, it will find all messages AFTER that message.
      *
-     * @todo Make $id take either AggregateIdInterface or string
-     * @todo Make $version take either AggregateVersionInterface or int
-     * @todo Return 'iterable' instead of Generator
-     *
-     * @param AggregateVersionInterface $version if the Version is passed in, it will return all
-     *                                           messages greater than the version passed in
+     * @param AggregateVersionInterface|int|null $version if the Version is passed in, it will return all
+     *                                                    messages greater than the version passed in
      *
      * @thorws AggregateNotFoundException
      */
-    public function find(AggregateIdInterface $id, ?AggregateVersionInterface $version = null): Generator;
+    public function find(string|AggregateIdInterface $id, int|AggregateVersionInterface $version = null): iterable;
 }

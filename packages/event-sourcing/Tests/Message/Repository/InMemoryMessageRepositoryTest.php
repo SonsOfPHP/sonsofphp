@@ -75,4 +75,36 @@ final class InMemoryMessageRepositoryTest extends TestCase
         $result = $repository->find(AggregateId::fromString('unique-id'), AggregateVersion::fromInt(1));
         $this->assertSame($message2, $result->current());
     }
+
+    /**
+     * @covers ::find
+     */
+    public function testFindWithStringAsId(): void
+    {
+        $repository = new InMemoryMessageRepository();
+
+        $message = $this->createMock(MessageInterface::class);
+        $message->method('getAggregateId')->willReturn(AggregateId::fromString('unique-id'));
+        $message->method('getAggregateVersion')->willReturn(AggregateVersion::fromInt(1));
+        $repository->persist($message);
+
+        $result = $repository->find('unique-id');
+        $this->assertSame($message, $result->current());
+    }
+
+    /**
+     * @covers ::find
+     */
+    public function testFindWithIntegerAsVersion(): void
+    {
+        $repository = new InMemoryMessageRepository();
+
+        $message = $this->createMock(MessageInterface::class);
+        $message->method('getAggregateId')->willReturn(AggregateId::fromString('unique-id'));
+        $message->method('getAggregateVersion')->willReturn(AggregateVersion::fromInt(1));
+        $repository->persist($message);
+
+        $result = $repository->find('unique-id', 0);
+        $this->assertSame($message, $result->current());
+    }
 }

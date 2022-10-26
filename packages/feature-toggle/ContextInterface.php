@@ -16,8 +16,6 @@ interface ContextInterface
 
     /**
      * @param mixed $value
-     *
-     * @return self
      */
     public function set(string $key, $value): ContextInterface;
 
