@@ -25,7 +25,7 @@ use SonsOfPHP\Component\EventSourcing\Metadata;
  */
 abstract class AbstractMessage implements MessageInterface
 {
-    final private function __construct(
+    final public function __construct(
         private MessagePayload $payload = new MessagePayload(),
         private MessageMetadata $metadata = new MessageMetadata(),
     ) {
