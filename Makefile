@@ -1,4 +1,5 @@
 COMPOSER            = composer
+MKDOCS              = mkdocs
 PHP                 = php
 PHP_CS_FIXER        = tools/php-cs-fixer/vendor/bin/php-cs-fixer
 PHPUNIT             = tools/phpunit/vendor/bin/phpunit
@@ -82,3 +83,17 @@ testdox: ## Run tests and output testdox
 tools-install: psalm-install php-cs-fixer-install phpunit-install
 
 tools-upgrade: psalm-upgrade php-cs-fixer-upgrade phpunit-upgrade
+
+# Install deps for building docs
+docs-install:
+	pip install mkdocs
+	pip install mkdocs-material
+
+docs-upgrade:
+	pip install --upgrade mkdocs-material
+
+docs-watch: # Preview documentation locally
+	$(MKDOCS) serve
+
+docs-build: # Build Site
+	$(MKDOCS) build
