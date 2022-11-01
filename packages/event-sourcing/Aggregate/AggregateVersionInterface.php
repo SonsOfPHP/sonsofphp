@@ -14,31 +14,31 @@ interface AggregateVersionInterface
     /**
      * Create new Version.
      */
-    public static function fromInt(int $version): AggregateVersionInterface;
+    public static function fromInt(int $version): self;
 
     /**
      * Create new Version starting at 0.
      */
-    public static function zero(): AggregateVersionInterface;
+    public static function zero(): self;
 
     /**
      * Returns new version object with next version number.
      *
      * @return static
      */
-    public function next(): AggregateVersionInterface;
+    public function next(): self;
 
     /**
      * Returns new version object with prev version number.
      *
      * @return static
      */
-    public function prev(): AggregateVersionInterface;
+    public function prev(): self;
 
     /**
      * Compares two versions and returns true if the two versions are equal.
      */
-    public function equals(AggregateVersionInterface $that): bool;
+    public function equals(self $that): bool;
 
     /**
      * Returns the version number.

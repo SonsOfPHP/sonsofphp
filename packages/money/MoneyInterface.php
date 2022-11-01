@@ -20,25 +20,25 @@ interface MoneyInterface
 
     public function getCurrency(): CurrencyInterface;
 
-    public function with(MoneyOperatorInterface $operator): MoneyInterface;
+    public function with(MoneyOperatorInterface $operator): self;
 
     /**
      * @return mixed
      */
     public function query(MoneyQueryInterface $query);
 
-    public function isEqualTo(MoneyInterface $money): bool;
+    public function isEqualTo(self $money): bool;
 
     /**
      * Returns true if this is greater than that.
      */
-    public function isGreaterThan(MoneyInterface $money): bool;
+    public function isGreaterThan(self $money): bool;
 
-    public function isGreaterThanOrEqualTo(MoneyInterface $money): bool;
+    public function isGreaterThanOrEqualTo(self $money): bool;
 
-    public function isLessThan(MoneyInterface $money): bool;
+    public function isLessThan(self $money): bool;
 
-    public function isLessThanOrEqualTo(MoneyInterface $money): bool;
+    public function isLessThanOrEqualTo(self $money): bool;
 
     public function isNegative(): bool;
 
@@ -51,26 +51,26 @@ interface MoneyInterface
      *
      * @todo MoneyInterface|AmountInterface
      */
-    public function add(MoneyInterface $money): MoneyInterface;
+    public function add(self $money): self;
 
     /**
      * Subtracts amount to existing amount and returns a new MoneyInterface.
      *
      * @todo MoneyInterface|AmountInterface
      */
-    public function subtract(MoneyInterface $money): MoneyInterface;
+    public function subtract(self $money): self;
 
     /**
      * Multiple by multiplier and returns new MoneyInterface.
      *
      * @param int|float|string $multiplier
      */
-    public function multiply($multiplier): MoneyInterface;
+    public function multiply($multiplier): self;
 
     /**
      * Divide by divisor and returns new MoneyInterface.
      *
      * @param int|float|string $divisor
      */
-    public function divide($divisor): MoneyInterface;
+    public function divide($divisor): self;
 }

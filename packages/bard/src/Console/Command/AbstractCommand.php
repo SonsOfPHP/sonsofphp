@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SonsOfPHP\Bard\Console\Command;
 
 use Symfony\Component\Console\Command\Command;

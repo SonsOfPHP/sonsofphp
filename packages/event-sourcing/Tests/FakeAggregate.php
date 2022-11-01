@@ -8,7 +8,7 @@ use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregate;
 
 class FakeAggregate extends AbstractAggregate
 {
-    public function raiseThisEvent($event)
+    public function raiseThisEvent($event): void
     {
         $this->raiseEvent($event);
     }

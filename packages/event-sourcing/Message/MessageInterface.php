@@ -24,7 +24,7 @@ interface MessageInterface
      *
      * @return static
      */
-    public static function new(): MessageInterface;
+    public static function new(): self;
 
     /**
      * Returns the Aggregate ID, if the aggregate ID is unknown, it
@@ -49,7 +49,7 @@ interface MessageInterface
     /**
      * @return static
      */
-    public function withMetadata(array $metadata): MessageInterface;
+    public function withMetadata(array $metadata): self;
 
     /**
      * Returns the metadata for this message.
@@ -62,7 +62,7 @@ interface MessageInterface
     /**
      * @return static
      */
-    public function withPayload(array $payload): MessageInterface;
+    public function withPayload(array $payload): self;
 
     /**
      * Returns the payload.

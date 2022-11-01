@@ -25,7 +25,7 @@ final class JsonDecoderTest extends TestCase
         $prop = $ref->getProperty('flags');
         $prop->setAccessible(true);
 
-        $this->assertSame(JSON_OBJECT_AS_ARRAY, $prop->getValue($decoder));
+        $this->assertSame(\JSON_OBJECT_AS_ARRAY, $prop->getValue($decoder));
     }
 
     /**
@@ -34,7 +34,7 @@ final class JsonDecoderTest extends TestCase
     public function testWithFlagsReturnsNewObject(): void
     {
         $decoder = new JsonDecoder();
-        $decoderOther = $decoder->withFlags(JSON_OBJECT_AS_ARRAY);
+        $decoderOther = $decoder->withFlags(\JSON_OBJECT_AS_ARRAY);
 
         $this->assertNotSame($decoder, $decoderOther);
     }
@@ -45,7 +45,7 @@ final class JsonDecoderTest extends TestCase
     public function testWithoutFlagsReturnsNewObject(): void
     {
         $decoder = new JsonDecoder();
-        $decoderOther = $decoder->withoutFlags(JSON_OBJECT_AS_ARRAY);
+        $decoderOther = $decoder->withoutFlags(\JSON_OBJECT_AS_ARRAY);
 
         $this->assertNotSame($decoder, $decoderOther);
     }
@@ -61,13 +61,13 @@ final class JsonDecoderTest extends TestCase
         $prop = $ref->getProperty('flags');
         $prop->setAccessible(true);
 
-        $decoder = $decoder->withoutFlags(JSON_OBJECT_AS_ARRAY);
+        $decoder = $decoder->withoutFlags(\JSON_OBJECT_AS_ARRAY);
         $this->assertSame(0, $prop->getValue($decoder));
 
-        $decoder = $decoder->withFlags(JSON_BIGINT_AS_STRING)->withoutFlags(JSON_OBJECT_AS_ARRAY);
-        $this->assertSame(JSON_BIGINT_AS_STRING, $prop->getValue($decoder));
+        $decoder = $decoder->withFlags(\JSON_BIGINT_AS_STRING)->withoutFlags(\JSON_OBJECT_AS_ARRAY);
+        $this->assertSame(\JSON_BIGINT_AS_STRING, $prop->getValue($decoder));
 
-        $decoder = $decoder->withoutFlags(JSON_BIGINT_AS_STRING);
+        $decoder = $decoder->withoutFlags(\JSON_BIGINT_AS_STRING);
         $this->assertSame(0, $prop->getValue($decoder));
     }
 
@@ -82,10 +82,10 @@ final class JsonDecoderTest extends TestCase
         $prop = $ref->getProperty('flags');
         $prop->setAccessible(true);
 
-        $decoder = $decoder->withFlags(JSON_OBJECT_AS_ARRAY);
-        $this->assertSame(JSON_OBJECT_AS_ARRAY, $prop->getValue($decoder));
+        $decoder = $decoder->withFlags(\JSON_OBJECT_AS_ARRAY);
+        $this->assertSame(\JSON_OBJECT_AS_ARRAY, $prop->getValue($decoder));
 
-        $decoder = $decoder->withoutFlags(JSON_OBJECT_AS_ARRAY);
+        $decoder = $decoder->withoutFlags(\JSON_OBJECT_AS_ARRAY);
         $this->assertSame(0, $prop->getValue($decoder));
     }
 
@@ -100,7 +100,7 @@ final class JsonDecoderTest extends TestCase
         $prop->setAccessible(true);
 
         $decoder = $decoder->asArray();
-        $this->assertSame(JSON_OBJECT_AS_ARRAY, $prop->getValue($decoder));
+        $this->assertSame(\JSON_OBJECT_AS_ARRAY, $prop->getValue($decoder));
     }
 
     /**

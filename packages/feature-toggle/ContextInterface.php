@@ -17,7 +17,7 @@ interface ContextInterface
     /**
      * @param mixed $value
      */
-    public function set(string $key, $value): ContextInterface;
+    public function set(string $key, $value): self;
 
     public function has(string $key): bool;
 }

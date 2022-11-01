@@ -39,7 +39,7 @@ final class AbstractAggregateTest extends TestCase
     /**
      * @covers ::hasPendingEvents
      */
-    public function testItHasPendingEvents()
+    public function testItHasPendingEvents(): void
     {
         $abstract = $this->getMockForAbstractClass(AbstractAggregate::class, ['id']);
         $this->assertFalse($abstract->hasPendingEvents());

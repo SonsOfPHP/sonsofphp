@@ -23,8 +23,8 @@ abstract class AbstractAggregate implements AggregateInterface
      */
     final public function __construct($id)
     {
-        if (!$id instanceof AggregateIdInterface && !is_string($id)) {
-            throw new EventSourcingException(sprintf('Argument #1 ($id) must be of of type string or "%s". Type "%s" passed in.', AggregateIdInterface::class, gettype($id)));
+        if (!$id instanceof AggregateIdInterface && !\is_string($id)) {
+            throw new EventSourcingException(sprintf('Argument #1 ($id) must be of of type string or "%s". Type "%s" passed in.', AggregateIdInterface::class, \gettype($id)));
         }
 
         if (!$id instanceof AggregateIdInterface) {
@@ -70,7 +70,7 @@ abstract class AbstractAggregate implements AggregateInterface
      */
     final public function hasPendingEvents(): bool
     {
-        return count($this->pendingEvents) > 0;
+        return \count($this->pendingEvents) > 0;
     }
 
     /**
@@ -135,7 +135,7 @@ abstract class AbstractAggregate implements AggregateInterface
      */
     final protected function applyEvent(MessageInterface $event): void
     {
-        $parts = explode('\\', get_class($event));
+        $parts = explode('\\', $event::class);
         $method = 'apply'.end($parts);
 
         if (method_exists($this, $method)) {

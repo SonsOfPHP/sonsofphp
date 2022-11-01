@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SonsOfPHP\Bard;
 
 use SonsOfPHP\Component\Json\Json;
@@ -47,7 +49,7 @@ final class JsonFile
         return null;
     }
 
-    public function setSection(string $section, $value): JsonFile
+    public function setSection(string $section, $value): self
     {
         if (!isset($this->config)) {
             $this->load();
@@ -77,7 +79,7 @@ final class JsonFile
      * Can even use this for the package composer.json file
      * $newPkgComposerJsonFile = $pkgComposerJsonFile->with($updateSupportSection, $rootComposerJsonFile);
      */
-    public function with($operator): JsonFile
+    public function with($operator): self
     {
         return $operator->apply($this);
     }

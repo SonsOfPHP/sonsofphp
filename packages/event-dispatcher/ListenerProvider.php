@@ -13,7 +13,7 @@ class ListenerProvider implements ListenerProviderInterface
 {
     private array $listeners = [];
 
-    public function add(string $event, $listener)
+    public function add(string $event, $listener): void
     {
         $this->listeners[$event][] = $listener;
     }
@@ -23,7 +23,7 @@ class ListenerProvider implements ListenerProviderInterface
      */
     public function getListenersForEvent(object $event): iterable
     {
-        $class = get_class($event);
+        $class = $event::class;
         if (isset($this->listeners[$class])) {
             return $this->listeners[$class];
         }

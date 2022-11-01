@@ -15,7 +15,7 @@ class JsonEncoder extends AbstractEncoderDecoder
     {
         $return = json_encode($value, $this->flags, $this->depth);
 
-        if (JSON_ERROR_NONE !== json_last_error()) {
+        if (\JSON_ERROR_NONE !== json_last_error()) {
             throw new JsonException(json_last_error_msg(), json_last_error());
         }
 
@@ -29,7 +29,7 @@ class JsonEncoder extends AbstractEncoderDecoder
      */
     public function forceObject()
     {
-        return $this->withFlags(JSON_FORCE_OBJECT);
+        return $this->withFlags(\JSON_FORCE_OBJECT);
     }
 
     /**
@@ -37,7 +37,7 @@ class JsonEncoder extends AbstractEncoderDecoder
      */
     public function hexQuot()
     {
-        return $this->withFlags(JSON_HEX_QUOT);
+        return $this->withFlags(\JSON_HEX_QUOT);
     }
 
     /**
@@ -45,7 +45,7 @@ class JsonEncoder extends AbstractEncoderDecoder
      */
     public function hexTag()
     {
-        return $this->withFlags(JSON_HEX_TAG);
+        return $this->withFlags(\JSON_HEX_TAG);
     }
 
     /**
@@ -53,7 +53,7 @@ class JsonEncoder extends AbstractEncoderDecoder
      */
     public function hexAmp()
     {
-        return $this->withFlags(JSON_HEX_AMP);
+        return $this->withFlags(\JSON_HEX_AMP);
     }
 
     /**
@@ -61,7 +61,7 @@ class JsonEncoder extends AbstractEncoderDecoder
      */
     public function hexApos()
     {
-        return $this->withFlags(JSON_HEX_APOS);
+        return $this->withFlags(\JSON_HEX_APOS);
     }
 
     /**
@@ -69,7 +69,7 @@ class JsonEncoder extends AbstractEncoderDecoder
      */
     public function numericCheck()
     {
-        return $this->withFlags(JSON_NUMERIC_CHECK);
+        return $this->withFlags(\JSON_NUMERIC_CHECK);
     }
 
     /**
@@ -77,7 +77,7 @@ class JsonEncoder extends AbstractEncoderDecoder
      */
     public function partialOutputOnError()
     {
-        return $this->withFlags(JSON_PARTIAL_OUTPUT_ON_ERROR);
+        return $this->withFlags(\JSON_PARTIAL_OUTPUT_ON_ERROR);
     }
 
     /**
@@ -85,7 +85,7 @@ class JsonEncoder extends AbstractEncoderDecoder
      */
     public function preserveZeroFraction()
     {
-        return $this->withFlags(JSON_PRESERVE_ZERO_FRACTION);
+        return $this->withFlags(\JSON_PRESERVE_ZERO_FRACTION);
     }
 
     /**
@@ -93,7 +93,7 @@ class JsonEncoder extends AbstractEncoderDecoder
      */
     public function prettyPrint()
     {
-        return $this->withFlags(JSON_PRETTY_PRINT);
+        return $this->withFlags(\JSON_PRETTY_PRINT);
     }
 
     /**
@@ -103,7 +103,7 @@ class JsonEncoder extends AbstractEncoderDecoder
      */
     public function unescapedLineTerminators()
     {
-        return $this->withFlags(JSON_UNESCAPED_LINE_TERMINATORS);
+        return $this->withFlags(\JSON_UNESCAPED_LINE_TERMINATORS);
     }
 
     /**
@@ -111,7 +111,7 @@ class JsonEncoder extends AbstractEncoderDecoder
      */
     public function unescapedSlashes()
     {
-        return $this->withFlags(JSON_UNESCAPED_SLASHES);
+        return $this->withFlags(\JSON_UNESCAPED_SLASHES);
     }
 
     /**
@@ -119,6 +119,6 @@ class JsonEncoder extends AbstractEncoderDecoder
      */
     public function unescapedUnicode()
     {
-        return $this->withFlags(JSON_UNESCAPED_UNICODE);
+        return $this->withFlags(\JSON_UNESCAPED_UNICODE);
     }
 }

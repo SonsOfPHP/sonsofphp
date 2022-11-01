@@ -41,7 +41,7 @@ interface AggregateIdInterface
      *
      * @throws EventSourcingException
      */
-    public static function fromString(string $id): AggregateIdInterface;
+    public static function fromString(string $id): self;
 
     /**
      * Compares two Aggregate ID objects and returns true if they are
@@ -49,5 +49,5 @@ interface AggregateIdInterface
      *
      * @throws EventSourcingException
      */
-    public function equals(AggregateIdInterface $that): bool;
+    public function equals(self $that): bool;
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SonsOfPHP\Bard\Worker\File\Bard;
 
 use SonsOfPHP\Bard\JsonFile;

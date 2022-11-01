@@ -19,7 +19,7 @@ interface SnapshotableAggregateInterface extends AggregateInterface
 {
     public function createSnapshot(): SnapshotInterface;
 
-    public static function buildFromSnapshot(SnapshotInterface $snapshot): SnapshotableAggregateInterface;
+    public static function buildFromSnapshot(SnapshotInterface $snapshot): self;
 
-    public static function buildFromSnapshotAndEvents(SnapshotInterface $snapshot, Generator $events): SnapshotableAggregateInterface;
+    public static function buildFromSnapshotAndEvents(SnapshotInterface $snapshot, Generator $events): self;
 }

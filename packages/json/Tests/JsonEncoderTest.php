@@ -21,7 +21,7 @@ final class JsonEncoderTest extends TestCase
     public function testWithFlagsReturnsNewObject(): void
     {
         $encoder = new JsonEncoder();
-        $encoderOther = $encoder->withFlags(JSON_PRETTY_PRINT);
+        $encoderOther = $encoder->withFlags(\JSON_PRETTY_PRINT);
 
         $this->assertNotSame($encoder, $encoderOther);
     }
@@ -33,7 +33,7 @@ final class JsonEncoderTest extends TestCase
     public function testWithoutFlagsReturnsNewObject(): void
     {
         $encoder = new JsonEncoder();
-        $encoderOther = $encoder->withoutFlags(JSON_PRETTY_PRINT);
+        $encoderOther = $encoder->withoutFlags(\JSON_PRETTY_PRINT);
 
         $this->assertNotSame($encoder, $encoderOther);
     }
@@ -50,13 +50,13 @@ final class JsonEncoderTest extends TestCase
         $prop = $ref->getProperty('flags');
         $prop->setAccessible(true);
 
-        $encoder = $encoder->withoutFlags(JSON_PRETTY_PRINT);
+        $encoder = $encoder->withoutFlags(\JSON_PRETTY_PRINT);
         $this->assertSame(0, $prop->getValue($encoder));
 
-        $encoder = $encoder->withFlags(JSON_UNESCAPED_UNICODE)->withoutFlags(JSON_PRETTY_PRINT);
-        $this->assertSame(JSON_UNESCAPED_UNICODE, $prop->getValue($encoder));
+        $encoder = $encoder->withFlags(\JSON_UNESCAPED_UNICODE)->withoutFlags(\JSON_PRETTY_PRINT);
+        $this->assertSame(\JSON_UNESCAPED_UNICODE, $prop->getValue($encoder));
 
-        $encoder = $encoder->withoutFlags(JSON_UNESCAPED_UNICODE);
+        $encoder = $encoder->withoutFlags(\JSON_UNESCAPED_UNICODE);
         $this->assertSame(0, $prop->getValue($encoder));
     }
 
@@ -72,10 +72,10 @@ final class JsonEncoderTest extends TestCase
         $prop = $ref->getProperty('flags');
         $prop->setAccessible(true);
 
-        $encoder = $encoder->withFlags(JSON_PRETTY_PRINT);
-        $this->assertSame(JSON_PRETTY_PRINT, $prop->getValue($encoder));
+        $encoder = $encoder->withFlags(\JSON_PRETTY_PRINT);
+        $this->assertSame(\JSON_PRETTY_PRINT, $prop->getValue($encoder));
 
-        $encoder = $encoder->withoutFlags(JSON_PRETTY_PRINT);
+        $encoder = $encoder->withoutFlags(\JSON_PRETTY_PRINT);
         $this->assertSame(0, $prop->getValue($encoder));
     }
 

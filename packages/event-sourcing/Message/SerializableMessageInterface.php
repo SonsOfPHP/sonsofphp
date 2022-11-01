@@ -18,5 +18,5 @@ interface SerializableMessageInterface extends MessageInterface
     /**
      * Rebuild the Message from the serialized data.
      */
-    public static function deserialize(array $data): SerializableMessageInterface;
+    public static function deserialize(array $data): self;
 }

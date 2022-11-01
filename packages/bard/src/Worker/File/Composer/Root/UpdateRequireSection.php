@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SonsOfPHP\Bard\Worker\File\Composer\Root;
 
 use SonsOfPHP\Bard\JsonFile;
@@ -34,7 +36,7 @@ final class UpdateRequireSection implements WorkerInterface
         }
 
         foreach ($pkgRequire as $package => $version) {
-            if (in_array($package, array_keys($rootReplace))) {
+            if (\in_array($package, array_keys($rootReplace))) {
                 continue;
             }
 

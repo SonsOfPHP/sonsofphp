@@ -21,7 +21,7 @@ final class EventTypeMessageUpcasterProvider implements MessageUpcasterProviderI
 {
     private array $upcasters = [];
 
-    public function register(string $eventType, MessageUpcasterHandlerInterface $upcaster)
+    public function register(string $eventType, MessageUpcasterHandlerInterface $upcaster): void
     {
         $this->upcasters[$eventType][] = $upcaster;
     }

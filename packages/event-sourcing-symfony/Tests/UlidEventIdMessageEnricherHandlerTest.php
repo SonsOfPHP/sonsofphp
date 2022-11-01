@@ -36,9 +36,7 @@ final class UlidEventIdMessageEnricherHandlerTest extends TestCase
         $message = $this->createMock(MessageInterface::class);
         $message->expects($this->once())
             ->method('withMetadata')
-            ->with($this->callback(function ($metadata) {
-                return Ulid::isValid($metadata[Metadata::EVENT_ID]);
-            }))
+            ->with($this->callback(fn ($metadata) => Ulid::isValid($metadata[Metadata::EVENT_ID])))
         ;
 
         $handler->enrich($message);

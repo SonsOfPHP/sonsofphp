@@ -83,7 +83,7 @@ class MessageSerializer implements MessageSerializerInterface
             Metadata::TIMESTAMP_FORMAT,
         ];
 
-        if (count($requiredMetadata) != count(array_intersect_key(array_flip($requiredMetadata), $metadata))) {
+        if (\count($requiredMetadata) != \count(array_intersect_key(array_flip($requiredMetadata), $metadata))) {
             $values = [];
             foreach ($metadata as $k => $v) {
                 $values[] = $k.' => '.$v;

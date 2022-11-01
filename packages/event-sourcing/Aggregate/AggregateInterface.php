@@ -45,5 +45,5 @@ interface AggregateInterface
      *
      * @throws EventSourcingException
      */
-    public static function buildFromEvents(AggregateIdInterface $id, Generator $events): AggregateInterface;
+    public static function buildFromEvents(AggregateIdInterface $id, Generator $events): self;
 }

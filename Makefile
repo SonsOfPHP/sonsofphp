@@ -68,7 +68,7 @@ psalm-upgrade:
 	XDEBUG_MODE=off $(COMPOSER) upgrade --working-dir=tools/psalm --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
 
 php-cs-fixer: ## run php-cs-fixer
-	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHP_CS_FIXER) fix -vv --diff --allow-risky=no --config=.php-cs-fixer.dist.php
+	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHP_CS_FIXER) fix -vv --diff --allow-risky=yes --config=.php-cs-fixer.dist.php
 
 php-cs-fixer-install:
 	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/php-cs-fixer --no-interaction --prefer-dist --optimize-autoloader

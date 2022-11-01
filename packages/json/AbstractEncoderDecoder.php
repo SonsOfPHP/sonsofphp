@@ -50,7 +50,7 @@ abstract class AbstractEncoderDecoder
      */
     public function invalidUtf8Ignore()
     {
-        return $this->withFlags(JSON_INVALID_UTF8_IGNORE);
+        return $this->withFlags(\JSON_INVALID_UTF8_IGNORE);
     }
 
     /**
@@ -59,7 +59,7 @@ abstract class AbstractEncoderDecoder
      */
     public function invalidUtf8Substitute()
     {
-        return $this->withFlags(JSON_INVALID_UTF8_SUBSTITUTE);
+        return $this->withFlags(\JSON_INVALID_UTF8_SUBSTITUTE);
     }
 
     /**
@@ -70,6 +70,6 @@ abstract class AbstractEncoderDecoder
      */
     public function throwOnError()
     {
-        return $this->withFlags(JSON_THROW_ON_ERROR);
+        return $this->withFlags(\JSON_THROW_ON_ERROR);
     }
 }

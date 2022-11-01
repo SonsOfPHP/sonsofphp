@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SonsOfPHP\Bard\Console\Command;
 
 use SonsOfPHP\Bard\JsonFile;
@@ -61,7 +63,7 @@ final class ReleaseCommand extends AbstractCommand
     /**
      * {@inheritdoc}
      */
-    protected function initialize(InputInterface $input, OutputInterface $output)
+    protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         $version = $input->getArgument('release');
         if (null === $version) {
@@ -71,7 +73,7 @@ final class ReleaseCommand extends AbstractCommand
         $this->bardConfig = new JsonFile($input->getOption('working-dir').'/bard.json');
         $currentVersion = new Version($this->bardConfig->getSection('version'));
 
-        if (in_array($version, ['major', 'minor', 'patch'])) {
+        if (\in_array($version, ['major', 'minor', 'patch'])) {
             switch ($version) {
                 case 'major':
                     $this->releaseVersion = $currentVersion->nextMajor();
@@ -97,7 +99,7 @@ final class ReleaseCommand extends AbstractCommand
     /**
      * {@inheritdoc}
      */
-    protected function interact(InputInterface $input, OutputInterface $output)
+    protected function interact(InputInterface $input, OutputInterface $output): void
     {
     }
 

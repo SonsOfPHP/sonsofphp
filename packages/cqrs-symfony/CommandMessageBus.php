@@ -40,7 +40,7 @@ class CommandMessageBus
      *
      * @return static
      */
-    public function withStamps(array $stamps): CommandMessageBus
+    public function withStamps(array $stamps): self
     {
         $that = clone $this;
         $that->stamps = $stamps;

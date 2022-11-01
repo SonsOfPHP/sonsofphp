@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SonsOfPHP\Bard\Worker\File\Composer\Root;
 
 use SonsOfPHP\Bard\JsonFile;
@@ -22,8 +24,8 @@ final class UpdateAutoloadDevSection implements WorkerInterface
      */
     public function apply(JsonFile $rootComposerJsonFile): JsonFile
     {
-        $rootDir = pathinfo($rootComposerJsonFile->getFilename(), PATHINFO_DIRNAME);
-        $pkgDir = pathinfo($this->pkgComposerJsonFile->getFilename(), PATHINFO_DIRNAME);
+        $rootDir = pathinfo($rootComposerJsonFile->getFilename(), \PATHINFO_DIRNAME);
+        $pkgDir = pathinfo($this->pkgComposerJsonFile->getFilename(), \PATHINFO_DIRNAME);
         $path = trim(str_replace($rootDir, '', $pkgDir), '/');
 
         $rootAutoloadSection = $rootComposerJsonFile->getSection('autoload-dev');

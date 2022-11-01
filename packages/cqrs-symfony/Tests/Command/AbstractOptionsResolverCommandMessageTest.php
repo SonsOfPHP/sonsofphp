@@ -32,7 +32,7 @@ final class AbstractOptionsResolverCommandMessageTest extends TestCase
      */
     public function testConstructor(): void
     {
-        DummyCommand::setConfigureOptionsCallback(function ($resolver) {
+        DummyCommand::setConfigureOptionsCallback(function ($resolver): void {
             $resolver->define('id');
         });
         $cmdOptions = [
@@ -50,7 +50,7 @@ final class AbstractOptionsResolverCommandMessageTest extends TestCase
      */
     public function testMagicMethodGetWorks(): void
     {
-        DummyCommand::setConfigureOptionsCallback(function ($resolver) {
+        DummyCommand::setConfigureOptionsCallback(function ($resolver): void {
             $resolver->define('id');
         });
         $command = new DummyCommand([
@@ -66,7 +66,7 @@ final class AbstractOptionsResolverCommandMessageTest extends TestCase
      */
     public function testMagicMethodIssetWorks(): void
     {
-        DummyCommand::setConfigureOptionsCallback(function ($resolver) {
+        DummyCommand::setConfigureOptionsCallback(function ($resolver): void {
             $resolver->define('id');
         });
         $command = new DummyCommand([

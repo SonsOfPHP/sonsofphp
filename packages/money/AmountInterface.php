@@ -25,7 +25,7 @@ interface AmountInterface
     /**
      * Allows you to run you own operations of the amount.
      */
-    public function with(AmountOperatorInterface $operator): AmountInterface;
+    public function with(AmountOperatorInterface $operator): self;
 
     /**
      * Allows you to ask different questions about the amount and get
@@ -58,7 +58,7 @@ interface AmountInterface
     /**
      * Add amounts together.
      */
-    public function add(AmountInterface $amount): AmountInterface;
+    public function add(self $amount): self;
 
     /**
      * Subtract amounts from each other.
@@ -69,31 +69,31 @@ interface AmountInterface
      *   $amount1->subtract($amount2) == 50
      *   $amount2->subtract($amount1) == -50
      */
-    public function subtract(AmountInterface $amount): AmountInterface;
+    public function subtract(self $amount): self;
 
     /**
      * Multiply amount by a specific amount.
      *
      * @param mixed $multiplier
      */
-    public function multiply($multiplier): AmountInterface;
+    public function multiply($multiplier): self;
 
     /**
      * Divide the amount by a specific amount.
      *
      * @param mixed $divisor
      */
-    public function divide($divisor): AmountInterface;
+    public function divide($divisor): self;
 
-    public function isEqualTo(AmountInterface $amount): bool;
+    public function isEqualTo(self $amount): bool;
 
-    public function isGreaterThan(AmountInterface $amount): bool;
+    public function isGreaterThan(self $amount): bool;
 
-    public function isGreaterThanOrEqualTo(AmountInterface $amount): bool;
+    public function isGreaterThanOrEqualTo(self $amount): bool;
 
-    public function isLessThan(AmountInterface $amount): bool;
+    public function isLessThan(self $amount): bool;
 
-    public function isLessThanOrEqualTo(AmountInterface $amount): bool;
+    public function isLessThanOrEqualTo(self $amount): bool;
 
     public function isNegative(): bool;
 

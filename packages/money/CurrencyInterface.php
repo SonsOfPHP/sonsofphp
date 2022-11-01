@@ -46,7 +46,7 @@ interface CurrencyInterface
     /**
      * Compare two currencies to see if they are the same.
      */
-    public function isEqualTo(CurrencyInterface $currency): bool;
+    public function isEqualTo(self $currency): bool;
 
     /**
      * @return mixed

@@ -16,7 +16,7 @@ class JsonDecoder extends AbstractEncoderDecoder
         parent::__construct($flags, $depth);
 
         if (true === $associative) {
-            $this->flags = $this->flags | JSON_OBJECT_AS_ARRAY;
+            $this->flags = $this->flags | \JSON_OBJECT_AS_ARRAY;
         }
     }
 
@@ -24,7 +24,7 @@ class JsonDecoder extends AbstractEncoderDecoder
     {
         $return = json_decode($json, null, $this->depth, $this->flags);
 
-        if (JSON_ERROR_NONE !== json_last_error()) {
+        if (\JSON_ERROR_NONE !== json_last_error()) {
             throw new JsonException(json_last_error_msg(), json_last_error());
         }
 
@@ -33,7 +33,7 @@ class JsonDecoder extends AbstractEncoderDecoder
 
     public function asArray()
     {
-        return $this->withFlags(JSON_OBJECT_AS_ARRAY);
+        return $this->withFlags(\JSON_OBJECT_AS_ARRAY);
     }
 
     /**
@@ -41,7 +41,7 @@ class JsonDecoder extends AbstractEncoderDecoder
      */
     public function bigintAsString()
     {
-        return $this->withFlags(JSON_BIGINT_AS_STRING);
+        return $this->withFlags(\JSON_BIGINT_AS_STRING);
     }
 
     /**
@@ -49,6 +49,6 @@ class JsonDecoder extends AbstractEncoderDecoder
      */
     public function objectAsArray()
     {
-        return $this->withFlags(JSON_OBJECT_AS_ARRAY);
+        return $this->withFlags(\JSON_OBJECT_AS_ARRAY);
     }
 }

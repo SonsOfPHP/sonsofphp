@@ -24,7 +24,7 @@ class GetCurrencyQuery implements CurrencyProviderQueryInterface
             return;
         }
 
-        if (is_string($currency) && 3 === strlen($currency)) {
+        if (\is_string($currency) && 3 === \strlen($currency)) {
             $this->currency = new Currency($currency);
 
             return;

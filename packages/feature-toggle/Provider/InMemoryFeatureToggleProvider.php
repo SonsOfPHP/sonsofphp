@@ -20,7 +20,7 @@ final class InMemoryFeatureToggleProvider implements FeatureToggleProviderInterf
         }
     }
 
-    public function addFeature(FeatureInterface $feature)
+    public function addFeature(FeatureInterface $feature): void
     {
         $this->features[] = $feature;
     }

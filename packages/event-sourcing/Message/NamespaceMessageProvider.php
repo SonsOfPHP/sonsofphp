@@ -25,17 +25,17 @@ class NamespaceMessageProvider implements MessageProviderInterface
      */
     public function getEventTypeForMessage($message): string
     {
-        if (is_object($message)) {
-            $class = get_class($message);
+        if (\is_object($message)) {
+            $class = $message::class;
             if (!$message instanceof MessageInterface) {
                 throw new EventSourcingException(sprintf('Message "%s" does not implement "%s"', $class, MessageInterface::class));
             }
             $message = $class;
         }
 
-        $eventType = trim(substr($message, strlen($this->namespace)), '\\');
+        $eventType = trim(substr($message, \strlen($this->namespace)), '\\');
 
-        if ($this->namespace !== substr($message, 0, strlen($this->namespace))) {
+        if ($this->namespace !== substr($message, 0, \strlen($this->namespace))) {
             throw new EventSourcingException(sprintf('Message "%s" is not in the Namespace "%s"', $message, $this->namespace));
         }
 

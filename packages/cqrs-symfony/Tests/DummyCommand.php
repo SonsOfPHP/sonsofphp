@@ -19,15 +19,15 @@ final class DummyCommand extends AbstractOptionsResolverCommandMessage
      *    // can now define options
      * });.
      */
-    public static function setConfigureOptionsCallback($callback)
+    public static function setConfigureOptionsCallback($callback): void
     {
         self::$configureOptions = $callback;
     }
 
     protected function configureOptions(OptionsResolver $resolver): void
     {
-        if (is_callable(self::$configureOptions)) {
-            call_user_func(self::$configureOptions, $resolver);
+        if (\is_callable(self::$configureOptions)) {
+            \call_user_func(self::$configureOptions, $resolver);
             self::$configureOptions = null;
         }
     }

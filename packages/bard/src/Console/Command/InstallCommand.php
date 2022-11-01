@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SonsOfPHP\Bard\Console\Command;
 
 use SonsOfPHP\Bard\JsonFile;
@@ -35,7 +37,7 @@ final class InstallCommand extends AbstractCommand
     /**
      * {@inheritdoc}
      */
-    protected function initialize(InputInterface $input, OutputInterface $output)
+    protected function initialize(InputInterface $input, OutputInterface $output): void
     {
     }
 

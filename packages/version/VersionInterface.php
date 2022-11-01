@@ -20,7 +20,7 @@ interface VersionInterface
      *
      * @return static
      */
-    public static function from(string $version): VersionInterface;
+    public static function from(string $version): self;
 
     /**
      * Returns the version.
@@ -62,5 +62,5 @@ interface VersionInterface
      *  0 = $this === $version
      *  1 = $this  >  $version.
      */
-    public function compare(VersionInterface $version): int;
+    public function compare(self $version): int;
 }
