@@ -8,3 +8,4 @@ phpunit.xml
 composer.phar
 /packages.json
 /.phpunit
+/results.sarif
