@@ -6,6 +6,7 @@ namespace SonsOfPHP\Component\EventSourcing\Message;
 
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
+use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 
 /**
  * Domain Event Message.
@@ -29,22 +30,38 @@ interface MessageInterface
     /**
      * Returns the Aggregate ID, if the aggregate ID is unknown, it
      * will return null.
+     *
+     * @throws EventSourcingException
      */
-    public function getAggregateId(): ?AggregateIdInterface;
+    public function getAggregateId(): AggregateIdInterface;
 
     /**
      * Returns the Aggregate Version, if the aggregate Version is unknown, it
      * will return null.
+     *
+     * @throws EventSourcingException
      */
-    public function getAggregateVersion(): ?AggregateVersionInterface;
+    public function getAggregateVersion(): AggregateVersionInterface;
 
-    public function getEventId(): ?string;
+    /**
+     * @throws EventSourcingException
+     */
+    public function getEventId(): string;
 
-    public function getEventType(): ?string;
+    /**
+     * @throws EventSourcingException
+     */
+    public function getEventType(): string;
 
-    public function getTimestamp(): ?string;
+    /**
+     * @throws EventSourcingException
+     */
+    public function getTimestamp(): string;
 
-    public function getTimestampFormat(): ?string;
+    /**
+     * @throws EventSourcingException
+     */
+    public function getTimestampFormat(): string;
 
     /**
      * @return static

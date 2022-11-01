@@ -19,6 +19,7 @@ use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterf
 use SonsOfPHP\Component\EventSourcing\Message\SerializableMessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Serializer\MessageSerializerInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
+use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Doctrine\EventSourcing\DoctrineDbalMessageRepository
@@ -109,11 +110,7 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
             $this->tableSchema
         );
 
-        $message = $this->createMock(SerializableMessageInterface::class);
-        $message
-            ->expects($this->once())
-            ->method('getAggregateVersion')
-            ->willReturn(new AggregateVersion(100));
+        $message = FakeSerializableMessage::new();
 
         $this->expectException(EventSourcingException::class);
         $repository->persist($message);
@@ -130,12 +127,7 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
             $this->tableSchema
         );
 
-        $message = $this->createMock(SerializableMessageInterface::class);
-        $message
-            ->expects($this->once())
-            ->method('getAggregateId')
-            ->willReturn(new AggregateId('id'));
-
+        $message = FakeSerializableMessage::new();
         $this->expectException(EventSourcingException::class);
         $repository->persist($message);
     }

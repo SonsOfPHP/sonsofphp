@@ -8,6 +8,7 @@ use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
+use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 
 /**
@@ -42,73 +43,49 @@ abstract class AbstractMessage implements MessageInterface
     /**
      * {@inheritdoc}
      */
-    final public function getEventId(): ?string
+    final public function getEventId(): string
     {
-        if (true === $this->metadata->has(Metadata::EVENT_ID)) {
-            return (string) $this->metadata->get(Metadata::EVENT_ID);
-        }
-
-        return null;
+        return $this->metadata->getEventId();
     }
 
     /**
      * {@inheritdoc}
      */
-    final public function getEventType(): ?string
+    final public function getEventType(): string
     {
-        if (true === $this->metadata->has(Metadata::EVENT_TYPE)) {
-            return (string) $this->metadata->get(Metadata::EVENT_TYPE);
-        }
-
-        return null;
+        return $this->metadata->getEventType();
     }
 
     /**
      * {@inheritdoc}
      */
-    final public function getTimestamp(): ?string
+    final public function getTimestamp(): string
     {
-        if (true === $this->metadata->has(Metadata::TIMESTAMP)) {
-            return (string) $this->metadata->get(Metadata::TIMESTAMP);
-        }
-
-        return null;
+        return $this->metadata->getTimestamp()->format($this->getTimestampFormat());
     }
 
     /**
      * {@inheritdoc}
      */
-    final public function getTimestampFormat(): ?string
+    final public function getTimestampFormat(): string
     {
-        if (true === $this->metadata->has(Metadata::TIMESTAMP_FORMAT)) {
-            return (string) $this->metadata->get(Metadata::TIMESTAMP_FORMAT);
-        }
-
-        return null;
+        return $this->metadata->getTimestampFormat();
     }
 
     /**
      * {@inheritdoc}
      */
-    final public function getAggregateId(): ?AggregateIdInterface
+    final public function getAggregateId(): AggregateIdInterface
     {
-        if (true === $this->metadata->has(Metadata::AGGREGATE_ID)) {
-            return AggregateId::fromString((string) $this->metadata->get(Metadata::AGGREGATE_ID));
-        }
-
-        return null;
+        return $this->metadata->getAggregateId();
     }
 
     /**
      * {@inheritdoc}
      */
-    final public function getAggregateVersion(): ?AggregateVersionInterface
+    final public function getAggregateVersion(): AggregateVersionInterface
     {
-        if (true === $this->metadata->has(Metadata::AGGREGATE_VERSION)) {
-            return AggregateVersion::fromInt((int) $this->metadata->get(Metadata::AGGREGATE_VERSION));
-        }
-
-        return null;
+        return $this->metadata->getAggregateVersion();
     }
 
     /**

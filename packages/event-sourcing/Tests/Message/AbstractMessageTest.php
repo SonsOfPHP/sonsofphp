@@ -7,6 +7,7 @@ namespace SonsOfPHP\Component\EventSourcing\Tests\Message;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
+use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\AbstractMessage;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
@@ -78,6 +79,7 @@ final class AbstractMessageTest extends TestCase
     {
         $message = Msg::new();
 
+        $this->expectException(EventSourcingException::class);
         $this->assertSame('', $message->getEventId());
         $this->assertSame('', $message->getEventType());
         $this->assertSame('', $message->getTimestamp());
