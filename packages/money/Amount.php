@@ -55,7 +55,7 @@ final class Amount implements AmountInterface
      */
     public function toInt(): int
     {
-        return (int) ($this->amount);
+        return (int) $this->amount;
     }
 
     /**
@@ -63,7 +63,7 @@ final class Amount implements AmountInterface
      */
     public function toFloat(): float
     {
-        return (float) ($this->amount);
+        return (float) $this->amount;
     }
 
     /**

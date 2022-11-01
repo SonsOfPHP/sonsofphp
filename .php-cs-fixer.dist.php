@@ -14,6 +14,7 @@ return $config->setRules([
         // Rules
         'phpdoc_order' => true,
         //'php_unit_test_class_requires_covers' => true, // @todo
+        'phpdoc_to_comment' => false,
     ])
     ->setFinder($finder)
 ;
