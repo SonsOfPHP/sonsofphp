@@ -37,6 +37,6 @@ jobs:
             - run: make composer-install psalm-install
             - run: make psalm-github
             - name: Upload Security Analysis to Github
-              uses: github/codeql-action/upload-sarif@v1
+              uses: github/codeql-action/upload-sarif@v2
               with:
                   sarif_file: results.sarif
