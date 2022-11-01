@@ -37,5 +37,5 @@ Drop by the [Discord Server][discord].
 [mother-repo]: https://github.com/SonsOfPHP/sonsofphp
 [pull-requests]: https://github.com/SonsOfPHP/sonsofphp/pulls
 [issues]: https://github.com/SonsOfPHP/sonsofphp/issues
-[docs-repo]: https://github.com/SonsOfPHP/sonsofphp-docs
+[docs-repo]: https://github.com/SonsOfPHP/sonsofphp
 [discord]: https://discord.gg/sdVxNhFqND

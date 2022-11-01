@@ -32,9 +32,9 @@ there. You can browse the [issues][mother-issues] and [PRs][mother-prs] for all
 the different Sons of PHP packages.
 
 [discussions]: https://github.com/orgs/SonsOfPHP/discussions
-[docs-repo]: https://github.com/SonsOfPHP/sonsofphp-docs
-[docs-prs]: https://github.com/SonsOfPHP/sonsofphp-docs/pulls
-[docs-issues]: https://github.com/SonsOfPHP/sonsofphp-docs/issues
+[docs-repo]: https://github.com/SonsOfPHP/sonsofphp
+[docs-prs]: https://github.com/SonsOfPHP/sonsofphp/pulls
+[docs-issues]: https://github.com/SonsOfPHP/sonsofphp/issues
 [mother-repo]: https://github.com/SonsOfPHP/sonsofphp
 [mother-prs]: https://github.com/SonsOfPHP/sonsofphp/pulls
 [mother-issues]: https://github.com/SonsOfPHP/sonsofphp/issues
