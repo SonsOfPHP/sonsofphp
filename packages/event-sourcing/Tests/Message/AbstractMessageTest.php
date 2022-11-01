@@ -21,7 +21,8 @@ class Msg extends AbstractMessage
 final class AbstractMessageTest extends TestCase
 {
     /**
-     * @coversNothing
+     * @covers ::new
+     * @covers ::__construct
      */
     public function testItHasTheRightInterface(): void
     {
