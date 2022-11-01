@@ -22,6 +22,7 @@ Injection to make it easy to test with.
 
 ```php
 <?php
+
 use SonsOfPHP\Component\Clock\SystemClock;
 
 $clock = new SystemClock();

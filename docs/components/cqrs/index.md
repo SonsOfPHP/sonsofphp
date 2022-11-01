@@ -2,24 +2,36 @@
 title: CQRS
 ---
 
-# CQRS
+Command Query Responsibility Segregation is a simple concept. When you want
+something to happen, you will use a Command. If you need results returned, you
+will use a query.
 
-## Installation
+An over simplified example of this would be if you need to write to a database,
+you would use a Command. If you need results from a database, you would use a
+Query.
+
+# Installation
 
 ```shell
 composer require sonsofphp/cqrs
 ```
 
-### Additional Features
+!!! success "Symfony Bridge"
+    Installing the Symfony Bridge will add additional functionality to the CQRS
+    component. This can be done quickly and easily. The documentation will point
+    out where this is required.
 
-#### Symfony Bridge
+    ```shell
+    composer require sonsofphp/cqrs-symfony
+    ```
 
-Installing the Symfony Bridge will allow you to use [Messenger][messenger] and the
-[Options Resolver][options_resolver] with Commands and Queries.
+!!! tip
+    This component pairs well with the `sonsofphp/event-sourcing` component.
 
-```shell
-composer require sonsofphp/cqrs-symfony
-```
+    ```shell
+    composer require sonsofphp/event-sourcing
+    ```
+
 
 [messenger]: https://symfony.com/doc/current/components/messenger.html
 [options_resolver]: https://symfony.com/doc/current/components/options_resolver.html

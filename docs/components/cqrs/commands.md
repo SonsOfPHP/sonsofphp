@@ -4,7 +4,7 @@ title: Commands
 
 # Commands
 
-All Commands will implement the [`CommandMessageInterface`][CommandMessageInterface].
+All Commands must implement the [`CommandMessageInterface`][CommandMessageInterface].
 
 ## Basic Command
 
@@ -17,16 +17,10 @@ use SonsOfPHP\Component\Cqrs\Command\CommandMessageInterface;
 
 final class SendPasswordResetEmailToUser implements CommandMessageInterface
 {
-    private string $userId;
-
-    public function __construct(string $userId)
-    {
+    public function __construct(
+        public readonly string $userId,
+    ) {
         $this->userId = $userId;
-    }
-
-    public function getUserId(): string
-    {
-        return $this->userId;
     }
 }
 ```
@@ -70,7 +64,14 @@ $command = new SendPasswordResetEmailToUser(['user_id' => 1234]);
 
 // ...
 
-$userId = $command->user_id; // 1234
+// Get an option
+$userId = $command->getOption('user_id');
+
+// Get ALL options
+$options = $command->getOptions():
+
+// Check if option exists
+$command->hasOption('user_id');
 ```
 
 [CommandMessageInterface]: https://github.com/SonsOfPHP/sonsofphp/blob/main/packages/cqrs/Command/CommandMessageInterface.php
