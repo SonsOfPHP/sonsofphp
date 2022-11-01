@@ -25,17 +25,10 @@ use SonsOfPHP\Component\EventSourcing\Metadata;
  */
 abstract class AbstractMessage implements MessageInterface
 {
-    private array $payload = [];
-    private array $metadata = [];
-
-    /**
-     * @param array $payload
-     * @param array $metadata
-     */
-    final private function __construct(?array $payload = null, ?array $metadata = null)
-    {
-        $this->payload = $payload ?? [];
-        $this->metadata = $metadata ?? [];
+    final private function __construct(
+        private MessagePayload $payload = new MessagePayload(),
+        private MessageMetadata $metadata = new MessageMetadata(),
+    ) {
     }
 
     /**
@@ -43,7 +36,7 @@ abstract class AbstractMessage implements MessageInterface
      */
     final public static function new(): MessageInterface
     {
-        return new static();
+        return new static(new MessagePayload(), new MessageMetadata());
     }
 
     /**
@@ -51,8 +44,8 @@ abstract class AbstractMessage implements MessageInterface
      */
     final public function getEventId(): ?string
     {
-        if (isset($this->metadata[Metadata::EVENT_ID])) {
-            return (string) $this->metadata[Metadata::EVENT_ID];
+        if (true === $this->metadata->has(Metadata::EVENT_ID)) {
+            return (string) $this->metadata->get(Metadata::EVENT_ID);
         }
 
         return null;
@@ -63,8 +56,8 @@ abstract class AbstractMessage implements MessageInterface
      */
     final public function getEventType(): ?string
     {
-        if (isset($this->metadata[Metadata::EVENT_TYPE])) {
-            return (string) $this->metadata[Metadata::EVENT_TYPE];
+        if (true === $this->metadata->has(Metadata::EVENT_TYPE)) {
+            return (string) $this->metadata->get(Metadata::EVENT_TYPE);
         }
 
         return null;
@@ -75,8 +68,8 @@ abstract class AbstractMessage implements MessageInterface
      */
     final public function getTimestamp(): ?string
     {
-        if (isset($this->metadata[Metadata::TIMESTAMP])) {
-            return (string) $this->metadata[Metadata::TIMESTAMP];
+        if (true === $this->metadata->has(Metadata::TIMESTAMP)) {
+            return (string) $this->metadata->get(Metadata::TIMESTAMP);
         }
 
         return null;
@@ -87,8 +80,8 @@ abstract class AbstractMessage implements MessageInterface
      */
     final public function getTimestampFormat(): ?string
     {
-        if (isset($this->metadata[Metadata::TIMESTAMP_FORMAT])) {
-            return (string) $this->metadata[Metadata::TIMESTAMP_FORMAT];
+        if (true === $this->metadata->has(Metadata::TIMESTAMP_FORMAT)) {
+            return (string) $this->metadata->get(Metadata::TIMESTAMP_FORMAT);
         }
 
         return null;
@@ -99,8 +92,8 @@ abstract class AbstractMessage implements MessageInterface
      */
     final public function getAggregateId(): ?AggregateIdInterface
     {
-        if (isset($this->metadata[Metadata::AGGREGATE_ID])) {
-            return AggregateId::fromString((string) $this->metadata[Metadata::AGGREGATE_ID]);
+        if (true === $this->metadata->has(Metadata::AGGREGATE_ID)) {
+            return AggregateId::fromString((string) $this->metadata->get(Metadata::AGGREGATE_ID));
         }
 
         return null;
@@ -111,8 +104,8 @@ abstract class AbstractMessage implements MessageInterface
      */
     final public function getAggregateVersion(): ?AggregateVersionInterface
     {
-        if (isset($this->metadata[Metadata::AGGREGATE_VERSION])) {
-            return AggregateVersion::fromInt((int) $this->metadata[Metadata::AGGREGATE_VERSION]);
+        if (true === $this->metadata->has(Metadata::AGGREGATE_VERSION)) {
+            return AggregateVersion::fromInt((int) $this->metadata->get(Metadata::AGGREGATE_VERSION));
         }
 
         return null;
@@ -124,7 +117,7 @@ abstract class AbstractMessage implements MessageInterface
     final public function withMetadata(array $metadata): MessageInterface
     {
         $that = clone $this;
-        $that->metadata = array_merge($this->metadata, $metadata);
+        $that->metadata = new MessageMetadata(array_merge($this->metadata->all(), $metadata));
 
         return $that;
     }
@@ -134,7 +127,7 @@ abstract class AbstractMessage implements MessageInterface
      */
     final public function getMetadata(): array
     {
-        return $this->metadata;
+        return $this->metadata->all();
     }
 
     /**
@@ -143,7 +136,7 @@ abstract class AbstractMessage implements MessageInterface
     final public function withPayload(array $payload): MessageInterface
     {
         $that = clone $this;
-        $that->payload = array_merge($this->payload, $payload);
+        $that->payload = new MessagePayload(array_merge($this->payload->all(), $payload));
 
         return $that;
     }
@@ -153,6 +146,6 @@ abstract class AbstractMessage implements MessageInterface
      */
     final public function getPayload(): array
     {
-        return $this->payload;
+        return $this->payload->all();
     }
 }

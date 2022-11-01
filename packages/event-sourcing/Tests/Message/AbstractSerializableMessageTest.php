@@ -10,6 +10,7 @@ use SonsOfPHP\Component\EventSourcing\Message\AbstractSerializableMessage;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\SerializableMessageInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
+use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\AbstractSerializableMessage
@@ -21,7 +22,7 @@ final class AbstractSerializableMessageTest extends TestCase
      */
     public function testItHasTheRightInterfaces(): void
     {
-        $message = $this->getMockForAbstractClass(AbstractSerializableMessage::class, [], '', false);
+        $message = FakeSerializableMessage::new();
         $this->assertInstanceOf(MessageInterface::class, $message); // @phpstan-ignore-line
         $this->assertInstanceOf(SerializableMessageInterface::class, $message); // @phpstan-ignore-line
     }
@@ -31,7 +32,7 @@ final class AbstractSerializableMessageTest extends TestCase
      */
     public function testSerializeOnEmptyMessage(): void
     {
-        $message = $this->getMockForAbstractClass(AbstractSerializableMessage::class, [], '', false);
+        $message = FakeSerializableMessage::new();
         $return = $message->serialize();
         $this->assertArrayHasKey('payload', $return);
         $this->assertArrayHasKey('metadata', $return);
@@ -42,7 +43,7 @@ final class AbstractSerializableMessageTest extends TestCase
      */
     public function testDeserializeWithEmptyData(): void
     {
-        $message = $this->getMockForAbstractClass(AbstractSerializableMessage::class, [], '', false);
+        $message = FakeSerializableMessage::new();
         $this->expectException(EventSourcingException::class);
         $message::deserialize([]);
     }
@@ -52,7 +53,7 @@ final class AbstractSerializableMessageTest extends TestCase
      */
     public function testDeserializeWithNoPayloadData(): void
     {
-        $message = $this->getMockForAbstractClass(AbstractSerializableMessage::class, [], '', false);
+        $message = FakeSerializableMessage::new();
         $this->expectException(EventSourcingException::class);
         $message::deserialize([
             'metadata' => [],
@@ -64,7 +65,7 @@ final class AbstractSerializableMessageTest extends TestCase
      */
     public function testDeserializeWithNoMetadataData(): void
     {
-        $message = $this->getMockForAbstractClass(AbstractSerializableMessage::class, [], '', false);
+        $message = FakeSerializableMessage::new();
         $this->expectException(EventSourcingException::class);
         $message::deserialize([
             'payload' => [],
@@ -76,7 +77,7 @@ final class AbstractSerializableMessageTest extends TestCase
      */
     public function testDeserialize(): void
     {
-        $message = $this->getMockForAbstractClass(AbstractSerializableMessage::class, [], '', false);
+        $message = FakeSerializableMessage::new();
         $msg = $message::deserialize([
             'payload' => [
                 'key' => 'value',

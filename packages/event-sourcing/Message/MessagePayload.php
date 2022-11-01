@@ -33,6 +33,13 @@ final class MessagePayload implements \IteratorAggregate, \Countable
 
     /**
      */
+    public function all(): array
+    {
+        return $this->payload;
+    }
+
+    /**
+     */
     public function with(string $key, $value)
     {
         $that = clone $this;

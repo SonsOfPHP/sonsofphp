@@ -14,6 +14,11 @@ use SonsOfPHP\Component\EventSourcing\Message\Repository\InMemoryMessageReposito
 use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterface;
 use SonsOfPHP\Component\EventSourcing\Tests\FakeAggregate;
 use TypeError;
+use SonsOfPHP\Component\EventSourcing\Message\AbstractMessage;
+
+class Msg extends AbstractMessage
+{
+}
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Aggregate\Repository\AggregateRepository
@@ -58,7 +63,7 @@ final class AggregateRepositoryTest extends TestCase
 
         $aggregate = FakeAggregate::new(AggregateId::fromString('unique-id'));
 
-        $message = $this->createMock(AbstractSerializableMessage::class);
+        $message = Msg::new();
         $aggregate->raiseThisEvent($message);
 
         $repository->persist($aggregate);
@@ -78,7 +83,7 @@ final class AggregateRepositoryTest extends TestCase
 
         $aggregate = FakeAggregate::new(AggregateId::fromString('unique-id'));
 
-        $message = $this->createMock(AbstractSerializableMessage::class);
+        $message = Msg::new();
         $aggregate->raiseThisEvent($message);
 
         $repository->persist($aggregate);
@@ -101,7 +106,7 @@ final class AggregateRepositoryTest extends TestCase
 
         $aggregate = FakeAggregate::new(AggregateId::fromString('unique-id'));
 
-        $message = $this->createMock(AbstractSerializableMessage::class);
+        $message = Msg::new();
         $aggregate->raiseThisEvent($message);
 
         $repository->persist($aggregate);

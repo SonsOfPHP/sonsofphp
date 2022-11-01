@@ -21,6 +21,14 @@ final class MessageMetadata implements \IteratorAggregate, \Countable
     public function __construct(
         private array $metadata = [],
     ) {
+        $this->metadata = array_merge([
+            Metadata::EVENT_ID          => null,
+            Metadata::EVENT_TYPE        => null,
+            Metadata::AGGREGATE_ID      => null,
+            Metadata::AGGREGATE_VERSION => null,
+            Metadata::TIMESTAMP         => null,
+            Metadata::TIMESTAMP_FORMAT  => Metadata::DEFAULT_TIMESTAMP_FORMAT,
+        ], $metadata);
     }
 
     /**
@@ -36,6 +44,13 @@ final class MessageMetadata implements \IteratorAggregate, \Countable
     public function count(): int
     {
         return count($this->metadata);
+    }
+
+    /**
+     */
+    public function all(): array
+    {
+        return $this->metadata;
     }
 
     /**
@@ -69,7 +84,7 @@ final class MessageMetadata implements \IteratorAggregate, \Countable
      */
     public function getEventId(): string
     {
-        if (false === $this->has(Metadata::EVENT_ID)) {
+        if (false === $this->has(Metadata::EVENT_ID) || null === $this->get(Metadata::EVENT_ID)) {
             throw new EventSourcingException('Event ID is required.');
         }
 
@@ -80,7 +95,7 @@ final class MessageMetadata implements \IteratorAggregate, \Countable
      */
     public function getEventType(): string
     {
-        if (false === $this->has(Metadata::EVENT_TYPE)) {
+        if (false === $this->has(Metadata::EVENT_TYPE) || null === $this->get(Metadata::EVENT_TYPE)) {
             throw new EventSourcingException('Event Type is required.');
         }
 
@@ -91,7 +106,7 @@ final class MessageMetadata implements \IteratorAggregate, \Countable
      */
     public function getTimestamp(): \DateTimeImmutable
     {
-        if (false === $this->has(Metadata::TIMESTAMP)) {
+        if (false === $this->has(Metadata::TIMESTAMP) || null === $this->get(Metadata::TIMESTAMP)) {
             throw new EventSourcingException('Timestamp is required.');
         }
 
@@ -102,7 +117,7 @@ final class MessageMetadata implements \IteratorAggregate, \Countable
      */
     public function getTimestampFormat(): string
     {
-        if (false === $this->has(Metadata::TIMESTAMP_FORMAT)) {
+        if (false === $this->has(Metadata::TIMESTAMP_FORMAT) || null === $this->get(Metadata::TIMESTAMP_FORMAT)) {
             throw new EventSourcingException('Timestamp Format is required.');
         }
 
@@ -113,7 +128,7 @@ final class MessageMetadata implements \IteratorAggregate, \Countable
      */
     public function getAggregateId(): AggregateIdInterface
     {
-        if (false === $this->has(Metadata::AGGREGATE_ID)) {
+        if (false === $this->has(Metadata::AGGREGATE_ID) || null === $this->get(Metadata::AGGREGATE_ID)) {
             throw new EventSourcingException('Aggregate ID is required.');
         }
 
@@ -124,7 +139,7 @@ final class MessageMetadata implements \IteratorAggregate, \Countable
      */
     public function getAggregateVersion(): AggregateVersionInterface
     {
-        if (false === $this->has(Metadata::AGGREGATE_VERSION)) {
+        if (false === $this->has(Metadata::AGGREGATE_VERSION) || null === $this->get(Metadata::AGGREGATE_VERSION)) {
             throw new EventSourcingException('Aggregate Version is required.');
         }
 

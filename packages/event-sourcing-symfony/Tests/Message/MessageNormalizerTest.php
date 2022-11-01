@@ -9,7 +9,11 @@ use SonsOfPHP\Bridge\Symfony\EventSourcing\Message\MessageNormalizer;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use SonsOfPHP\Component\EventSourcing\Message\AbstractGenericMessage;
+use SonsOfPHP\Component\EventSourcing\Message\AbstractMessage;
+
+class Msg extends AbstractMessage
+{
+}
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Message\MessageNormalizer
@@ -35,7 +39,7 @@ final class MessageNormalizerTest extends TestCase
     {
         $normalizer = new MessageNormalizer();
 
-        $message = $this->createStub(AbstractGenericMessage::class);
+        $message = Msg::new();
 
         $this->assertTrue($normalizer->supportsNormalization($message));
 
@@ -61,7 +65,7 @@ final class MessageNormalizerTest extends TestCase
                 'test' => 'unit',
             ],
         ];
-        $type = StubMessage::class;
+        $type = Msg::class;
 
         $this->assertTrue($normalizer->supportsDenormalization($data, $type));
 
@@ -70,8 +74,4 @@ final class MessageNormalizerTest extends TestCase
         $this->assertSame('test', $output->getPayload()['unit']);
         $this->assertSame('unit', $output->getMetadata()['test']);
     }
-}
-
-class StubMessage extends AbstractGenericMessage
-{
 }
