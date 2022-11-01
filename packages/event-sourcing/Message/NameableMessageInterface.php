@@ -14,5 +14,9 @@ namespace SonsOfPHP\Component\EventSourcing\Message;
  */
 interface NameableMessageInterface
 {
+    /**
+     * Returns the message name, this could be something like
+     * "product.published" or something similar.
+     */
     public function getMessageName(): string;
 }

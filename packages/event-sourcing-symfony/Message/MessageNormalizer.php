@@ -54,6 +54,14 @@ class MessageNormalizer implements NormalizerInterface, DenormalizerInterface
      */
     public function supportsDenormalization($data, string $type, string $format = null)
     {
+        if (false === is_array($data)) {
+            return false;
+        }
+
+        if (empty($data['payload']) || empty($data['metadata'])) {
+            return false;
+        }
+
         return is_subclass_of($type, MessageInterface::class, true);
     }
 }
