@@ -7,7 +7,7 @@ repo_name: Mother Repository
 
 copyright: Copyright &copy 2022 Sons of PHP
 
-edit_uri: https://github.com/SonsOfPHP/sonsofphp-docs/edit/main/docs/
+edit_uri: https://github.com/SonsOfPHP/sonsofphp/edit/main/docs/
 
 theme:
     name: material
