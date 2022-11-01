@@ -4,7 +4,9 @@ on:
         branches:
             - main
         paths:
+            - '.github/workflows/publish-docs.yml'
             - 'docs/**'
+            - 'mkdocs.yml'
 jobs:
     deploy:
         runs-on: ubuntu-latest
