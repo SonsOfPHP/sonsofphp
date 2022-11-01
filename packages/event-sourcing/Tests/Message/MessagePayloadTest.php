@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\MessagePayload;
 
 /**
@@ -25,8 +24,8 @@ final class MessagePayloadTest extends TestCase
     {
         $payload = new MessagePayload([
             'account_id' => '1234',
-            'user_id'    => '5678',
-            'key'        => 'value',
+            'user_id' => '5678',
+            'key' => 'value',
         ]);
         $this->assertCount(3, $payload);
         $this->assertTrue($payload->has('account_id'));

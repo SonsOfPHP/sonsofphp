@@ -54,7 +54,7 @@ class MessageNormalizer implements NormalizerInterface, DenormalizerInterface
      */
     public function supportsDenormalization($data, string $type, string $format = null)
     {
-        if (false === is_array($data)) {
+        if (false === \is_array($data)) {
             return false;
         }
 

@@ -9,12 +9,11 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\Repository\AggregateRepository;
 use SonsOfPHP\Component\EventSourcing\Aggregate\Repository\AggregateRepositoryInterface;
-use SonsOfPHP\Component\EventSourcing\Message\AbstractSerializableMessage;
+use SonsOfPHP\Component\EventSourcing\Message\AbstractMessage;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\InMemoryMessageRepository;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterface;
 use SonsOfPHP\Component\EventSourcing\Tests\FakeAggregate;
 use TypeError;
-use SonsOfPHP\Component\EventSourcing\Message\AbstractMessage;
 
 class Msg extends AbstractMessage
 {

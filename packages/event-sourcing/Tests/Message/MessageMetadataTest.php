@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\MessageMetadata;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 
@@ -31,12 +30,12 @@ final class MessageMetadataTest extends TestCase
     public function testAllTheThings(): void
     {
         $metadata = new MessageMetadata([
-            Metadata::EVENT_ID          => '1234',
-            Metadata::EVENT_TYPE        => '5678',
-            Metadata::AGGREGATE_ID      => '9012',
+            Metadata::EVENT_ID => '1234',
+            Metadata::EVENT_TYPE => '5678',
+            Metadata::AGGREGATE_ID => '9012',
             Metadata::AGGREGATE_VERSION => 420,
-            Metadata::TIMESTAMP         => '2022-04-20 04:20',
-            Metadata::TIMESTAMP_FORMAT  => 'c',
+            Metadata::TIMESTAMP => '2022-04-20 04:20',
+            Metadata::TIMESTAMP_FORMAT => 'c',
         ]);
         $this->assertCount(6, $metadata);
 

@@ -6,11 +6,10 @@ namespace SonsOfPHP\Component\EventSourcing\Tests\Message;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
-use SonsOfPHP\Component\EventSourcing\Message\AbstractSerializableMessage;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\SerializableMessageInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
-use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;;
+use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\AbstractSerializableMessage

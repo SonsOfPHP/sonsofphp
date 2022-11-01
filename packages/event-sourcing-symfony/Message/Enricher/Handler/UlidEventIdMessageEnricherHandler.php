@@ -10,7 +10,7 @@ use SonsOfPHP\Component\EventSourcing\Metadata;
 use Symfony\Component\Uid\Ulid;
 
 /**
- * Set the Event ID to a ULID
+ * Set the Event ID to a ULID.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */

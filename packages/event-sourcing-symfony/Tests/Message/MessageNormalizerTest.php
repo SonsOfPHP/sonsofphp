@@ -6,10 +6,9 @@ namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests\Message;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Symfony\EventSourcing\Message\MessageNormalizer;
-use Symfony\Component\Uid\Uuid;
+use SonsOfPHP\Component\EventSourcing\Message\AbstractMessage;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use SonsOfPHP\Component\EventSourcing\Message\AbstractMessage;
 
 class Msg extends AbstractMessage
 {
@@ -58,7 +57,7 @@ final class MessageNormalizerTest extends TestCase
         $normalizer = new MessageNormalizer();
 
         $data = [
-            'payload'  => [
+            'payload' => [
                 'unit' => 'test',
             ],
             'metadata' => [

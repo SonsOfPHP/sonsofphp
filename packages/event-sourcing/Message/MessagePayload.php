@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Message;
 
 /**
- * The Event Message Payload is stored in here
+ * The Event Message Payload is stored in here.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
@@ -16,30 +16,22 @@ final class MessagePayload implements \IteratorAggregate, \Countable
     ) {
     }
 
-    /**
-     */
     #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return new \ArrayIterator($this->payload);
     }
 
-    /**
-     */
     public function count(): int
     {
-        return count($this->payload);
+        return \count($this->payload);
     }
 
-    /**
-     */
     public function all(): array
     {
         return $this->payload;
     }
 
-    /**
-     */
     public function with(string $key, $value)
     {
         $that = clone $this;
@@ -48,15 +40,11 @@ final class MessagePayload implements \IteratorAggregate, \Countable
         return $that;
     }
 
-    /**
-     */
     public function has(string $key): bool
     {
-        return array_key_exists($key, $this->payload);
+        return \array_key_exists($key, $this->payload);
     }
 
-    /**
-     */
     public function get(string $key)
     {
         if ($this->has($key)) {
