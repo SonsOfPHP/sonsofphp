@@ -1,6 +1,11 @@
 /.github export-ignore
+/docs export-ignore
 /tools export-ignore
 /.gitattributes export-ignore
 /.gitignore export-ignore
+/.php-cs-fixer.dist.php export-ignore
 /Makefile export-ignore
+/bard.json export-ignore
 /phpunit.xml.dist export-ignore
+/psalm-baseline.xml export-ignore
+/psalm.xml export-ignore

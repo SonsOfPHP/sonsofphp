@@ -1,0 +1,92 @@
+site_name: Sons of PHP - Documentation
+site_url: https://docs.sonsofphp.com/
+site_author: Joshua Estes
+
+repo_url: https://github.com/SonsOfPHP/sonsofphp
+repo_name: Mother Repository
+
+copyright: Copyright &copy 2022 Sons of PHP
+
+edit_uri: https://github.com/SonsOfPHP/sonsofphp-docs/edit/main/docs/
+
+theme:
+    name: material
+    features:
+        #- navigation.instant
+        - navigation.tabs
+        #- navigation.sections
+        - navigation.top
+        - navigation.indexes
+        - content.code.annotate
+    icon:
+        repo: fontawesome/brands/github
+
+plugins:
+    - search
+    #- minify:
+    #    minify_html: true
+
+extra:
+    generator: false
+    #version:
+    #    provider: mike
+    social:
+        - icon: fontawesome/brands/github
+          link: https://github.com/SonsOfPHP
+        - icon: fontawesome/brands/discord
+          link: https://discord.gg/sdVxNhFqND
+
+markdown_extensions:
+    - admonition
+    - meta
+    - pymdownx.highlight:
+        anchor_linenums: true
+    - pymdownx.details
+    - pymdownx.inlinehilite
+    - pymdownx.snippets
+    - pymdownx.superfences
+    - pymdownx.emoji
+
+nav:
+    - Home:
+        - index.md
+        - Reporting Issues: reporting-issues.md
+        - Contributing: contributing.md
+        - Getting Help: getting-help.md
+        - Code of Conduct: code-of-conduct.md
+        - Security Policy: security.md
+    - Components:
+        - components/index.md
+        - Clock: components/clock/index.md
+        - CQRS:
+            - components/cqrs/index.md
+            - Commands: components/cqrs/commands.md
+            - Command Handlers: components/cqrs/command-handlers.md
+            - Queries: components/cqrs/queries.md
+            - Query Handlers: components/cqrs/query-handlers.md
+        - Event Dispatcher: components/event-dispatcher/index.md
+        - Event Sourcing:
+            - components/event-sourcing/index.md
+            - Aggregates:
+                - components/event-sourcing/aggregates/index.md
+                - Storage:
+                    - components/event-sourcing/aggregates/storage/index.md
+            - Event Messages:
+                - components/event-sourcing/event-messages/index.md
+                - 'Using the Generic Event Message': components/event-sourcing/event-messages/generic-event-message.md
+                - Storage:
+                    - components/event-sourcing/event-messages/storage/index.md
+                - Serializers:
+                    - components/event-sourcing/event-messages/serializer/index.md
+                - Enrichers:
+                    - components/event-sourcing/event-messages/enricher/index.md
+                - Upcasters:
+                    - components/event-sourcing/event-messages/upcaster/index.md
+        - Feature Toggle: components/feature-toggle/index.md
+        - JSON: components/json/index.md
+        - Money:
+            - components/money/index.md
+            - Currency Providers: components/money/currency-providers.md
+            - Operators: components/money/operators.md
+            - Queries: components/money/queries.md
+        - Version: components/version/index.md
