@@ -16,22 +16,16 @@ use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
  */
 abstract class AbstractAggregateId implements AggregateIdInterface
 {
-    private string $id;
-
-    /**
-     * @param string $id
-     */
-    public function __construct(?string $id = null)
-    {
+    public function __construct(
+        private ?string $id = null,
+    ) {
         if (null === $id) {
             throw new EventSourcingException('Argument (#1) $id cannot be null');
         }
-
-        $this->id = $id;
     }
 
     /**
-     * @see AggregateIdInterface::toString()
+     * {@inheritdoc}
      */
     final public function __toString(): string
     {
@@ -39,7 +33,7 @@ abstract class AbstractAggregateId implements AggregateIdInterface
     }
 
     /**
-     * @see AggregateIdInterface::toString()
+     * {@inheritdoc}
      */
     final public function toString(): string
     {
@@ -47,7 +41,7 @@ abstract class AbstractAggregateId implements AggregateIdInterface
     }
 
     /**
-     * @see AggregateIdInterface::fromString()
+     * {@inheritdoc}
      */
     final public static function fromString(string $id): AggregateIdInterface
     {
@@ -55,9 +49,9 @@ abstract class AbstractAggregateId implements AggregateIdInterface
     }
 
     /**
-     * @see AggregateIdInterface::equals()
+     * {@inheritdoc}
      */
-    public function equals(AggregateIdInterface $that): bool
+    final public function equals(AggregateIdInterface $that): bool
     {
         return $this->toString() === $that->toString();
     }

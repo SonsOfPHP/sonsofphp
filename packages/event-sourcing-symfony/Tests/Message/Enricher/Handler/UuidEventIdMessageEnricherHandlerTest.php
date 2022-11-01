@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests;
+namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests\Message\Enricher\Handler;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Bridge\Symfony\EventSourcing\UuidEventIdMessageEnricherHandler;
+use SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\UuidEventIdMessageEnricherHandler;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\MessageEnricherHandlerInterface;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 use Symfony\Component\Uid\Uuid;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\UuidEventIdMessageEnricherHandler
+ * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\UuidEventIdMessageEnricherHandler
  */
 final class UuidEventIdMessageEnricherHandlerTest extends TestCase
 {

@@ -11,7 +11,7 @@ use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface AggregateIdInterface
+interface AggregateIdInterface extends \Stringable
 {
     /**
      * Create a new AggregateID.

@@ -4,23 +4,15 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing;
 
+use SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\UlidEventIdMessageEnricherHandler as BaseHandler;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\MessageEnricherHandlerInterface;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 use Symfony\Component\Uid\Ulid;
 
 /**
- * @author Joshua Estes <joshua@sonsofphp.com>
+ * @deprecated
  */
-class UlidEventIdMessageEnricherHandler implements MessageEnricherHandlerInterface
+class UlidEventIdMessageEnricherHandler extends BaseHandler
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function enrich(MessageInterface $message): MessageInterface
-    {
-        return $message->withMetadata([
-            Metadata::EVENT_ID => (string) new Ulid(),
-        ]);
-    }
 }

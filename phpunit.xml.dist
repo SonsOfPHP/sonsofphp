@@ -20,7 +20,7 @@
         </testsuite>
     </testsuites>
 
-    <coverage>
+    <coverage processUncoveredFiles="true" cacheDirectory=".phpunit-coverage-cache">
         <include>
             <directory>packages/*</directory>
         </include>

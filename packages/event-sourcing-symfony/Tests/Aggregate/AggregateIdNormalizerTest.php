@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests;
+namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests\Aggregate;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Bridge\Symfony\EventSourcing\AggregateIdNormalizer;
+use SonsOfPHP\Bridge\Symfony\EventSourcing\Aggregate\AggregateIdNormalizer;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\AggregateIdNormalizer
+ * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Aggregate\AggregateIdNormalizer
  */
 final class AggregateIdNormalizerTest extends TestCase
 {

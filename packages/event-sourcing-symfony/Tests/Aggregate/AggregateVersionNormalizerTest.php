@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests;
+namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests\Aggregate;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Bridge\Symfony\EventSourcing\AggregateVersionNormalizer;
+use SonsOfPHP\Bridge\Symfony\EventSourcing\Aggregate\AggregateVersionNormalizer;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\AggregateVersionNormalizer
+ * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Aggregate\AggregateVersionNormalizer
  */
 final class AggregateVersionNormalizerTest extends TestCase
 {
