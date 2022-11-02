@@ -112,6 +112,10 @@ final class MessageMetadata implements \IteratorAggregate, \Countable
             throw new EventSourcingException('Aggregate ID is required.');
         }
 
+        if ($this->get(Metadata::AGGREGATE_ID) instanceof AggregateIdInterface) {
+            return $this->get(Metadata::AGGREGATE_ID);
+        }
+
         return AggregateId::fromString($this->get(Metadata::AGGREGATE_ID));
     }
 
