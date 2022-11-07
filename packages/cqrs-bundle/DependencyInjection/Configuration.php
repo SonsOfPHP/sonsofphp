@@ -10,11 +10,21 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 /**
  * @experimental
  */
-class Configuration implements ConfigurationInterface
+final class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder()
     {
         $builder = new TreeBuilder('sonsofphp');
+
+        $builder->getRootNode()
+            ->children()
+                ->arrayNode('cqrs')
+                    ->children()
+                        ->booleanNode('enabled')->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
 
         return $builder;
     }

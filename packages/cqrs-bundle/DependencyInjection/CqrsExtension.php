@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bundle\Cqrs\DependencyInjection;
 
-use Symfony\Component\HttpKernel\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\Extension;
 
 /**
  * @experimental
  */
-class CqrsExtension extends Extension
+final class CqrsExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {

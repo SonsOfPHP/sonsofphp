@@ -2,6 +2,7 @@
     "name": "sonsofphp/sonsofphp",
     "type": "library",
     "description": "Sons of PHP Mother Repo",
+    "minimum-stability": "dev",
     "keywords": [
         "php",
         "sons of php",
@@ -31,8 +32,6 @@
             "url": "https://tidelift.com/subscription/pkg/packagist-sonsofphp-sonsofphp"
         }
     ],
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "provide": {
         "psr/event-dispatcher-implementation": "1.0",
         "psr/clock-implementation": "1.0"

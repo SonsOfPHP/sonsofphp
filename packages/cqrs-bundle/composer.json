@@ -3,7 +3,6 @@
     "type": "symfony-bundle",
     "description": "CQRS Symfony Bundle",
     "minimum-stability": "dev",
-    "prefer-stable": true,
     "keywords": [
         "cqrs",
         "symfony",
@@ -41,6 +40,8 @@
     "require": {
         "php": ">=8.1",
         "sonsofphp/cqrs": "^0.3@dev",
+        "symfony/dependency-injection": "^5|^6",
+        "symfony/http-kernel": "^5|^6",
         "symfony/messenger": "^5|^6"
     },
     "suggest": {
