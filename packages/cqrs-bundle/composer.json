@@ -1,7 +1,9 @@
 {
-    "name": "sonsofphp/cqrs-symfony",
-    "type": "library",
-    "description": "Provides additional functionality to the CQRS Component using Symfony Components",
+    "name": "sonsofphp/cqrs-bundle",
+    "type": "symfony-bundle",
+    "description": "CQRS Symfony Bundle",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "keywords": [
         "cqrs",
         "symfony",
@@ -9,7 +11,7 @@
         "query",
         "event sourcing"
     ],
-    "homepage": "https://github.com/SonsOfPHP/cqrs-symfony",
+    "homepage": "https://github.com/SonsOfPHP/cqrs-bundle",
     "license": "MIT",
     "authors": [
         {
@@ -25,7 +27,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SonsOfPHP\\Bridge\\Symfony\\Cqrs\\": ""
+            "SonsOfPHP\\Bundle\\Cqrs\\": ""
         },
         "exclude-from-classmap": [
             "/Tests/"
@@ -33,27 +35,22 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "SonsOfPHP\\Bridge\\Symfony\\Cqrs\\Tests\\": "Tests/"
+            "SonsOfPHP\\Bundle\\Cqrs\\Tests\\": "Tests/"
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "require": {
         "php": ">=8.1",
         "sonsofphp/cqrs": "^0.3@dev",
-        "symfony/options-resolver": "^5|^6"
+        "symfony/messenger": "^5|^6"
     },
-    "require-dev": {
-        "symfony/messenger": "^5"
+    "suggest": {
+        "sonsofphp/event-sourcing": "Get some of that sweet ass event sourcing action"
     },
     "extra": {
         "sort-packages": true,
         "branch-alias": {
             "dev-main": "0.3.x-dev"
         }
-    },
-    "suggest": {
-        "sonsofphp/cqrs-bundle": "Makes config and setup easier when using Symfony Framework"
     },
     "funding": [
         {

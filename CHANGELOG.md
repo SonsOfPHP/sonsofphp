@@ -26,6 +26,7 @@ Examples:
 * Changed min PHP version to 8.1 for all packages
 * [EventSourcing] Added MessagePayload and MessageMetadata classes
 * [EventSourcing] Deprecated classes in Symfony Bridge to better organize the library
+* [CQRS] Adding Symfony Bundle
 
 [Unreleased]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.5...HEAD
 [0.3.4]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.4...v0.3.5
