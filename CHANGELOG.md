@@ -23,9 +23,11 @@ Examples:
 
 ## [Unreleased]
 
-* [EventSourcing]
+* [event-sourcing]
   * Deprecated `::new` for Aggregates
   * Updated code to remove deprecations from libraries
+* [event-sourcing-symfony]
+  * Removing deprecated files
 
 ## [0.3.5]
 
