@@ -12,6 +12,9 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 final class Configuration implements ConfigurationInterface
 {
+    /**
+     * @return TreeBuilder
+     */
     public function getConfigTreeBuilder()
     {
         $builder = new TreeBuilder('sonsofphp');
