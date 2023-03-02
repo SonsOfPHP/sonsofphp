@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bundle\Cqrs\DependencyInjection;
 
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 
@@ -14,9 +12,9 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
  */
 final class CqrsExtension extends Extension
 {
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
-        $config        = $this->processConfiguration($configuration, $configs);
+        $config = $this->processConfiguration($configuration, $configs);
     }
 }
