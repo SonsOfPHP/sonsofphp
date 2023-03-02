@@ -115,7 +115,7 @@ final class AbstractAggregateTest extends TestCase
      */
     public function testItWillRaiseExceptionWithInvalidId(): void
     {
-        $this->expectException(EventSourcingException::class);
-        $this->getMockForAbstractClass(AbstractAggregate::class, [123]);
+        $this->expectException(\TypeError::class);
+        $this->getMockForAbstractClass(AbstractAggregate::class, [new \stdClass()]);
     }
 }

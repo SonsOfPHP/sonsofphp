@@ -12,7 +12,7 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
  * Aggregate.
  *
  * Usage:
- *   $aggregate = DummyAggregate::new(AggregateId::fromString('uuid'));
+ *   $aggregate = new DummyAggregate('unique-id');
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */

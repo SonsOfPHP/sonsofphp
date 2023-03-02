@@ -21,12 +21,8 @@ abstract class AbstractAggregate implements AggregateInterface
     /**
      * @param AggregateIdInterface|string $id
      */
-    final public function __construct($id)
+    final public function __construct(AggregateIdInterface|string $id)
     {
-        if (!$id instanceof AggregateIdInterface && !\is_string($id)) {
-            throw new EventSourcingException(sprintf('Argument #1 ($id) must be of of type string or "%s". Type "%s" passed in.', AggregateIdInterface::class, \gettype($id)));
-        }
-
         if (!$id instanceof AggregateIdInterface) {
             $id = new AggregateId($id);
         }
