@@ -32,6 +32,6 @@ Examples:
 
 ## [0.3.4]
 
-[Unreleased]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.5...HEAD
+[Unreleased]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.6...HEAD
 [0.3.5]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.5...v0.3.6
 [0.3.4]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.4...v0.3.5
