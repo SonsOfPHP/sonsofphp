@@ -48,6 +48,6 @@ final class InMemoryFeatureToggleProviderTest extends TestCase
 
         $provider = new InMemoryFeatureToggleProvider($features);
 
-        $this->assertCount(2, $provider->getFeatures());
+        $this->assertCount(2, iterator_to_array($provider->getFeatures()));
     }
 }
