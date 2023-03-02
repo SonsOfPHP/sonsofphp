@@ -23,6 +23,10 @@ Examples:
 
 ## [Unreleased]
 
+* [EventSourcing]
+  * Deprecated `::new` for Aggregates
+  * Updated code to remove deprecations from libraries
+
 ## [0.3.5]
 
 * Changed min PHP version to 8.1 for all packages
