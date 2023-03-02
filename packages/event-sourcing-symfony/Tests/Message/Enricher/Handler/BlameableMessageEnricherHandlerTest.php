@@ -52,7 +52,7 @@ final class BlameableMessageEnricherHandlerTest extends TestCase
     public function testEnrichWithUserWillEnrichTheMessage(): void
     {
         $user = $this->createMock(UserInterface::class);
-        $user->expects($this->once())->method('getUsername')->willReturn('satoshi');
+        $user->expects($this->once())->method('getUserIdentifier')->willReturn('satoshi');
 
         $this->security->expects($this->once())->method('getUser')->willReturn($user); // @phpstan-ignore-line
 
@@ -63,8 +63,8 @@ final class BlameableMessageEnricherHandlerTest extends TestCase
             ->method('withMetadata')
             ->with($this->callback(function ($metadata) {
                 $this->assertArrayHasKey('__user', $metadata);
-                $this->assertArrayHasKey('username', $metadata['__user']);
-                $this->assertSame('satoshi', $metadata['__user']['username']);
+                $this->assertArrayHasKey('identifier', $metadata['__user']);
+                $this->assertSame('satoshi', $metadata['__user']['identifier']);
 
                 return true;
             }))
