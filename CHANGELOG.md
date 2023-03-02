@@ -23,21 +23,22 @@ Examples:
 
 ## [Unreleased]
 
+
+## [0.3.7]
+
 * [event-sourcing]
   * Deprecated `::new` for Aggregates
   * Updated code to remove deprecations from libraries
 * [event-sourcing-symfony]
   * Removing deprecated files
 
-## [0.3.5]
+## [0.3.6]
 
 * Changed min PHP version to 8.1 for all packages
 * [EventSourcing] Added MessagePayload and MessageMetadata classes
 * [EventSourcing] Deprecated classes in Symfony Bridge to better organize the library
 * [CQRS] Adding Symfony Bundle
 
-## [0.3.4]
-
-[Unreleased]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.6...HEAD
+[Unreleased]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.7...HEAD
+[0.3.6]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.6...v0.3.7
 [0.3.5]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.5...v0.3.6
-[0.3.4]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.4...v0.3.5
