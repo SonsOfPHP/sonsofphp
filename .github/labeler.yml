@@ -2,39 +2,39 @@ docs:
   - docs/*
 
 Bard:
-    - packages/bard/*
+  - packages/bard/*
 
 Clock:
-    - docs/components/clock/*
-    - packages/clock/*
+  - docs/components/clock/*
+  - packages/clock/*
 
 CQRS:
-    - docs/components/cqrs/*
-    - packages/cqrs/*
-    - packages/cqrs-symfony/*
+  - docs/components/cqrs/*
+  - packages/cqrs/*
+  - packages/cqrs-symfony/*
 
 EventDispatcher:
-    - docs/components/event-dispatcher/*
-    - packages/event-dispatcher/*
+  - docs/components/event-dispatcher/*
+  - packages/event-dispatcher/*
 
 EventSourcing:
-    - docs/components/event-sourcing/*
-    - packages/event-sourcing/*
-    - packages/event-sourcing-doctrine/*
-    - packages/event-sourcing-symfony/*
+  - docs/components/event-sourcing/*
+  - packages/event-sourcing/*
+  - packages/event-sourcing-doctrine/*
+  - packages/event-sourcing-symfony/*
 
 FeatureToggle:
-    - docs/components/feature-toggle/*
-    - packages/feature-toggle/*
+  - docs/components/feature-toggle/*
+  - packages/feature-toggle/*
 
 JSON:
-    - docs/components/json/*
-    - packages/json/*
+  - docs/components/json/*
+  - packages/json/*
 
 Money:
-    - docs/components/money/*
-    - packages/money/*
+  - docs/components/money/*
+  - packages/money/*
 
 Version:
-    - docs/components/version/*
-    - packages/version/*
+  - docs/components/version/*
+  - packages/version/*

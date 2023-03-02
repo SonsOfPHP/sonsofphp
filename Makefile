@@ -5,6 +5,7 @@ PHP_CS_FIXER        = tools/php-cs-fixer/vendor/bin/php-cs-fixer
 PHPUNIT             = tools/phpunit/vendor/bin/phpunit
 PSALM               = tools/psalm/vendor/bin/psalm
 PSALM_BASELINE_FILE = psalm-baseline.xml
+BARD                = packages/bard/bin/bard
 
 COVERAGE_DIR = docs/coverage
 
@@ -97,3 +98,19 @@ docs-watch: # Preview documentation locally
 
 docs-build: # Build Site
 	$(MKDOCS) build
+
+## Packages
+packages-install: ## Runs `composer install` on each package
+	$(BARD) install -n -vvv
+
+packages-update: ## Runs `composer update` on each package
+	$(BARD) update -n -vvv
+
+packages-merge: ## Merges each package's composer.json into the root composer.json
+	$(BARD) merge -n -vvv
+
+packages-publish: ## Packages are published to their read-only repository
+	$(BARD) publish -n -vvv
+
+packages-release-patch: ## Release patch (0.0.x)
+	$(BARD) release -n -vvv patch
