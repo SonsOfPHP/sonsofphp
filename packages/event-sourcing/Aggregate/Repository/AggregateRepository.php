@@ -19,20 +19,12 @@ use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterf
  */
 class AggregateRepository implements AggregateRepositoryInterface
 {
-    protected string $aggregateClass;
-    protected EventDispatcherInterface $eventDispatcher;
-    protected MessageRepositoryInterface $messageRepository;
-    protected MessageEnricherInterface $messageEnricher;
-
     public function __construct(
-        string $aggregateClass,
-        EventDispatcherInterface $eventDispatcher,
-        MessageRepositoryInterface $messageRepository,
-        ?MessageEnricherInterface $messageEnricher = null
+        protected string $aggregateClass,
+        protected EventDispatcherInterface $eventDispatcher,
+        protected MessageRepositoryInterface $messageRepository,
+        protected ?MessageEnricherInterface $messageEnricher = null
     ) {
-        $this->aggregateClass = $aggregateClass;
-        $this->eventDispatcher = $eventDispatcher;
-        $this->messageRepository = $messageRepository;
         $this->messageEnricher = $messageEnricher ?? new MessageEnricher(new NullMessageEnricherProvider());
     }
 

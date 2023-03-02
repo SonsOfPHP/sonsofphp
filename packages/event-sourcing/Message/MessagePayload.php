@@ -16,8 +16,7 @@ final class MessagePayload implements \IteratorAggregate, \Countable
     ) {
     }
 
-    #[\ReturnTypeWillChange]
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->payload);
     }

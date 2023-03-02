@@ -27,6 +27,8 @@ class AggregateIdNormalizer implements NormalizerInterface, DenormalizerInterfac
 {
     /**
      * {@inheritdoc}
+     *
+     * @return string
      */
     public function normalize($object, string $format = null, array $context = [])
     {
@@ -36,13 +38,15 @@ class AggregateIdNormalizer implements NormalizerInterface, DenormalizerInterfac
     /**
      * {@inheritdoc}
      */
-    public function supportsNormalization($data, string $format = null)
+    public function supportsNormalization($data, string $format = null, array $context = []): bool
     {
         return $data instanceof AggregateIdInterface;
     }
 
     /**
      * {@inheritdoc}
+     *
+     * @return AggregateIdInterface
      */
     public function denormalize($data, string $type, string $format = null, array $context = [])
     {
@@ -56,7 +60,7 @@ class AggregateIdNormalizer implements NormalizerInterface, DenormalizerInterfac
     /**
      * {@inheritdoc}
      */
-    public function supportsDenormalization($data, string $type, string $format = null)
+    public function supportsDenormalization($data, string $type, string $format = null, array $context = []): bool
     {
         return is_a($type, AggregateIdInterface::class, true);
     }

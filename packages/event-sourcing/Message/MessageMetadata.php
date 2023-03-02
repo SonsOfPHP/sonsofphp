@@ -31,8 +31,7 @@ final class MessageMetadata implements \IteratorAggregate, \Countable
         ], $metadata);
     }
 
-    #[\ReturnTypeWillChange]
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->metadata);
     }

@@ -23,6 +23,12 @@ Examples:
 
 ## [Unreleased]
 
+* [event-sourcing]
+  * Deprecated `::new` for Aggregates
+  * Updated code to remove deprecations from libraries
+* [event-sourcing-symfony]
+  * Removing deprecated files
+
 ## [0.3.5]
 
 * Changed min PHP version to 8.1 for all packages

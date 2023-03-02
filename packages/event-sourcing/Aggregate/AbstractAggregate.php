@@ -21,12 +21,8 @@ abstract class AbstractAggregate implements AggregateInterface
     /**
      * @param AggregateIdInterface|string $id
      */
-    final public function __construct($id)
+    final public function __construct(AggregateIdInterface|string $id)
     {
-        if (!$id instanceof AggregateIdInterface && !\is_string($id)) {
-            throw new EventSourcingException(sprintf('Argument #1 ($id) must be of of type string or "%s". Type "%s" passed in.', AggregateIdInterface::class, \gettype($id)));
-        }
-
         if (!$id instanceof AggregateIdInterface) {
             $id = new AggregateId($id);
         }
@@ -42,6 +38,7 @@ abstract class AbstractAggregate implements AggregateInterface
      */
     final public static function new($id)
     {
+        @trigger_error(sprintf('"%s::new()" is deprecated, use "new %s()" instead.', static::class, static::class), \E_USER_DEPRECATED);
         $static = new static($id);
 
         return $static;
