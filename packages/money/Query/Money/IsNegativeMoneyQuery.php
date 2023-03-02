@@ -12,7 +12,7 @@ use SonsOfPHP\Component\Money\MoneyInterface;
 class IsNegativeMoneyQuery implements MoneyQueryInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function queryFrom(MoneyInterface $money)
     {

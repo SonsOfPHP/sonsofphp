@@ -18,9 +18,9 @@ final class Snapshot implements SnapshotInterface
 
     public function __construct(AggregateIdInterface $id, AggregateVersionInterface $version, $state)
     {
-        $this->id = $id;
+        $this->id      = $id;
         $this->version = $version;
-        $this->state = $state;
+        $this->state   = $state;
     }
 
     public function getAggregateId(): AggregateIdInterface

@@ -10,6 +10,8 @@ use SonsOfPHP\Component\FeatureToggle\ContextInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\FeatureToggle\Context
+ *
+ * @internal
  */
 final class ContextTest extends TestCase
 {

@@ -12,6 +12,8 @@ use SonsOfPHP\Component\Clock\FixedClock;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Clock\FixedClock
+ *
+ * @internal
  */
 final class FixedClockTest extends TestCase
 {
@@ -50,7 +52,7 @@ final class FixedClockTest extends TestCase
      */
     public function testNowRemainsTheSame(): void
     {
-        $clock = new FixedClock();
+        $clock   = new FixedClock();
         $tickOne = $clock->now();
         $tickTwo = $clock->now();
         $this->assertSame($tickOne, $tickTwo);
@@ -62,7 +64,7 @@ final class FixedClockTest extends TestCase
      */
     public function testTickChangesTime(): void
     {
-        $clock = new FixedClock();
+        $clock   = new FixedClock();
         $tickOne = $clock->now();
         usleep(100);
         $clock->tick();

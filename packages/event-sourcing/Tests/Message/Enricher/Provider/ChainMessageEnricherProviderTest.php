@@ -12,6 +12,8 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\ChainMessageEnricherProvider
+ *
+ * @internal
  */
 final class ChainMessageEnricherProviderTest extends TestCase
 {
@@ -26,8 +28,8 @@ final class ChainMessageEnricherProviderTest extends TestCase
 
     /**
      * @covers ::__construct
-     * @covers ::registerProvider
      * @covers ::getEnrichersForMessage
+     * @covers ::registerProvider
      */
     public function testRegisteredHandlerWillReturnWhenGettingEnrichers(): void
     {
@@ -47,6 +49,6 @@ final class ChainMessageEnricherProviderTest extends TestCase
         $message = $this->createMock(MessageInterface::class);
 
         $enrichers = $provider->getEnrichersForMessage($message);
-        $this->assertCount(1, $enrichers);
+        $this->assertCount(1, iterator_to_array($enrichers));
     }
 }

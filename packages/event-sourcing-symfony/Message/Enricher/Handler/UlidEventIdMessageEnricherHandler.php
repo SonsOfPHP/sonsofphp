@@ -17,7 +17,7 @@ use Symfony\Component\Uid\Ulid;
 class UlidEventIdMessageEnricherHandler implements MessageEnricherHandlerInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function enrich(MessageInterface $message): MessageInterface
     {

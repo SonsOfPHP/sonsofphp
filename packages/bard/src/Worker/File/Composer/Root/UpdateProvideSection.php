@@ -20,7 +20,7 @@ final class UpdateProvideSection implements WorkerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function apply(JsonFile $rootComposerJsonFile): JsonFile
     {

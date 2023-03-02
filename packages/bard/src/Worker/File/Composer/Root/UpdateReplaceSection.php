@@ -20,12 +20,12 @@ final class UpdateReplaceSection implements WorkerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function apply(JsonFile $rootComposerJsonFile): JsonFile
     {
         $rootReplace = $rootComposerJsonFile->getSection('replace');
-        $pkgName = $this->pkgComposerJsonFile->getSection('name');
+        $pkgName     = $this->pkgComposerJsonFile->getSection('name');
 
         $rootReplace[$pkgName] = 'self.version';
 

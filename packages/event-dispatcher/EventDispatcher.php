@@ -23,7 +23,9 @@ class EventDispatcher implements EventDispatcherInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
+     *
+     * @return object
      */
     public function dispatch(object $event)
     {

@@ -33,7 +33,7 @@ final class ChainMessageEnricherProvider implements MessageEnricherProviderInter
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getEnrichersForMessage(MessageInterface $message): iterable
     {

@@ -10,6 +10,8 @@ use SonsOfPHP\Component\Clock\ZoneOffsetInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Clock\ZoneOffset
+ *
+ * @internal
  */
 final class ZoneOffsetTest extends TestCase
 {

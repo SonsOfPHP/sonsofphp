@@ -19,18 +19,18 @@ final class InMemoryMessageRepository implements MessageRepositoryInterface
     private array $storage = [];
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function persist(MessageInterface $message): void
     {
-        $id = $message->getAggregateId();
+        $id      = $message->getAggregateId();
         $version = $message->getAggregateVersion();
 
         $this->storage[$id->toString()][$version->toInt()] = $message;
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function find(string|AggregateIdInterface $id, int|AggregateVersionInterface $version = null): iterable
     {

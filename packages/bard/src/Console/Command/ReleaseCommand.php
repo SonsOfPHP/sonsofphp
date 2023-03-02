@@ -29,7 +29,7 @@ final class ReleaseCommand extends AbstractCommand
     private bool $isDryRun = true;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     // public function __construct()
     // {
@@ -37,7 +37,7 @@ final class ReleaseCommand extends AbstractCommand
     // }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function configure(): void
     {
@@ -61,7 +61,7 @@ final class ReleaseCommand extends AbstractCommand
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
@@ -71,7 +71,7 @@ final class ReleaseCommand extends AbstractCommand
         }
 
         $this->bardConfig = new JsonFile($input->getOption('working-dir').'/bard.json');
-        $currentVersion = new Version($this->bardConfig->getSection('version'));
+        $currentVersion   = new Version($this->bardConfig->getSection('version'));
 
         if (\in_array($version, ['major', 'minor', 'patch'])) {
             switch ($version) {
@@ -97,19 +97,19 @@ final class ReleaseCommand extends AbstractCommand
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function interact(InputInterface $input, OutputInterface $output): void
     {
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $formatter = $this->getHelper('formatter');
-        $io = new SymfonyStyle($input, $output);
+        $io        = new SymfonyStyle($input, $output);
         if ($this->isDryRun) {
             $io->note('dry-run enabled no changes will be made');
         }
@@ -177,7 +177,7 @@ final class ReleaseCommand extends AbstractCommand
         $io->title(sprintf('updating package repos with release %s', $this->releaseVersion->toString()));
         foreach ($this->bardConfig->getSection('packages') as $pkg) {
             $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json'));
-            $pkgName = $pkgComposerJsonFile->getSection('name');
+            $pkgName             = $pkgComposerJsonFile->getSection('name');
             $io->text(sprintf('Package <info>%s</> is being released', $pkgName));
             $processCommands = [
                 ['git', 'subtree', 'split', '-P', $pkg['path'], '-b', $pkgName],

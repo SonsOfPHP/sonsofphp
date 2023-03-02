@@ -12,18 +12,18 @@ use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 abstract class AbstractSerializableMessage extends AbstractMessage implements SerializableMessageInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     final public function serialize(): array
     {
         return [
-            'payload' => $this->getPayload(),
+            'payload'  => $this->getPayload(),
             'metadata' => $this->getMetadata(),
         ];
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     final public static function deserialize(array $data): SerializableMessageInterface
     {

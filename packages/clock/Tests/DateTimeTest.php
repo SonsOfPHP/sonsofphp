@@ -14,6 +14,8 @@ use SonsOfPHP\Component\Clock\ZoneOffset;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Clock\DateTime
+ *
+ * @internal
  */
 final class DateTimeTest extends TestCase
 {
@@ -34,10 +36,10 @@ final class DateTimeTest extends TestCase
     /**
      * @covers ::__construct
      * @covers ::__toString
-     * @covers ::toString
      * @covers ::getDate
      * @covers ::getTime
      * @covers ::getZone
+     * @covers ::toString
      */
     public function testToString(): void
     {

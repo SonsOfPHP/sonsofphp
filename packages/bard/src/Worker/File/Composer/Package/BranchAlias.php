@@ -20,12 +20,12 @@ final class BranchAlias implements WorkerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function apply(JsonFile $pkgComposerJsonFile): JsonFile
     {
         $rootExtraSection = $this->rootComposerJsonFile->getSection('extra');
-        $pkgExtraSection = $pkgComposerJsonFile->getSection('extra');
+        $pkgExtraSection  = $pkgComposerJsonFile->getSection('extra');
 
         $pkgExtraSection['branch-alias'] = $rootExtraSection['branch-alias'];
 

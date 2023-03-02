@@ -22,15 +22,15 @@ final class ZoneOffset implements ZoneOffsetInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function toString(): string
     {
-        $lead = '+';
-        $hours = $this->getHours();
+        $lead    = '+';
+        $hours   = $this->getHours();
         $minutes = (abs($this->getSeconds()) % (60 * 60)) / 60;
         if ($hours < 0) {
-            $lead = '-';
+            $lead  = '-';
             $hours = abs($hours);
         }
 
@@ -43,7 +43,7 @@ final class ZoneOffset implements ZoneOffsetInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getSeconds(): int
     {

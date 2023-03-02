@@ -22,12 +22,12 @@ final class MessageMetadata implements \IteratorAggregate, \Countable
         private array $metadata = [],
     ) {
         $this->metadata = array_merge([
-            Metadata::EVENT_ID => null,
-            Metadata::EVENT_TYPE => null,
-            Metadata::AGGREGATE_ID => null,
+            Metadata::EVENT_ID          => null,
+            Metadata::EVENT_TYPE        => null,
+            Metadata::AGGREGATE_ID      => null,
             Metadata::AGGREGATE_VERSION => null,
-            Metadata::TIMESTAMP => null,
-            Metadata::TIMESTAMP_FORMAT => Metadata::DEFAULT_TIMESTAMP_FORMAT,
+            Metadata::TIMESTAMP         => null,
+            Metadata::TIMESTAMP_FORMAT  => Metadata::DEFAULT_TIMESTAMP_FORMAT,
         ], $metadata);
     }
 
@@ -48,7 +48,7 @@ final class MessageMetadata implements \IteratorAggregate, \Countable
 
     public function with(string $key, $value)
     {
-        $that = clone $this;
+        $that                 = clone $this;
         $that->metadata[$key] = $value;
 
         return $that;

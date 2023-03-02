@@ -20,7 +20,7 @@ class DivideMoneyOperator implements MoneyOperatorInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function apply(MoneyInterface $money): MoneyInterface
     {

@@ -19,7 +19,7 @@ class IsEqualToMoneyQuery implements MoneyQueryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function queryFrom(MoneyInterface $money)
     {

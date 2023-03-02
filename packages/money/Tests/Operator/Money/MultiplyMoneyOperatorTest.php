@@ -16,6 +16,8 @@ use SonsOfPHP\Component\Money\Operator\Money\MultiplyMoneyOperator;
  * @uses \SonsOfPHP\Component\Money\Amount
  * @uses \SonsOfPHP\Component\Money\Currency
  * @uses \SonsOfPHP\Component\Money\Money
+ *
+ * @internal
  */
 final class MultiplyMoneyOperatorTest extends TestCase
 {
@@ -35,7 +37,7 @@ final class MultiplyMoneyOperatorTest extends TestCase
      */
     public function testApplyWithSameCurrencies(): void
     {
-        $money = new Money(5, new Currency('usd'));
+        $money    = new Money(5, new Currency('usd'));
         $operator = new MultiplyMoneyOperator(20);
 
         $output = $operator->apply($money);

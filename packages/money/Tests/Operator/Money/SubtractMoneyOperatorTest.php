@@ -17,6 +17,8 @@ use SonsOfPHP\Component\Money\Operator\Money\SubtractMoneyOperator;
  * @uses \SonsOfPHP\Component\Money\Amount
  * @uses \SonsOfPHP\Component\Money\Currency
  * @uses \SonsOfPHP\Component\Money\Money
+ *
+ * @internal
  */
 final class SubtractMoneyOperatorTest extends TestCase
 {
@@ -25,7 +27,7 @@ final class SubtractMoneyOperatorTest extends TestCase
      */
     public function testItHasTheCorrectInterface(): void
     {
-        $money = new Money(100, new Currency('usd'));
+        $money    = new Money(100, new Currency('usd'));
         $operator = new SubtractMoneyOperator($money);
 
         $this->assertInstanceOf(MoneyOperatorInterface::class, $operator);
@@ -37,7 +39,7 @@ final class SubtractMoneyOperatorTest extends TestCase
      */
     public function testApplyWithSameCurrencies(): void
     {
-        $money = new Money(100, new Currency('usd'));
+        $money    = new Money(100, new Currency('usd'));
         $operator = new SubtractMoneyOperator($money);
 
         $output = $operator->apply(Money::USD(300));
@@ -51,7 +53,7 @@ final class SubtractMoneyOperatorTest extends TestCase
      */
     public function testApplyWillThrowExceptionWhenCurrenciesAreDifferent(): void
     {
-        $money = new Money(100, new Currency('usd'));
+        $money    = new Money(100, new Currency('usd'));
         $operator = new SubtractMoneyOperator(Money::JPY(1000));
 
         $this->expectException(MoneyException::class);

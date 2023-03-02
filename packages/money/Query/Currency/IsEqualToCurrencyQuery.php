@@ -19,7 +19,7 @@ class IsEqualToCurrencyQuery implements CurrencyQueryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function queryFrom(CurrencyInterface $currency)
     {

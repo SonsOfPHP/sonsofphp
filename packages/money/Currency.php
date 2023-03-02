@@ -23,8 +23,8 @@ final class Currency implements CurrencyInterface
     public function __construct(string $currencyCode, ?int $numericCode = null, ?int $minorUnit = null)
     {
         $this->currencyCode = strtoupper($currencyCode);
-        $this->numericCode = $numericCode;
-        $this->minorUnit = $minorUnit;
+        $this->numericCode  = $numericCode;
+        $this->minorUnit    = $minorUnit;
     }
 
     /**
@@ -45,13 +45,13 @@ final class Currency implements CurrencyInterface
     public static function __callStatic(string $currencyCode, array $args): CurrencyInterface
     {
         $numericCode = $args[0] ?? null;
-        $minorUnit = $args[1] ?? null;
+        $minorUnit   = $args[1] ?? null;
 
         return new static($currencyCode, $numericCode, $minorUnit);
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function query(CurrencyQueryInterface $query)
     {
@@ -59,7 +59,7 @@ final class Currency implements CurrencyInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getCurrencyCode(): string
     {
@@ -67,7 +67,7 @@ final class Currency implements CurrencyInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getNumericCode(): ?int
     {
@@ -75,7 +75,7 @@ final class Currency implements CurrencyInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getMinorUnit(): ?int
     {
@@ -83,7 +83,7 @@ final class Currency implements CurrencyInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function isEqualTo(CurrencyInterface $currency): bool
     {

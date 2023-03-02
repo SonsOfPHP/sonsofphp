@@ -14,8 +14,12 @@
         <ignoreFiles>
             <directory name="vendor"/>
             <directory name="packages/*/vendor"/>
+            <directory name="tools/*/vendor"/>
         </ignoreFiles>
     </projectFiles>
+    <extraFiles>
+        <directory name="tools/phpunit/vendor/phpunit/phpunit/src"/>
+    </extraFiles>
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
     </plugins>

@@ -43,7 +43,7 @@ final class Amount implements AmountInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function toString(): string
     {
@@ -51,7 +51,7 @@ final class Amount implements AmountInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function toInt(): int
     {
@@ -59,7 +59,7 @@ final class Amount implements AmountInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function toFloat(): float
     {
@@ -67,7 +67,7 @@ final class Amount implements AmountInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getAmount(): string
     {
@@ -75,7 +75,7 @@ final class Amount implements AmountInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function with(AmountOperatorInterface $operator): AmountInterface
     {
@@ -83,7 +83,7 @@ final class Amount implements AmountInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function query(AmountQueryInterface $query)
     {
@@ -91,7 +91,7 @@ final class Amount implements AmountInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function add(AmountInterface $amount): AmountInterface
     {
@@ -99,7 +99,7 @@ final class Amount implements AmountInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function subtract(AmountInterface $amount): AmountInterface
     {
@@ -107,7 +107,7 @@ final class Amount implements AmountInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function multiply($multiplier): AmountInterface
     {
@@ -115,7 +115,7 @@ final class Amount implements AmountInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function divide($divisor): AmountInterface
     {
@@ -123,7 +123,7 @@ final class Amount implements AmountInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function isEqualTo(AmountInterface $amount): bool
     {
@@ -131,7 +131,7 @@ final class Amount implements AmountInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function isGreaterThan(AmountInterface $amount): bool
     {
@@ -139,7 +139,7 @@ final class Amount implements AmountInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function isGreaterThanOrEqualTo(AmountInterface $amount): bool
     {
@@ -147,7 +147,7 @@ final class Amount implements AmountInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function isLessThan(AmountInterface $amount): bool
     {
@@ -155,7 +155,7 @@ final class Amount implements AmountInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function isLessThanOrEqualTo(AmountInterface $amount): bool
     {
@@ -163,7 +163,7 @@ final class Amount implements AmountInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function isNegative(): bool
     {
@@ -171,7 +171,7 @@ final class Amount implements AmountInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function isPositive(): bool
     {
@@ -179,7 +179,7 @@ final class Amount implements AmountInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function isZero(): bool
     {

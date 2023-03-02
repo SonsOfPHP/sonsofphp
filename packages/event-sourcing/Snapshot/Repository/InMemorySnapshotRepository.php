@@ -15,7 +15,7 @@ final class InMemorySnapshotRepository implements SnapshotRepositoryInterface
     private array $storage = [];
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function find(AggregateIdInterface $id): ?SnapshotInterface
     {
@@ -23,7 +23,7 @@ final class InMemorySnapshotRepository implements SnapshotRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function persist(SnapshotInterface $snapshot): void
     {

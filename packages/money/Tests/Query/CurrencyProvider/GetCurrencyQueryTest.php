@@ -16,6 +16,8 @@ use SonsOfPHP\Component\Money\Query\CurrencyProvider\GetCurrencyQuery;
  *
  * @uses \SonsOfPHP\Component\Money\Currency
  * @uses \SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider
+ *
+ * @internal
  */
 final class GetCurrencyQueryTest extends TestCase
 {
@@ -25,7 +27,7 @@ final class GetCurrencyQueryTest extends TestCase
     public function testItHasTheCorrectInterface(): void
     {
         $currency = new Currency('usd');
-        $query = new GetCurrencyQuery($currency);
+        $query    = new GetCurrencyQuery($currency);
 
         $this->assertInstanceOf(CurrencyProviderQueryInterface::class, $query);
     }
@@ -37,7 +39,7 @@ final class GetCurrencyQueryTest extends TestCase
     public function testConstructWithCurrencyObject(): void
     {
         $currency = new Currency('xts');
-        $query = new GetCurrencyQuery($currency);
+        $query    = new GetCurrencyQuery($currency);
 
         $output = $query->queryFrom(new XCurrencyProvider());
 

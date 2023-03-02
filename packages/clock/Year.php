@@ -25,7 +25,7 @@ final class Year implements YearInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function toString(): string
     {
@@ -33,7 +33,7 @@ final class Year implements YearInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function toInt(): int
     {

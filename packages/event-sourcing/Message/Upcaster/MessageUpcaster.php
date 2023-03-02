@@ -19,7 +19,7 @@ final class MessageUpcaster implements MessageUpcasterInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function upcast(array $data): array
     {

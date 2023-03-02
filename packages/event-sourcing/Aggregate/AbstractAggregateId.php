@@ -25,7 +25,7 @@ abstract class AbstractAggregateId implements AggregateIdInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     final public function __toString(): string
     {
@@ -33,7 +33,7 @@ abstract class AbstractAggregateId implements AggregateIdInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     final public function toString(): string
     {
@@ -41,7 +41,7 @@ abstract class AbstractAggregateId implements AggregateIdInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     final public static function fromString(string $id): AggregateIdInterface
     {
@@ -49,7 +49,7 @@ abstract class AbstractAggregateId implements AggregateIdInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     final public function equals(AggregateIdInterface $that): bool
     {

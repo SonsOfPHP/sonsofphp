@@ -10,6 +10,8 @@ use SonsOfPHP\Component\Clock\DateInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Clock\Date
+ *
+ * @internal
  */
 final class DateTest extends TestCase
 {

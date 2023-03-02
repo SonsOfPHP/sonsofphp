@@ -11,6 +11,8 @@ use SonsOfPHP\Component\FeatureToggle\ToggleInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\FeatureToggle\Toggle\AlwaysEnabledToggle
+ *
+ * @internal
  */
 final class AlwaysEnabledToggleTest extends TestCase
 {

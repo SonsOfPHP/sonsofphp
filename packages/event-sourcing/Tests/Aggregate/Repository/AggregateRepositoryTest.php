@@ -21,6 +21,8 @@ class Msg extends AbstractMessage
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Aggregate\Repository\AggregateRepository
+ *
+ * @internal
  */
 final class AggregateRepositoryTest extends TestCase
 {
@@ -30,8 +32,8 @@ final class AggregateRepositoryTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->aggregateClass = FakeAggregate::class;
-        $this->eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+        $this->aggregateClass    = FakeAggregate::class;
+        $this->eventDispatcher   = $this->createMock(EventDispatcherInterface::class);
         $this->messageRepository = new InMemoryMessageRepository();
     }
 

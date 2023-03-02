@@ -38,12 +38,12 @@ class TableSchemaV2 implements TableSchemaInterface
     public function getColumns(): array
     {
         return [
-            'event_id' => Type::getType('guid'),
-            'aggregate_id' => Type::getType('guid'),
+            'event_id'          => Type::getType('guid'),
+            'aggregate_id'      => Type::getType('guid'),
             'aggregate_version' => Type::getType('integer'),
-            'event_data' => Type::getType('json'),
-            'created_at' => Type::getType('datetime_immutable'),
-            'event_type' => Type::getType('string'),
+            'event_data'        => Type::getType('json'),
+            'created_at'        => Type::getType('datetime_immutable'),
+            'event_type'        => Type::getType('string'),
         ];
     }
 
@@ -55,12 +55,12 @@ class TableSchemaV2 implements TableSchemaInterface
     public function mapEventDataToColumns(array $data): array
     {
         return [
-            'event_id' => $data['metadata'][Metadata::EVENT_ID],
-            'aggregate_id' => $data['metadata'][Metadata::AGGREGATE_ID],
+            'event_id'          => $data['metadata'][Metadata::EVENT_ID],
+            'aggregate_id'      => $data['metadata'][Metadata::AGGREGATE_ID],
             'aggregate_version' => $data['metadata'][Metadata::AGGREGATE_VERSION],
-            'event_data' => $data,
-            'created_at' => new \DateTimeImmutable($data['metadata'][Metadata::TIMESTAMP]),
-            'event_type' => $data['metadata'][Metadata::EVENT_TYPE],
+            'event_data'        => $data,
+            'created_at'        => new \DateTimeImmutable($data['metadata'][Metadata::TIMESTAMP]),
+            'event_type'        => $data['metadata'][Metadata::EVENT_TYPE],
         ];
     }
 

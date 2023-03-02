@@ -36,7 +36,7 @@ final class Money implements MoneyInterface
             $amount = new Amount($amount);
         }
 
-        $this->amount = $amount;
+        $this->amount   = $amount;
         $this->currency = $currency;
     }
 
@@ -73,7 +73,7 @@ final class Money implements MoneyInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function with(MoneyOperatorInterface $operator): MoneyInterface
     {
@@ -81,7 +81,7 @@ final class Money implements MoneyInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function query(MoneyQueryInterface $query)
     {
@@ -89,7 +89,7 @@ final class Money implements MoneyInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getAmount(): AmountInterface
     {
@@ -97,7 +97,7 @@ final class Money implements MoneyInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getCurrency(): CurrencyInterface
     {
@@ -105,7 +105,7 @@ final class Money implements MoneyInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function isEqualTo(MoneyInterface $money): bool
     {
@@ -113,7 +113,7 @@ final class Money implements MoneyInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function isGreaterThan(MoneyInterface $money): bool
     {
@@ -121,7 +121,7 @@ final class Money implements MoneyInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function isGreaterThanOrEqualTo(MoneyInterface $money): bool
     {
@@ -129,7 +129,7 @@ final class Money implements MoneyInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function isLessThan(MoneyInterface $money): bool
     {
@@ -137,7 +137,7 @@ final class Money implements MoneyInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function isLessThanOrEqualTo(MoneyInterface $money): bool
     {
@@ -145,7 +145,7 @@ final class Money implements MoneyInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function isNegative(): bool
     {
@@ -153,7 +153,7 @@ final class Money implements MoneyInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function isPositive(): bool
     {
@@ -161,7 +161,7 @@ final class Money implements MoneyInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function isZero(): bool
     {
@@ -169,7 +169,7 @@ final class Money implements MoneyInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function add(MoneyInterface $money): MoneyInterface
     {
@@ -177,7 +177,7 @@ final class Money implements MoneyInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function subtract(MoneyInterface $money): MoneyInterface
     {
@@ -185,7 +185,7 @@ final class Money implements MoneyInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function multiply($multiplier): MoneyInterface
     {
@@ -193,7 +193,7 @@ final class Money implements MoneyInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function divide($divisor): MoneyInterface
     {

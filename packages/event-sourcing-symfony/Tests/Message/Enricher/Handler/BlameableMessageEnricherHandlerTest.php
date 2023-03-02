@@ -13,6 +13,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\BlameableMessageEnricherHandler
+ *
+ * @internal
  */
 final class BlameableMessageEnricherHandlerTest extends TestCase
 {
@@ -41,7 +43,7 @@ final class BlameableMessageEnricherHandlerTest extends TestCase
         $handler = new BlameableMessageEnricherHandler($this->security);
 
         $message = $this->createMock(MessageInterface::class);
-        $output = $handler->enrich($message);
+        $output  = $handler->enrich($message);
 
         $this->assertSame($message, $output);
     }

@@ -12,6 +12,8 @@ use SonsOfPHP\Component\FeatureToggle\ToggleInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\FeatureToggle\Feature
+ *
+ * @internal
  */
 final class FeatureTest extends TestCase
 {

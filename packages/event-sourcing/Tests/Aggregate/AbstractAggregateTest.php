@@ -7,14 +7,13 @@ namespace SonsOfPHP\Component\EventSourcing\Tests\Aggregate;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregate;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
-use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
-use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
-use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Tests\FakeAggregate;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregate
+ *
+ * @internal
  */
 final class AbstractAggregateTest extends TestCase
 {
@@ -33,8 +32,8 @@ final class AbstractAggregateTest extends TestCase
     }
 
     /**
-     * @covers ::raiseEvent
      * @covers ::applyEvent
+     * @covers ::raiseEvent
      */
     public function testRaiseEventWillApplyMetadata(): void
     {
@@ -46,9 +45,9 @@ final class AbstractAggregateTest extends TestCase
     }
 
     /**
-     * @covers ::raiseEvent
-     * @covers ::getPendingEvents
      * @covers ::applyEvent
+     * @covers ::getPendingEvents
+     * @covers ::raiseEvent
      */
     public function testRaiseEventWillAddEventToPendingEvents(): void
     {

@@ -18,7 +18,7 @@ final class JsonFile
     public function __construct(string $filename)
     {
         $this->filename = $filename;
-        $this->json = new Json();
+        $this->json     = new Json();
     }
 
     private function load(): void
@@ -55,7 +55,7 @@ final class JsonFile
             $this->load();
         }
 
-        $clone = clone $this;
+        $clone                   = clone $this;
         $clone->config[$section] = $value;
 
         return $clone;

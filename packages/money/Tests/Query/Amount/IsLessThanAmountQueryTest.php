@@ -13,6 +13,8 @@ use SonsOfPHP\Component\Money\Query\Amount\IsLessThanAmountQuery;
  * @coversDefaultClass \SonsOfPHP\Component\Money\Query\Amount\IsLessThanAmountQuery
  *
  * @uses \SonsOfPHP\Component\Money\Amount
+ *
+ * @internal
  */
 final class IsLessThanAmountQueryTest extends TestCase
 {
@@ -22,7 +24,7 @@ final class IsLessThanAmountQueryTest extends TestCase
     public function testItHasTheCorrectInterface(): void
     {
         $amount = new Amount(100);
-        $query = new IsLessThanAmountQuery($amount);
+        $query  = new IsLessThanAmountQuery($amount);
 
         $this->assertInstanceOf(AmountQueryInterface::class, $query);
     }
@@ -34,7 +36,7 @@ final class IsLessThanAmountQueryTest extends TestCase
     public function testQuery(): void
     {
         $amount = new Amount(100);
-        $query = new IsLessThanAmountQuery(new Amount(150));
+        $query  = new IsLessThanAmountQuery(new Amount(150));
 
         $this->assertTrue($query->queryFrom($amount));
     }

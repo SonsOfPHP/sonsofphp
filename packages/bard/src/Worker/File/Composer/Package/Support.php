@@ -20,7 +20,7 @@ final class Support implements WorkerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function apply(JsonFile $pkgComposerJsonFile): JsonFile
     {

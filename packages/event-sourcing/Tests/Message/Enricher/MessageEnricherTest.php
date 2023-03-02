@@ -14,6 +14,8 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricher
+ *
+ * @internal
  */
 final class MessageEnricherTest extends TestCase
 {
@@ -31,8 +33,8 @@ final class MessageEnricherTest extends TestCase
      */
     public function testItWillReturnMessageUntouchedWithNoHandlers(): void
     {
-        $enricher = new MessageEnricher(new NullMessageEnricherProvider());
-        $message = $this->createMock(MessageInterface::class);
+        $enricher        = new MessageEnricher(new NullMessageEnricherProvider());
+        $message         = $this->createMock(MessageInterface::class);
         $enrichedMessage = $enricher->enrich($message);
 
         $this->assertSame($enrichedMessage, $message);
@@ -46,8 +48,8 @@ final class MessageEnricherTest extends TestCase
         $provider = new AllMessageEnricherProvider();
         $provider->register(new NullMessageEnricherHandler());
 
-        $enricher = new MessageEnricher($provider);
-        $message = $this->createMock(MessageInterface::class);
+        $enricher        = new MessageEnricher($provider);
+        $message         = $this->createMock(MessageInterface::class);
         $enrichedMessage = $enricher->enrich($message);
 
         $this->assertSame($enrichedMessage, $message);

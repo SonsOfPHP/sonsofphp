@@ -21,7 +21,7 @@ class NamespaceMessageProvider implements MessageProviderInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getEventTypeForMessage($message): string
     {
@@ -43,7 +43,7 @@ class NamespaceMessageProvider implements MessageProviderInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getMessageClassForEventType(string $eventType): string
     {

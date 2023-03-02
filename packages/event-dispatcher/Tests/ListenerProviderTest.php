@@ -10,6 +10,8 @@ use SonsOfPHP\Component\EventDispatcher\ListenerProvider;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventDispatcher\ListenerProvider
+ *
+ * @internal
  */
 final class ListenerProviderTest extends TestCase
 {
@@ -27,8 +29,8 @@ final class ListenerProviderTest extends TestCase
      */
     public function testGetListenersForUnknownEventReturnsEmptyArray(): void
     {
-        $provider = new ListenerProvider();
-        $event = new \stdClass();
+        $provider  = new ListenerProvider();
+        $event     = new \stdClass();
         $listeners = $provider->getListenersForEvent($event);
         $this->assertCount(0, $listeners);
     }
@@ -42,7 +44,7 @@ final class ListenerProviderTest extends TestCase
         $provider = new ListenerProvider();
         $provider->add('stdClass', 'example listener object');
 
-        $event = new \stdClass();
+        $event     = new \stdClass();
         $listeners = $provider->getListenersForEvent($event);
         $this->assertCount(1, $listeners);
     }

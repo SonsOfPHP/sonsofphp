@@ -12,6 +12,8 @@ use SonsOfPHP\Component\FeatureToggle\ToggleInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\FeatureToggle\Provider\InMemoryFeatureToggleProvider
+ *
+ * @internal
  */
 final class InMemoryFeatureToggleProviderTest extends TestCase
 {
@@ -46,6 +48,6 @@ final class InMemoryFeatureToggleProviderTest extends TestCase
 
         $provider = new InMemoryFeatureToggleProvider($features);
 
-        $this->assertCount(2, $provider->getFeatures());
+        $this->assertCount(2, iterator_to_array($provider->getFeatures()));
     }
 }

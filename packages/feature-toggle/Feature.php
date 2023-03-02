@@ -16,12 +16,12 @@ final class Feature implements FeatureInterface
 
     public function __construct(string $key, ToggleInterface $toggle)
     {
-        $this->key = $key;
+        $this->key    = $key;
         $this->toggle = $toggle;
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getKey(): string
     {
@@ -29,7 +29,7 @@ final class Feature implements FeatureInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function isEnabled(ContextInterface $context): bool
     {

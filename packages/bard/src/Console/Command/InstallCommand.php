@@ -17,7 +17,7 @@ final class InstallCommand extends AbstractCommand
     protected static $defaultName = 'install';
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     // public function __construct()
     // {
@@ -25,7 +25,7 @@ final class InstallCommand extends AbstractCommand
     // }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function configure(): void
     {
@@ -35,14 +35,14 @@ final class InstallCommand extends AbstractCommand
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {

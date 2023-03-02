@@ -11,6 +11,8 @@ use SonsOfPHP\Component\Version\VersionInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Version\Version
+ *
+ * @internal
  */
 final class VersionTest extends TestCase
 {
@@ -40,11 +42,11 @@ final class VersionTest extends TestCase
      *
      * @covers ::__construct
      * @covers ::__toString
+     * @covers ::getBuild
      * @covers ::getMajor
      * @covers ::getMinor
      * @covers ::getPatch
      * @covers ::getPreRelease
-     * @covers ::getBuild
      * @covers ::toString
      */
     public function testItParsesCorrectly(string $ver, int $major, int $minor, int $patch, ?string $preRelease = '', ?string $build = ''): void
@@ -86,7 +88,7 @@ final class VersionTest extends TestCase
     public function testNextPatch(): void
     {
         $version = new Version('1.2.3');
-        $newVer = $version->nextPatch();
+        $newVer  = $version->nextPatch();
 
         $this->assertNotSame($version, $newVer);
         $this->assertSame('1.2.3', $version->toString());
@@ -99,7 +101,7 @@ final class VersionTest extends TestCase
     public function testNextMinor(): void
     {
         $version = new Version('1.2.3');
-        $newVer = $version->nextMinor();
+        $newVer  = $version->nextMinor();
 
         $this->assertNotSame($version, $newVer);
         $this->assertSame('1.2.3', $version->toString());
@@ -112,7 +114,7 @@ final class VersionTest extends TestCase
     public function testNextMajor(): void
     {
         $version = new Version('1.2.3');
-        $newVer = $version->nextMajor();
+        $newVer  = $version->nextMajor();
 
         $this->assertNotSame($version, $newVer);
         $this->assertSame('1.2.3', $version->toString());

@@ -16,6 +16,8 @@ class Msg extends AbstractMessage
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Message\MessageNormalizer
+ *
+ * @internal
  */
 final class MessageNormalizerTest extends TestCase
 {

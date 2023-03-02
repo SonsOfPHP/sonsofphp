@@ -29,7 +29,7 @@ class AggregateRepository implements AggregateRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function find(AggregateIdInterface|string $id): ?AggregateInterface
     {
@@ -38,7 +38,7 @@ class AggregateRepository implements AggregateRepositoryInterface
         }
 
         try {
-            $events = $this->messageRepository->find($id);
+            $events         = $this->messageRepository->find($id);
             $aggregateClass = $this->aggregateClass;
 
             return $aggregateClass::buildFromEvents($id, $events);
@@ -49,11 +49,11 @@ class AggregateRepository implements AggregateRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function persist(AggregateInterface $aggregate): void
     {
-        $events = $aggregate->getPendingEvents();
+        $events           = $aggregate->getPendingEvents();
         $eventsToDispatch = [];
 
         foreach ($events as $message) {

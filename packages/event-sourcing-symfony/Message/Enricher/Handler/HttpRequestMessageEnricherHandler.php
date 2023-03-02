@@ -32,7 +32,7 @@ class HttpRequestMessageEnricherHandler implements MessageEnricherHandlerInterfa
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function enrich(MessageInterface $message): MessageInterface
     {
@@ -41,14 +41,14 @@ class HttpRequestMessageEnricherHandler implements MessageEnricherHandlerInterfa
         if (null !== $request) {
             return $message->withMetadata([
                 self::METADATA_HTTP_REQUEST => [
-                    'http_user_agent' => $request->server->get('HTTP_USER_AGENT'),
-                    'client_ip' => $request->getClientIp(),
-                    'content_type' => $request->getContentTypeFormat(),
-                    'method' => $request->getMethod(),
-                    'host' => $request->getHost(),
-                    'path_info' => $request->getPathInfo(),
-                    'query_string' => $request->getQueryString(),
-                    'locale' => $request->getLocale(),
+                    'http_user_agent'     => $request->server->get('HTTP_USER_AGENT'),
+                    'client_ip'           => $request->getClientIp(),
+                    'content_type'        => $request->getContentTypeFormat(),
+                    'method'              => $request->getMethod(),
+                    'host'                => $request->getHost(),
+                    'path_info'           => $request->getPathInfo(),
+                    'query_string'        => $request->getQueryString(),
+                    'locale'              => $request->getLocale(),
                     'is_xml_http_request' => $request->isXmlHttpRequest(),
                 ],
             ]);

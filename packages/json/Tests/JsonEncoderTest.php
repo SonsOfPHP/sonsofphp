@@ -11,6 +11,8 @@ use SonsOfPHP\Component\Json\JsonException;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Json\JsonEncoder
+ *
+ * @internal
  */
 final class JsonEncoderTest extends TestCase
 {
@@ -20,7 +22,7 @@ final class JsonEncoderTest extends TestCase
      */
     public function testWithFlagsReturnsNewObject(): void
     {
-        $encoder = new JsonEncoder();
+        $encoder      = new JsonEncoder();
         $encoderOther = $encoder->withFlags(\JSON_PRETTY_PRINT);
 
         $this->assertNotSame($encoder, $encoderOther);
@@ -32,7 +34,7 @@ final class JsonEncoderTest extends TestCase
      */
     public function testWithoutFlagsReturnsNewObject(): void
     {
-        $encoder = new JsonEncoder();
+        $encoder      = new JsonEncoder();
         $encoderOther = $encoder->withoutFlags(\JSON_PRETTY_PRINT);
 
         $this->assertNotSame($encoder, $encoderOther);
@@ -46,8 +48,8 @@ final class JsonEncoderTest extends TestCase
     public function testWithoutFlagsDoesntRemoveMoreThanItShould(): void
     {
         $encoder = new JsonEncoder();
-        $ref = new ReflectionObject($encoder);
-        $prop = $ref->getProperty('flags');
+        $ref     = new ReflectionObject($encoder);
+        $prop    = $ref->getProperty('flags');
         $prop->setAccessible(true);
 
         $encoder = $encoder->withoutFlags(\JSON_PRETTY_PRINT);
@@ -68,8 +70,8 @@ final class JsonEncoderTest extends TestCase
     public function testWithoutFlagsRemovesFlag(): void
     {
         $encoder = new JsonEncoder();
-        $ref = new ReflectionObject($encoder);
-        $prop = $ref->getProperty('flags');
+        $ref     = new ReflectionObject($encoder);
+        $prop    = $ref->getProperty('flags');
         $prop->setAccessible(true);
 
         $encoder = $encoder->withFlags(\JSON_PRETTY_PRINT);
@@ -85,8 +87,8 @@ final class JsonEncoderTest extends TestCase
     public function testChangingDepthActuallyChangesDepth(): void
     {
         $encoder = new JsonEncoder();
-        $ref = new ReflectionObject($encoder);
-        $prop = $ref->getProperty('depth');
+        $ref     = new ReflectionObject($encoder);
+        $prop    = $ref->getProperty('depth');
         $prop->setAccessible(true);
 
         $encoder = $encoder->withDepth(123);
@@ -98,7 +100,7 @@ final class JsonEncoderTest extends TestCase
      */
     public function testEncodeOnSimpleJsonString(): void
     {
-        $value = ['test' => true];
+        $value   = ['test' => true];
         $encoder = new JsonEncoder();
 
         $return = $encoder->encode($value);
@@ -110,7 +112,7 @@ final class JsonEncoderTest extends TestCase
      */
     public function testEncodeOnFuckedUpJson(): void
     {
-        $value = "\xB1\x31"; // invalid UTF8
+        $value   = "\xB1\x31"; // invalid UTF8
         $encoder = new JsonEncoder();
 
         $this->expectException(JsonException::class);

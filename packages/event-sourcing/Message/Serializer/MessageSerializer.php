@@ -40,7 +40,7 @@ class MessageSerializer implements MessageSerializerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function serialize(SerializableMessageInterface $message): array
     {
@@ -53,7 +53,7 @@ class MessageSerializer implements MessageSerializerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function deserialize(array $data): SerializableMessageInterface
     {

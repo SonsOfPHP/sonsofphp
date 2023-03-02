@@ -12,6 +12,8 @@ use SonsOfPHP\Component\EventSourcing\Snapshot\SnapshotInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Snapshot\Snapshot
+ *
+ * @internal
  */
 final class SnapshotTest extends TestCase
 {

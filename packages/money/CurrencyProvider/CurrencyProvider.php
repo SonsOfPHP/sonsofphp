@@ -14,7 +14,7 @@ use SonsOfPHP\Component\Money\Currency;
 final class CurrencyProvider extends AbstractCurrencyProvider
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getCurrencies(): iterable
     {

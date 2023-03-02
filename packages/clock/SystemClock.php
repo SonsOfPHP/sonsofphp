@@ -28,7 +28,7 @@ class SystemClock implements ClockInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function now(): DateTimeInterface
     {

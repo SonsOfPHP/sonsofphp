@@ -13,6 +13,8 @@ use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\AbstractSerializableMessage
+ *
+ * @internal
  */
 final class AbstractSerializableMessageTest extends TestCase
 {
@@ -32,7 +34,7 @@ final class AbstractSerializableMessageTest extends TestCase
     public function testSerializeOnEmptyMessage(): void
     {
         $message = FakeSerializableMessage::new();
-        $return = $message->serialize();
+        $return  = $message->serialize();
         $this->assertArrayHasKey('payload', $return);
         $this->assertArrayHasKey('metadata', $return);
     }
@@ -77,16 +79,16 @@ final class AbstractSerializableMessageTest extends TestCase
     public function testDeserialize(): void
     {
         $message = FakeSerializableMessage::new();
-        $msg = $message::deserialize([
+        $msg     = $message::deserialize([
             'payload' => [
                 'key' => 'value',
             ],
             'metadata' => [
-                Metadata::EVENT_ID => 'event-id',
-                Metadata::EVENT_TYPE => 'event.type',
-                Metadata::TIMESTAMP => '2022-04-20',
-                Metadata::TIMESTAMP_FORMAT => 'Y-m-d',
-                Metadata::AGGREGATE_ID => 'aggregate-id',
+                Metadata::EVENT_ID          => 'event-id',
+                Metadata::EVENT_TYPE        => 'event.type',
+                Metadata::TIMESTAMP         => '2022-04-20',
+                Metadata::TIMESTAMP_FORMAT  => 'Y-m-d',
+                Metadata::AGGREGATE_ID      => 'aggregate-id',
                 Metadata::AGGREGATE_VERSION => 123,
             ],
         ]);

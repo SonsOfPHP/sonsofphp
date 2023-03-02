@@ -12,7 +12,7 @@ final class Context implements ContextInterface
     private array $data = [];
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function get(string $key)
     {
@@ -24,7 +24,7 @@ final class Context implements ContextInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function set(string $key, $value): ContextInterface
     {
@@ -34,7 +34,7 @@ final class Context implements ContextInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function has(string $key): bool
     {
