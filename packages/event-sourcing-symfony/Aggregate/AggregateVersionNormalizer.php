@@ -27,6 +27,8 @@ class AggregateVersionNormalizer implements NormalizerInterface, DenormalizerInt
 {
     /**
      * {@inheritdoc}
+     *
+     * @return int
      */
     public function normalize($object, string $format = null, array $context = [])
     {
@@ -36,13 +38,15 @@ class AggregateVersionNormalizer implements NormalizerInterface, DenormalizerInt
     /**
      * {@inheritdoc}
      */
-    public function supportsNormalization($data, string $format = null)
+    public function supportsNormalization($data, string $format = null, array $context = []): bool
     {
         return $data instanceof AggregateVersionInterface;
     }
 
     /**
      * {@inheritdoc}
+     *
+     * @return AggregateVersionInterface
      */
     public function denormalize($data, string $type, string $format = null, array $context = [])
     {
@@ -56,7 +60,7 @@ class AggregateVersionNormalizer implements NormalizerInterface, DenormalizerInt
     /**
      * {@inheritdoc}
      */
-    public function supportsDenormalization($data, string $type, string $format = null)
+    public function supportsDenormalization($data, string $type, string $format = null, array $context = []): bool
     {
         return is_a($type, AggregateVersionInterface::class, true);
     }

@@ -24,6 +24,8 @@ class MessageNormalizer implements NormalizerInterface, DenormalizerInterface
 {
     /**
      * {@inheritdoc}
+     *
+     * @return array
      */
     public function normalize($object, string $format = null, array $context = [])
     {
@@ -36,13 +38,15 @@ class MessageNormalizer implements NormalizerInterface, DenormalizerInterface
     /**
      * {@inheritdoc}
      */
-    public function supportsNormalization($data, string $format = null)
+    public function supportsNormalization($data, string $format = null, array $context = []): bool
     {
         return $data instanceof MessageInterface;
     }
 
     /**
      * {@inheritdoc}
+     *
+     * @return MessageInterface
      */
     public function denormalize($data, string $type, string $format = null, array $context = [])
     {
@@ -52,7 +56,7 @@ class MessageNormalizer implements NormalizerInterface, DenormalizerInterface
     /**
      * {@inheritdoc}
      */
-    public function supportsDenormalization($data, string $type, string $format = null)
+    public function supportsDenormalization($data, string $type, string $format = null, array $context = []): bool
     {
         if (false === \is_array($data)) {
             return false;

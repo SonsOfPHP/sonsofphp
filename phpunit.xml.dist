@@ -6,7 +6,7 @@
     convertErrorsToExceptions="true"
     convertNoticesToExceptions="true"
     convertWarningsToExceptions="true"
-    convertDeprecationsToExceptions="false"
+    convertDeprecationsToExceptions="true"
     backupGlobals="false"
     colors="true"
     bootstrap="vendor/autoload.php"
@@ -29,5 +29,9 @@
             <directory>packages/*/vendor</directory>
         </exclude>
     </coverage>
+
+    <listeners>
+        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener"/>
+    </listeners>
 
 </phpunit>
