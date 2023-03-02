@@ -23,7 +23,7 @@ final class PublishCommand extends AbstractCommand
     protected static $defaultName = 'publish';
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function configure(): void
     {
@@ -34,18 +34,18 @@ final class PublishCommand extends AbstractCommand
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $bardConfig = new JsonFile($input->getOption('working-dir').'/bard.json');
-        $formatter = $this->getHelper('formatter');
-        $io = new SymfonyStyle($input, $output);
+        $formatter  = $this->getHelper('formatter');
+        $io         = new SymfonyStyle($input, $output);
 
         foreach ($bardConfig->getSection('packages') as $pkg) {
-            $pkgComposerFile = realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json');
+            $pkgComposerFile     = realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json');
             $pkgComposerJsonFile = new JsonFile($pkgComposerFile);
-            $pkgName = $pkgComposerJsonFile->getSection('name');
+            $pkgName             = $pkgComposerJsonFile->getSection('name');
             $io->text(sprintf('Pushing <info>%s</>', $pkgName));
 
             $commands = [

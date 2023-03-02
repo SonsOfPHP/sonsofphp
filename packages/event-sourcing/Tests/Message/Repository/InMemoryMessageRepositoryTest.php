@@ -14,6 +14,8 @@ use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterf
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\Repository\InMemoryMessageRepository
+ *
+ * @internal
  */
 final class InMemoryMessageRepositoryTest extends TestCase
 {
@@ -27,8 +29,8 @@ final class InMemoryMessageRepositoryTest extends TestCase
     }
 
     /**
-     * @covers ::persist
      * @covers ::find
+     * @covers ::persist
      */
     public function testPersistAndFind(): void
     {

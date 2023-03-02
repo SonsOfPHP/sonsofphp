@@ -15,9 +15,9 @@ final class Date implements DateInterface
 
     public function __construct(int $year, int $month, int $day)
     {
-        $this->year = $year;
+        $this->year  = $year;
         $this->month = $month;
-        $this->day = $day;
+        $this->day   = $day;
     }
 
     /**
@@ -29,7 +29,7 @@ final class Date implements DateInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function toString(): string
     {
@@ -37,7 +37,7 @@ final class Date implements DateInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getYear(): int
     {
@@ -45,7 +45,7 @@ final class Date implements DateInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getMonth(): int
     {
@@ -53,7 +53,7 @@ final class Date implements DateInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getDay(): int
     {

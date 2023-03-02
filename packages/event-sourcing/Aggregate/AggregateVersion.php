@@ -25,7 +25,7 @@ final class AggregateVersion implements AggregateVersionInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public static function fromInt(int $version): AggregateVersionInterface
     {
@@ -33,7 +33,7 @@ final class AggregateVersion implements AggregateVersionInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public static function zero(): AggregateVersionInterface
     {
@@ -41,7 +41,7 @@ final class AggregateVersion implements AggregateVersionInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function next(): AggregateVersionInterface
     {
@@ -49,7 +49,7 @@ final class AggregateVersion implements AggregateVersionInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function prev(): AggregateVersionInterface
     {
@@ -57,7 +57,7 @@ final class AggregateVersion implements AggregateVersionInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function equals(AggregateVersionInterface $version): bool
     {
@@ -65,7 +65,7 @@ final class AggregateVersion implements AggregateVersionInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function toInt(): int
     {

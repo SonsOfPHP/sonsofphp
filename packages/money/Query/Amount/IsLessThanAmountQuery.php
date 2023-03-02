@@ -19,7 +19,7 @@ class IsLessThanAmountQuery implements AmountQueryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function queryFrom(AmountInterface $amount)
     {

@@ -40,7 +40,7 @@ final class MergeCommand extends AbstractCommand
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function configure(): void
     {
@@ -51,7 +51,7 @@ final class MergeCommand extends AbstractCommand
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
@@ -71,7 +71,7 @@ final class MergeCommand extends AbstractCommand
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {

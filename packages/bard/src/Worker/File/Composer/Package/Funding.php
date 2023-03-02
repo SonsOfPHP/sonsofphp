@@ -20,7 +20,7 @@ final class Funding implements WorkerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function apply(JsonFile $pkgComposerJsonFile): JsonFile
     {

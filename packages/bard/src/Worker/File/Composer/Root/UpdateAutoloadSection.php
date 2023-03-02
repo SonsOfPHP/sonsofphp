@@ -20,16 +20,16 @@ final class UpdateAutoloadSection implements WorkerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function apply(JsonFile $rootComposerJsonFile): JsonFile
     {
         $rootDir = pathinfo($rootComposerJsonFile->getFilename(), \PATHINFO_DIRNAME);
-        $pkgDir = pathinfo($this->pkgComposerJsonFile->getFilename(), \PATHINFO_DIRNAME);
-        $path = trim(str_replace($rootDir, '', $pkgDir), '/');
+        $pkgDir  = pathinfo($this->pkgComposerJsonFile->getFilename(), \PATHINFO_DIRNAME);
+        $path    = trim(str_replace($rootDir, '', $pkgDir), '/');
 
         $rootAutoloadSection = $rootComposerJsonFile->getSection('autoload');
-        $pkgAutoloadSection = $this->pkgComposerJsonFile->getSection('autoload');
+        $pkgAutoloadSection  = $this->pkgComposerJsonFile->getSection('autoload');
 
         foreach ($pkgAutoloadSection as $section => $config) {
             if ('psr-4' === $section) {

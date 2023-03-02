@@ -25,7 +25,7 @@ final class EventTypeMessageEnricherHandler implements MessageEnricherHandlerInt
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function enrich(MessageInterface $message): MessageInterface
     {

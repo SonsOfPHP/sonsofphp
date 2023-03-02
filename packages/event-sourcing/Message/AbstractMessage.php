@@ -29,7 +29,7 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     final public static function new(): MessageInterface
     {
@@ -37,7 +37,7 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     final public function getEventId(): string
     {
@@ -45,7 +45,7 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     final public function getEventType(): string
     {
@@ -53,7 +53,7 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     final public function getTimestamp(): string
     {
@@ -61,7 +61,7 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     final public function getTimestampFormat(): string
     {
@@ -69,7 +69,7 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     final public function getAggregateId(): AggregateIdInterface
     {
@@ -77,7 +77,7 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     final public function getAggregateVersion(): AggregateVersionInterface
     {
@@ -85,18 +85,18 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     final public function withMetadata(array $metadata): MessageInterface
     {
-        $that = clone $this;
+        $that           = clone $this;
         $that->metadata = new MessageMetadata(array_merge($this->metadata->all(), $metadata));
 
         return $that;
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     final public function getMetadata(): array
     {
@@ -104,18 +104,18 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     final public function withPayload(array $payload): MessageInterface
     {
-        $that = clone $this;
+        $that          = clone $this;
         $that->payload = new MessagePayload(array_merge($this->payload->all(), $payload));
 
         return $that;
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     final public function getPayload(): array
     {

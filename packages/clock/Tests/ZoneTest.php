@@ -11,6 +11,8 @@ use SonsOfPHP\Component\Clock\ZoneOffset;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Clock\Zone
+ *
+ * @internal
  */
 final class ZoneTest extends TestCase
 {
@@ -55,7 +57,7 @@ final class ZoneTest extends TestCase
     public function testOffset(): void
     {
         $offset = new ZoneOffset(0);
-        $zone = new Zone('UTC', $offset);
+        $zone   = new Zone('UTC', $offset);
 
         $this->assertSame($offset, $zone->getOffset());
     }

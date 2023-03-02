@@ -21,7 +21,7 @@ final class UpdateVersion implements WorkerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function apply(JsonFile $bardJsonFile): JsonFile
     {

@@ -17,7 +17,7 @@ final class Version implements VersionInterface
     private int $minor;
     private int $patch;
     private string $preRelease = '';
-    private string $build = '';
+    private string $build      = '';
 
     public function __construct(string $version)
     {
@@ -51,7 +51,7 @@ final class Version implements VersionInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public static function from(string $version): VersionInterface
     {
@@ -59,7 +59,7 @@ final class Version implements VersionInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function toString(): string
     {
@@ -77,7 +77,7 @@ final class Version implements VersionInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getMajor(): int
     {
@@ -85,7 +85,7 @@ final class Version implements VersionInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getMinor(): int
     {
@@ -93,7 +93,7 @@ final class Version implements VersionInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getPatch(): int
     {
@@ -101,7 +101,7 @@ final class Version implements VersionInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getPreRelease(): ?string
     {
@@ -109,7 +109,7 @@ final class Version implements VersionInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getBuild(): ?string
     {
@@ -117,7 +117,7 @@ final class Version implements VersionInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function compare(VersionInterface $version): int
     {
@@ -183,7 +183,7 @@ final class Version implements VersionInterface
      */
     public function nextMinor(): VersionInterface
     {
-        $ver = clone $this;
+        $ver        = clone $this;
         $ver->patch = 0;
         ++$ver->minor;
 
@@ -197,7 +197,7 @@ final class Version implements VersionInterface
      */
     public function nextMajor(): VersionInterface
     {
-        $ver = clone $this;
+        $ver        = clone $this;
         $ver->patch = 0;
         $ver->minor = 0;
         ++$ver->major;

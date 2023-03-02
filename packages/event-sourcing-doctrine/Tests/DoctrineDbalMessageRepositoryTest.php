@@ -26,6 +26,8 @@ use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;
  *
  * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId
  * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
+ *
+ * @internal
  */
 final class DoctrineDbalMessageRepositoryTest extends TestCase
 {
@@ -35,9 +37,9 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->connection = $this->createStub(Connection::class);
+        $this->connection        = $this->createStub(Connection::class);
         $this->messageSerializer = $this->createMock(MessageSerializerInterface::class);
-        $this->tableSchema = $this->createMock(TableSchemaInterface::class);
+        $this->tableSchema       = $this->createMock(TableSchemaInterface::class);
     }
 
     /**
@@ -69,13 +71,13 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
             ->expects($this->once())
             ->method('serialize')
             ->willReturn([
-                'payload' => [],
+                'payload'  => [],
                 'metadata' => [
-                    Metadata::EVENT_ID => 'event-id',
-                    Metadata::EVENT_TYPE => 'event-type',
-                    Metadata::TIMESTAMP => '2022-04-20',
-                    Metadata::TIMESTAMP_FORMAT => 'Y-m-d',
-                    Metadata::AGGREGATE_ID => 'aggregate-id',
+                    Metadata::EVENT_ID          => 'event-id',
+                    Metadata::EVENT_TYPE        => 'event-type',
+                    Metadata::TIMESTAMP         => '2022-04-20',
+                    Metadata::TIMESTAMP_FORMAT  => 'Y-m-d',
+                    Metadata::AGGREGATE_ID      => 'aggregate-id',
                     Metadata::AGGREGATE_VERSION => 123,
                 ],
             ]);
@@ -142,7 +144,7 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
             ->expects($this->once())
             ->method('serialize')
             ->willReturn([
-                'payload' => [],
+                'payload'  => [],
                 'metadata' => [],
             ]);
 
@@ -176,10 +178,10 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
             ->expects($this->once())
             ->method('getColumns')
             ->willReturn([
-                'id' => Type::getType('string'),
-                'aggregate_id' => Type::getType('string'),
+                'id'                => Type::getType('string'),
+                'aggregate_id'      => Type::getType('string'),
                 'aggregate_version' => Type::getType('integer'),
-                'data' => Type::getType('json'),
+                'data'              => Type::getType('json'),
             ]);
         // @phpstan-ignore-next-line
         $this->tableSchema
@@ -191,7 +193,7 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
             ->expects($this->once())
             ->method('mapColumnsToEventData')
             ->willReturn([
-                'payload' => [],
+                'payload'  => [],
                 'metadata' => [],
             ]);
 
@@ -201,10 +203,10 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
             ->method('iterateAssociative')
             ->willReturn(new \ArrayIterator([
                 [
-                    'id' => 'db-unique-id',
-                    'aggregate_id' => 'unique-id',
+                    'id'                => 'db-unique-id',
+                    'aggregate_id'      => 'unique-id',
                     'aggregate_version' => 100,
-                    'data' => json_encode([]),
+                    'data'              => json_encode([]),
                 ],
             ]));
 
@@ -248,10 +250,10 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
             ->expects($this->once())
             ->method('getColumns')
             ->willReturn([
-                'id' => Type::getType('string'),
-                'aggregate_id' => Type::getType('string'),
+                'id'                => Type::getType('string'),
+                'aggregate_id'      => Type::getType('string'),
                 'aggregate_version' => Type::getType('integer'),
-                'data' => Type::getType('json'),
+                'data'              => Type::getType('json'),
             ]);
         // @phpstan-ignore-next-line
         $this->tableSchema
@@ -297,10 +299,10 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
             ->expects($this->once())
             ->method('getColumns')
             ->willReturn([
-                'id' => Type::getType('string'),
-                'aggregate_id' => Type::getType('string'),
+                'id'                => Type::getType('string'),
+                'aggregate_id'      => Type::getType('string'),
                 'aggregate_version' => Type::getType('integer'),
-                'data' => Type::getType('json'),
+                'data'              => Type::getType('json'),
             ]);
         // @phpstan-ignore-next-line
         $this->tableSchema
@@ -317,7 +319,7 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
             ->expects($this->once())
             ->method('mapColumnsToEventData')
             ->willReturn([
-                'payload' => [],
+                'payload'  => [],
                 'metadata' => [],
             ]);
 
@@ -327,10 +329,10 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
             ->method('iterateAssociative')
             ->willReturn(new \ArrayIterator([
                 [
-                    'id' => 'db-unique-id',
-                    'aggregate_id' => 'unique-id',
+                    'id'                => 'db-unique-id',
+                    'aggregate_id'      => 'unique-id',
                     'aggregate_version' => 100,
-                    'data' => json_encode([]),
+                    'data'              => json_encode([]),
                 ],
             ]));
 

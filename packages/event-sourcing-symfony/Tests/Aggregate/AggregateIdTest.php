@@ -11,6 +11,8 @@ use Symfony\Component\Uid\Uuid;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Aggregate\AggregateId
+ *
+ * @internal
  */
 final class AggregateIdTest extends TestCase
 {

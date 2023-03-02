@@ -33,7 +33,7 @@ class BlameableMessageEnricherHandler implements MessageEnricherHandlerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function enrich(MessageInterface $message): MessageInterface
     {
@@ -42,7 +42,7 @@ class BlameableMessageEnricherHandler implements MessageEnricherHandlerInterface
         if ($user instanceof UserInterface) {
             return $message->withMetadata([
                 self::METADATA_BLAMEABLE => [
-                    'id' => method_exists($user, 'getId') ? $user->getId() : null,
+                    'id'         => method_exists($user, 'getId') ? $user->getId() : null,
                     'identifier' => $user->getUserIdentifier(),
                 ],
             ]);

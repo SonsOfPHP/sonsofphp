@@ -13,6 +13,8 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\EventMessageBus
+ *
+ * @internal
  */
 final class EventMessageBusTest extends TestCase
 {

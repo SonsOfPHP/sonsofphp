@@ -20,7 +20,7 @@ final class MessageEnricher implements MessageEnricherInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function enrich(MessageInterface $message): MessageInterface
     {

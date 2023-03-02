@@ -10,32 +10,34 @@ use SonsOfPHP\Component\EventSourcing\Metadata;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\MessageMetadata
+ *
+ * @internal
  */
 final class MessageMetadataTest extends TestCase
 {
     /**
      * @covers ::__construct
      * @covers ::count
-     * @covers ::with
      * @covers ::get
-     * @covers ::has
-     * @covers ::getIterator
-     * @covers ::getEventId
-     * @covers ::getEventType
      * @covers ::getAggregateId
      * @covers ::getAggregateVersion
+     * @covers ::getEventId
+     * @covers ::getEventType
+     * @covers ::getIterator
      * @covers ::getTimestamp
      * @covers ::getTimestampFormat
+     * @covers ::has
+     * @covers ::with
      */
     public function testAllTheThings(): void
     {
         $metadata = new MessageMetadata([
-            Metadata::EVENT_ID => '1234',
-            Metadata::EVENT_TYPE => '5678',
-            Metadata::AGGREGATE_ID => '9012',
+            Metadata::EVENT_ID          => '1234',
+            Metadata::EVENT_TYPE        => '5678',
+            Metadata::AGGREGATE_ID      => '9012',
             Metadata::AGGREGATE_VERSION => 420,
-            Metadata::TIMESTAMP => '2022-04-20 04:20',
-            Metadata::TIMESTAMP_FORMAT => 'c',
+            Metadata::TIMESTAMP         => '2022-04-20 04:20',
+            Metadata::TIMESTAMP_FORMAT  => 'c',
         ]);
         $this->assertCount(6, $metadata);
 

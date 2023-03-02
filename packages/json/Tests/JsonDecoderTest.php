@@ -11,6 +11,8 @@ use SonsOfPHP\Component\Json\JsonException;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Json\JsonDecoder
+ *
+ * @internal
  */
 final class JsonDecoderTest extends TestCase
 {
@@ -21,8 +23,8 @@ final class JsonDecoderTest extends TestCase
     public function testConstructCanReturnArray(): void
     {
         $decoder = new JsonDecoder(true);
-        $ref = new ReflectionObject($decoder);
-        $prop = $ref->getProperty('flags');
+        $ref     = new ReflectionObject($decoder);
+        $prop    = $ref->getProperty('flags');
         $prop->setAccessible(true);
 
         $this->assertSame(\JSON_OBJECT_AS_ARRAY, $prop->getValue($decoder));
@@ -33,7 +35,7 @@ final class JsonDecoderTest extends TestCase
      */
     public function testWithFlagsReturnsNewObject(): void
     {
-        $decoder = new JsonDecoder();
+        $decoder      = new JsonDecoder();
         $decoderOther = $decoder->withFlags(\JSON_OBJECT_AS_ARRAY);
 
         $this->assertNotSame($decoder, $decoderOther);
@@ -44,7 +46,7 @@ final class JsonDecoderTest extends TestCase
      */
     public function testWithoutFlagsReturnsNewObject(): void
     {
-        $decoder = new JsonDecoder();
+        $decoder      = new JsonDecoder();
         $decoderOther = $decoder->withoutFlags(\JSON_OBJECT_AS_ARRAY);
 
         $this->assertNotSame($decoder, $decoderOther);
@@ -57,8 +59,8 @@ final class JsonDecoderTest extends TestCase
     public function testWithoutFlagsDoesntRemoveMoreThanItShould(): void
     {
         $decoder = new JsonDecoder();
-        $ref = new ReflectionObject($decoder);
-        $prop = $ref->getProperty('flags');
+        $ref     = new ReflectionObject($decoder);
+        $prop    = $ref->getProperty('flags');
         $prop->setAccessible(true);
 
         $decoder = $decoder->withoutFlags(\JSON_OBJECT_AS_ARRAY);
@@ -78,8 +80,8 @@ final class JsonDecoderTest extends TestCase
     public function testWithoutFlagsRemovesFlag(): void
     {
         $decoder = new JsonDecoder();
-        $ref = new ReflectionObject($decoder);
-        $prop = $ref->getProperty('flags');
+        $ref     = new ReflectionObject($decoder);
+        $prop    = $ref->getProperty('flags');
         $prop->setAccessible(true);
 
         $decoder = $decoder->withFlags(\JSON_OBJECT_AS_ARRAY);
@@ -95,8 +97,8 @@ final class JsonDecoderTest extends TestCase
     public function testAsArrayAddsCorrectFlag(): void
     {
         $decoder = new JsonDecoder();
-        $ref = new ReflectionObject($decoder);
-        $prop = $ref->getProperty('flags');
+        $ref     = new ReflectionObject($decoder);
+        $prop    = $ref->getProperty('flags');
         $prop->setAccessible(true);
 
         $decoder = $decoder->asArray();
@@ -109,8 +111,8 @@ final class JsonDecoderTest extends TestCase
     public function testChangingDepthActuallyChangesDepth(): void
     {
         $decoder = new JsonDecoder();
-        $ref = new ReflectionObject($decoder);
-        $prop = $ref->getProperty('depth');
+        $ref     = new ReflectionObject($decoder);
+        $prop    = $ref->getProperty('depth');
         $prop->setAccessible(true);
 
         $decoder = $decoder->withDepth(123);
@@ -122,7 +124,7 @@ final class JsonDecoderTest extends TestCase
      */
     public function testDecodeOnSimpleJsonString(): void
     {
-        $json = '{"test":true}';
+        $json    = '{"test":true}';
         $decoder = new JsonDecoder();
 
         $return = $decoder->decode($json);
@@ -135,7 +137,7 @@ final class JsonDecoderTest extends TestCase
      */
     public function testDecodeOnFuckedUpJson(): void
     {
-        $json = '{"test:true}';
+        $json    = '{"test:true}';
         $decoder = new JsonDecoder();
 
         $this->expectException(JsonException::class);

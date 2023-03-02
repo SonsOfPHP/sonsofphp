@@ -12,6 +12,8 @@ use SonsOfPHP\Component\Clock\SystemClock;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Clock\SystemClock
+ *
+ * @internal
  */
 final class SystemClockTest extends TestCase
 {
@@ -30,7 +32,7 @@ final class SystemClockTest extends TestCase
      */
     public function testImmutable(): void
     {
-        $clock = new SystemClock();
+        $clock   = new SystemClock();
         $tickOne = $clock->now();
         usleep(1);
         $tickTwo = $clock->now();

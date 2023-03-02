@@ -12,6 +12,8 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\AllMessageEnricherProvider
+ *
+ * @internal
  */
 final class AllMessageEnricherProviderTest extends TestCase
 {
@@ -26,8 +28,8 @@ final class AllMessageEnricherProviderTest extends TestCase
 
     /**
      * @covers ::__construct
-     * @covers ::register
      * @covers ::getEnrichersForMessage
+     * @covers ::register
      */
     public function testRegisteredHandlerWillReturnWhenGettingEnrichers(): void
     {

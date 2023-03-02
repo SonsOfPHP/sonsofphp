@@ -16,9 +16,9 @@ final class Time implements TimeInterface
 
     public function __construct(int $hour, int $minute, int $second, int $millisecond)
     {
-        $this->hour = $hour;
-        $this->minute = $minute;
-        $this->second = $second;
+        $this->hour        = $hour;
+        $this->minute      = $minute;
+        $this->second      = $second;
         $this->millisecond = $millisecond;
     }
 
@@ -28,7 +28,7 @@ final class Time implements TimeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function toString(): string
     {
@@ -42,7 +42,7 @@ final class Time implements TimeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getHour(): int
     {
@@ -50,7 +50,7 @@ final class Time implements TimeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getMinute(): int
     {
@@ -58,7 +58,7 @@ final class Time implements TimeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getSecond(): int
     {
@@ -66,7 +66,7 @@ final class Time implements TimeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getMillisecond(): int
     {

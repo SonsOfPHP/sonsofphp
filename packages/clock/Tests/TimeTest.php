@@ -10,6 +10,8 @@ use SonsOfPHP\Component\Clock\TimeInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Clock\Time
+ *
+ * @internal
  */
 final class TimeTest extends TestCase
 {

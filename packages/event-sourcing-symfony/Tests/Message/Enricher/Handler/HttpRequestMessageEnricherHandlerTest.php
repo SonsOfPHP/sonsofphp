@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\HttpRequestMessageEnricherHandler
+ *
+ * @internal
  */
 final class HttpRequestMessageEnricherHandlerTest extends TestCase
 {

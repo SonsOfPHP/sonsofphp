@@ -10,6 +10,8 @@ use SonsOfPHP\Component\EventSourcing\Metadata;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Doctrine\EventSourcing\TableSchemaV1
+ *
+ * @internal
  */
 final class TableSchemaV1Test extends TestCase
 {
@@ -83,11 +85,11 @@ final class TableSchemaV1Test extends TestCase
 
         $eventData = [
             'metadata' => [
-                Metadata::EVENT_ID => 'event-id',
-                Metadata::EVENT_TYPE => 'event-type',
-                Metadata::TIMESTAMP => '2022-04-20',
-                Metadata::TIMESTAMP_FORMAT => 'Y-m-d',
-                Metadata::AGGREGATE_ID => 'aggregate-id',
+                Metadata::EVENT_ID          => 'event-id',
+                Metadata::EVENT_TYPE        => 'event-type',
+                Metadata::TIMESTAMP         => '2022-04-20',
+                Metadata::TIMESTAMP_FORMAT  => 'Y-m-d',
+                Metadata::AGGREGATE_ID      => 'aggregate-id',
                 Metadata::AGGREGATE_VERSION => 123,
             ],
             'payload' => [],
@@ -113,11 +115,11 @@ final class TableSchemaV1Test extends TestCase
 
         $result = [
             'metadata' => serialize([
-                Metadata::EVENT_ID => 'event-id',
-                Metadata::EVENT_TYPE => 'event-type',
-                Metadata::TIMESTAMP => '2022-04-20',
-                Metadata::TIMESTAMP_FORMAT => 'Y-m-d',
-                Metadata::AGGREGATE_ID => 'aggregate-id',
+                Metadata::EVENT_ID          => 'event-id',
+                Metadata::EVENT_TYPE        => 'event-type',
+                Metadata::TIMESTAMP         => '2022-04-20',
+                Metadata::TIMESTAMP_FORMAT  => 'Y-m-d',
+                Metadata::AGGREGATE_ID      => 'aggregate-id',
                 Metadata::AGGREGATE_VERSION => 123,
             ]),
             'payload' => serialize([]),

@@ -15,7 +15,7 @@ use SonsOfPHP\Component\Money\Query\CurrencyProvider\HasCurrencyQuery;
 abstract class AbstractCurrencyProvider implements CurrencyProviderInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function query(CurrencyProviderQueryInterface $query)
     {
@@ -23,7 +23,7 @@ abstract class AbstractCurrencyProvider implements CurrencyProviderInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function hasCurrency($currency): bool
     {
@@ -31,7 +31,7 @@ abstract class AbstractCurrencyProvider implements CurrencyProviderInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getCurrency($currency): CurrencyInterface
     {

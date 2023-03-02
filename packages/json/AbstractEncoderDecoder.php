@@ -23,7 +23,7 @@ abstract class AbstractEncoderDecoder
 
     public function withFlags(int $flag)
     {
-        $that = clone $this;
+        $that        = clone $this;
         $that->flags = $this->flags | $flag;
 
         return $that;
@@ -31,7 +31,7 @@ abstract class AbstractEncoderDecoder
 
     public function withoutFlags(int $flag)
     {
-        $that = clone $this;
+        $that        = clone $this;
         $that->flags = $this->flags & ~$flag;
 
         return $that;
@@ -39,7 +39,7 @@ abstract class AbstractEncoderDecoder
 
     public function withDepth(int $depth)
     {
-        $that = clone $this;
+        $that        = clone $this;
         $that->depth = $depth;
 
         return $that;

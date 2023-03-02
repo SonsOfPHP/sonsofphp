@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Aggregate;
 
 use Generator;
-use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 
@@ -18,16 +17,13 @@ abstract class AbstractAggregate implements AggregateInterface
     private AggregateVersionInterface $version;
     private array $pendingEvents = [];
 
-    /**
-     * @param AggregateIdInterface|string $id
-     */
     final public function __construct(AggregateIdInterface|string $id)
     {
         if (!$id instanceof AggregateIdInterface) {
             $id = new AggregateId($id);
         }
 
-        $this->id = $id;
+        $this->id      = $id;
         $this->version = new AggregateVersion();
     }
 
@@ -45,7 +41,7 @@ abstract class AbstractAggregate implements AggregateInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     final public function getAggregateId(): AggregateIdInterface
     {
@@ -53,7 +49,7 @@ abstract class AbstractAggregate implements AggregateInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     final public function getAggregateVersion(): AggregateVersionInterface
     {
@@ -71,18 +67,18 @@ abstract class AbstractAggregate implements AggregateInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     final public function getPendingEvents(): iterable
     {
-        $events = $this->pendingEvents;
+        $events              = $this->pendingEvents;
         $this->pendingEvents = [];
 
         return $events;
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     final public static function buildFromEvents(AggregateIdInterface $id, Generator $events): AggregateInterface
     {
@@ -104,8 +100,8 @@ abstract class AbstractAggregate implements AggregateInterface
     {
         // Prepopulate with some metadata
         $event = $event->withMetadata([
-            Metadata::AGGREGATE_ID => $this->getAggregateId()->toString(),
-            Metadata::TIMESTAMP => (new \DateTimeImmutable())->format(Metadata::DEFAULT_TIMESTAMP_FORMAT),
+            Metadata::AGGREGATE_ID     => $this->getAggregateId()->toString(),
+            Metadata::TIMESTAMP        => (new \DateTimeImmutable())->format(Metadata::DEFAULT_TIMESTAMP_FORMAT),
             Metadata::TIMESTAMP_FORMAT => Metadata::DEFAULT_TIMESTAMP_FORMAT,
         ]);
 
@@ -132,11 +128,11 @@ abstract class AbstractAggregate implements AggregateInterface
      */
     final protected function applyEvent(MessageInterface $event): void
     {
-        $parts = explode('\\', $event::class);
+        $parts  = explode('\\', $event::class);
         $method = 'apply'.end($parts);
 
         if (method_exists($this, $method)) {
-            $this->$method($event); // @phpstan-ignore-line
+            $this->{$method}($event); // @phpstan-ignore-line
         }
 
         $this->version = $this->version->next();

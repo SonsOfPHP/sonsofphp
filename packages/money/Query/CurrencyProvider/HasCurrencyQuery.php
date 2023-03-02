@@ -34,7 +34,7 @@ class HasCurrencyQuery implements CurrencyProviderQueryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function queryFrom(CurrencyProviderInterface $provider)
     {

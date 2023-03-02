@@ -18,12 +18,14 @@ class Msg extends AbstractMessage
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\AbstractMessage
+ *
+ * @internal
  */
 final class AbstractMessageTest extends TestCase
 {
     /**
-     * @covers ::new
      * @covers ::__construct
+     * @covers ::new
      */
     public function testItHasTheRightInterface(): void
     {
@@ -68,12 +70,12 @@ final class AbstractMessageTest extends TestCase
     }
 
     /**
+     * @covers ::getAggregateId
+     * @covers ::getAggregateVersion
      * @covers ::getEventId
      * @covers ::getEventType
      * @covers ::getTimestamp
      * @covers ::getTimestampFormat
-     * @covers ::getAggregateId
-     * @covers ::getAggregateVersion
      */
     public function testGettersWithEmptyMetadata(): void
     {
@@ -89,22 +91,22 @@ final class AbstractMessageTest extends TestCase
     }
 
     /**
-     * @covers ::withMetadata
+     * @covers ::getAggregateId
+     * @covers ::getAggregateVersion
      * @covers ::getEventId
      * @covers ::getEventType
      * @covers ::getTimestamp
      * @covers ::getTimestampFormat
-     * @covers ::getAggregateId
-     * @covers ::getAggregateVersion
+     * @covers ::withMetadata
      */
     public function testGettersWithMetadata(): void
     {
         $message = Msg::new()->withMetadata([
-            Metadata::EVENT_ID => 'event-id',
-            Metadata::EVENT_TYPE => 'event.type',
-            Metadata::TIMESTAMP => '2022-04-20',
-            Metadata::TIMESTAMP_FORMAT => 'Y-m-d',
-            Metadata::AGGREGATE_ID => 'aggregate-id',
+            Metadata::EVENT_ID          => 'event-id',
+            Metadata::EVENT_TYPE        => 'event.type',
+            Metadata::TIMESTAMP         => '2022-04-20',
+            Metadata::TIMESTAMP_FORMAT  => 'Y-m-d',
+            Metadata::AGGREGATE_ID      => 'aggregate-id',
             Metadata::AGGREGATE_VERSION => 123,
         ]);
 
@@ -117,8 +119,8 @@ final class AbstractMessageTest extends TestCase
     }
 
     /**
-     * @covers ::withMetadata
      * @covers ::getAggregateId
+     * @covers ::withMetadata
      */
     public function testGetAggregateIdReturnsCorrectInterface(): void
     {
@@ -130,8 +132,8 @@ final class AbstractMessageTest extends TestCase
     }
 
     /**
-     * @covers ::withMetadata
      * @covers ::getAggregateVersion
+     * @covers ::withMetadata
      */
     public function testGetAggregateVersionReturnsCorrectInterface(): void
     {

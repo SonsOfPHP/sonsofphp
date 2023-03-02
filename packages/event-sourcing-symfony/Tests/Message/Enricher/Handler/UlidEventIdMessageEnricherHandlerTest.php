@@ -13,6 +13,8 @@ use Symfony\Component\Uid\Ulid;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\UlidEventIdMessageEnricherHandler
+ *
+ * @internal
  */
 final class UlidEventIdMessageEnricherHandlerTest extends TestCase
 {

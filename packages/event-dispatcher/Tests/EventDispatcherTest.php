@@ -11,6 +11,8 @@ use SonsOfPHP\Component\EventDispatcher\ListenerProvider;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventDispatcher\EventDispatcher
+ *
+ * @internal
  */
 final class EventDispatcherTest extends TestCase
 {
@@ -43,7 +45,7 @@ final class EventDispatcherTest extends TestCase
     {
         $dispatcher = new EventDispatcher(new ListenerProvider());
 
-        $event = new \stdClass();
+        $event  = new \stdClass();
         $return = $dispatcher->dispatch($event);
         $this->assertSame($event, $return);
     }

@@ -14,7 +14,7 @@ final class Zone implements ZoneInterface
 
     public function __construct(string $name, ZoneOffsetInterface $offset)
     {
-        $this->name = $name;
+        $this->name   = $name;
         $this->offset = $offset;
     }
 
@@ -24,7 +24,7 @@ final class Zone implements ZoneInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function toString(): string
     {
@@ -32,7 +32,7 @@ final class Zone implements ZoneInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getName(): string
     {
@@ -40,7 +40,7 @@ final class Zone implements ZoneInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getOffset(): ZoneOffsetInterface
     {

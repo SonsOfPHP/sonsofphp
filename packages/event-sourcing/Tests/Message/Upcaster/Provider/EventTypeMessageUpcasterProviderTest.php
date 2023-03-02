@@ -13,6 +13,8 @@ use SonsOfPHP\Component\EventSourcing\Metadata;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\EventTypeMessageUpcasterProvider
+ *
+ * @internal
  */
 final class EventTypeMessageUpcasterProviderTest extends TestCase
 {
@@ -54,8 +56,8 @@ final class EventTypeMessageUpcasterProviderTest extends TestCase
     }
 
     /**
-     * @covers ::register
      * @covers ::getUpcastersForEventData
+     * @covers ::register
      */
     public function testGetUpcastersForEventData(): void
     {

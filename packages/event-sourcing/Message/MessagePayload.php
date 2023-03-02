@@ -33,7 +33,7 @@ final class MessagePayload implements \IteratorAggregate, \Countable
 
     public function with(string $key, $value)
     {
-        $that = clone $this;
+        $that                = clone $this;
         $that->payload[$key] = $value;
 
         return $that;

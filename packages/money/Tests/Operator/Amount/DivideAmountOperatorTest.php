@@ -13,6 +13,8 @@ use SonsOfPHP\Component\Money\Operator\Amount\DivideAmountOperator;
  * @coversDefaultClass \SonsOfPHP\Component\Money\Operator\Amount\DivideAmountOperator
  *
  * @uses \SonsOfPHP\Component\Money\Amount
+ *
+ * @internal
  */
 final class DivideAmountOperatorTest extends TestCase
 {
@@ -32,7 +34,7 @@ final class DivideAmountOperatorTest extends TestCase
      */
     public function testApplyWillDivideAmountAndReturnNewObject(): void
     {
-        $amount = new Amount(100);
+        $amount   = new Amount(100);
         $operator = new DivideAmountOperator(5);
 
         $output = $operator->apply($amount);

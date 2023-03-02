@@ -20,7 +20,7 @@ class IsLessThanOrEqualToMoneyQuery implements MoneyQueryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function queryFrom(MoneyInterface $money)
     {

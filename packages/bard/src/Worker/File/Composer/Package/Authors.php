@@ -20,7 +20,7 @@ final class Authors implements WorkerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function apply(JsonFile $pkgComposerJsonFile): JsonFile
     {

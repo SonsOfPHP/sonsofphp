@@ -10,6 +10,8 @@ use SonsOfPHP\Component\Money\AmountInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Amount
+ *
+ * @internal
  */
 final class AmountTest extends TestCase
 {

@@ -13,6 +13,8 @@ use SonsOfPHP\Component\Money\Operator\Amount\AmountOperatorInterface;
  * @coversDefaultClass \SonsOfPHP\Component\Money\Operator\Amount\AddAmountOperator
  *
  * @uses \SonsOfPHP\Component\Money\Amount
+ *
+ * @internal
  */
 final class AddAmountOperatorTest extends TestCase
 {
@@ -21,7 +23,7 @@ final class AddAmountOperatorTest extends TestCase
      */
     public function testItHasTheCorrectInterface(): void
     {
-        $amount = new Amount(100);
+        $amount   = new Amount(100);
         $operator = new AddAmountOperator($amount);
 
         $this->assertInstanceOf(AmountOperatorInterface::class, $operator);
@@ -33,7 +35,7 @@ final class AddAmountOperatorTest extends TestCase
      */
     public function testApplyWillAddAmountAndReturnNewObject(): void
     {
-        $amount = new Amount(100);
+        $amount   = new Amount(100);
         $operator = new AddAmountOperator($amount);
 
         $output = $operator->apply($amount);

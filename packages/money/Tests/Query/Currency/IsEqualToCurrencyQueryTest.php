@@ -13,6 +13,8 @@ use SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery;
  * @coversDefaultClass \SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery
  *
  * @uses \SonsOfPHP\Component\Money\Currency
+ *
+ * @internal
  */
 final class IsEqualToCurrencyQueryTest extends TestCase
 {
@@ -22,7 +24,7 @@ final class IsEqualToCurrencyQueryTest extends TestCase
     public function testItHasTheCorrectInterface(): void
     {
         $currency = new Currency('usd');
-        $query = new IsEqualToCurrencyQuery($currency);
+        $query    = new IsEqualToCurrencyQuery($currency);
 
         $this->assertInstanceOf(CurrencyQueryInterface::class, $query);
     }
@@ -34,7 +36,7 @@ final class IsEqualToCurrencyQueryTest extends TestCase
     public function testQueryFrom(): void
     {
         $currency = new Currency('usd');
-        $query = new IsEqualToCurrencyQuery($currency);
+        $query    = new IsEqualToCurrencyQuery($currency);
 
         $this->assertTrue($query->queryFrom($currency));
     }

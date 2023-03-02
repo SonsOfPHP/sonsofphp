@@ -13,6 +13,8 @@ use SonsOfPHP\Component\Money\Query\Amount\IsPositiveAmountQuery;
  * @coversDefaultClass \SonsOfPHP\Component\Money\Query\Amount\IsPositiveAmountQuery
  *
  * @uses \SonsOfPHP\Component\Money\Amount
+ *
+ * @internal
  */
 final class IsPositiveAmountQueryTest extends TestCase
 {
@@ -32,7 +34,7 @@ final class IsPositiveAmountQueryTest extends TestCase
     public function testQuery(): void
     {
         $amount = new Amount(100);
-        $query = new IsPositiveAmountQuery();
+        $query  = new IsPositiveAmountQuery();
 
         $this->assertTrue($query->queryFrom($amount));
     }

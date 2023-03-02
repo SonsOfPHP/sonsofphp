@@ -13,6 +13,8 @@ use SonsOfPHP\Component\Money\Operator\Amount\SubtractAmountOperator;
  * @coversDefaultClass \SonsOfPHP\Component\Money\Operator\Amount\SubtractAmountOperator
  *
  * @uses \SonsOfPHP\Component\Money\Amount
+ *
+ * @internal
  */
 final class SubtractAmountOperatorTest extends TestCase
 {
@@ -21,7 +23,7 @@ final class SubtractAmountOperatorTest extends TestCase
      */
     public function testItHasTheCorrectInterface(): void
     {
-        $amount = new Amount(100);
+        $amount   = new Amount(100);
         $operator = new SubtractAmountOperator($amount);
 
         $this->assertInstanceOf(AmountOperatorInterface::class, $operator);
@@ -33,7 +35,7 @@ final class SubtractAmountOperatorTest extends TestCase
      */
     public function testApplyWillSubtractAmountAndReturnNewObject(): void
     {
-        $amount = new Amount(75);
+        $amount   = new Amount(75);
         $operator = new SubtractAmountOperator($amount);
 
         $output = $operator->apply(new Amount(100));

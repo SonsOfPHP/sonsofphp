@@ -14,6 +14,8 @@ use SonsOfPHP\Component\EventSourcing\Metadata;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\Upcaster\MessageUpcaster
+ *
+ * @internal
  */
 final class MessageUpcasterTest extends TestCase
 {
@@ -54,7 +56,7 @@ final class MessageUpcasterTest extends TestCase
                 Metadata::EVENT_TYPE => 'sons',
             ],
         ];
-        $upcaster = new MessageUpcaster($provider);
+        $upcaster     = new MessageUpcaster($provider);
         $upcastedData = $upcaster->upcast($eventData);
 
         $this->assertSame($eventData, $upcastedData);

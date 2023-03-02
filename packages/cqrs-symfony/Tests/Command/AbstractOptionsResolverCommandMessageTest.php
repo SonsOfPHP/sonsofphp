@@ -11,6 +11,8 @@ use SonsOfPHP\Component\Cqrs\Command\CommandMessageInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\Cqrs\Command\AbstractOptionsResolverCommandMessage
+ *
+ * @internal
  */
 final class AbstractOptionsResolverCommandMessageTest extends TestCase
 {
@@ -27,8 +29,8 @@ final class AbstractOptionsResolverCommandMessageTest extends TestCase
     /**
      * @covers ::__construct
      * @covers ::configureOptions
-     * @covers ::getOptions
      * @covers ::getOption
+     * @covers ::getOptions
      */
     public function testConstructor(): void
     {

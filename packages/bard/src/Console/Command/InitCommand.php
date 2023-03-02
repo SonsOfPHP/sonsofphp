@@ -18,7 +18,7 @@ final class InitCommand extends AbstractCommand
     protected static $defaultName = 'init';
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     // public function __construct()
     // {
@@ -26,7 +26,7 @@ final class InitCommand extends AbstractCommand
     // }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function configure(): void
     {
@@ -36,14 +36,14 @@ final class InitCommand extends AbstractCommand
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {

@@ -12,6 +12,8 @@ use Symfony\Component\Messenger\Stamp\StampInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\Cqrs\CommandMessageBus
+ *
+ * @internal
  */
 final class CommandMessageBusTest extends TestCase
 {

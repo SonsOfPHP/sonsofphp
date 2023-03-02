@@ -15,12 +15,14 @@ use SonsOfPHP\Component\Money\MoneyInterface;
  *
  * @uses \SonsOfPHP\Component\Money\Amount
  * @uses \SonsOfPHP\Component\Money\Currency
+ *
+ * @internal
  */
 final class MoneyTest extends TestCase
 {
     /**
-     * @covers ::__construct
      * @covers ::__callStatic
+     * @covers ::__construct
      */
     public function testItHasTheCorrectInterface(): void
     {
@@ -32,8 +34,8 @@ final class MoneyTest extends TestCase
     }
 
     /**
-     * @covers ::__construct
      * @covers ::__callStatic
+     * @covers ::__construct
      * @covers ::getAmount
      * @covers ::getCurrency
      */
@@ -79,9 +81,9 @@ final class MoneyTest extends TestCase
 
     /**
      * @covers ::compare
-     * @covers ::query
-     * @covers ::isLessThan
      * @covers ::isGreaterThan
+     * @covers ::isLessThan
+     * @covers ::query
      */
     public function testCompare(): void
     {

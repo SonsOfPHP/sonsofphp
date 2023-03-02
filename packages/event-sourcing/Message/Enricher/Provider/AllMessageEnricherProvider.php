@@ -33,7 +33,7 @@ final class AllMessageEnricherProvider implements MessageEnricherProviderInterfa
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getEnrichersForMessage(MessageInterface $message): iterable
     {

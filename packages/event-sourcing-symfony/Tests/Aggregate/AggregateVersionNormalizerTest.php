@@ -13,6 +13,8 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Aggregate\AggregateVersionNormalizer
+ *
+ * @internal
  */
 final class AggregateVersionNormalizerTest extends TestCase
 {
@@ -28,8 +30,8 @@ final class AggregateVersionNormalizerTest extends TestCase
     }
 
     /**
-     * @covers ::supportsNormalization
      * @covers ::normalize
+     * @covers ::supportsNormalization
      */
     public function testItWillNormalize(): void
     {

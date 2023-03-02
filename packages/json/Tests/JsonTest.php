@@ -10,6 +10,8 @@ use SonsOfPHP\Component\Json\JsonException;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Json\Json
+ *
+ * @internal
  */
 final class JsonTest extends TestCase
 {
@@ -32,7 +34,7 @@ final class JsonTest extends TestCase
      */
     public function testEncode(): void
     {
-        $value = ['test' => true];
+        $value  = ['test' => true];
         $return = Json::encode($value);
         $this->assertSame('{"test":true}', $return);
     }
@@ -52,7 +54,7 @@ final class JsonTest extends TestCase
      */
     public function testDecode(): void
     {
-        $json = '{"test":true}';
+        $json   = '{"test":true}';
         $return = Json::decode($json);
         $this->assertInstanceOf('stdClass', $return);
         $this->assertTrue($return->test);
@@ -73,7 +75,7 @@ final class JsonTest extends TestCase
      */
     public function testDecodeWillReturnAnArray(): void
     {
-        $json = '{"test":true}';
+        $json   = '{"test":true}';
         $return = Json::decode($json, true);
         $this->assertIsArray($return);
         $this->assertTrue($return['test']);

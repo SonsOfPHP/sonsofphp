@@ -26,7 +26,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 class AggregateVersionNormalizer implements NormalizerInterface, DenormalizerInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @return int
      */
@@ -36,7 +36,7 @@ class AggregateVersionNormalizer implements NormalizerInterface, DenormalizerInt
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function supportsNormalization($data, string $format = null, array $context = []): bool
     {
@@ -44,7 +44,7 @@ class AggregateVersionNormalizer implements NormalizerInterface, DenormalizerInt
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @return AggregateVersionInterface
      */
@@ -58,7 +58,7 @@ class AggregateVersionNormalizer implements NormalizerInterface, DenormalizerInt
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function supportsDenormalization($data, string $type, string $format = null, array $context = []): bool
     {

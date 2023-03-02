@@ -23,20 +23,20 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 class MessageNormalizer implements NormalizerInterface, DenormalizerInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @return array
      */
     public function normalize($object, string $format = null, array $context = [])
     {
         return [
-            'payload' => $object->getPayload(),
+            'payload'  => $object->getPayload(),
             'metadata' => $object->getMetadata(),
         ];
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function supportsNormalization($data, string $format = null, array $context = []): bool
     {
@@ -44,7 +44,7 @@ class MessageNormalizer implements NormalizerInterface, DenormalizerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @return MessageInterface
      */
@@ -54,7 +54,7 @@ class MessageNormalizer implements NormalizerInterface, DenormalizerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function supportsDenormalization($data, string $type, string $format = null, array $context = []): bool
     {

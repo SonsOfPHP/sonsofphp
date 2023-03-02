@@ -29,7 +29,7 @@ final class DateTime implements DateTimeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function toString(): string
     {
@@ -42,7 +42,7 @@ final class DateTime implements DateTimeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getDate(): DateInterface
     {
@@ -50,7 +50,7 @@ final class DateTime implements DateTimeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getTime(): TimeInterface
     {
@@ -58,7 +58,7 @@ final class DateTime implements DateTimeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getZone(): ZoneInterface
     {

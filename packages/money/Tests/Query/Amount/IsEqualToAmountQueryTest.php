@@ -13,6 +13,8 @@ use SonsOfPHP\Component\Money\Query\Amount\IsEqualToAmountQuery;
  * @coversDefaultClass \SonsOfPHP\Component\Money\Query\Amount\IsEqualToAmountQuery
  *
  * @uses \SonsOfPHP\Component\Money\Amount
+ *
+ * @internal
  */
 final class IsEqualToAmountQueryTest extends TestCase
 {
@@ -22,7 +24,7 @@ final class IsEqualToAmountQueryTest extends TestCase
     public function testItHasTheCorrectInterface(): void
     {
         $amount = new Amount(100);
-        $query = new IsEqualToAmountQuery($amount);
+        $query  = new IsEqualToAmountQuery($amount);
 
         $this->assertInstanceOf(AmountQueryInterface::class, $query);
     }
@@ -34,7 +36,7 @@ final class IsEqualToAmountQueryTest extends TestCase
     public function testQuery(): void
     {
         $amount = new Amount(100);
-        $query = new IsEqualToAmountQuery($amount);
+        $query  = new IsEqualToAmountQuery($amount);
 
         $this->assertTrue($query->queryFrom($amount));
     }

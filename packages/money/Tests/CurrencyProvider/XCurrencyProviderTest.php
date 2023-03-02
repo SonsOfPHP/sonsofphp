@@ -11,6 +11,8 @@ use SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider
+ *
+ * @internal
  */
 final class XCurrencyProviderTest extends TestCase
 {

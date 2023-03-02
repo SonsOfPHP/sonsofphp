@@ -19,7 +19,7 @@ use Symfony\Component\Uid\Uuid;
 class UuidEventIdMessageEnricherHandler implements MessageEnricherHandlerInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function enrich(MessageInterface $message): MessageInterface
     {

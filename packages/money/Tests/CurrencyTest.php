@@ -10,12 +10,14 @@ use SonsOfPHP\Component\Money\CurrencyInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Currency
+ *
+ * @internal
  */
 final class CurrencyTest extends TestCase
 {
     /**
-     * @covers ::__construct
      * @covers ::__callStatic
+     * @covers ::__construct
      */
     public function testItHasTheCorrectInterface(): void
     {
@@ -37,8 +39,8 @@ final class CurrencyTest extends TestCase
     }
 
     /**
-     * @covers ::getNumericCode
      * @covers ::getMinorUnit
+     * @covers ::getNumericCode
      */
     public function testDefaults(): void
     {
@@ -63,9 +65,9 @@ final class CurrencyTest extends TestCase
      */
     public function testIsEqualTo(): void
     {
-        $usd = Currency::USD();
+        $usd   = Currency::USD();
         $other = Currency::USD();
-        $jpy = Currency::JPY();
+        $jpy   = Currency::JPY();
 
         $this->assertFalse($usd->isEqualTo($jpy));
         $this->assertNotSame($usd, $other);

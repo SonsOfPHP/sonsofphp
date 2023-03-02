@@ -14,6 +14,8 @@ use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\Serializer\MessageSerializer
+ *
+ * @internal
  */
 final class MessageSerializerTest extends TestCase
 {
@@ -22,14 +24,14 @@ final class MessageSerializerTest extends TestCase
      */
     public function testItHasTheRightInterface(): void
     {
-        $provider = $this->createMock(MessageProviderInterface::class);
+        $provider   = $this->createMock(MessageProviderInterface::class);
         $serializer = new MessageSerializer($provider);
         $this->assertInstanceOf(MessageSerializerInterface::class, $serializer);
     }
 
     /**
-     * @covers ::serialize
      * @covers ::ensureRequiredMetadataExists
+     * @covers ::serialize
      */
     public function testSerialize(): void
     {
@@ -40,10 +42,10 @@ final class MessageSerializerTest extends TestCase
         $message = FakeSerializableMessage::new()->withPayload([
             'key' => 'value',
         ])->withMetadata([
-            Metadata::EVENT_ID => 'event-id',
-            Metadata::TIMESTAMP => '2022-04-20',
-            Metadata::TIMESTAMP_FORMAT => 'Y-m-d',
-            Metadata::AGGREGATE_ID => 'aggregate-id',
+            Metadata::EVENT_ID          => 'event-id',
+            Metadata::TIMESTAMP         => '2022-04-20',
+            Metadata::TIMESTAMP_FORMAT  => 'Y-m-d',
+            Metadata::AGGREGATE_ID      => 'aggregate-id',
             Metadata::AGGREGATE_VERSION => 123,
         ]);
 
@@ -62,13 +64,13 @@ final class MessageSerializerTest extends TestCase
     public function testDeserialize(): void
     {
         $data = [
-            'payload' => [],
+            'payload'  => [],
             'metadata' => [
-                Metadata::EVENT_TYPE => 'user.registered',
-                Metadata::EVENT_ID => 'event-id',
-                Metadata::TIMESTAMP => '2022-04-20',
-                Metadata::TIMESTAMP_FORMAT => 'Y-m-d',
-                Metadata::AGGREGATE_ID => 'aggregate-id',
+                Metadata::EVENT_TYPE        => 'user.registered',
+                Metadata::EVENT_ID          => 'event-id',
+                Metadata::TIMESTAMP         => '2022-04-20',
+                Metadata::TIMESTAMP_FORMAT  => 'Y-m-d',
+                Metadata::AGGREGATE_ID      => 'aggregate-id',
                 Metadata::AGGREGATE_VERSION => 123,
             ],
         ];

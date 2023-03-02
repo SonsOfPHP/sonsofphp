@@ -26,7 +26,7 @@ final class InMemoryFeatureToggleProvider implements FeatureToggleProviderInterf
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getFeatures(): iterable
     {

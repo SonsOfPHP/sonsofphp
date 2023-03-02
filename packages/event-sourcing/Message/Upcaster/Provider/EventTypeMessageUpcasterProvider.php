@@ -27,7 +27,7 @@ final class EventTypeMessageUpcasterProvider implements MessageUpcasterProviderI
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getUpcastersForEventData(array $eventData): iterable
     {

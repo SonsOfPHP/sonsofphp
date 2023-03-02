@@ -12,7 +12,7 @@ use SonsOfPHP\Component\Money\Currency;
 final class XCurrencyProvider extends AbstractCurrencyProvider
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getCurrencies(): iterable
     {

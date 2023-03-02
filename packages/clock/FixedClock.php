@@ -37,7 +37,7 @@ final class FixedClock implements ClockInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function now(): DateTimeInterface
     {

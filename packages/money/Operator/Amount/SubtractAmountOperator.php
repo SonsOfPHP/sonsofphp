@@ -20,7 +20,7 @@ class SubtractAmountOperator implements AmountOperatorInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function apply(AmountInterface $amount): AmountInterface
     {

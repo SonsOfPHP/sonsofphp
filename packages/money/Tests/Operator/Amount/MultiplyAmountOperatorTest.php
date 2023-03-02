@@ -13,6 +13,8 @@ use SonsOfPHP\Component\Money\Operator\Amount\MultiplyAmountOperator;
  * @coversDefaultClass \SonsOfPHP\Component\Money\Operator\Amount\MultiplyAmountOperator
  *
  * @uses \SonsOfPHP\Component\Money\Amount
+ *
+ * @internal
  */
 final class MultiplyAmountOperatorTest extends TestCase
 {
@@ -32,7 +34,7 @@ final class MultiplyAmountOperatorTest extends TestCase
      */
     public function testApplyWillMultiplyAmountAndReturnNewObject(): void
     {
-        $amount = new Amount(10);
+        $amount   = new Amount(10);
         $operator = new MultiplyAmountOperator(10);
 
         $output = $operator->apply($amount);

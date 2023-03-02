@@ -11,13 +11,15 @@ use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
+ *
+ * @internal
  */
 final class AggregateVersionTest extends TestCase
 {
     /**
      * @covers ::__construct
-     * @covers ::zero
      * @covers ::fromInt
+     * @covers ::zero
      */
     public function testItHasTheRightInterface(): void
     {
@@ -63,8 +65,8 @@ final class AggregateVersionTest extends TestCase
     }
 
     /**
-     * @covers ::zero
      * @covers ::toInt
+     * @covers ::zero
      */
     public function testZero(): void
     {

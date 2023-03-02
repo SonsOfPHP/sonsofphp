@@ -12,6 +12,8 @@ use Symfony\Component\Messenger\Stamp\HandledStamp;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\Cqrs\QueryMessageBus
+ *
+ * @internal
  */
 final class QueryMessageBusTest extends TestCase
 {

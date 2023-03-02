@@ -13,6 +13,8 @@ use SonsOfPHP\Component\Money\Query\Amount\IsZeroAmountQuery;
  * @coversDefaultClass \SonsOfPHP\Component\Money\Query\Amount\IsZeroAmountQuery
  *
  * @uses \SonsOfPHP\Component\Money\Amount
+ *
+ * @internal
  */
 final class IsZeroAmountQueryTest extends TestCase
 {
@@ -32,7 +34,7 @@ final class IsZeroAmountQueryTest extends TestCase
     public function testQuery(): void
     {
         $amount = new Amount(0);
-        $query = new IsZeroAmountQuery();
+        $query  = new IsZeroAmountQuery();
 
         $this->assertTrue($query->queryFrom($amount));
     }

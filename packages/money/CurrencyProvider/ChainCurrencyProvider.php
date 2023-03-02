@@ -26,7 +26,7 @@ final class ChainCurrencyProvider extends AbstractCurrencyProvider
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getCurrencies(): iterable
     {

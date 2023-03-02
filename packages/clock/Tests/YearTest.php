@@ -10,6 +10,8 @@ use SonsOfPHP\Component\Clock\YearInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Clock\Year
+ *
+ * @internal
  */
 final class YearTest extends TestCase
 {

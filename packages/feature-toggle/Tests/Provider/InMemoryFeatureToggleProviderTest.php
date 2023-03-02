@@ -12,6 +12,8 @@ use SonsOfPHP\Component\FeatureToggle\ToggleInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\FeatureToggle\Provider\InMemoryFeatureToggleProvider
+ *
+ * @internal
  */
 final class InMemoryFeatureToggleProviderTest extends TestCase
 {

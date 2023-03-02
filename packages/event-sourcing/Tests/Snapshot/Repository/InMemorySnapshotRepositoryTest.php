@@ -13,6 +13,8 @@ use SonsOfPHP\Component\EventSourcing\Snapshot\Snapshot;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Snapshot\Repository\InMemorySnapshotRepository
+ *
+ * @internal
  */
 final class InMemorySnapshotRepositoryTest extends TestCase
 {
@@ -26,8 +28,8 @@ final class InMemorySnapshotRepositoryTest extends TestCase
     }
 
     /**
-     * @covers ::persist
      * @covers ::find
+     * @covers ::persist
      */
     public function testPersistAndFind(): void
     {

@@ -28,17 +28,17 @@ class DoctrineDbalMessageRepository implements MessageRepositoryInterface
 
     public function __construct(Connection $connection, MessageSerializerInterface $serializer, TableSchemaInterface $tableSchema)
     {
-        $this->connection = $connection;
-        $this->serializer = $serializer;
+        $this->connection  = $connection;
+        $this->serializer  = $serializer;
         $this->tableSchema = $tableSchema;
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function persist(MessageInterface $message): void
     {
-        $id = $message->getAggregateId();
+        $id      = $message->getAggregateId();
         $version = $message->getAggregateVersion();
 
         if (null === $id || null === $version) {
@@ -69,7 +69,7 @@ class DoctrineDbalMessageRepository implements MessageRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function find(string|AggregateIdInterface $id, int|AggregateVersionInterface $version = null): iterable
     {
@@ -81,8 +81,8 @@ class DoctrineDbalMessageRepository implements MessageRepositoryInterface
             $version = new AggregateVersion($version);
         }
 
-        $columnsWithTypes = $this->tableSchema->getColumns();
-        $aggregateIdColumn = $this->tableSchema->getAggregateIdColumn();
+        $columnsWithTypes       = $this->tableSchema->getColumns();
+        $aggregateIdColumn      = $this->tableSchema->getAggregateIdColumn();
         $aggregateVersionColumn = $this->tableSchema->getAggregateVersionColumn();
 
         $builder = $this->connection->createQueryBuilder();
@@ -102,7 +102,7 @@ class DoctrineDbalMessageRepository implements MessageRepositoryInterface
         $resultCount = 0;
         foreach ($results as $result) {
             ++$resultCount;
-            $data = $this->tableSchema->mapColumnsToEventData($result);
+            $data    = $this->tableSchema->mapColumnsToEventData($result);
             $message = $this->serializer->deserialize($data);
 
             yield $message;
