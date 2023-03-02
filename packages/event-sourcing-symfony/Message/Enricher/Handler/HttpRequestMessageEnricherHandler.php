@@ -43,7 +43,7 @@ class HttpRequestMessageEnricherHandler implements MessageEnricherHandlerInterfa
                 self::METADATA_HTTP_REQUEST => [
                     'http_user_agent' => $request->server->get('HTTP_USER_AGENT'),
                     'client_ip' => $request->getClientIp(),
-                    'content_type' => $request->getContentType(),
+                    'content_type' => $request->getContentTypeFormat(),
                     'method' => $request->getMethod(),
                     'host' => $request->getHost(),
                     'path_info' => $request->getPathInfo(),

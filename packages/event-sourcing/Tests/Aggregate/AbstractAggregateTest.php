@@ -19,38 +19,17 @@ use SonsOfPHP\Component\EventSourcing\Tests\FakeAggregate;
 final class AbstractAggregateTest extends TestCase
 {
     /**
-     * @covers ::new
-     * @covers ::__construct
-     * @covers ::getAggregateId
-     * @covers ::getAggregateVersion
-     */
-    public function testNewStaticWithAggregateId(): void
-    {
-        $abstract = $this->getMockForAbstractClass(AbstractAggregate::class, ['id']);
-
-        $aggregate = $abstract::new(AggregateId::fromString('id'));
-        $this->assertInstanceOf(AggregateIdInterface::class, $aggregate->getAggregateId());
-        $this->assertInstanceOf(AggregateVersionInterface::class, $aggregate->getAggregateVersion());
-
-        $this->assertSame('id', $aggregate->getAggregateId()->toString());
-        $this->assertSame(0, $aggregate->getAggregateVersion()->toInt());
-    }
-
-    /**
      * @covers ::hasPendingEvents
      */
     public function testItHasPendingEvents(): void
     {
-        $abstract = $this->getMockForAbstractClass(AbstractAggregate::class, ['id']);
-        $this->assertFalse($abstract->hasPendingEvents());
+        $aggregate = new FakeAggregate('id');
+        $this->assertFalse($aggregate->hasPendingEvents());
 
         $message = $this->createMock(MessageInterface::class);
-        $refObj = new \ReflectionObject($abstract);
-        $refMet = $refObj->getMethod('raiseEvent');
-        $refMet->setAccessible(true);
-        $refMet->invoke($abstract, $message);
+        $aggregate->raiseThisEvent($message);
 
-        $this->assertTrue($abstract->hasPendingEvents());
+        $this->assertTrue($aggregate->hasPendingEvents());
     }
 
     /**
@@ -59,16 +38,11 @@ final class AbstractAggregateTest extends TestCase
      */
     public function testRaiseEventWillApplyMetadata(): void
     {
-        $abstract = $this->getMockForAbstractClass(AbstractAggregate::class, ['id']);
-
         $message = $this->createMock(MessageInterface::class);
         $message->expects($this->once())->method('withMetadata');
 
-        $aggregate = $abstract::new(AggregateId::fromString('id'));
-        $refObj = new \ReflectionObject($aggregate);
-        $refMet = $refObj->getMethod('raiseEvent');
-        $refMet->setAccessible(true);
-        $refMet->invoke($aggregate, $message);
+        $aggregate = new FakeAggregate('id');
+        $aggregate->raiseThisEvent($message);
     }
 
     /**
@@ -78,10 +52,9 @@ final class AbstractAggregateTest extends TestCase
      */
     public function testRaiseEventWillAddEventToPendingEvents(): void
     {
-        $abstract = $this->getMockForAbstractClass(AbstractAggregate::class, ['id']);
         $message = $this->createMock(MessageInterface::class);
 
-        $aggregate = $abstract::new(AggregateId::fromString('id'));
+        $aggregate = new FakeAggregate('id');
         $this->assertCount(0, $aggregate->getPendingEvents());
 
         $refObj = new \ReflectionObject($aggregate);
@@ -99,8 +72,6 @@ final class AbstractAggregateTest extends TestCase
      */
     public function testBuildFromEvents(): void
     {
-        $abstract = $this->getMockForAbstractClass(AbstractAggregate::class, ['id']);
-
         $events = function () {
             yield $this->createMock(MessageInterface::class);
         };

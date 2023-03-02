@@ -60,7 +60,7 @@ final class AggregateRepositoryTest extends TestCase
             $this->messageRepository
         );
 
-        $aggregate = FakeAggregate::new(AggregateId::fromString('unique-id'));
+        $aggregate = new FakeAggregate('unique-id');
 
         $message = Msg::new();
         $aggregate->raiseThisEvent($message);
@@ -80,7 +80,7 @@ final class AggregateRepositoryTest extends TestCase
             $this->messageRepository
         );
 
-        $aggregate = FakeAggregate::new(AggregateId::fromString('unique-id'));
+        $aggregate = new FakeAggregate('unique-id');
 
         $message = Msg::new();
         $aggregate->raiseThisEvent($message);
@@ -103,7 +103,7 @@ final class AggregateRepositoryTest extends TestCase
             $this->messageRepository
         );
 
-        $aggregate = FakeAggregate::new(AggregateId::fromString('unique-id'));
+        $aggregate = new FakeAggregate('unique-id');
 
         $message = Msg::new();
         $aggregate->raiseThisEvent($message);
