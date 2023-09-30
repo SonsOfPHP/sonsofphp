@@ -64,4 +64,14 @@ class AggregateVersionNormalizer implements NormalizerInterface, DenormalizerInt
     {
         return is_a($type, AggregateVersionInterface::class, true);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            AggregateVersionInterface::class => true,
+        ];
+    }
 }

@@ -64,4 +64,14 @@ class AggregateIdNormalizer implements NormalizerInterface, DenormalizerInterfac
     {
         return is_a($type, AggregateIdInterface::class, true);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            AggregateIdInterface::class => true,
+        ];
+    }
 }

@@ -68,4 +68,14 @@ class MessageNormalizer implements NormalizerInterface, DenormalizerInterface
 
         return is_subclass_of($type, MessageInterface::class, true);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            MessageInterface::class => true,
+        ];
+    }
 }
