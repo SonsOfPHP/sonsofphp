@@ -11,9 +11,6 @@ use SonsOfPHP\Component\Money\Currency;
  */
 final class XCurrencyProvider extends AbstractCurrencyProvider
 {
-    /**
-     * {@inheritDoc}
-     */
     public function getCurrencies(): iterable
     {
         yield Currency::XAF(950, 0);

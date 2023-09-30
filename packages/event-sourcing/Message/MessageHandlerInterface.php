@@ -11,6 +11,4 @@ namespace SonsOfPHP\Component\EventSourcing\Message;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface MessageHandlerInterface
-{
-}
+interface MessageHandlerInterface {}

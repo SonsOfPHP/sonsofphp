@@ -20,17 +20,11 @@ final class Feature implements FeatureInterface
         $this->toggle = $toggle;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getKey(): string
     {
         return $this->key;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function isEnabled(ContextInterface $context): bool
     {
         return $this->toggle->isEnabled($context);

@@ -35,7 +35,7 @@ jobs:
               with:
                   php-version: '${{ matrix.php-version }}'
                   coverage: none
-            - run: make composer-install psalm-install
+            - run: make composer-install phpunit-install psalm-install
             - run: make psalm-github
             - name: Upload Security Analysis to Github
               if: github.ref == 'refs/heads/main'

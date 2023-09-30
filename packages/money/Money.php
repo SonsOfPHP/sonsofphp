@@ -27,9 +27,6 @@ final class Money implements MoneyInterface
     private AmountInterface $amount;
     private CurrencyInterface $currency;
 
-    /**
-     * @param mixed $amount
-     */
     public function __construct($amount, CurrencyInterface $currency)
     {
         if (!$amount instanceof AmountInterface) {
@@ -72,129 +69,81 @@ final class Money implements MoneyInterface
         return 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function with(MoneyOperatorInterface $operator): MoneyInterface
     {
         return $operator->apply($this);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function query(MoneyQueryInterface $query)
     {
         return $query->queryFrom($this);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getAmount(): AmountInterface
     {
         return $this->amount;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getCurrency(): CurrencyInterface
     {
         return $this->currency;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function isEqualTo(MoneyInterface $money): bool
     {
         return $this->query(new IsEqualToMoneyQuery($money));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function isGreaterThan(MoneyInterface $money): bool
     {
         return $this->query(new IsGreaterThanMoneyQuery($money));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function isGreaterThanOrEqualTo(MoneyInterface $money): bool
     {
         return $this->query(new IsGreaterThanOrEqualToMoneyQuery($money));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function isLessThan(MoneyInterface $money): bool
     {
         return $this->query(new IsLessThanMoneyQuery($money));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function isLessThanOrEqualTo(MoneyInterface $money): bool
     {
         return $this->query(new IsLessThanOrEqualToMoneyQuery($money));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function isNegative(): bool
     {
         return $this->query(new IsNegativeMoneyQuery());
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function isPositive(): bool
     {
         return $this->query(new IsPositiveMoneyQuery());
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function isZero(): bool
     {
         return $this->query(new IsZeroMoneyQuery());
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function add(MoneyInterface $money): MoneyInterface
     {
         return $this->with(new AddMoneyOperator($money));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function subtract(MoneyInterface $money): MoneyInterface
     {
         return $this->with(new SubtractMoneyOperator($money));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function multiply($multiplier): MoneyInterface
     {
         return $this->with(new MultiplyMoneyOperator($multiplier));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function divide($divisor): MoneyInterface
     {
         return $this->with(new DivideMoneyOperator($divisor));

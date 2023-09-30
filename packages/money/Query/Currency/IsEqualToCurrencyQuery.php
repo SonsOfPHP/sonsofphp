@@ -18,9 +18,6 @@ class IsEqualToCurrencyQuery implements CurrencyQueryInterface
         $this->currency = $currency;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function queryFrom(CurrencyInterface $currency)
     {
         return $currency->getCurrencyCode() === $this->currency->getCurrencyCode();

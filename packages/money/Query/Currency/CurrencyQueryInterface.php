@@ -15,8 +15,6 @@ interface CurrencyQueryInterface extends QueryInterface
 {
     /**
      * @throws MoneyException
-     *
-     * @return mixed
      */
     public function queryFrom(CurrencyInterface $currency);
 }

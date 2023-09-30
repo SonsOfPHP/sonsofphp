@@ -22,9 +22,6 @@ final class UpdateRequireSection implements WorkerInterface
         $this->pkgComposerJsonFile = $pkgComposerJsonFile;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function apply(JsonFile $rootComposerJsonFile): JsonFile
     {
         $rootReplace = $rootComposerJsonFile->getSection('replace');

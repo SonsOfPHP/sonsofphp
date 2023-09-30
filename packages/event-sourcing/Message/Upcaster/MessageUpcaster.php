@@ -18,9 +18,6 @@ final class MessageUpcaster implements MessageUpcasterInterface
         $this->provider = $provider;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function upcast(array $data): array
     {
         $handlers = $this->provider->getUpcastersForEventData($data);

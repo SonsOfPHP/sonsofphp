@@ -15,9 +15,6 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
  */
 final class NullMessageEnricherProvider implements MessageEnricherProviderInterface
 {
-    /**
-     * {@inheritDoc}
-     */
     public function getEnrichersForMessage(MessageInterface $message): iterable
     {
         return [];

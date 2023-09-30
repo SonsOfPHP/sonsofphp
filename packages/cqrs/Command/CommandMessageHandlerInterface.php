@@ -9,6 +9,4 @@ use SonsOfPHP\Component\Cqrs\MessageHandlerInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface CommandMessageHandlerInterface extends MessageHandlerInterface
-{
-}
+interface CommandMessageHandlerInterface extends MessageHandlerInterface {}

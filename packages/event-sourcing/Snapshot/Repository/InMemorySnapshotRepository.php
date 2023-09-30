@@ -14,17 +14,11 @@ final class InMemorySnapshotRepository implements SnapshotRepositoryInterface
 {
     private array $storage = [];
 
-    /**
-     * {@inheritDoc}
-     */
     public function find(AggregateIdInterface $id): ?SnapshotInterface
     {
         return $this->storage[$id->toString()] ?? null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function persist(SnapshotInterface $snapshot): void
     {
         $this->storage[$snapshot->getAggregateId()->toString()] = $snapshot;

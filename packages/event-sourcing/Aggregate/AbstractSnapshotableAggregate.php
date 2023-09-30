@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Aggregate;
 
-use Generator;
 use SonsOfPHP\Component\EventSourcing\Snapshot\Snapshot;
 use SonsOfPHP\Component\EventSourcing\Snapshot\SnapshotInterface;
 
@@ -16,8 +15,6 @@ abstract class AbstractSnapshotableAggregate extends AbstractAggregate
     /**
      * Return the current state of the aggregate. This is
      * used as the snapshot state.
-     *
-     * @return mixed
      */
     abstract protected function createSnapshotState();
 
@@ -37,7 +34,7 @@ abstract class AbstractSnapshotableAggregate extends AbstractAggregate
     /**
      * @see SnapshotableAggregateInterface::buildFromSnapshotAndEvents
      */
-    public static function buildFromSnapshotAndEvents(SnapshotInterface $snapshot, Generator $messages): SnapshotableAggregateInterface
+    public static function buildFromSnapshotAndEvents(SnapshotInterface $snapshot, \Generator $messages): SnapshotableAggregateInterface
     {
         $aggregate = static::buildFromSnapshot($snapshot);
         foreach ($messages as $msg) {

@@ -13,6 +13,4 @@ use Exception;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class ArithmeticException extends Exception
-{
-}
+class ArithmeticException extends \Exception {}

@@ -35,8 +35,6 @@ class QueryMessageBus
 
     /**
      * Handle the Query and return the results.
-     *
-     * @return mixed
      */
     public function handle(object $query)
     {

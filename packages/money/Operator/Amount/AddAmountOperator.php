@@ -19,9 +19,6 @@ class AddAmountOperator implements AmountOperatorInterface
         $this->amount = $amount;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function apply(AmountInterface $amount): AmountInterface
     {
         return new Amount($amount->toFloat() + $this->amount->toFloat());

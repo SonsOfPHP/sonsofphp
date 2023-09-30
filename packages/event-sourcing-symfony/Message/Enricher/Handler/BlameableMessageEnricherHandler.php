@@ -29,12 +29,8 @@ class BlameableMessageEnricherHandler implements MessageEnricherHandlerInterface
 
     public function __construct(
         private Security $security
-    ) {
-    }
+    ) {}
 
-    /**
-     * {@inheritDoc}
-     */
     public function enrich(MessageInterface $message): MessageInterface
     {
         $user = $this->security->getUser();

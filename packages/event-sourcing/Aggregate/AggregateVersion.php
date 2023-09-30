@@ -24,49 +24,31 @@ final class AggregateVersion implements AggregateVersionInterface
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public static function fromInt(int $version): AggregateVersionInterface
     {
         return new static($version);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public static function zero(): AggregateVersionInterface
     {
         return new static(0);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function next(): AggregateVersionInterface
     {
         return new static($this->version + 1);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function prev(): AggregateVersionInterface
     {
         return new static($this->version - 1);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function equals(AggregateVersionInterface $version): bool
     {
         return $this->version === $version->toInt();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function toInt(): int
     {
         return $this->version;

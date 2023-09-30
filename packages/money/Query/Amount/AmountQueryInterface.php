@@ -15,8 +15,6 @@ interface AmountQueryInterface extends QueryInterface
 {
     /**
      * @throws MoneyException
-     *
-     * @return mixed
      */
     public function queryFrom(AmountInterface $amount);
 }

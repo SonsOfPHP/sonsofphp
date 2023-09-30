@@ -26,13 +26,10 @@ final class EventTypeMessageUpcasterProvider implements MessageUpcasterProviderI
         $this->upcasters[$eventType][] = $upcaster;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getUpcastersForEventData(array $eventData): iterable
     {
         if (empty($eventData['metadata'][Metadata::EVENT_TYPE])) {
-            throw new EventSourcingException('Event Data does not have metadata.'.Metadata::EVENT_TYPE.' set so this provider cannot be used');
+            throw new EventSourcingException('Event Data does not have metadata.' . Metadata::EVENT_TYPE . ' set so this provider cannot be used');
         }
 
         $eventType = $eventData['metadata'][Metadata::EVENT_TYPE];

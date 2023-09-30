@@ -25,10 +25,6 @@ class MessageSerializer implements MessageSerializerInterface
     private MessageEnricherInterface $messageEnricher;
     private MessageUpcasterInterface $messageUpcaster;
 
-    /**
-     * @param MessageEnricherInterface $messageEnricher
-     * @param MessageUpcasterInterface $messageUpcaster
-     */
     public function __construct(
         MessageProviderInterface $messageProvider,
         MessageEnricherInterface $messageEnricher = null,
@@ -39,9 +35,6 @@ class MessageSerializer implements MessageSerializerInterface
         $this->messageUpcaster = $messageUpcaster ?? new MessageUpcaster(new NullMessageUpcasterProvider());
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function serialize(SerializableMessageInterface $message): array
     {
         // @var SerializableMessageInterface $message
@@ -52,9 +45,6 @@ class MessageSerializer implements MessageSerializerInterface
         return $message->serialize(); // @phpstan-ignore-line
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function deserialize(array $data): SerializableMessageInterface
     {
         $data = $this->messageUpcaster->upcast($data);
@@ -86,9 +76,9 @@ class MessageSerializer implements MessageSerializerInterface
         if (\count($requiredMetadata) != \count(array_intersect_key(array_flip($requiredMetadata), $metadata))) {
             $values = [];
             foreach ($metadata as $k => $v) {
-                $values[] = $k.' => '.$v;
+                $values[] = $k . ' => ' . $v;
             }
-            throw new EventSourcingException('Message Metadata is missing one or more required values. Current metadata: '.implode(',', $values));
+            throw new EventSourcingException('Message Metadata is missing one or more required values. Current metadata: ' . implode(',', $values));
         }
     }
 }

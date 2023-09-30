@@ -26,9 +26,6 @@ final class Amount implements AmountInterface
 {
     private string $amount;
 
-    /**
-     * @param mixed $amount
-     */
     public function __construct($amount)
     {
         $this->amount = (string) $amount;
@@ -42,145 +39,91 @@ final class Amount implements AmountInterface
         return $this->toString();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function toString(): string
     {
         return $this->amount;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function toInt(): int
     {
         return (int) $this->amount;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function toFloat(): float
     {
         return (float) $this->amount;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getAmount(): string
     {
         return $this->amount;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function with(AmountOperatorInterface $operator): AmountInterface
     {
         return $operator->apply($this);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function query(AmountQueryInterface $query)
     {
         return $query->queryFrom($this);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function add(AmountInterface $amount): AmountInterface
     {
         return $this->with(new AddAmountOperator($amount));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function subtract(AmountInterface $amount): AmountInterface
     {
         return $this->with(new SubtractAmountOperator($amount));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function multiply($multiplier): AmountInterface
     {
         return $this->with(new MultiplyAmountOperator($multiplier));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function divide($divisor): AmountInterface
     {
         return $this->with(new DivideAmountOperator($divisor));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function isEqualTo(AmountInterface $amount): bool
     {
         return $this->query(new IsEqualToAmountQuery($amount));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function isGreaterThan(AmountInterface $amount): bool
     {
         return $this->query(new IsGreaterThanAmountQuery($amount));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function isGreaterThanOrEqualTo(AmountInterface $amount): bool
     {
         return $this->query(new IsGreaterThanOrEqualToAmountQuery($amount));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function isLessThan(AmountInterface $amount): bool
     {
         return $this->query(new IsLessThanAmountQuery($amount));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function isLessThanOrEqualTo(AmountInterface $amount): bool
     {
         return $this->query(new IsLessThanOrEqualToAmountQuery($amount));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function isNegative(): bool
     {
         return $this->query(new IsNegativeAmountQuery());
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function isPositive(): bool
     {
         return $this->query(new IsPositiveAmountQuery());
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function isZero(): bool
     {
         return $this->query(new IsZeroAmountQuery());

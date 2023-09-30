@@ -11,9 +11,6 @@ use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
  */
 abstract class AbstractSerializableMessage extends AbstractMessage implements SerializableMessageInterface
 {
-    /**
-     * {@inheritDoc}
-     */
     final public function serialize(): array
     {
         return [
@@ -22,9 +19,6 @@ abstract class AbstractSerializableMessage extends AbstractMessage implements Se
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     final public static function deserialize(array $data): SerializableMessageInterface
     {
         if (!isset($data['payload']) || !isset($data['metadata'])) {

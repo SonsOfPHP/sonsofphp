@@ -28,12 +28,8 @@ class HttpRequestMessageEnricherHandler implements MessageEnricherHandlerInterfa
 
     public function __construct(
         private RequestStack $requestStack
-    ) {
-    }
+    ) {}
 
-    /**
-     * {@inheritDoc}
-     */
     public function enrich(MessageInterface $message): MessageInterface
     {
         $request = $this->requestStack->getMainRequest();

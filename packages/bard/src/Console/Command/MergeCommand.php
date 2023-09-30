@@ -39,9 +39,6 @@ final class MergeCommand extends AbstractCommand
         parent::__construct();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     protected function configure(): void
     {
         $this
@@ -50,12 +47,9 @@ final class MergeCommand extends AbstractCommand
         ;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
-        $bardConfigFile = $input->getOption('working-dir').'/bard.json';
+        $bardConfigFile = $input->getOption('working-dir') . '/bard.json';
         if (!file_exists($bardConfigFile)) {
             throw new \RuntimeException(sprintf('"%s" file does not exist', $bardConfigFile));
         }
@@ -64,33 +58,30 @@ final class MergeCommand extends AbstractCommand
             ->objectAsArray()
             ->decode(file_get_contents($bardConfigFile));
 
-        $this->mainComposerFile = $input->getOption('working-dir').'/composer.json';
+        $this->mainComposerFile = $input->getOption('working-dir') . '/composer.json';
         if (!file_exists($this->mainComposerFile)) {
             throw new \RuntimeException(sprintf('"%s" file does not exist', $this->mainComposerFile));
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->formatter = $this->getHelper('formatter');
 
-        $rootComposerJsonFile = new JsonFile($input->getOption('working-dir').'/composer.json');
+        $rootComposerJsonFile = new JsonFile($input->getOption('working-dir') . '/composer.json');
 
         // Clean out a few of the sections in root composer.json file
         $rootComposerJsonFile = $rootComposerJsonFile->setSection('autoload', []);
         $rootComposerJsonFile = $rootComposerJsonFile->setSection('autoload-dev', []);
 
         foreach ($this->bardConfig['packages'] as $pkg) {
-            $packageComposerFile = realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json');
+            $packageComposerFile = realpath($input->getOption('working-dir') . '/' . $pkg['path'] . '/composer.json');
             if (!file_exists($packageComposerFile)) {
                 $output->writeln(sprintf('No "%s" found, skipping', $packageComposerFile));
                 continue;
             }
 
-            $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json'));
+            $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir') . '/' . $pkg['path'] . '/composer.json'));
 
             $output->writeln($this->formatter->formatSection('bard', sprintf('Merging "%s" into root composer.json', $pkgComposerJsonFile->getSection('name'))));
 

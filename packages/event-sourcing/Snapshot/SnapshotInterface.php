@@ -20,8 +20,5 @@ interface SnapshotInterface
 
     public function getAggregateVersion(): AggregateVersionInterface;
 
-    /**
-     * @return mixed
-     */
     public function getState();
 }

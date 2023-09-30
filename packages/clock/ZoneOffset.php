@@ -21,9 +21,6 @@ final class ZoneOffset implements ZoneOffsetInterface
         return $this->toString();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function toString(): string
     {
         $lead    = '+';
@@ -42,9 +39,6 @@ final class ZoneOffset implements ZoneOffsetInterface
         );
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getSeconds(): int
     {
         return $this->seconds;

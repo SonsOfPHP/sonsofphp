@@ -28,17 +28,11 @@ final class ReleaseCommand extends AbstractCommand
     private $releaseVersion;
     private bool $isDryRun = true;
 
-    /**
-     * {@inheritDoc}
-     */
     // public function __construct()
     // {
     //    parent::__construct();
     // }
 
-    /**
-     * {@inheritDoc}
-     */
     protected function configure(): void
     {
         $this
@@ -60,9 +54,6 @@ final class ReleaseCommand extends AbstractCommand
             );
     }
 
-    /**
-     * {@inheritDoc}
-     */
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         $version = $input->getArgument('release');
@@ -70,7 +61,7 @@ final class ReleaseCommand extends AbstractCommand
             return;
         }
 
-        $this->bardConfig = new JsonFile($input->getOption('working-dir').'/bard.json');
+        $this->bardConfig = new JsonFile($input->getOption('working-dir') . '/bard.json');
         $currentVersion   = new Version($this->bardConfig->getSection('version'));
 
         if (\in_array($version, ['major', 'minor', 'patch'])) {
@@ -96,16 +87,8 @@ final class ReleaseCommand extends AbstractCommand
         $this->isDryRun = $input->getOption('dry-run');
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    protected function interact(InputInterface $input, OutputInterface $output): void
-    {
-    }
+    protected function interact(InputInterface $input, OutputInterface $output): void {}
 
-    /**
-     * {@inheritDoc}
-     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $formatter = $this->getHelper('formatter');
@@ -124,13 +107,13 @@ final class ReleaseCommand extends AbstractCommand
             $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
         }
 
-        $rootComposerJsonFile = new JsonFile($input->getOption('working-dir').'/composer.json');
+        $rootComposerJsonFile = new JsonFile($input->getOption('working-dir') . '/composer.json');
 
         // 1. Update "replace" in main composer.json with the Package Names
         // "package/name": "self.version"
         $io->section('updating root composer.json "replace" section with package information');
         foreach ($this->bardConfig->getSection('packages') as $pkg) {
-            $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json'));
+            $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir') . '/' . $pkg['path'] . '/composer.json'));
             $output->writeln([
                 $formatter->formatSection($pkgComposerJsonFile->getSection('name'), 'Updating root <info>composer.json</info>'),
             ]);
@@ -160,8 +143,8 @@ final class ReleaseCommand extends AbstractCommand
             ['git', 'add', '.'],
             ['git', 'commit', '--allow-empty', '-m', sprintf('"Preparing for Release v%s"', $this->releaseVersion->toString())],
             ['git', 'push', 'origin', $input->getOption('branch')],
-            ['git', 'tag', 'v'.$this->releaseVersion->toString()],
-            ['git', 'push', 'origin', 'v'.$this->releaseVersion->toString()],
+            ['git', 'tag', 'v' . $this->releaseVersion->toString()],
+            ['git', 'push', 'origin', 'v' . $this->releaseVersion->toString()],
         ];
         foreach ($processCommands as $cmd) {
             $process = new Process($cmd);
@@ -176,7 +159,7 @@ final class ReleaseCommand extends AbstractCommand
         $io->newLine();
         $io->title(sprintf('updating package repos with release %s', $this->releaseVersion->toString()));
         foreach ($this->bardConfig->getSection('packages') as $pkg) {
-            $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir').'/'.$pkg['path'].'/composer.json'));
+            $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir') . '/' . $pkg['path'] . '/composer.json'));
             $pkgName             = $pkgComposerJsonFile->getSection('name');
             $io->text(sprintf('Package <info>%s</> is being released', $pkgName));
             $processCommands = [

@@ -19,9 +19,6 @@ final class MessageEnricher implements MessageEnricherInterface
         $this->provider = $provider;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function enrich(MessageInterface $message): MessageInterface
     {
         $enrichers = $this->provider->getEnrichersForMessage($message);

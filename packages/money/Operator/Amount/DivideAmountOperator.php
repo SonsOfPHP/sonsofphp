@@ -19,9 +19,6 @@ class DivideAmountOperator implements AmountOperatorInterface
         $this->divisor = $divisor;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function apply(AmountInterface $amount): AmountInterface
     {
         return new Amount($amount->getAmount() / $this->divisor);

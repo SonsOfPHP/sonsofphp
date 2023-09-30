@@ -9,9 +9,6 @@ namespace SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider;
  */
 final class NullMessageUpcasterProvider implements MessageUpcasterProviderInterface
 {
-    /**
-     * {@inheritDoc}
-     */
     public function getUpcastersForEventData(array $eventData): iterable
     {
         return [];

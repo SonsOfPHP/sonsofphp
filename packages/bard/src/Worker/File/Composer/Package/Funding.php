@@ -19,9 +19,6 @@ final class Funding implements WorkerInterface
         $this->rootComposerJsonFile = $rootComposerJsonFile;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function apply(JsonFile $pkgComposerJsonFile): JsonFile
     {
         $rootSection = $this->rootComposerJsonFile->getSection('funding');

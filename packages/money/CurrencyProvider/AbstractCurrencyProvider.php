@@ -14,25 +14,16 @@ use SonsOfPHP\Component\Money\Query\CurrencyProvider\HasCurrencyQuery;
  */
 abstract class AbstractCurrencyProvider implements CurrencyProviderInterface
 {
-    /**
-     * {@inheritDoc}
-     */
     public function query(CurrencyProviderQueryInterface $query)
     {
         return $query->queryFrom($this);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function hasCurrency($currency): bool
     {
         return $this->query(new HasCurrencyQuery($currency));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getCurrency($currency): CurrencyInterface
     {
         return $this->query(new GetCurrencyQuery($currency));

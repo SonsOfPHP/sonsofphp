@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Json\Tests;
 
 use PHPUnit\Framework\TestCase;
-use ReflectionObject;
 use SonsOfPHP\Component\Json\JsonDecoder;
 use SonsOfPHP\Component\Json\JsonException;
 
@@ -23,7 +22,7 @@ final class JsonDecoderTest extends TestCase
     public function testConstructCanReturnArray(): void
     {
         $decoder = new JsonDecoder(true);
-        $ref     = new ReflectionObject($decoder);
+        $ref     = new \ReflectionObject($decoder);
         $prop    = $ref->getProperty('flags');
         $prop->setAccessible(true);
 
@@ -59,7 +58,7 @@ final class JsonDecoderTest extends TestCase
     public function testWithoutFlagsDoesntRemoveMoreThanItShould(): void
     {
         $decoder = new JsonDecoder();
-        $ref     = new ReflectionObject($decoder);
+        $ref     = new \ReflectionObject($decoder);
         $prop    = $ref->getProperty('flags');
         $prop->setAccessible(true);
 
@@ -80,7 +79,7 @@ final class JsonDecoderTest extends TestCase
     public function testWithoutFlagsRemovesFlag(): void
     {
         $decoder = new JsonDecoder();
-        $ref     = new ReflectionObject($decoder);
+        $ref     = new \ReflectionObject($decoder);
         $prop    = $ref->getProperty('flags');
         $prop->setAccessible(true);
 
@@ -97,7 +96,7 @@ final class JsonDecoderTest extends TestCase
     public function testAsArrayAddsCorrectFlag(): void
     {
         $decoder = new JsonDecoder();
-        $ref     = new ReflectionObject($decoder);
+        $ref     = new \ReflectionObject($decoder);
         $prop    = $ref->getProperty('flags');
         $prop->setAccessible(true);
 
@@ -111,7 +110,7 @@ final class JsonDecoderTest extends TestCase
     public function testChangingDepthActuallyChangesDepth(): void
     {
         $decoder = new JsonDecoder();
-        $ref     = new ReflectionObject($decoder);
+        $ref     = new \ReflectionObject($decoder);
         $prop    = $ref->getProperty('depth');
         $prop->setAccessible(true);
 

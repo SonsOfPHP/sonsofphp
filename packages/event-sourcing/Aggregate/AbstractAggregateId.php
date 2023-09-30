@@ -24,33 +24,21 @@ abstract class AbstractAggregateId implements AggregateIdInterface
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     final public function __toString(): string
     {
         return $this->toString();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     final public function toString(): string
     {
         return $this->id;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     final public static function fromString(string $id): AggregateIdInterface
     {
         return new static($id);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     final public function equals(AggregateIdInterface $that): bool
     {
         return $this->toString() === $that->toString();

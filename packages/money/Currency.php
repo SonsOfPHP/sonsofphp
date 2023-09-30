@@ -16,11 +16,7 @@ final class Currency implements CurrencyInterface
     private ?int $numericCode;
     private ?int $minorUnit;
 
-    /**
-     * @param int $numericCode
-     * @param int $minorUnit
-     */
-    public function __construct(string $currencyCode, ?int $numericCode = null, ?int $minorUnit = null)
+    public function __construct(string $currencyCode, int $numericCode = null, int $minorUnit = null)
     {
         $this->currencyCode = strtoupper($currencyCode);
         $this->numericCode  = $numericCode;
@@ -50,41 +46,26 @@ final class Currency implements CurrencyInterface
         return new static($currencyCode, $numericCode, $minorUnit);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function query(CurrencyQueryInterface $query)
     {
         return $query->queryFrom($this);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getCurrencyCode(): string
     {
         return $this->currencyCode;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getNumericCode(): ?int
     {
         return $this->numericCode;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getMinorUnit(): ?int
     {
         return $this->minorUnit;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function isEqualTo(CurrencyInterface $currency): bool
     {
         return $this->query(new IsEqualToCurrencyQuery($currency));

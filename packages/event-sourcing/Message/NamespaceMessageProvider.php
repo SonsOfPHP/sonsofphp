@@ -20,9 +20,6 @@ class NamespaceMessageProvider implements MessageProviderInterface
         $this->namespace = $namespace;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getEventTypeForMessage($message): string
     {
         if (\is_object($message)) {
@@ -42,12 +39,9 @@ class NamespaceMessageProvider implements MessageProviderInterface
         return $eventType;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getMessageClassForEventType(string $eventType): string
     {
-        $fqcn = $this->namespace.'\\'.$eventType;
+        $fqcn = $this->namespace . '\\' . $eventType;
 
         if (!class_exists($fqcn)) {
             throw new EventSourcingException(sprintf('Could not find "%s" for event "%s"', $fqcn, $eventType));

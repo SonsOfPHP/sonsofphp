@@ -12,6 +12,4 @@ namespace SonsOfPHP\Component\EventSourcing\Aggregate;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class AggregateId extends AbstractAggregateId
-{
-}
+final class AggregateId extends AbstractAggregateId {}

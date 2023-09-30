@@ -11,7 +11,7 @@ namespace SonsOfPHP\Component\Json;
  */
 class JsonDecoder extends AbstractEncoderDecoder
 {
-    public function __construct(?bool $associative = null, ?int $depth = null, ?int $flags = null)
+    public function __construct(bool $associative = null, int $depth = null, int $flags = null)
     {
         parent::__construct($flags, $depth);
 

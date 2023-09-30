@@ -18,9 +18,6 @@ use Symfony\Component\Uid\Uuid;
  */
 class UuidEventIdMessageEnricherHandler implements MessageEnricherHandlerInterface
 {
-    /**
-     * {@inheritDoc}
-     */
     public function enrich(MessageInterface $message): MessageInterface
     {
         return $message->withMetadata([

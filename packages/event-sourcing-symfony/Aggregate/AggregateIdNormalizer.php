@@ -26,8 +26,6 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 class AggregateIdNormalizer implements NormalizerInterface, DenormalizerInterface
 {
     /**
-     * {@inheritDoc}
-     *
      * @return string
      */
     public function normalize($object, string $format = null, array $context = [])
@@ -35,17 +33,12 @@ class AggregateIdNormalizer implements NormalizerInterface, DenormalizerInterfac
         return (string) $object;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function supportsNormalization($data, string $format = null, array $context = []): bool
     {
         return $data instanceof AggregateIdInterface;
     }
 
     /**
-     * {@inheritDoc}
-     *
      * @return AggregateIdInterface
      */
     public function denormalize($data, string $type, string $format = null, array $context = [])
@@ -57,11 +50,15 @@ class AggregateIdNormalizer implements NormalizerInterface, DenormalizerInterfac
         return $type::fromString($data);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function supportsDenormalization($data, string $type, string $format = null, array $context = []): bool
     {
         return is_a($type, AggregateIdInterface::class, true);
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            AggregateIdInterface::class => true,
+        ];
     }
 }

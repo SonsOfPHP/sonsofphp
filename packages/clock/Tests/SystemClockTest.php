@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock\Tests;
 
-use DateTimeImmutable;
-use DateTimeZone;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Clock\ClockInterface;
 use SonsOfPHP\Component\Clock\SystemClock;
@@ -37,8 +35,8 @@ final class SystemClockTest extends TestCase
         usleep(1);
         $tickTwo = $clock->now();
 
-        $this->assertInstanceOf(DateTimeImmutable::class, $tickOne);
-        $this->assertInstanceOf(DateTimeImmutable::class, $tickTwo);
+        $this->assertInstanceOf(\DateTimeImmutable::class, $tickOne);
+        $this->assertInstanceOf(\DateTimeImmutable::class, $tickTwo);
         $this->assertTrue($tickOne < $tickTwo);
     }
 
@@ -58,7 +56,7 @@ final class SystemClockTest extends TestCase
      */
     public function testSetTimezoneWithObject(): void
     {
-        $clock = new SystemClock(new DateTimeZone('America/New_York'));
+        $clock = new SystemClock(new \DateTimeZone('America/New_York'));
         $this->assertSame('America/New_York', $clock->getZone()->getName());
     }
 

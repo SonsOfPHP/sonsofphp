@@ -28,9 +28,6 @@ final class DateTime implements DateTimeInterface
         return $this->toString();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function toString(): string
     {
         return sprintf(
@@ -41,25 +38,16 @@ final class DateTime implements DateTimeInterface
         );
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getDate(): DateInterface
     {
         return $this->date;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getTime(): TimeInterface
     {
         return $this->time;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getZone(): ZoneInterface
     {
         return $this->zone;

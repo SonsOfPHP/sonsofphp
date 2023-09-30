@@ -11,9 +11,6 @@ use SonsOfPHP\Component\Money\AmountInterface;
  */
 class IsZeroAmountQuery implements AmountQueryInterface
 {
-    /**
-     * {@inheritDoc}
-     */
     public function queryFrom(AmountInterface $amount)
     {
         return 0 == $amount->getAmount();

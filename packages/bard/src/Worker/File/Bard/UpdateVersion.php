@@ -20,9 +20,6 @@ final class UpdateVersion implements WorkerInterface
         $this->version = $version;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function apply(JsonFile $bardJsonFile): JsonFile
     {
         return $bardJsonFile->setSection('version', $this->version->toString());

@@ -53,8 +53,6 @@ interface CurrencyProviderInterface
      * method will allow you to do this.
      *
      * @throw MoneyException
-     *
-     * @return mixed
      */
     public function query(CurrencyProviderQueryInterface $query);
 }

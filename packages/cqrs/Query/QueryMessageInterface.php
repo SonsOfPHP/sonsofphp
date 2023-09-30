@@ -9,6 +9,4 @@ use SonsOfPHP\Component\Cqrs\MessageInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface QueryMessageInterface extends MessageInterface
-{
-}
+interface QueryMessageInterface extends MessageInterface {}

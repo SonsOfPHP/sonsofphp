@@ -25,9 +25,6 @@ final class ChainCurrencyProvider extends AbstractCurrencyProvider
         $this->providers[] = $provider;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getCurrencies(): iterable
     {
         foreach ($this->providers as $provider) {

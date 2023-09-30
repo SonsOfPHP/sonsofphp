@@ -13,6 +13,4 @@ use Exception;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class ClockException extends Exception
-{
-}
+class ClockException extends \Exception {}

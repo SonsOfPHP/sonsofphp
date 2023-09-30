@@ -32,9 +32,6 @@ final class ChainMessageEnricherProvider implements MessageEnricherProviderInter
         $this->providers[] = $provider;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getEnrichersForMessage(MessageInterface $message): iterable
     {
         foreach ($this->providers as $provider) {

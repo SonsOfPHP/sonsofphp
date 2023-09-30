@@ -28,9 +28,6 @@ class AggregateRepository implements AggregateRepositoryInterface
         $this->messageEnricher = $messageEnricher ?? new MessageEnricher(new NullMessageEnricherProvider());
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function find(AggregateIdInterface|string $id): ?AggregateInterface
     {
         if (!$id instanceof AggregateIdInterface) {
@@ -48,9 +45,6 @@ class AggregateRepository implements AggregateRepositoryInterface
         return null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function persist(AggregateInterface $aggregate): void
     {
         $events           = $aggregate->getPendingEvents();

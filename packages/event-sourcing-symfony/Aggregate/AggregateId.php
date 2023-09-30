@@ -20,7 +20,7 @@ use Symfony\Component\Uid\Uuid;
  */
 class AggregateId extends AbstractAggregateId
 {
-    public function __construct(?string $id = null)
+    public function __construct(string $id = null)
     {
         if (null === $id) {
             $id = (string) Uuid::v6();

@@ -7,6 +7,4 @@ namespace SonsOfPHP\Component\EventSourcing\Tests;
 use SonsOfPHP\Component\EventSourcing\Message\AbstractSerializableMessage;
 use SonsOfPHP\Component\EventSourcing\Message\SerializableMessageInterface;
 
-class FakeSerializableMessage extends AbstractSerializableMessage implements SerializableMessageInterface
-{
-}
+class FakeSerializableMessage extends AbstractSerializableMessage implements SerializableMessageInterface {}

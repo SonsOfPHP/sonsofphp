@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock\Tests;
 
-use DateTimeZone;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Clock\ClockInterface;
 use SonsOfPHP\Component\Clock\Exception\ClockException;
@@ -43,7 +42,7 @@ final class FixedClockTest extends TestCase
      */
     public function testSettingTheTimezoneInTheConstructorWorks(): void
     {
-        $clock = new FixedClock(new DateTimeZone('America/New_York'));
+        $clock = new FixedClock(new \DateTimeZone('America/New_York'));
         $this->assertSame('America/New_York', $clock->getZone()->getName());
     }
 

@@ -11,6 +11,4 @@ use Exception;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class MoneyException extends Exception
-{
-}
+class MoneyException extends \Exception {}
