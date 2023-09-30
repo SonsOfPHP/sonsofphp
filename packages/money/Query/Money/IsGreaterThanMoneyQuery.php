@@ -19,9 +19,6 @@ class IsGreaterThanMoneyQuery implements MoneyQueryInterface
         $this->money = $money;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function queryFrom(MoneyInterface $money)
     {
         if (!$money->getCurrency()->isEqualTo($this->money->getCurrency())) {

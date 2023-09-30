@@ -20,7 +20,7 @@ interface AggregateIdInterface extends \Stringable
      *
      * @throws EventSourcingException If the class does not support auto-generating IDs
      */
-    public function __construct(?string $id = null);
+    public function __construct(string $id = null);
 
     /**
      * @see self::toString

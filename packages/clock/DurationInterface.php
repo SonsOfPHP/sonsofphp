@@ -11,6 +11,4 @@ namespace SonsOfPHP\Component\Clock;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface DurationInterface
-{
-}
+interface DurationInterface {}

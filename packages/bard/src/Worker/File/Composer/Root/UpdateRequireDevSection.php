@@ -22,9 +22,6 @@ final class UpdateRequireDevSection implements WorkerInterface
         $this->pkgComposerJsonFile = $pkgComposerJsonFile;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function apply(JsonFile $rootComposerJsonFile): JsonFile
     {
         $rootRequireDev = $rootComposerJsonFile->getSection('require-dev');

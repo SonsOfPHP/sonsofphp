@@ -25,9 +25,6 @@ final class InMemoryFeatureToggleProvider implements FeatureToggleProviderInterf
         $this->features[] = $feature;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getFeatures(): iterable
     {
         yield from $this->features;

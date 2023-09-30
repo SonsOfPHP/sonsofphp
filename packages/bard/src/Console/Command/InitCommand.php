@@ -17,17 +17,11 @@ final class InitCommand extends AbstractCommand
 {
     protected static $defaultName = 'init';
 
-    /**
-     * {@inheritDoc}
-     */
     // public function __construct()
     // {
     //    parent::__construct();
     // }
 
-    /**
-     * {@inheritDoc}
-     */
     protected function configure(): void
     {
         $this
@@ -35,19 +29,11 @@ final class InitCommand extends AbstractCommand
         ;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    protected function initialize(InputInterface $input, OutputInterface $output): void
-    {
-    }
+    protected function initialize(InputInterface $input, OutputInterface $output): void {}
 
-    /**
-     * {@inheritDoc}
-     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $filename = $input->getOption('working-dir').'/bard.json';
+        $filename = $input->getOption('working-dir') . '/bard.json';
 
         if (file_exists($filename)) {
             $output->writeln('bard.json file already exists');

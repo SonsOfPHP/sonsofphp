@@ -18,9 +18,6 @@ class IsEqualToMoneyQuery implements MoneyQueryInterface
         $this->money = $money;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function queryFrom(MoneyInterface $money)
     {
         return $this->money->getAmount()->isEqualTo($money->getAmount()) && $this->money->getCurrency()->isEqualTo($money->getCurrency());

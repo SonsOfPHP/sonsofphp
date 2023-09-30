@@ -16,17 +16,11 @@ final class UpdateCommand extends AbstractCommand
 {
     protected static $defaultName = 'update';
 
-    /**
-     * {@inheritDoc}
-     */
     // public function __construct()
     // {
     //    parent::__construct();
     // }
 
-    /**
-     * {@inheritDoc}
-     */
     protected function configure(): void
     {
         $this
@@ -34,19 +28,11 @@ final class UpdateCommand extends AbstractCommand
         ;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    protected function initialize(InputInterface $input, OutputInterface $output): void
-    {
-    }
+    protected function initialize(InputInterface $input, OutputInterface $output): void {}
 
-    /**
-     * {@inheritDoc}
-     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $bardJsonFile = new JsonFile($input->getOption('working-dir').'/bard.json');
+        $bardJsonFile = new JsonFile($input->getOption('working-dir') . '/bard.json');
         foreach ($bardJsonFile->getSection('packages') as $pkg) {
             $process = new Process([
                 'composer',

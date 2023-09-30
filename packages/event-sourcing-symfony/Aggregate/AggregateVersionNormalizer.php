@@ -26,8 +26,6 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 class AggregateVersionNormalizer implements NormalizerInterface, DenormalizerInterface
 {
     /**
-     * {@inheritDoc}
-     *
      * @return int
      */
     public function normalize($object, string $format = null, array $context = [])
@@ -35,17 +33,12 @@ class AggregateVersionNormalizer implements NormalizerInterface, DenormalizerInt
         return $object->toInt();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function supportsNormalization($data, string $format = null, array $context = []): bool
     {
         return $data instanceof AggregateVersionInterface;
     }
 
     /**
-     * {@inheritDoc}
-     *
      * @return AggregateVersionInterface
      */
     public function denormalize($data, string $type, string $format = null, array $context = [])
@@ -57,17 +50,11 @@ class AggregateVersionNormalizer implements NormalizerInterface, DenormalizerInt
         return $type::fromInt($data);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function supportsDenormalization($data, string $type, string $format = null, array $context = []): bool
     {
         return is_a($type, AggregateVersionInterface::class, true);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getSupportedTypes(?string $format): array
     {
         return [

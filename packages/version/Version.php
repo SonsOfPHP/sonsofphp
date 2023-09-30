@@ -50,75 +50,51 @@ final class Version implements VersionInterface
         return $this->toString();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public static function from(string $version): VersionInterface
     {
         return new static($version);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function toString(): string
     {
         $version = sprintf('%d.%d.%d', $this->getMajor(), $this->getMinor(), $this->getPatch());
 
         if ('' !== $this->getPreRelease()) {
-            $version = $version.'-'.$this->getPreRelease();
+            $version = $version . '-' . $this->getPreRelease();
         }
 
         if ('' !== $this->getBuild()) {
-            $version = $version.'+'.$this->getBuild();
+            $version = $version . '+' . $this->getBuild();
         }
 
         return $version;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getMajor(): int
     {
         return $this->major;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getMinor(): int
     {
         return $this->minor;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getPatch(): int
     {
         return $this->patch;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getPreRelease(): ?string
     {
         return $this->preRelease;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getBuild(): ?string
     {
         return $this->build;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function compare(VersionInterface $version): int
     {
         if ($this->getMajor() > $version->getMajor()) {

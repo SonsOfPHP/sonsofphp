@@ -48,8 +48,6 @@ abstract class AbstractOptionsResolverCommandMessage implements CommandMessageIn
 
     /**
      * Returns a single option. If the option wasn't set, it returns null.
-     *
-     * @return mixed
      */
     public function getOption(string $key)
     {
@@ -66,8 +64,6 @@ abstract class AbstractOptionsResolverCommandMessage implements CommandMessageIn
 
     /**
      * @see ::getOption
-     *
-     * @return mixed
      */
     public function __get(string $name)
     {
@@ -76,8 +72,6 @@ abstract class AbstractOptionsResolverCommandMessage implements CommandMessageIn
 
     /**
      * @see ::hasOption
-     *
-     * @return mixed
      */
     public function __isset(string $name)
     {

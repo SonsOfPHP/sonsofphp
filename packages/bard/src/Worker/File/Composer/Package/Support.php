@@ -19,9 +19,6 @@ final class Support implements WorkerInterface
         $this->rootComposerJsonFile = $rootComposerJsonFile;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function apply(JsonFile $pkgComposerJsonFile): JsonFile
     {
         $rootSupportSection = $this->rootComposerJsonFile->getSection('support');

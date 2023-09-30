@@ -7,6 +7,4 @@ namespace SonsOfPHP\Component\EventSourcing\Message;
 /**
  * @deprecated Use AbstractSerializableMessage
  */
-abstract class AbstractGenericMessage extends AbstractSerializableMessage implements SerializableMessageInterface
-{
-}
+abstract class AbstractGenericMessage extends AbstractSerializableMessage implements SerializableMessageInterface {}

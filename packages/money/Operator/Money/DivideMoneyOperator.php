@@ -19,9 +19,6 @@ class DivideMoneyOperator implements MoneyOperatorInterface
         $this->divisor = $divisor;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function apply(MoneyInterface $money): MoneyInterface
     {
         $amount = $money->getAmount()->divide($this->divisor);

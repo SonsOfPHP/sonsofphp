@@ -13,12 +13,12 @@ class JsonReader
 {
     private JsonDecoder $decoder;
 
-    public function __construct(?JsonDecoder $decoder = null)
+    public function __construct(JsonDecoder $decoder = null)
     {
         $this->decoder = $decoder ?? new JsonDecoder();
     }
 
-    public function read(string $filename, ?bool $associative = null, ?int $depth = null, ?int $flags = null): array
+    public function read(string $filename, bool $associative = null, int $depth = null, int $flags = null): array
     {
         if (!is_readable($filename)) {
             throw new JsonException(sprintf('The file "%s" does not exist or cannot be read', $filename));

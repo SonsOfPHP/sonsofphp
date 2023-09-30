@@ -10,9 +10,7 @@ use SonsOfPHP\Component\EventSourcing\Message\AbstractMessage;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class Msg extends AbstractMessage
-{
-}
+class Msg extends AbstractMessage {}
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Message\MessageNormalizer

@@ -20,9 +20,6 @@ class AddMoneyOperator implements MoneyOperatorInterface
         $this->money = $money;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function apply(MoneyInterface $money): MoneyInterface
     {
         if (!$this->money->getCurrency()->isEqualTo($money->getCurrency())) {

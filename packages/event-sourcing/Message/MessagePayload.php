@@ -13,8 +13,7 @@ final class MessagePayload implements \IteratorAggregate, \Countable
 {
     public function __construct(
         private array $payload = [],
-    ) {
-    }
+    ) {}
 
     public function getIterator(): \Traversable
     {

@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock;
 
-use DateTimeImmutable;
-use DateTimeInterface;
-use DateTimeZone;
-
 /**
  * System Clock.
  *
@@ -15,27 +11,24 @@ use DateTimeZone;
  */
 class SystemClock implements ClockInterface
 {
-    private DateTimeZone $zone;
+    private \DateTimeZone $zone;
 
-    public function __construct(?DateTimeZone $zone = null)
+    public function __construct(\DateTimeZone $zone = null)
     {
-        $this->zone = $zone ?? new DateTimeZone('UTC');
+        $this->zone = $zone ?? new \DateTimeZone('UTC');
     }
 
     public function __toString(): string
     {
-        return 'SystemClock['.$this->zone->getName().']';
+        return 'SystemClock[' . $this->zone->getName() . ']';
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function now(): DateTimeInterface
+    public function now(): \DateTimeInterface
     {
-        return new DateTimeImmutable('now', $this->zone);
+        return new \DateTimeImmutable('now', $this->zone);
     }
 
-    public function getZone(): DateTimeZone
+    public function getZone(): \DateTimeZone
     {
         return $this->zone;
     }

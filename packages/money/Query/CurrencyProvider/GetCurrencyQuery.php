@@ -33,9 +33,6 @@ class GetCurrencyQuery implements CurrencyProviderQueryInterface
         throw new MoneyException('Value Error');
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function queryFrom(CurrencyProviderInterface $provider)
     {
         foreach ($provider->getCurrencies() as $currency) {

@@ -11,9 +11,6 @@ final class Context implements ContextInterface
 {
     private array $data = [];
 
-    /**
-     * {@inheritDoc}
-     */
     public function get(string $key)
     {
         if ($this->has($key)) {
@@ -23,9 +20,6 @@ final class Context implements ContextInterface
         return null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function set(string $key, $value): ContextInterface
     {
         $this->data[$key] = $value;
@@ -33,9 +27,6 @@ final class Context implements ContextInterface
         return $this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function has(string $key): bool
     {
         return \array_key_exists($key, $this->data);

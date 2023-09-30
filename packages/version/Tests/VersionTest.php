@@ -151,7 +151,7 @@ final class VersionTest extends TestCase
         $this->assertTrue($version->isEqualTo(new Version('1.2.3')));
     }
 
-    public function validVersions(): iterable
+    public static function validVersions(): iterable
     {
         yield ['0.0.4', 0, 0, 4];
         yield ['1.2.3', 1, 2, 3];
@@ -160,14 +160,14 @@ final class VersionTest extends TestCase
         yield ['1.1.2+meta', 1, 1, 2, '', 'meta'];
     }
 
-    public function invalidVersions(): iterable
+    public static function invalidVersions(): iterable
     {
         yield ['1.1'];
         yield ['v1'];
         yield ['v1.2-4'];
     }
 
-    public function compareVersions(): iterable
+    public static function compareVersions(): iterable
     {
         // Major
         yield [new Version('1.0.0'), new Version('0.0.0'), 1];

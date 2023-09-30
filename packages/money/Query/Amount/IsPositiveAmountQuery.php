@@ -11,9 +11,6 @@ use SonsOfPHP\Component\Money\AmountInterface;
  */
 class IsPositiveAmountQuery implements AmountQueryInterface
 {
-    /**
-     * {@inheritDoc}
-     */
     public function queryFrom(AmountInterface $amount)
     {
         return $amount->getAmount() > 0;

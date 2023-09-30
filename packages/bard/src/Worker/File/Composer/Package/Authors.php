@@ -19,9 +19,6 @@ final class Authors implements WorkerInterface
         $this->rootComposerJsonFile = $rootComposerJsonFile;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function apply(JsonFile $pkgComposerJsonFile): JsonFile
     {
         $rootSection = $this->rootComposerJsonFile->getSection('authors');

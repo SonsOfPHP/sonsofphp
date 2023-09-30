@@ -32,9 +32,6 @@ final class AllMessageEnricherProvider implements MessageEnricherProviderInterfa
         $this->enrichers[] = $handler;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getEnrichersForMessage(MessageInterface $message): iterable
     {
         return $this->enrichers;

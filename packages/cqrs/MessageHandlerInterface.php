@@ -7,6 +7,4 @@ namespace SonsOfPHP\Component\Cqrs;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface MessageHandlerInterface
-{
-}
+interface MessageHandlerInterface {}

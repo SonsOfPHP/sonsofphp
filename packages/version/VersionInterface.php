@@ -44,15 +44,11 @@ interface VersionInterface
 
     /**
      * Returns the Pre-release (if any).
-     *
-     * @return string
      */
     public function getPreRelease(): ?string;
 
     /**
      * Returns the Build Metadata (if any).
-     *
-     * @return string
      */
     public function getBuild(): ?string;
 

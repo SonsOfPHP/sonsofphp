@@ -13,11 +13,8 @@ use SonsOfPHP\Component\EventSourcing\Message\AbstractMessage;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\InMemoryMessageRepository;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterface;
 use SonsOfPHP\Component\EventSourcing\Tests\FakeAggregate;
-use TypeError;
 
-class Msg extends AbstractMessage
-{
-}
+class Msg extends AbstractMessage {}
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Aggregate\Repository\AggregateRepository
@@ -127,7 +124,7 @@ final class AggregateRepositoryTest extends TestCase
             $this->messageRepository
         );
 
-        $this->expectException(TypeError::class);
+        $this->expectException(\TypeError::class);
         $result = $repository->find(123);
     }
 

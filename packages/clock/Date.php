@@ -28,33 +28,21 @@ final class Date implements DateInterface
         return $this->toString();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function toString(): string
     {
         return sprintf('%d-%02d-%02d', $this->year, $this->month, $this->day);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getYear(): int
     {
         return $this->year;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getMonth(): int
     {
         return $this->month;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getDay(): int
     {
         return $this->day;

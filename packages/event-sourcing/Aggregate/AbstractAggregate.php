@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Aggregate;
 
-use Generator;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 
@@ -40,17 +39,11 @@ abstract class AbstractAggregate implements AggregateInterface
         return $static;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     final public function getAggregateId(): AggregateIdInterface
     {
         return $this->id;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     final public function getAggregateVersion(): AggregateVersionInterface
     {
         return $this->version;
@@ -66,9 +59,6 @@ abstract class AbstractAggregate implements AggregateInterface
         return \count($this->pendingEvents) > 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     final public function getPendingEvents(): iterable
     {
         $events              = $this->pendingEvents;
@@ -77,10 +67,7 @@ abstract class AbstractAggregate implements AggregateInterface
         return $events;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    final public static function buildFromEvents(AggregateIdInterface $id, Generator $events): AggregateInterface
+    final public static function buildFromEvents(AggregateIdInterface $id, \Generator $events): AggregateInterface
     {
         $aggregate = new static($id);
         foreach ($events as $event) {
@@ -129,7 +116,7 @@ abstract class AbstractAggregate implements AggregateInterface
     final protected function applyEvent(MessageInterface $event): void
     {
         $parts  = explode('\\', $event::class);
-        $method = 'apply'.end($parts);
+        $method = 'apply' . end($parts);
 
         if (method_exists($this, $method)) {
             $this->{$method}($event); // @phpstan-ignore-line

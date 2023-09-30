@@ -27,9 +27,6 @@ final class Time implements TimeInterface
         return $this->toString();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function toString(): string
     {
         return sprintf(
@@ -41,33 +38,21 @@ final class Time implements TimeInterface
         );
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getHour(): int
     {
         return $this->hour;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getMinute(): int
     {
         return $this->minute;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getSecond(): int
     {
         return $this->second;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getMillisecond(): int
     {
         return $this->millisecond;

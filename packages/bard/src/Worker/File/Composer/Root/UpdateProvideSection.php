@@ -19,9 +19,6 @@ final class UpdateProvideSection implements WorkerInterface
         $this->pkgComposerJsonFile = $pkgComposerJsonFile;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function apply(JsonFile $rootComposerJsonFile): JsonFile
     {
         $pkgProvideSection = $this->pkgComposerJsonFile->getSection('provide');

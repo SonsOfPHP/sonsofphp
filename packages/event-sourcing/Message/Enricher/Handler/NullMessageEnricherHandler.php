@@ -13,9 +13,6 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
  */
 final class NullMessageEnricherHandler implements MessageEnricherHandlerInterface
 {
-    /**
-     * {@inheritDoc}
-     */
     public function enrich(MessageInterface $message): MessageInterface
     {
         return $message;

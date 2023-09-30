@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use SonsOfPHP\Component\EventDispatcher\EventDispatcher;
 use SonsOfPHP\Component\EventDispatcher\ListenerProvider;
+use SonsOfPHP\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventDispatcher\EventDispatcher
@@ -17,36 +18,51 @@ use SonsOfPHP\Component\EventDispatcher\ListenerProvider;
 final class EventDispatcherTest extends TestCase
 {
     /**
-     * @coversNothing
+     * @covers ::__construct
      */
     public function testItHasTheCorrectInterface(): void
     {
-        $dispatcher = new EventDispatcher(new ListenerProvider());
+        $dispatcher = new EventDispatcher();
 
         $this->assertInstanceOf(EventDispatcherInterface::class, $dispatcher); // @phpstan-ignore-line
     }
 
     /**
-     * @covers ::__construct
      * @covers ::dispatch
      */
-    public function testDispatchReturnsEvent(): void
+    public function testItWillReturnTheSameEventWhenNoListeners(): void
     {
-        $dispatcher = new EventDispatcher(new ListenerProvider());
+        $dispatcher = new EventDispatcher();
 
-        $this->assertNotEmpty($dispatcher->dispatch(new \stdClass()));
+        $event = new \stdClass();
+        $this->assertSame($event, $dispatcher->dispatch($event));
     }
 
     /**
-     * @covers ::__construct
-     * @covers ::dispatch
+     * @covers ::addListener
      */
-    public function testDispatchReturnsSameEventThatWasDispatched(): void
+    public function testItCanAddEventListener(): void
     {
-        $dispatcher = new EventDispatcher(new ListenerProvider());
+        $provider = $this->createMock(ListenerProvider::class);
+        $provider->expects($this->once())->method('add');
 
-        $event  = new \stdClass();
-        $return = $dispatcher->dispatch($event);
-        $this->assertSame($event, $return);
+        $dispatcher = new EventDispatcher($provider);
+
+        $dispatcher->addListener('stdClass', function (): void {});
+    }
+
+    /**
+     * @covers ::addSubscriber
+     */
+    public function testItCanAddEventSubscriber(): void
+    {
+        $provider = $this->createMock(ListenerProvider::class);
+        $provider->expects($this->once())->method('addSubscriber');
+
+        $dispatcher = new EventDispatcher($provider);
+
+        $subscriber = $this->createMock(EventSubscriberInterface::class);
+
+        $dispatcher->addSubscriber($subscriber);
     }
 }

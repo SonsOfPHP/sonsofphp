@@ -19,9 +19,6 @@ final class BranchAlias implements WorkerInterface
         $this->rootComposerJsonFile = $rootComposerJsonFile;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function apply(JsonFile $pkgComposerJsonFile): JsonFile
     {
         $rootExtraSection = $this->rootComposerJsonFile->getSection('extra');

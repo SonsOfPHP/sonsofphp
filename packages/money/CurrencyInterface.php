@@ -48,8 +48,5 @@ interface CurrencyInterface
      */
     public function isEqualTo(self $currency): bool;
 
-    /**
-     * @return mixed
-     */
     public function query(CurrencyQueryInterface $query);
 }

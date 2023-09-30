@@ -16,5 +16,5 @@ interface ClockInterface
     /**
      * Returns a DateTimeInterface.
      */
-    public function now(): DateTimeInterface;
+    public function now(): \DateTimeInterface;
 }

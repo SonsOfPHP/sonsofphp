@@ -23,8 +23,6 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 class MessageNormalizer implements NormalizerInterface, DenormalizerInterface
 {
     /**
-     * {@inheritDoc}
-     *
      * @return array
      */
     public function normalize($object, string $format = null, array $context = [])
@@ -35,17 +33,12 @@ class MessageNormalizer implements NormalizerInterface, DenormalizerInterface
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function supportsNormalization($data, string $format = null, array $context = []): bool
     {
         return $data instanceof MessageInterface;
     }
 
     /**
-     * {@inheritDoc}
-     *
      * @return MessageInterface
      */
     public function denormalize($data, string $type, string $format = null, array $context = [])
@@ -53,9 +46,6 @@ class MessageNormalizer implements NormalizerInterface, DenormalizerInterface
         return $type::new()->withPayload($data['payload'])->withMetadata($data['metadata']);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function supportsDenormalization($data, string $type, string $format = null, array $context = []): bool
     {
         if (false === \is_array($data)) {
@@ -69,9 +59,6 @@ class MessageNormalizer implements NormalizerInterface, DenormalizerInterface
         return is_subclass_of($type, MessageInterface::class, true);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getSupportedTypes(?string $format): array
     {
         return [

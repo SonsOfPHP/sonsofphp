@@ -37,7 +37,7 @@ class Json
     private JsonDecoder $decoder;
     private JsonEncoder $encoder;
 
-    public function __construct(?JsonEncoder $encoder = null, ?JsonDecoder $decoder = null)
+    public function __construct(JsonEncoder $encoder = null, JsonDecoder $decoder = null)
     {
         $this->encoder = $encoder ?? new JsonEncoder();
         $this->decoder = $decoder ?? new JsonDecoder();
@@ -53,12 +53,12 @@ class Json
         return $this->decoder;
     }
 
-    public static function encode($value, ?int $flags = null, ?int $depth = null): string
+    public static function encode($value, int $flags = null, int $depth = null): string
     {
         return (new JsonEncoder($flags, $depth))->encode($value);
     }
 
-    public static function decode(string $json, ?bool $associative = null, ?int $depth = null, ?int $flags = null)
+    public static function decode(string $json, bool $associative = null, int $depth = null, int $flags = null)
     {
         return (new JsonDecoder($associative, $depth, $flags))->decode($json);
     }

@@ -11,12 +11,12 @@ class JsonWriter
 {
     private JsonEncoder $encoder;
 
-    public function __construct(?JsonEncoder $encoder = null)
+    public function __construct(JsonEncoder $encoder = null)
     {
         $this->encoder = $encoder ?? new JsonEncoder();
     }
 
-    public function write(string $filename, $value, ?int $depth = null, ?int $flags = null)
+    public function write(string $filename, $value, int $depth = null, int $flags = null)
     {
         $encoder = $this->encoder;
 

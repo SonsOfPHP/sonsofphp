@@ -12,9 +12,7 @@ use SonsOfPHP\Component\EventSourcing\Message\AbstractMessage;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 
-class Msg extends AbstractMessage
-{
-}
+class Msg extends AbstractMessage {}
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\AbstractMessage

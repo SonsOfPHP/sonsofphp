@@ -24,9 +24,6 @@ final class EventTypeMessageEnricherHandler implements MessageEnricherHandlerInt
         $this->messageProvider = $messageProvider;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function enrich(MessageInterface $message): MessageInterface
     {
         return $message->withMetadata([

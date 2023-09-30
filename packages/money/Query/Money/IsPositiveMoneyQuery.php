@@ -11,9 +11,6 @@ use SonsOfPHP\Component\Money\MoneyInterface;
  */
 class IsPositiveMoneyQuery implements MoneyQueryInterface
 {
-    /**
-     * {@inheritDoc}
-     */
     public function queryFrom(MoneyInterface $money)
     {
         return $money->getAmount()->isPositive();

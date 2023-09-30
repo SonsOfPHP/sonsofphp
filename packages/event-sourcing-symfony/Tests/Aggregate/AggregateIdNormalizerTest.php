@@ -59,7 +59,7 @@ final class AggregateIdNormalizerTest extends TestCase
         $this->assertSame($expected, $normalizer->supportsDenormalization($data, $type, $format));
     }
 
-    public function providerForSupportsDenormalization(): iterable
+    public static function providerForSupportsDenormalization(): iterable
     {
         yield [true, 'aggregate-id', AggregateId::class];
         yield [true, 'aggregate-id', AggregateIdInterface::class];
@@ -85,7 +85,7 @@ final class AggregateIdNormalizerTest extends TestCase
         $this->assertSame($data, $output->toString());
     }
 
-    public function providerForDenormalize(): iterable
+    public static function providerForDenormalize(): iterable
     {
         yield ['aggregate-id', AggregateId::class];
         yield ['aggregate-id', AggregateIdInterface::class];

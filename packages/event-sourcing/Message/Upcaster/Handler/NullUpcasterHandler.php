@@ -13,9 +13,6 @@ namespace SonsOfPHP\Component\EventSourcing\Message\Upcaster\Handler;
  */
 final class NullUpcasterHandler implements MessageUpcasterHandlerInterface
 {
-    /**
-     * {@inheritDoc}
-     */
     public function upcast(array $eventData): array
     {
         return $eventData;

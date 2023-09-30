@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Json\Tests;
 
 use PHPUnit\Framework\TestCase;
-use ReflectionObject;
 use SonsOfPHP\Component\Json\JsonEncoder;
 use SonsOfPHP\Component\Json\JsonException;
 
@@ -48,7 +47,7 @@ final class JsonEncoderTest extends TestCase
     public function testWithoutFlagsDoesntRemoveMoreThanItShould(): void
     {
         $encoder = new JsonEncoder();
-        $ref     = new ReflectionObject($encoder);
+        $ref     = new \ReflectionObject($encoder);
         $prop    = $ref->getProperty('flags');
         $prop->setAccessible(true);
 
@@ -70,7 +69,7 @@ final class JsonEncoderTest extends TestCase
     public function testWithoutFlagsRemovesFlag(): void
     {
         $encoder = new JsonEncoder();
-        $ref     = new ReflectionObject($encoder);
+        $ref     = new \ReflectionObject($encoder);
         $prop    = $ref->getProperty('flags');
         $prop->setAccessible(true);
 
@@ -87,7 +86,7 @@ final class JsonEncoderTest extends TestCase
     public function testChangingDepthActuallyChangesDepth(): void
     {
         $encoder = new JsonEncoder();
-        $ref     = new ReflectionObject($encoder);
+        $ref     = new \ReflectionObject($encoder);
         $prop    = $ref->getProperty('depth');
         $prop->setAccessible(true);
 

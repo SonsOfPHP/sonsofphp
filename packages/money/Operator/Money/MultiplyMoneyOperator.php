@@ -19,9 +19,6 @@ class MultiplyMoneyOperator implements MoneyOperatorInterface
         $this->multiplier = $multiplier;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function apply(MoneyInterface $money): MoneyInterface
     {
         $amount = $money->getAmount()->multiply($this->multiplier);

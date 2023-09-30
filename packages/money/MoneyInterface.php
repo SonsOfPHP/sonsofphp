@@ -22,9 +22,6 @@ interface MoneyInterface
 
     public function with(MoneyOperatorInterface $operator): self;
 
-    /**
-     * @return mixed
-     */
     public function query(MoneyQueryInterface $query);
 
     public function isEqualTo(self $money): bool;

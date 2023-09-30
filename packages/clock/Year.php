@@ -24,17 +24,11 @@ final class Year implements YearInterface
         return $this->toString();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function toString(): string
     {
         return sprintf('%d', $this->year);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function toInt(): int
     {
         return $this->year;

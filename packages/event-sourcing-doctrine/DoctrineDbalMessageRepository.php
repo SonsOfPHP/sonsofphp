@@ -33,9 +33,6 @@ class DoctrineDbalMessageRepository implements MessageRepositoryInterface
         $this->tableSchema = $tableSchema;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function persist(MessageInterface $message): void
     {
         $id      = $message->getAggregateId();
@@ -68,9 +65,6 @@ class DoctrineDbalMessageRepository implements MessageRepositoryInterface
         );
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function find(string|AggregateIdInterface $id, int|AggregateVersionInterface $version = null): iterable
     {
         if (!$id instanceof AggregateIdInterface) {

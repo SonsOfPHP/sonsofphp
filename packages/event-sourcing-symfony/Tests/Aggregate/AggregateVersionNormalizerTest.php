@@ -59,7 +59,7 @@ final class AggregateVersionNormalizerTest extends TestCase
         $this->assertSame($expected, $normalizer->supportsDenormalization($data, $type, $format));
     }
 
-    public function providerForSupportsDenormalization(): iterable
+    public static function providerForSupportsDenormalization(): iterable
     {
         yield [true, 2131, AggregateVersion::class];
         yield [true, 2131, AggregateVersionInterface::class];
@@ -85,7 +85,7 @@ final class AggregateVersionNormalizerTest extends TestCase
         $this->assertSame($data, $output->toInt());
     }
 
-    public function providerForDenormalize(): iterable
+    public static function providerForDenormalize(): iterable
     {
         yield [2131, AggregateVersion::class];
         yield [2131, AggregateVersionInterface::class];

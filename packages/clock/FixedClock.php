@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock;
 
-use DateTimeImmutable;
-use DateTimeInterface;
-use DateTimeZone;
 use SonsOfPHP\Component\Clock\Exception\ClockException;
 
 /**
@@ -19,32 +16,26 @@ use SonsOfPHP\Component\Clock\Exception\ClockException;
  */
 final class FixedClock implements ClockInterface
 {
-    private DateTimeZone $zone;
-    private DateTimeInterface $time;
+    private \DateTimeZone $zone;
+    private \DateTimeInterface $time;
 
-    /**
-     * @param DateTimeZone $zone
-     */
-    public function __construct(?DateTimeZone $zone = null)
+    public function __construct(\DateTimeZone $zone = null)
     {
-        $this->zone = $zone ?? new DateTimeZone('UTC');
+        $this->zone = $zone ?? new \DateTimeZone('UTC');
         $this->tick();
     }
 
     public function __toString(): string
     {
-        return 'FixedClock['.$this->zone->getName().']';
+        return 'FixedClock[' . $this->zone->getName() . ']';
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function now(): DateTimeInterface
+    public function now(): \DateTimeInterface
     {
         return $this->time;
     }
 
-    public function getZone(): DateTimeZone
+    public function getZone(): \DateTimeZone
     {
         return $this->zone;
     }
@@ -54,7 +45,7 @@ final class FixedClock implements ClockInterface
      */
     public function tick(): void
     {
-        $this->time = new DateTimeImmutable('now', $this->zone);
+        $this->time = new \DateTimeImmutable('now', $this->zone);
     }
 
     /**
@@ -70,7 +61,7 @@ final class FixedClock implements ClockInterface
      */
     public function tickTo(string $input): void
     {
-        $time = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $input, $this->zone);
+        $time = \DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $input, $this->zone);
         if (false === $time) {
             throw new ClockException(sprintf('The input "%s" is invalid', $input));
         }

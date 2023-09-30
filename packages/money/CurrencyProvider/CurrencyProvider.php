@@ -13,9 +13,6 @@ use SonsOfPHP\Component\Money\Currency;
  */
 final class CurrencyProvider extends AbstractCurrencyProvider
 {
-    /**
-     * {@inheritDoc}
-     */
     public function getCurrencies(): iterable
     {
         // @todo Add all the currencies

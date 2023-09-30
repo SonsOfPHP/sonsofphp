@@ -9,14 +9,8 @@ namespace SonsOfPHP\Component\FeatureToggle;
  */
 interface ContextInterface
 {
-    /**
-     * @return mixed
-     */
     public function get(string $key);
 
-    /**
-     * @param mixed $value
-     */
     public function set(string $key, $value): self;
 
     public function has(string $key): bool;

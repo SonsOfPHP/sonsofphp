@@ -30,8 +30,6 @@ interface AmountInterface
     /**
      * Allows you to ask different questions about the amount and get
      * different results returned to you.
-     *
-     * @return mixed
      */
     public function query(AmountQueryInterface $query);
 
@@ -73,15 +71,11 @@ interface AmountInterface
 
     /**
      * Multiply amount by a specific amount.
-     *
-     * @param mixed $multiplier
      */
     public function multiply($multiplier): self;
 
     /**
      * Divide the amount by a specific amount.
-     *
-     * @param mixed $divisor
      */
     public function divide($divisor): self;
 

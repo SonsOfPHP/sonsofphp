@@ -18,9 +18,6 @@ class IsLessThanAmountQuery implements AmountQueryInterface
         $this->amount = $amount;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function queryFrom(AmountInterface $amount)
     {
         return $amount->getAmount() < $this->amount->getAmount();

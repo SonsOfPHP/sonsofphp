@@ -19,9 +19,6 @@ final class UpdateAutoloadDevSection implements WorkerInterface
         $this->pkgComposerJsonFile = $pkgComposerJsonFile;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function apply(JsonFile $rootComposerJsonFile): JsonFile
     {
         $rootDir = pathinfo($rootComposerJsonFile->getFilename(), \PATHINFO_DIRNAME);
@@ -38,13 +35,13 @@ final class UpdateAutoloadDevSection implements WorkerInterface
         foreach ($pkgAutoloadSection as $section => $config) {
             if ('psr-4' === $section) {
                 foreach ($config as $namespace => $pkgPath) {
-                    $rootAutoloadSection['psr-4'][$namespace] = trim($path.'/'.trim($pkgPath, '/'), '/');
+                    $rootAutoloadSection['psr-4'][$namespace] = trim($path . '/' . trim($pkgPath, '/'), '/');
                 }
             }
 
             if ('exclude-from-classmap' === $section) {
                 foreach ($config as $pkgPath) {
-                    $rootAutoloadSection['exclude-from-classmap'][] = trim($path.'/'.trim($pkgPath, '/'), '/');
+                    $rootAutoloadSection['exclude-from-classmap'][] = trim($path . '/' . trim($pkgPath, '/'), '/');
                 }
             }
         }
