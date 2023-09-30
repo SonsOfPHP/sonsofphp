@@ -1,37 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <phpunit
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-    convertErrorsToExceptions="true"
-    convertNoticesToExceptions="true"
-    convertWarningsToExceptions="true"
-    convertDeprecationsToExceptions="true"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.3/phpunit.xsd"
     backupGlobals="false"
     colors="true"
     bootstrap="vendor/autoload.php"
-    beStrictAboutCoversAnnotation="false"
-    forceCoversAnnotation="true"
->
+    cacheDirectory=".phpunit.cache"
+    requireCoverageMetadata="true"
+    beStrictAboutCoverageMetadata="false">
 
-    <testsuites>
-        <testsuite name="all">
-            <directory>packages/*/Tests</directory>
-        </testsuite>
-    </testsuites>
+  <testsuites>
+    <testsuite name="all">
+      <directory>packages/*/Tests</directory>
+    </testsuite>
+  </testsuites>
 
-    <coverage processUncoveredFiles="true" cacheDirectory=".phpunit-coverage-cache">
-        <include>
-            <directory>packages/*</directory>
-        </include>
-        <exclude>
-            <directory>packages/*/Tests</directory>
-            <directory>packages/*/vendor</directory>
-        </exclude>
-    </coverage>
+  <coverage/>
 
-    <listeners>
-        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener"/>
-    </listeners>
+  <source>
+    <include>
+      <directory>packages/*</directory>
+    </include>
+    <exclude>
+      <directory>packages/*/Tests</directory>
+      <directory>packages/*/vendor</directory>
+    </exclude>
+  </source>
 
 </phpunit>
