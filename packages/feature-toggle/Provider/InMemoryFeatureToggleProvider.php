@@ -13,7 +13,7 @@ final class InMemoryFeatureToggleProvider implements FeatureToggleProviderInterf
 {
     private array $features = [];
 
-    public function __construct($features = [])
+    public function __construct(array $features = [])
     {
         foreach ($features as $feature) {
             $this->addFeature($feature);
@@ -22,11 +22,15 @@ final class InMemoryFeatureToggleProvider implements FeatureToggleProviderInterf
 
     public function addFeature(FeatureInterface $feature): void
     {
-        $this->features[] = $feature;
+        $this->features[$feature->getKey()] = $feature;
     }
 
-    public function getFeatures(): iterable
+    public function getFeatureToggleByKey(string $key): ?FeatureInterface
     {
-        yield from $this->features;
+        if (isset($this->features[$key])) {
+            return $this->features[$key];
+        }
+
+        return null;
     }
 }

@@ -9,6 +9,7 @@ use SonsOfPHP\Component\FeatureToggle\Feature;
 use SonsOfPHP\Component\FeatureToggle\Provider\FeatureToggleProviderInterface;
 use SonsOfPHP\Component\FeatureToggle\Provider\InMemoryFeatureToggleProvider;
 use SonsOfPHP\Component\FeatureToggle\ToggleInterface;
+use PHPUnit\Framework\MockObject;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\FeatureToggle\Provider\InMemoryFeatureToggleProvider
@@ -17,7 +18,7 @@ use SonsOfPHP\Component\FeatureToggle\ToggleInterface;
  */
 final class InMemoryFeatureToggleProviderTest extends TestCase
 {
-    private $toggle;
+    private MockObject|ToggleInterface $toggle;
 
     protected function setUp(): void
     {
@@ -37,7 +38,7 @@ final class InMemoryFeatureToggleProviderTest extends TestCase
     /**
      * @covers ::__construct
      * @covers ::addFeature
-     * @covers ::getFeatures
+     * @covers ::getFeatureToggleByKey
      */
     public function testAddingFeatures(): void
     {
@@ -48,6 +49,8 @@ final class InMemoryFeatureToggleProviderTest extends TestCase
 
         $provider = new InMemoryFeatureToggleProvider($features);
 
-        $this->assertCount(2, iterator_to_array($provider->getFeatures()));
+        $this->assertNotNull($provider->getFeatureToggleByKey('test.one'));
+        $this->assertNotNull($provider->getFeatureToggleByKey('test.two'));
+        $this->assertNull($provider->getFeatureToggleByKey('test.three'));
     }
 }
