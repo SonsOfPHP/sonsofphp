@@ -50,7 +50,7 @@ final class ReleaseCommand extends AbstractCommand
                         <comment>%command.full_name%</comment>
 
                     Read more at https://docs.SonsOfPHP.com
-                    EOT
+EOT
             );
     }
 

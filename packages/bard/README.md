@@ -9,3 +9,7 @@ Bard is a tool that helps to manage monorepos.
 * split = updates read-only repositories
 * release = bump deps, bump version, tag, git push, and updates repos
 * changelog = manages changelogs
+
+## bard.json
+
+### version
