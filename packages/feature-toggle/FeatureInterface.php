@@ -9,7 +9,7 @@ namespace SonsOfPHP\Component\FeatureToggle;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface FeatureInterface
+interface FeatureInterface extends ToggleInterface
 {
     /**
      * Returns the key that is used for the feature toggle. The key should be
@@ -17,9 +17,4 @@ interface FeatureInterface
      * get them all mixed up.
      */
     public function getKey(): string;
-
-    /**
-     * Returns true or false if the toggle is enabled.
-     */
-    public function isEnabled(ContextInterface $context): bool;
 }

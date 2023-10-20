@@ -25,7 +25,7 @@ final class Feature implements FeatureInterface
         return $this->key;
     }
 
-    public function isEnabled(ContextInterface $context): bool
+    public function isEnabled(?ContextInterface $context = null): bool
     {
         return $this->toggle->isEnabled($context);
     }

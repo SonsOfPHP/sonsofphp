@@ -7,7 +7,7 @@ namespace SonsOfPHP\Component\FeatureToggle;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface ContextInterface
+interface ContextInterface extends \ArrayAccess, \IteratorAggregate, \JsonSerializable
 {
     public function get(string $key);
 

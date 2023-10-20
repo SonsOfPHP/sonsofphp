@@ -14,7 +14,7 @@ use SonsOfPHP\Component\FeatureToggle\ToggleInterface;
  */
 class AlwaysDisabledToggle implements ToggleInterface
 {
-    public function isEnabled(ContextInterface $context): bool
+    public function isEnabled(?ContextInterface $context = null): bool
     {
         return false;
     }
