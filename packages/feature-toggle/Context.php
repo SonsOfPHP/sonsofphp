@@ -9,26 +9,56 @@ namespace SonsOfPHP\Component\FeatureToggle;
  */
 final class Context implements ContextInterface
 {
-    private array $data = [];
+    public function __construct(private array $data = []) {}
 
-    public function get(string $key)
+    public function offsetSet($offset, $value): void
     {
-        if ($this->has($key)) {
-            return $this->data[$key];
+        if (null === $offset) {
+            throw new \Exception('Requires a key');
         }
 
-        return null;
+        $this->data[$offset] = $value;
+    }
+
+    public function offsetExists($offset): bool
+    {
+        return \array_key_exists($offset, $this->data);
+    }
+
+    public function offsetUnset($offset): void
+    {
+        unset($this->data[$offset]);
+    }
+
+    public function offsetGet($offset): mixed
+    {
+        return $this->data[$offset] ?? null;
+    }
+
+    public function getIterator(): \Traversable
+    {
+        return new \ArrayIterator($this->data);
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return $this->data;
+    }
+
+    public function get(string $key): mixed
+    {
+        return $this->offsetGet($key);
     }
 
     public function set(string $key, $value): ContextInterface
     {
-        $this->data[$key] = $value;
+        $this->offsetSet($key, $value);
 
         return $this;
     }
 
     public function has(string $key): bool
     {
-        return \array_key_exists($key, $this->data);
+        return $this->offsetExists($key);
     }
 }

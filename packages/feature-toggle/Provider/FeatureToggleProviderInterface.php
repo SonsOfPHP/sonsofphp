@@ -16,8 +16,5 @@ use SonsOfPHP\Component\FeatureToggle\FeatureInterface;
  */
 interface FeatureToggleProviderInterface
 {
-    /**
-     * @return FeatureInterface[]
-     */
-    public function getFeatures(): iterable;
+    public function getFeatureToggleByKey(string $key): ?FeatureInterface;
 }

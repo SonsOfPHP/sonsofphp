@@ -12,5 +12,5 @@ interface ToggleInterface
     /**
      * Returns true if this strategy is enabled.
      */
-    public function isEnabled(ContextInterface $context): bool;
+    public function isEnabled(?ContextInterface $context = null): bool;
 }
