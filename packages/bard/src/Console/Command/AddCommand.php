@@ -54,7 +54,7 @@ final class AddCommand extends AbstractCommand
             $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
         }
 
-        //file_put_contents($bardConfig->getFilename(), $bardConfig->toJson());
+        file_put_contents($bardConfig->getFilename(), $bardConfig->toJson());
         $io->success('Package has been added.');
 
         return self::SUCCESS;
