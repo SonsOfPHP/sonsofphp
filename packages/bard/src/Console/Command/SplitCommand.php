@@ -12,20 +12,16 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Process\Process;
 
 /**
- * Publish Command.
- *
- * Push up changes to all package repos
- *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class PublishCommand extends AbstractCommand
+final class SplitCommand extends AbstractCommand
 {
-    protected static $defaultName = 'publish';
+    protected static $defaultName = 'split';
 
     protected function configure(): void
     {
         $this
-            ->setDescription('Push changes to package repos')
+            ->setDescription('Push changes to package repos using git subtree split')
             ->addOption('branch', null, InputOption::VALUE_REQUIRED, 'What branch we working with?', 'main')
         ;
     }
@@ -43,15 +39,12 @@ final class PublishCommand extends AbstractCommand
             $io->text(sprintf('Pushing <info>%s</>', $pkgName));
 
             $commands = [
-                // subtree push
-                ['git', 'subtree', 'push', '-P', $pkg['path'], $pkg['repository'], $input->getOption('branch')],
-                // -- OR --
                 // subtree split
-                // ['git', 'subtree', 'split', '-P', $pkg['path'], '-b', $pkgName],
-                // ['git', 'checkout', $pkgName],
-                // ['git', 'push', $pkg['repository'], sprintf('%s:%s', $pkgName, $input->getOption('branch'))],
-                // ['git', 'checkout', $input->getOption('branch')],
-                // ['git', 'branch', '-D', $pkgName],
+                ['git', 'subtree', 'split', '-P', $pkg['path'], '-b', $pkgName],
+                ['git', 'checkout', $pkgName],
+                ['git', 'push', $pkg['repository'], sprintf('%s:%s', $pkgName, $input->getOption('branch'))],
+                ['git', 'checkout', $input->getOption('branch')],
+                ['git', 'branch', '-D', $pkgName],
             ];
 
             foreach ($commands as $cmd) {

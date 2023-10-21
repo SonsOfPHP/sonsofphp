@@ -106,10 +106,10 @@
         }
     },
     "require-dev": {
-        "symfony/messenger": "^5|^6",
         "symfony/http-foundation": "^5|^6",
         "symfony/serializer": "^5|^6",
-        "symfony/phpunit-bridge": "^6"
+        "symfony/phpunit-bridge": "^6",
+        "symfony/error-handler": "^6"
     },
     "autoload-dev": {
         "psr-4": {
