@@ -14,10 +14,6 @@
             "repository": "git@github.com:SonsOfPHP/event-sourcing-doctrine.git"
         },
         {
-            "path": "packages/event-sourcing-symfony/",
-            "repository": "git@github.com:SonsOfPHP/event-sourcing-symfony.git"
-        },
-        {
             "path": "packages/feature-toggle/",
             "repository": "git@github.com:SonsOfPHP/feature-toggle.git"
         },
@@ -52,6 +48,10 @@
         {
             "path": "src/SonsOfPHP/Bridge/Symfony/Cqrs",
             "repository": "git@github.com:SonsOfPHP/cqrs-symfony.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Bridge/Symfony/EventSourcing",
+            "repository": "git@github.com:SonsOfPHP/event-sourcing-symfony.git"
         }
     ]
 }
