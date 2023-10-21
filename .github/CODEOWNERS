@@ -1,4 +1,6 @@
 # Packages
+/src/SonsOfPHP/Bard @JoshuaEstes
+
 /packages/autoloader/ @JoshuaEstes
 /packages/bard/ @JoshuaEstes
 /packages/cache/ @JoshuaEstes

@@ -2,10 +2,6 @@
     "version": "0.3.7",
     "packages": [
         {
-            "path": "packages/clock/",
-            "repository": "git@github.com:SonsOfPHP/clock.git"
-        },
-        {
             "path": "packages/cqrs/",
             "repository": "git@github.com:SonsOfPHP/cqrs.git"
         },
@@ -52,6 +48,10 @@
         {
             "path": "src/SonsOfPHP/Bard",
             "repository": "git@github.com:SonsOfPHP/bard.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Component/Clock",
+            "repository": "git@github.com:SonsOfPHP/clock.git"
         }
     ]
 }
