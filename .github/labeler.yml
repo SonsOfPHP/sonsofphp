@@ -2,39 +2,49 @@ docs:
   - docs/*
 
 Bard:
+  - docs/bard/*
   - packages/bard/*
+  - src/SonsOfPHP/Bard/*
 
 Clock:
   - docs/components/clock/*
   - packages/clock/*
+  - src/SonsOfPHP/Component/Clock/*
 
 CQRS:
   - docs/components/cqrs/*
   - packages/cqrs/*
   - packages/cqrs-symfony/*
+  - src/SonsOfPHP/**/Cqrs/*
 
 EventDispatcher:
   - docs/components/event-dispatcher/*
   - packages/event-dispatcher/*
+  - src/SonsOfPHP/**/EventDispatcher/*
 
 EventSourcing:
   - docs/components/event-sourcing/*
   - packages/event-sourcing/*
   - packages/event-sourcing-doctrine/*
   - packages/event-sourcing-symfony/*
+  - src/SonsOfPHP/**/EventSourcing/*
 
 FeatureToggle:
   - docs/components/feature-toggle/*
   - packages/feature-toggle/*
+  - src/SonsOfPHP/**/FeatureToggle/*
 
 JSON:
   - docs/components/json/*
   - packages/json/*
+  - src/SonsOfPHP/**/Json/*
 
 Money:
   - docs/components/money/*
   - packages/money/*
+  - src/SonsOfPHP/**/Money/*
 
 Version:
   - docs/components/version/*
   - packages/version/*
+  - src/SonsOfPHP/**/Version/*
