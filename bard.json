@@ -2,8 +2,56 @@
     "version": "0.3.7",
     "packages": [
         {
+            "path": "packages/cqrs-bundle/",
+            "repository": "git@github.com:SonsOfPHP/cqrs-bundle.git"
+        },
+        {
+            "path": "packages/cqrs-symfony/",
+            "repository": "git@github.com:SonsOfPHP/cqrs-symfony.git"
+        },
+        {
+            "path": "packages/event-dispatcher/",
+            "repository": "git@github.com:SonsOfPHP/event-dispatcher.git"
+        },
+        {
+            "path": "packages/event-sourcing/",
+            "repository": "git@github.com:SonsOfPHP/event-sourcing.git"
+        },
+        {
+            "path": "packages/event-sourcing-doctrine/",
+            "repository": "git@github.com:SonsOfPHP/event-sourcing-doctrine.git"
+        },
+        {
+            "path": "packages/event-sourcing-symfony/",
+            "repository": "git@github.com:SonsOfPHP/event-sourcing-symfony.git"
+        },
+        {
+            "path": "packages/feature-toggle/",
+            "repository": "git@github.com:SonsOfPHP/feature-toggle.git"
+        },
+        {
+            "path": "packages/json/",
+            "repository": "git@github.com:SonsOfPHP/json.git"
+        },
+        {
+            "path": "packages/money/",
+            "repository": "git@github.com:SonsOfPHP/money.git"
+        },
+        {
+            "path": "packages/version/",
+            "repository": "git@github.com:SonsOfPHP/version.git"
+        },
+        {
             "path": "src/SonsOfPHP/Bard",
             "repository": "git@github.com:SonsOfPHP/bard.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Component/Clock",
+            "repository": "git@github.com:SonsOfPHP/clock.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Component/Cqrs",
+            "repository": "git@github.com:SonsOfPHP/cqrs.git"
         }
     ]
 }
