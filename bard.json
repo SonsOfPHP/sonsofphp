@@ -48,6 +48,10 @@
         {
             "path": "src/SonsOfPHP/Component/Money",
             "repository": "git@github.com:SonsOfPHP/money.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Component/Version",
+            "repository": "git@github.com:SonsOfPHP/version.git"
         }
     ]
 }
