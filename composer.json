@@ -69,34 +69,34 @@
     },
     "autoload": {
         "psr-4": {
-            "SonsOfPHP\\Bard\\": "packages/bard/src",
-            "SonsOfPHP\\Component\\Clock\\": "packages/clock",
-            "SonsOfPHP\\Component\\Cqrs\\": "packages/cqrs",
-            "SonsOfPHP\\Bundle\\Cqrs\\": "packages/cqrs-bundle",
-            "SonsOfPHP\\Bridge\\Symfony\\Cqrs\\": "packages/cqrs-symfony",
-            "SonsOfPHP\\Component\\EventDispatcher\\": "packages/event-dispatcher",
-            "SonsOfPHP\\Component\\EventSourcing\\": "packages/event-sourcing",
-            "SonsOfPHP\\Bridge\\Doctrine\\EventSourcing\\": "packages/event-sourcing-doctrine",
-            "SonsOfPHP\\Bridge\\Symfony\\EventSourcing\\": "packages/event-sourcing-symfony",
-            "SonsOfPHP\\Component\\FeatureToggle\\": "packages/feature-toggle",
-            "SonsOfPHP\\Component\\Json\\": "packages/json",
-            "SonsOfPHP\\Component\\Money\\": "packages/money",
-            "SonsOfPHP\\Component\\Version\\": "packages/version"
+            "SonsOfPHP\\Bard\\": "src/SonsOfPHP/Bard/src",
+            "SonsOfPHP\\Component\\Clock\\": "src/SonsOfPHP/Component/Clock",
+            "SonsOfPHP\\Component\\Cqrs\\": "src/SonsOfPHP/Component/Cqrs",
+            "SonsOfPHP\\Bundle\\Cqrs\\": "src/SonsOfPHP/Bundle/Cqrs",
+            "SonsOfPHP\\Bridge\\Symfony\\Cqrs\\": "src/SonsOfPHP/Bridge/Symfony/Cqrs",
+            "SonsOfPHP\\Bridge\\Symfony\\EventSourcing\\": "src/SonsOfPHP/Bridge/Symfony/EventSourcing",
+            "SonsOfPHP\\Component\\EventDispatcher\\": "src/SonsOfPHP/Component/EventDispatcher",
+            "SonsOfPHP\\Component\\EventSourcing\\": "src/SonsOfPHP/Component/EventSourcing",
+            "SonsOfPHP\\Bridge\\Doctrine\\EventSourcing\\": "src/SonsOfPHP/Bridge/Doctrine/EventSourcing",
+            "SonsOfPHP\\Component\\FeatureToggle\\": "src/SonsOfPHP/Component/FeatureToggle",
+            "SonsOfPHP\\Component\\Json\\": "src/SonsOfPHP/Component/Json",
+            "SonsOfPHP\\Component\\Money\\": "src/SonsOfPHP/Component/Money",
+            "SonsOfPHP\\Component\\Version\\": "src/SonsOfPHP/Component/Version"
         },
         "exclude-from-classmap": [
-            "packages/bard/Tests",
-            "packages/clock/Tests",
-            "packages/cqrs/Tests",
-            "packages/cqrs-bundle/Tests",
-            "packages/cqrs-symfony/Tests",
-            "packages/event-dispatcher/Tests",
-            "packages/event-sourcing/Tests",
-            "packages/event-sourcing-doctrine/Tests",
-            "packages/event-sourcing-symfony/Tests",
-            "packages/feature-toggle/Tests",
-            "packages/json/Tests",
-            "packages/money/Tests",
-            "packages/version/Tests"
+            "src/SonsOfPHP/Bard/Tests",
+            "src/SonsOfPHP/Component/Clock/Tests",
+            "src/SonsOfPHP/Component/Cqrs/Tests",
+            "src/SonsOfPHP/Bundle/Cqrs/Tests",
+            "src/SonsOfPHP/Bridge/Symfony/Cqrs/Tests",
+            "src/SonsOfPHP/Bridge/Symfony/EventSourcing/Tests",
+            "src/SonsOfPHP/Component/EventDispatcher/Tests",
+            "src/SonsOfPHP/Component/EventSourcing/Tests",
+            "src/SonsOfPHP/Bridge/Doctrine/EventSourcing/Tests",
+            "src/SonsOfPHP/Component/FeatureToggle/Tests",
+            "src/SonsOfPHP/Component/Json/Tests",
+            "src/SonsOfPHP/Component/Money/Tests",
+            "src/SonsOfPHP/Component/Version/Tests"
         ]
     },
     "extra": {
@@ -109,13 +109,14 @@
         "symfony/http-foundation": "^5|^6",
         "symfony/serializer": "^5|^6",
         "symfony/phpunit-bridge": "^6",
-        "symfony/error-handler": "^6"
+        "symfony/error-handler": "^6",
+        "symfony/messenger": "^5|^6"
     },
     "autoload-dev": {
         "psr-4": {
-            "SonsOfPHP\\Bard\\Tests\\": "packages/bard/Tests",
-            "SonsOfPHP\\Bundle\\Cqrs\\Tests\\": "packages/cqrs-bundle/Tests",
-            "SonsOfPHP\\Bridge\\Symfony\\Cqrs\\Tests\\": "packages/cqrs-symfony/Tests"
+            "SonsOfPHP\\Bard\\Tests\\": "src/SonsOfPHP/Bard/Tests",
+            "SonsOfPHP\\Bundle\\Cqrs\\Tests\\": "src/SonsOfPHP/Bundle/Cqrs/Tests",
+            "SonsOfPHP\\Bridge\\Symfony\\Cqrs\\Tests\\": "src/SonsOfPHP/Bridge/Symfony/Cqrs/Tests"
         }
     }
 }
