@@ -52,6 +52,10 @@
         {
             "path": "src/SonsOfPHP/Bridge/Doctrine/EventSourcing",
             "repository": "git@github.com:SonsOfPHP/event-sourcing-doctrine.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Component/FeatureToggle",
+            "repository": "git@github.com:SonsOfPHP/feature-toggle.git"
         }
     ]
 }
