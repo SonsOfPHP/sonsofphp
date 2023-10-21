@@ -2,10 +2,6 @@
     "version": "0.3.7",
     "packages": [
         {
-            "path": "packages/event-dispatcher/",
-            "repository": "git@github.com:SonsOfPHP/event-dispatcher.git"
-        },
-        {
             "path": "packages/event-sourcing/",
             "repository": "git@github.com:SonsOfPHP/event-sourcing.git"
         },
@@ -52,6 +48,10 @@
         {
             "path": "src/SonsOfPHP/Bridge/Symfony/EventSourcing",
             "repository": "git@github.com:SonsOfPHP/event-sourcing-symfony.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Component/EventDispatcher",
+            "repository": "git@github.com:SonsOfPHP/event-dispatcher.git"
         }
     ]
 }
