@@ -23,6 +23,7 @@ final class Application extends BaseApplication
     protected function getDefaultCommands(): array
     {
         return array_merge(parent::getDefaultCommands(), [
+            new \SonsOfPHP\Bard\Console\Command\AddCommand(),
             new \SonsOfPHP\Bard\Console\Command\InitCommand(),
             new \SonsOfPHP\Bard\Console\Command\InstallCommand(),
             new \SonsOfPHP\Bard\Console\Command\MergeCommand(),
