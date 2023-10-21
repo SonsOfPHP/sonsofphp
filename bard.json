@@ -2,55 +2,55 @@
     "version": "0.3.7",
     "packages": [
         {
-            "path": "packages/bard/",
+            "path": "src/SonsOfPHP/Bard",
             "repository": "git@github.com:SonsOfPHP/bard.git"
         },
         {
-            "path": "packages/clock/",
+            "path": "src/SonsOfPHP/Component/Clock",
             "repository": "git@github.com:SonsOfPHP/clock.git"
         },
         {
-            "path": "packages/cqrs/",
+            "path": "src/SonsOfPHP/Component/Cqrs",
             "repository": "git@github.com:SonsOfPHP/cqrs.git"
         },
         {
-            "path": "packages/cqrs-bundle/",
+            "path": "src/SonsOfPHP/Bundle/Cqrs",
             "repository": "git@github.com:SonsOfPHP/cqrs-bundle.git"
         },
         {
-            "path": "packages/cqrs-symfony/",
+            "path": "src/SonsOfPHP/Bridge/Symfony/Cqrs",
             "repository": "git@github.com:SonsOfPHP/cqrs-symfony.git"
         },
         {
-            "path": "packages/event-dispatcher/",
-            "repository": "git@github.com:SonsOfPHP/event-dispatcher.git"
-        },
-        {
-            "path": "packages/event-sourcing/",
-            "repository": "git@github.com:SonsOfPHP/event-sourcing.git"
-        },
-        {
-            "path": "packages/event-sourcing-doctrine/",
-            "repository": "git@github.com:SonsOfPHP/event-sourcing-doctrine.git"
-        },
-        {
-            "path": "packages/event-sourcing-symfony/",
+            "path": "src/SonsOfPHP/Bridge/Symfony/EventSourcing",
             "repository": "git@github.com:SonsOfPHP/event-sourcing-symfony.git"
         },
         {
-            "path": "packages/feature-toggle/",
+            "path": "src/SonsOfPHP/Component/EventDispatcher",
+            "repository": "git@github.com:SonsOfPHP/event-dispatcher.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Component/EventSourcing",
+            "repository": "git@github.com:SonsOfPHP/event-sourcing.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Bridge/Doctrine/EventSourcing",
+            "repository": "git@github.com:SonsOfPHP/event-sourcing-doctrine.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Component/FeatureToggle",
             "repository": "git@github.com:SonsOfPHP/feature-toggle.git"
         },
         {
-            "path": "packages/json/",
+            "path": "src/SonsOfPHP/Component/Json",
             "repository": "git@github.com:SonsOfPHP/json.git"
         },
         {
-            "path": "packages/money/",
+            "path": "src/SonsOfPHP/Component/Money",
             "repository": "git@github.com:SonsOfPHP/money.git"
         },
         {
-            "path": "packages/version/",
+            "path": "src/SonsOfPHP/Component/Version",
             "repository": "git@github.com:SonsOfPHP/version.git"
         }
     ]

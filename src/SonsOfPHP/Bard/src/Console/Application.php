@@ -27,6 +27,7 @@ final class Application extends BaseApplication
             new \SonsOfPHP\Bard\Console\Command\InitCommand(),
             new \SonsOfPHP\Bard\Console\Command\InstallCommand(),
             new \SonsOfPHP\Bard\Console\Command\MergeCommand(),
+            new \SonsOfPHP\Bard\Console\Command\PullCommand(),
             new \SonsOfPHP\Bard\Console\Command\PushCommand(),
             new \SonsOfPHP\Bard\Console\Command\ReleaseCommand(),
             new \SonsOfPHP\Bard\Console\Command\SplitCommand(),
