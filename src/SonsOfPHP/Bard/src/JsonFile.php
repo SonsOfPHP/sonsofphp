@@ -12,13 +12,14 @@ use SonsOfPHP\Component\Json\Json;
 final class JsonFile
 {
     private string $filename;
-    private array $config;
+    private array $config = [];
     private Json $json;
 
     public function __construct(string $filename)
     {
         $this->filename = $filename;
         $this->json     = new Json();
+        $this->load();
     }
 
     private function load(): void
