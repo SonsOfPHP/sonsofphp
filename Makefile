@@ -52,7 +52,7 @@ phpunit-upgrade:
 lint: lint-php ## Lint files
 
 lint-php: # lint php files
-	@! find src/ -name "*.php" -not -path "src/**/vendor/*" | xargs -I{} $(PHP) -l '{}' | grep -v "No syntax errors detected"
+	find src -name "*.php" -not -path "src/**/vendor/*" | xargs -I{} $(PHP) -l '{}'
 
 coverage: ## Build Code Coverage Report
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --coverage-html $(COVERAGE_DIR)
@@ -88,21 +88,21 @@ tools-install: psalm-install php-cs-fixer-install phpunit-install
 
 tools-upgrade: psalm-upgrade php-cs-fixer-upgrade phpunit-upgrade
 
-# Install deps for building docs
-docs-install:
+## Documentation
+docs-install: ## Install deps for building docs
 	pip install mkdocs
 	pip install mkdocs-material
 
-docs-upgrade:
+docs-upgrade: ## upgrade mkdocs
 	pip install --upgrade mkdocs-material
 
-docs-watch: # Preview documentation locally
+docs-watch: ## Preview documentation locally
 	$(MKDOCS) serve
 
-docs-build: # Build Site
+docs-build: ## Build Site
 	$(MKDOCS) build
 
-## Packages
+## Package Management
 packages-install: ## Runs `composer install` on each package
 	$(BARD) install -n -vvv
 
