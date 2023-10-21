@@ -5,7 +5,7 @@ PHP_CS_FIXER        = tools/php-cs-fixer/vendor/bin/php-cs-fixer
 PHPUNIT             = tools/phpunit/vendor/bin/phpunit
 PSALM               = tools/psalm/vendor/bin/psalm
 PSALM_BASELINE_FILE = psalm-baseline.xml
-BARD                = packages/bard/bin/bard
+BARD                = src/SonsOfPHP/Bard/bin/bard
 
 COVERAGE_DIR = docs/coverage
 
@@ -30,10 +30,13 @@ upgrade: tools-upgrade
 
 composer-install: composer.json # Install Dependencies via Composer
 	XDEBUG_MODE=off $(COMPOSER) install --no-interaction --prefer-dist --optimize-autoloader
-	XDEBUG_MODE=off $(COMPOSER) install --working-dir=packages/bard --no-interaction --prefer-dist --optimize-autoloader
+	XDEBUG_MODE=off $(COMPOSER) install --working-dir=src/SonsOfPHP/Bard --no-interaction --prefer-dist --optimize-autoloader
 
 purge: # Purge vendor and lock files
-	rm -rf vendor/ packages/*/vendor/ packages/*/composer.lock
+	rm -rf vendor/ src/SonsOfPHP/Bard/vendor/ src/SonsOfPHP/Bard/composer.lock
+	rm -rf vendor/ src/SonsOfPHP/Bridge/*/vendor/ src/SonsOfPHP/Bridge/*/composer.lock
+	rm -rf vendor/ src/SonsOfPHP/Bundle/*/vendor/ src/SonsOfPHP/Bundle/*/composer.lock
+	rm -rf vendor/ src/SonsOfPHP/Component/*/vendor/ src/SonsOfPHP/Component/*/composer.lock
 
 test: ## Run PHPUnit Tests
 	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHPUNIT) --order-by=defects
@@ -49,7 +52,7 @@ phpunit-upgrade:
 lint: lint-php ## Lint files
 
 lint-php: # lint php files
-	@! find packages/ -name "*.php" -not -path "packages/**/vendor/*" | xargs -I{} $(PHP) -l '{}' | grep -v "No syntax errors detected"
+	find src -name "*.php" -not -path "src/**/vendor/*" | xargs -I{} $(PHP) -l '{}'
 
 coverage: ## Build Code Coverage Report
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --coverage-html $(COVERAGE_DIR)
@@ -85,21 +88,21 @@ tools-install: psalm-install php-cs-fixer-install phpunit-install
 
 tools-upgrade: psalm-upgrade php-cs-fixer-upgrade phpunit-upgrade
 
-# Install deps for building docs
-docs-install:
+## Documentation
+docs-install: ## Install deps for building docs
 	pip install mkdocs
 	pip install mkdocs-material
 
-docs-upgrade:
+docs-upgrade: ## upgrade mkdocs
 	pip install --upgrade mkdocs-material
 
-docs-watch: # Preview documentation locally
+docs-watch: ## Preview documentation locally
 	$(MKDOCS) serve
 
-docs-build: # Build Site
+docs-build: ## Build Site
 	$(MKDOCS) build
 
-## Packages
+## Package Management
 packages-install: ## Runs `composer install` on each package
 	$(BARD) install -n -vvv
 

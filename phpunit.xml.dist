@@ -11,7 +11,11 @@
 
   <testsuites>
     <testsuite name="all">
-      <directory>packages/*/Tests</directory>
+      <!--<directory>src/SonsOfPHP/Bard/src/Tests</directory>-->
+      <directory>src/SonsOfPHP/Bridge/Doctrine/*/Tests</directory>
+      <directory>src/SonsOfPHP/Bridge/Symfony/*/Tests</directory>
+      <directory>src/SonsOfPHP/Bundle/*/Tests</directory>
+      <directory>src/SonsOfPHP/Component/*/Tests</directory>
     </testsuite>
   </testsuites>
 
@@ -19,11 +23,19 @@
 
   <source>
     <include>
-      <directory>packages/*</directory>
+      <directory>src/*</directory>
     </include>
     <exclude>
-      <directory>packages/*/Tests</directory>
-      <directory>packages/*/vendor</directory>
+      <!--<directory>src/SonsOfPHP/Bard/src/Tests</directory>-->
+      <directory>src/SonsOfPHP/Bard/vendor</directory>
+      <directory>src/SonsOfPHP/Bridge/Doctrine/*/Tests</directory>
+      <directory>src/SonsOfPHP/Bridge/Doctrine/*/vendor</directory>
+      <directory>src/SonsOfPHP/Bridge/Symfony/*/Tests</directory>
+      <directory>src/SonsOfPHP/Bridge/Symfony/*/vendor</directory>
+      <directory>src/SonsOfPHP/Bundle/*/Tests</directory>
+      <directory>src/SonsOfPHP/Bundle/*/vendor</directory>
+      <directory>src/SonsOfPHP/Component/*/Tests</directory>
+      <directory>src/SonsOfPHP/Component/*/vendor</directory>
     </exclude>
   </source>
 
