@@ -2,22 +2,6 @@
     "version": "0.3.7",
     "packages": [
         {
-            "path": "packages/feature-toggle/",
-            "repository": "git@github.com:SonsOfPHP/feature-toggle.git"
-        },
-        {
-            "path": "packages/json/",
-            "repository": "git@github.com:SonsOfPHP/json.git"
-        },
-        {
-            "path": "packages/money/",
-            "repository": "git@github.com:SonsOfPHP/money.git"
-        },
-        {
-            "path": "packages/version/",
-            "repository": "git@github.com:SonsOfPHP/version.git"
-        },
-        {
             "path": "src/SonsOfPHP/Bard",
             "repository": "git@github.com:SonsOfPHP/bard.git"
         },
@@ -56,6 +40,10 @@
         {
             "path": "src/SonsOfPHP/Component/FeatureToggle",
             "repository": "git@github.com:SonsOfPHP/feature-toggle.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Component/Json",
+            "repository": "git@github.com:SonsOfPHP/json.git"
         }
     ]
 }
