@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock;
 
+use Psr\Clock\ClockInterface;
+
 /**
  * System Clock.
  *
@@ -23,7 +25,7 @@ class SystemClock implements ClockInterface
         return 'SystemClock[' . $this->zone->getName() . ']';
     }
 
-    public function now(): \DateTimeInterface
+    public function now(): \DateTimeImmutable
     {
         return new \DateTimeImmutable('now', $this->zone);
     }
