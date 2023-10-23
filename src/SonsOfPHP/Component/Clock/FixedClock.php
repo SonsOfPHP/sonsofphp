@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Clock;
 
 use SonsOfPHP\Component\Clock\Exception\ClockException;
+use Psr\Clock\ClockInterface;
 
 /**
  * Fixed Clock.
@@ -30,7 +31,7 @@ final class FixedClock implements ClockInterface
         return 'FixedClock[' . $this->zone->getName() . ']';
     }
 
-    public function now(): \DateTimeInterface
+    public function now(): \DateTimeImmutable
     {
         return $this->time;
     }
