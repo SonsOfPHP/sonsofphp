@@ -1,88 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.7.7@e028ba46ba0d7f9a78bc3201c251e137383e145f">
-  <file src="packages/bard/src/Console/Command/InitCommand.php">
-    <MixedOperand>
-      <code><![CDATA[$input->getOption('working-dir')]]></code>
-    </MixedOperand>
+<files psalm-version="5.15.0@5c774aca4746caf3d239d9c8cadb9f882ca29352">
+  <file src="src/SonsOfPHP/Bard/src/Console/Application.php">
+    <UnusedClass>
+      <code>Application</code>
+    </UnusedClass>
   </file>
-  <file src="packages/bard/src/Console/Command/InstallCommand.php">
-    <MixedArrayAccess>
-      <code><![CDATA[$pkg['path']]]></code>
-    </MixedArrayAccess>
-    <MixedAssignment>
-      <code>$pkg</code>
-    </MixedAssignment>
-    <MixedOperand>
-      <code><![CDATA[$input->getOption('working-dir')]]></code>
-    </MixedOperand>
-    <PossiblyNullIterator>
-      <code><![CDATA[$bardJsonFile->getSection('packages')]]></code>
-    </PossiblyNullIterator>
-    <UndefinedInterfaceMethod>
-      <code>run</code>
-    </UndefinedInterfaceMethod>
-  </file>
-  <file src="packages/bard/src/Console/Command/MergeCommand.php">
-    <MissingPropertyType>
-      <code>$formatter</code>
-    </MissingPropertyType>
-    <MixedArgument>
-      <code><![CDATA[$this->formatter->formatSection('bard', sprintf('Merging "%s" into root composer.json', $pkgComposerJsonFile->getSection('name')))]]></code>
-    </MixedArgument>
-    <MixedArrayAccess>
-      <code><![CDATA[$pkg['path']]]></code>
-      <code><![CDATA[$pkg['path']]]></code>
-    </MixedArrayAccess>
-    <MixedAssignment>
-      <code>$pkg</code>
-      <code><![CDATA[$this->bardConfig]]></code>
-    </MixedAssignment>
-    <MixedMethodCall>
-      <code>decode</code>
-    </MixedMethodCall>
-    <MixedOperand>
-      <code><![CDATA[$input->getOption('working-dir')]]></code>
-      <code><![CDATA[$input->getOption('working-dir')]]></code>
-      <code><![CDATA[$input->getOption('working-dir')]]></code>
-      <code><![CDATA[$input->getOption('working-dir')]]></code>
-      <code><![CDATA[$input->getOption('working-dir')]]></code>
-      <code><![CDATA[$pkg['path']]]></code>
-      <code><![CDATA[$pkg['path']]]></code>
-    </MixedOperand>
-    <PossiblyInvalidArgument>
-      <code><![CDATA[$pkgComposerJsonFile->getSection('name')]]></code>
-    </PossiblyInvalidArgument>
-    <PropertyNotSetInConstructor>
-      <code>$bardConfig</code>
-      <code>$mainComposerFile</code>
-    </PropertyNotSetInConstructor>
-    <UndefinedInterfaceMethod>
-      <code>formatSection</code>
-    </UndefinedInterfaceMethod>
-  </file>
-  <file src="packages/bard/src/Console/Command/PublishCommand.php">
-    <MixedArrayAccess>
-      <code><![CDATA[$pkg['path']]]></code>
-      <code><![CDATA[$pkg['path']]]></code>
-      <code><![CDATA[$pkg['repository']]]></code>
-    </MixedArrayAccess>
-    <MixedAssignment>
-      <code>$pkg</code>
-    </MixedAssignment>
-    <MixedMethodCall>
-      <code>wait</code>
-    </MixedMethodCall>
-    <MixedOperand>
-      <code><![CDATA[$input->getOption('working-dir')]]></code>
-      <code><![CDATA[$input->getOption('working-dir')]]></code>
-      <code><![CDATA[$pkg['path']]]></code>
-    </MixedOperand>
-    <PossiblyInvalidArgument>
-      <code>$pkgName</code>
-    </PossiblyInvalidArgument>
-    <PossiblyNullIterator>
-      <code><![CDATA[$bardConfig->getSection('packages')]]></code>
-    </PossiblyNullIterator>
+  <file src="src/SonsOfPHP/Bard/src/Console/Command/AddCommand.php">
     <UndefinedInterfaceMethod>
       <code>mustRun</code>
     </UndefinedInterfaceMethod>
@@ -90,78 +13,33 @@
       <code>$formatter</code>
     </UnusedVariable>
   </file>
-  <file src="packages/bard/src/Console/Command/ReleaseCommand.php">
-    <MissingPropertyType>
-      <code>$releaseVersion</code>
-    </MissingPropertyType>
-    <MixedArgument>
-      <code><![CDATA[$input->getOption('branch')]]></code>
-      <code><![CDATA[$this->releaseVersion]]></code>
-      <code><![CDATA[$this->releaseVersion]]></code>
-      <code><![CDATA[$this->releaseVersion->toString()]]></code>
-      <code><![CDATA[$this->releaseVersion->toString()]]></code>
-      <code><![CDATA[$this->releaseVersion->toString()]]></code>
-      <code><![CDATA[$this->releaseVersion->toString()]]></code>
-      <code><![CDATA[$this->releaseVersion->toString()]]></code>
-      <code><![CDATA[$this->releaseVersion->toString()]]></code>
-      <code><![CDATA[$this->releaseVersion->toString()]]></code>
-      <code><![CDATA[$this->releaseVersion->toString()]]></code>
-      <code>$version</code>
-    </MixedArgument>
-    <MixedArrayAccess>
-      <code><![CDATA[$pkg['path']]]></code>
-      <code><![CDATA[$pkg['path']]]></code>
-      <code><![CDATA[$pkg['path']]]></code>
-      <code><![CDATA[$pkg['repository']]]></code>
-      <code><![CDATA[$pkg['repository']]]></code>
-    </MixedArrayAccess>
-    <MixedAssignment>
-      <code>$pkg</code>
-      <code>$pkg</code>
-      <code><![CDATA[$this->isDryRun]]></code>
-      <code>$version</code>
-    </MixedAssignment>
-    <MixedMethodCall>
-      <code>toString</code>
-      <code>toString</code>
-      <code>toString</code>
-      <code>toString</code>
-      <code>toString</code>
-      <code>toString</code>
-      <code>toString</code>
-      <code>toString</code>
-      <code>toString</code>
-      <code>toString</code>
-    </MixedMethodCall>
-    <MixedOperand>
-      <code><![CDATA[$input->getOption('working-dir')]]></code>
-      <code><![CDATA[$input->getOption('working-dir')]]></code>
-      <code><![CDATA[$input->getOption('working-dir')]]></code>
-      <code><![CDATA[$input->getOption('working-dir')]]></code>
-      <code><![CDATA[$pkg['path']]]></code>
-      <code><![CDATA[$pkg['path']]]></code>
-      <code><![CDATA[$this->releaseVersion->toString()]]></code>
-      <code><![CDATA[$this->releaseVersion->toString()]]></code>
-    </MixedOperand>
-    <PossiblyInvalidArgument>
-      <code>$pkgName</code>
-      <code>$pkgName</code>
-      <code>$pkgName</code>
-      <code>$pkgName</code>
-      <code>$pkgName</code>
-      <code><![CDATA[$this->bardConfig->getSection('version')]]></code>
-      <code><![CDATA[$this->bardConfig->getSection('version')]]></code>
-    </PossiblyInvalidArgument>
-    <PossiblyInvalidCast>
-      <code><![CDATA[$this->bardConfig->getSection('version')]]></code>
-    </PossiblyInvalidCast>
-    <PossiblyNullIterator>
-      <code><![CDATA[$this->bardConfig->getSection('packages')]]></code>
-      <code><![CDATA[$this->bardConfig->getSection('packages')]]></code>
-    </PossiblyNullIterator>
-    <PropertyNotSetInConstructor>
-      <code>$bardConfig</code>
-    </PropertyNotSetInConstructor>
+  <file src="src/SonsOfPHP/Bard/src/Console/Command/InstallCommand.php">
+    <UndefinedInterfaceMethod>
+      <code>run</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="src/SonsOfPHP/Bard/src/Console/Command/MergeCommand.php">
+    <UndefinedInterfaceMethod>
+      <code>formatSection</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="src/SonsOfPHP/Bard/src/Console/Command/PullCommand.php">
+    <UndefinedInterfaceMethod>
+      <code>mustRun</code>
+    </UndefinedInterfaceMethod>
+    <UnusedVariable>
+      <code>$formatter</code>
+    </UnusedVariable>
+  </file>
+  <file src="src/SonsOfPHP/Bard/src/Console/Command/PushCommand.php">
+    <UndefinedInterfaceMethod>
+      <code>mustRun</code>
+    </UndefinedInterfaceMethod>
+    <UnusedVariable>
+      <code>$formatter</code>
+    </UnusedVariable>
+  </file>
+  <file src="src/SonsOfPHP/Bard/src/Console/Command/ReleaseCommand.php">
     <UndefinedInterfaceMethod>
       <code>formatSection</code>
       <code>mustRun</code>
@@ -169,391 +47,103 @@
       <code>mustRun</code>
     </UndefinedInterfaceMethod>
   </file>
-  <file src="packages/bard/src/Console/Command/UpdateCommand.php">
-    <MixedArrayAccess>
-      <code><![CDATA[$pkg['path']]]></code>
-    </MixedArrayAccess>
-    <MixedAssignment>
-      <code>$pkg</code>
-    </MixedAssignment>
-    <MixedOperand>
-      <code><![CDATA[$input->getOption('working-dir')]]></code>
-    </MixedOperand>
-    <PossiblyNullIterator>
-      <code><![CDATA[$bardJsonFile->getSection('packages')]]></code>
-    </PossiblyNullIterator>
+  <file src="src/SonsOfPHP/Bard/src/Console/Command/SplitCommand.php">
+    <UndefinedInterfaceMethod>
+      <code>mustRun</code>
+    </UndefinedInterfaceMethod>
+    <UnusedVariable>
+      <code>$formatter</code>
+    </UnusedVariable>
+  </file>
+  <file src="src/SonsOfPHP/Bard/src/Console/Command/UpdateCommand.php">
     <UndefinedInterfaceMethod>
       <code>run</code>
     </UndefinedInterfaceMethod>
   </file>
-  <file src="packages/bard/src/JsonFile.php">
-    <MissingParamType>
-      <code>$operator</code>
-      <code>$value</code>
-    </MissingParamType>
-    <MixedAssignment>
-      <code><![CDATA[$this->config]]></code>
-    </MixedAssignment>
-    <MixedInferredReturnType>
-      <code>array|int|string|null</code>
-      <code>self</code>
-      <code>string</code>
-    </MixedInferredReturnType>
-    <MixedMethodCall>
+  <file src="src/SonsOfPHP/Bard/src/Worker/File/Bard/UpdateVersion.php">
+    <PossiblyUnusedMethod>
       <code>apply</code>
-      <code>decode</code>
-      <code>encode</code>
-      <code>unescapedSlashes</code>
-      <code>unescapedUnicode</code>
-    </MixedMethodCall>
-    <MixedReturnStatement>
-      <code><![CDATA[$operator->apply($this)]]></code>
-      <code><![CDATA[$this->config[$section]]]></code>
-      <code><![CDATA[$this->json->getEncoder()
-            ->prettyPrint()
-            ->unescapedUnicode()
-            ->unescapedSlashes()
-            ->encode($this->config)]]></code>
-    </MixedReturnStatement>
-    <PropertyNotSetInConstructor>
-      <code>$config</code>
-    </PropertyNotSetInConstructor>
-    <RedundantPropertyInitializationCheck>
-      <code><![CDATA[isset($this->config)]]></code>
-      <code><![CDATA[isset($this->config)]]></code>
-    </RedundantPropertyInitializationCheck>
+    </PossiblyUnusedMethod>
   </file>
-  <file src="packages/bard/src/Worker/File/Composer/Package/BranchAlias.php">
-    <MixedAssignment>
-      <code><![CDATA[$pkgExtraSection['branch-alias']]]></code>
-    </MixedAssignment>
-    <MixedStringOffsetAssignment>
-      <code><![CDATA[$pkgExtraSection['branch-alias']]]></code>
-    </MixedStringOffsetAssignment>
-    <PossiblyInvalidArrayAccess>
-      <code><![CDATA[$rootExtraSection['branch-alias']]]></code>
-    </PossiblyInvalidArrayAccess>
-    <PossiblyInvalidArrayAssignment>
-      <code><![CDATA[$pkgExtraSection['branch-alias']]]></code>
-    </PossiblyInvalidArrayAssignment>
-    <PossiblyInvalidArrayOffset>
-      <code><![CDATA[$pkgExtraSection['branch-alias']]]></code>
-      <code><![CDATA[$rootExtraSection['branch-alias']]]></code>
-    </PossiblyInvalidArrayOffset>
-    <PossiblyNullArrayAccess>
-      <code><![CDATA[$rootExtraSection['branch-alias']]]></code>
-    </PossiblyNullArrayAccess>
+  <file src="src/SonsOfPHP/Bard/src/Worker/File/Composer/Package/Authors.php">
+    <PossiblyUnusedMethod>
+      <code>apply</code>
+    </PossiblyUnusedMethod>
   </file>
-  <file src="packages/bard/src/Worker/File/Composer/Root/UpdateAutoloadDevSection.php">
+  <file src="src/SonsOfPHP/Bard/src/Worker/File/Composer/Package/BranchAlias.php">
+    <PossiblyUnusedMethod>
+      <code>apply</code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/SonsOfPHP/Bard/src/Worker/File/Composer/Package/Funding.php">
+    <PossiblyUnusedMethod>
+      <code>apply</code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/SonsOfPHP/Bard/src/Worker/File/Composer/Package/Support.php">
+    <PossiblyUnusedMethod>
+      <code>apply</code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/SonsOfPHP/Bard/src/Worker/File/Composer/Root/UpdateAutoloadDevSection.php">
     <InvalidArrayOffset>
       <code><![CDATA[$rootAutoloadSection['exclude-from-classmap']]]></code>
     </InvalidArrayOffset>
-    <MixedArgument>
-      <code>$pkgPath</code>
-      <code>$pkgPath</code>
-      <code><![CDATA[$rootAutoloadSection['exclude-from-classmap']]]></code>
-      <code><![CDATA[$rootAutoloadSection['psr-4']]]></code>
-    </MixedArgument>
-    <MixedArrayOffset>
-      <code><![CDATA[$rootAutoloadSection['psr-4'][$namespace]]]></code>
-    </MixedArrayOffset>
-    <MixedAssignment>
-      <code>$config</code>
-      <code>$namespace</code>
-      <code>$pkgPath</code>
-      <code>$pkgPath</code>
-    </MixedAssignment>
-    <PossiblyInvalidArrayAssignment>
-      <code><![CDATA[$rootAutoloadSection['exclude-from-classmap']]]></code>
-      <code><![CDATA[$rootAutoloadSection['psr-4']]]></code>
-    </PossiblyInvalidArrayAssignment>
-    <PossiblyInvalidArrayOffset>
-      <code><![CDATA[$rootAutoloadSection['exclude-from-classmap']]]></code>
-      <code><![CDATA[$rootAutoloadSection['psr-4']]]></code>
-    </PossiblyInvalidArrayOffset>
-    <PossiblyInvalidIterator>
-      <code>$pkgAutoloadSection</code>
-    </PossiblyInvalidIterator>
-    <PossiblyNullArrayAssignment>
-      <code><![CDATA[$rootAutoloadSection['exclude-from-classmap']]]></code>
-      <code><![CDATA[$rootAutoloadSection['psr-4']]]></code>
-    </PossiblyNullArrayAssignment>
+    <PossiblyUnusedMethod>
+      <code>apply</code>
+    </PossiblyUnusedMethod>
   </file>
-  <file src="packages/bard/src/Worker/File/Composer/Root/UpdateAutoloadSection.php">
+  <file src="src/SonsOfPHP/Bard/src/Worker/File/Composer/Root/UpdateAutoloadSection.php">
     <InvalidArrayOffset>
       <code><![CDATA[$rootAutoloadSection['exclude-from-classmap']]]></code>
     </InvalidArrayOffset>
-    <MixedArgument>
-      <code>$pkgPath</code>
-      <code>$pkgPath</code>
-      <code><![CDATA[$rootAutoloadSection['exclude-from-classmap']]]></code>
-      <code><![CDATA[$rootAutoloadSection['psr-4']]]></code>
-    </MixedArgument>
-    <MixedArrayAssignment>
-      <code><![CDATA[$rootAutoloadSection['exclude-from-classmap'][]]]></code>
-      <code><![CDATA[$rootAutoloadSection['psr-4'][$namespace]]]></code>
-    </MixedArrayAssignment>
-    <MixedArrayOffset>
-      <code><![CDATA[$rootAutoloadSection['psr-4'][$namespace]]]></code>
-    </MixedArrayOffset>
-    <MixedAssignment>
-      <code>$config</code>
-      <code>$namespace</code>
-      <code>$pkgPath</code>
-      <code>$pkgPath</code>
-      <code>$section</code>
-    </MixedAssignment>
-    <PossiblyInvalidArrayAssignment>
-      <code><![CDATA[$rootAutoloadSection['exclude-from-classmap']]]></code>
-      <code><![CDATA[$rootAutoloadSection['exclude-from-classmap']]]></code>
-      <code><![CDATA[$rootAutoloadSection['psr-4']]]></code>
-      <code><![CDATA[$rootAutoloadSection['psr-4']]]></code>
-    </PossiblyInvalidArrayAssignment>
-    <PossiblyInvalidArrayOffset>
-      <code><![CDATA[$rootAutoloadSection['exclude-from-classmap']]]></code>
-      <code><![CDATA[$rootAutoloadSection['exclude-from-classmap']]]></code>
-      <code><![CDATA[$rootAutoloadSection['psr-4']]]></code>
-      <code><![CDATA[$rootAutoloadSection['psr-4']]]></code>
-    </PossiblyInvalidArrayOffset>
-    <PossiblyNullIterator>
-      <code>$pkgAutoloadSection</code>
-    </PossiblyNullIterator>
+    <PossiblyUnusedMethod>
+      <code>apply</code>
+    </PossiblyUnusedMethod>
   </file>
-  <file src="packages/bard/src/Worker/File/Composer/Root/UpdateProvideSection.php">
+  <file src="src/SonsOfPHP/Bard/src/Worker/File/Composer/Root/UpdateProvideSection.php">
     <InvalidArrayOffset>
       <code>$rootProvideSection[$pkg]</code>
     </InvalidArrayOffset>
-    <MixedAssignment>
-      <code>$rootProvideSection[$pkg]</code>
-      <code>$version</code>
-    </MixedAssignment>
-    <MixedStringOffsetAssignment>
-      <code>$rootProvideSection[$pkg]</code>
-    </MixedStringOffsetAssignment>
-    <PossiblyInvalidArrayAssignment>
-      <code>$rootProvideSection[$pkg]</code>
-    </PossiblyInvalidArrayAssignment>
-    <PossiblyInvalidIterator>
-      <code>$pkgProvideSection</code>
-    </PossiblyInvalidIterator>
+    <PossiblyUnusedMethod>
+      <code>apply</code>
+    </PossiblyUnusedMethod>
   </file>
-  <file src="packages/bard/src/Worker/File/Composer/Root/UpdateReplaceSection.php">
+  <file src="src/SonsOfPHP/Bard/src/Worker/File/Composer/Root/UpdateReplaceSection.php">
     <InvalidArrayOffset>
       <code>$rootReplace[$pkgName]</code>
     </InvalidArrayOffset>
-    <PossiblyInvalidArrayAssignment>
-      <code>$rootReplace[$pkgName]</code>
-    </PossiblyInvalidArrayAssignment>
-    <PossiblyNullArrayOffset>
-      <code>$rootReplace</code>
-    </PossiblyNullArrayOffset>
+    <PossiblyUnusedMethod>
+      <code>apply</code>
+    </PossiblyUnusedMethod>
   </file>
-  <file src="packages/bard/src/Worker/File/Composer/Root/UpdateRequireDevSection.php">
+  <file src="src/SonsOfPHP/Bard/src/Worker/File/Composer/Root/UpdateRequireDevSection.php">
     <InvalidArrayOffset>
       <code>$rootRequireDev[$package]</code>
     </InvalidArrayOffset>
-    <MixedAssignment>
-      <code>$rootRequireDev[$package]</code>
-      <code>$version</code>
-    </MixedAssignment>
-    <MixedStringOffsetAssignment>
-      <code>$rootRequireDev[$package]</code>
-    </MixedStringOffsetAssignment>
-    <PossiblyInvalidArrayAssignment>
-      <code>$rootRequireDev[$package]</code>
-    </PossiblyInvalidArrayAssignment>
-    <PossiblyInvalidIterator>
-      <code>$pkgRequireDev</code>
-    </PossiblyInvalidIterator>
+    <PossiblyUnusedMethod>
+      <code>apply</code>
+    </PossiblyUnusedMethod>
   </file>
-  <file src="packages/bard/src/Worker/File/Composer/Root/UpdateRequireSection.php">
+  <file src="src/SonsOfPHP/Bard/src/Worker/File/Composer/Root/UpdateRequireSection.php">
     <InvalidArrayOffset>
       <code>$rootRequire[$package]</code>
     </InvalidArrayOffset>
-    <MixedAssignment>
-      <code>$rootRequire[$package]</code>
-      <code>$version</code>
-    </MixedAssignment>
-    <MixedStringOffsetAssignment>
-      <code>$rootRequire[$package]</code>
-    </MixedStringOffsetAssignment>
-    <PossiblyInvalidArgument>
-      <code>$rootReplace</code>
-    </PossiblyInvalidArgument>
-    <PossiblyInvalidArrayAssignment>
-      <code>$rootRequire[$package]</code>
-    </PossiblyInvalidArrayAssignment>
-    <PossiblyInvalidIterator>
-      <code>$pkgRequire</code>
-    </PossiblyInvalidIterator>
+    <PossiblyUnusedMethod>
+      <code>apply</code>
+    </PossiblyUnusedMethod>
   </file>
-  <file src="packages/clock/DateTime.php">
-    <InvalidArgument>
-      <code><![CDATA[$this->getDate()]]></code>
-      <code><![CDATA[$this->getTime()]]></code>
-      <code><![CDATA[$this->getZone()->getOffset()]]></code>
-    </InvalidArgument>
+  <file src="src/SonsOfPHP/Bridge/Doctrine/EventSourcing/TableSchemaV2.php">
+    <UnusedClass>
+      <code>TableSchemaV2</code>
+    </UnusedClass>
   </file>
-  <file src="packages/cqrs-bundle/DependencyInjection/Configuration.php">
-    <MixedMethodCall>
-      <code>arrayNode</code>
-      <code>booleanNode</code>
-      <code>children</code>
-      <code>end</code>
-      <code>end</code>
-      <code>end</code>
-      <code>end</code>
-    </MixedMethodCall>
-    <PossiblyUndefinedMethod>
-      <code>children</code>
-    </PossiblyUndefinedMethod>
-  </file>
-  <file src="packages/cqrs-bundle/DependencyInjection/CqrsExtension.php">
-    <UnusedVariable>
-      <code>$config</code>
-    </UnusedVariable>
-  </file>
-  <file src="packages/cqrs-symfony/CommandMessageBus.php">
-    <MixedArgumentTypeCoercion>
-      <code><![CDATA[$this->stamps]]></code>
-    </MixedArgumentTypeCoercion>
-  </file>
-  <file src="packages/cqrs-symfony/Tests/Command/AbstractOptionsResolverCommandMessageTest.php">
-    <MissingClosureParamType>
-      <code>$resolver</code>
-      <code>$resolver</code>
-      <code>$resolver</code>
-    </MissingClosureParamType>
-    <MixedMethodCall>
-      <code>define</code>
-      <code>define</code>
-      <code>define</code>
-    </MixedMethodCall>
-  </file>
-  <file src="packages/cqrs-symfony/Tests/DummyCommand.php">
-    <MissingParamType>
-      <code>$callback</code>
-    </MissingParamType>
-    <MissingPropertyType>
-      <code>$configureOptions</code>
-    </MissingPropertyType>
-    <MixedAssignment>
-      <code>self::$configureOptions</code>
-    </MixedAssignment>
-  </file>
-  <file src="packages/event-dispatcher/ListenerInterface.php">
-    <MissingReturnType>
-      <code>__invoke</code>
-    </MissingReturnType>
-  </file>
-  <file src="packages/event-dispatcher/ListenerProvider.php">
-    <MissingParamType>
-      <code>$listener</code>
-    </MissingParamType>
-    <MixedArrayAssignment>
-      <code><![CDATA[$this->listeners[$event][]]]></code>
-    </MixedArrayAssignment>
-    <MixedInferredReturnType>
-      <code>iterable</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement>
-      <code><![CDATA[$this->listeners[$class]]]></code>
-    </MixedReturnStatement>
-  </file>
-  <file src="packages/event-sourcing-doctrine/DoctrineDbalMessageRepository.php">
-    <ArgumentTypeCoercion>
-      <code>$message</code>
-    </ArgumentTypeCoercion>
-    <MixedArgument>
-      <code>$columnsWithTypes[$aggregateIdColumn]</code>
-      <code>$columnsWithTypes[$aggregateVersionColumn]</code>
-      <code><![CDATA[$data['metadata']]]></code>
-    </MixedArgument>
-    <MixedArgumentTypeCoercion>
-      <code><![CDATA[$this->tableSchema->mapEventDataToColumns($data)]]></code>
-      <code>array_keys($columnsWithTypes)</code>
-      <code><![CDATA[array_values($this->tableSchema->getColumns())]]></code>
-    </MixedArgumentTypeCoercion>
-    <TypeDoesNotContainNull>
-      <code>null === $id</code>
-      <code>null === $id</code>
-      <code>null === $version</code>
-    </TypeDoesNotContainNull>
-  </file>
-  <file src="packages/event-sourcing-doctrine/TableSchemaV1.php">
-    <MixedArgument>
-      <code><![CDATA[$data['metadata'][Metadata::TIMESTAMP]]]></code>
-      <code><![CDATA[$result['metadata']]]></code>
-      <code><![CDATA[$result['payload']]]></code>
-    </MixedArgument>
-    <MixedArrayAccess>
-      <code><![CDATA[$data['metadata'][Metadata::AGGREGATE_ID]]]></code>
-      <code><![CDATA[$data['metadata'][Metadata::AGGREGATE_VERSION]]]></code>
-      <code><![CDATA[$data['metadata'][Metadata::EVENT_ID]]]></code>
-      <code><![CDATA[$data['metadata'][Metadata::EVENT_TYPE]]]></code>
-      <code><![CDATA[$data['metadata'][Metadata::TIMESTAMP]]]></code>
-    </MixedArrayAccess>
-  </file>
-  <file src="packages/event-sourcing-doctrine/TableSchemaV2.php">
-    <MixedArgument>
-      <code><![CDATA[$data['metadata'][Metadata::TIMESTAMP]]]></code>
-      <code><![CDATA[$result['event_data']]]></code>
-    </MixedArgument>
-    <MixedArrayAccess>
-      <code><![CDATA[$data['metadata'][Metadata::AGGREGATE_ID]]]></code>
-      <code><![CDATA[$data['metadata'][Metadata::AGGREGATE_VERSION]]]></code>
-      <code><![CDATA[$data['metadata'][Metadata::EVENT_ID]]]></code>
-      <code><![CDATA[$data['metadata'][Metadata::EVENT_TYPE]]]></code>
-      <code><![CDATA[$data['metadata'][Metadata::TIMESTAMP]]]></code>
-    </MixedArrayAccess>
-    <MixedInferredReturnType>
-      <code>array</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement>
-      <code><![CDATA[json_decode($result['event_data'], true)]]></code>
-    </MixedReturnStatement>
-  </file>
-  <file src="packages/event-sourcing-doctrine/Tests/DoctrineDbalMessageRepositoryTest.php">
+  <file src="src/SonsOfPHP/Bridge/Doctrine/EventSourcing/Tests/DoctrineDbalMessageRepositoryTest.php">
     <InvalidMethodCall>
       <code>current</code>
       <code>current</code>
       <code>current</code>
     </InvalidMethodCall>
-    <MixedMethodCall>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-    </MixedMethodCall>
     <UndefinedInterfaceMethod>
       <code>expects</code>
       <code>expects</code>
@@ -576,117 +166,61 @@
       <code>expects</code>
     </UndefinedMethod>
   </file>
-  <file src="packages/event-sourcing-doctrine/Tests/TableSchemaV1Test.php">
-    <MixedMethodCall>
-      <code>getName</code>
-      <code>getName</code>
-      <code>getName</code>
-      <code>getName</code>
-      <code>getName</code>
-      <code>getName</code>
-      <code>getName</code>
-    </MixedMethodCall>
+  <file src="src/SonsOfPHP/Bridge/Symfony/Cqrs/CommandMessageBus.php">
+    <PossiblyUnusedReturnValue>
+      <code>object</code>
+    </PossiblyUnusedReturnValue>
   </file>
-  <file src="packages/event-sourcing-symfony/Aggregate/AggregateIdNormalizer.php">
-    <MissingParamType>
-      <code>$data</code>
-      <code>$object</code>
-    </MissingParamType>
-    <MixedArgument>
-      <code>$data</code>
-    </MixedArgument>
-    <MixedInferredReturnType>
-      <code>AggregateIdInterface</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement>
-      <code>$type::fromString($data)</code>
-    </MixedReturnStatement>
+  <file src="src/SonsOfPHP/Bridge/Symfony/EventSourcing/Aggregate/AggregateIdNormalizer.php">
+    <PossiblyUnusedMethod>
+      <code>getSupportedTypes</code>
+    </PossiblyUnusedMethod>
+    <PossiblyUnusedParam>
+      <code>$format</code>
+    </PossiblyUnusedParam>
   </file>
-  <file src="packages/event-sourcing-symfony/Aggregate/AggregateVersionNormalizer.php">
-    <MissingParamType>
-      <code>$data</code>
-      <code>$object</code>
-    </MissingParamType>
-    <MixedArgument>
-      <code>$data</code>
-    </MixedArgument>
-    <MixedInferredReturnType>
-      <code>AggregateVersionInterface</code>
-      <code>int</code>
-    </MixedInferredReturnType>
-    <MixedMethodCall>
-      <code>toInt</code>
-    </MixedMethodCall>
-    <MixedReturnStatement>
-      <code><![CDATA[$object->toInt()]]></code>
-      <code>$type::fromInt($data)</code>
-    </MixedReturnStatement>
+  <file src="src/SonsOfPHP/Bridge/Symfony/EventSourcing/Aggregate/AggregateVersionNormalizer.php">
+    <PossiblyUnusedMethod>
+      <code>getSupportedTypes</code>
+    </PossiblyUnusedMethod>
+    <PossiblyUnusedParam>
+      <code>$format</code>
+    </PossiblyUnusedParam>
   </file>
-  <file src="packages/event-sourcing-symfony/Message/MessageNormalizer.php">
-    <MissingParamType>
-      <code>$data</code>
-      <code>$object</code>
-    </MissingParamType>
-    <MixedArrayAccess>
-      <code><![CDATA[$data['metadata']]]></code>
-      <code><![CDATA[$data['payload']]]></code>
-    </MixedArrayAccess>
-    <MixedInferredReturnType>
+  <file src="src/SonsOfPHP/Bridge/Symfony/EventSourcing/EventMessageBus.php">
+    <PossiblyUnusedReturnValue>
+      <code>object</code>
+    </PossiblyUnusedReturnValue>
+  </file>
+  <file src="src/SonsOfPHP/Bridge/Symfony/EventSourcing/Message/Enricher/Handler/HttpRequestMessageEnricherHandler.php">
+    <PossiblyUnusedReturnValue>
       <code>MessageInterface</code>
-    </MixedInferredReturnType>
-    <MixedMethodCall>
-      <code>getMetadata</code>
-      <code>getPayload</code>
-      <code>withMetadata</code>
-      <code>withPayload</code>
-    </MixedMethodCall>
-    <MixedReturnStatement>
-      <code><![CDATA[$type::new()->withPayload($data['payload'])->withMetadata($data['metadata'])]]></code>
-    </MixedReturnStatement>
+    </PossiblyUnusedReturnValue>
   </file>
-  <file src="packages/event-sourcing-symfony/Tests/Aggregate/AggregateIdNormalizerTest.php">
-    <MissingParamType>
-      <code>$data</code>
-      <code>$data</code>
-    </MissingParamType>
-    <MixedInferredReturnType>
-      <code>iterable</code>
-      <code>iterable</code>
-    </MixedInferredReturnType>
+  <file src="src/SonsOfPHP/Bridge/Symfony/EventSourcing/Message/Enricher/Handler/UlidEventIdMessageEnricherHandler.php">
+    <PossiblyUnusedReturnValue>
+      <code>MessageInterface</code>
+    </PossiblyUnusedReturnValue>
   </file>
-  <file src="packages/event-sourcing-symfony/Tests/Aggregate/AggregateVersionNormalizerTest.php">
-    <MissingParamType>
-      <code>$data</code>
-      <code>$data</code>
-    </MissingParamType>
-    <MixedInferredReturnType>
-      <code>iterable</code>
-      <code>iterable</code>
-    </MixedInferredReturnType>
+  <file src="src/SonsOfPHP/Bridge/Symfony/EventSourcing/Message/Enricher/Handler/UuidEventIdMessageEnricherHandler.php">
+    <PossiblyUnusedReturnValue>
+      <code>MessageInterface</code>
+    </PossiblyUnusedReturnValue>
   </file>
-  <file src="packages/event-sourcing-symfony/Tests/EventMessageBusTest.php">
-    <MixedMethodCall>
-      <code>method</code>
-      <code>willReturn</code>
-    </MixedMethodCall>
+  <file src="src/SonsOfPHP/Bridge/Symfony/EventSourcing/Message/MessageNormalizer.php">
+    <PossiblyUnusedMethod>
+      <code>getSupportedTypes</code>
+    </PossiblyUnusedMethod>
+    <PossiblyUnusedParam>
+      <code>$format</code>
+    </PossiblyUnusedParam>
+  </file>
+  <file src="src/SonsOfPHP/Bridge/Symfony/EventSourcing/Tests/EventMessageBusTest.php">
     <UndefinedInterfaceMethod>
       <code>expects</code>
     </UndefinedInterfaceMethod>
   </file>
-  <file src="packages/event-sourcing-symfony/Tests/Message/Enricher/Handler/BlameableMessageEnricherHandlerTest.php">
-    <MixedArgument>
-      <code>$metadata</code>
-      <code><![CDATA[$metadata['__user']]]></code>
-    </MixedArgument>
-    <MixedArrayAccess>
-      <code><![CDATA[$metadata['__user']]]></code>
-      <code><![CDATA[$metadata['__user']]]></code>
-      <code><![CDATA[$metadata['__user']['identifier']]]></code>
-    </MixedArrayAccess>
-    <MixedMethodCall>
-      <code>method</code>
-      <code>willReturn</code>
-    </MixedMethodCall>
+  <file src="src/SonsOfPHP/Bridge/Symfony/EventSourcing/Tests/Message/Enricher/Handler/BlameableMessageEnricherHandlerTest.php">
     <UndefinedMethod>
       <code>expects</code>
     </UndefinedMethod>
@@ -694,262 +228,188 @@
       <code>$output</code>
     </UnusedVariable>
   </file>
-  <file src="packages/event-sourcing-symfony/Tests/Message/Enricher/Handler/UlidEventIdMessageEnricherHandlerTest.php">
-    <MixedArgument>
-      <code>$metadata[Metadata::EVENT_ID]</code>
-    </MixedArgument>
-    <MixedArrayAccess>
-      <code>$metadata[Metadata::EVENT_ID]</code>
-    </MixedArrayAccess>
+  <file src="src/SonsOfPHP/Bundle/Cqrs/CqrsBundle.php">
+    <UnusedClass>
+      <code>CqrsBundle</code>
+    </UnusedClass>
   </file>
-  <file src="packages/event-sourcing-symfony/Tests/Message/Enricher/Handler/UuidEventIdMessageEnricherHandlerTest.php">
-    <MixedArgument>
-      <code>$metadata[Metadata::EVENT_ID]</code>
-    </MixedArgument>
-    <MixedArrayAccess>
-      <code>$metadata[Metadata::EVENT_ID]</code>
-    </MixedArrayAccess>
+  <file src="src/SonsOfPHP/Bundle/Cqrs/DependencyInjection/Configuration.php">
+    <UndefinedMethod>
+      <code>children</code>
+    </UndefinedMethod>
   </file>
-  <file src="packages/event-sourcing/Aggregate/AbstractAggregate.php">
-    <MixedArgument>
-      <code>$event</code>
-    </MixedArgument>
-    <MixedAssignment>
-      <code>$event</code>
-    </MixedAssignment>
-    <MixedReturnTypeCoercion>
-      <code>$events</code>
-      <code>iterable</code>
-    </MixedReturnTypeCoercion>
+  <file src="src/SonsOfPHP/Bundle/Cqrs/DependencyInjection/CqrsExtension.php">
+    <UnusedVariable>
+      <code>$config</code>
+    </UnusedVariable>
   </file>
-  <file src="packages/event-sourcing/Aggregate/AbstractAggregateId.php">
+  <file src="src/SonsOfPHP/Component/Clock/DateTime.php">
+    <InvalidArgument>
+      <code><![CDATA[$this->getDate()]]></code>
+      <code><![CDATA[$this->getTime()]]></code>
+      <code><![CDATA[$this->getZone()->getOffset()]]></code>
+    </InvalidArgument>
+  </file>
+  <file src="src/SonsOfPHP/Component/Clock/DurationInterface.php">
+    <UnusedClass>
+      <code>DurationInterface</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/Clock/IntervalInterface.php">
+    <UnusedClass>
+      <code>IntervalInterface</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/Clock/OrdinalDateInterface.php">
+    <UnusedClass>
+      <code>OrdinalDateInterface</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/Clock/RepeatingIntervalInterface.php">
+    <UnusedClass>
+      <code>RepeatingIntervalInterface</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/Clock/YearWeekInterface.php">
+    <UnusedClass>
+      <code>YearWeekInterface</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/Cqrs/Command/CommandMessageHandlerInterface.php">
+    <UnusedClass>
+      <code>CommandMessageHandlerInterface</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/Cqrs/Query/QueryMessageHandlerInterface.php">
+    <UnusedClass>
+      <code>QueryMessageHandlerInterface</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/Cqrs/Query/QueryMessageInterface.php">
+    <UnusedClass>
+      <code>QueryMessageInterface</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/EventDispatcher/EventDispatcher.php">
+    <UndefinedInterfaceMethod>
+      <code>add</code>
+      <code>addSubscriber</code>
+      <code>getListenersForEventName</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="src/SonsOfPHP/Component/EventDispatcher/ListenerInterface.php">
+    <UnusedClass>
+      <code>ListenerInterface</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/EventDispatcher/ListenerProvider.php">
+    <NullableReturnStatement>
+      <code><![CDATA[$this->sorted[$eventName]]]></code>
+    </NullableReturnStatement>
+  </file>
+  <file src="src/SonsOfPHP/Component/EventSourcing/Aggregate/AbstractAggregate.php">
+    <PossiblyUnusedMethod>
+      <code>new</code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/SonsOfPHP/Component/EventSourcing/Aggregate/AbstractAggregateId.php">
     <InvalidNullableReturnType>
       <code>string</code>
     </InvalidNullableReturnType>
     <NullableReturnStatement>
       <code><![CDATA[$this->id]]></code>
     </NullableReturnStatement>
-    <UnsafeInstantiation>
-      <code>new static($id)</code>
-    </UnsafeInstantiation>
   </file>
-  <file src="packages/event-sourcing/Aggregate/AbstractSnapshotableAggregate.php">
-    <MixedAssignment>
-      <code>$msg</code>
-    </MixedAssignment>
+  <file src="src/SonsOfPHP/Component/EventSourcing/Aggregate/AbstractSnapshotableAggregate.php">
     <UndefinedInterfaceMethod>
       <code>applyEvent</code>
     </UndefinedInterfaceMethod>
+    <UnusedClass>
+      <code>AbstractSnapshotableAggregate</code>
+    </UnusedClass>
   </file>
-  <file src="packages/event-sourcing/Aggregate/AggregateVersion.php">
+  <file src="src/SonsOfPHP/Component/EventSourcing/Aggregate/AggregateVersion.php">
     <ParamNameMismatch>
       <code>$version</code>
     </ParamNameMismatch>
   </file>
-  <file src="packages/event-sourcing/Aggregate/Repository/AggregateRepository.php">
-    <MixedInferredReturnType>
-      <code>?AggregateInterface</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement>
-      <code>$aggregateClass::buildFromEvents($id, $events)</code>
-    </MixedReturnStatement>
-    <PossiblyNullReference>
-      <code>enrich</code>
-    </PossiblyNullReference>
+  <file src="src/SonsOfPHP/Component/EventSourcing/Aggregate/SnapshotableAggregateInterface.php">
+    <PossiblyUnusedMethod>
+      <code>buildFromSnapshot</code>
+      <code>buildFromSnapshotAndEvents</code>
+      <code>createSnapshot</code>
+    </PossiblyUnusedMethod>
   </file>
-  <file src="packages/event-sourcing/Message/AbstractSerializableMessage.php">
+  <file src="src/SonsOfPHP/Component/EventSourcing/Message/AbstractGenericMessage.php">
+    <UnusedClass>
+      <code>AbstractGenericMessage</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/EventSourcing/Message/AbstractSerializableMessage.php">
     <InvalidReturnStatement>
       <code><![CDATA[static::new()->withPayload($data['payload'])->withMetadata($data['metadata'])]]></code>
     </InvalidReturnStatement>
     <InvalidReturnType>
       <code>SerializableMessageInterface</code>
     </InvalidReturnType>
-    <MixedArgument>
-      <code><![CDATA[$data['metadata']]]></code>
-      <code><![CDATA[$data['payload']]]></code>
-    </MixedArgument>
   </file>
-  <file src="packages/event-sourcing/Message/Enricher/MessageEnricher.php">
-    <MixedAssignment>
-      <code>$message</code>
-      <code>$msgEnricher</code>
-    </MixedAssignment>
-    <MixedInferredReturnType>
-      <code>MessageInterface</code>
-    </MixedInferredReturnType>
-    <MixedMethodCall>
-      <code>enrich</code>
-    </MixedMethodCall>
-    <MixedReturnStatement>
-      <code>$message</code>
-    </MixedReturnStatement>
+  <file src="src/SonsOfPHP/Component/EventSourcing/Message/MessageHandlerInterface.php">
+    <UnusedClass>
+      <code>MessageHandlerInterface</code>
+    </UnusedClass>
   </file>
-  <file src="packages/event-sourcing/Message/Enricher/Provider/AllMessageEnricherProvider.php">
-    <MixedArgument>
-      <code>$enricher</code>
-    </MixedArgument>
-    <MixedAssignment>
-      <code>$enricher</code>
-    </MixedAssignment>
-  </file>
-  <file src="packages/event-sourcing/Message/Enricher/Provider/ChainMessageEnricherProvider.php">
-    <MixedArgument>
-      <code>$provider</code>
-    </MixedArgument>
-    <MixedAssignment>
-      <code>$provider</code>
-      <code>$provider</code>
-    </MixedAssignment>
-    <MixedMethodCall>
-      <code>getEnrichersForMessage</code>
-    </MixedMethodCall>
-    <PossiblyNullIterator>
-      <code>$providers</code>
-    </PossiblyNullIterator>
-  </file>
-  <file src="packages/event-sourcing/Message/MessageMetadata.php">
-    <MissingParamType>
-      <code>$value</code>
-    </MissingParamType>
-    <MissingReturnType>
-      <code>get</code>
-      <code>with</code>
-    </MissingReturnType>
+  <file src="src/SonsOfPHP/Component/EventSourcing/Message/MessageMetadata.php">
     <MissingTemplateParam>
       <code>\IteratorAggregate</code>
     </MissingTemplateParam>
-    <MixedArgument>
-      <code><![CDATA[$this->get(Metadata::AGGREGATE_ID)]]></code>
-      <code><![CDATA[$this->get(Metadata::TIMESTAMP)]]></code>
-    </MixedArgument>
-    <MixedInferredReturnType>
-      <code>AggregateIdInterface</code>
-      <code>string</code>
-      <code>string</code>
-      <code>string</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement>
-      <code><![CDATA[$this->get(Metadata::AGGREGATE_ID)]]></code>
-      <code><![CDATA[$this->get(Metadata::EVENT_ID)]]></code>
-      <code><![CDATA[$this->get(Metadata::EVENT_TYPE)]]></code>
-      <code><![CDATA[$this->get(Metadata::TIMESTAMP_FORMAT)]]></code>
-    </MixedReturnStatement>
+    <PossiblyUnusedMethod>
+      <code>count</code>
+    </PossiblyUnusedMethod>
   </file>
-  <file src="packages/event-sourcing/Message/MessagePayload.php">
-    <MissingParamType>
-      <code>$value</code>
-    </MissingParamType>
-    <MissingReturnType>
-      <code>get</code>
-      <code>with</code>
-    </MissingReturnType>
+  <file src="src/SonsOfPHP/Component/EventSourcing/Message/MessagePayload.php">
     <MissingTemplateParam>
       <code>\IteratorAggregate</code>
     </MissingTemplateParam>
+    <PossiblyUnusedMethod>
+      <code>count</code>
+    </PossiblyUnusedMethod>
   </file>
-  <file src="packages/event-sourcing/Message/Repository/InMemoryMessageRepository.php">
-    <MixedArrayAssignment>
-      <code><![CDATA[$this->storage[$id->toString()][$version->toInt()]]]></code>
-    </MixedArrayAssignment>
-    <MixedAssignment>
-      <code>$message</code>
-      <code>$ver</code>
-    </MixedAssignment>
+  <file src="src/SonsOfPHP/Component/EventSourcing/Message/NameableMessageInterface.php">
+    <UnusedClass>
+      <code>NameableMessageInterface</code>
+    </UnusedClass>
   </file>
-  <file src="packages/event-sourcing/Message/Serializer/MessageSerializer.php">
-    <MixedArgument>
-      <code><![CDATA[$data['metadata']]]></code>
-      <code><![CDATA[$data['metadata'][Metadata::EVENT_TYPE]]]></code>
-    </MixedArgument>
-    <MixedArrayAccess>
-      <code><![CDATA[$data['metadata'][Metadata::EVENT_TYPE]]]></code>
-    </MixedArrayAccess>
-    <MixedAssignment>
-      <code>$v</code>
-    </MixedAssignment>
-    <MixedInferredReturnType>
-      <code>SerializableMessageInterface</code>
-      <code>array</code>
-    </MixedInferredReturnType>
-    <MixedOperand>
-      <code>$v</code>
-    </MixedOperand>
-    <MixedReturnStatement>
-      <code><![CDATA[$message->serialize()]]></code>
-      <code>$messageClass::deserialize($data)</code>
-    </MixedReturnStatement>
+  <file src="src/SonsOfPHP/Component/EventSourcing/Message/SerializableMessageInterface.php">
+    <PossiblyUnusedMethod>
+      <code>deserialize</code>
+      <code>serialize</code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/SonsOfPHP/Component/EventSourcing/Message/Serializer/MessageSerializer.php">
     <UndefinedInterfaceMethod>
       <code>serialize</code>
     </UndefinedInterfaceMethod>
   </file>
-  <file src="packages/event-sourcing/Message/Upcaster/MessageUpcaster.php">
-    <MixedAssignment>
-      <code>$data</code>
-      <code>$handler</code>
-    </MixedAssignment>
-    <MixedInferredReturnType>
-      <code>array</code>
-    </MixedInferredReturnType>
-    <MixedMethodCall>
+  <file src="src/SonsOfPHP/Component/EventSourcing/Message/Upcaster/Handler/MessageUpcasterHandlerInterface.php">
+    <PossiblyUnusedMethod>
       <code>upcast</code>
-    </MixedMethodCall>
-    <MixedReturnStatement>
-      <code>$data</code>
-    </MixedReturnStatement>
+    </PossiblyUnusedMethod>
   </file>
-  <file src="packages/event-sourcing/Message/Upcaster/Provider/EventTypeMessageUpcasterProvider.php">
-    <MixedArrayAssignment>
-      <code><![CDATA[$this->upcasters[$eventType][]]]></code>
-    </MixedArrayAssignment>
-    <MixedArrayOffset>
-      <code><![CDATA[$this->upcasters[$eventType]]]></code>
-    </MixedArrayOffset>
-    <MixedAssignment>
-      <code>$eventType</code>
-    </MixedAssignment>
-  </file>
-  <file src="packages/event-sourcing/Snapshot/Repository/InMemorySnapshotRepository.php">
-    <MixedInferredReturnType>
-      <code>?SnapshotInterface</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement>
-      <code><![CDATA[$this->storage[$id->toString()] ?? null]]></code>
-      <code><![CDATA[$this->storage[$id->toString()] ?? null]]></code>
-    </MixedReturnStatement>
-  </file>
-  <file src="packages/event-sourcing/Snapshot/Snapshot.php">
-    <MissingParamType>
-      <code>$state</code>
-    </MissingParamType>
-    <MissingPropertyType>
-      <code>$state</code>
-    </MissingPropertyType>
-  </file>
-  <file src="packages/event-sourcing/Tests/Aggregate/AbstractAggregateTest.php">
-    <MissingClosureReturnType>
-      <code>function () {</code>
-    </MissingClosureReturnType>
+  <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Aggregate/AbstractAggregateTest.php">
     <UnusedMethodCall>
       <code>setAccessible</code>
     </UnusedMethodCall>
   </file>
-  <file src="packages/event-sourcing/Tests/Aggregate/AggregateVersionTest.php">
+  <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Aggregate/AggregateVersionTest.php">
     <UnusedVariable>
       <code>$version</code>
       <code>$version</code>
     </UnusedVariable>
   </file>
-  <file src="packages/event-sourcing/Tests/Aggregate/Repository/AggregateRepositoryTest.php">
+  <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Aggregate/Repository/AggregateRepositoryTest.php">
     <InvalidArgument>
       <code>123</code>
     </InvalidArgument>
-    <MixedMethodCall>
-      <code>method</code>
-    </MixedMethodCall>
-    <PossiblyNullReference>
-      <code>getAggregateId</code>
-      <code>getAggregateId</code>
-    </PossiblyNullReference>
     <UndefinedInterfaceMethod>
       <code>expects</code>
     </UndefinedInterfaceMethod>
@@ -957,39 +417,7 @@
       <code>$result</code>
     </UnusedVariable>
   </file>
-  <file src="packages/event-sourcing/Tests/FakeAggregate.php">
-    <MissingParamType>
-      <code>$event</code>
-    </MissingParamType>
-    <MixedArgument>
-      <code>$event</code>
-    </MixedArgument>
-  </file>
-  <file src="packages/event-sourcing/Tests/Message/AbstractSerializableMessageTest.php">
-    <MixedArgument>
-      <code><![CDATA[$msg->getPayload()]]></code>
-      <code>$return</code>
-      <code>$return</code>
-    </MixedArgument>
-    <MixedArrayAccess>
-      <code><![CDATA[$msg->getPayload()['key']]]></code>
-    </MixedArrayAccess>
-    <MixedAssignment>
-      <code>$msg</code>
-      <code>$return</code>
-    </MixedAssignment>
-    <MixedMethodCall>
-      <code>getAggregateId</code>
-      <code>getAggregateVersion</code>
-      <code>getEventId</code>
-      <code>getEventType</code>
-      <code>getPayload</code>
-      <code>getPayload</code>
-      <code>getTimestamp</code>
-      <code>getTimestampFormat</code>
-      <code>toInt</code>
-      <code>toString</code>
-    </MixedMethodCall>
+  <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Message/AbstractSerializableMessageTest.php">
     <UndefinedMethod>
       <code><![CDATA[$message::deserialize([
             'metadata' => [],
@@ -1014,33 +442,22 @@
       <code>serialize</code>
     </UndefinedMethod>
   </file>
-  <file src="packages/event-sourcing/Tests/Message/Enricher/Provider/AllMessageEnricherProviderTest.php">
+  <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Message/Enricher/Provider/AllMessageEnricherProviderTest.php">
     <InvalidArrayAccess>
       <code>$enrichers[0]</code>
     </InvalidArrayAccess>
   </file>
-  <file src="packages/event-sourcing/Tests/Message/MessageMetadataTest.php">
-    <MixedArgument>
-      <code>$another</code>
-    </MixedArgument>
-    <MixedAssignment>
-      <code>$another</code>
-    </MixedAssignment>
+  <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Message/Enricher/Provider/ChainMessageEnricherProviderTest.php">
+    <InvalidArgument>
+      <code>$enrichers</code>
+    </InvalidArgument>
   </file>
-  <file src="packages/event-sourcing/Tests/Message/MessagePayloadTest.php">
-    <MixedArgument>
-      <code>$another</code>
-    </MixedArgument>
-    <MixedAssignment>
-      <code>$another</code>
-    </MixedAssignment>
-  </file>
-  <file src="packages/event-sourcing/Tests/Message/NamespaceMessageProviderTest.php">
+  <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Message/NamespaceMessageProviderTest.php">
     <InvalidArgument>
       <code>new \stdClass()</code>
     </InvalidArgument>
   </file>
-  <file src="packages/event-sourcing/Tests/Message/Repository/InMemoryMessageRepositoryTest.php">
+  <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Message/Repository/InMemoryMessageRepositoryTest.php">
     <InvalidMethodCall>
       <code>current</code>
       <code>current</code>
@@ -1049,90 +466,58 @@
       <code>current</code>
     </InvalidMethodCall>
   </file>
-  <file src="packages/event-sourcing/Tests/Message/Serializer/MessageSerializerTest.php">
+  <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Message/Serializer/MessageSerializerTest.php">
     <InvalidArgument>
       <code>$message</code>
     </InvalidArgument>
-    <MixedArgument>
-      <code><![CDATA[$data['metadata']]]></code>
-    </MixedArgument>
   </file>
-  <file src="packages/event-sourcing/Tests/Message/Upcaster/Provider/EventTypeMessageUpcasterProviderTest.php">
+  <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Message/Upcaster/Provider/EventTypeMessageUpcasterProviderTest.php">
+    <InvalidArgument>
+      <code>$handlers</code>
+      <code>$handlers</code>
+    </InvalidArgument>
     <InvalidMethodCall>
       <code>current</code>
     </InvalidMethodCall>
   </file>
-  <file src="packages/feature-toggle/Provider/InMemoryFeatureToggleProvider.php">
-    <InvalidReturnType>
-      <code>iterable</code>
-    </InvalidReturnType>
-    <MissingParamType>
-      <code>$features</code>
-    </MissingParamType>
-    <MixedArgument>
-      <code>$feature</code>
-    </MixedArgument>
-    <MixedAssignment>
-      <code>$feature</code>
-    </MixedAssignment>
+  <file src="src/SonsOfPHP/Component/FeatureToggle/Context.php">
+    <PossiblyUnusedMethod>
+      <code>jsonSerialize</code>
+    </PossiblyUnusedMethod>
   </file>
-  <file src="packages/feature-toggle/Tests/FeatureTest.php">
-    <MissingPropertyType>
-      <code>$toggle</code>
-    </MissingPropertyType>
-    <MixedArgument>
-      <code><![CDATA[$this->toggle]]></code>
-      <code><![CDATA[$this->toggle]]></code>
-      <code><![CDATA[$this->toggle]]></code>
-    </MixedArgument>
-    <MixedMethodCall>
-      <code>expects</code>
-      <code>method</code>
-      <code>willReturn</code>
-    </MixedMethodCall>
+  <file src="src/SonsOfPHP/Component/FeatureToggle/ContextInterface.php">
+    <MissingTemplateParam>
+      <code>\ArrayAccess</code>
+      <code>\IteratorAggregate</code>
+    </MissingTemplateParam>
+    <PossiblyUnusedReturnValue>
+      <code>self</code>
+    </PossiblyUnusedReturnValue>
   </file>
-  <file src="packages/feature-toggle/Tests/Provider/InMemoryFeatureToggleProviderTest.php">
-    <MissingPropertyType>
-      <code>$toggle</code>
-    </MissingPropertyType>
-    <MixedArgument>
-      <code><![CDATA[$this->toggle]]></code>
-    </MixedArgument>
+  <file src="src/SonsOfPHP/Component/FeatureToggle/Exception/FeatureToggleException.php">
+    <UnusedClass>
+      <code>FeatureToggleException</code>
+    </UnusedClass>
   </file>
-  <file src="packages/json/AbstractEncoderDecoder.php">
-    <MissingReturnType>
+  <file src="src/SonsOfPHP/Component/FeatureToggle/Tests/Provider/InMemoryFeatureToggleProviderTest.php">
+    <UndefinedClass>
+      <code>MockObject|ToggleInterface</code>
+    </UndefinedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/Json/AbstractEncoderDecoder.php">
+    <PossiblyUnusedMethod>
       <code>invalidUtf8Ignore</code>
       <code>invalidUtf8Substitute</code>
       <code>throwOnError</code>
-      <code>withDepth</code>
-      <code>withFlags</code>
-      <code>withoutFlags</code>
-    </MissingReturnType>
+    </PossiblyUnusedMethod>
   </file>
-  <file src="packages/json/Json.php">
-    <MissingParamType>
-      <code>$value</code>
-    </MissingParamType>
-    <MissingReturnType>
-      <code>decode</code>
-    </MissingReturnType>
-  </file>
-  <file src="packages/json/JsonDecoder.php">
-    <MissingReturnType>
-      <code>asArray</code>
+  <file src="src/SonsOfPHP/Component/Json/JsonDecoder.php">
+    <PossiblyUnusedMethod>
       <code>bigintAsString</code>
-      <code>decode</code>
-      <code>objectAsArray</code>
-    </MissingReturnType>
-    <MixedAssignment>
-      <code>$return</code>
-    </MixedAssignment>
+    </PossiblyUnusedMethod>
   </file>
-  <file src="packages/json/JsonEncoder.php">
-    <MissingParamType>
-      <code>$value</code>
-    </MissingParamType>
-    <MissingReturnType>
+  <file src="src/SonsOfPHP/Component/Json/JsonEncoder.php">
+    <PossiblyUnusedMethod>
       <code>forceObject</code>
       <code>hexAmp</code>
       <code>hexApos</code>
@@ -1141,83 +526,22 @@
       <code>numericCheck</code>
       <code>partialOutputOnError</code>
       <code>preserveZeroFraction</code>
-      <code>prettyPrint</code>
       <code>unescapedLineTerminators</code>
       <code>unescapedSlashes</code>
       <code>unescapedUnicode</code>
-    </MissingReturnType>
+    </PossiblyUnusedMethod>
   </file>
-  <file src="packages/json/JsonReader.php">
-    <MixedAssignment>
-      <code>$decoder</code>
-      <code>$decoder</code>
-      <code>$decoder</code>
-    </MixedAssignment>
-    <MixedInferredReturnType>
-      <code>array</code>
-    </MixedInferredReturnType>
-    <MixedMethodCall>
-      <code>decode</code>
-      <code>withDepth</code>
-      <code>withFlags</code>
-    </MixedMethodCall>
-    <MixedReturnStatement>
-      <code><![CDATA[$decoder->decode(file_get_contents($filename))]]></code>
-    </MixedReturnStatement>
+  <file src="src/SonsOfPHP/Component/Json/JsonReader.php">
+    <UnusedClass>
+      <code>JsonReader</code>
+    </UnusedClass>
   </file>
-  <file src="packages/json/JsonWriter.php">
-    <MissingParamType>
-      <code>$value</code>
-    </MissingParamType>
-    <MissingReturnType>
-      <code>write</code>
-    </MissingReturnType>
-    <MixedArgument>
-      <code><![CDATA[$encoder->encode($value)]]></code>
-    </MixedArgument>
-    <MixedAssignment>
-      <code>$encoder</code>
-      <code>$encoder</code>
-    </MixedAssignment>
-    <MixedMethodCall>
-      <code>encode</code>
-      <code>withFlags</code>
-    </MixedMethodCall>
+  <file src="src/SonsOfPHP/Component/Json/JsonWriter.php">
+    <UnusedClass>
+      <code>JsonWriter</code>
+    </UnusedClass>
   </file>
-  <file src="packages/json/Tests/JsonDecoderTest.php">
-    <ArgumentTypeCoercion>
-      <code><![CDATA['stdClass']]></code>
-    </ArgumentTypeCoercion>
-    <MixedArgument>
-      <code>$decoder</code>
-      <code>$decoder</code>
-      <code>$decoder</code>
-      <code>$decoder</code>
-      <code>$decoder</code>
-      <code>$decoder</code>
-      <code>$decoder</code>
-    </MixedArgument>
-    <MixedAssignment>
-      <code>$decoder</code>
-      <code>$decoder</code>
-      <code>$decoder</code>
-      <code>$decoder</code>
-      <code>$decoder</code>
-      <code>$decoder</code>
-      <code>$decoder</code>
-      <code>$decoderOther</code>
-      <code>$decoderOther</code>
-      <code>$return</code>
-    </MixedAssignment>
-    <MixedMethodCall>
-      <code>withFlags</code>
-      <code>withoutFlags</code>
-      <code>withoutFlags</code>
-      <code>withoutFlags</code>
-    </MixedMethodCall>
-    <MixedPropertyFetch>
-      <code><![CDATA[$return->test]]></code>
-    </MixedPropertyFetch>
+  <file src="src/SonsOfPHP/Component/Json/Tests/JsonDecoderTest.php">
     <UnusedMethodCall>
       <code>setAccessible</code>
       <code>setAccessible</code>
@@ -1226,372 +550,81 @@
       <code>setAccessible</code>
     </UnusedMethodCall>
   </file>
-  <file src="packages/json/Tests/JsonEncoderTest.php">
-    <MixedArgument>
-      <code>$encoder</code>
-      <code>$encoder</code>
-      <code>$encoder</code>
-      <code>$encoder</code>
-      <code>$encoder</code>
-      <code>$encoder</code>
-    </MixedArgument>
-    <MixedAssignment>
-      <code>$encoder</code>
-      <code>$encoder</code>
-      <code>$encoder</code>
-      <code>$encoder</code>
-      <code>$encoder</code>
-      <code>$encoder</code>
-      <code>$encoderOther</code>
-      <code>$encoderOther</code>
-    </MixedAssignment>
-    <MixedMethodCall>
-      <code>withFlags</code>
-      <code>withoutFlags</code>
-      <code>withoutFlags</code>
-      <code>withoutFlags</code>
-    </MixedMethodCall>
+  <file src="src/SonsOfPHP/Component/Json/Tests/JsonEncoderTest.php">
     <UnusedMethodCall>
       <code>setAccessible</code>
       <code>setAccessible</code>
       <code>setAccessible</code>
     </UnusedMethodCall>
   </file>
-  <file src="packages/json/Tests/JsonTest.php">
-    <ArgumentTypeCoercion>
-      <code><![CDATA['stdClass']]></code>
-    </ArgumentTypeCoercion>
-    <MixedAssignment>
-      <code>$return</code>
-    </MixedAssignment>
-    <MixedPropertyFetch>
-      <code><![CDATA[$return->test]]></code>
-    </MixedPropertyFetch>
-  </file>
-  <file src="packages/money/Amount.php">
-    <MixedInferredReturnType>
-      <code>bool</code>
-      <code>bool</code>
-      <code>bool</code>
-      <code>bool</code>
-      <code>bool</code>
-      <code>bool</code>
-      <code>bool</code>
-      <code>bool</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement>
-      <code><![CDATA[$this->query(new IsEqualToAmountQuery($amount))]]></code>
-      <code><![CDATA[$this->query(new IsGreaterThanAmountQuery($amount))]]></code>
-      <code><![CDATA[$this->query(new IsGreaterThanOrEqualToAmountQuery($amount))]]></code>
-      <code><![CDATA[$this->query(new IsLessThanAmountQuery($amount))]]></code>
-      <code><![CDATA[$this->query(new IsLessThanOrEqualToAmountQuery($amount))]]></code>
-      <code><![CDATA[$this->query(new IsNegativeAmountQuery())]]></code>
-      <code><![CDATA[$this->query(new IsPositiveAmountQuery())]]></code>
-      <code><![CDATA[$this->query(new IsZeroAmountQuery())]]></code>
-    </MixedReturnStatement>
-  </file>
-  <file src="packages/money/Currency.php">
-    <MixedArgument>
-      <code>$minorUnit</code>
-      <code>$numericCode</code>
-    </MixedArgument>
-    <MixedAssignment>
-      <code>$minorUnit</code>
-      <code>$numericCode</code>
-    </MixedAssignment>
-    <MixedInferredReturnType>
-      <code>bool</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement>
-      <code><![CDATA[$this->query(new IsEqualToCurrencyQuery($currency))]]></code>
-    </MixedReturnStatement>
-  </file>
-  <file src="packages/money/CurrencyProvider/AbstractCurrencyProvider.php">
-    <MixedInferredReturnType>
-      <code>CurrencyInterface</code>
-      <code>bool</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement>
-      <code><![CDATA[$this->query(new GetCurrencyQuery($currency))]]></code>
-      <code><![CDATA[$this->query(new HasCurrencyQuery($currency))]]></code>
-    </MixedReturnStatement>
-  </file>
-  <file src="packages/money/CurrencyProvider/ChainCurrencyProvider.php">
-    <InvalidReturnType>
-      <code>iterable</code>
-    </InvalidReturnType>
-    <MixedArgument>
-      <code>$provider</code>
-    </MixedArgument>
-    <MixedAssignment>
-      <code>$provider</code>
-      <code>$provider</code>
-    </MixedAssignment>
-    <MixedMethodCall>
-      <code>getCurrencies</code>
-    </MixedMethodCall>
-    <PossiblyNullIterator>
-      <code>$providers</code>
-    </PossiblyNullIterator>
-  </file>
-  <file src="packages/money/CurrencyProvider/CurrencyProvider.php">
+  <file src="src/SonsOfPHP/Component/Money/CurrencyProvider/ChainCurrencyProvider.php">
     <InvalidReturnType>
       <code>iterable</code>
     </InvalidReturnType>
   </file>
-  <file src="packages/money/CurrencyProvider/XCurrencyProvider.php">
+  <file src="src/SonsOfPHP/Component/Money/CurrencyProvider/CurrencyProvider.php">
     <InvalidReturnType>
       <code>iterable</code>
     </InvalidReturnType>
   </file>
-  <file src="packages/money/Money.php">
-    <MixedInferredReturnType>
-      <code>bool</code>
-      <code>bool</code>
-      <code>bool</code>
-      <code>bool</code>
-      <code>bool</code>
-      <code>bool</code>
-      <code>bool</code>
-      <code>bool</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement>
-      <code><![CDATA[$this->query(new IsEqualToMoneyQuery($money))]]></code>
-      <code><![CDATA[$this->query(new IsGreaterThanMoneyQuery($money))]]></code>
-      <code><![CDATA[$this->query(new IsGreaterThanOrEqualToMoneyQuery($money))]]></code>
-      <code><![CDATA[$this->query(new IsLessThanMoneyQuery($money))]]></code>
-      <code><![CDATA[$this->query(new IsLessThanOrEqualToMoneyQuery($money))]]></code>
-      <code><![CDATA[$this->query(new IsNegativeMoneyQuery())]]></code>
-      <code><![CDATA[$this->query(new IsPositiveMoneyQuery())]]></code>
-      <code><![CDATA[$this->query(new IsZeroMoneyQuery())]]></code>
-    </MixedReturnStatement>
+  <file src="src/SonsOfPHP/Component/Money/CurrencyProvider/XCurrencyProvider.php">
+    <InvalidReturnType>
+      <code>iterable</code>
+    </InvalidReturnType>
   </file>
-  <file src="packages/money/Operator/Amount/DivideAmountOperator.php">
-    <MissingParamType>
-      <code>$divisor</code>
-    </MissingParamType>
-    <MissingPropertyType>
-      <code>$divisor</code>
-    </MissingPropertyType>
-    <MixedOperand>
-      <code><![CDATA[$this->divisor]]></code>
-    </MixedOperand>
+  <file src="src/SonsOfPHP/Component/Money/Exception/ArithmeticException.php">
+    <UnusedClass>
+      <code>ArithmeticException</code>
+    </UnusedClass>
   </file>
-  <file src="packages/money/Operator/Amount/MultiplyAmountOperator.php">
-    <MissingParamType>
-      <code>$multiplier</code>
-    </MissingParamType>
-    <MissingPropertyType>
-      <code>$multiplier</code>
-    </MissingPropertyType>
-    <MixedOperand>
-      <code><![CDATA[$this->multiplier]]></code>
-    </MixedOperand>
+  <file src="src/SonsOfPHP/Component/Money/Exception/UnknownCurrencyException.php">
+    <UnusedClass>
+      <code>UnknownCurrencyException</code>
+    </UnusedClass>
   </file>
-  <file src="packages/money/Operator/Money/DivideMoneyOperator.php">
-    <MissingParamType>
-      <code>$divisor</code>
-    </MissingParamType>
-    <MissingPropertyType>
-      <code>$divisor</code>
-    </MissingPropertyType>
+  <file src="src/SonsOfPHP/Component/Money/Money.php">
+    <PossiblyUnusedMethod>
+      <code>compare</code>
+    </PossiblyUnusedMethod>
   </file>
-  <file src="packages/money/Operator/Money/MultiplyMoneyOperator.php">
-    <MissingParamType>
-      <code>$multiplier</code>
-    </MissingParamType>
-    <MissingPropertyType>
-      <code>$multiplier</code>
-    </MissingPropertyType>
+  <file src="src/SonsOfPHP/Component/Money/MoneyInterface.php">
+    <PossiblyUnusedMethod>
+      <code>add</code>
+      <code>divide</code>
+      <code>isEqualTo</code>
+      <code>isGreaterThanOrEqualTo</code>
+      <code>isLessThanOrEqualTo</code>
+      <code>isNegative</code>
+      <code>isPositive</code>
+      <code>isZero</code>
+      <code>multiply</code>
+      <code>subtract</code>
+    </PossiblyUnusedMethod>
   </file>
-  <file src="packages/money/Query/CurrencyProvider/GetCurrencyQuery.php">
-    <MissingParamType>
-      <code>$currency</code>
-    </MissingParamType>
-    <PropertyNotSetInConstructor>
-      <code>$currency</code>
-    </PropertyNotSetInConstructor>
-  </file>
-  <file src="packages/money/Query/CurrencyProvider/HasCurrencyQuery.php">
-    <MissingParamType>
-      <code>$currency</code>
-    </MissingParamType>
-    <PropertyNotSetInConstructor>
-      <code>$currency</code>
-    </PropertyNotSetInConstructor>
-  </file>
-  <file src="packages/money/Tests/CurrencyProvider/ChainCurrencyProviderTest.php">
+  <file src="src/SonsOfPHP/Component/Money/Tests/CurrencyProvider/ChainCurrencyProviderTest.php">
     <InvalidArgument>
       <code><![CDATA[$provider->getCurrencies()]]></code>
     </InvalidArgument>
   </file>
-  <file src="packages/money/Tests/CurrencyTest.php">
+  <file src="src/SonsOfPHP/Component/Money/Tests/CurrencyTest.php">
     <InvalidCast>
       <code>$currency</code>
     </InvalidCast>
   </file>
-  <file src="packages/money/Tests/MoneyTest.php">
-    <MixedAssignment>
-      <code>$money</code>
-      <code>$money</code>
-      <code>$money</code>
-      <code>$money1</code>
-      <code>$money1</code>
-      <code>$money1</code>
-      <code>$money1</code>
-      <code>$money1</code>
-      <code>$money1</code>
-      <code>$money1</code>
-      <code>$money1</code>
-      <code>$money1</code>
-      <code>$money1</code>
-      <code>$money1</code>
-      <code>$money1</code>
-      <code>$money1</code>
-      <code>$money1</code>
-      <code>$money1</code>
-      <code>$money1</code>
-      <code>$money1</code>
-      <code>$money1</code>
-      <code>$money1</code>
-      <code>$money1</code>
-      <code>$money2</code>
-      <code>$money2</code>
-      <code>$money2</code>
-      <code>$money2</code>
-      <code>$money2</code>
-      <code>$money2</code>
-      <code>$money2</code>
-      <code>$money2</code>
-      <code>$money2</code>
-      <code>$money2</code>
-      <code>$money2</code>
-      <code>$money2</code>
-      <code>$money2</code>
-      <code>$money2</code>
-      <code>$money2</code>
-      <code>$money2</code>
-      <code>$money2</code>
-      <code>$money2</code>
-      <code>$money3</code>
-      <code>$money3</code>
-      <code>$money3</code>
-      <code>$money3</code>
-      <code>$money3</code>
-      <code>$money3</code>
-      <code>$money3</code>
-      <code>$output</code>
-      <code>$output</code>
-      <code>$output</code>
-      <code>$output</code>
-      <code>$output</code>
-    </MixedAssignment>
-    <MixedMethodCall>
-      <code>add</code>
-      <code>add</code>
-      <code>compare</code>
-      <code>compare</code>
-      <code>compare</code>
-      <code>divide</code>
-      <code>getAmount</code>
-      <code>getAmount</code>
-      <code>getAmount</code>
-      <code>getAmount</code>
-      <code>getAmount</code>
-      <code>getAmount</code>
-      <code>getCurrency</code>
-      <code>getCurrencyCode</code>
-      <code>isEqualTo</code>
-      <code>isEqualTo</code>
-      <code>isEqualTo</code>
-      <code>isEqualTo</code>
-      <code>isEqualTo</code>
-      <code>isEqualTo</code>
-      <code>isEqualTo</code>
-      <code>isEqualTo</code>
-      <code>isEqualTo</code>
-      <code>isGreaterThan</code>
-      <code>isGreaterThan</code>
-      <code>isGreaterThan</code>
-      <code>isGreaterThan</code>
-      <code>isGreaterThanOrEqualTo</code>
-      <code>isGreaterThanOrEqualTo</code>
-      <code>isGreaterThanOrEqualTo</code>
-      <code>isGreaterThanOrEqualTo</code>
-      <code>isLessThan</code>
-      <code>isLessThan</code>
-      <code>isLessThan</code>
-      <code>isLessThan</code>
-      <code>isLessThanOrEqualTo</code>
-      <code>isLessThanOrEqualTo</code>
-      <code>isLessThanOrEqualTo</code>
-      <code>isLessThanOrEqualTo</code>
-      <code>isNegative</code>
-      <code>isNegative</code>
-      <code>isNegative</code>
-      <code>isPositive</code>
-      <code>isPositive</code>
-      <code>isPositive</code>
-      <code>isZero</code>
-      <code>isZero</code>
-      <code>isZero</code>
-      <code>multiply</code>
-      <code>subtract</code>
-      <code>subtract</code>
-      <code>subtract</code>
-    </MixedMethodCall>
-  </file>
-  <file src="packages/money/Tests/Operator/Money/AddMoneyOperatorTest.php">
-    <MixedArgument>
-      <code>Money::JPY(1000)</code>
-    </MixedArgument>
-  </file>
-  <file src="packages/money/Tests/Operator/Money/SubtractMoneyOperatorTest.php">
-    <MixedArgument>
-      <code>Money::JPY(1000)</code>
-      <code>Money::USD(300)</code>
-    </MixedArgument>
-  </file>
-  <file src="packages/money/Tests/Query/CurrencyProvider/GetCurrencyQueryTest.php">
-    <MixedArgument>
-      <code>$output</code>
-    </MixedArgument>
-    <MixedAssignment>
-      <code>$output</code>
-      <code>$output</code>
-      <code>$output</code>
-    </MixedAssignment>
-    <MixedMethodCall>
-      <code>getCurrencyCode</code>
-    </MixedMethodCall>
+  <file src="src/SonsOfPHP/Component/Money/Tests/Query/CurrencyProvider/GetCurrencyQueryTest.php">
     <UnusedVariable>
       <code>$output</code>
       <code>$query</code>
     </UnusedVariable>
   </file>
-  <file src="packages/money/Tests/Query/CurrencyProvider/HasCurrencyQueryTest.php">
+  <file src="src/SonsOfPHP/Component/Money/Tests/Query/CurrencyProvider/HasCurrencyQueryTest.php">
     <UnusedVariable>
       <code>$query</code>
     </UnusedVariable>
   </file>
-  <file src="packages/version/Tests/VersionTest.php">
-    <MixedInferredReturnType>
-      <code>iterable</code>
-      <code>iterable</code>
-      <code>iterable</code>
-    </MixedInferredReturnType>
+  <file src="src/SonsOfPHP/Component/Version/Tests/VersionTest.php">
     <UnusedVariable>
       <code>$version</code>
     </UnusedVariable>
-  </file>
-  <file src="packages/version/Version.php">
-    <PossiblyNullOperand>
-      <code><![CDATA[$this->getBuild()]]></code>
-      <code><![CDATA[$this->getPreRelease()]]></code>
-    </PossiblyNullOperand>
-    <RedundantCast>
-      <code><![CDATA[(string) $matches['buildmetadata']]]></code>
-      <code><![CDATA[(string) $matches['prerelease']]]></code>
-    </RedundantCast>
   </file>
 </files>

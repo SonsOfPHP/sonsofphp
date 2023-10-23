@@ -4,14 +4,16 @@ on:
         branches: [main]
         paths:
             - '.github/workflows/static-analysis.yml'
-            - 'packages/**'
+            - 'src/**'
             - 'psalm.xml'
+            - 'psalm-baseline.xml'
     pull_request:
         branches: [main]
         paths:
             - '.github/workflows/static-analysis.yml'
-            - 'packages/**'
+            - 'src/**'
             - 'psalm.xml'
+            - 'psalm-baseline.xml'
 
 concurrency:
     group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
@@ -36,6 +38,7 @@ jobs:
                   php-version: '${{ matrix.php-version }}'
                   coverage: none
             - run: make composer-install phpunit-install psalm-install
+            - run: php src/SonsOfPHP/Bard/bin/bard install -n -vvv
             - run: make psalm-github
             - name: Upload Security Analysis to Github
               if: github.ref == 'refs/heads/main'

@@ -3,18 +3,21 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
-    errorLevel="1"
+    errorLevel="5"
     resolveFromConfigFile="true"
     cacheDirectory=".psalm-cache"
     allowStringToStandInForClass="true"
     errorBaseline="psalm-baseline.xml"
+    findUnusedBaselineEntry="true"
+    findUnusedCode="true"
 >
     <projectFiles>
-        <directory name="packages"/>
+        <directory name="src/SonsOfPHP"/>
         <ignoreFiles>
-            <directory name="vendor"/>
-            <directory name="packages/*/vendor"/>
-            <directory name="tools/*/vendor"/>
+            <directory name="src/SonsOfPHP/Bard/vendor/*"/>
+            <directory name="src/SonsOfPHP/Bridge/*/*/vendor/*"/>
+            <directory name="src/SonsOfPHP/Bundle/*/vendor/*"/>
+            <directory name="src/SonsOfPHP/Component/*/vendor/*"/>
         </ignoreFiles>
     </projectFiles>
     <extraFiles>
@@ -23,7 +26,4 @@
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
     </plugins>
-    <issueHandlers>
-        <!--<PropertyNotSetInConstructor errorLevel="suppress" />-->
-    </issueHandlers>
 </psalm>
