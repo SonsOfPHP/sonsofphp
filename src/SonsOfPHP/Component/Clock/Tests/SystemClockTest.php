@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Clock\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Clock\ClockInterface;
+use Psr\Clock\ClockInterface;
 use SonsOfPHP\Component\Clock\SystemClock;
 
 /**
