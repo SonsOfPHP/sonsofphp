@@ -7,7 +7,7 @@ namespace SonsOfPHP\Component\UserAgent;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface UserAgentInterface extends \Stringable
+interface UserAgentInterface extends \Stringable, \JsonSerializable
 {
     public function isBot(): bool;
 
