@@ -90,3 +90,5 @@ nav:
             - Operators: components/money/operators.md
             - Queries: components/money/queries.md
         - Version: components/version/index.md
+    - Bard:
+        - bard/index.md
