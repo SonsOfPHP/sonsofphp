@@ -81,7 +81,8 @@
             "SonsOfPHP\\Component\\FeatureToggle\\": "src/SonsOfPHP/Component/FeatureToggle",
             "SonsOfPHP\\Component\\Json\\": "src/SonsOfPHP/Component/Json",
             "SonsOfPHP\\Component\\Money\\": "src/SonsOfPHP/Component/Money",
-            "SonsOfPHP\\Component\\Version\\": "src/SonsOfPHP/Component/Version"
+            "SonsOfPHP\\Component\\Version\\": "src/SonsOfPHP/Component/Version",
+            "SonsOfPHP\\Component\\Filesystem\\": "src/SonsOfPHP/Component/Filesystem"
         },
         "exclude-from-classmap": [
             "src/SonsOfPHP/Bard/Tests",
@@ -96,7 +97,8 @@
             "src/SonsOfPHP/Component/FeatureToggle/Tests",
             "src/SonsOfPHP/Component/Json/Tests",
             "src/SonsOfPHP/Component/Money/Tests",
-            "src/SonsOfPHP/Component/Version/Tests"
+            "src/SonsOfPHP/Component/Version/Tests",
+            "src/SonsOfPHP/Component/Filesystem/Tests"
         ]
     },
     "extra": {
