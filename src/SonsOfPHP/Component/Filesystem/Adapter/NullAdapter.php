@@ -10,7 +10,7 @@ namespace SonsOfPHP\Component\Filesystem\Adapter;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class NullAdapter implements AdapterInterface
+final class NullAdapter implements AdapterInterface
 {
     public function write(string $path, mixed $contents): void
     {

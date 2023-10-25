@@ -11,7 +11,7 @@ use SonsOfPHP\Component\Filesystem\Exception\UnableToReadFileException;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class InMemoryAdapter implements AdapterInterface
+final class InMemoryAdapter implements AdapterInterface
 {
     private array $files = [];
 

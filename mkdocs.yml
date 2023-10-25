@@ -83,6 +83,7 @@ nav:
                 - Upcasters:
                     - components/event-sourcing/event-messages/upcaster/index.md
         - Feature Toggle: components/feature-toggle/index.md
+        - Filesystem: components/filesystem/index.md
         - JSON: components/json/index.md
         - Money:
             - components/money/index.md

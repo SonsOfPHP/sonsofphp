@@ -9,10 +9,10 @@ namespace SonsOfPHP\Component\Filesystem\Adapter;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class NativeAdapter implements AdapterInterface
+final class NativeAdapter implements AdapterInterface
 {
     public function __construct(
-        private string $prefix = '/tmp',
+        private string $prefix,
     ) {}
 
     public function write(string $path, mixed $contents): void
