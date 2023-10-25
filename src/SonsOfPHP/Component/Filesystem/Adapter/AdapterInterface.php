@@ -22,9 +22,11 @@ interface AdapterInterface
     public function read(string $filename): string;
 
     /**
+     * Deletes files and directories
+     *
      * @throws FilesystemException
      */
-    public function delete(string $filename): void;
+    public function delete(string $path): void;
 
     /**
      * @throws FilesystemException
@@ -35,4 +37,5 @@ interface AdapterInterface
      * @throws FilesystemException
      */
     public function move(string $source, string $destination): void;
+
 }

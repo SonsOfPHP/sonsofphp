@@ -24,4 +24,19 @@ class NativeAdapter implements AdapterInterface
     {
         return file_get_contents($this->prefix . $path);
     }
+
+    public function delete(string $path): void
+    {
+        unlink($this->prefix . $path);
+    }
+
+    public function copy(string $source, string $destination): void
+    {
+        copy($this->prefix . $source, $this->prefix . $destination);
+    }
+
+    public function move(string $source, string $destination): void
+    {
+        rename($this->prefix . $source, $this->prefix . $destination);
+    }
 }

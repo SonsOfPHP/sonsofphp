@@ -24,4 +24,19 @@ final class Filesystem implements FilesystemInterface
     {
         return $this->adapter->read($filename);
     }
+
+    public function delete(string $filename): void
+    {
+        $this->adapter->delete($filename);
+    }
+
+    public function copy(string $source, string $destination): void
+    {
+        $this->adapter->copy($source, $destination);
+    }
+
+    public function move(string $source, string $destination): void
+    {
+        $this->adapter->move($source, $destination);
+    }
 }

@@ -12,4 +12,24 @@ namespace SonsOfPHP\Component\Filesystem\Adapter;
  */
 class NullAdapter implements AdapterInterface
 {
+    public function write(string $path, mixed $contents): void
+    {
+    }
+
+    public function read(string $path): string
+    {
+        return '';
+    }
+
+    public function delete(string $path): void
+    {
+    }
+
+    public function copy(string $source, string $destination): void
+    {
+    }
+
+    public function move(string $source, string $destination): void
+    {
+    }
 }
