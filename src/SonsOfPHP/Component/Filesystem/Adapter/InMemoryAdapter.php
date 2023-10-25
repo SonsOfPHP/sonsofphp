@@ -18,7 +18,7 @@ final class InMemoryAdapter implements AdapterInterface
 {
     private array $files = [];
 
-    public function write(string $path, mixed $contents): void
+    public function add(string $path, mixed $contents): void
     {
         $path = $this->normalizePath($path);
 
@@ -29,7 +29,7 @@ final class InMemoryAdapter implements AdapterInterface
         $this->files[$path] = $contents;
     }
 
-    public function read(string $path): string
+    public function get(string $path): string
     {
         $path = $this->normalizePath($path);
 
@@ -40,7 +40,7 @@ final class InMemoryAdapter implements AdapterInterface
         return $this->files[$path];
     }
 
-    public function delete(string $path): void
+    public function remove(string $path): void
     {
         $path = $this->normalizePath($path);
 
@@ -61,7 +61,7 @@ final class InMemoryAdapter implements AdapterInterface
         $this->delete($source);
     }
 
-    public function exists(string $path): bool
+    public function has(string $path): bool
     {
         return $this->isFile($path) || $this->isDirectory($path);
     }
