@@ -16,7 +16,7 @@ use SonsOfPHP\Component\Filesystem\Exception\UnableToReadFileException;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class InMemoryAdapter implements AdapterInterface
+final class InMemoryAdapter implements AdapterInterface, CopyAwareInterface, MoveAwareInterface, DirectoryAwareInterface
 {
     private array $files = [];
 
@@ -49,7 +49,7 @@ final class InMemoryAdapter implements AdapterInterface
         unset($this->files[$path]);
     }
 
-    public function copy(string $source, string $destination): void
+    public function copy(string $source, string $destination, ?ContextInterface $context = null): void
     {
         $source      = $this->normalizePath($source);
         $destination = $this->normalizePath($destination);
@@ -57,7 +57,7 @@ final class InMemoryAdapter implements AdapterInterface
         $this->files[$destination] = $this->files[$source];
     }
 
-    public function move(string $source, string $destination): void
+    public function move(string $source, string $destination, ?ContextInterface $context = null): void
     {
         $this->copy($source, $destination);
         $this->remove($source);
@@ -75,7 +75,7 @@ final class InMemoryAdapter implements AdapterInterface
         return array_key_exists($path, $this->files);
     }
 
-    public function isDirectory(string $path): bool
+    public function isDirectory(string $path, ?ContextInterface $context = null): bool
     {
         $path = $this->normalizePath($path);
 
