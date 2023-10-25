@@ -50,4 +50,43 @@ final class InMemoryAdapterTest extends TestCase
         $this->expectException(UnableToReadFileException::class);
         $adapter->read('test.txt');
     }
+
+    /**
+     * @covers ::delete
+     */
+    public function testItCanDeleteFile(): void
+    {
+        $adapter = new InMemoryAdapter();
+        $adapter->write('test.txt', 'testing');
+        $this->assertSame('testing', $adapter->read('test.txt'));
+
+        $adapter->delete('test.txt');
+        $this->expectException(UnableToReadFileException::class);
+        $adapter->read('test.txt');
+    }
+
+    /**
+     * @covers ::copy
+     */
+    public function testItCanCopyFile(): void
+    {
+        $adapter = new InMemoryAdapter();
+        $adapter->write('test.txt', 'testing');
+        $adapter->copy('test.txt', 'test2.txt');
+        $this->assertSame('testing', $adapter->read('test.txt'));
+        $this->assertSame('testing', $adapter->read('test2.txt'));
+    }
+
+    /**
+     * @covers ::move
+     */
+    public function testItCanMoveFile(): void
+    {
+        $adapter = new InMemoryAdapter();
+        $adapter->write('test.txt', 'testing');
+        $adapter->move('test.txt', 'test2.txt');
+        $this->assertSame('testing', $adapter->read('test2.txt'));
+        $this->expectException(UnableToReadFileException::class);
+        $adapter->read('test.txt');
+    }
 }

@@ -20,4 +20,19 @@ interface AdapterInterface
      * @throws FilesystemException
      */
     public function read(string $filename): string;
+
+    /**
+     * @throws FilesystemException
+     */
+    public function delete(string $filename): void;
+
+    /**
+     * @throws FilesystemException
+     */
+    public function copy(string $source, string $destination): void;
+
+    /**
+     * @throws FilesystemException
+     */
+    public function move(string $source, string $destination): void;
 }

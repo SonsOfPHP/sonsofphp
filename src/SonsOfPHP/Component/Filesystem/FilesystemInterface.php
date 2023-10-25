@@ -14,9 +14,9 @@ interface FilesystemInterface
     /**
      * @throws FilesystemException
      */
-    //public function copy(string $source, string $destination, $context): bool;
+    //public function copy(string $source, string $destination): void;
 
-    //public function move(string $source, string $destination, $context): bool;
+    //public function move(string $source, string $destination): void;
 
     /**
      * @throws FilesystemException

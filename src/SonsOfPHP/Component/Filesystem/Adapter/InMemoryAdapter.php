@@ -28,4 +28,20 @@ class InMemoryAdapter implements AdapterInterface
 
         return $this->files[$path];
     }
+
+    public function delete(string $filename): void
+    {
+        unset($this->files[$filename]);
+    }
+
+    public function copy(string $source, string $destination): void
+    {
+        $this->files[$destination] = $this->files[$source];
+    }
+
+    public function move(string $source, string $destination): void
+    {
+        $this->copy($source, $destination);
+        $this->delete($source);
+    }
 }
