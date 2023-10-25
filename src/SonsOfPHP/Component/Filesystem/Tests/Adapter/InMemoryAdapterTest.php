@@ -37,8 +37,8 @@ final class InMemoryAdapterTest extends TestCase
 
         $contents = 'Pretend this is the contents of a file';
 
-        $adapter->write('/test.txt', $contents);
-        $this->assertSame($contents, $adapter->read('/test.txt'));
+        $adapter->write('/path/to/test.txt', $contents);
+        $this->assertSame($contents, $adapter->read('/path/to/test.txt'));
     }
 
     /**
@@ -57,12 +57,12 @@ final class InMemoryAdapterTest extends TestCase
     public function testItCanDeleteFile(): void
     {
         $adapter = new InMemoryAdapter();
-        $adapter->write('test.txt', 'testing');
-        $this->assertSame('testing', $adapter->read('test.txt'));
+        $adapter->write('/path/to/test.txt', 'testing');
+        $this->assertSame('testing', $adapter->read('/path/to/test.txt'));
 
-        $adapter->delete('test.txt');
+        $adapter->delete('/path/to/test.txt');
         $this->expectException(UnableToReadFileException::class);
-        $adapter->read('test.txt');
+        $adapter->read('/path/to/test.txt');
     }
 
     /**
@@ -88,5 +88,52 @@ final class InMemoryAdapterTest extends TestCase
         $this->assertSame('testing', $adapter->read('test2.txt'));
         $this->expectException(UnableToReadFileException::class);
         $adapter->read('test.txt');
+    }
+
+    /**
+     * @covers ::read
+     */
+    public function testItCanSupportStream(): void
+    {
+        $adapter = new InMemoryAdapter();
+        $stream = fopen('php://memory', 'w+');
+        fwrite($stream, 'Just a test');
+        $adapter->write('test.txt', $stream);
+        fclose($stream);
+
+        $this->assertSame('Just a test', $adapter->read('test.txt'));
+    }
+
+    /**
+     * @covers ::exists
+     */
+    public function testItCanCheckIfFilesExist(): void
+    {
+        $adapter = new InMemoryAdapter();
+        $this->assertFalse($adapter->exists('test.txt'));
+        $adapter->write('test.txt', 'testing');
+        $this->assertTrue($adapter->exists('test.txt'));
+    }
+
+    /**
+     * @covers ::isFile
+     */
+    public function testItCanCheckIfIsFile(): void
+    {
+        $adapter = new InMemoryAdapter();
+        $adapter->write('/path/to/file.txt', 'testing');
+
+        $this->assertTrue($adapter->isFile('/path/to/file.txt'));
+    }
+
+    /**
+     * @covers ::isFile
+     */
+    public function testItCanCheckIfIsDirectory(): void
+    {
+        $adapter = new InMemoryAdapter();
+        $adapter->write('/path/to/file.txt', 'testing');
+
+        $this->assertTrue($adapter->isDirectory('/path/to'));
     }
 }

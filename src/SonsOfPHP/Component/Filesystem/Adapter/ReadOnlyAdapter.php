@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem\Adapter;
 
+use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
+
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
@@ -15,7 +17,7 @@ final class ReadOnlyAdapter implements AdapterInterface
 
     public function write(string $path, mixed $contents): void
     {
-        // @todo throw exception
+        throw new FilesystemException();
     }
 
     public function read(string $path): string
@@ -25,16 +27,16 @@ final class ReadOnlyAdapter implements AdapterInterface
 
     public function delete(string $path): void
     {
-        // @todo throw exception
+        throw new FilesystemException();
     }
 
     public function copy(string $source, string $destination): void
     {
-        // @todo throw exception
+        throw new FilesystemException();
     }
 
     public function move(string $source, string $destination): void
     {
-        // @todo throw exception
+        throw new FilesystemException();
     }
 }

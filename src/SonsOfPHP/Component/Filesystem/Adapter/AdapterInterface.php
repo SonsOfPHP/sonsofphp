@@ -12,16 +12,17 @@ use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 interface AdapterInterface
 {
     /**
+     * @param string|resource $contents
+     *   Can either be a string or a resource
+     *
      * @throws FilesystemException
      */
     public function write(string $filename, mixed $contents): void;
-    // or: set
 
     /**
      * @throws FilesystemException
      */
     public function read(string $filename): string;
-    // or: get
 
     /**
      * Deletes files and directories
@@ -29,20 +30,22 @@ interface AdapterInterface
      * @throws FilesystemException
      */
     public function delete(string $path): void;
-    // or: remove, unset
-
-    //public function has(string $path): bool;
-
-    //public function isFile(string $filename): bool;
-    //public function isDirectory(string $path): bool;
 
     /**
+     * @todo Should this be a SupportsCopyInterface?
+     *
      * @throws FilesystemException
      */
     public function copy(string $source, string $destination): void;
 
     /**
+     * @todo Should this be a SupportsMoveInterface?
+     *
      * @throws FilesystemException
      */
     public function move(string $source, string $destination): void;
+
+    public function exists(string $path): bool;
+    public function isFile(string $filename): bool;
+    public function isDirectory(string $path): bool;
 }

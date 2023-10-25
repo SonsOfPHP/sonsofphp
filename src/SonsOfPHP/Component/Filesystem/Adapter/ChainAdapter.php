@@ -17,27 +17,37 @@ final class ChainAdapter implements AdapterInterface
 
     public function write(string $path, mixed $contents): void
     {
-        // @todo
+        foreach ($this->adapters as $adapter) {
+            $adapter->write($contents);
+        }
     }
 
     public function read(string $path): string
     {
-        // @todo
-        return '';
+        foreach ($this->adapters as $adapter) {
+            // if file does not exist, try next adapter
+            return $this->adapter->read($path);
+        }
     }
 
     public function delete(string $path): void
     {
-        // @todo
+        foreach ($this->adapters as $adapter) {
+            $this->adapter->delete($path);
+        }
     }
 
     public function copy(string $source, string $destination): void
     {
-        // @todo
+        foreach ($this->adapters as $adapter) {
+            $this->adapter->copy($source, $destination);
+        }
     }
 
     public function move(string $source, string $destination): void
     {
-        // @todo
+        foreach ($this->adapters as $adapter) {
+            $this->adapter->move($source, $destination);
+        }
     }
 }
