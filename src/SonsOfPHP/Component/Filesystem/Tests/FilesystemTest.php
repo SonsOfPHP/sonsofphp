@@ -17,7 +17,7 @@ use SonsOfPHP\Component\Filesystem\Filesystem;
  */
 final class FilesystemTest extends TestCase
 {
-    private AdapterInterface&MockObject $adapter;
+    private AdapterInterface|MockObject $adapter;
 
     protected function setUp(): void
     {

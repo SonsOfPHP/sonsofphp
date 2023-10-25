@@ -28,8 +28,8 @@ final class InMemoryAdapterTest extends TestCase
     }
 
     /**
-     * @covers ::write
-     * @covers ::read
+     * @covers ::add
+     * @covers ::get
      */
     public function testItCanWriteAFileAndReadItLater(): void
     {
@@ -37,32 +37,32 @@ final class InMemoryAdapterTest extends TestCase
 
         $contents = 'Pretend this is the contents of a file';
 
-        $adapter->write('/path/to/test.txt', $contents);
-        $this->assertSame($contents, $adapter->read('/path/to/test.txt'));
+        $adapter->add('/path/to/test.txt', $contents);
+        $this->assertSame($contents, $adapter->get('/path/to/test.txt'));
     }
 
     /**
-     * @covers ::read
+     * @covers ::get
      */
     public function testItWillThrowExceptionWhenFileNotFound(): void
     {
         $adapter = new InMemoryAdapter();
         $this->expectException(UnableToReadFileException::class);
-        $adapter->read('test.txt');
+        $adapter->get('test.txt');
     }
 
     /**
-     * @covers ::delete
+     * @covers ::remove
      */
     public function testItCanDeleteFile(): void
     {
         $adapter = new InMemoryAdapter();
-        $adapter->write('/path/to/test.txt', 'testing');
-        $this->assertSame('testing', $adapter->read('/path/to/test.txt'));
+        $adapter->add('/path/to/test.txt', 'testing');
+        $this->assertSame('testing', $adapter->get('/path/to/test.txt'));
 
-        $adapter->delete('/path/to/test.txt');
+        $adapter->remove('/path/to/test.txt');
         $this->expectException(UnableToReadFileException::class);
-        $adapter->read('/path/to/test.txt');
+        $adapter->get('/path/to/test.txt');
     }
 
     /**
@@ -71,10 +71,10 @@ final class InMemoryAdapterTest extends TestCase
     public function testItCanCopyFile(): void
     {
         $adapter = new InMemoryAdapter();
-        $adapter->write('test.txt', 'testing');
+        $adapter->add('test.txt', 'testing');
         $adapter->copy('test.txt', 'test2.txt');
-        $this->assertSame('testing', $adapter->read('test.txt'));
-        $this->assertSame('testing', $adapter->read('test2.txt'));
+        $this->assertSame('testing', $adapter->get('test.txt'));
+        $this->assertSame('testing', $adapter->get('test2.txt'));
     }
 
     /**
@@ -83,36 +83,36 @@ final class InMemoryAdapterTest extends TestCase
     public function testItCanMoveFile(): void
     {
         $adapter = new InMemoryAdapter();
-        $adapter->write('test.txt', 'testing');
+        $adapter->add('test.txt', 'testing');
         $adapter->move('test.txt', 'test2.txt');
-        $this->assertSame('testing', $adapter->read('test2.txt'));
+        $this->assertSame('testing', $adapter->get('test2.txt'));
         $this->expectException(UnableToReadFileException::class);
-        $adapter->read('test.txt');
+        $adapter->get('test.txt');
     }
 
     /**
-     * @covers ::read
+     * @covers ::get
      */
     public function testItCanSupportStream(): void
     {
         $adapter = new InMemoryAdapter();
         $stream = fopen('php://memory', 'w+');
         fwrite($stream, 'Just a test');
-        $adapter->write('test.txt', $stream);
+        $adapter->add('test.txt', $stream);
         fclose($stream);
 
-        $this->assertSame('Just a test', $adapter->read('test.txt'));
+        $this->assertSame('Just a test', $adapter->get('test.txt'));
     }
 
     /**
-     * @covers ::exists
+     * @covers ::has
      */
     public function testItCanCheckIfFilesExist(): void
     {
         $adapter = new InMemoryAdapter();
-        $this->assertFalse($adapter->exists('test.txt'));
-        $adapter->write('test.txt', 'testing');
-        $this->assertTrue($adapter->exists('test.txt'));
+        $this->assertFalse($adapter->has('test.txt'));
+        $adapter->add('test.txt', 'testing');
+        $this->assertTrue($adapter->has('test.txt'));
     }
 
     /**
@@ -121,7 +121,7 @@ final class InMemoryAdapterTest extends TestCase
     public function testItCanCheckIfIsFile(): void
     {
         $adapter = new InMemoryAdapter();
-        $adapter->write('/path/to/file.txt', 'testing');
+        $adapter->add('/path/to/file.txt', 'testing');
 
         $this->assertTrue($adapter->isFile('/path/to/file.txt'));
     }
@@ -132,7 +132,7 @@ final class InMemoryAdapterTest extends TestCase
     public function testItCanCheckIfIsDirectory(): void
     {
         $adapter = new InMemoryAdapter();
-        $adapter->write('/path/to/file.txt', 'testing');
+        $adapter->add('/path/to/file.txt', 'testing');
 
         $this->assertTrue($adapter->isDirectory('/path/to'));
     }

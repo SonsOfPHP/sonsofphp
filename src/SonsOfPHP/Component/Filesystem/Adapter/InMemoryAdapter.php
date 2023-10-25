@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem\Adapter;
 
+use SonsOfPHP\Component\Filesystem\ContextInterface;
+use SonsOfPHP\Component\Filesystem\Exception\FileNotFoundException;
 use SonsOfPHP\Component\Filesystem\Exception\UnableToReadFileException;
 
 /**
@@ -18,7 +20,7 @@ final class InMemoryAdapter implements AdapterInterface
 {
     private array $files = [];
 
-    public function add(string $path, mixed $contents): void
+    public function add(string $path, mixed $contents, ?ContextInterface $context = null): void
     {
         $path = $this->normalizePath($path);
 
@@ -29,7 +31,7 @@ final class InMemoryAdapter implements AdapterInterface
         $this->files[$path] = $contents;
     }
 
-    public function get(string $path): string
+    public function get(string $path, ?ContextInterface $context = null): string
     {
         $path = $this->normalizePath($path);
 
@@ -40,7 +42,7 @@ final class InMemoryAdapter implements AdapterInterface
         return $this->files[$path];
     }
 
-    public function remove(string $path): void
+    public function remove(string $path, ?ContextInterface $context = null): void
     {
         $path = $this->normalizePath($path);
 
@@ -58,15 +60,15 @@ final class InMemoryAdapter implements AdapterInterface
     public function move(string $source, string $destination): void
     {
         $this->copy($source, $destination);
-        $this->delete($source);
+        $this->remove($source);
     }
 
-    public function has(string $path): bool
+    public function has(string $path, ?ContextInterface $context = null): bool
     {
         return $this->isFile($path) || $this->isDirectory($path);
     }
 
-    public function isFile(string $path): bool
+    public function isFile(string $path, ?ContextInterface $context = null): bool
     {
         $path = $this->normalizePath($path);
 
