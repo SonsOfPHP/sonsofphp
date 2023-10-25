@@ -13,6 +13,10 @@ namespace SonsOfPHP\Component\Filesystem\Adapter;
  */
 final class WormAdapter implements AdapterInterface
 {
+    public function __construct(
+        private AdapterInterface $adapter,
+    ) {}
+
     public function write(string $path, mixed $contents): void
     {
         // @todo throw exception if file already exists
@@ -20,7 +24,7 @@ final class WormAdapter implements AdapterInterface
 
     public function read(string $path): string
     {
-        return '';
+        return $this->adapter->read($path);
     }
 
     public function delete(string $path): void

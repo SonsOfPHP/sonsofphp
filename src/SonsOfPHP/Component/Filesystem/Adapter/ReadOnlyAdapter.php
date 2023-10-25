@@ -9,6 +9,10 @@ namespace SonsOfPHP\Component\Filesystem\Adapter;
  */
 final class ReadOnlyAdapter implements AdapterInterface
 {
+    public function __construct(
+        private AdapterInterface $adapter,
+    ) {}
+
     public function write(string $path, mixed $contents): void
     {
         // @todo throw exception
@@ -16,7 +20,7 @@ final class ReadOnlyAdapter implements AdapterInterface
 
     public function read(string $path): string
     {
-        return '';
+        return $this->adapter->read($path);
     }
 
     public function delete(string $path): void
