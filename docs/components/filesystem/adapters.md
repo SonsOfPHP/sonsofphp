@@ -8,12 +8,12 @@ Adapters allow you to connector various services such as Amazon S3 for storage.
 
 ## Standard Adapters
 
-* In Memory
-* Native
-* Null
+* InMemoryAdapter
+* NativeAdapter
+* NullAdapter
 
 ## Special Adapters
 
-* Chain
-* Read Only
-* Worm
+* ChainAdapter
+* ReadOnlyAdapter
+* WormAdapter
