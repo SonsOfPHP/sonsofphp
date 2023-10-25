@@ -11,6 +11,9 @@ use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
  * files if they do not already exist, but you will be unable to update or
  * remove that file.
  *
+ * Usage:
+ *   $adapter = new WormAdapter(new NativeAdapter('/tmp'));
+ *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 final class WormAdapter implements AdapterInterface

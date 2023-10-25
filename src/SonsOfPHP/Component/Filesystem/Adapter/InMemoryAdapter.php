@@ -9,6 +9,9 @@ use SonsOfPHP\Component\Filesystem\Exception\UnableToReadFileException;
 /**
  * Just keeps files in memory, does not write anything to disk
  *
+ * Usage:
+ *   $adapter = new InMemoryAdapter();
+ *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 final class InMemoryAdapter implements AdapterInterface

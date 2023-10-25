@@ -7,6 +7,9 @@ namespace SonsOfPHP\Component\Filesystem\Adapter;
 /**
  * The native adapter will use the underlying filesystem to store files.
  *
+ * Usage:
+ *   $adapter = new NativeAdapter('/tmp');
+ *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 final class NativeAdapter implements AdapterInterface

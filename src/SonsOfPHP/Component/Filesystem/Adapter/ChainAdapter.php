@@ -7,6 +7,9 @@ namespace SonsOfPHP\Component\Filesystem\Adapter;
 /**
  * Chain adapter allows you to use multiple adapters together.
  *
+ * Usage:
+ *   $adapter = new ChainAdapter([new InMemoryAdapter(), new NativeAdapter('/tmp')]);
+ *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 final class ChainAdapter implements AdapterInterface

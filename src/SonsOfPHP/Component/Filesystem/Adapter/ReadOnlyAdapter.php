@@ -7,6 +7,12 @@ namespace SonsOfPHP\Component\Filesystem\Adapter;
 use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 
 /**
+ * The Read Only adapter will only allow you to read existing files, if you try
+ * to create anything, an exception will be thrown
+ *
+ * Usage:
+ *   $adapter = new ReadOnlyAdapter(new NativeAdapter('/tmp'));
+ *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 final class ReadOnlyAdapter implements AdapterInterface
