@@ -7,6 +7,4 @@ namespace SonsOfPHP\Component\Filesystem\Exception;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class UnableToReadFileException extends FilesystemException
-{
-}
+final class UnableToReadFileException extends FilesystemException {}

@@ -50,4 +50,37 @@ final class ChainAdapter implements AdapterInterface
             $this->adapter->move($source, $destination);
         }
     }
+
+    public function exists(string $path): bool
+    {
+        foreach ($this->adapters as $adapter) {
+            if ($this->adapter->exists($path)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function isFile(string $filename): bool
+    {
+        foreach ($this->adapters as $adapter) {
+            if ($this->adapter->isFile($path)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function isDirectory(string $path): bool
+    {
+        foreach ($this->adapters as $adapter) {
+            if ($this->adapter->isDirectory($path)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

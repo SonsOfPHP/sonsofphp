@@ -7,6 +7,4 @@ namespace SonsOfPHP\Component\Filesystem\Exception;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class UnableToDeleteDirectoryException extends FilesystemException
-{
-}
+final class UnableToDeleteDirectoryException extends FilesystemException {}

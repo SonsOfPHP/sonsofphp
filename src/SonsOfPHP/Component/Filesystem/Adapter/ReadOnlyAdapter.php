@@ -39,4 +39,19 @@ final class ReadOnlyAdapter implements AdapterInterface
     {
         throw new FilesystemException();
     }
+
+    public function exists(string $path): bool
+    {
+        return $this->adapter->exists($path);
+    }
+
+    public function isFile(string $filename): bool
+    {
+        return $this->adapter->isFile($filename);
+    }
+
+    public function isDirectory(string $path): bool
+    {
+        return $this->adapter->isDirectory($path);
+    }
 }

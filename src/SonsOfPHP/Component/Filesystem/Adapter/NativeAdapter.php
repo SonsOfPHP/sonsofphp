@@ -39,4 +39,19 @@ final class NativeAdapter implements AdapterInterface
     {
         rename($this->prefix . $source, $this->prefix . $destination);
     }
+
+    public function exists(string $path): bool
+    {
+        return $this->isFile($path) || $this->isDirectory($path);
+    }
+
+    public function isFile(string $filename): bool
+    {
+        return is_file($filename);
+    }
+
+    public function isDirectory(string $path): bool
+    {
+        return is_dir($filename);
+    }
 }

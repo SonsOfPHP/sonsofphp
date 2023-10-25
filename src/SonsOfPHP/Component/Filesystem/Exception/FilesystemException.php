@@ -7,6 +7,4 @@ namespace SonsOfPHP\Component\Filesystem\Exception;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class FilesystemException extends \Exception
-{
-}
+class FilesystemException extends \Exception {}

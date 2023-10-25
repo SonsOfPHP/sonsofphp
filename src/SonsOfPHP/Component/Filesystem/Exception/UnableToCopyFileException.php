@@ -7,6 +7,4 @@ namespace SonsOfPHP\Component\Filesystem\Exception;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class UnableToCopyFileException extends FilesystemException
-{
-}
+final class UnableToCopyFileException extends FilesystemException {}

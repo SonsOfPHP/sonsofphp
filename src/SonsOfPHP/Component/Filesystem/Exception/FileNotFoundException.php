@@ -7,6 +7,4 @@ namespace SonsOfPHP\Component\Filesystem\Exception;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class FileNotFoundException extends FilesystemException
-{
-}
+final class FileNotFoundException extends FilesystemException {}

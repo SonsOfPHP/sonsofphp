@@ -46,6 +46,8 @@ interface AdapterInterface
     public function move(string $source, string $destination): void;
 
     public function exists(string $path): bool;
+
     public function isFile(string $filename): bool;
+
     public function isDirectory(string $path): bool;
 }

@@ -21,7 +21,9 @@ final class WormAdapter implements AdapterInterface
 
     public function write(string $path, mixed $contents): void
     {
-        // @todo throw exception if file already exists
+        if ($this->isFile($path)) {
+            throw new FilesystemException();
+        }
 
         $this->adapter->write($path, $contents);
     }
@@ -38,7 +40,9 @@ final class WormAdapter implements AdapterInterface
 
     public function copy(string $source, string $destination): void
     {
-        // @todo throw exception if destination exists
+        if ($this->isFile($destination)) {
+            throw new FilesystemException();
+        }
 
         $this->adapter->copy($source, $destination);
     }
@@ -46,5 +50,20 @@ final class WormAdapter implements AdapterInterface
     public function move(string $source, string $destination): void
     {
         throw new FilesystemException();
+    }
+
+    public function exists(string $path): bool
+    {
+        return $this->adapter->exists($path);
+    }
+
+    public function isFile(string $filename): bool
+    {
+        return $this->adapter->isFile($filename);
+    }
+
+    public function isDirectory(string $path): bool
+    {
+        return $this->adapter->isDirectory($path);
     }
 }
