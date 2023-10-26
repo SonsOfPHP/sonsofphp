@@ -16,7 +16,7 @@ use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class ReadOnlyAdapter implements AdapterInterface
+final class ReadOnlyAdapter implements AdapterInterface, CopyAwareInterface, DirectoryAwareInterface, MoveAwareInterface
 {
     public function __construct(
         private AdapterInterface $adapter,
@@ -45,5 +45,24 @@ final class ReadOnlyAdapter implements AdapterInterface
     public function isFile(string $path, ?ContextInterface $context = null): bool
     {
         return $this->adapter->isFile($path, $context);
+    }
+
+    public function copy(string $source, string $destination, ?ContextInterface $context = null): void
+    {
+        throw new FilesystemException();
+    }
+
+    public function isDirectory(string $path, ?ContextInterface $context = null): bool
+    {
+        if ($this->adapter instanceof DirectoryAwareInterface) {
+            return $this->adapter->isDirectory($path, $context);
+        }
+
+        return false;
+    }
+
+    public function move(string $source, string $destination, ?ContextInterface $context = null): void
+    {
+        throw new FilesystemException();
     }
 }

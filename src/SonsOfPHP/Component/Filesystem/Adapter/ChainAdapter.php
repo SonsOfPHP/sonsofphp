@@ -15,7 +15,7 @@ use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class ChainAdapter implements AdapterInterface
+final class ChainAdapter implements AdapterInterface, CopyAwareInterface, DirectoryAwareInterface, MoveAwareInterface
 {
     public function __construct(
         private iterable $adapters,
@@ -46,24 +46,10 @@ final class ChainAdapter implements AdapterInterface
         }
     }
 
-    public function copy(string $source, string $destination): void
-    {
-        foreach ($this->adapters as $adapter) {
-            $this->adapter->copy($source, $destination);
-        }
-    }
-
-    public function move(string $source, string $destination): void
-    {
-        foreach ($this->adapters as $adapter) {
-            $this->adapter->move($source, $destination);
-        }
-    }
-
     public function has(string $path, ?ContextInterface $context = null): bool
     {
         foreach ($this->adapters as $adapter) {
-            if ($this->adapter->has($path)) {
+            if ($this->adapter->has($path, $context)) {
                 return true;
             }
         }
@@ -74,7 +60,7 @@ final class ChainAdapter implements AdapterInterface
     public function isFile(string $path, ?ContextInterface $context = null): bool
     {
         foreach ($this->adapters as $adapter) {
-            if ($this->adapter->isFile($path)) {
+            if ($this->adapter->isFile($path, $context)) {
                 return true;
             }
         }
@@ -82,14 +68,39 @@ final class ChainAdapter implements AdapterInterface
         return false;
     }
 
-    public function isDirectory(string $path): bool
+    public function copy(string $source, string $destination, ?ContextInterface $context = null): void
     {
         foreach ($this->adapters as $adapter) {
-            if ($this->adapter->isDirectory($path)) {
+            if ($adapter instanceof CopyAwareInterface) {
+                $adapter->copy($source, $destination, $context);
+                continue;
+            }
+
+            $adapter->add($destination, $adapter->get($source, $context), $context);
+        }
+    }
+
+    public function isDirectory(string $path, ?ContextInterface $context = null): bool
+    {
+        foreach ($this->adapters as $adapter) {
+            if ($adapter instanceof DirectoryAwareInterface && $adapter->isDirectory($path, $context)) {
                 return true;
             }
         }
 
         return false;
+    }
+
+    public function move(string $source, string $destination, ?ContextInterface $context = null): void
+    {
+        foreach ($this->adapters as $adapter) {
+            if ($adapter instanceof MoveAwareInterface) {
+                $adapter->move($source, $destination, $context);
+                continue;
+            }
+
+            $adapter->add($destination, $adapter->get($source, $context), $context);
+            $adapter->remove($source, $context);
+        }
     }
 }

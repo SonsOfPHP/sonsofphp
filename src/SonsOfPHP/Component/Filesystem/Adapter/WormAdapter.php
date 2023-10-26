@@ -17,7 +17,7 @@ use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class WormAdapter implements AdapterInterface
+final class WormAdapter implements AdapterInterface, CopyAwareInterface, DirectoryAwareInterface, MoveAwareInterface
 {
     public function __construct(
         private AdapterInterface $adapter,
@@ -42,20 +42,6 @@ final class WormAdapter implements AdapterInterface
         throw new FilesystemException();
     }
 
-    public function copy(string $source, string $destination): void
-    {
-        if ($this->isFile($destination)) {
-            throw new FilesystemException();
-        }
-
-        $this->adapter->copy($source, $destination);
-    }
-
-    public function move(string $source, string $destination): void
-    {
-        throw new FilesystemException();
-    }
-
     public function has(string $path, ?ContextInterface $context = null): bool
     {
         return $this->adapter->has($path, $context);
@@ -66,8 +52,31 @@ final class WormAdapter implements AdapterInterface
         return $this->adapter->isFile($path, $context);
     }
 
-    public function isDirectory(string $path): bool
+    public function copy(string $source, string $destination, ?ContextInterface $context = null): void
     {
-        return $this->adapter->isDirectory($path);
+        if ($this->isFile($destination)) {
+            throw new FilesystemException();
+        }
+
+        if ($this->adapter instanceof CopyAwareInterface) {
+            $this->adapter->copy($source, $destination, $context);
+            return;
+        }
+
+        $this->adapter->add($destination, $this->adapter->get($source, $context), $context);
+    }
+
+    public function isDirectory(string $path, ?ContextInterface $context = null): bool
+    {
+        if ($this->adapter instanceof DirectoryAwareInterface) {
+            return $this->adapter->isDirectory($path);
+        }
+
+        return false;
+    }
+
+    public function move(string $source, string $destination, ?ContextInterface $context = null): void
+    {
+        throw new FilesystemException();
     }
 }

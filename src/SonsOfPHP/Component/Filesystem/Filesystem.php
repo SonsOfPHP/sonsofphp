@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Filesystem;
 
 use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
+use SonsOfPHP\Component\Filesystem\Adapter\CopyAwareInterface;
+use SonsOfPHP\Component\Filesystem\Adapter\DirectoryAwareInterface;
+use SonsOfPHP\Component\Filesystem\Adapter\MoveAwareInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -15,28 +18,44 @@ final class Filesystem implements FilesystemInterface
         private AdapterInterface $adapter,
     ) {}
 
-    public function write(string $filename, mixed $contents): void
+    public function write(string $path, mixed $contents, ?ContextInterface $context = null): void
     {
-        $this->adapter->write($filename, $contents);
+        $this->adapter->add($path, $contents);
     }
 
-    public function read(string $filename): string
+    public function read(string $path, ?ContextInterface $context = null): string
     {
-        return $this->adapter->read($filename);
+        return $this->adapter->get($path);
     }
 
-    public function delete(string $filename): void
+    public function delete(string $path, ?ContextInterface $context = null): void
     {
-        $this->adapter->delete($filename);
+        $this->adapter->remove($path, $context);
     }
 
-    public function copy(string $source, string $destination): void
+    public function exists(string $path, ?ContextInterface $context = null): void
     {
-        $this->adapter->copy($source, $destination);
+        $this->adapter->has($path, $context);
     }
 
-    public function move(string $source, string $destination): void
+    public function copy(string $source, string $destination, ?ContextInterface $context = null): void
     {
-        $this->adapter->move($source, $destination);
+        if ($this->adapter instanceof CopyAwareInterface) {
+            $this->adapter->copy($source, $destination);
+            return;
+        }
+
+        $this->write($destination, $this->get($source, $context), $context);
+    }
+
+    public function move(string $source, string $destination, ?ContextInterface $context = null): void
+    {
+        if ($this->adapter instanceof MoveAwareInterface) {
+            $this->adapter->move($source, $destination, $context);
+            return;
+        }
+
+        $this->copy($source, $destination, $context);
+        $this->delete($source, $context);
     }
 }
