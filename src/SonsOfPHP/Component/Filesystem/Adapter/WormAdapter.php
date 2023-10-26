@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem\Adapter;
 
+use SonsOfPHP\Component\Filesystem\ContextInterface;
 use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 
 /**
@@ -22,21 +23,21 @@ final class WormAdapter implements AdapterInterface
         private AdapterInterface $adapter,
     ) {}
 
-    public function write(string $path, mixed $contents): void
+    public function add(string $path, mixed $contents, ?ContextInterface $context = null): void
     {
         if ($this->isFile($path)) {
             throw new FilesystemException();
         }
 
-        $this->adapter->write($path, $contents);
+        $this->adapter->add($path, $contents);
     }
 
-    public function read(string $path): string
+    public function get(string $path, ?ContextInterface $context = null): mixed
     {
-        return $this->adapter->read($path);
+        return $this->adapter->get($path);
     }
 
-    public function delete(string $path): void
+    public function remove(string $path, ?ContextInterface $context = null): void
     {
         throw new FilesystemException();
     }
@@ -55,14 +56,14 @@ final class WormAdapter implements AdapterInterface
         throw new FilesystemException();
     }
 
-    public function exists(string $path): bool
+    public function has(string $path, ?ContextInterface $context = null): bool
     {
-        return $this->adapter->exists($path);
+        return $this->adapter->has($path, $context);
     }
 
-    public function isFile(string $filename): bool
+    public function isFile(string $path, ?ContextInterface $context = null): bool
     {
-        return $this->adapter->isFile($filename);
+        return $this->adapter->isFile($path, $context);
     }
 
     public function isDirectory(string $path): bool

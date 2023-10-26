@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem\Adapter;
 
+use SonsOfPHP\Component\Filesystem\ContextInterface;
+use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
+
 /**
  * Chain adapter allows you to use multiple adapters together.
  *
@@ -18,25 +21,28 @@ final class ChainAdapter implements AdapterInterface
         private iterable $adapters,
     ) {}
 
-    public function write(string $path, mixed $contents): void
+    public function add(string $path, mixed $contents, ?ContextInterface $context = null): void
     {
         foreach ($this->adapters as $adapter) {
-            $adapter->write($contents);
+            $adapter->add($path, $contents, $context);
         }
     }
 
-    public function read(string $path): string
+    public function get(string $path, ?ContextInterface $context = null): mixed
     {
         foreach ($this->adapters as $adapter) {
-            // if file does not exist, try next adapter
-            return $this->adapter->read($path);
+            if ($adapter->has($path, $context)) {
+                return $this->adapter->get($path, $context);
+            }
         }
+
+        throw new FileNotFoundException();
     }
 
-    public function delete(string $path): void
+    public function remove(string $path, ?ContextInterface $context = null): void
     {
         foreach ($this->adapters as $adapter) {
-            $this->adapter->delete($path);
+            $this->adapter->remove($path, $context);
         }
     }
 
@@ -54,10 +60,10 @@ final class ChainAdapter implements AdapterInterface
         }
     }
 
-    public function exists(string $path): bool
+    public function has(string $path, ?ContextInterface $context = null): bool
     {
         foreach ($this->adapters as $adapter) {
-            if ($this->adapter->exists($path)) {
+            if ($this->adapter->has($path)) {
                 return true;
             }
         }
@@ -65,7 +71,7 @@ final class ChainAdapter implements AdapterInterface
         return false;
     }
 
-    public function isFile(string $filename): bool
+    public function isFile(string $path, ?ContextInterface $context = null): bool
     {
         foreach ($this->adapters as $adapter) {
             if ($this->adapter->isFile($path)) {

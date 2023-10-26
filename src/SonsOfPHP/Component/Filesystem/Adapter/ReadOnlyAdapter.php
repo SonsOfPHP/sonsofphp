@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem\Adapter;
 
+use SonsOfPHP\Component\Filesystem\ContextInterface;
 use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 
 /**
@@ -21,43 +22,28 @@ final class ReadOnlyAdapter implements AdapterInterface
         private AdapterInterface $adapter,
     ) {}
 
-    public function write(string $path, mixed $contents): void
+    public function add(string $path, mixed $contents, ?ContextInterface $context = null): void
     {
         throw new FilesystemException();
     }
 
-    public function read(string $path): string
+    public function get(string $path, ?ContextInterface $context = null): mixed
     {
-        return $this->adapter->read($path);
+        return $this->adapter->get($path, $context);
     }
 
-    public function delete(string $path): void
+    public function remove(string $path, ?ContextInterface $context = null): void
     {
         throw new FilesystemException();
     }
 
-    public function copy(string $source, string $destination): void
+    public function has(string $path, ?ContextInterface $context = null): bool
     {
-        throw new FilesystemException();
+        return $this->adapter->has($path, $context);
     }
 
-    public function move(string $source, string $destination): void
+    public function isFile(string $path, ?ContextInterface $context = null): bool
     {
-        throw new FilesystemException();
-    }
-
-    public function exists(string $path): bool
-    {
-        return $this->adapter->exists($path);
-    }
-
-    public function isFile(string $filename): bool
-    {
-        return $this->adapter->isFile($filename);
-    }
-
-    public function isDirectory(string $path): bool
-    {
-        return $this->adapter->isDirectory($path);
+        return $this->adapter->isFile($path, $context);
     }
 }

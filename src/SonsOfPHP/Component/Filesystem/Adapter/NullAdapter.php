@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem\Adapter;
 
+use SonsOfPHP\Component\Filesystem\ContextInterface;
+
 /**
  * Null Adapter does absolutly nothing, it's good for testing and that's pretty
  * much it.
@@ -15,30 +17,21 @@ namespace SonsOfPHP\Component\Filesystem\Adapter;
  */
 final class NullAdapter implements AdapterInterface
 {
-    public function write(string $path, mixed $contents): void {}
+    public function add(string $path, mixed $contents, ?ContextInterface $context = null): void {}
 
-    public function read(string $path): string
+    public function get(string $path, ?ContextInterface $context = null): mixed
     {
         return '';
     }
 
-    public function delete(string $path): void {}
+    public function remove(string $path, ?ContextInterface $context = null): void {}
 
-    public function copy(string $source, string $destination): void {}
-
-    public function move(string $source, string $destination): void {}
-
-    public function exists(string $path): bool
+    public function has(string $path, ?ContextInterface $context = null): bool
     {
         return false;
     }
 
-    public function isFile(string $filename): bool
-    {
-        return false;
-    }
-
-    public function isDirectory(string $path): bool
+    public function isFile(string $path, ?ContextInterface $context = null): bool
     {
         return false;
     }
