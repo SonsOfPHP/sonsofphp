@@ -33,7 +33,7 @@ final class Filesystem implements FilesystemInterface
         $this->adapter->remove($path, $context);
     }
 
-    public function exists(string $path, ?ContextInterface $context = null): void
+    public function exists(string $path, ?ContextInterface $context = null): bool
     {
         $this->adapter->has($path, $context);
     }
