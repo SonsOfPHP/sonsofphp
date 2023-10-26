@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Filesystem\Adapter;
 
 use SonsOfPHP\Component\Filesystem\ContextInterface;
+use SonsOfPHP\Component\Filesystem\Exception\FileNotFoundException;
 use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 
 /**
@@ -32,7 +33,7 @@ final class ChainAdapter implements AdapterInterface, CopyAwareInterface, Direct
     {
         foreach ($this->adapters as $adapter) {
             if ($adapter->has($path, $context)) {
-                return $this->adapter->get($path, $context);
+                return $adapter->get($path, $context);
             }
         }
 
@@ -42,14 +43,14 @@ final class ChainAdapter implements AdapterInterface, CopyAwareInterface, Direct
     public function remove(string $path, ?ContextInterface $context = null): void
     {
         foreach ($this->adapters as $adapter) {
-            $this->adapter->remove($path, $context);
+            $adapter->remove($path, $context);
         }
     }
 
     public function has(string $path, ?ContextInterface $context = null): bool
     {
         foreach ($this->adapters as $adapter) {
-            if ($this->adapter->has($path, $context)) {
+            if ($adapter->has($path, $context)) {
                 return true;
             }
         }
@@ -60,7 +61,7 @@ final class ChainAdapter implements AdapterInterface, CopyAwareInterface, Direct
     public function isFile(string $path, ?ContextInterface $context = null): bool
     {
         foreach ($this->adapters as $adapter) {
-            if ($this->adapter->isFile($path, $context)) {
+            if ($adapter->isFile($path, $context)) {
                 return true;
             }
         }

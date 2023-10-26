@@ -69,10 +69,10 @@ final class WormAdapter implements AdapterInterface, CopyAwareInterface, Directo
     public function isDirectory(string $path, ?ContextInterface $context = null): bool
     {
         if ($this->adapter instanceof DirectoryAwareInterface) {
-            return $this->adapter->isDirectory($path);
+            return $this->adapter->isDirectory($path, $context);
         }
 
-        return false;
+        return !$this->isFile($path, $context);
     }
 
     public function move(string $source, string $destination, ?ContextInterface $context = null): void

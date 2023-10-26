@@ -25,7 +25,7 @@ final class FilesystemTest extends TestCase
     }
 
     /**
-     * @coversNothing
+     * @covers ::__construct
      */
     public function testItHasTheCorrectInterface(): void
     {
