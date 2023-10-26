@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem\Tests;
 
+use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\MockObject;
 use SonsOfPHP\Component\Filesystem\ContextInterface;
@@ -108,5 +109,49 @@ final class ContextTest extends TestCase
             $this->assertSame('key', $key);
             $this->assertSame('value', $value);
         }
+    }
+
+    /**
+     * @covers ::offsetSet
+     */
+    public function testItOnlySupportsStringsAsKeys(): void
+    {
+        $context = new Context();
+
+        $this->expectException(FilesystemException::class);
+        $context->offsetSet(new \stdClass(), 'test');
+    }
+
+    /**
+     * @covers ::offsetExists
+     */
+    public function testItOnlySupportsStringsAsKeysWhenCheckingIfExists(): void
+    {
+        $context = new Context();
+
+        $this->expectException(FilesystemException::class);
+        $context->offsetExists(new \stdClass());
+    }
+
+    /**
+     * @covers ::offsetUnset
+     */
+    public function testItOnlySupportsStringsAsKeysWhenRemovingKeys(): void
+    {
+        $context = new Context();
+
+        $this->expectException(FilesystemException::class);
+        $context->offsetUnset(new \stdClass());
+    }
+
+    /**
+     * @covers ::offsetGet
+     */
+    public function testItOnlySupportsStringsAsKeysWhenGettingKey(): void
+    {
+        $context = new Context();
+
+        $this->expectException(FilesystemException::class);
+        $context->offsetGet(new \stdClass());
     }
 }

@@ -19,7 +19,7 @@ use SonsOfPHP\Component\Filesystem\Adapter\NativeAdapter;
 final class NativeAdapterTest extends TestCase
 {
     /**
-     * @coversNothing
+     * @covers ::__construct
      */
     public function testItHasTheCorrectInterface(): void
     {

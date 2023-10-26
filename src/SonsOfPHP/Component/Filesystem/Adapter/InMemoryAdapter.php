@@ -36,7 +36,7 @@ final class InMemoryAdapter implements AdapterInterface, CopyAwareInterface, Mov
         $path = $this->normalizePath($path);
 
         if (!array_key_exists($path, $this->files)) {
-            throw new UnableToReadFileException();
+            throw new UnableToReadFileException(sprintf('No file was found at "%s"', $path));
         }
 
         return $this->files[$path];

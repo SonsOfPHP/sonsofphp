@@ -127,7 +127,7 @@ final class InMemoryAdapterTest extends TestCase
     }
 
     /**
-     * @covers ::isFile
+     * @covers ::isDirectory
      */
     public function testItCanCheckIfIsDirectory(): void
     {

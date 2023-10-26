@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem;
 
+use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\CopyAwareInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\DirectoryAwareInterface;
@@ -20,12 +21,16 @@ final class Filesystem implements FilesystemInterface
 
     public function write(string $path, mixed $contents, ?ContextInterface $context = null): void
     {
-        $this->adapter->add($path, $contents);
+        if (!is_string($contents) && !is_resource($contents)) {
+            throw new FilesystemException(sprintf('Argument "$contents" must be of type "string" or "resource". Type "%s" given.', gettype($contents)));
+        }
+
+        $this->adapter->add($path, $contents, $context);
     }
 
     public function read(string $path, ?ContextInterface $context = null): string
     {
-        return $this->adapter->get($path);
+        return $this->adapter->get($path, $context);
     }
 
     public function delete(string $path, ?ContextInterface $context = null): void
@@ -35,7 +40,7 @@ final class Filesystem implements FilesystemInterface
 
     public function exists(string $path, ?ContextInterface $context = null): bool
     {
-        $this->adapter->has($path, $context);
+        return $this->adapter->has($path, $context);
     }
 
     public function copy(string $source, string $destination, ?ContextInterface $context = null): void
