@@ -12,6 +12,8 @@ use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 interface FilesystemInterface
 {
     /**
+     * @param string|resource $content
+     *
      * @throws FilesystemException
      */
     public function write(string $path, mixed $content, ?ContextInterface $context = null): void;
