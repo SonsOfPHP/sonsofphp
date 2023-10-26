@@ -13,6 +13,11 @@
       <code>$formatter</code>
     </UnusedVariable>
   </file>
+  <file src="src/SonsOfPHP/Bard/src/Console/Command/CopyCommand.php">
+    <UndefinedInterfaceMethod>
+      <code>run</code>
+    </UndefinedInterfaceMethod>
+  </file>
   <file src="src/SonsOfPHP/Bard/src/Console/Command/InstallCommand.php">
     <UndefinedInterfaceMethod>
       <code>run</code>
