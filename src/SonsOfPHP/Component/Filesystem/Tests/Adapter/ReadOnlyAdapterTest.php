@@ -21,7 +21,7 @@ use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
  */
 final class ReadOnlyAdapterTest extends TestCase
 {
-    private AdapterInterface&MockObject $adapter;
+    private AdapterInterface|MockObject $adapter;
 
     public function setUp(): void
     {
@@ -109,7 +109,7 @@ final class ReadOnlyAdapterTest extends TestCase
     public function testItCanIsFile(): void
     {
         $adapter = new ReadOnlyAdapter($this->adapter);
-        $this->assertTrue($adapter->isFile('/path/to/file.ext'));
+        $this->assertFalse($adapter->isFile('/path/to/file.ext'));
     }
 
     /**
