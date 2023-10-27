@@ -9,7 +9,7 @@ use SonsOfPHP\Component\Queue\Message\MessageInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface QueueInterface
+interface QueueInterface // or TransportInterface?
 {
     public function getName(): string;
 
