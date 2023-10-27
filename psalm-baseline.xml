@@ -582,14 +582,15 @@
     </UndefinedMethod>
   </file>
   <file src="src/SonsOfPHP/Component/Filesystem/Tests/Adapter/ReadOnlyAdapterTest.php">
-    <InvalidPropertyAssignmentValue>
-      <code><![CDATA[$this->createMock(AdapterInterface::class)]]></code>
-    </InvalidPropertyAssignmentValue>
     <UndefinedClass>
       <code><![CDATA[$this->adapter]]></code>
       <code><![CDATA[$this->adapter]]></code>
-      <code><![CDATA[AdapterInterface&MockObject]]></code>
+      <code>AdapterInterface|MockObject</code>
     </UndefinedClass>
+    <UndefinedInterfaceMethod>
+      <code>method</code>
+      <code>method</code>
+    </UndefinedInterfaceMethod>
   </file>
   <file src="src/SonsOfPHP/Component/Json/AbstractEncoderDecoder.php">
     <PossiblyUnusedMethod>
