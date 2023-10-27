@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\Queue;
+namespace SonsOfPHP\Component\Queue\Broker;
 
 /**
  * Example Usage:
