@@ -509,6 +509,88 @@
       <code>MockObject|ToggleInterface</code>
     </UndefinedClass>
   </file>
+  <file src="src/SonsOfPHP/Component/Filesystem/Adapter/AdapterInterface.php">
+    <UndefinedDocblockClass>
+      <code>FileNotFouneException</code>
+      <code>string|resouce</code>
+    </UndefinedDocblockClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/Filesystem/Adapter/ChainAdapter.php">
+    <PossiblyUnusedReturnValue>
+      <code>mixed</code>
+    </PossiblyUnusedReturnValue>
+  </file>
+  <file src="src/SonsOfPHP/Component/Filesystem/Adapter/InMemoryAdapter.php">
+    <UnusedForeachValue>
+      <code>$contents</code>
+    </UnusedForeachValue>
+  </file>
+  <file src="src/SonsOfPHP/Component/Filesystem/Adapter/NativeAdapter.php">
+    <UndefinedVariable>
+      <code>$filename</code>
+      <code>$filename</code>
+    </UndefinedVariable>
+  </file>
+  <file src="src/SonsOfPHP/Component/Filesystem/Context.php">
+    <PossiblyUnusedReturnValue>
+      <code>bool</code>
+    </PossiblyUnusedReturnValue>
+  </file>
+  <file src="src/SonsOfPHP/Component/Filesystem/ContextInterface.php">
+    <MissingTemplateParam>
+      <code>\ArrayAccess</code>
+      <code>\IteratorAggregate</code>
+    </MissingTemplateParam>
+  </file>
+  <file src="src/SonsOfPHP/Component/Filesystem/Exception/UnableToCopyFileException.php">
+    <UnusedClass>
+      <code>UnableToCopyFileException</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/Filesystem/Exception/UnableToDeleteDirectoryException.php">
+    <UnusedClass>
+      <code>UnableToDeleteDirectoryException</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/Filesystem/Exception/UnableToDeleteFileException.php">
+    <UnusedClass>
+      <code>UnableToDeleteFileException</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/Filesystem/Exception/UnableToMoveFileException.php">
+    <UnusedClass>
+      <code>UnableToMoveFileException</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/Filesystem/Exception/UnableToWriteFileException.php">
+    <UnusedClass>
+      <code>UnableToWriteFileException</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/Filesystem/Filesystem.php">
+    <InvalidReturnStatement>
+      <code><![CDATA[$this->adapter->get($path, $context)]]></code>
+    </InvalidReturnStatement>
+    <InvalidReturnType>
+      <code>string</code>
+    </InvalidReturnType>
+    <ParamNameMismatch>
+      <code>$contents</code>
+    </ParamNameMismatch>
+    <UndefinedMethod>
+      <code>get</code>
+    </UndefinedMethod>
+  </file>
+  <file src="src/SonsOfPHP/Component/Filesystem/Tests/Adapter/ReadOnlyAdapterTest.php">
+    <InvalidPropertyAssignmentValue>
+      <code><![CDATA[$this->createMock(AdapterInterface::class)]]></code>
+    </InvalidPropertyAssignmentValue>
+    <UndefinedClass>
+      <code><![CDATA[$this->adapter]]></code>
+      <code><![CDATA[$this->adapter]]></code>
+      <code><![CDATA[AdapterInterface&MockObject]]></code>
+    </UndefinedClass>
+  </file>
   <file src="src/SonsOfPHP/Component/Json/AbstractEncoderDecoder.php">
     <PossiblyUnusedMethod>
       <code>invalidUtf8Ignore</code>

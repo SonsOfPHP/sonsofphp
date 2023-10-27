@@ -6,6 +6,7 @@ namespace SonsOfPHP\Component\Filesystem\Tests;
 
 use SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\MockObject;
 use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\CopyAwareInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\DirectoryAwareInterface;
@@ -20,7 +21,7 @@ use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
  */
 final class ReadOnlyAdapterTest extends TestCase
 {
-    private AdapterInterface $adapter;
+    private AdapterInterface&MockObject $adapter;
 
     public function setUp(): void
     {
@@ -107,8 +108,6 @@ final class ReadOnlyAdapterTest extends TestCase
      */
     public function testItCanIsFile(): void
     {
-        $this->adapter->method('isFile')->willReturn(true);
-
         $adapter = new ReadOnlyAdapter($this->adapter);
         $this->assertTrue($adapter->isFile('/path/to/file.ext'));
     }

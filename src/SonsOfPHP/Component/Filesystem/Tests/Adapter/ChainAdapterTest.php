@@ -20,7 +20,7 @@ use SonsOfPHP\Component\Filesystem\Exception\FileNotFoundException;
  */
 final class ChainAdapterTest extends TestCase
 {
-    private iterable $adapters = [];
+    private array $adapters = [];
 
     public function setUp(): void
     {
