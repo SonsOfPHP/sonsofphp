@@ -1,6 +1,3 @@
-documentation:
-  - docs/**
-
 Bard:
   - docs/bard/*
   - src/SonsOfPHP/Bard/*
@@ -44,3 +41,6 @@ Queue:
 Version:
   - docs/components/version/*
   - src/SonsOfPHP/**/Version/*
+
+documentation:
+  - docs/**
