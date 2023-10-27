@@ -25,6 +25,10 @@ FeatureToggle:
   - docs/components/feature-toggle/*
   - src/SonsOfPHP/**/FeatureToggle/*
 
+Filesystem:
+  - docs/components/filesystem/*
+  - src/SonsOfPHP/**/Filesystem/*
+
 JSON:
   - docs/components/json/*
   - src/SonsOfPHP/**/Json/*

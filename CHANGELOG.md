@@ -23,6 +23,11 @@ Examples:
 
 ## [Unreleased]
 
+* [PR #51](https://github.com/SonsOfPHP/sonsofphp/pull/51) Added new Filesystem component
+
+## [0.3.8]
+
+Forgot to add stuff ;p
 
 ## [0.3.7]
 
@@ -39,6 +44,8 @@ Examples:
 * [EventSourcing] Deprecated classes in Symfony Bridge to better organize the library
 * [CQRS] Adding Symfony Bundle
 
-[Unreleased]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.7...HEAD
+[Unreleased]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.8...HEAD
+[0.3.8]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.8...v0.3.9
+[0.3.7]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.7...v0.3.8
 [0.3.6]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.6...v0.3.7
 [0.3.5]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.5...v0.3.6
