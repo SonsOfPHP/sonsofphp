@@ -42,6 +42,10 @@
             "repository": "git@github.com:SonsOfPHP/feature-toggle.git"
         },
         {
+            "path": "src/SonsOfPHP/Component/Filesystem",
+            "repository": "git@github.com:SonsOfPHP/filesystem.git"
+        },
+        {
             "path": "src/SonsOfPHP/Component/Json",
             "repository": "git@github.com:SonsOfPHP/json.git"
         },
