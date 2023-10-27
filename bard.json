@@ -54,6 +54,10 @@
             "repository": "git@github.com:SonsOfPHP/money.git"
         },
         {
+            "path": "src/SonsOfPHP/Component/Queue",
+            "repository": "git@github.com:SonsOfPHP/queue.git"
+        },
+        {
             "path": "src/SonsOfPHP/Component/Version",
             "repository": "git@github.com:SonsOfPHP/version.git"
         }
