@@ -37,6 +37,10 @@ Money:
   - docs/components/money/*
   - src/SonsOfPHP/**/Money/*
 
+Queue:
+  - docs/components/queue/*
+  - src/SonsOfPHP/**/Queue/*
+
 Version:
   - docs/components/version/*
   - src/SonsOfPHP/**/Version/*

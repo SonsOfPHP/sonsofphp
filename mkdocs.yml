@@ -93,6 +93,7 @@ nav:
             - Currency Providers: components/money/currency-providers.md
             - Operators: components/money/operators.md
             - Queries: components/money/queries.md
+        - Queue: components/queue/index.md
         - Version: components/version/index.md
     - Bard:
         - bard/index.md

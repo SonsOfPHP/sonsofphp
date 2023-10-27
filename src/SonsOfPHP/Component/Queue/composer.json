@@ -1,13 +1,11 @@
 {
-    "name": "sonsofphp/filesystem",
+    "name": "sonsofphp/queue",
     "type": "library",
-    "description": "Virtual Filesystem",
+    "description": "Library to send messages into multiple different message queues",
     "keywords": [
-        "virtual-file-system",
-        "file-system",
-        "filesystem"
+        "message-queue"
     ],
-    "homepage": "https://github.com/SonsOfPHP/filesystem",
+    "homepage": "https://github.com/SonsOfPHP/queue",
     "license": "MIT",
     "authors": [
         {
@@ -23,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SonsOfPHP\\Component\\Filesystem\\": ""
+            "SonsOfPHP\\Component\\Queue\\": ""
         },
         "exclude-from-classmap": [
             "/Tests/"

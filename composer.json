@@ -50,7 +50,8 @@
         "symfony/dependency-injection": "^5|^6",
         "symfony/http-kernel": "^5|^6",
         "symfony/security-bundle": "^6",
-        "symfony/messenger": "^5|^6"
+        "symfony/messenger": "^5|^6",
+        "psr/clock": "^1.0"
     },
     "replace": {
         "sonsofphp/bard": "self.version",
@@ -65,7 +66,9 @@
         "sonsofphp/json": "self.version",
         "sonsofphp/money": "self.version",
         "sonsofphp/version": "self.version",
-        "sonsofphp/cqrs-bundle": "self.version"
+        "sonsofphp/cqrs-bundle": "self.version",
+        "sonsofphp/filesystem": "self.version",
+        "sonsofphp/queue": "self.version"
     },
     "autoload": {
         "psr-4": {
@@ -79,10 +82,11 @@
             "SonsOfPHP\\Component\\EventSourcing\\": "src/SonsOfPHP/Component/EventSourcing",
             "SonsOfPHP\\Bridge\\Doctrine\\EventSourcing\\": "src/SonsOfPHP/Bridge/Doctrine/EventSourcing",
             "SonsOfPHP\\Component\\FeatureToggle\\": "src/SonsOfPHP/Component/FeatureToggle",
+            "SonsOfPHP\\Component\\Filesystem\\": "src/SonsOfPHP/Component/Filesystem",
             "SonsOfPHP\\Component\\Json\\": "src/SonsOfPHP/Component/Json",
             "SonsOfPHP\\Component\\Money\\": "src/SonsOfPHP/Component/Money",
-            "SonsOfPHP\\Component\\Version\\": "src/SonsOfPHP/Component/Version",
-            "SonsOfPHP\\Component\\Filesystem\\": "src/SonsOfPHP/Component/Filesystem"
+            "SonsOfPHP\\Component\\Queue\\": "src/SonsOfPHP/Component/Queue",
+            "SonsOfPHP\\Component\\Version\\": "src/SonsOfPHP/Component/Version"
         },
         "exclude-from-classmap": [
             "src/SonsOfPHP/Bard/Tests",
@@ -95,10 +99,11 @@
             "src/SonsOfPHP/Component/EventSourcing/Tests",
             "src/SonsOfPHP/Bridge/Doctrine/EventSourcing/Tests",
             "src/SonsOfPHP/Component/FeatureToggle/Tests",
+            "src/SonsOfPHP/Component/Filesystem/Tests",
             "src/SonsOfPHP/Component/Json/Tests",
             "src/SonsOfPHP/Component/Money/Tests",
-            "src/SonsOfPHP/Component/Version/Tests",
-            "src/SonsOfPHP/Component/Filesystem/Tests"
+            "src/SonsOfPHP/Component/Queue/Tests",
+            "src/SonsOfPHP/Component/Version/Tests"
         ]
     },
     "extra": {
