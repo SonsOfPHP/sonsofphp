@@ -1,5 +1,5 @@
 documentation:
-  - docs/*
+  - docs/**
 
 Bard:
   - docs/bard/*
