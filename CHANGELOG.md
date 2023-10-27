@@ -24,6 +24,7 @@ Examples:
 ## [Unreleased]
 
 * [PR #51](https://github.com/SonsOfPHP/sonsofphp/pull/51) Added new Filesystem component
+* [PR #54](https://github.com/SonsOfPHP/sonsofphp/pull/54) Queue Component
 
 ## [0.3.8]
 
