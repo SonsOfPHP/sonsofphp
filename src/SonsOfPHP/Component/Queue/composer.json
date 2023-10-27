@@ -3,7 +3,10 @@
     "type": "library",
     "description": "Library to send messages into multiple different message queues",
     "keywords": [
-        "message-queue"
+        "message-queue",
+        "broker",
+        "file-queue",
+        "queue"
     ],
     "homepage": "https://github.com/SonsOfPHP/queue",
     "license": "MIT",
