@@ -1,9 +1,10 @@
 {
     "name": "sonsofphp/http-message",
     "type": "library",
-    "description": "",
+    "description": "Simple, lightweight Http Message implementation",
     "keywords": [
-        "http-message"
+        "http-message",
+        "psr-7"
     ],
     "homepage": "https://github.com/SonsOfPHP/http-message",
     "license": "MIT",
@@ -30,7 +31,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.1"
+        "php": ">=8.1",
+        "psr/http-message": "^2.0"
     },
     "extra": {
         "sort-packages": true,
