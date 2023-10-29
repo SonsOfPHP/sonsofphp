@@ -86,7 +86,11 @@ nav:
         - Filesystem:
             - components/filesystem/index.md
             - Adapters: components/filesystem/adapters.md
-
+        - Http: components/http/index.md
+        - HttpClient: components/http-client/index.md
+        - HttpFactory: components/http-factory/index.md
+        - HttpHandler: components/http-handler/index.md
+        - HttpMessage: components/http-message/index.md
         - JSON: components/json/index.md
         - Money:
             - components/money/index.md
