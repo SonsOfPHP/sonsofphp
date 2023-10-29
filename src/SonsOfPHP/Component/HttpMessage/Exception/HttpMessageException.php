@@ -7,6 +7,4 @@ namespace SonsOfPHP\Component\HttpMessage\Exception;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class HttpMessageException extends \Exception
-{
-}
+class HttpMessageException extends \Exception {}

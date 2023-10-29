@@ -73,7 +73,7 @@ final class ServerRequestTest extends TestCase
         $this->assertCount(1, $request->getAttributes());
 
         $req = $request->withoutAttribute('controller');
-        $this->assertNotSame($request, $req,);
+        $this->assertNotSame($request, $req);
         $this->assertCount(1, $request->getAttributes());
         $this->assertCount(0, $req->getAttributes());
     }

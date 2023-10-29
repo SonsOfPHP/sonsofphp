@@ -96,7 +96,7 @@ class Message implements MessageInterface
         $that->originalHeaders[$name] = $value;
 
         $values = $value;
-        array_walk($values, function (&$val, $key) {
+        array_walk($values, function (&$val, $key): void {
             $val = strtolower($val);
         });
         $that->headers[strtolower($name)] = $value;
@@ -122,7 +122,7 @@ class Message implements MessageInterface
         $that->originalHeaders[$name][] = $value;
 
         $values = $value;
-        array_walk($values, function (&$val, $key) {
+        array_walk($values, function (&$val, $key): void {
             $val = strtolower($val);
         });
         $that->headers[strtolower($name)][] = $value;
