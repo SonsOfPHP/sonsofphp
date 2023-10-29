@@ -46,6 +46,26 @@
             "repository": "git@github.com:SonsOfPHP/filesystem.git"
         },
         {
+            "path": "src/SonsOfPHP/Component/Http",
+            "repository": "git@github.com:SonsOfPHP/http.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Component/HttpClient",
+            "repository": "git@github.com:SonsOfPHP/http-client.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Component/HttpFactory",
+            "repository": "git@github.com:SonsOfPHP/http-factory.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Component/HttpHandler",
+            "repository": "git@github.com:SonsOfPHP/http-handler.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Component/HttpMessage",
+            "repository": "git@github.com:SonsOfPHP/http-message.git"
+        },
+        {
             "path": "src/SonsOfPHP/Component/Json",
             "repository": "git@github.com:SonsOfPHP/json.git"
         },
