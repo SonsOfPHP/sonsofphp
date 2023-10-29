@@ -36,7 +36,7 @@
         "psr/http-factory": "^1.0"
     },
     "suggest": {
-        "sonsofphp/http-message": "Create HTTP Messages (PSR-7)",
+        "sonsofphp/http-message": "Create HTTP Messages (PSR-7)"
     },
     "provide": {
         "psr/http-factory-implementation": "^1.0"
