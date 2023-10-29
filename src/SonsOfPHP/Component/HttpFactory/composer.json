@@ -3,6 +3,8 @@
     "type": "library",
     "description": "",
     "keywords": [
+        "psr",
+        "psr-17",
         "http-factory"
     ],
     "homepage": "https://github.com/SonsOfPHP/http-factory",
@@ -32,6 +34,12 @@
     "require": {
         "php": ">=8.1",
         "psr/http-factory": "^1.0"
+    },
+    "suggest": {
+        "sonsofphp/http-message": "Create HTTP Messages (PSR-7)",
+    },
+    "provide": {
+        "psr/http-factory-implementation": "^1.0"
     },
     "extra": {
         "sort-packages": true,

@@ -1,7 +1,7 @@
 Sons of PHP - Http
 ==================
 
-Http Component
+Http Component contains all other http related components.
 
 ## Learn More
 

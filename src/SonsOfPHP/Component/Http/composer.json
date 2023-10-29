@@ -3,6 +3,10 @@
     "type": "library",
     "description": "",
     "keywords": [
+        "psr-7",
+        "psr-15",
+        "psr-17",
+        "psr-18",
         "http"
     ],
     "homepage": "https://github.com/SonsOfPHP/http",
@@ -30,7 +34,17 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.1"
+        "php": ">=8.1",
+        "sonsofphp/http-client": "^0.3.x-dev",
+        "sonsofphp/http-factory": "^0.3.x-dev",
+        "sonsofphp/http-handler": "^0.3.x-dev",
+        "sonsofphp/http-message": "^0.3.x-dev"
+    },
+    "provide": {
+        "psr/http-client-implementation": "^1.0",
+        "psr/http-factory-implementation": "^1.0",
+        "psr/http-handler-implementation": "^1.0",
+        "psr/http-message-implementation": "^1.0"
     },
     "extra": {
         "sort-packages": true,

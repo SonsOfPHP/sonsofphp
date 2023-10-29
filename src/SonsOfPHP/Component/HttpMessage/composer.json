@@ -3,8 +3,9 @@
     "type": "library",
     "description": "Simple, lightweight Http Message implementation",
     "keywords": [
-        "http-message",
-        "psr-7"
+        "psr",
+        "psr-7",
+        "http-message"
     ],
     "homepage": "https://github.com/SonsOfPHP/http-message",
     "license": "MIT",
@@ -37,6 +38,9 @@
     "suggest": {
         "sonsofphp/filesystem": "Managing Uploaded files",
         "sonsofphp/http-factory": "Create various HTTP Messages using factories (PSR-17)"
+    },
+    "provide": {
+        "psr/http-message-implementation": "^1.0"
     },
     "extra": {
         "sort-packages": true,

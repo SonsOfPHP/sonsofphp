@@ -3,6 +3,8 @@
     "type": "library",
     "description": "",
     "keywords": [
+        "psr",
+        "psr-18",
         "http-client"
     ],
     "homepage": "https://github.com/SonsOfPHP/http-client",
@@ -32,6 +34,13 @@
     "require": {
         "php": ">=8.1",
         "psr/http-client": "^1.0"
+    },
+    "suggest": {
+        "sonsofphp/http-message": "Create HTTP Messages (PSR-7)",
+        "sonsofphp/http-factory": "Create HTTP Messages using factories (PSR-17)"
+    },
+    "provide": {
+        "psr/http-client-implementation": "^1.0"
     },
     "extra": {
         "sort-packages": true,
