@@ -19,6 +19,7 @@
 /src/SonsOfPHP/Component/FeatureToggle @JoshuaEstes
 /src/SonsOfPHP/Component/Faker @JoshuaEstes
 /src/SonsOfPHP/Component/Filesystem @JoshuaEstes
+/src/SonsOfPHP/Component/Http @JoshuaEstes
 /src/SonsOfPHP/Component/HttpClient @JoshuaEstes
 /src/SonsOfPHP/Component/HttpFactory @JoshuaEstes
 /src/SonsOfPHP/Component/HttpHandler @JoshuaEstes
