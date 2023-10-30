@@ -19,6 +19,7 @@ class Client implements ClientInterface
 {
     public function __construct(
         private ResponseFactoryInterface $responseFactory = new ResponseFactory(),
+        private ?RequestHandlerInterface $handler = null,
     ) {}
 
     /**
