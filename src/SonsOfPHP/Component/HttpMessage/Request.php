@@ -99,12 +99,16 @@ class Request extends Message implements RequestInterface
      */
     public function withUri(UriInterface $uri, bool $preserveHost = false): RequestInterface
     {
-        // @todo implement perserveHost
-        // @todo if uri is same, do not clone
+        if (isset($this->uri) && (string) $uri === (string) $this->uri) {
+            return $this;
+        }
 
         $that = clone $this;
-
         $that->uri = $uri;
+
+        if (true === $preserveHost && $this->hasHeader('host')) {
+            $that = $that->withHeader('host', $this->getHeader('host'));
+        }
 
         return $that;
     }
