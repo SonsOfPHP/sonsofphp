@@ -44,10 +44,10 @@ final class RequestTest extends TestCase
     public function testWithMethodWorksAsExpected(): void
     {
         $request = new Request();
-        $req = $request->withMethod('BREW');
+        $req = $request->withMethod('get');
 
         $this->assertNotSame($request, $req);
-        $this->assertSame('BREW', $req->getMethod());
+        $this->assertSame('get', $req->getMethod());
     }
 
     /**
@@ -62,5 +62,23 @@ final class RequestTest extends TestCase
 
         $this->assertNotSame($request, $req);
         $this->assertSame($uri, $req->getUri());
+    }
+
+    /**
+     * @covers ::__construct
+     */
+    public function testItWillThrowExceptionWhenInvalidMethod(): void
+    {
+        $this->expectException('InvalidArgumentException');
+        $request = new Request('not valid');
+    }
+
+    /**
+     * @covers ::__construct
+     */
+    public function testItCanBeCreatedWithStringAsUri(): void
+    {
+        $request = new Request('get', 'https://docs.sonsofphp.com');
+        $this->assertSame('https://docs.sonsofphp.com', (string) $request->getUri());
     }
 }

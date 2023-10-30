@@ -23,4 +23,35 @@ final class StreamFactoryTest extends TestCase
     {
         $this->assertInstanceOf(StreamFactoryInterface::class, new StreamFactory());
     }
+
+    /**
+     * @covers ::createStream
+     */
+    public function testCreateStreamWorksAsExpected(): void
+    {
+        $factory = new StreamFactory();
+
+        $this->assertInstanceOf(StreamInterface::class, $factory->createStream('just a test'));
+    }
+
+    /**
+     * @covers ::createStreamFromResource
+     */
+    public function testCreateStreamFromResourceWorksAsExpected(): void
+    {
+        $factory = new StreamFactory();
+
+        $this->assertInstanceOf(StreamInterface::class, $factory->createStreamFromResource(fopen('php://memory', 'r')));
+    }
+
+    /**
+     * @covers ::createStreamFromResource
+     */
+    public function testCreateStreamFromResourceWillThrowExceptionWhenNotResource(): void
+    {
+        $factory = new StreamFactory();
+
+        $this->expectException('InvalidArgumentException');
+        $factory->createStreamFromResource('testing');
+    }
 }

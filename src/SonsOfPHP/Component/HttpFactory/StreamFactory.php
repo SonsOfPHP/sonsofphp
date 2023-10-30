@@ -20,7 +20,11 @@ class StreamFactory implements StreamFactoryInterface
      */
     public function createStream(string $content = ''): StreamInterface
     {
-        return new Stream();
+        $resource = fopen('php://temp', 'r+');
+        fwrite($resource, $content);
+        fseek($resource, 0);
+
+        return new Stream($resource);
     }
 
     /**
@@ -28,7 +32,9 @@ class StreamFactory implements StreamFactoryInterface
      */
     public function createStreamFromFile(string $filename, string $mode = 'r'): StreamInterface
     {
-        return new Stream();
+        // #todo Error Handling, filename might be invalid or mode may be invalid
+
+        return new Stream(fopen($filename, $mode));
     }
 
     /**
@@ -36,6 +42,10 @@ class StreamFactory implements StreamFactoryInterface
      */
     public function createStreamFromResource($resource): StreamInterface
     {
-        return new Stream();
+        if (!is_resource($resource)) {
+            throw new \InvalidArgumentException('resource is invalid');
+        }
+
+        return new Stream($resource);
     }
 }

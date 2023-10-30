@@ -14,25 +14,16 @@ use Psr\Http\Message\UriInterface;
  */
 class Request extends Message implements RequestInterface
 {
-    public const METHOD_HEAD    = 'HEAD';
-    public const METHOD_GET     = 'GET';
-    public const METHOD_POST    = 'POST';
-    public const METHOD_PUT     = 'PUT';
-    public const METHOD_PATCH   = 'PATCH';
-    public const METHOD_DELETE  = 'DELETE';
-    public const METHOD_PURGE   = 'PURGE';
-    public const METHOD_OPTIONS = 'OPTIONS';
-    public const METHOD_TRACE   = 'TRACE';
-    public const METHOD_CONNECT = 'CONNECT';
-
-    private string $requestTarget;
+    private ?string $requestTarget = null;
     private UriInterface $uri;
 
     public function __construct(
         private ?string $method = null,
         UriInterface|string $uri = null,
     ) {
-        // @todo throw exception if method invalid
+        if (null !== $method && null === Method::tryFrom(strtoupper($method))) {
+            throw new \InvalidArgumentException(sprintf('The value of "%s" for $method is invalid', strtoupper($method)));
+        }
 
         if (is_string($uri)) {
             $uri = new Uri($uri);
@@ -48,7 +39,7 @@ class Request extends Message implements RequestInterface
      */
     public function getRequestTarget(): string
     {
-        return $this->requestTarget;
+        return $this->requestTarget ?? '';
     }
 
     /**
@@ -56,7 +47,9 @@ class Request extends Message implements RequestInterface
      */
     public function withRequestTarget(string $requestTarget): RequestInterface
     {
-        // @todo if requestTarget is same, do not clone
+        if ($requestTarget === $this->requestTarget) {
+            return $this;
+        }
 
         $that = clone $this;
 
@@ -78,8 +71,13 @@ class Request extends Message implements RequestInterface
      */
     public function withMethod(string $method): RequestInterface
     {
-        // @todo throw exception if method is invliad
-        // @todo if method is same, do not clone
+        if (null !== $method && null === Method::tryFrom(strtoupper($method))) {
+            throw new \InvalidArgumentException(sprintf('The value of "%s" for $method is invalid', strtoupper($method)));
+        }
+
+        if ($method === $this->method) {
+            return $this;
+        }
 
         $that = clone $this;
 

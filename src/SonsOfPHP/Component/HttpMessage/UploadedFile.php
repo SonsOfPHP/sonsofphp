@@ -24,6 +24,10 @@ class UploadedFile implements UploadedFileInterface
         if (null === $stream || !$stream->isReadable()) {
             throw new \InvalidArgumentException('Stream is invalid');
         }
+
+        if (null === UploadedFileError::tryFrom($error)) {
+            throw new \InvalidArgumentException(sprintf('The value "%s" for $error is invalid.', $error));
+        }
     }
 
     /**

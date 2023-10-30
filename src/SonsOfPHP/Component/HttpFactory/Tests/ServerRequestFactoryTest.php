@@ -23,4 +23,14 @@ final class ServerRequestFactoryTest extends TestCase
     {
         $this->assertInstanceOf(ServerRequestFactoryInterface::class, new ServerRequestFactory());
     }
+
+    /**
+     * @covers ::createServerRequest
+     */
+    public function testCreateServerRequestWorksAsExpected(): void
+    {
+        $factory = new ServerRequestFactory();
+
+        $this->assertInstanceOf(ServerRequestInterface::class, $factory->createServerRequest('get', 'https://docs.sonsofphp.com'));
+    }
 }

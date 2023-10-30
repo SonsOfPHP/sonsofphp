@@ -26,6 +26,8 @@ class ServerRequest extends Request implements ServerRequestInterface
         private array $serverParams = []
     ) {
         parent::__construct($method, $uri);
+
+        $this->serverParams = array_merge($_SERVER, $serverParams);
     }
 
     /**
@@ -33,7 +35,7 @@ class ServerRequest extends Request implements ServerRequestInterface
      */
     public function getServerParams(): array
     {
-        return $_SERVER;
+        return $this->serverParams;
     }
 
     /**
