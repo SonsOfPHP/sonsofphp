@@ -6,6 +6,7 @@ namespace SonsOfPHP\Component\HttpMessage\Tests;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\HttpMessage\Request;
+use SonsOfPHP\Component\HttpMessage\Uri;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
 
@@ -38,6 +39,17 @@ final class RequestTest extends TestCase
     }
 
     /**
+     * @covers ::withRequestTarget
+     */
+    public function testWithRequestTargetWorksAsExpectedWhenSameRequestTarget(): void
+    {
+        $request = (new Request())->withRequestTarget('/testing');
+        $req = $request->withRequestTarget('/testing');
+
+        $this->assertSame($request, $req);
+    }
+
+    /**
      * @covers ::getMethod
      * @covers ::withMethod
      */
@@ -48,6 +60,26 @@ final class RequestTest extends TestCase
 
         $this->assertNotSame($request, $req);
         $this->assertSame('get', $req->getMethod());
+    }
+
+    /**
+     * @covers ::withMethod
+     */
+    public function testWithMethodWorksAsExpectedWhenInvalidMethod(): void
+    {
+        $request = new Request();
+        $this->expectException('InvalidArgumentException');
+        $request->withMethod('not a valid method');
+    }
+
+    /**
+     * @covers ::withMethod
+     */
+    public function testWithMethodWorksAsExpectedWhenMethodIsSame(): void
+    {
+        $request = new Request('get');
+        $req = $request->withMethod('get');
+        $this->assertSame($request, $req);
     }
 
     /**
@@ -62,6 +94,17 @@ final class RequestTest extends TestCase
 
         $this->assertNotSame($request, $req);
         $this->assertSame($uri, $req->getUri());
+    }
+
+    /**
+     * @covers ::withUri
+     */
+    public function testWithUriWorksAsExpectedWhenSame(): void
+    {
+        $request = new Request('get', 'https://docs.sonsofphp.com');
+        $req = $request->withUri(new Uri('https://docs.sonsofphp.com'));
+
+        $this->assertSame($request, $req);
     }
 
     /**

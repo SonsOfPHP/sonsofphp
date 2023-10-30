@@ -18,7 +18,7 @@ class Message implements MessageInterface
 
     private string $protocolVersion = self::DEFAULT_PROTOCOL_VERSION;
     private array $headers = [];
-    private array $originalHeaders = [];
+    private array $normalizedHeaders = [];
     private StreamInterface $body;
 
     /**
@@ -54,7 +54,7 @@ class Message implements MessageInterface
      */
     public function hasHeader(string $name): bool
     {
-        return array_key_exists(strtolower($name), $this->headers);
+        return array_key_exists(strtolower($name), $this->normalizedHeaders);
     }
 
     /**
@@ -63,7 +63,7 @@ class Message implements MessageInterface
     public function getHeader(string $name): array
     {
         if ($this->hasHeader($name)) {
-            return $this->headers[$name];
+            return $this->normalizedHeaders[strtolower($name)];
         }
 
         return [];
@@ -86,14 +86,16 @@ class Message implements MessageInterface
      */
     public function withHeader(string $name, $value): MessageInterface
     {
-        // @todo throw \InvalidArgumentException for invalid header names or values.
+        if (!preg_match('/^[a-zA-Z0-9\'`#$%&*+.^_|~!-]+$/D', $name)) {
+            throw new \InvalidArgumentException(sprintf('"%s" is not valid header name.', $name));
+        }
 
         $that = clone $this;
 
         if (is_string($value)) {
             $value = [$value];
         }
-        $that->originalHeaders[$name] = $value;
+        $that->normalizedHeaders[$name] = $value;
 
         $values = $value;
         array_walk($values, function (&$val, $key): void {
@@ -109,7 +111,10 @@ class Message implements MessageInterface
      */
     public function withAddedHeader(string $name, $value): MessageInterface
     {
-        // @todo \InvalidArgumentException for invalid header names or values.
+        if (!preg_match('/^[a-zA-Z0-9\'`#$%&*+.^_|~!-]+$/D', $name)) {
+            throw new \InvalidArgumentException(sprintf('"%s" is not valid header name.', $name));
+        }
+
         if (!$this->hasHeader($name)) {
             return $this->withHeader($name, $value);
         }
@@ -119,7 +124,7 @@ class Message implements MessageInterface
         }
 
         $that = clone $this;
-        $that->originalHeaders[$name][] = $value;
+        $that->normalizedHeaders[$name][] = $value;
 
         $values = $value;
         array_walk($values, function (&$val, $key): void {
@@ -135,12 +140,20 @@ class Message implements MessageInterface
      */
     public function withoutHeader(string $name): MessageInterface
     {
-        $that = clone $this;
-        if (!$that->hasHeader($name)) {
-            return $that;
+        if (!$this->hasHeader($name)) {
+            return $this;
         }
 
-        unset($that->headers[strtolower($name)]);
+        $that = clone $this;
+        foreach ($this->headers as $header => $values) {
+            if (0 === strcasecmp($header, $name)) {
+                unset(
+                    $that->headers[$header],
+                    $that->normalizedHeaders[strtolower($name)]
+                );
+                break;
+            }
+        }
 
         return $that;
     }

@@ -82,6 +82,17 @@ final class MessageTest extends TestCase
     }
 
     /**
+     * @covers ::withHeader
+     */
+    public function testWithHeaderWorksAsExpectedWithInvalidHeaderName(): void
+    {
+        $msg = new Message();
+
+        $this->expectException('InvalidArgumentException');
+        $msg->withHeader('content type', 'does not matter');
+    }
+
+    /**
      * @covers ::hasHeader
      */
     public function testHasHeaderWorksAsExpected(): void
@@ -127,6 +138,16 @@ final class MessageTest extends TestCase
         $msg = $message->withAddedHeader('content-type', 'charset=utf-8');
         $this->assertNotSame($message, $msg);
         $this->assertCount(2, $msg->getHeader('content-type'));
+    }
+
+    /**
+     * @covers ::withAddedHeader
+     */
+    public function testWithAddedHeaderWorksAsExpectedWhenInvalidHeaderName(): void
+    {
+        $message = new Message();
+        $this->expectException('InvalidArgumentException');
+        $message->withAddedHeader('content type', 'text/html');
     }
 
     /**
@@ -179,13 +200,13 @@ final class MessageTest extends TestCase
     /**
      * @covers ::withoutHeader
      */
-    public function testWithoutHeaderWhenHeaderDoesNotExist(): void
+    public function testWithoutHeaderWorksAsExpectedWhenHeaderDoesNotExist(): void
     {
         $message = new Message();
         $this->assertCount(0, $message->getHeader('content-type'));
 
         $msg = $message->withoutHeader('content-type');
-        $this->assertNotSame($message, $msg);
+        $this->assertSame($message, $msg);
         $this->assertCount(0, $msg->getHeader('content-type'));
     }
 }
