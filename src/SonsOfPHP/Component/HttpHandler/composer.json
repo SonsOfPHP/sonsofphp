@@ -3,6 +3,7 @@
     "type": "library",
     "description": "",
     "keywords": [
+        "psr-15",
         "http-handler"
     ],
     "homepage": "https://github.com/SonsOfPHP/http-handler",
