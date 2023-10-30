@@ -32,7 +32,8 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.1",
-        "psr/http-server-handler": "^1.0"
+        "psr/http-server-handler": "^1.0",
+        "psr/http-server-middleware": "^1.0"
     },
     "extra": {
         "sort-packages": true,
