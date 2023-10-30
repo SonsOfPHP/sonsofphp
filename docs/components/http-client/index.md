@@ -4,6 +4,8 @@ title: Http Client
 
 # Http Client Component
 
+Simple PSR-18 Http Client
+
 ## Installation
 
 ```shell
