@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SonsOfPHP\Component\HttpClient;
 
 use Psr\Http\Client\RequestExceptionInterface;
