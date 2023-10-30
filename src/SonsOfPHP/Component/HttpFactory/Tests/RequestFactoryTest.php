@@ -25,7 +25,6 @@ final class RequestFactoryTest extends TestCase
     }
 
     /**
-     * @covers ::__construct
      * @covers ::createRequest
      */
     public function testCreateRequestWorksAsExpected(): void
