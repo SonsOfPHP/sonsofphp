@@ -13,10 +13,9 @@ use SonsOfPHP\Component\HttpFactory\ResponseFactory;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface MiddlewareInterface
-// or ClientRequestMiddlewareInterface
+interface ClientHandlerInterface
 {
     /**
      */
-    public function process(RequestInterface $request, ResponseInterface $response, RequestHandlerInterface $handler): ResponseInterface;
+    public function handle(RequestInterface $request): ResponseInterface;
 }
