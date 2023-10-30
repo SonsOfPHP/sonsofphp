@@ -6,7 +6,7 @@ namespace SonsOfPHP\Component\HttpFactory;
 
 use Psr\Http\Message\UriFactoryInterface;
 use Psr\Http\Message\UriInterface;
-use SonsOfPHP\Component\HttpMessage\Request;
+use SonsOfPHP\Component\HttpMessage\Uri;
 
 /**
  * {@inheritdoc}

@@ -26,8 +26,22 @@ class Request extends Message implements RequestInterface
     public const METHOD_CONNECT = 'CONNECT';
 
     private string $requestTarget;
-    private string $method;
     private UriInterface $uri;
+
+    public function __construct(
+        private ?string $method = null,
+        UriInterface|string $uri = null,
+    ) {
+        // @todo throw exception if method invalid
+
+        if (is_string($uri)) {
+            $uri = new Uri($uri);
+        }
+
+        if (null !== $uri) {
+            $this->uri = $uri;
+        }
+    }
 
     /**
      * {@inheritdoc}
@@ -42,6 +56,8 @@ class Request extends Message implements RequestInterface
      */
     public function withRequestTarget(string $requestTarget): RequestInterface
     {
+        // @todo if requestTarget is same, do not clone
+
         $that = clone $this;
 
         $that->requestTarget = $requestTarget;
@@ -62,6 +78,9 @@ class Request extends Message implements RequestInterface
      */
     public function withMethod(string $method): RequestInterface
     {
+        // @todo throw exception if method is invliad
+        // @todo if method is same, do not clone
+
         $that = clone $this;
 
         $that->method = $method;
@@ -82,6 +101,9 @@ class Request extends Message implements RequestInterface
      */
     public function withUri(UriInterface $uri, bool $preserveHost = false): RequestInterface
     {
+        // @todo implement perserveHost
+        // @todo if uri is same, do not clone
+
         $that = clone $this;
 
         $that->uri = $uri;

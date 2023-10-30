@@ -17,19 +17,11 @@ use SonsOfPHP\Component\HttpMessage\Request;
  */
 class RequestFactory implements RequestFactoryInterface
 {
-    public function __construct(
-        private UriFactoryInterface $uriFactory = new UriFactory(),
-    ) {}
-
     /**
      * {@inheritdoc}
      */
-    public function createRequest(string $method, UriInterface|string $uri): RequestInterface
+    public function createRequest(string $method, $uri): RequestInterface
     {
-        if (is_string($uri)) {
-            $uri = $uriFactory->createUri($uri);
-        }
-
-        return (new Request())->withMethod($method)->withUri($uri);
+        return new Request($method, $uri);
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpMessage;
 
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\UriInterface;
 
 /**
  * {@inheritdoc}
@@ -18,6 +19,14 @@ class ServerRequest extends Request implements ServerRequestInterface
     private array $uploadedFiles = [];
     private array $attributes    = [];
     private null|array|object $data = null;
+
+    public function __construct(
+        ?string $method = null,
+        UriInterface|string $uri = null,
+        private array $serverParams = []
+    ) {
+        parent::__construct($method, $uri);
+    }
 
     /**
      * {@inheritdoc}
@@ -40,6 +49,8 @@ class ServerRequest extends Request implements ServerRequestInterface
      */
     public function withCookieParams(array $cookies): ServerRequestInterface
     {
+        // @todo if values are the same, do not clone
+
         $that = clone $this;
 
         $that->cookieParams = $cookies;
@@ -60,6 +71,8 @@ class ServerRequest extends Request implements ServerRequestInterface
      */
     public function withQueryParams(array $query): ServerRequestInterface
     {
+        // @todo if values are the same, do not clone
+
         $that = clone $this;
 
         $that->queryParams = $query;
@@ -80,6 +93,8 @@ class ServerRequest extends Request implements ServerRequestInterface
      */
     public function withUploadedFiles(array $uploadedFiles): ServerRequestInterface
     {
+        // @todo if values are the same, do not clone
+
         $that = clone $this;
 
         $that->uploadedFiles = $uploadedFiles;
@@ -100,6 +115,8 @@ class ServerRequest extends Request implements ServerRequestInterface
      */
     public function withParsedBody($data): ServerRequestInterface
     {
+        // @todo if values are the same, do not clone
+
         $that = clone $this;
         $that->data = $data;
 
@@ -131,6 +148,8 @@ class ServerRequest extends Request implements ServerRequestInterface
      */
     public function withAttribute(string $name, $value): ServerRequestInterface
     {
+        // @todo if values are the same, do not clone
+
         $that = clone $this;
 
         $that->attributes[strtolower($name)] = $value;
@@ -143,6 +162,8 @@ class ServerRequest extends Request implements ServerRequestInterface
      */
     public function withoutAttribute(string $name): ServerRequestInterface
     {
+        // @todo if values are the same, do not clone
+
         $that = clone $this;
 
         if (array_key_exists(strtolower($name), $this->attributes)) {

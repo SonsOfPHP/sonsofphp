@@ -17,20 +17,11 @@ use SonsOfPHP\Component\HttpMessage\ServerRequest;
  */
 class ServerRequestFactory implements ServerRequestFactoryInterface
 {
-    public function __construct(
-        private UriFactoryInterface $uriFactory = new UriFactory(),
-    ) {}
-
     /**
      * {@inheritdoc}
      */
-    public function createServerRequest(string $method, UriInterface|string $uri, array $serverParams = []): ServerRequestInterface
+    public function createServerRequest(string $method, $uri, array $serverParams = []): ServerRequestInterface
     {
-        if (is_string($uri)) {
-            $uri = $uriFactory->createUri($uri);
-        }
-
-        // Note to future self: There is no method "withServerParams"
-        return (new ServerRequest())->withMethod($method)->withUri($uri)->withServerParams($serverParams);
+        return new ServerRequest($method, $uri, $serverParams);
     }
 }

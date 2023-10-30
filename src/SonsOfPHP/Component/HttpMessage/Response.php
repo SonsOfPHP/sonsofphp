@@ -99,6 +99,9 @@ class Response extends Message implements ResponseInterface
      */
     public function withStatus(int $code, string $reasonPhrase = ''): ResponseInterface
     {
+        // @todo if code and pharse are same, do not clone
+        // @todo throw exception if code is invalid
+
         $that = clone $this;
 
         $that->statusCode   = $code;
