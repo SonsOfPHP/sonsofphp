@@ -58,10 +58,6 @@
             "repository": "git@github.com:SonsOfPHP/http-factory.git"
         },
         {
-            "path": "src/SonsOfPHP/Component/HttpHandler",
-            "repository": "git@github.com:SonsOfPHP/http-handler.git"
-        },
-        {
             "path": "src/SonsOfPHP/Component/HttpMessage",
             "repository": "git@github.com:SonsOfPHP/http-message.git"
         },
