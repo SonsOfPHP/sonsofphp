@@ -99,3 +99,4 @@ nav:
         - Version: components/version/index.md
     - Contracts:
         - contracts/index.md
+        - Core: contracts/core/index.md
