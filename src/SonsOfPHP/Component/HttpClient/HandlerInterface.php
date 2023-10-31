@@ -8,8 +8,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Used to manage middlewares
- *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 interface HandlerInterface
