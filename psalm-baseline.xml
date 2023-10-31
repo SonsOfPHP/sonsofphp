@@ -592,6 +592,149 @@
       <code>method</code>
     </UndefinedInterfaceMethod>
   </file>
+  <file src="src/SonsOfPHP/Component/HttpClient/Client.php">
+    <TooFewArguments>
+      <code>handle</code>
+      <code>handle</code>
+    </TooFewArguments>
+  </file>
+  <file src="src/SonsOfPHP/Component/HttpClient/Exception/NetworkException.php">
+    <UndefinedThisPropertyFetch>
+      <code><![CDATA[$this->request]]></code>
+    </UndefinedThisPropertyFetch>
+    <UnusedClass>
+      <code>NetworkException</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/HttpClient/Exception/RequestException.php">
+    <UnusedClass>
+      <code>RequestException</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/HttpClient/Handler/CurlHandler.php">
+    <InvalidNullableReturnType>
+      <code>ResponseInterface</code>
+    </InvalidNullableReturnType>
+    <NullableReturnStatement>
+      <code>$response</code>
+    </NullableReturnStatement>
+  </file>
+  <file src="src/SonsOfPHP/Component/HttpClient/HandlerStack.php">
+    <NullableReturnStatement>
+      <code>$response</code>
+    </NullableReturnStatement>
+  </file>
+  <file src="src/SonsOfPHP/Component/HttpClient/Middleware/ContentLengthMiddleware.php">
+    <InvalidArgument>
+      <code><![CDATA[$request->getBody()->getSize()]]></code>
+    </InvalidArgument>
+  </file>
+  <file src="src/SonsOfPHP/Component/HttpClient/Middleware/HttpErrorMiddleware.php">
+    <NullArgument>
+      <code>$response</code>
+    </NullArgument>
+  </file>
+  <file src="src/SonsOfPHP/Component/HttpClient/MiddlewareInterface.php">
+    <PossiblyUnusedMethod>
+      <code>process</code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/SonsOfPHP/Component/HttpClient/RequestMiddlewareInterface.php">
+    <UnusedClass>
+      <code>RequestMiddlewareInterface</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/HttpClient/ResponseMiddlewareInterface.php">
+    <UnusedClass>
+      <code>ResponseMiddlewareInterface</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/HttpClient/Tests/HandlerStackTest.php">
+    <InvalidArgument>
+      <code><![CDATA[(new Request())->withBody(new Stream())]]></code>
+    </InvalidArgument>
+    <UnusedProperty>
+      <code>$req</code>
+      <code>$res</code>
+    </UnusedProperty>
+    <UnusedVariable>
+      <code>$response</code>
+    </UnusedVariable>
+  </file>
+  <file src="src/SonsOfPHP/Component/HttpFactory/Tests/StreamFactoryTest.php">
+    <InvalidArgument>
+      <code><![CDATA['testing']]></code>
+    </InvalidArgument>
+  </file>
+  <file src="src/SonsOfPHP/Component/HttpMessage/Exception/HttpMessageException.php">
+    <UnusedClass>
+      <code>HttpMessageException</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/HttpMessage/Message.php">
+    <UnusedClosureParam>
+      <code>$key</code>
+      <code>$key</code>
+    </UnusedClosureParam>
+    <UnusedForeachValue>
+      <code>$values</code>
+    </UnusedForeachValue>
+  </file>
+  <file src="src/SonsOfPHP/Component/HttpMessage/MessageHeader.php">
+    <UnusedClass>
+      <code>MessageHeader</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/HttpMessage/Request.php">
+    <InvalidNullableReturnType>
+      <code>string</code>
+    </InvalidNullableReturnType>
+    <NullableReturnStatement>
+      <code><![CDATA[$this->method]]></code>
+    </NullableReturnStatement>
+  </file>
+  <file src="src/SonsOfPHP/Component/HttpMessage/Stream.php">
+    <InvalidPropertyAssignmentValue>
+      <code><![CDATA[$this->stream]]></code>
+    </InvalidPropertyAssignmentValue>
+    <InvalidReturnStatement>
+      <code>$seekable</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="src/SonsOfPHP/Component/HttpMessage/Tests/RequestTest.php">
+    <InvalidArgument>
+      <code>$request</code>
+    </InvalidArgument>
+    <UnusedVariable>
+      <code>$request</code>
+    </UnusedVariable>
+  </file>
+  <file src="src/SonsOfPHP/Component/HttpMessage/Tests/StreamTest.php">
+    <InvalidArgument>
+      <code>new \stdClass()</code>
+    </InvalidArgument>
+    <UnusedVariable>
+      <code>$contents</code>
+      <code>$stream</code>
+    </UnusedVariable>
+  </file>
+  <file src="src/SonsOfPHP/Component/HttpMessage/UploadedFileError.php">
+    <InvalidEnumCaseValue>
+      <code>case CANT_WRITE    = \UPLOAD_ERR_CANT_WRITE;</code>
+      <code>case ERR_EXTENSION = \UPLOAD_ERR_EXTENSION;</code>
+      <code>case FORM_SIZE     = \UPLOAD_ERR_FORM_SIZE;</code>
+      <code>case INI_SIZE      = \UPLOAD_ERR_INI_SIZE;</code>
+      <code>case NO_FILE       = \UPLOAD_ERR_NO_FILE;</code>
+      <code>case NO_TMP_DIR    = \UPLOAD_ERR_NO_TMP_DIR;</code>
+      <code>case OK            = \UPLOAD_ERR_OK;</code>
+      <code>case PARTIAL       = \UPLOAD_ERR_PARTIAL;</code>
+    </InvalidEnumCaseValue>
+  </file>
+  <file src="src/SonsOfPHP/Component/HttpMessage/Uri.php">
+    <UnusedProperty>
+      <code>$uri</code>
+    </UnusedProperty>
+  </file>
   <file src="src/SonsOfPHP/Component/Json/AbstractEncoderDecoder.php">
     <PossiblyUnusedMethod>
       <code>invalidUtf8Ignore</code>
