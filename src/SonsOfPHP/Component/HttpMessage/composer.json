@@ -1,0 +1,61 @@
+{
+    "name": "sonsofphp/http-message",
+    "type": "library",
+    "description": "Simple, lightweight Http Message implementation",
+    "keywords": [
+        "psr",
+        "psr-7",
+        "http-message"
+    ],
+    "homepage": "https://github.com/SonsOfPHP/http-message",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joshua Estes",
+            "email": "joshua@sonsofphp.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/SonsOfPHP/sonsofphp/issues",
+        "forum": "https://github.com/orgs/SonsOfPHP/discussions",
+        "docs": "https://docs.sonsofphp.com",
+        "chat": "https://discord.gg/sdVxNhFqND"
+    },
+    "autoload": {
+        "psr-4": {
+            "SonsOfPHP\\Component\\HttpMessage\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.1",
+        "psr/http-message": "^2.0"
+    },
+    "suggest": {
+        "sonsofphp/filesystem": "Managing Uploaded files",
+        "sonsofphp/http-factory": "Create various HTTP Messages using factories (PSR-17)"
+    },
+    "provide": {
+        "psr/http-message-implementation": "^1.0"
+    },
+    "extra": {
+        "sort-packages": true,
+        "branch-alias": {
+            "dev-main": "0.3.x-dev"
+        }
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/JoshuaEstes"
+        },
+        {
+            "type": "tidelift",
+            "url": "https://tidelift.com/subscription/pkg/packagist-sonsofphp-sonsofphp"
+        }
+    ]
+}

@@ -26,6 +26,10 @@ Filesystem:
   - docs/components/filesystem/*
   - src/SonsOfPHP/**/Filesystem/*
 
+HttpMessage:
+  - docs/components/http-message/*
+  - src/SonsOfPHP/**/HttpMessage/*
+
 JSON:
   - docs/components/json/*
   - src/SonsOfPHP/**/Json/*
