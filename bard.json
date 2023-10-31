@@ -46,6 +46,11 @@
             "repository": "git@github.com:SonsOfPHP/filesystem.git"
         },
         {
+            "path": "src/SonsOfPHP/Component/HttpFactory",
+            "repository": "git@github.com:SonsOfPHP/http-factory.git"
+        },
+        {
+
             "path": "src/SonsOfPHP/Component/HttpMessage",
             "repository": "git@github.com:SonsOfPHP/http-message.git"
         },

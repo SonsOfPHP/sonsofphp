@@ -25,6 +25,7 @@ Examples:
 
 * [PR #51](https://github.com/SonsOfPHP/sonsofphp/pull/51) Added new Filesystem component
 * [PR #59](https://github.com/SonsOfPHP/sonsofphp/pull/59) Added new HttpMessage component
+* [PR #59](https://github.com/SonsOfPHP/sonsofphp/pull/59) Added new HttpFactory component
 
 ## [0.3.8]
 

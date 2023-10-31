@@ -26,6 +26,10 @@ Filesystem:
   - docs/components/filesystem/*
   - src/SonsOfPHP/**/Filesystem/*
 
+HttpFactory:
+  - docs/components/http-factory/*
+  - src/SonsOfPHP/**/HttpFactory/*
+
 HttpMessage:
   - docs/components/http-message/*
   - src/SonsOfPHP/**/HttpMessage/*
