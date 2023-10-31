@@ -50,6 +50,7 @@
             "repository": "git@github.com:SonsOfPHP/http-factory.git"
         },
         {
+
             "path": "src/SonsOfPHP/Component/HttpMessage",
             "repository": "git@github.com:SonsOfPHP/http-message.git"
         },
