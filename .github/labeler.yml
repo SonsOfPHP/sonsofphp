@@ -50,5 +50,9 @@ Version:
   - docs/components/version/*
   - src/SonsOfPHP/**/Version/*
 
+Contracts:
+  - docs/contracts/**
+  - src/SonsOfPHP/Contract/**
+
 documentation:
   - docs/**
