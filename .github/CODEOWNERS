@@ -1,4 +1,6 @@
-# Packages
+/.github @JoshuaEstes
+/tools @JoshuaEstes
+/docs @JoshuaEstes
 /src/SonsOfPHP/Bard @JoshuaEstes
 /src/SonsOfPHP/Bridge/Doctrine/EventSourcing @JoshuaEstes
 /src/SonsOfPHP/Bridge/Doctrine/FeatureToggle @JoshuaEstes
@@ -30,3 +32,4 @@
 /src/SonsOfPHP/Component/PhoneNumber @JoshuaEstes
 /src/SonsOfPHP/Component/Queue @JoshuaEstes
 /src/SonsOfPHP/Component/Version @JoshuaEstes
+/src/SonsOfPHP/Contract/Core @JoshuaEstes
