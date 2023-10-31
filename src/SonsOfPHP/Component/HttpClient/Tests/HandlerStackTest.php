@@ -50,7 +50,7 @@ final class HandlerStackTest extends TestCase
         $handler = new HandlerStack(new NullHandler());
         $handler->push(new HttpErrorMiddleware());
         $handler->push(new ContentLengthMiddleware());
-        $handler->push(new CallbackMiddleware(function ($handler, $req, $res) { return $handler->handle($req, $res); }));
+        $handler->push(new CallbackMiddleware(fn ($handler, $req, $res) => $handler->handle($req, $res)));
         $handler->push(new NullMiddleware());
         $response = $handler->handle((new Request())->withBody(new Stream()));
 
