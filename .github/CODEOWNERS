@@ -1,4 +1,6 @@
-# Packages
+/.github @JoshuaEstes
+/tools @JoshuaEstes
+/docs @JoshuaEstes
 /src/SonsOfPHP/Bard @JoshuaEstes
 /src/SonsOfPHP/Bridge/Doctrine/EventSourcing @JoshuaEstes
 /src/SonsOfPHP/Bridge/Doctrine/FeatureToggle @JoshuaEstes

@@ -55,6 +55,8 @@ nav:
         - Getting Help: getting-help.md
         - Code of Conduct: code-of-conduct.md
         - Security Policy: security.md
+    - Bard:
+        - bard/index.md
     - Components:
         - components/index.md
         - Clock: components/clock/index.md
@@ -95,5 +97,5 @@ nav:
             - Operators: components/money/operators.md
             - Queries: components/money/queries.md
         - Version: components/version/index.md
-    - Bard:
-        - bard/index.md
+    - Contracts:
+        - contracts/index.md
