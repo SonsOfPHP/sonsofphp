@@ -14,6 +14,14 @@ use Psr\Http\Message\RequestInterface;
  */
 class NetworkException extends ClientException implements NetworkExceptionInterface
 {
+    public function __construct(
+        string $message,
+        private RequestInterface $request,
+        \Throwable $previous = null,
+    ) {
+        parent::__construct($message, 0, $previous);
+    }
+
     /**
      * {@inheritdoc}
      */

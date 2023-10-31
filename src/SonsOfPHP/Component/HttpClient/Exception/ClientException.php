@@ -11,4 +11,6 @@ use Psr\Http\Client\ClientExceptionInterface;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class ClientException extends \Exception implements ClientExceptionInterface {}
+class ClientException extends \Exception implements ClientExceptionInterface
+{
+}

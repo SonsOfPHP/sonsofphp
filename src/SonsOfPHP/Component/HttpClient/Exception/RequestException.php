@@ -16,11 +16,12 @@ use Psr\Http\Message\ResponseInterface;
 class RequestException extends ClientException implements RequestExceptionInterface
 {
     public function __construct(
+        string $message,
         private RequestInterface $request,
-        string $message = 'Request Exception',
-        ?int $code = 0,
+        private ?ResponseInterface $response = null,
         \Throwable $previous = null,
     ) {
+        $code = $response ? $response->getStatusCode() : 0;
         parent::__construct($message, $code, $previous);
     }
 
