@@ -18,10 +18,13 @@ use SonsOfPHP\Component\HttpFactory\ResponseFactory;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class Client implements ClientInterface
+final class Client implements ClientInterface
 {
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(
-        private HandlerInterface $handler = new StackHandler(),
+        private HandlerInterface $handler = new HandlerStack(),
         private RequestFactoryInterface $requestFactory = new RequestFactory(),
     ) {}
 

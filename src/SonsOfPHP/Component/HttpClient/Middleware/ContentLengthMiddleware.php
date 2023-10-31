@@ -13,18 +13,10 @@ use SonsOfPHP\Component\HttpClient\HandlerInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class HttpErrorMiddleware implements MiddlewareInterface
+final class ContentLengthMiddleware implements MiddlewareInterface
 {
     public function process(HandlerInterface $handler, RequestInterface $request, ?ResponseInterface $response = null): ResponseInterface
     {
-        if (null === $response) {
-            return $handler->handle($request, $response);
-        }
-
-        if (400 <= $response->getStatusCode()) {
-            throw new ClientException('Error with Request', $response->getStatusCode());
-        }
-
-        return $handler->handle($request, $response);
+        return $handler->handle($request->withHeader('Content-Length', $request->getBody()->getSize()), $response);
     }
 }

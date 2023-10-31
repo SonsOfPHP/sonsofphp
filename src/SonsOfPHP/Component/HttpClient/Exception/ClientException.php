@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\HttpClient;
+namespace SonsOfPHP\Component\HttpClient\Exception;
 
 use Psr\Http\Client\ClientExceptionInterface;
 
@@ -11,4 +11,4 @@ use Psr\Http\Client\ClientExceptionInterface;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class ClientException implements ClientExceptionInterface {}
+class ClientException extends \Exception implements ClientExceptionInterface {}

@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use SonsOfPHP\Component\HttpClient\HandlerInterface;
 use SonsOfPHP\Component\HttpClient\MiddlewareInterface;
-use SonsOfPHP\Component\HttpMessage\Request;
+use SonsOfPHP\Component\HttpMessage\Response;
 
 /**
  * The NullHandler will just pass-thru the response. If there is no
@@ -25,7 +25,7 @@ final class NullHandler implements HandlerInterface
     public function handle(RequestInterface $request, ?ResponseInterface $response = null): ResponseInterface
     {
         if (null === $response) {
-            $response = new Response();
+            $response = (new Response())->withStatus(200);
         }
 
         return $response;

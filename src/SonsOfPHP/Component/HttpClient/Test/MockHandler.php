@@ -13,8 +13,11 @@ use SonsOfPHP\Component\HttpClient\MiddlewareInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class MockHandler implements HandlerInterface
+final class MockHandler implements HandlerInterface
 {
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(
         private array $responses = [],
     ) {}
@@ -28,6 +31,6 @@ class MockHandler implements HandlerInterface
             throw new \RuntimeException('No Responses have been set');
         }
 
-        return array_shift($this->response);
+        return array_shift($this->responses);
     }
 }

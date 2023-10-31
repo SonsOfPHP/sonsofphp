@@ -13,7 +13,7 @@ use SonsOfPHP\Component\HttpClient\MiddlewareInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class CurlHandler implements HandlerInterface
+final class CurlHandler implements HandlerInterface
 {
     /**
      * {@inheritdoc}

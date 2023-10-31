@@ -92,14 +92,15 @@ class Message implements MessageInterface
 
         $that = clone $this;
 
-        if (is_string($value)) {
+        if (!is_array($value)) {
             $value = [$value];
         }
         $that->normalizedHeaders[$name] = $value;
 
-        $values = $value;
-        array_walk($values, function (&$val, $key): void {
-            $val = strtolower($val);
+        array_walk($value, function (&$val, $key): void {
+            if (is_string($val)) {
+                $val = strtolower($val);
+            }
         });
         $that->headers[strtolower($name)] = $value;
 

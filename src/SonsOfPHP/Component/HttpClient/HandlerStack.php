@@ -10,14 +10,21 @@ use Psr\Http\Message\ResponseFactoryInterface;
 use SonsOfPHP\Component\HttpClient\HandlerInterface;
 use SonsOfPHP\Component\HttpClient\MiddlewareInterface;
 use SonsOfPHP\Component\HttpClient\Handler\CurlHandler;
+use SonsOfPHP\Component\HttpClient\ResponseMiddlewareInterface;
+use SonsOfPHP\Component\HttpClient\RequestMiddlewareInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class HandlerStack implements HandlerInterface
+final class HandlerStack implements HandlerInterface
 {
-    private array $stack = [];
+    private array $requestStack  = [];
+    private array $responseStack = [];
+    private bool $isHandled = false;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(
         private HandlerInterface $handler = new CurlHandler(),
     ) {}
@@ -27,15 +34,29 @@ class HandlerStack implements HandlerInterface
      */
     public function handle(RequestInterface $request, ?ResponseInterface $response = null): ResponseInterface
     {
-        if (0 === $this->count()) {
-            if (null !== $response) {
-                return $response;
-            }
+        // 1) Process all request middleware (OAuth, etc)
+        // 2) handle request, return result
+        // 3) process all response middleware (Handle Errors, attach metadata)
+        // 4) return response
 
-            throw new \RuntimeException('The request was not handled.');
+        if (0 === count($this->requestStack) && false === $this->isHandled) {
+            $this->isHandled = true;
+            $response = $this->handler->handle($request, $response);
         }
 
-        return $this->shift()->process($this->handler, $request, $response);
+        if (0 !== count($this->requestStack)) {
+            $middleware = array_shift($this->requestStack);
+
+            $response = $middleware->process($this, $request, $response);
+        }
+
+        if (0 !== count($this->responseStack)) {
+            $middleware = array_shift($this->responseStack);
+
+            $response = $middleware->process($this, $request, $response);
+        }
+
+        return $response;
     }
 
     public function push(MiddlewareInterface $middleware, ?string $name = null): void
@@ -49,16 +70,8 @@ class HandlerStack implements HandlerInterface
 
     private function add(string $idx, MiddlewareInterface $middleware): void
     {
-        $this->stack[$idx] = $middleware;
-    }
+        $this->requestStack[$idx]  = $middleware;
 
-    private function shift(): MiddlewareInterface
-    {
-        return array_shift($this->stack);
-    }
-
-    private function count(): int
-    {
-        return count($this->stack);
+        $this->responseStack = array_reverse($this->requestStack, true);
     }
 }

@@ -15,7 +15,7 @@ use SonsOfPHP\Component\HttpFactory\ResponseFactory;
  */
 interface MiddlewareInterface
 {
-    /**
-     */
     public function process(HandlerInterface $handler, RequestInterface $request, ?ResponseInterface $response = null): ResponseInterface;
+
+    //public function __invoke($request, $response, $handler): ResponseInterface;
 }
