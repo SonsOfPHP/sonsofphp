@@ -65,6 +65,10 @@
         {
             "path": "src/SonsOfPHP/Component/Version",
             "repository": "git@github.com:SonsOfPHP/version.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Contract/Core",
+            "repository": "git@github.com:SonsOfPHP/core-contract.git"
         }
     ]
 }
