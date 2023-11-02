@@ -11,3 +11,5 @@ Simple PSR-17 Http Factory Component
 ```shell
 composer require sonsofphp/http-factory
 ```
+
+## Usage

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpMessage;
 
 use Psr\Http\Message\ResponseInterface;
-use SonsOfPHP\Component\HttpMessage\HttpMessageException;
 
 /**
  * {@inheritdoc}

@@ -7,11 +7,14 @@ $finder = PhpCsFixer\Finder::create()
     ->exclude('vendor')
 ;
 
-$config = new PhpCsFixer\Config();
-return $config->setRules([
+return (new PhpCsFixer\Config())->setRules([
     // Rule sets
     '@PER-CS' => true,
     '@PHP80Migration:risky' => true,
     '@PHP81Migration' => true,
     '@PHPUnit100Migration:risky' => true,
+
+    // Rules
+    'no_unused_imports' => true,
+    'php_unit_test_class_requires_covers' => true,
 ])->setFinder($finder);

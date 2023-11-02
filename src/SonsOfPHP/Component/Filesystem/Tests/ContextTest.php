@@ -6,7 +6,6 @@ namespace SonsOfPHP\Component\Filesystem\Tests;
 
 use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\MockObject;
 use SonsOfPHP\Component\Filesystem\ContextInterface;
 use SonsOfPHP\Component\Filesystem\Context;
 
