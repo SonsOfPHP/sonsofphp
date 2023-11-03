@@ -17,6 +17,10 @@
       <directory>src/SonsOfPHP/Bundle/*/Tests</directory>
       <directory>src/SonsOfPHP/Component/*/Tests</directory>
     </testsuite>
+
+    <testsuite name="http-factory">
+      <directory>src/SonsOfPHP/Component/HttpFactory/Tests</directory>
+    </testsuite>
   </testsuites>
 
   <coverage/>

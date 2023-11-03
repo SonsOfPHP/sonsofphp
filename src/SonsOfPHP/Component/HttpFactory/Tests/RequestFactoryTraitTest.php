@@ -5,31 +5,23 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpFactory\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\HttpFactory\RequestFactory;
+use SonsOfPHP\Component\HttpFactory\RequestFactoryTrait;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\HttpFactory\RequestFactory
- *
- * @internal
+ * @coversDefaultClass \SonsOfPHP\Component\HttpFactory\RequestFactoryTrait
  */
-final class RequestFactoryTest extends TestCase
+final class RequestFactoryTraitTest extends TestCase
 {
     /**
-     * @coversNothing
-     */
-    public function testItImplementsCorrectInterface(): void
-    {
-        $this->assertInstanceOf(RequestFactoryInterface::class, new RequestFactory());
-    }
-
-    /**
      * @covers ::createRequest
+     * @uses SonsOfPHP\Component\HttpMessage\Request
+     * @uses SonsOfPHP\Component\HttpMessage\Uri
      */
     public function testCreateRequestWorksAsExpected(): void
     {
-        $factory = new RequestFactory();
+        $factory = $this->getMockForTrait(RequestFactoryTrait::class);
 
         $this->assertInstanceOf(RequestInterface::class, $factory->createRequest('GET', 'https://docs.sonsofphp.com'));
     }

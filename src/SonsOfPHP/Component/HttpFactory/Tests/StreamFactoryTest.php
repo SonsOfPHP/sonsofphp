@@ -26,6 +26,7 @@ final class StreamFactoryTest extends TestCase
 
     /**
      * @covers ::createStream
+     * @uses \SonsOfPHP\Component\HttpMessage\Stream
      */
     public function testCreateStreamWorksAsExpected(): void
     {
@@ -36,6 +37,7 @@ final class StreamFactoryTest extends TestCase
 
     /**
      * @covers ::createStreamFromResource
+     * @uses \SonsOfPHP\Component\HttpMessage\Stream
      */
     public function testCreateStreamFromResourceWorksAsExpected(): void
     {
@@ -46,6 +48,7 @@ final class StreamFactoryTest extends TestCase
 
     /**
      * @covers ::createStreamFromResource
+     * @uses \SonsOfPHP\Component\HttpMessage\Stream
      */
     public function testCreateStreamFromResourceWillThrowExceptionWhenNotResource(): void
     {

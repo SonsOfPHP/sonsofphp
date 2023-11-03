@@ -11,8 +11,6 @@ use Psr\Http\Message\ResponseFactoryInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\HttpFactory\ResponseFactory
- *
- * @internal
  */
 final class ResponseFactoryTest extends TestCase
 {
@@ -26,6 +24,7 @@ final class ResponseFactoryTest extends TestCase
 
     /**
      * @covers ::createResponse
+     * @uses \SonsOfPHP\Component\HttpMessage\Response
      */
     public function testCreateResponseWorksAsExpected(): void
     {

@@ -26,6 +26,9 @@ final class ServerRequestFactoryTest extends TestCase
 
     /**
      * @covers ::createServerRequest
+     * @uses \SonsOfPHP\Component\HttpMessage\Request
+     * @uses \SonsOfPHP\Component\HttpMessage\ServerRequest
+     * @uses \SonsOfPHP\Component\HttpMessage\Uri
      */
     public function testCreateServerRequestWorksAsExpected(): void
     {
