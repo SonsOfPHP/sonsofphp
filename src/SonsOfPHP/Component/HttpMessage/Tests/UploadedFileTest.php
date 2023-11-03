@@ -13,7 +13,7 @@ use Psr\Http\Message\StreamInterface;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\HttpMessage\UploadedFile
  *
- * @internal
+ * @uses \SonsOfPHP\Component\HttpMessage\UploadedFile
  */
 final class UploadedFileTest extends TestCase
 {

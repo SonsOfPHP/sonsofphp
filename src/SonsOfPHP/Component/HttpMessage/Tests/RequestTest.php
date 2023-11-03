@@ -13,7 +13,8 @@ use Psr\Http\Message\UriInterface;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\HttpMessage\Request
  *
- * @internal
+ * @uses \SonsOfPHP\Component\HttpMessage\Request
+ * @uses \SonsOfPHP\Component\HttpMessage\Uri
  */
 final class RequestTest extends TestCase
 {

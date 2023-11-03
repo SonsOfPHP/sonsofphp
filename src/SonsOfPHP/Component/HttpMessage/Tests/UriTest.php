@@ -11,7 +11,7 @@ use Psr\Http\Message\UriInterface;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\HttpMessage\Uri
  *
- * @internal
+ * @uses \SonsOfPHP\Component\HttpMessage\Uri
  */
 final class UriTest extends TestCase
 {
