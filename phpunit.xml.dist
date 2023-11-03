@@ -22,6 +22,10 @@
       <directory>src/SonsOfPHP/Component/Clock/Tests</directory>
     </testsuite>
 
+    <testsuite name="event-dispatcher">
+      <directory>src/SonsOfPHP/Component/EventDispatcher/Tests</directory>
+    </testsuite>
+
     <testsuite name="http-factory">
       <directory>src/SonsOfPHP/Component/HttpFactory/Tests</directory>
     </testsuite>
