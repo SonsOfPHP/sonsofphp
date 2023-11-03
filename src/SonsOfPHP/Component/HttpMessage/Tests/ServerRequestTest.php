@@ -11,7 +11,8 @@ use Psr\Http\Message\ServerRequestInterface;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\HttpMessage\ServerRequest
  *
- * @internal
+ * @uses \SonsOfPHP\Component\HttpMessage\Request
+ * @uses \SonsOfPHP\Component\HttpMessage\ServerRequest
  */
 final class ServerRequestTest extends TestCase
 {

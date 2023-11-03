@@ -12,7 +12,7 @@ use Psr\Http\Message\StreamInterface;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\HttpMessage\Message
  *
- * @internal
+ * @uses \SonsOfPHP\Component\HttpMessage\Message
  */
 final class MessageTest extends TestCase
 {

@@ -75,6 +75,9 @@ coverage-filesystem:
 coverage-http-factory:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite http-factory --coverage-html $(COVERAGE_DIR)
 
+coverage-http-message:
+	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite http-message --coverage-html $(COVERAGE_DIR)
+
 psalm: ## Run psalm
 	XDEBUG_MODE=off $(PHP) $(PSALM)
 

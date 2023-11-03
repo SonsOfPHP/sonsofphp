@@ -41,9 +41,14 @@
     <testsuite name="http-factory">
       <directory>src/SonsOfPHP/Component/HttpFactory/Tests</directory>
     </testsuite>
+
+    <testsuite name="http-message">
+      <directory>src/SonsOfPHP/Component/HttpMessage/Tests</directory>
+    </testsuite>
   </testsuites>
 
-  <coverage/>
+  <coverage includeUncoveredFiles="true" pathCoverage="true" ignoreDeprecatedCodeUnits="true" disableCodeCoverageIgnore="true">
+  </coverage>
 
   <source>
     <include>

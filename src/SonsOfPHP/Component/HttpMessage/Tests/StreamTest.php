@@ -11,7 +11,7 @@ use Psr\Http\Message\StreamInterface;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\HttpMessage\Stream
  *
- * @internal
+ * @uses \SonsOfPHP\Component\HttpMessage\Stream
  */
 final class StreamTest extends TestCase
 {
