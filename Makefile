@@ -81,6 +81,9 @@ coverage-http-message:
 coverage-json:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite json --coverage-html $(COVERAGE_DIR)
 
+coverage-money:
+	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite money --coverage-html $(COVERAGE_DIR)
+
 psalm: ## Run psalm
 	XDEBUG_MODE=off $(PHP) $(PSALM)
 

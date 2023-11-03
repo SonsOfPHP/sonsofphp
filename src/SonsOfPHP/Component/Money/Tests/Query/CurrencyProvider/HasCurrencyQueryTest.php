@@ -16,8 +16,8 @@ use SonsOfPHP\Component\Money\Query\CurrencyProvider\HasCurrencyQuery;
  *
  * @uses \SonsOfPHP\Component\Money\Currency
  * @uses \SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider
- *
- * @internal
+ * @uses \SonsOfPHP\Component\Money\Query\CurrencyProvider\HasCurrencyQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery
  */
 final class HasCurrencyQueryTest extends TestCase
 {

@@ -16,8 +16,7 @@ use SonsOfPHP\Component\Money\Operator\Money\MoneyOperatorInterface;
  * @uses \SonsOfPHP\Component\Money\Amount
  * @uses \SonsOfPHP\Component\Money\Currency
  * @uses \SonsOfPHP\Component\Money\Money
- *
- * @internal
+ * @uses \SonsOfPHP\Component\Money\Operator\Amount\DivideAmountOperator
  */
 final class DivideMoneyOperatorTest extends TestCase
 {

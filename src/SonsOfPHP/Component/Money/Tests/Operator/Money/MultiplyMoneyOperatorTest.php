@@ -16,8 +16,7 @@ use SonsOfPHP\Component\Money\Operator\Money\MultiplyMoneyOperator;
  * @uses \SonsOfPHP\Component\Money\Amount
  * @uses \SonsOfPHP\Component\Money\Currency
  * @uses \SonsOfPHP\Component\Money\Money
- *
- * @internal
+ * @uses \SonsOfPHP\Component\Money\Operator\Amount\MultiplyAmountOperator
  */
 final class MultiplyMoneyOperatorTest extends TestCase
 {

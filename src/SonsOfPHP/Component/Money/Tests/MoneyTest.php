@@ -15,8 +15,32 @@ use SonsOfPHP\Component\Money\MoneyInterface;
  *
  * @uses \SonsOfPHP\Component\Money\Amount
  * @uses \SonsOfPHP\Component\Money\Currency
- *
- * @internal
+ * @uses \SonsOfPHP\Component\Money\Money
+ * @uses \SonsOfPHP\Component\Money\Operator\Amount\DivideAmountOperator
+ * @uses \SonsOfPHP\Component\Money\Operator\Money\DivideMoneyOperator
+ * @uses \SonsOfPHP\Component\Money\Operator\Amount\MultiplyAmountOperator
+ * @uses \SonsOfPHP\Component\Money\Operator\Money\MultiplyMoneyOperator
+ * @uses \SonsOfPHP\Component\Money\Operator\Money\SubtractMoneyOperator
+ * @uses \SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery
+ * @uses \SonsOfPHP\Component\Money\Operator\Money\AddMoneyOperator
+ * @uses \SonsOfPHP\Component\Money\Operator\Amount\SubtractAmountOperator
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsZeroAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Money\IsZeroMoneyQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsNegativeAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Money\IsNegativeMoneyQuery
+ * @uses \SonsOfPHP\Component\Money\Operator\Amount\AddAmountOperator
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsPositiveAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Money\IsPositiveMoneyQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsLessThanOrEqualToAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Money\IsLessThanOrEqualToMoneyQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsLessThanAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Money\IsLessThanMoneyQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsGreaterThanOrEqualToAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Money\IsGreaterThanOrEqualToMoneyQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsGreaterThanAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Money\IsGreaterThanMoneyQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsEqualToAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Money\IsEqualToMoneyQuery
  */
 final class MoneyTest extends TestCase
 {

@@ -14,7 +14,12 @@ use SonsOfPHP\Component\Money\Exception\MoneyException;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProvider
  *
- * @internal
+ * @uses \SonsOfPHP\Component\Money\Query\CurrencyProvider\GetCurrencyQuery
+ * @uses \SonsOfPHP\Component\Money\Currency
+ * @uses \SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProvider
+ * @uses \SonsOfPHP\Component\Money\Query\CurrencyProvider\GetCurrencyQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery
+ * @uses \SonsOfPHP\Component\Money\Query\CurrencyProvider\HasCurrencyQuery
  */
 final class CurrencyProviderTest extends TestCase
 {

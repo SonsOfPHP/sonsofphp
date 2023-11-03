@@ -11,7 +11,19 @@ use SonsOfPHP\Component\Money\AmountInterface;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Amount
  *
- * @internal
+ * @uses \SonsOfPHP\Component\Money\Amount
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsZeroAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsPositiveAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsNegativeAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsLessThanOrEqualToAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsLessThanAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsGreaterThanOrEqualToAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsGreaterThanAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsEqualToAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Operator\Amount\MultiplyAmountOperator
+ * @uses \SonsOfPHP\Component\Money\Operator\Amount\AddAmountOperator
+ * @uses \SonsOfPHP\Component\Money\Operator\Amount\DivideAmountOperator
+ * @uses \SonsOfPHP\Component\Money\Operator\Amount\SubtractAmountOperator
  */
 final class AmountTest extends TestCase
 {
