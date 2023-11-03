@@ -13,7 +13,8 @@ use SonsOfPHP\Component\EventSourcing\Snapshot\SnapshotInterface;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Snapshot\Snapshot
  *
- * @internal
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
  */
 final class SnapshotTest extends TestCase
 {

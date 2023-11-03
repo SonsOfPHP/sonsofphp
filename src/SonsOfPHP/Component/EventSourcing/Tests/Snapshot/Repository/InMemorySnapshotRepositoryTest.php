@@ -14,7 +14,9 @@ use SonsOfPHP\Component\EventSourcing\Snapshot\Snapshot;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Snapshot\Repository\InMemorySnapshotRepository
  *
- * @internal
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
+ * @uses \SonsOfPHP\Component\EventSourcing\Snapshot\Snapshot
  */
 final class InMemorySnapshotRepositoryTest extends TestCase
 {

@@ -15,7 +15,16 @@ use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\Serializer\MessageSerializer
  *
- * @internal
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\AbstractMessage
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\AbstractSerializableMessage
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\EventTypeMessageEnricherHandler
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricher
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\AllMessageEnricherProvider
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\MessageMetadata
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\MessagePayload
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\Serializer\MessageSerializer
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\Upcaster\MessageUpcaster
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\NullMessageUpcasterProvider
  */
 final class MessageSerializerTest extends TestCase
 {

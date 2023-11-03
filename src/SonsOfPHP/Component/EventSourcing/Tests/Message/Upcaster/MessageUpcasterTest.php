@@ -15,7 +15,10 @@ use SonsOfPHP\Component\EventSourcing\Metadata;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\Upcaster\MessageUpcaster
  *
- * @internal
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\Upcaster\MessageUpcaster
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\NullMessageUpcasterProvider
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\Upcaster\Handler\NullUpcasterHandler
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\EventTypeMessageUpcasterProvider
  */
 final class MessageUpcasterTest extends TestCase
 {
