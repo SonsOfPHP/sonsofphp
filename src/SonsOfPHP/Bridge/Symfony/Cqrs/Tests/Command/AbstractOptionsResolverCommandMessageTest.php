@@ -12,7 +12,7 @@ use SonsOfPHP\Component\Cqrs\Command\CommandMessageInterface;
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\Cqrs\Command\AbstractOptionsResolverCommandMessage
  *
- * @internal
+ * @uses \SonsOfPHP\Bridge\Symfony\Cqrs\Command\AbstractOptionsResolverCommandMessage
  */
 final class AbstractOptionsResolverCommandMessageTest extends TestCase
 {

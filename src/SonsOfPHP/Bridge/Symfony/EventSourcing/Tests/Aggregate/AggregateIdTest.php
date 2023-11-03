@@ -12,7 +12,7 @@ use Symfony\Component\Uid\Uuid;
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Aggregate\AggregateId
  *
- * @internal
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
  */
 final class AggregateIdTest extends TestCase
 {

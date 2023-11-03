@@ -14,7 +14,7 @@ use Symfony\Component\Messenger\MessageBusInterface;
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\EventMessageBus
  *
- * @internal
+ * @uses \SonsOfPHP\Bridge\Symfony\EventSourcing\EventMessageBus
  */
 final class EventMessageBusTest extends TestCase
 {
