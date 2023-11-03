@@ -16,7 +16,8 @@ use SonsOfPHP\Component\Filesystem\Exception\FileNotFoundException;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Filesystem\Adapter\ChainAdapter
  *
- * @internal
+ * @uses \SonsOfPHP\Component\Filesystem\Adapter\ChainAdapter
+ * @uses \SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter
  */
 final class ChainAdapterTest extends TestCase
 {

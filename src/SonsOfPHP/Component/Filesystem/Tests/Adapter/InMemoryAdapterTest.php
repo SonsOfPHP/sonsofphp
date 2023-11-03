@@ -12,7 +12,7 @@ use SonsOfPHP\Component\Filesystem\Exception\UnableToReadFileException;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter
  *
- * @internal
+ * @uses \SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter
  */
 final class InMemoryAdapterTest extends TestCase
 {

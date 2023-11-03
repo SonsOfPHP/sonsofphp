@@ -12,7 +12,8 @@ use SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Filesystem\Filesystem
  *
- * @internal
+ * @uses \SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter
+ * @uses \SonsOfPHP\Component\Filesystem\Filesystem
  */
 final class FilesystemTest extends TestCase
 {

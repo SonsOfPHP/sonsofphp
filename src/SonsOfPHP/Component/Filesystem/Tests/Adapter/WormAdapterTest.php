@@ -16,7 +16,8 @@ use SonsOfPHP\Component\Filesystem\Adapter\WormAdapter;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Filesystem\Adapter\WormAdapter
  *
- * @internal
+ * @uses \SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter
+ * @uses \SonsOfPHP\Component\Filesystem\Adapter\WormAdapter
  */
 final class WormAdapterTest extends TestCase
 {

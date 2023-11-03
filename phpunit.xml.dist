@@ -34,6 +34,10 @@
       <directory>src/SonsOfPHP/Component/FeatureToggle/Tests</directory>
     </testsuite>
 
+    <testsuite name="filesystem">
+      <directory>src/SonsOfPHP/Component/Filesystem/Tests</directory>
+    </testsuite>
+
     <testsuite name="http-factory">
       <directory>src/SonsOfPHP/Component/HttpFactory/Tests</directory>
     </testsuite>
