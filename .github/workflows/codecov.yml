@@ -1,0 +1,23 @@
+name: Codecov
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+permissions:
+    contents: read
+
+jobs:
+    test:
+        name: Codecov
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                php-version: ['8.1', '8.2']
+        steps:
+          - name: Upload coverage reports to Codecov
+            uses: codecov/codecov-action@v3
+            env:
+              CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
