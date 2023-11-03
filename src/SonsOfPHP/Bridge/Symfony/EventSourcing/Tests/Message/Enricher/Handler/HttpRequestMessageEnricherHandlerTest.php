@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\HttpRequestMessageEnricherHandler
  *
- * @internal
+ * @uses \SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\HttpRequestMessageEnricherHandler
  */
 final class HttpRequestMessageEnricherHandlerTest extends TestCase
 {

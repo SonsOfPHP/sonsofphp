@@ -12,14 +12,22 @@
   <testsuites>
     <testsuite name="all">
       <!--<directory>src/SonsOfPHP/Bard/src/Tests</directory>-->
-      <directory>src/SonsOfPHP/Bridge/Doctrine/*/Tests</directory>
-      <directory>src/SonsOfPHP/Bridge/Symfony/*/Tests</directory>
+      <directory>src/SonsOfPHP/Bridge/*/*/Tests</directory>
       <directory>src/SonsOfPHP/Bundle/*/Tests</directory>
       <directory>src/SonsOfPHP/Component/*/Tests</directory>
     </testsuite>
 
+    <testsuite name="bard">
+      <!--<directory>src/SonsOfPHP/Bard/src/Tests</directory>-->
+    </testsuite>
+
     <testsuite name="clock">
       <directory>src/SonsOfPHP/Component/Clock/Tests</directory>
+    </testsuite>
+
+    <testsuite name="cqrs">
+      <directory>src/SonsOfPHP/Bridge/*/Cqrs/Tests</directory>
+      <!--<directory>src/SonsOfPHP/Component/Cqrs/Tests</directory>-->
     </testsuite>
 
     <testsuite name="event-dispatcher">
@@ -27,6 +35,7 @@
     </testsuite>
 
     <testsuite name="event-sourcing">
+      <directory>src/SonsOfPHP/Bridge/*/EventSourcing/Tests</directory>
       <directory>src/SonsOfPHP/Component/EventSourcing/Tests</directory>
     </testsuite>
 

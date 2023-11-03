@@ -60,6 +60,9 @@ coverage: ## Build Code Coverage Report
 coverage-clock:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite clock --coverage-html $(COVERAGE_DIR)
 
+coverage-cqrs:
+	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite cqrs --coverage-html $(COVERAGE_DIR)
+
 coverage-event-dispatcher:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite event-dispatcher --coverage-html $(COVERAGE_DIR)
 
