@@ -11,7 +11,7 @@ use SonsOfPHP\Component\Json\JsonException;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Json\JsonEncoder
  *
- * @internal
+ * @uses \SonsOfPHP\Component\Json\AbstractEncoderDecoder
  */
 final class JsonEncoderTest extends TestCase
 {
