@@ -34,7 +34,7 @@ jobs:
             - run: make install
             - run: php tools/phpunit/vendor/bin/phpunit --coverage-clover coverage.xml
               env:
-                  XDEBUG_MODE=coverage
+                  XDEBUG_MODE: coverage
             - name: Upload coverage reports to Codecov
               uses: codecov/codecov-action@v3
               env:
