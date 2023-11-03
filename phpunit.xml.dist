@@ -53,6 +53,10 @@
     <testsuite name="money">
       <directory>src/SonsOfPHP/Component/Money/Tests</directory>
     </testsuite>
+
+    <testsuite name="version">
+      <directory>src/SonsOfPHP/Component/Version/Tests</directory>
+    </testsuite>
   </testsuites>
 
   <coverage includeUncoveredFiles="true" pathCoverage="true" ignoreDeprecatedCodeUnits="true" disableCodeCoverageIgnore="true">
