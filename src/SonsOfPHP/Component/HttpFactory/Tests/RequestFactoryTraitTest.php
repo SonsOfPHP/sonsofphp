@@ -7,7 +7,6 @@ namespace SonsOfPHP\Component\HttpFactory\Tests;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\HttpFactory\RequestFactoryTrait;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\RequestFactoryInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\HttpFactory\RequestFactoryTrait
