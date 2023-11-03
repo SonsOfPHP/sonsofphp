@@ -1,6 +1,8 @@
 Sons of PHP
 ===========
 
+![Packagist License (custom server)](https://img.shields.io/packagist/l/sonsofphp/sonsofphp)
+![Packagist Version (custom server)](https://img.shields.io/packagist/v/sonsofphp/sonsofphp)
 [![codecov](https://codecov.io/github/SonsOfPHP/sonsofphp/graph/badge.svg?token=VZ2FVOUKUW)](https://codecov.io/github/SonsOfPHP/sonsofphp)
 
 ---
