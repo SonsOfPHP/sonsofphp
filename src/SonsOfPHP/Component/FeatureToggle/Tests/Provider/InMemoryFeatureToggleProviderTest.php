@@ -14,7 +14,7 @@ use PHPUnit\Framework\MockObject;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\FeatureToggle\Provider\InMemoryFeatureToggleProvider
  *
- * @internal
+ * @uses \SonsOfPHP\Component\FeatureToggle\Feature
  */
 final class InMemoryFeatureToggleProviderTest extends TestCase
 {

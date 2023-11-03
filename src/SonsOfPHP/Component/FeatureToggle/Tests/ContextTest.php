@@ -11,7 +11,7 @@ use SonsOfPHP\Component\FeatureToggle\ContextInterface;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\FeatureToggle\Context
  *
- * @internal
+ * @uses \SonsOfPHP\Component\FeatureToggle\Context
  */
 final class ContextTest extends TestCase
 {

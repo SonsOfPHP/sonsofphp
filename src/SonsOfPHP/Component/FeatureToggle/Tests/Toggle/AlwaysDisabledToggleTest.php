@@ -12,7 +12,7 @@ use SonsOfPHP\Component\FeatureToggle\ToggleInterface;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\FeatureToggle\Toggle\AlwaysDisabledToggle
  *
- * @internal
+ * @uses \SonsOfPHP\Component\FeatureToggle\Context
  */
 final class AlwaysDisabledToggleTest extends TestCase
 {

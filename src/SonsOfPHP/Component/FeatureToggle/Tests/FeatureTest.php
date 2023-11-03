@@ -13,7 +13,7 @@ use SonsOfPHP\Component\FeatureToggle\ToggleInterface;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\FeatureToggle\Feature
  *
- * @internal
+ * @uses \SonsOfPHP\Component\FeatureToggle\Context
  */
 final class FeatureTest extends TestCase
 {

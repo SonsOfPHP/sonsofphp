@@ -30,6 +30,10 @@
       <directory>src/SonsOfPHP/Component/EventSourcing/Tests</directory>
     </testsuite>
 
+    <testsuite name="feature-toggle">
+      <directory>src/SonsOfPHP/Component/FeatureToggle/Tests</directory>
+    </testsuite>
+
     <testsuite name="http-factory">
       <directory>src/SonsOfPHP/Component/HttpFactory/Tests</directory>
     </testsuite>
