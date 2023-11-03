@@ -9,12 +9,9 @@ namespace SonsOfPHP\Component\Clock;
  */
 final class ZoneOffset implements ZoneOffsetInterface
 {
-    private int $seconds;
-
-    public function __construct(int $seconds)
-    {
-        $this->seconds = $seconds;
-    }
+    public function __construct(
+        private int $seconds,
+    ) {}
 
     public function __toString(): string
     {

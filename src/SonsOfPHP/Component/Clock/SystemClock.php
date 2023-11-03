@@ -13,9 +13,7 @@ use Psr\Clock\ClockInterface;
  */
 class SystemClock implements ClockInterface
 {
-    private \DateTimeZone $zone;
-
-    public function __construct(\DateTimeZone $zone = null)
+    public function __construct(private ?\DateTimeZone $zone = null)
     {
         $this->zone = $zone ?? new \DateTimeZone('UTC');
     }

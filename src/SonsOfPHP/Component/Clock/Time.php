@@ -9,18 +9,12 @@ namespace SonsOfPHP\Component\Clock;
  */
 final class Time implements TimeInterface
 {
-    private int $hour;
-    private int $minute;
-    private int $second;
-    private int $millisecond;
-
-    public function __construct(int $hour, int $minute, int $second, int $millisecond)
-    {
-        $this->hour        = $hour;
-        $this->minute      = $minute;
-        $this->second      = $second;
-        $this->millisecond = $millisecond;
-    }
+    public function __construct(
+        private int $hour,
+        private int $minute,
+        private int $second,
+        private int $millisecond
+    ) {}
 
     public function __toString(): string
     {

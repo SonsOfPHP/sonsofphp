@@ -10,8 +10,6 @@ use SonsOfPHP\Component\Clock\ZoneOffsetInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Clock\ZoneOffset
- *
- * @internal
  */
 final class ZoneOffsetTest extends TestCase
 {
@@ -29,6 +27,8 @@ final class ZoneOffsetTest extends TestCase
      * @covers ::__construct
      * @covers ::__toString
      * @covers ::toString
+     * @covers ::getHours
+     * @covers ::getSeconds
      */
     public function testToString(): void
     {
@@ -52,6 +52,7 @@ final class ZoneOffsetTest extends TestCase
     /**
      * @covers ::__construct
      * @covers ::getHours
+     * @covers ::getSeconds
      */
     public function testGetHours(): void
     {

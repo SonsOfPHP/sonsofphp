@@ -10,8 +10,6 @@ use SonsOfPHP\Component\Clock\TimeInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Clock\Time
- *
- * @internal
  */
 final class TimeTest extends TestCase
 {
@@ -26,8 +24,13 @@ final class TimeTest extends TestCase
     }
 
     /**
+     * @covers ::__construct
      * @covers ::__toString
      * @covers ::toString
+     * @covers ::getHour
+     * @covers ::getMinute
+     * @covers ::getSecond
+     * @covers ::getMillisecond
      */
     public function testToString(): void
     {

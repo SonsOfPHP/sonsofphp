@@ -11,8 +11,6 @@ use SonsOfPHP\Component\Clock\ZoneOffset;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Clock\Zone
- *
- * @internal
  */
 final class ZoneTest extends TestCase
 {
@@ -30,6 +28,8 @@ final class ZoneTest extends TestCase
      * @covers ::__construct
      * @covers ::__toString
      * @covers ::toString
+     *
+     * @uses \SonsOfPHP\Component\Clock\ZoneOffset
      */
     public function testToString(): void
     {
@@ -42,6 +42,8 @@ final class ZoneTest extends TestCase
     /**
      * @covers ::__construct
      * @covers ::getName
+     *
+     * @uses \SonsOfPHP\Component\Clock\ZoneOffset
      */
     public function testGetName(): void
     {
@@ -53,6 +55,8 @@ final class ZoneTest extends TestCase
     /**
      * @covers ::__construct
      * @covers ::getOffset
+     *
+     * @uses \SonsOfPHP\Component\Clock\ZoneOffset
      */
     public function testOffset(): void
     {

@@ -18,6 +18,10 @@
       <directory>src/SonsOfPHP/Component/*/Tests</directory>
     </testsuite>
 
+    <testsuite name="clock">
+      <directory>src/SonsOfPHP/Component/Clock/Tests</directory>
+    </testsuite>
+
     <testsuite name="http-factory">
       <directory>src/SonsOfPHP/Component/HttpFactory/Tests</directory>
     </testsuite>

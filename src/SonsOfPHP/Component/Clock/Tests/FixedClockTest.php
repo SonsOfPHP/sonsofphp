@@ -11,8 +11,6 @@ use SonsOfPHP\Component\Clock\FixedClock;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Clock\FixedClock
- *
- * @internal
  */
 final class FixedClockTest extends TestCase
 {
@@ -29,6 +27,8 @@ final class FixedClockTest extends TestCase
     /**
      * @covers ::__construct
      * @covers ::getZone
+     *
+     * @uses \SonsOfPHP\Component\Clock\FixedClock
      */
     public function testTheDefaultTimezoneIsUTC(): void
     {
@@ -39,6 +39,8 @@ final class FixedClockTest extends TestCase
     /**
      * @covers ::__construct
      * @covers ::getZone
+     *
+     * @uses \SonsOfPHP\Component\Clock\FixedClock
      */
     public function testSettingTheTimezoneInTheConstructorWorks(): void
     {
@@ -48,6 +50,8 @@ final class FixedClockTest extends TestCase
 
     /**
      * @covers ::now
+     *
+     * @uses \SonsOfPHP\Component\Clock\FixedClock
      */
     public function testNowRemainsTheSame(): void
     {
@@ -60,6 +64,8 @@ final class FixedClockTest extends TestCase
     /**
      * @covers ::now
      * @covers ::tick
+     *
+     * @uses \SonsOfPHP\Component\Clock\FixedClock
      */
     public function testTickChangesTime(): void
     {
@@ -74,6 +80,8 @@ final class FixedClockTest extends TestCase
     /**
      * @covers ::now
      * @covers ::tickTo
+     *
+     * @uses \SonsOfPHP\Component\Clock\FixedClock
      */
     public function testSetTimeWithTickTo(): void
     {
@@ -85,6 +93,9 @@ final class FixedClockTest extends TestCase
 
     /**
      * @covers ::tickTo
+     *
+     * @uses \SonsOfPHP\Component\Clock\Exception\ClockException
+     * @uses \SonsOfPHP\Component\Clock\FixedClock
      */
     public function testTickToThrowsExceptionWithInvalidInput(): void
     {
@@ -96,6 +107,8 @@ final class FixedClockTest extends TestCase
 
     /**
      * @covers ::__toString
+     *
+     * @uses \SonsOfPHP\Component\Clock\FixedClock
      */
     public function testToStringMagicMethod(): void
     {

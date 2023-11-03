@@ -17,11 +17,11 @@ use Psr\Clock\ClockInterface;
  */
 final class FixedClock implements ClockInterface
 {
-    private \DateTimeZone $zone;
     private \DateTimeInterface $time;
 
-    public function __construct(\DateTimeZone $zone = null)
-    {
+    public function __construct(
+        private ?\DateTimeZone $zone = null,
+    ) {
         $this->zone = $zone ?? new \DateTimeZone('UTC');
         $this->tick();
     }
