@@ -7,7 +7,7 @@
     bootstrap="vendor/autoload.php"
     cacheDirectory=".phpunit.cache"
     requireCoverageMetadata="true"
-    beStrictAboutCoverageMetadata="false">
+    beStrictAboutCoverageMetadata="true">
 
   <testsuites>
     <testsuite name="all">
