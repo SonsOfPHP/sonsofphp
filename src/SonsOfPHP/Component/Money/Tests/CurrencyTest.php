@@ -11,7 +11,8 @@ use SonsOfPHP\Component\Money\CurrencyInterface;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Currency
  *
- * @internal
+ * @uses \SonsOfPHP\Component\Money\Currency
+ * @uses \SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery
  */
 final class CurrencyTest extends TestCase
 {

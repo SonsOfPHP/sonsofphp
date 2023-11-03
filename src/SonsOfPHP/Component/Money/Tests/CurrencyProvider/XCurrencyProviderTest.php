@@ -12,7 +12,7 @@ use SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider
  *
- * @internal
+ * @uses \SonsOfPHP\Component\Money\Currency
  */
 final class XCurrencyProviderTest extends TestCase
 {
