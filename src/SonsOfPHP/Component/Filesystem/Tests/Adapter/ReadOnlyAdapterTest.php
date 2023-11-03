@@ -17,7 +17,8 @@ use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Filesystem\Adapter\ReadOnlyAdapter
  *
- * @internal
+ * @uses \SonsOfPHP\Component\Filesystem\Adapter\ReadOnlyAdapter
+ * @uses \SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter
  */
 final class ReadOnlyAdapterTest extends TestCase
 {

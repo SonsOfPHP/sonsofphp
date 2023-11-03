@@ -12,7 +12,7 @@ use SonsOfPHP\Component\Filesystem\Context;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Filesystem\Context
  *
- * @internal
+ * @uses \SonsOfPHP\Component\Filesystem\Context
  */
 final class ContextTest extends TestCase
 {

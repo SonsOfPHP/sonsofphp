@@ -69,6 +69,9 @@ coverage-event-sourcing:
 coverage-feature-toggle:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite feature-toggle --coverage-html $(COVERAGE_DIR)
 
+coverage-filesystem:
+	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite filesystem --coverage-html $(COVERAGE_DIR)
+
 coverage-http-factory:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite http-factory --coverage-html $(COVERAGE_DIR)
 
