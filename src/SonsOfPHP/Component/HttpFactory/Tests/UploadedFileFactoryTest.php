@@ -35,6 +35,7 @@ final class UploadedFileFactoryTest extends TestCase
 
     /**
      * @covers ::createUploadedFile
+     * @uses \SonsOfPHP\Component\HttpMessage\UploadedFile
      */
     public function testCreateUploadedFileWorksAsExpected(): void
     {

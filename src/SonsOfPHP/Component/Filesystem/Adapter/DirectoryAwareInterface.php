@@ -6,7 +6,6 @@ namespace SonsOfPHP\Component\Filesystem\Adapter;
 
 use SonsOfPHP\Component\Filesystem\ContextInterface;
 use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
-use SonsOfPHP\Component\Filesystem\Exception\FileNotFoundException;
 
 /**
  * If an adapter is able to manage directories, it should implement this

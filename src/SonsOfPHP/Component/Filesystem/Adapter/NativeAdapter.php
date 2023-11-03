@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Filesystem\Adapter;
 
 use SonsOfPHP\Component\Filesystem\ContextInterface;
-use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 
 /**
  * The native adapter will use the underlying filesystem to store files.

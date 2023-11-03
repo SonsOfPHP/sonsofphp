@@ -6,7 +6,6 @@ namespace SonsOfPHP\Component\Filesystem\Adapter;
 
 use SonsOfPHP\Component\Filesystem\ContextInterface;
 use SonsOfPHP\Component\Filesystem\Exception\FileNotFoundException;
-use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 
 /**
  * Chain adapter allows you to use multiple adapters together.

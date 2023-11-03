@@ -7,7 +7,6 @@ namespace SonsOfPHP\Component\Filesystem;
 use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\CopyAwareInterface;
-use SonsOfPHP\Component\Filesystem\Adapter\DirectoryAwareInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\MoveAwareInterface;
 
 /**

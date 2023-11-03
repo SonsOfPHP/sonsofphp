@@ -26,6 +26,7 @@ final class UriFactoryTest extends TestCase
 
     /**
      * @covers ::createUri
+     * @uses \SonsOfPHP\Component\HttpMessage\Uri
      */
     public function testCreateUriWorksAsExpected(): void
     {

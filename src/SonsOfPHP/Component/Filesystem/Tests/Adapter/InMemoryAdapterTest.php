@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Filesystem\Tests;
 
 use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\MockObject;
 use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter;
 use SonsOfPHP\Component\Filesystem\Exception\UnableToReadFileException;

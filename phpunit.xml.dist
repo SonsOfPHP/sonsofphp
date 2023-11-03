@@ -7,7 +7,7 @@
     bootstrap="vendor/autoload.php"
     cacheDirectory=".phpunit.cache"
     requireCoverageMetadata="true"
-    beStrictAboutCoverageMetadata="false">
+    beStrictAboutCoverageMetadata="true">
 
   <testsuites>
     <testsuite name="all">
@@ -16,6 +16,10 @@
       <directory>src/SonsOfPHP/Bridge/Symfony/*/Tests</directory>
       <directory>src/SonsOfPHP/Bundle/*/Tests</directory>
       <directory>src/SonsOfPHP/Component/*/Tests</directory>
+    </testsuite>
+
+    <testsuite name="http-factory">
+      <directory>src/SonsOfPHP/Component/HttpFactory/Tests</directory>
     </testsuite>
   </testsuites>
 

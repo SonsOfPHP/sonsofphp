@@ -14,4 +14,9 @@ use Psr\Http\Message\RequestFactoryInterface;
 final class RequestFactory implements RequestFactoryInterface
 {
     use RequestFactoryTrait;
+    use ResponseFactoryTrait;
+    use ServerResponseFactoryTrait;
+    use StreamFactoryTrait;
+    use UploadedFileFactoryTrait;
+    use UriFactoryTrait;
 }
