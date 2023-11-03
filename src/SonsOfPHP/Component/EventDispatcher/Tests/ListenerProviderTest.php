@@ -12,7 +12,7 @@ use SonsOfPHP\Component\EventDispatcher\EventSubscriberInterface;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventDispatcher\ListenerProvider
  *
- * @internal
+ * @uses \SonsOfPHP\Component\EventDispatcher\ListenerProvider
  */
 final class ListenerProviderTest extends TestCase
 {
