@@ -13,7 +13,9 @@ use SonsOfPHP\Component\EventSourcing\Tests\FakeAggregate;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregate
  *
- * @internal
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregate
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
  */
 final class AbstractAggregateTest extends TestCase
 {

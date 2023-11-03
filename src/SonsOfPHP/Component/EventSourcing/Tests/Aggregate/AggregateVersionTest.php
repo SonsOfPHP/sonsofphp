@@ -12,7 +12,7 @@ use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
  *
- * @internal
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
  */
 final class AggregateVersionTest extends TestCase
 {

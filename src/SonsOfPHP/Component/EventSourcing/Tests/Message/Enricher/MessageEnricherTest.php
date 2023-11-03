@@ -15,7 +15,10 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricher
  *
- * @internal
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricher
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\NullMessageEnricherProvider
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\NullMessageEnricherHandler
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\AllMessageEnricherProvider
  */
 final class MessageEnricherTest extends TestCase
 {

@@ -17,7 +17,11 @@ class Msg extends AbstractMessage {}
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\AbstractMessage
  *
- * @internal
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\AbstractMessage
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\MessageMetadata
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\MessagePayload
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
  */
 final class AbstractMessageTest extends TestCase
 {

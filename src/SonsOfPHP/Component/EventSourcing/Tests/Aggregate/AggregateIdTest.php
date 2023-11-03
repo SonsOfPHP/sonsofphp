@@ -14,7 +14,7 @@ use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
  *
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
  *
- * @internal
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
  */
 final class AggregateIdTest extends TestCase
 {

@@ -14,7 +14,11 @@ use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\AbstractSerializableMessage
  *
- * @internal
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\AbstractMessage
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\MessageMetadata
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\MessagePayload
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
  */
 final class AbstractSerializableMessageTest extends TestCase
 {

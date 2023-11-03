@@ -26,6 +26,10 @@
       <directory>src/SonsOfPHP/Component/EventDispatcher/Tests</directory>
     </testsuite>
 
+    <testsuite name="event-sourcing">
+      <directory>src/SonsOfPHP/Component/EventSourcing/Tests</directory>
+    </testsuite>
+
     <testsuite name="http-factory">
       <directory>src/SonsOfPHP/Component/HttpFactory/Tests</directory>
     </testsuite>
