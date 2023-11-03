@@ -45,6 +45,10 @@
     <testsuite name="http-message">
       <directory>src/SonsOfPHP/Component/HttpMessage/Tests</directory>
     </testsuite>
+
+    <testsuite name="json">
+      <directory>src/SonsOfPHP/Component/Json/Tests</directory>
+    </testsuite>
   </testsuites>
 
   <coverage includeUncoveredFiles="true" pathCoverage="true" ignoreDeprecatedCodeUnits="true" disableCodeCoverageIgnore="true">
