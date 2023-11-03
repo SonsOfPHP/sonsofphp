@@ -17,7 +17,23 @@ jobs:
             matrix:
                 php-version: ['8.1', '8.2']
         steps:
-          - name: Upload coverage reports to Codecov
-            uses: codecov/codecov-action@v3
-            env:
-              CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            - uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php-version }}
+                  coverage: xdebug
+            - name: Cache Composer Packages
+              id: composer-cache
+              uses: actions/cache@v3
+              with:
+                  path: vendor
+                  key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-php-
+            - run: make install
+            - run: php tools/phpunit/vendor/bin/phpunit --coverage-clover coverage.xml
+              env:
+                  XDEBUG_MODE=coverage
+            - name: Upload coverage reports to Codecov
+              uses: codecov/codecov-action@v3
+              env:
+                  CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
