@@ -33,21 +33,10 @@ interface AggregateIdInterface extends \Stringable
     public function toString(): string;
 
     /**
-     * Creates an instance of AggregateIdInterface with the passed in
-     * value.
-     *
-     * Example:
-     *   $id = AggregateId::fromString('unique-uuid');
-     *
-     * @throws EventSourcingException
-     */
-    public static function fromString(string $id): self;
-
-    /**
      * Compares two Aggregate ID objects and returns true if they are
      * equal.
      *
      * @throws EventSourcingException
      */
-    public function equals(self $that): bool;
+    public function equals(AggregateIdInterface $that): bool;
 }

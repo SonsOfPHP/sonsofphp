@@ -36,6 +36,9 @@
     "require-dev": {
         "phpunit/phpunit": "^10.4"
     },
+    "provide": {
+        "sonsofphp/event-sourcing-implementation": "^0.3.x-dev"
+    },
     "suggest": {
         "sonsofphp/event-sourcing-doctrine": "Adds additional functionality using Doctrine",
         "sonsofphp/event-sourcing-symfony": "Adds additional functionality using Symfony Components"

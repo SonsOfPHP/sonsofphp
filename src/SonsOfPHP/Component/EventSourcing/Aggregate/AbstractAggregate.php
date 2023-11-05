@@ -27,23 +27,16 @@ abstract class AbstractAggregate implements AggregateInterface
     }
 
     /**
-     * @param AggregateIdInterface|string $id
-     *
-     * @return static
+     * {@inheritdoc}
      */
-    final public static function new($id)
-    {
-        @trigger_error(sprintf('"%s::new()" is deprecated, use "new %s()" instead.', static::class, static::class), \E_USER_DEPRECATED);
-        $static = new static($id);
-
-        return $static;
-    }
-
     final public function getAggregateId(): AggregateIdInterface
     {
         return $this->id;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     final public function getAggregateVersion(): AggregateVersionInterface
     {
         return $this->version;
@@ -59,6 +52,9 @@ abstract class AbstractAggregate implements AggregateInterface
         return \count($this->pendingEvents) > 0;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     final public function getPendingEvents(): iterable
     {
         $events              = $this->pendingEvents;
@@ -67,12 +63,18 @@ abstract class AbstractAggregate implements AggregateInterface
         return $events;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     final public function peekPendingEvents(): iterable
     {
         return $this->pendingEvents;
     }
 
-    final public static function buildFromEvents(AggregateIdInterface $id, \Generator $events): AggregateInterface
+    /**
+     * {@inheritdoc}
+     */
+    final public static function buildFromEvents(AggregateIdInterface $id, iterable $events): AggregateInterface
     {
         $aggregate = new static($id);
         foreach ($events as $event) {
@@ -124,7 +126,7 @@ abstract class AbstractAggregate implements AggregateInterface
         $method = 'apply' . end($parts);
 
         if (method_exists($this, $method)) {
-            $this->{$method}($event); // @phpstan-ignore-line
+            $this->{$method}($event);
         }
 
         $this->version = $this->version->next();

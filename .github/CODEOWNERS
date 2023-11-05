@@ -33,3 +33,4 @@
 /src/SonsOfPHP/Component/Queue @JoshuaEstes
 /src/SonsOfPHP/Component/Version @JoshuaEstes
 /src/SonsOfPHP/Contract/Core @JoshuaEstes
+/src/SonsOfPHP/Contract/EventSourcing @JoshuaEstes

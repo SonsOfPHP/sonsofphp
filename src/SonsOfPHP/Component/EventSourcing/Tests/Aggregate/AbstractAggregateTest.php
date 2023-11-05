@@ -92,6 +92,26 @@ final class AbstractAggregateTest extends TestCase
     }
 
     /**
+     * @covers ::__construct
+     */
+    public function testConstructWorksWithStrings(): void
+    {
+        $aggregate = $this->getMockForAbstractClass(AbstractAggregate::class, ['unique-id']);
+
+        $this->assertSame('unique-id', $aggregate->getAggregateId()->toString());
+    }
+
+    /**
+     * @covers ::__construct
+     */
+    public function testConstructWorksWithAggregateId(): void
+    {
+        $aggregate = $this->getMockForAbstractClass(AbstractAggregate::class, [new AggregateId('unique-id')]);
+
+        $this->assertSame('unique-id', $aggregate->getAggregateId()->toString());
+    }
+
+    /**
      * @covers ::peekPendingEvents
      */
     public function testPeekWillNotRemoveAnyPendingEvents(): void
