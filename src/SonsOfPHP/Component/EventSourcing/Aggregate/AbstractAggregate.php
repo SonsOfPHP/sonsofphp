@@ -67,6 +67,11 @@ abstract class AbstractAggregate implements AggregateInterface
         return $events;
     }
 
+    final public function peekPendingEvents(): iterable
+    {
+        return $this->pendingEvents;
+    }
+
     final public static function buildFromEvents(AggregateIdInterface $id, \Generator $events): AggregateInterface
     {
         $aggregate = new static($id);
