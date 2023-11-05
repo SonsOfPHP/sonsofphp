@@ -18,31 +18,33 @@ final class AggregateManager implements AggregateManagerInterface
 
     public function __construct(
         private ConfigurationInterface $config,
-        private ContainerInterface $container,
     ) {}
 
-    public function registerAggregate(string $aggregate)
+    public function registerAggregate(string $aggregate): void
     {
         foreach ($this->config->getDriver()->getClassAttributes($aggregate) as $attribute) {
             if ($attribute instanceof AsAggregate) {
                 $this->aggregates[$aggregate] = new AggregateClassMetadata($aggregate);
+                return;
             }
         }
+
+        throw new \Exception('Invalid Aggregate');
     }
 
     public function find(AggregateInterface $class, AggregateIdInterface|string $id): ?AggregateInterface
     {
         if (!array_key_exists($class, $this->aggregates)) {
-            throw new \Exception('aggregate not registered');
+            $this->registerAggregate($aggregate);
         }
 
-        return $this->container->get($this->aggregate[$class]->getAggregateRepositoryClass())->find($id);
+        return $this->config->getContainer()->get($this->aggregate[$class]->getAggregateRepositoryClass())->find($id);
     }
 
     public function persist(AggregateInterface $aggregate): void
     {
         if (!array_key_exists($class, $this->aggregates)) {
-            throw new \Exception('aggregate not registered');
+            $this->registerAggregate($aggregate);
         }
 
         $events = $aggregate->getPendingEvents();
@@ -50,6 +52,6 @@ final class AggregateManager implements AggregateManagerInterface
             return;
         }
 
-        $this->container->get($this->aggregate[$class]->getMessageRepositoryClass())->persist($aggregate);
+        $this->config->getContainer()->get($this->aggregate[$class]->getMessageRepositoryClass())->persist($aggregate);
     }
 }

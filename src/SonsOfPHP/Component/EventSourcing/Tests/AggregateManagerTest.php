@@ -18,12 +18,10 @@ use Psr\Container\ContainerInterface;
 final class AggregateManagerTest extends TestCase
 {
     private $config;
-    private $container;
 
     public function setUp(): void
     {
         $this->config = $this->createMock(ConfigurationInterface::class);
-        $this->container = $this->createMock(ContainerInterface::class);
     }
 
     /**
@@ -31,7 +29,7 @@ final class AggregateManagerTest extends TestCase
      */
     public function testItImplementsCorrectInterface(): void
     {
-        $this->assertInstanceOf(AggregateManagerInterface::class, new AggregateManager($this->config, $this->container));
+        $this->assertInstanceOf(AggregateManagerInterface::class, new AggregateManager($this->config));
     }
 
     /**
@@ -41,13 +39,8 @@ final class AggregateManagerTest extends TestCase
     {
         $this->config->method('getDriver')->willReturn(new AttributeDriver());
 
-        $manager = new AggregateManager($this->config, $this->container);
-
+        $manager = new AggregateManager($this->config);
         $manager->registerAggregate(FakeAggregate::class);
-
-
-
-
 
         $this->assertTrue(true);
     }

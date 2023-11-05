@@ -14,11 +14,29 @@ use SonsOfPHP\Component\EventDispatcher\EventDispatcher;
  */
 final class Configuration implements ConfigurationInterface
 {
+    private ContainerInterface $container;
+    private DriverInterface $driver;
+    private EventDispatcherInterface $eventDispatcher;
+
     public function __construct(
-        private array $paths = [],
-        private DriverInterface $driver = new AttributeDriver(),
-        private EventDispatcherInterface $eventDispatcher = new EventDispatcher(),
-    ) {}
+        array $config = [],
+    ) {
+        if (array_key_exists('container', $config)) {
+            $this->container = $config['container'];
+        }
+
+        if (array_key_exists('driver', $config)) {
+            $this->driver = $config['driver'];
+        } else {
+            $this->driver = new AttributeDriver();
+        }
+
+        if (array_key_exists('event_dispatcher', $config)) {
+            $this->eventDispatcher = $config['event_dispatcher'];
+        } else {
+            $this->eventDispatcher = new EventDispatcher();
+        }
+    }
 
     public function getDriver(): DriverInterface
     {
@@ -28,5 +46,10 @@ final class Configuration implements ConfigurationInterface
     public function getEventDispatcher(): EventDispatcherInterface
     {
         return $this->eventDispatcher;
+    }
+
+    public function getContainer(): ContainerInterface
+    {
+        return $this->container;
     }
 }
