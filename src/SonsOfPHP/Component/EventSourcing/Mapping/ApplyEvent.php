@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\EventSourcing\Attributes;
+namespace SonsOfPHP\Component\EventSourcing\Mapping;
 
 use Attribute;
 

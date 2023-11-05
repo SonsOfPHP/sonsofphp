@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\EventSourcing\Attributes;
+namespace SonsOfPHP\Component\EventSourcing\Mapping;
 
 use Attribute;
 
 /**
  * Usage:
- *   #[AsUpcasterProvider]
- *   class UpcasterProvider {}
+ *   #[AsAggregate]
+ *   class UserAggregate {}
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 #[Attribute(Attribute::TARGET_CLASS)]
-final class AsUpcasterProvider
+final class AsAggregate
 {
 }

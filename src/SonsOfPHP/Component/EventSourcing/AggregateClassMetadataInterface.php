@@ -13,15 +13,15 @@ use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateInterface;
 interface AggregateClassMetadataInterface
 {
     // aggregate class name
-    public function getName(): string;
+    //public function getName(): string;
 
     // property name for aggregate id
-    public function getAggregateId(): string;
+    //public function getAggregateId(): string;
 
     // property name for aggregate version
-    public function getAggregateVersion(): string;
+    //public function getAggregateVersion(): string;
 
-    public function getReflectinClass(): \ReflectionClass;
+    //public function getReflectinClass(): \ReflectionClass;
 
     // If any upserters, return them
     //public function getUpserters(): iterable;

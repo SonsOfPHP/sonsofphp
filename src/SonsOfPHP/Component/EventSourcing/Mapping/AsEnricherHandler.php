@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\EventSourcing\Attributes;
+namespace SonsOfPHP\Component\EventSourcing\Mapping;
 
 use Attribute;
 
 /**
  * Usage:
- *   #[AsAggregate]
- *   class UserAggregate {}
+ *   #[AsEnricherHandler]
+ *   class HttpRequestMessageEnricher {}
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 #[Attribute(Attribute::TARGET_CLASS)]
-final class AsAggregate
+final class AsEnricherHandler
 {
 }
