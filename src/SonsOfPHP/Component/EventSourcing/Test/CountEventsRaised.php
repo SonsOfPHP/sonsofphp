@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Test;
 
 use PHPUnit\Framework\Constraint\Constraint;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateInterface;
 
 /**
  * Usage:
@@ -14,14 +15,18 @@ use PHPUnit\Framework\Constraint\Constraint;
  */
 final class CountEventsRaised extends Constraint
 {
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(private int $count) {}
 
-    /**
-     * AggregateInterface $other
-     */
     protected function matches(mixed $other): bool
     {
-        return $count === count($other->peekPendingEvents());
+        if (!$other instanceof AggregateInterface) {
+            throw \LogicException(sprintf('Object must implement "%s"', AggregateInterface::class));
+        }
+
+        return $this->count === count($other->peekPendingEvents());
     }
 
     public function toString(): string
