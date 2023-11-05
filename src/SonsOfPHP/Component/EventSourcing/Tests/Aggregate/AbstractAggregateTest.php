@@ -90,4 +90,20 @@ final class AbstractAggregateTest extends TestCase
         $this->expectException(\TypeError::class);
         $this->getMockForAbstractClass(AbstractAggregate::class, [new \stdClass()]);
     }
+
+    /**
+     * @covers ::peekPendingEvents
+     */
+    public function testPeekWillNotRemoveAnyPendingEvents(): void
+    {
+        $aggregate = new FakeAggregate('id');
+        $this->assertCount(0, $aggregate->peekPendingEvents());
+        $method = new \ReflectionMethod($aggregate, 'raiseEvent');
+
+        $message = $this->createMock(MessageInterface::class);
+        $method->invoke($aggregate, $message);
+
+        $this->assertCount(1, $aggregate->peekPendingEvents());
+        $this->assertCount(1, $aggregate->peekPendingEvents());
+    }
 }
