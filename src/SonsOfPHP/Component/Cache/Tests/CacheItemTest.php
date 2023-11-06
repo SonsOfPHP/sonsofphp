@@ -11,7 +11,7 @@ use Psr\Cache\CacheItemInterface;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Cache\CacheItem
  *
- * @internal
+ * @uses \SonsOfPHP\Component\Cache\CacheItem
  */
 final class CacheItemTest extends TestCase
 {
