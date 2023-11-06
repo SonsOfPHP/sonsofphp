@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Cache;
 
-use Psr\Cache\CacheItemPoolInterface;
+use Psr\Cache\CacheItemInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class CacheItemPool implements CacheItemPoolInterface
+interface TaggableCacheItem extends CacheItemInterface
 {
+    public function setTags(array $tags);
 }

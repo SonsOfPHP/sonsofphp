@@ -9,6 +9,4 @@ use Psr\Cache\CacheItemInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class CacheItem implements CacheItemInterface
-{
-}
+class CacheItem implements CacheItemInterface {}
