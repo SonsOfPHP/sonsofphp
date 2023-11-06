@@ -11,12 +11,12 @@ use Psr\Cache\CacheItemInterface;
  */
 final class CacheItem implements CacheItemInterface
 {
-    private mixed $value;
-    private int|float|null $expiry = null;
+    protected mixed $value;
+    protected int|float|null $expiry;
 
     public function __construct(
-        private string $key,
-        private bool $isHit = false,
+        protected string $key,
+        protected bool $isHit = false,
     ) {
         // @todo throw exception for invalid key
     }

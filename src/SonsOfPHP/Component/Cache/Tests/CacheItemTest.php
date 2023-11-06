@@ -26,6 +26,17 @@ final class CacheItemTest extends TestCase
     }
 
     /**
+     * @covers ::__construct
+     * @covers ::getKey
+     */
+    public function testGetKeyWorksAsExpected(): void
+    {
+        $item = new CacheItem('testing');
+
+        $this->assertSame('testing', $item->getKey());
+    }
+
+    /**
      * @covers ::isHit
      */
     public function testDefaultValueForIsHit(): void
@@ -53,5 +64,19 @@ final class CacheItemTest extends TestCase
         $item = new CacheItem('testing');
         $this->assertSame($item, $item->set('value'));
         $this->assertSame('value', $item->get());
+    }
+
+    /**
+     * @covers ::expiresAfter
+     */
+    public function testExpiresAfterWorksAsExpectedWithIntegers(): void
+    {
+        $item = new CacheItem('testing');
+        $itemAsArray = (array) $item;
+        $this->assertFalse(isset($itemAsArray["\0*\0expiry"]));
+
+        $item->expiresAfter(3600);
+        $itemAsArray = (array) $item;
+        $this->assertNotNull($itemAsArray["\0*\0expiry"]);
     }
 }
