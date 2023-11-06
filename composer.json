@@ -19,8 +19,7 @@
     "support": {
         "issues": "https://github.com/SonsOfPHP/sonsofphp/issues",
         "forum": "https://github.com/orgs/SonsOfPHP/discussions",
-        "docs": "https://docs.sonsofphp.com",
-        "chat": "https://discord.gg/sdVxNhFqND"
+        "docs": "https://docs.sonsofphp.com"
     },
     "funding": [
         {
@@ -36,7 +35,9 @@
         "psr/event-dispatcher-implementation": "1.0",
         "psr/clock-implementation": "1.0",
         "psr/http-message-implementation": "^1.0",
-        "psr/http-factory-implementation": "^1.0"
+        "psr/http-factory-implementation": "^1.0",
+        "psr/cache-implementation": "^3.0",
+        "psr/simple-cache-implementation": "^3.0"
     },
     "require": {
         "php": ">=8.1",
@@ -55,7 +56,9 @@
         "symfony/messenger": "^5|^6",
         "psr/clock": "^1.0",
         "psr/http-message": "^1.0",
-        "psr/http-factory": "^1.0"
+        "psr/http-factory": "^1.0",
+        "psr/cache": "^3.0",
+        "psr/simple-cache": "^3.0"
     },
     "replace": {
         "sonsofphp/bard": "self.version",
@@ -73,11 +76,14 @@
         "sonsofphp/cqrs-bundle": "self.version",
         "sonsofphp/filesystem": "self.version",
         "sonsofphp/http-message": "self.version",
-        "sonsofphp/http-factory": "self.version"
+        "sonsofphp/http-factory": "self.version",
+        "sonsofphp/core-contract": "self.version",
+        "sonsofphp/cache": "self.version"
     },
     "autoload": {
         "psr-4": {
             "SonsOfPHP\\Bard\\": "src/SonsOfPHP/Bard/src",
+            "SonsOfPHP\\Component\\Cache\\": "src/SonsOfPHP/Component/Cache",
             "SonsOfPHP\\Component\\Clock\\": "src/SonsOfPHP/Component/Clock",
             "SonsOfPHP\\Component\\Cqrs\\": "src/SonsOfPHP/Component/Cqrs",
             "SonsOfPHP\\Bundle\\Cqrs\\": "src/SonsOfPHP/Bundle/Cqrs",
@@ -92,10 +98,12 @@
             "SonsOfPHP\\Component\\HttpMessage\\": "src/SonsOfPHP/Component/HttpMessage",
             "SonsOfPHP\\Component\\Json\\": "src/SonsOfPHP/Component/Json",
             "SonsOfPHP\\Component\\Money\\": "src/SonsOfPHP/Component/Money",
-            "SonsOfPHP\\Component\\Version\\": "src/SonsOfPHP/Component/Version"
+            "SonsOfPHP\\Component\\Version\\": "src/SonsOfPHP/Component/Version",
+            "SonsOfPHP\\Contract\\Core\\": "src/SonsOfPHP/Contract/Core"
         },
         "exclude-from-classmap": [
             "src/SonsOfPHP/Bard/Tests",
+            "src/SonsOfPHP/Component/Cache/Tests",
             "src/SonsOfPHP/Component/Clock/Tests",
             "src/SonsOfPHP/Component/Cqrs/Tests",
             "src/SonsOfPHP/Bundle/Cqrs/Tests",
@@ -110,7 +118,8 @@
             "src/SonsOfPHP/Component/HttpMessage/Tests",
             "src/SonsOfPHP/Component/Json/Tests",
             "src/SonsOfPHP/Component/Money/Tests",
-            "src/SonsOfPHP/Component/Version/Tests"
+            "src/SonsOfPHP/Component/Version/Tests",
+            "src/SonsOfPHP/Contract/Core/Tests"
         ]
     },
     "extra": {
@@ -124,7 +133,8 @@
         "symfony/serializer": "^5|^6",
         "symfony/phpunit-bridge": "^6",
         "symfony/error-handler": "^6",
-        "symfony/messenger": "^5|^6"
+        "symfony/messenger": "^5|^6",
+        "phpunit/phpunit": "^10.4"
     },
     "autoload-dev": {
         "psr-4": {
