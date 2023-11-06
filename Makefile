@@ -57,6 +57,9 @@ lint-php: # lint php files
 coverage: ## Build Code Coverage Report
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --coverage-html $(COVERAGE_DIR)
 
+coverage-cache:
+	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite cache --coverage-html $(COVERAGE_DIR)
+
 coverage-clock:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite clock --coverage-html $(COVERAGE_DIR)
 

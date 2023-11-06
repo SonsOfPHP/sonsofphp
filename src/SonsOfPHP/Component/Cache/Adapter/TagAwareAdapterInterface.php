@@ -7,7 +7,7 @@ namespace SonsOfPHP\Component\Cache\Adapter;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface TaggableAdapterInterface extends AdapterInterface
+interface TagAwareAdapterInterface
 {
     public function clearByTag(string $tag): bool;
 }

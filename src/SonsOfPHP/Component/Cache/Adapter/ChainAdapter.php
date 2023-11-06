@@ -9,4 +9,6 @@ namespace SonsOfPHP\Component\Cache\Adapter;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class ChainAdapter implements AdapterInterface {}
+class ChainAdapter implements AdapterInterface
+{
+}

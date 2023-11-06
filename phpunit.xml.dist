@@ -21,6 +21,10 @@
       <!--<directory>src/SonsOfPHP/Bard/src/Tests</directory>-->
     </testsuite>
 
+    <testsuite name="cache">
+      <directory>src/SonsOfPHP/Component/Clock/Tests</directory>
+    </testsuite>
+
     <testsuite name="clock">
       <directory>src/SonsOfPHP/Component/Clock/Tests</directory>
     </testsuite>
