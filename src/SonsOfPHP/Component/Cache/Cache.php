@@ -21,11 +21,9 @@ final class Cache implements CacheInterface
      */
     public function get(string $key, mixed $default = null): mixed
     {
-        if (!$this->adapter->hasItem($key)) {
-            return $default;
-        }
+        $item = $this->adapter->getItem($key);
 
-        return $this->adapter->getItem($key);
+        return $item->isHit() ? $item->get() : $default;
     }
 
     /**
@@ -33,7 +31,14 @@ final class Cache implements CacheInterface
      */
     public function set(string $key, mixed $value, null|int|\DateInterval $ttl = null): bool
     {
-        return $this->adapter->save((new CacheItem($key))->set($value)->expiresAfter($ttl));
+        $item = $this->adapter->getItem($key);
+        $item->set($value);
+
+        if (null !== $ttl) {
+            $item->expiresAfter($ttl);
+        }
+
+        return $this->adapter->save($item);
     }
 
     /**
@@ -57,8 +62,9 @@ final class Cache implements CacheInterface
      */
     public function getMultiple(iterable $keys, mixed $default = null): iterable
     {
-        foreach ($keys as $key) {
-            yield $key => $this->has('key') ? $this->adapter->getItem($key)->get() : $default;
+        $items = $this->adapter->getItems($keys);
+        foreach ($items as $item) {
+            yield $key => $item->isHit() ? $item->get() : $default;
         }
     }
 
