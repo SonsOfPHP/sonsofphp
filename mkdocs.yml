@@ -59,6 +59,7 @@ nav:
         - bard/index.md
     - Components:
         - components/index.md
+        - Cache: components/clock/index.md
         - Clock: components/clock/index.md
         - CQRS:
             - components/cqrs/index.md

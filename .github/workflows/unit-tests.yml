@@ -36,6 +36,7 @@ jobs:
               with:
                   php-version: ${{ matrix.php-version }}
                   coverage: none
+                  extensions: apcu
             - name: Cache Composer Packages
               id: composer-cache
               uses: actions/cache@v3

@@ -1,0 +1,64 @@
+{
+    "name": "sonsofphp/cache",
+    "type": "library",
+    "description": "Caching library for php",
+    "keywords": [
+        "psr",
+        "psr-6",
+        "psr-16",
+        "cache"
+    ],
+    "homepage": "https://github.com/SonsOfPHP/cache",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joshua Estes",
+            "email": "joshua@sonsofphp.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/SonsOfPHP/sonsofphp/issues",
+        "forum": "https://github.com/orgs/SonsOfPHP/discussions",
+        "docs": "https://docs.sonsofphp.com"
+    },
+    "autoload": {
+        "psr-4": {
+            "SonsOfPHP\\Component\\Cache\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.1",
+        "psr/cache": "^2.0|^3.0"
+    },
+    "require-dev": {
+        "psr/simple-cache": "^1.0|^2.0|^3.0"
+    },
+    "suggest": {
+        "sonsofphp/filesystem": "Stores cache files using virtual filesystem"
+    },
+    "provide": {
+        "psr/cache-implementation": "^2.0|^3.0",
+        "psr/simple-cache-implementation": "^1.0|^2.0|^3.0"
+    },
+    "extra": {
+        "sort-packages": true,
+        "branch-alias": {
+            "dev-main": "0.3.x-dev"
+        }
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/JoshuaEstes"
+        },
+        {
+            "type": "tidelift",
+            "url": "https://tidelift.com/subscription/pkg/packagist-sonsofphp-sonsofphp"
+        }
+    ]
+}

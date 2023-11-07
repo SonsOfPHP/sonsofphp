@@ -2,6 +2,10 @@ Bard:
   - docs/bard/*
   - src/SonsOfPHP/Bard/*
 
+Cache:
+  - docs/components/cache/*
+  - src/SonsOfPHP/**/Cache/*
+
 Clock:
   - docs/components/clock/*
   - src/SonsOfPHP/Component/Clock/*
