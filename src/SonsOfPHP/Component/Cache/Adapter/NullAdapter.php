@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Cache\Adapter;
 
+use SonsOfPHP\Component\Cache\CacheItem;
+use Psr\Cache\CacheItemInterface;
+
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
@@ -23,7 +26,7 @@ final class NullAdapter implements AdapterInterface
     public function getItems(array $keys = []): iterable
     {
         foreach ($keys as $key) {
-            yield $this->getItem($key);
+            yield $key => $this->getItem($key);
         }
     }
 

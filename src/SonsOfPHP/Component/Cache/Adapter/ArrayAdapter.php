@@ -6,6 +6,7 @@ namespace SonsOfPHP\Component\Cache\Adapter;
 
 use Psr\Cache\CacheItemInterface;
 use SonsOfPHP\Component\Cache\Exception\InvalidArgumentException;
+use SonsOfPHP\Component\Cache\CacheItem;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -32,7 +33,7 @@ class ArrayAdapter implements AdapterInterface
     public function getItems(array $keys = []): iterable
     {
         foreach ($keys as $key) {
-            yield $this->getItem($key);
+            yield $key => $this->getItem($key);
         }
     }
 

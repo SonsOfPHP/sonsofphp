@@ -67,6 +67,36 @@ final class CacheItemTest extends TestCase
     }
 
     /**
+     * @covers ::expiresAt
+     */
+    public function testExpiresAtWorksAsExpectedWithNull(): void
+    {
+        $item = new CacheItem('testing');
+        $item->expiresAfter(3600);
+        $itemAsArray = (array) $item;
+        $this->assertNotNull($itemAsArray["\0*\0expiry"]);
+
+        $item->expiresAt(null);
+        $itemAsArray = (array) $item;
+        $this->assertNull($itemAsArray["\0*\0expiry"]);
+    }
+
+    /**
+     * @covers ::expiresAt
+     */
+    public function testExpiresAtWorksAsExpectedWithDateTimeInterface(): void
+    {
+        $item = new CacheItem('testing');
+        $itemAsArray = (array) $item;
+        $this->assertFalse(isset($itemAsArray["\0*\0expiry"]));
+
+        $item->expiresAt(new \DateTimeImmutable('2020-04-20 04:20:00'));
+        $itemAsArray = (array) $item;
+        $this->assertNotNull($itemAsArray["\0*\0expiry"]);
+        $this->assertSame(1587356400.0, $itemAsArray["\0*\0expiry"]);
+    }
+
+    /**
      * @covers ::expiresAfter
      */
     public function testExpiresAfterWorksAsExpectedWithIntegers(): void
@@ -78,5 +108,33 @@ final class CacheItemTest extends TestCase
         $item->expiresAfter(3600);
         $itemAsArray = (array) $item;
         $this->assertNotNull($itemAsArray["\0*\0expiry"]);
+    }
+
+    /**
+     * @covers ::expiresAfter
+     */
+    public function testExpiresAfterWorksAsExpectedWithDateInterval(): void
+    {
+        $item = new CacheItem('testing');
+        $itemAsArray = (array) $item;
+        $this->assertFalse(isset($itemAsArray["\0*\0expiry"]));
+
+        $item->expiresAfter(new \DateInterval('PT60S'));
+        $itemAsArray = (array) $item;
+        $this->assertNotNull($itemAsArray["\0*\0expiry"]);
+    }
+
+    /**
+     * @covers ::expiresAfter
+     */
+    public function testExpiresAfterWorksAsExpectedWithNull(): void
+    {
+        $item = new CacheItem('testing');
+        $itemAsArray = (array) $item;
+        $this->assertFalse(isset($itemAsArray["\0*\0expiry"]));
+
+        $item->expiresAfter(null);
+        $itemAsArray = (array) $item;
+        $this->assertNull($itemAsArray["\0*\0expiry"]);
     }
 }

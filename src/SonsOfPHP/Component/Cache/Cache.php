@@ -14,6 +14,9 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 final class Cache implements CacheInterface
 {
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(
         private CacheItemPoolInterface $pool,
     ) {}
@@ -65,7 +68,7 @@ final class Cache implements CacheInterface
     public function getMultiple(iterable $keys, mixed $default = null): iterable
     {
         $items = $this->pool->getItems($keys);
-        foreach ($items as $item) {
+        foreach ($items as $key => $item) {
             yield $key => $item->isHit() ? $item->get() : $default;
         }
     }
@@ -87,7 +90,11 @@ final class Cache implements CacheInterface
      */
     public function deleteMultiple(iterable $keys): bool
     {
-        return $this->pool->deleteItems(iterator_to_array($keys));
+        if ($keys instanceof \Traversable) {
+            $keys = iterator_to_array($keys);
+        }
+
+        return $this->pool->deleteItems($keys);
     }
 
     /**
