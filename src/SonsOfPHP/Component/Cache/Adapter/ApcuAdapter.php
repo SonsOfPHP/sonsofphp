@@ -98,7 +98,7 @@ class ApcuAdapter implements AdapterInterface
      */
     public function saveDeferred(CacheItemInterface $item): bool
     {
-        $this->deferred[$item->getKey] = $item;
+        $this->deferred[$item->getKey()] = $item;
 
         return true;
     }

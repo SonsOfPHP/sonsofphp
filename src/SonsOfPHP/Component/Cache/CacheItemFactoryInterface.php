@@ -9,9 +9,7 @@ use Psr\Cache\CacheItemInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface CacheItemFactroyInterface
+interface CacheItemFactoryInterface
 {
-    /**
-     */
     public function createCacheItem(string $key, mixed $value, bool $hit = false, int $ttl = 0): CacheItemInterface;
 }
