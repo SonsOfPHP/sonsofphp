@@ -7,7 +7,6 @@ namespace SonsOfPHP\Component\Cache\Tests;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Cache\CacheItemFactory;
 use SonsOfPHP\Component\Cache\CacheItemFactoryInterface;
-use Psr\Cache\CacheItemInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Cache\CacheItemFactory
