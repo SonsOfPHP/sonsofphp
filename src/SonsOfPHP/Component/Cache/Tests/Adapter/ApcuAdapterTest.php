@@ -139,6 +139,21 @@ final class ApcuAdapterTest extends TestCase
     }
 
     /**
+     * @covers ::commit
+     */
+    public function testCommitWithDeferredValues(): void
+    {
+        $adapter = new ApcuAdapter();
+        $item = $adapter->getItem('unit.test');
+        $item->set('item.value');
+        $adapter->saveDeferred($item);
+
+        $this->assertFalse($adapter->hasItem('unit.test'));
+        $adapter->commit();
+        $this->assertTrue($adapter->hasItem('unit.test'));
+    }
+
+    /**
      * @covers ::save
      */
     public function testSave(): void
