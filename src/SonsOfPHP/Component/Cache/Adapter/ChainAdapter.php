@@ -40,7 +40,13 @@ class ChainAdapter implements AdapterInterface
      */
     public function getItem(string $key): CacheItemInterface
     {
-        return $this->adapters[0]->getItem($key);
+        foreach ($this->adapters as $adapter) {
+            if ($adapter->hasItem($key)) {
+                return $adapter->getItem($key);
+            }
+        }
+
+        return new CacheItem($key, false);
     }
 
     /**
