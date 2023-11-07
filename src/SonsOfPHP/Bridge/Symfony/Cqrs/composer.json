@@ -20,8 +20,7 @@
     "support": {
         "issues": "https://github.com/SonsOfPHP/sonsofphp/issues",
         "forum": "https://github.com/orgs/SonsOfPHP/discussions",
-        "docs": "https://docs.sonsofphp.com",
-        "chat": "https://discord.gg/sdVxNhFqND"
+        "docs": "https://docs.sonsofphp.com"
     },
     "autoload": {
         "psr-4": {
@@ -43,7 +42,7 @@
         "symfony/options-resolver": "^5|^6"
     },
     "require-dev": {
-        "symfony/messenger": "^5"
+        "symfony/messenger": "^5|^6"
     },
     "extra": {
         "sort-packages": true,

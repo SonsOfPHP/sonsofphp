@@ -2,7 +2,14 @@
     "name": "sonsofphp/core-contract",
     "type": "library",
     "description": "Core Contracts that are not specific to any one library",
-    "keywords": ["abstractions", "contracts", "decoupling", "interfaces", "interoperability", "standards"],
+    "keywords": [
+        "abstractions",
+        "contracts",
+        "decoupling",
+        "interfaces",
+        "interoperability",
+        "standards"
+    ],
     "homepage": "https://github.com/SonsOfPHP/core-contract",
     "license": "MIT",
     "authors": [
