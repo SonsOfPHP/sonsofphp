@@ -17,6 +17,7 @@ use SonsOfPHP\Component\Cache\Exception\CacheException;
  *
  * @uses \SonsOfPHP\Component\Cache\CacheItem
  * @uses \SonsOfPHP\Component\Cache\Adapter\ChainAdapter
+ * @uses \SonsOfPHP\Component\Cache\Adapter\ArrayAdapter
  */
 final class ChainAdapterTest extends TestCase
 {
