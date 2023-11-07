@@ -17,7 +17,7 @@ class ApcuAdapter implements AdapterInterface
 
     public function __construct()
     {
-        if (!extension_loaded('apcu') || !filter_var(ini_get('apc.enabled'), FILTER_VALIDATE_BOOL) || false === apc_enabled()) {
+        if (!extension_loaded('apcu') || !filter_var(ini_get('apc.enabled'), FILTER_VALIDATE_BOOL) || false === apcu_enabled()) {
             throw new CacheException('APCu extension is required.');
         }
     }
