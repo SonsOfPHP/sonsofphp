@@ -37,6 +37,7 @@ purge: # Purge vendor and lock files
 	rm -rf vendor/ src/SonsOfPHP/Bridge/*/vendor/ src/SonsOfPHP/Bridge/*/composer.lock
 	rm -rf vendor/ src/SonsOfPHP/Bundle/*/vendor/ src/SonsOfPHP/Bundle/*/composer.lock
 	rm -rf vendor/ src/SonsOfPHP/Component/*/vendor/ src/SonsOfPHP/Component/*/composer.lock
+	rm -rf vendor/ src/SonsOfPHP/Contract/*/vendor/ src/SonsOfPHP/Contract/*/composer.lock
 
 test: ## Run PHPUnit Tests
 	XDEBUG_MODE=off \
@@ -44,6 +45,7 @@ test: ## Run PHPUnit Tests
 	-dxdebug.mode=off \
 	-dapc.enable_cli=1 \
 	$(PHPUNIT) \
+	--cache-result \
 	--order-by=defects
 
 phpunit: test
@@ -65,6 +67,7 @@ coverage: ## Build Code Coverage Report
 	-dxdebug.mode=coverage \
 	-dapc.enable_cli=1 \
 	$(PHPUNIT) \
+	--cache-result \
 	--coverage-html $(COVERAGE_DIR)
 
 coverage-cache:
