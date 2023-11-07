@@ -13,5 +13,5 @@ interface CacheItemFactroyInterface
 {
     /**
      */
-    public function createCacheItem(string $key, mixed $value, bool $isHit = false): CacheItemInterface;
+    public function createCacheItem(string $key, mixed $value, bool $hit = false, int $ttl = 0): CacheItemInterface;
 }

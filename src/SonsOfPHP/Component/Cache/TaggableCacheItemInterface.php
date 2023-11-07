@@ -11,5 +11,5 @@ use Psr\Cache\CacheItemInterface;
  */
 interface TaggableCacheItem extends CacheItemInterface
 {
-    public function setTags(array $tags);
+    public function getTags(): iterable;
 }

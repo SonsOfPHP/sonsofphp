@@ -11,10 +11,11 @@ use Psr\Cache\CacheItemInterface;
  */
 final class CacheItemFactroy implements CacheItemFactroyInterface
 {
-    public function createCacheItem(string $key, mixed $value, bool $isHit = false): CacheItemInterface
+    public function createCacheItem(string $key, mixed $value, bool $hit = false, int $ttl = 0): CacheItemInterface
     {
-        $item = new CacheItem($key, $isHit);
+        $item = new CacheItem($key, $hit);
         $item->set($value);
+        $item->expiresAfter($ttl);
 
         return $item;
     }
