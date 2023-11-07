@@ -11,6 +11,8 @@ use Psr\Cache\CacheItemPoolInterface;
 use Psr\Cache\CacheItemInterface;
 
 /**
+ * @requires extension apcu
+ *
  * @coversDefaultClass \SonsOfPHP\Component\Cache\Adapter\ApcuAdapter
  *
  * @uses \SonsOfPHP\Component\Cache\CacheItem
