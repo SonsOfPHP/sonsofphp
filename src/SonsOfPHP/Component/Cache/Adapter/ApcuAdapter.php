@@ -49,6 +49,8 @@ class ApcuAdapter implements AdapterInterface
      */
     public function hasItem(string $key): bool
     {
+        CacheItem::validateKey($key);
+
         return apcu_exists($key);
     }
 
@@ -65,6 +67,8 @@ class ApcuAdapter implements AdapterInterface
      */
     public function deleteItem(string $key): bool
     {
+        CacheItem::validateKey($key);
+
         return apcu_delete($key);
     }
 
@@ -73,9 +77,14 @@ class ApcuAdapter implements AdapterInterface
      */
     public function deleteItems(array $keys): bool
     {
-        apcu_delete($keys);
+        $ret = true;
+        foreach ($keys as $key) {
+            if (!$this->deleteItem($key)) {
+                $ret = false;
+            }
+        }
 
-        return true;
+        return $ret;
     }
 
     /**

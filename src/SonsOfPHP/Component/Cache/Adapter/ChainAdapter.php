@@ -40,6 +40,8 @@ class ChainAdapter implements AdapterInterface
      */
     public function getItem(string $key): CacheItemInterface
     {
+        CacheItem::validateKey($key);
+
         foreach ($this->adapters as $adapter) {
             if ($adapter->hasItem($key)) {
                 return $adapter->getItem($key);
@@ -64,6 +66,8 @@ class ChainAdapter implements AdapterInterface
      */
     public function hasItem(string $key): bool
     {
+        CacheItem::validateKey($key);
+
         foreach ($this->adapters as $adapter) {
             if ($adapter->hasItem($key)) {
                 return true;
@@ -90,6 +94,8 @@ class ChainAdapter implements AdapterInterface
      */
     public function deleteItem(string $key): bool
     {
+        CacheItem::validateKey($key);
+
         foreach ($this->adapters as $adapter) {
             $adapter->deleteItem($key);
         }

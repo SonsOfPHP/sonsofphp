@@ -115,7 +115,7 @@ final class ApcuAdapterTest extends TestCase
         $item->set('item.value');
         $adapter->save($item);
 
-        $this->assertTrue($adapter->deleteItems(['item.key', 'unit.test']));
+        $this->assertTrue($adapter->deleteItems(['unit.test']));
     }
 
     /**
@@ -125,7 +125,7 @@ final class ApcuAdapterTest extends TestCase
     {
         $adapter = new ApcuAdapter();
 
-        $this->assertTrue($adapter->deleteItems(['item.key']));
+        $this->assertFalse($adapter->deleteItems(['item.key']));
     }
 
     /**

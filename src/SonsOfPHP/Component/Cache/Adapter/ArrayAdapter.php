@@ -41,6 +41,8 @@ class ArrayAdapter implements AdapterInterface
      */
     public function hasItem(string $key): bool
     {
+        CacheItem::validateKey($key);
+
         return array_key_exists($key, $this->values);
     }
 
@@ -59,6 +61,8 @@ class ArrayAdapter implements AdapterInterface
      */
     public function deleteItem(string $key): bool
     {
+        CacheItem::validateKey($key);
+
         unset($this->values[$key]);
 
         return true;
