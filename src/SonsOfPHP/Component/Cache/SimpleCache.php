@@ -8,11 +8,11 @@ use Psr\SimpleCache\CacheInterface;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
- * Simple Cache
+ * PSR-16 Simple Cache
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class Cache implements CacheInterface
+final class SimpleCache implements CacheInterface
 {
     /**
      * @codeCoverageIgnore

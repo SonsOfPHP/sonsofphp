@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Cache\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Cache\Cache;
+use SonsOfPHP\Component\Cache\SimpleCache;
 use Psr\SimpleCache\CacheInterface;
 use SonsOfPHP\Component\Cache\Adapter\AdapterInterface;
 use Psr\Cache\CacheItemInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Cache\Cache
+ * @coversDefaultClass \SonsOfPHP\Component\Cache\SimpleCache
  *
- * @uses \SonsOfPHP\Component\Cache\Cache
+ * @uses \SonsOfPHP\Component\Cache\SimpleCache
  */
-final class CacheTest extends TestCase
+final class SimpleCacheTest extends TestCase
 {
     private $adapter;
 
@@ -29,7 +29,7 @@ final class CacheTest extends TestCase
      */
     public function testItHasTheCorrectInterface(): void
     {
-        $cache = new Cache($this->adapter);
+        $cache = new SimpleCache($this->adapter);
 
         $this->assertInstanceOf(CacheInterface::class, $cache);
     }
@@ -45,7 +45,7 @@ final class CacheTest extends TestCase
 
         $this->adapter->method('getItem')->willReturn($item);
 
-        $cache = new Cache($this->adapter);
+        $cache = new SimpleCache($this->adapter);
 
         $this->assertSame('item.value', $cache->get('item.key'));
     }
@@ -60,7 +60,7 @@ final class CacheTest extends TestCase
 
         $this->adapter->method('getItem')->willReturn($item);
 
-        $cache = new Cache($this->adapter);
+        $cache = new SimpleCache($this->adapter);
 
         $this->assertSame('default.value', $cache->get('item.key', 'default.value'));
     }
@@ -72,7 +72,7 @@ final class CacheTest extends TestCase
     {
         $this->adapter->expects($this->once())->method('deleteItem')->willReturn(true);
 
-        $cache = new Cache($this->adapter);
+        $cache = new SimpleCache($this->adapter);
 
         $this->assertTrue($cache->delete('item.key'));
     }
@@ -84,7 +84,7 @@ final class CacheTest extends TestCase
     {
         $this->adapter->expects($this->once())->method('clear')->willReturn(true);
 
-        $cache = new Cache($this->adapter);
+        $cache = new SimpleCache($this->adapter);
 
         $this->assertTrue($cache->clear());
     }
@@ -96,7 +96,7 @@ final class CacheTest extends TestCase
     {
         $this->adapter->expects($this->once())->method('hasItem')->willReturn(false);
 
-        $cache = new Cache($this->adapter);
+        $cache = new SimpleCache($this->adapter);
 
         $this->assertFalse($cache->has('item.key'));
     }
@@ -108,7 +108,7 @@ final class CacheTest extends TestCase
     {
         $this->adapter->expects($this->once())->method('deleteItems')->willReturn(true);
 
-        $cache = new Cache($this->adapter);
+        $cache = new SimpleCache($this->adapter);
 
         $this->assertTrue($cache->deleteMultiple(['item.key']));
     }
@@ -124,7 +124,7 @@ final class CacheTest extends TestCase
         $this->adapter->expects($this->once())->method('getItem')->willReturn($item);
         $this->adapter->expects($this->once())->method('save')->willReturn(true);
 
-        $cache = new Cache($this->adapter);
+        $cache = new SimpleCache($this->adapter);
 
         $this->assertTrue($cache->set('item.key', 'item.value'));
     }
@@ -140,7 +140,7 @@ final class CacheTest extends TestCase
         $this->adapter->expects($this->once())->method('getItem')->willReturn($item);
         $this->adapter->expects($this->once())->method('save')->willReturn(true);
 
-        $cache = new Cache($this->adapter);
+        $cache = new SimpleCache($this->adapter);
 
         $this->assertTrue($cache->setMultiple(['item.key' => 'item.value']));
     }
@@ -163,7 +163,7 @@ final class CacheTest extends TestCase
             'item2' => $item2,
         ]);
 
-        $cache = new Cache($this->adapter);
+        $cache = new SimpleCache($this->adapter);
 
         $items = iterator_to_array($cache->getMultiple(['item.key', 'item2'], 'default.value'));
 
