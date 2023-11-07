@@ -18,6 +18,16 @@ use Psr\Cache\CacheItemInterface;
  */
 final class ApcuAdapterTest extends TestCase
 {
+    public function setUp(): void
+    {
+        apcu_clear_cache();
+    }
+
+    protected function tearDown(): void
+    {
+        apcu_clear_cache();
+    }
+
     /**
      * @covers ::__construct
      */
@@ -38,6 +48,19 @@ final class ApcuAdapterTest extends TestCase
         $item = $adapter->getItem('unit.test');
 
         $this->assertInstanceOf(CacheItemInterface::class, $item);
+    }
+
+    /**
+     * @covers ::getItem
+     */
+    public function testGetItemAfterSave(): void
+    {
+        $adapter = new ApcuAdapter();
+        $item = $adapter->getItem('unit.test');
+        $item->set('item.value');
+        $adapter->save($item);
+
+        $this->assertTrue($adapter->getItem('unit.test')->isHit());
     }
 
     /**
@@ -85,7 +108,20 @@ final class ApcuAdapterTest extends TestCase
     /**
      * @covers ::deleteItems
      */
-    public function testDeleteItems(): void
+    public function testDeleteItemsWithValuesInCache(): void
+    {
+        $adapter = new ApcuAdapter();
+        $item = $adapter->getItem('unit.test');
+        $item->set('item.value');
+        $adapter->save($item);
+
+        $this->assertTrue($adapter->deleteItems(['item.key', 'unit.test']));
+    }
+
+    /**
+     * @covers ::deleteItems
+     */
+    public function testDeleteItemsWithEmptyCache(): void
     {
         $adapter = new ApcuAdapter();
 
@@ -110,6 +146,20 @@ final class ApcuAdapterTest extends TestCase
         $adapter = new ApcuAdapter();
 
         $this->assertTrue($adapter->save($this->createMock(CacheItemInterface::class)));
+    }
+
+    /**
+     * @covers ::save
+     */
+    public function testSaveItemWithValue(): void
+    {
+        $adapter = new ApcuAdapter();
+        $item = $adapter->getItem('unit.test');
+
+        $item->set('item.value');
+        $adapter->save($item);
+
+        $this->assertSame('item.value', $adapter->getItem('unit.test')->get());
     }
 
     /**

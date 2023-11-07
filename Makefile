@@ -39,7 +39,12 @@ purge: # Purge vendor and lock files
 	rm -rf vendor/ src/SonsOfPHP/Component/*/vendor/ src/SonsOfPHP/Component/*/composer.lock
 
 test: ## Run PHPUnit Tests
-	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHPUNIT) --order-by=defects
+	XDEBUG_MODE=off \
+	$(PHP) \
+	-dxdebug.mode=off \
+	-dapc.enable_cli=1 \
+	$(PHPUNIT) \
+	--order-by=defects
 
 phpunit: test
 
@@ -55,7 +60,12 @@ lint-php: # lint php files
 	find src -name "*.php" -not -path "src/**/vendor/*" | xargs -I{} $(PHP) -l '{}'
 
 coverage: ## Build Code Coverage Report
-	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --coverage-html $(COVERAGE_DIR)
+	XDEBUG_MODE=coverage \
+	$(PHP) \
+	-dxdebug.mode=coverage \
+	-dapc.enable_cli=1 \
+	$(PHPUNIT) \
+	--coverage-html $(COVERAGE_DIR)
 
 coverage-cache:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite cache --coverage-html $(COVERAGE_DIR)

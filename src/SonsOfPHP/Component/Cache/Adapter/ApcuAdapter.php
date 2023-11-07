@@ -73,14 +73,9 @@ class ApcuAdapter implements AdapterInterface
      */
     public function deleteItems(array $keys): bool
     {
-        $return = true;
-        foreach (apcu_delete($keys) as $key => $result) {
-            if (!$result) {
-                $return = false;
-            }
-        }
+        apcu_delete($keys);
 
-        return $return;
+        return true;
     }
 
     /**
@@ -110,8 +105,8 @@ class ApcuAdapter implements AdapterInterface
     {
         foreach ($this->deferred as $key => $item) {
             apcu_store($key, $item->get(), 0);
-            unset($this->deferrred[$key]);
         }
+        $this->deferred = [];
 
         return true;
     }
