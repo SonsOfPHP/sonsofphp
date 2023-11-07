@@ -7,6 +7,7 @@ namespace SonsOfPHP\Component\Cache\Tests;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Cache\CacheItem;
 use Psr\Cache\CacheItemInterface;
+use SonsOfPHP\Component\Cache\Exception\InvalidArgumentException;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Cache\CacheItem
@@ -16,7 +17,7 @@ use Psr\Cache\CacheItemInterface;
 final class CacheItemTest extends TestCase
 {
     /**
-     * @coversNothing
+     * @covers ::__construct
      */
     public function testItHasTheCorrectInterface(): void
     {
@@ -27,6 +28,23 @@ final class CacheItemTest extends TestCase
 
     /**
      * @covers ::__construct
+     */
+    public function testItWillThrowExceptionWhenInvalidKey(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $item = new CacheItem('not allowed');
+    }
+
+    /**
+     * @covers ::__construct
+     */
+    public function testItWillThrowExceptionWhenKeyContainsReservedCharacters(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $item = new CacheItem('not@allowed');
+    }
+
+    /**
      * @covers ::getKey
      */
     public function testGetKeyWorksAsExpected(): void

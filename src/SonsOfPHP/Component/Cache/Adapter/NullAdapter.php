@@ -35,7 +35,7 @@ final class NullAdapter implements AdapterInterface
      */
     public function hasItem(string $key): bool
     {
-        return false;
+        return $this->getItem($key)->isHit();
     }
 
     /**
@@ -51,6 +51,8 @@ final class NullAdapter implements AdapterInterface
      */
     public function deleteItem(string $key): bool
     {
+        CacheItem::validateKey($key);
+
         return true;
     }
 
@@ -59,6 +61,10 @@ final class NullAdapter implements AdapterInterface
      */
     public function deleteItems(array $keys): bool
     {
+        foreach ($keys as $key) {
+            CacheItem::validateKey($key);
+        }
+
         return true;
     }
 
