@@ -6,7 +6,6 @@ namespace SonsOfPHP\Component\Cache\Tests\Adapter;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Cache\Adapter\ArrayAdapter;
-use Psr\SimpleCache\CacheInterface;
 use SonsOfPHP\Component\Cache\Adapter\AdapterInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Cache\CacheItemInterface;

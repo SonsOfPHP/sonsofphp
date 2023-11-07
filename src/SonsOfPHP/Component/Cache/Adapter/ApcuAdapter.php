@@ -4,15 +4,23 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Cache\Adapter;
 
-use Psr\Cache\CacheItemInterface;
 use SonsOfPHP\Component\Cache\CacheItem;
+use Psr\Cache\CacheItemInterface;
+use SonsOfPHP\Component\Cache\Exception\CacheException;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class ArrayAdapter implements AdapterInterface
+class ApcuAdapter implements AdapterInterface
 {
-    private array $values = [];
+    private array $deferred = [];
+
+    public function __construct()
+    {
+        if (!extension_loaded('apcu') || !filter_var(ini_get('apc.enabled'), FILTER_VALIDATE_BOOL)) {
+            throw new CacheException('APCu extension is required.');
+        }
+    }
 
     /**
      * {@inheritdoc}
@@ -20,7 +28,7 @@ class ArrayAdapter implements AdapterInterface
     public function getItem(string $key): CacheItemInterface
     {
         if ($this->hasItem($key)) {
-            return (new CacheItem($key, true))->set($this->values[$key]);
+            return (new CacheItem($key, true))->set(apcu_fetch($key));
         }
 
         return new CacheItem($key, false);
@@ -41,7 +49,7 @@ class ArrayAdapter implements AdapterInterface
      */
     public function hasItem(string $key): bool
     {
-        return array_key_exists($key, $this->values);
+        return apcu_exists($key);
     }
 
     /**
@@ -49,9 +57,7 @@ class ArrayAdapter implements AdapterInterface
      */
     public function clear(): bool
     {
-        $this->values = [];
-
-        return true;
+        return apcu_clear_cache();
     }
 
     /**
@@ -59,9 +65,7 @@ class ArrayAdapter implements AdapterInterface
      */
     public function deleteItem(string $key): bool
     {
-        unset($this->values[$key]);
-
-        return true;
+        return apcu_delete($key);
     }
 
     /**
@@ -69,11 +73,14 @@ class ArrayAdapter implements AdapterInterface
      */
     public function deleteItems(array $keys): bool
     {
-        foreach ($keys as $key) {
-            $this->deleteItem($key);
+        $return = true;
+        foreach (apcu_delete($keys) as $key => $result) {
+            if (!$result) {
+                $return = false;
+            }
         }
 
-        return true;
+        return $return;
     }
 
     /**
@@ -81,9 +88,9 @@ class ArrayAdapter implements AdapterInterface
      */
     public function save(CacheItemInterface $item): bool
     {
-        $this->values[$item->getKey()] = $item->get();
+        $this->saveDeferred($item);
 
-        return true;
+        return $this->commit();
     }
 
     /**
@@ -91,7 +98,9 @@ class ArrayAdapter implements AdapterInterface
      */
     public function saveDeferred(CacheItemInterface $item): bool
     {
-        return $this->save($item);
+        $this->deferred[$item->getKey] = $item;
+
+        return true;
     }
 
     /**
@@ -99,6 +108,10 @@ class ArrayAdapter implements AdapterInterface
      */
     public function commit(): bool
     {
+        foreach ($this->deferred as $key => $item) {
+            apcu_store($key, $item->get(), 0);
+        }
+
         return true;
     }
 }

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Cache\Adapter;
 
+use SonsOfPHP\Component\Cache\CacheItem;
+use Psr\Cache\CacheItemInterface;
 use SonsOfPHP\Component\Cache\Exception\CacheException;
 
 /**
@@ -14,6 +16,7 @@ use SonsOfPHP\Component\Cache\Exception\CacheException;
  * Usage:
  *   $adapter = new ChainAdapter([
  *      new ArrayAdapter(),
+ *      new ApcuAdapter(),
  *      new NativeFilesystemAdapter(),
  *      new RedisAdapter(),
  *   ]);
