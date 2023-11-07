@@ -27,24 +27,6 @@ final class CacheItemTest extends TestCase
     }
 
     /**
-     * @covers ::__construct
-     */
-    public function testItWillThrowExceptionWhenInvalidKey(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $item = new CacheItem('not allowed');
-    }
-
-    /**
-     * @covers ::__construct
-     */
-    public function testItWillThrowExceptionWhenKeyContainsReservedCharacters(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $item = new CacheItem('not@allowed');
-    }
-
-    /**
      * @covers ::getKey
      */
     public function testGetKeyWorksAsExpected(): void
@@ -154,5 +136,25 @@ final class CacheItemTest extends TestCase
         $item->expiresAfter(null);
         $itemAsArray = (array) $item;
         $this->assertNull($itemAsArray["\0*\0expiry"]);
+    }
+
+    /**
+     * @covers ::validateKey
+     *
+     * @dataProvider invalidKeysProvider
+     */
+    public function testValidateKeyWithInvalidValues(string $key): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $item = new CacheItem($key);
+    }
+
+    public static function invalidKeysProvider(): iterable
+    {
+        yield [''];
+
+        yield ['not allowed'];
+
+        yield ['contains@reserved}characters'];
     }
 }

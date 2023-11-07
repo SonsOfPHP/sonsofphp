@@ -6,9 +6,11 @@ namespace SonsOfPHP\Component\Cache\Tests\Adapter;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Cache\Adapter\ChainAdapter;
+use SonsOfPHP\Component\Cache\Adapter\ArrayAdapter;
 use SonsOfPHP\Component\Cache\Adapter\AdapterInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Cache\CacheItemInterface;
+use SonsOfPHP\Component\Cache\Exception\CacheException;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Cache\Adapter\ChainAdapter
@@ -23,6 +25,7 @@ final class ChainAdapterTest extends TestCase
     public function setUp(): void
     {
         $this->adapters[] = $this->createMock(AdapterInterface::class);
+        $this->adapters[] = new ArrayAdapter();
     }
 
     /**
@@ -37,6 +40,17 @@ final class ChainAdapterTest extends TestCase
     }
 
     /**
+     * @covers ::__construct
+     */
+    public function testConstructWhenInvalidAdapter(): void
+    {
+        $this->adapters[] = new \stdClass();
+
+        $this->expectException(CacheException::class);
+        $adapter = new ChainAdapter($this->adapters);
+    }
+
+    /**
      * @covers ::getItem
      */
     public function testGetItem(): void
@@ -45,6 +59,19 @@ final class ChainAdapterTest extends TestCase
         $item = $adapter->getItem('unit.test');
 
         $this->assertInstanceOf(CacheItemInterface::class, $item);
+    }
+
+    /**
+     * @covers ::getItem
+     */
+    public function testGetItemAfterSave(): void
+    {
+        $adapter = new ChainAdapter($this->adapters);
+        $item = $adapter->getItem('unit.test');
+        $item->set('item.value');
+        $adapter->save($item);
+
+        $this->assertTrue($adapter->getItem('unit.test')->isHit());
     }
 
     /**
@@ -67,6 +94,21 @@ final class ChainAdapterTest extends TestCase
         $adapter = new ChainAdapter($this->adapters);
 
         $this->assertFalse($adapter->hasItem('item.key'));
+    }
+
+    /**
+     * @covers ::hasItem
+     */
+    public function testHasItemWhenOneHasKey(): void
+    {
+        // Create new mock adapter and place at end of stack
+        $mock = $this->createMock(AdapterInterface::class);
+        $mock->expects($this->once())->method('hasItem')->willReturn(true);
+        $this->adapters[] = $mock;
+
+        $adapter = new ChainAdapter($this->adapters);
+
+        $this->assertTrue($adapter->hasItem('item.key'));
     }
 
     /**

@@ -41,6 +41,19 @@ final class ArrayAdapterTest extends TestCase
     }
 
     /**
+     * @covers ::getItem
+     */
+    public function testGetItemAfterSave(): void
+    {
+        $adapter = new ArrayAdapter();
+        $item = $adapter->getItem('unit.test');
+        $item->set('item.value');
+        $adapter->save($item);
+
+        $this->assertTrue($adapter->getItem('unit.test')->isHit());
+    }
+
+    /**
      * @covers ::getItems
      */
     public function testGetItems(): void
