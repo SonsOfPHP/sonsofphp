@@ -14,10 +14,6 @@
             "repository": "git@github.com:SonsOfPHP/clock.git"
         },
         {
-            "path": "src/SonsOfPHP/Component/Common",
-            "repository": "git@github.com:SonsOfPHP/common.git"
-        },
-        {
             "path": "src/SonsOfPHP/Component/Cqrs",
             "repository": "git@github.com:SonsOfPHP/cqrs.git"
         },
