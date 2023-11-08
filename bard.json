@@ -73,6 +73,30 @@
         {
             "path": "src/SonsOfPHP/Contract/Core",
             "repository": "git@github.com:SonsOfPHP/core-contract.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Contract/cqrs",
+            "repository": "git@github.com:SonsOfPHP/cqrs-contract.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Contract/EventSourcing",
+            "repository": "git@github.com:SonsOfPHP/event-sourcing-contract.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Contract/FeatureToggle",
+            "repository": "git@github.com:SonsOfPHP/feature-toggle-contract.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Contract/Filesystem",
+            "repository": "git@github.com:SonsOfPHP/filesystem-contract.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Contract/Money",
+            "repository": "git@github.com:SonsOfPHP/money-contract.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Contract/Version",
+            "repository": "git@github.com:SonsOfPHP/version-contract.git"
         }
     ]
 }

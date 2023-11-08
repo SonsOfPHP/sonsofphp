@@ -36,7 +36,10 @@
         "php": ">=8.1"
     },
     "require-dev": {
-        "symfony/messenger": "^5|^6"
+        "symfony/messenger": "^5 || ^6"
+    },
+    "provide": {
+        "sonsofphp/cqrs-contract-implementation": "0.3.x-dev"
     },
     "suggest": {
         "sonsofphp/event-sourcing": "Use with event sourcing",

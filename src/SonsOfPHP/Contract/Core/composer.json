@@ -26,10 +26,7 @@
     "autoload": {
         "psr-4": {
             "SonsOfPHP\\Contract\\Core\\": ""
-        },
-        "exclude-from-classmap": [
-            "/Tests/"
-        ]
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
