@@ -11,7 +11,7 @@ use Psr\Http\Message\RequestFactoryInterface;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class RequestFactory implements RequestFactoryInterface
+final class HttpFactory implements RequestFactoryInterface
 {
     use RequestFactoryTrait;
     use ResponseFactoryTrait;
