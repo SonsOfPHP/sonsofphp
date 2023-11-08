@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\Cqrs\Query;
+namespace SonsOfPHP\Contract\Cqrs\Query;
 
-use SonsOfPHP\Component\Cqrs\MessageInterface;
+use SonsOfPHP\Contract\Cqrs\MessageInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

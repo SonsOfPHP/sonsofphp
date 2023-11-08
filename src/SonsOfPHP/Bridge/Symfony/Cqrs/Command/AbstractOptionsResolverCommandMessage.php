@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Symfony\Cqrs\Command;
 
-use SonsOfPHP\Component\Cqrs\Command\CommandMessageInterface;
+use SonsOfPHP\Contract\Cqrs\Command\CommandMessageInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**

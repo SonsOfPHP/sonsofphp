@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Cqrs;
 
+use SonsOfPHP\Component\Cqrs\AbstractMessage;
+
 /**
- * Both Command and Queries implement this.
- *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface MessageInterface {}
+abstract class AbstractQueryMessage extends AbstractMessage {}
