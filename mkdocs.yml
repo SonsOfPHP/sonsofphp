@@ -1,6 +1,7 @@
 site_name: Sons of PHP - Documentation
 site_url: https://docs.sonsofphp.com/
 site_author: Joshua Estes
+site_description: Sons of PHP creates and maintains helpful packages for PHP.
 
 repo_url: https://github.com/SonsOfPHP/sonsofphp
 repo_name: Mother Repository
@@ -11,13 +12,19 @@ edit_uri: https://github.com/SonsOfPHP/sonsofphp/edit/main/docs/
 
 theme:
     name: material
+    palette:
+        scheme: slate
     features:
         #- navigation.instant
         - navigation.tabs
         #- navigation.sections
         - navigation.top
         - navigation.indexes
+        - content.action.edit
+        - content.action.view
         - content.code.annotate
+        - content.code.copy
+        - content.tabs.link
     icon:
         repo: fontawesome/brands/github
 
@@ -27,6 +34,8 @@ plugins:
     #    minify_html: true
 
 extra:
+    #version:
+    #    default: latest
     generator: false
     #version:
     #    provider: mike
@@ -46,12 +55,21 @@ markdown_extensions:
     - pymdownx.snippets
     - pymdownx.superfences
     - pymdownx.emoji
+    - attr_list
+    - md_in_html
 
 nav:
     - Home:
         - index.md
         - Reporting Issues: reporting-issues.md
-        - Contributing: contributing.md
+        - Contributing:
+            - contributing/index.md
+            - Documentation:
+                - contributing/documentation/index.md
+            - Code:
+                - contributing/code/index.md
+            - Discussions:
+                - contributing/discussions/index.md
         - Getting Help: getting-help.md
         - Code of Conduct: code-of-conduct.md
         - Security Policy: security.md
