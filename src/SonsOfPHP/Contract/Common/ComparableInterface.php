@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Contract\Core;
+namespace SonsOfPHP\Contract\Common;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

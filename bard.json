@@ -14,6 +14,10 @@
             "repository": "git@github.com:SonsOfPHP/clock.git"
         },
         {
+            "path": "src/SonsOfPHP/Component/Common",
+            "repository": "git@github.com:SonsOfPHP/common.git"
+        },
+        {
             "path": "src/SonsOfPHP/Component/Cqrs",
             "repository": "git@github.com:SonsOfPHP/cqrs.git"
         },
@@ -71,11 +75,11 @@
             "repository": "git@github.com:SonsOfPHP/version.git"
         },
         {
-            "path": "src/SonsOfPHP/Contract/Core",
-            "repository": "git@github.com:SonsOfPHP/core-contract.git"
+            "path": "src/SonsOfPHP/Contract/Common",
+            "repository": "git@github.com:SonsOfPHP/common-contract.git"
         },
         {
-            "path": "src/SonsOfPHP/Contract/cqrs",
+            "path": "src/SonsOfPHP/Contract/Cqrs",
             "repository": "git@github.com:SonsOfPHP/cqrs-contract.git"
         },
         {

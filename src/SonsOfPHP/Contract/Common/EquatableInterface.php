@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Contract\Core;
+namespace SonsOfPHP\Contract\Common;
 
 /**
  * Equatable Interface is used for objects that can be checked to see if they

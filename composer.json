@@ -90,7 +90,8 @@
         "sonsofphp/feature-toggle-contract": "self.version",
         "sonsofphp/filesystem-contract": "self.version",
         "sonsofphp/money-contract": "self.version",
-        "sonsofphp/version-contract": "self.version"
+        "sonsofphp/version-contract": "self.version",
+        "sonsofphp/common-contract": "self.version"
     },
     "autoload": {
         "psr-4": {
@@ -111,8 +112,8 @@
             "SonsOfPHP\\Component\\Json\\": "src/SonsOfPHP/Component/Json",
             "SonsOfPHP\\Component\\Money\\": "src/SonsOfPHP/Component/Money",
             "SonsOfPHP\\Component\\Version\\": "src/SonsOfPHP/Component/Version",
-            "SonsOfPHP\\Contract\\Core\\": "src/SonsOfPHP/Contract/Core",
-            "SonsOfPHP\\Contract\\Cqrs\\": "src/SonsOfPHP/Contract/cqrs",
+            "SonsOfPHP\\Contract\\Common\\": "src/SonsOfPHP/Contract/Common",
+            "SonsOfPHP\\Contract\\Cqrs\\": "src/SonsOfPHP/Contract/Cqrs",
             "SonsOfPHP\\Contract\\EventSourcing\\": "src/SonsOfPHP/Contract/EventSourcing",
             "SonsOfPHP\\Contract\\FeatureToggle\\": "src/SonsOfPHP/Contract/FeatureToggle",
             "SonsOfPHP\\Contract\\Filesystem\\": "src/SonsOfPHP/Contract/Filesystem",

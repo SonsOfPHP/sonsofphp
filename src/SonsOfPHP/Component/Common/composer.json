@@ -1,7 +1,7 @@
 {
-    "name": "sonsofphp/core-contract",
+    "name": "sonsofphp/common",
     "type": "library",
-    "description": "Core Contracts that are not specific to any one library",
+    "description": "Common code that is not specific to any one library, but is used by all",
     "keywords": [
         "abstractions",
         "contracts",
@@ -10,7 +10,7 @@
         "interoperability",
         "standards"
     ],
-    "homepage": "https://github.com/SonsOfPHP/core-contract",
+    "homepage": "https://github.com/SonsOfPHP/common",
     "license": "MIT",
     "authors": [
         {
@@ -25,13 +25,19 @@
     },
     "autoload": {
         "psr-4": {
-            "SonsOfPHP\\Contract\\Core\\": ""
-        }
+            "SonsOfPHP\\Component\\Common\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.1"
+        "php": ">=8.1",
+    },
+    "provide": {
+        "sonsofphp/common-contract-implementation": "^1.0"
     },
     "extra": {
         "sort-packages": true,
