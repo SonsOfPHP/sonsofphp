@@ -19,7 +19,7 @@ namespace SonsOfPHP\Contract\Cqrs;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface MessageInterface// extends \JsonSerializable, \Serializable
+interface MessageInterface
 {
     /**
      * Adds a new value for a given key.

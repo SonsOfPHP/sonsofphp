@@ -9,6 +9,4 @@ namespace SonsOfPHP\Contract\Cqrs\Exception;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface CqrsExceptionInterface
-{
-}
+interface CqrsExceptionInterface {}
