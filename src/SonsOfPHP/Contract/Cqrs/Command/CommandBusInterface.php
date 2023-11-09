@@ -21,5 +21,5 @@ interface CommandBusInterface
      * @throws \SonsOfPHP\Contract\Cqrs\Exception\CqrsExceptionInterface
      *   If something fucks up, this will be thrown
      */
-    public function dispatch(CommandMessageInterface $command): void;
+    public function dispatch(object $command): void;
 }
