@@ -15,9 +15,29 @@ abstract class AbstractMessage implements MessageInterface, \JsonSerializable, \
 
     public function with(string|array $key, mixed $value): static
     {
+        if (is_object($value) && !$value instanceof \Stringable) {
+            throw new \InvalidArgumentException('$value is invalid');
+        }
+
+        if ($value instanceof \Stringable) {
+            $value = (string) $value;
+        }
+
+        // @todo make sure $value is null
         if (is_array($key)) {
             $that = clone $this;
-            $that->payload = $key;
+            foreach ($key as $k => $v) {
+                // @todo make sure $k is string
+                if (is_object($v) && !$v instanceof \Stringable) {
+                    throw new \InvalidArgumentException('The array contains invalid values');
+                }
+
+                if ($v instanceof \Stringable) {
+                    $v = (string) $v;
+                }
+
+                $that->payload[$k] = $v;
+            }
 
             return $that;
         }
@@ -41,6 +61,8 @@ abstract class AbstractMessage implements MessageInterface, \JsonSerializable, \
         if (!array_key_exists($key, $this->payload)) {
             throw new \Exception(sprintf('The key "%s" does not exist.', $key));
         }
+
+        return $this->payload[$key];
     }
 
     public function serialize(): ?string
@@ -55,6 +77,16 @@ abstract class AbstractMessage implements MessageInterface, \JsonSerializable, \
     public function unserialize(string $data): void
     {
         $this->payload = json_decode($data, true);
+    }
+
+    public function __serialize(): array
+    {
+        return $this->payload;
+    }
+
+    public function __unserialize(array $data): void
+    {
+        $this->payload = $data;
     }
 
     public function jsonSerialize(): array

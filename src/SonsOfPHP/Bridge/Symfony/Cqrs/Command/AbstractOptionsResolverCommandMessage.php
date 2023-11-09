@@ -6,6 +6,7 @@ namespace SonsOfPHP\Bridge\Symfony\Cqrs\Command;
 
 use SonsOfPHP\Contract\Cqrs\Command\CommandMessageInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use SonsOfPHP\Component\Cqrs\Command\AbstractCommandMessage;
 
 /**
  * Abstract Command Message.
@@ -20,7 +21,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-abstract class AbstractOptionsResolverCommandMessage implements CommandMessageInterface
+abstract class AbstractOptionsResolverCommandMessage extends AbstractCommandMessage implements CommandMessageInterface
 {
     private array $options = [];
 

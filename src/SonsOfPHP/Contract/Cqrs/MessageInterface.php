@@ -32,7 +32,12 @@ interface MessageInterface
      * If the $key is an array, it should be a key => value array and will overwrite
      * all the existing values
      *
-     * @throws \SonsOfPHP\Contract\Cqrs\Exception\CqrsExceptionInterface
+     * @param mixed $value
+     *   - If an object is passed in, it must be able to be converted to a
+     *     string. If it's unable to be converted to string, an exception
+     *     is thrown.
+     *
+     * @throws \InvalidArgumentException
      *   - If the given key or value is invalid
      *
      * Examples:
@@ -42,7 +47,7 @@ interface MessageInterface
      *      'account_id' => 2131,
      *   ]);
      */
-    //public function with(string|array $key, mixed $value): static;
+    public function with(string|array $key, mixed $value): static;
 
     /**
      * Returns the value stored for a given key.
@@ -57,5 +62,5 @@ interface MessageInterface
      *   $userId  = $message->get('user_id');
      *   $payload = $message->get();
      */
-    //public function get(?string $key = null): mixed;
+    public function get(?string $key = null): mixed;
 }

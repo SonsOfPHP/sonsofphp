@@ -1,19 +1,21 @@
 ---
-title: Core Contracts - Overview
+title: Common Contracts - Overview
 ---
 
-# Core Contracts
+# Common Contracts
 
-Core Contracts are generic contracts that are not specific to any one package or
+Common Contracts are generic contracts that are not specific to any one package or
 project.
 
 ## Installation
 
 ```shell
-composer require sonsofphp/core-contract
+composer require sonsofphp/common-contract
 ```
 
 ## Includes Interfaces
 
+* ArrayableInterface
 * ComparableInterface
 * EquatableInterface
+* JsonableInterface

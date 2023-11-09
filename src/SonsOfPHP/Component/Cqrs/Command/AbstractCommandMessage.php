@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\Cqrs;
+namespace SonsOfPHP\Component\Cqrs\Command;
 
 use SonsOfPHP\Component\Cqrs\AbstractMessage;
 use SonsOfPHP\Contract\Cqrs\Command\CommandMessageInterface;

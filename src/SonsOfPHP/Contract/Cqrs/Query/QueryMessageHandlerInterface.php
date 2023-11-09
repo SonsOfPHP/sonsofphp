@@ -11,5 +11,10 @@ use SonsOfPHP\Contract\Cqrs\MessageHandlerInterface;
  */
 interface QueryMessageHandlerInterface extends MessageHandlerInterface
 {
-    //public function __invoke(QueryMessageInterface $message): mixed;
+    /**
+     * @throws \SonsOfPHP\Contract\Cqrs\Exception\CqrsExceptionInterface
+     *   When something really fucks up and the handler is unable to handle
+     *   it's shit
+     */
+    public function __invoke(QueryMessageInterface $message): mixed;
 }

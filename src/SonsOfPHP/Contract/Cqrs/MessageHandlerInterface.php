@@ -9,5 +9,5 @@ namespace SonsOfPHP\Contract\Cqrs;
  */
 interface MessageHandlerInterface
 {
-    //public function __invoke(MessageInterface $message);
+    public function __invoke(MessageInterface $message): mixed;
 }

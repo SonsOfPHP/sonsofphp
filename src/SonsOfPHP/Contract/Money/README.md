@@ -11,6 +11,6 @@ Sons of PHP - Money Contract
 [discussions]: https://github.com/orgs/SonsOfPHP/discussions
 [mother-repo]: https://github.com/SonsOfPHP/sonsofphp
 [contributing]: https://docs.sonsofphp.com/contributing/
-[docs]: https://docs.sonsofphp.com/components/http-message/
+[docs]: https://docs.sonsofphp.com/contracts/money/
 [issues]: https://github.com/SonsOfPHP/sonsofphp/issues?q=is%3Aopen+is%3Aissue+label%3AMoney
 [pull-requests]: https://github.com/SonsOfPHP/sonsofphp/pulls?q=is%3Aopen+is%3Apr+label%3AMoney
