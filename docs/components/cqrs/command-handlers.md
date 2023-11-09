@@ -10,17 +10,18 @@ command. Command Handlers do NOT return any results.
 ```php
 <?php
 
-use SonsOfPHP\Component\Cqrs\Command\CommandMessageHandlerInterface;
-
-final class ExampleCommandHandler implements CommandMessageHandlerInterface
+class ExampleCommandHandler
 {
+    public function __invoke($command)
+    {
+    }
 }
 ```
 
 ## Getting the Command to the Command Handler
 
 !!! attention
-    The `CommandMessageBus` reqires the `sonsofphp/cqrs-symfony`
+    The `CommandMessageBus` requires the `sonsofphp/cqrs-symfony`
     package.
 
 You can use Messenger to process commands. If you're using Messenger as a

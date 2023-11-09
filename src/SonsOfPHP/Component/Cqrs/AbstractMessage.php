@@ -9,7 +9,7 @@ use SonsOfPHP\Contract\Cqrs\MessageInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-abstract class AbstractMessage implements MessageInterface, \JsonSerializable, \Serializable
+abstract class AbstractMessage implements MessageInterface, \JsonSerializable, \Serializable, \IteratorAggregate
 {
     private array $payload = [];
 
@@ -94,5 +94,10 @@ abstract class AbstractMessage implements MessageInterface, \JsonSerializable, \
     public function jsonSerialize(): array
     {
         return $this->payload;
+    }
+
+    public function getIterator(): \Traversable
+    {
+        return new \ArrayIterator($this->payload);
     }
 }
