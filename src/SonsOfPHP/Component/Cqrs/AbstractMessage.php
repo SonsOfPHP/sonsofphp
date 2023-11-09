@@ -13,21 +13,23 @@ abstract class AbstractMessage implements MessageInterface, \JsonSerializable, \
 {
     private array $payload = [];
 
-    public function with(string|array $key, mixed $value): static
+    public function with(string|array $key, mixed $value = null): static
     {
         if (is_object($value) && !$value instanceof \Stringable) {
             throw new \InvalidArgumentException('$value is invalid');
+        }
+
+        if (is_array($key) && null !== $value) {
+            throw new \InvalidArgumentException('$key is invalid, you cannot pass in $value when $key is an array');
         }
 
         if ($value instanceof \Stringable) {
             $value = (string) $value;
         }
 
-        // @todo make sure $value is null
         if (is_array($key)) {
             $that = clone $this;
             foreach ($key as $k => $v) {
-                // @todo make sure $k is string
                 if (is_object($v) && !$v instanceof \Stringable) {
                     throw new \InvalidArgumentException('The array contains invalid values');
                 }
@@ -68,7 +70,7 @@ abstract class AbstractMessage implements MessageInterface, \JsonSerializable, \
     public function serialize(): ?string
     {
         if (false === $json = json_encode($this)) {
-            throw new \Exception('Unable to serialize object');
+            throw new \RuntimeException('Unable to serialize object');
         }
 
         return $json;

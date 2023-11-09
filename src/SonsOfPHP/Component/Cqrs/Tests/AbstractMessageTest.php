@@ -34,6 +34,57 @@ final class AbstractMessageTest extends TestCase
     /**
      * @covers ::with
      */
+    public function testWithWhenKeyIsAnArrayThatContainsAStringableValue(): void
+    {
+        $msg = $this->getMockForAbstractClass(AbstractMessage::class)->with([
+            'key' => new class implements \Stringable {
+                public function __toString(): string
+                {
+                    return 'value';
+                }
+            },
+        ]);
+
+        $this->assertSame('value', $msg->get('key'));
+    }
+
+    /**
+     * @covers ::with
+     */
+    public function testWithWhenKeyIsAnArrayThatContainsAnInvalidValue(): void
+    {
+        $this->expectException('InvalidArgumentException');
+        $msg = $this->getMockForAbstractClass(AbstractMessage::class)->with([
+            'key' => new \stdClass(),
+        ]);
+    }
+
+    /**
+     * @covers ::with
+     */
+    public function testWithWhenKeyIsAnArrayAndValueIsNotNull(): void
+    {
+        $this->expectException('InvalidArgumentException');
+        $msg = $this->getMockForAbstractClass(AbstractMessage::class)->with([
+            'key' => 'value',
+        ], 'value');
+    }
+
+    /**
+     * @covers ::with
+     */
+    public function testWithWhenKeyIsAnArray(): void
+    {
+        $msg = $this->getMockForAbstractClass(AbstractMessage::class)->with([
+            'key' => 'value',
+        ]);
+
+        $this->assertSame('value', $msg->get('key'));
+    }
+
+    /**
+     * @covers ::with
+     */
     public function testWithWillReturnANewInstanceIfNewData(): void
     {
         $msg = $this->getMockForAbstractClass(AbstractMessage::class)->with('value', 'key');

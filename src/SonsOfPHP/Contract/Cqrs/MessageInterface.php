@@ -47,7 +47,7 @@ interface MessageInterface
      *      'account_id' => 2131,
      *   ]);
      */
-    public function with(string|array $key, mixed $value): static;
+    public function with(string|array $key, mixed $value = null): static;
 
     /**
      * Returns the value stored for a given key.
