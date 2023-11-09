@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\Cqrs\Command;
+namespace SonsOfPHP\Component\Cqrs\Query;
 
-use SonsOfPHP\Component\Cqrs\AbstractBus;
 use SonsOfPHP\Component\Cqrs\AbstractMessage;
+use SonsOfPHP\Component\Cqrs\AbstractBus;
 use SonsOfPHP\Component\Cqrs\MessageHandlerProvider;
-use SonsOfPHP\Contract\Cqrs\Command\CommandBusInterface;
+use SonsOfPHP\Contract\Cqrs\Query\QueryBusInterface;
 use SonsOfPHP\Contract\Cqrs\MessageHandlerProviderInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class CommandBus extends AbstractBus implements CommandBusInterface
+class QueryBus extends AbstractBus implements QueryBusInterface
 {
-    public function dispatch(object $command): void
+    public function handle(object $command): mixed
     {
         $handler = $this->provider->getHandlerForMessage($command);
 
-        $handler($command, $this);
+        return $handler($command, $this);
     }
 }
