@@ -90,6 +90,8 @@ nav:
             - components/event-sourcing/index.md
             - Aggregates:
                 - components/event-sourcing/aggregates/index.md
+                - Aggregate ID: components/event-sourcing/aggregates/aggregate-id.md
+                - Aggregate Version: components/event-sourcing/aggregates/aggregate-version.md
                 - Storage:
                     - components/event-sourcing/aggregates/storage/index.md
             - Event Messages:

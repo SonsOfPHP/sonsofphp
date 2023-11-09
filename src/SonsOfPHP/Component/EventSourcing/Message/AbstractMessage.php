@@ -27,7 +27,7 @@ abstract class AbstractMessage implements MessageInterface
         private MessageMetadata $metadata = new MessageMetadata(),
     ) {}
 
-    final public static function new(): MessageInterface
+    final public static function new(): static
     {
         return new static(new MessagePayload(), new MessageMetadata());
     }

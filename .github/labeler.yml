@@ -60,3 +60,4 @@ Contracts:
 
 documentation:
   - docs/**
+  - mkdocs.yml

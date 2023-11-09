@@ -25,7 +25,7 @@ interface MessageInterface
      *
      * @return static
      */
-    public static function new(): self;
+    public static function new(): static;
 
     /**
      * Returns the Aggregate ID, if the aggregate ID is unknown, it

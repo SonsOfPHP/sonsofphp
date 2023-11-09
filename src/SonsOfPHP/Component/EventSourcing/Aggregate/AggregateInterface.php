@@ -47,9 +47,9 @@ interface AggregateInterface
     /**
      * Build Aggregate from a collection of Domain Events.
      *
-     * @param \Generator $events yields MessageInterface objects
+     * @param iterable $events yields MessageInterface objects
      *
      * @throws EventSourcingException
      */
-    public static function buildFromEvents(AggregateIdInterface $id, \Generator $events): self;
+    public static function buildFromEvents(AggregateIdInterface $id, iterable $events): self;
 }
