@@ -9,7 +9,7 @@ namespace SonsOfPHP\Contract\FeatureToggle;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface ContextInterface// extends \ArrayAccess, \IteratorAggregate, \JsonSerializable
+interface ContextInterface // extends \ArrayAccess, \IteratorAggregate, \JsonSerializable
 {
     /**
      * Get Context Parameters

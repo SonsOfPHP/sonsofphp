@@ -6,7 +6,7 @@ namespace SonsOfPHP\Component\Money\Tests\Query\Amount;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Amount;
-use SonsOfPHP\Component\Money\Query\Amount\AmountQueryInterface;
+use SonsOfPHP\Contract\Money\Query\Amount\AmountQueryInterface;
 use SonsOfPHP\Component\Money\Query\Amount\IsPositiveAmountQuery;
 
 /**

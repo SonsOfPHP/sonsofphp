@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Contract\Money;
 
-use SonsOfPHP\Contract\Money\CurrencyInterface;
 use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
-use SonsOfPHP\Contract\Money\Exception\UnknownCurrencyExceptionInterface;
 use SonsOfPHP\Contract\Money\Query\CurrencyProvider\CurrencyProviderQueryInterface;
 
 /**
@@ -19,8 +17,9 @@ interface CurrencyProviderInterface
     /**
      * Returns all of the currencies this Currency Provide will provide.
      *
-     * @throw MoneyException This method may throw an exception if, for example it's making queries
-     *                       to a database, if it's unable to return any currencies
+     * @throw MoneyExceptionInterface
+     *   This method may throw an exception if, for example it's making queries
+     *   to a database, if it's unable to return any currencies
      *
      * @return CurrencyInterface[]
      */
@@ -35,7 +34,7 @@ interface CurrencyProviderInterface
      * @throw MoneyException
      * @throw UnknownCurrencyException
      */
-    public function hasCurrency($currency): bool;
+    public function hasCurrency(CurrencyInterface|string $currency): bool;
 
     /**
      * Returns the currency or thows MoneyException is currency does not
@@ -46,7 +45,7 @@ interface CurrencyProviderInterface
      * @throw MoneyException
      * @throw UnknownCurrencyException
      */
-    public function getCurrency($currency): CurrencyInterface;
+    public function getCurrency(CurrencyInterface|string $currency): CurrencyInterface;
 
     /**
      * In case you need to run your own queries against this provider the query

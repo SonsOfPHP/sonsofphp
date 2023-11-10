@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\Money\Operator\Amount;
+namespace SonsOfPHP\Contract\Money\Operator\Amount;
 
-use SonsOfPHP\Component\Money\AmountInterface;
-use SonsOfPHP\Component\Money\Exception\MoneyException;
+use SonsOfPHP\Contract\Money\AmountInterface;
+use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -13,7 +13,7 @@ use SonsOfPHP\Component\Money\Exception\MoneyException;
 interface AmountOperatorInterface
 {
     /**
-     * @throws MoneyException
+     * @throws MoneyExceptionInterface
      */
     public function apply(AmountInterface $amount): AmountInterface;
 }

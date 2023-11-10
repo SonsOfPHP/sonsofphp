@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Money;
 
 use SonsOfPHP\Component\Money\Operator\Amount\AddAmountOperator;
-use SonsOfPHP\Component\Money\Operator\Amount\AmountOperatorInterface;
+use SonsOfPHP\Contract\Money\Operator\Amount\AmountOperatorInterface;
 use SonsOfPHP\Component\Money\Operator\Amount\DivideAmountOperator;
 use SonsOfPHP\Component\Money\Operator\Amount\MultiplyAmountOperator;
 use SonsOfPHP\Component\Money\Operator\Amount\SubtractAmountOperator;
-use SonsOfPHP\Component\Money\Query\Amount\AmountQueryInterface;
+use SonsOfPHP\Contract\Money\Query\Amount\AmountQueryInterface;
 use SonsOfPHP\Component\Money\Query\Amount\IsEqualToAmountQuery;
 use SonsOfPHP\Component\Money\Query\Amount\IsGreaterThanAmountQuery;
 use SonsOfPHP\Component\Money\Query\Amount\IsGreaterThanOrEqualToAmountQuery;

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\FeatureToggle\Tests\Toggle;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\FeatureToggle\Context;
 use SonsOfPHP\Component\FeatureToggle\Toggle\AffirmativeToggle;
 use SonsOfPHP\Component\FeatureToggle\Toggle\MockToggle;
 use SonsOfPHP\Contract\FeatureToggle\ToggleInterface;
