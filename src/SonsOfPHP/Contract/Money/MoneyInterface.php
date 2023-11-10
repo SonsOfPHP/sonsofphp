@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\Money;
+namespace SonsOfPHP\Contract\Money;
 
-use SonsOfPHP\Component\Money\Operator\Money\MoneyOperatorInterface;
-use SonsOfPHP\Component\Money\Query\Money\MoneyQueryInterface;
+use SonsOfPHP\Contract\Money\Operator\Money\MoneyOperatorInterface;
+use SonsOfPHP\Contract\Money\Query\Money\MoneyQueryInterface;
 
 /**
  * Money Interface.

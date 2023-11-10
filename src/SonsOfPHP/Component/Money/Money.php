@@ -18,6 +18,9 @@ use SonsOfPHP\Component\Money\Query\Money\IsNegativeMoneyQuery;
 use SonsOfPHP\Component\Money\Query\Money\IsPositiveMoneyQuery;
 use SonsOfPHP\Component\Money\Query\Money\IsZeroMoneyQuery;
 use SonsOfPHP\Component\Money\Query\Money\MoneyQueryInterface;
+use SonsOfPHP\Contract\Money\MoneyInterface;
+use SonsOfPHP\Contract\Money\CurrencyInterface;
+use SonsOfPHP\Contract\Money\AmountInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\Money;
+namespace SonsOfPHP\Contract\Money;
 
-use SonsOfPHP\Component\Money\Query\Currency\CurrencyQueryInterface;
+use SonsOfPHP\Contract\Money\Query\Currency\CurrencyQueryInterface;
 
 /**
  * Currency Interface.

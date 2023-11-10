@@ -18,6 +18,7 @@ use SonsOfPHP\Component\Money\Query\Amount\IsLessThanOrEqualToAmountQuery;
 use SonsOfPHP\Component\Money\Query\Amount\IsNegativeAmountQuery;
 use SonsOfPHP\Component\Money\Query\Amount\IsPositiveAmountQuery;
 use SonsOfPHP\Component\Money\Query\Amount\IsZeroAmountQuery;
+use SonsOfPHP\Contract\Money\AmountInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
