@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\FeatureToggle;
+namespace SonsOfPHP\Contract\FeatureToggle;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

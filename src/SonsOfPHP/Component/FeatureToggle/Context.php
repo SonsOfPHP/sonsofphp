@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\FeatureToggle;
 
+use SonsOfPHP\Contract\FeatureToggle\ContextInterface;
+
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */

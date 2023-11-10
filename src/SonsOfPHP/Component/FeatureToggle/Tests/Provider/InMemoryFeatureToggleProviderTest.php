@@ -6,9 +6,9 @@ namespace SonsOfPHP\Component\FeatureToggle\Tests\Provider;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\FeatureToggle\Feature;
-use SonsOfPHP\Component\FeatureToggle\Provider\FeatureToggleProviderInterface;
+use SonsOfPHP\Contract\FeatureToggle\FeatureToggleProviderInterface;
 use SonsOfPHP\Component\FeatureToggle\Provider\InMemoryFeatureToggleProvider;
-use SonsOfPHP\Component\FeatureToggle\ToggleInterface;
+use SonsOfPHP\Contract\FeatureToggle\ToggleInterface;
 use PHPUnit\Framework\MockObject;
 
 /**

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\FeatureToggle;
+namespace SonsOfPHP\Contract\FeatureToggle;
 
 /**
  * Feature Interface.

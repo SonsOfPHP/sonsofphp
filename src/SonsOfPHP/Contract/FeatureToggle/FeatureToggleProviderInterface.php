@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\FeatureToggle\Provider;
+namespace SonsOfPHP\Contract\FeatureToggle;
 
-use SonsOfPHP\Component\FeatureToggle\FeatureInterface;
+use SonsOfPHP\Contract\FeatureToggle\FeatureInterface;
 
 /**
  * Feature Toggle Provider Interface.

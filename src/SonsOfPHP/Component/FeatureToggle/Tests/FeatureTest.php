@@ -7,8 +7,8 @@ namespace SonsOfPHP\Component\FeatureToggle\Tests;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\FeatureToggle\Context;
 use SonsOfPHP\Component\FeatureToggle\Feature;
-use SonsOfPHP\Component\FeatureToggle\FeatureInterface;
-use SonsOfPHP\Component\FeatureToggle\ToggleInterface;
+use SonsOfPHP\Contract\FeatureToggle\FeatureInterface;
+use SonsOfPHP\Contract\FeatureToggle\ToggleInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\FeatureToggle\Feature

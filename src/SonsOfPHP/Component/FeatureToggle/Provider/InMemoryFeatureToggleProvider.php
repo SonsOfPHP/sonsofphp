@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\FeatureToggle\Provider;
 
-use SonsOfPHP\Component\FeatureToggle\FeatureInterface;
+use SonsOfPHP\Contract\FeatureToggle\FeatureInterface;
+use SonsOfPHP\Contract\FeatureToggle\FeatureToggleProviderInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
