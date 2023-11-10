@@ -35,7 +35,7 @@
         "php": ">=8.1"
     },
     "provide": {
-        "sonsofphp/money-contract-implementation": "0.3.x-dev"
+        "sonsofphp/money-implementation": "0.3.x-dev"
     },
     "extra": {
         "sort-packages": true,

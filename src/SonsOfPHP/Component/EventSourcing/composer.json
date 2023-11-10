@@ -36,7 +36,7 @@
         "phpunit/phpunit": "^10.4"
     },
     "provide": {
-        "sonsofphp/event-sourcing-contract-implementation": "0.3.x-dev"
+        "sonsofphp/event-sourcing-implementation": "0.3.x-dev"
     },
     "suggest": {
         "sonsofphp/event-sourcing-doctrine": "Adds additional functionality using Doctrine",
