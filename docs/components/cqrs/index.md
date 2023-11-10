@@ -1,5 +1,5 @@
 ---
-title: CQRS
+title: Cqrs Component
 ---
 
 Command Query Responsibility Segregation is a simple concept. When you want

@@ -1,5 +1,5 @@
 ---
-title: Cqrs Contracts - Overview
+title: Cqrs Contract
 ---
 
 In a nut shell, with CQRS you have Commands that will change the state of your
