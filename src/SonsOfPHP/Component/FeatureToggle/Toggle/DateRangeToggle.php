@@ -23,6 +23,6 @@ class DateRangeToggle implements ToggleInterface
     {
         $now = new \DateTimeImmutable();
 
-        return ($this->start >= $now && $now <= $this->stop);
+        return ($this->start <= $now && $now <= $this->stop);
     }
 }

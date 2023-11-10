@@ -13,71 +13,28 @@ final class Context implements ContextInterface
 {
     public function __construct(private array $data = []) {}
 
-    /**
-     * $context[$offset] = $value;
-     */
-    public function offsetSet($offset, $value): void
+    public function get(?string $key = null, mixed $default = null): mixed
     {
-        if (null === $offset) {
-            throw new \Exception('Requires a key');
+        if (null === $key) {
+            return $this->data;
         }
 
-        $this->data[$offset] = $value;
-    }
-
-    /**
-     * isset($context[$offset])
-     * empty($context[$offset])
-     */
-    public function offsetExists($offset): bool
-    {
-        return \array_key_exists($offset, $this->data);
-    }
-
-    /**
-     * unset($context[$offset]);
-     */
-    public function offsetUnset($offset): void
-    {
-        unset($this->data[$offset]);
-    }
-
-    /**
-     * $value = $context[$offset];
-     */
-    public function offsetGet($offset): mixed
-    {
-        return $this->data[$offset] ?? null;
-    }
-
-    public function getIterator(): \Traversable
-    {
-        return new \ArrayIterator($this->data);
-    }
-
-    public function jsonSerialize(): mixed
-    {
-        return $this->data;
-    }
-
-    public function get(string $key, mixed $default = null): mixed
-    {
         if (!$this->has($key)) {
             return $default;
         }
 
-        return $this->offsetGet($key);
+        return $this->data[$key];
     }
 
     public function set(string $key, mixed $value): ContextInterface
     {
-        $this->offsetSet($key, $value);
+        $this->data[$key] = $value;
 
         return $this;
     }
 
     public function has(string $key): bool
     {
-        return $this->offsetExists($key);
+        return \array_key_exists($key, $this->data);
     }
 }

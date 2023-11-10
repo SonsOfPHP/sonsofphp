@@ -26,19 +26,25 @@ final class ContextTest extends TestCase
     }
 
     /**
-     * @covers ::get
-     * @covers ::has
-     * @covers ::set
+     * @covers ::__construct
      */
-    public function testItWorksCorrectly(): void
+    public function testConstruct(): void
     {
-        $context = new Context();
+        $context = new Context([
+            'key' => 'value',
+        ]);
+        $this->assertSame('value', $context->get('key'));
+    }
 
-        $this->assertFalse($context->has('test'));
-        $this->assertNull($context->get('test'), 'Assert NULL is returned if not set');
-
-        $context->set('test', 'value');
-        $this->assertSame('value', $context->get('test'));
+    /**
+     * @covers ::get
+     */
+    public function testGetWhenThereIsValueForKey(): void
+    {
+        $context = new Context([
+            'key' => 'value',
+        ]);
+        $this->assertSame('value', $context->get('key'));
     }
 
     /**
@@ -57,5 +63,49 @@ final class ContextTest extends TestCase
     {
         $context = new Context();
         $this->assertTrue($context->get('test', true));
+    }
+
+    /**
+     * @covers ::get
+     */
+    public function testGetWithNoArgumentsWillReturnAll(): void
+    {
+        $context = new Context();
+        $context->set('key', 'value');
+        $parameters = $context->get();
+        $this->assertIsArray($parameters);
+        $this->assertArrayHasKey('key', $parameters);
+    }
+
+    /**
+     * @covers ::set
+     */
+    public function testWorksAsExpected(): void
+    {
+        $context = new Context();
+        $context->set('key', 'value');
+        $this->assertSame('value', $context->get('key'));
+    }
+
+    /**
+     * @covers ::has
+     */
+    public function testHasWillReturnTrueWhenKeyExists(): void
+    {
+        $context = new Context([
+            'key' => 'value',
+        ]);
+        $this->assertTrue($context->has('key'));
+    }
+
+    /**
+     * @covers ::has
+     */
+    public function testHasWillReturnFalseWhenKeyExists(): void
+    {
+        $context = new Context([
+            'key' => 'value',
+        ]);
+        $this->assertFalse($context->has('value'));
     }
 }

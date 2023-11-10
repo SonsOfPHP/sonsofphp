@@ -7,11 +7,9 @@ namespace SonsOfPHP\Contract\FeatureToggle;
 /**
  * Context is used to pass additional paramters to a toggle
  *
- * @todo Does it need all the extra interfaces? Doubtful
- *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface ContextInterface extends \ArrayAccess, \IteratorAggregate, \JsonSerializable
+interface ContextInterface// extends \ArrayAccess, \IteratorAggregate, \JsonSerializable
 {
     /**
      * Get Context Parameters
@@ -24,10 +22,20 @@ interface ContextInterface extends \ArrayAccess, \IteratorAggregate, \JsonSerial
 
     /**
      * @throws \InvalidArgumentException if key or value is invalid
-     *
-     * @todo If this is a value object, it should be "with" instead of "set"
      */
     public function set(string $key, mixed $value): self;
 
+    /**
+     * If Context is a value object, with should be used instead.
+     *
+     * If key and value are the same, no need to clone, just return the same
+     * object as nothing has changed
+     *
+     * @throws \InvalidArgumentException if key or value is invalid
+     */
+    //public function with(array|string $key, mixed $value = null): static;
+
+    /**
+     */
     public function has(string $key): bool;
 }

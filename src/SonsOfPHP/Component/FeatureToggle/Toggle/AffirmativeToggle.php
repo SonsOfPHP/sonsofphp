@@ -8,12 +8,12 @@ use SonsOfPHP\Contract\FeatureToggle\ContextInterface;
 use SonsOfPHP\Contract\FeatureToggle\ToggleInterface;
 
 /**
- * Chain Toggle will take multiple Toggles and if any are enabled,
- * it will be enabled.
+ * Affirmative Toggle will take multiple toggles and will only be enabled if
+ * all the toggles are enabled
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class ChainToggle implements ToggleInterface
+class AffirmativeToggle implements ToggleInterface
 {
     public function __construct(
         private array $toggles,
@@ -22,11 +22,11 @@ class ChainToggle implements ToggleInterface
     public function isEnabled(?ContextInterface $context = null): bool
     {
         foreach ($this->toggles as $toggle) {
-            if ($toggle->isEnabled($context)) {
-                return true;
+            if (!$toggle->isEnabled($context)) {
+                return false;
             }
         }
 
-        return false;
+        return true;
     }
 }
