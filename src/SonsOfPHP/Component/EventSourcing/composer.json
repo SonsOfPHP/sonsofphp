@@ -30,6 +30,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.1",
+        "sonsofphp/event-sourcing-contract": "^0.3.x-dev",
         "sonsofphp/event-dispatcher": "^0.3.x-dev"
     },
     "require-dev": {
