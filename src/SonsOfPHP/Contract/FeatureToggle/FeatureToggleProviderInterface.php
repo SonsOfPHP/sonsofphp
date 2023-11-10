@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Contract\FeatureToggle;
 
-use SonsOfPHP\Contract\FeatureToggle\FeatureInterface;
-
 /**
  * Feature Toggle Provider Interface.
  *
