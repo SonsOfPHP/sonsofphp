@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Symfony\Cqrs\Command;
 
-use SonsOfPHP\Contract\Cqrs\Command\CommandMessageInterface;
+use SonsOfPHP\Contract\Cqrs\CommandMessageInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use SonsOfPHP\Component\Cqrs\Command\AbstractCommandMessage;
+use SonsOfPHP\Component\Cqrs\AbstractCommandMessage;
 
 /**
  * Abstract Command Message.

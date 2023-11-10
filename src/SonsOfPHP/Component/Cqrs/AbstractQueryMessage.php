@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Cqrs;
 
-use SonsOfPHP\Component\Cqrs\AbstractMessage;
-use SonsOfPHP\Contract\Cqrs\Query\QueryMessageInterface;
+use SonsOfPHP\Contract\Cqrs\QueryMessageInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

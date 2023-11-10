@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\Cqrs\Tests\Command;
+namespace SonsOfPHP\Component\Cqrs\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Cqrs\Command\CommandBus;
-use SonsOfPHP\Contract\Cqrs\Command\CommandBusInterface;
+use SonsOfPHP\Component\Cqrs\CommandBus;
+use SonsOfPHP\Contract\Cqrs\CommandBusInterface;
 use SonsOfPHP\Component\Cqrs\MessageHandlerProvider;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Cqrs\Command\CommandBus
+ * @coversDefaultClass \SonsOfPHP\Component\Cqrs\CommandBus
  *
- * @uses \SonsOfPHP\Component\Cqrs\Command\CommandBus
+ * @uses \SonsOfPHP\Component\Cqrs\CommandBus
  * @uses \SonsOfPHP\Component\Cqrs\AbstractBus
  */
 final class CommandBusTest extends TestCase
@@ -41,7 +41,7 @@ final class CommandBusTest extends TestCase
     {
         $this->provider->expects($this->once())->method('add');
         $bus = new CommandBus($this->provider);
-        $bus->addHandler(new \stdClass(), function () {});
+        $bus->addHandler(new \stdClass(), function (): void {});
     }
 
     /**
@@ -49,7 +49,7 @@ final class CommandBusTest extends TestCase
      */
     public function testDispatch(): void
     {
-        $this->provider->expects($this->once())->method('getHandlerForMessage')->willReturn(function () {});
+        $this->provider->expects($this->once())->method('getHandlerForMessage')->willReturn(function (): void {});
         $bus = new CommandBus($this->provider);
         $bus->dispatch(new \stdClass());
     }

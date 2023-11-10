@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\Cqrs\Tests\Query;
+namespace SonsOfPHP\Component\Cqrs\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Cqrs\Query\QueryBus;
-use SonsOfPHP\Contract\Cqrs\Query\QueryBusInterface;
+use SonsOfPHP\Component\Cqrs\QueryBus;
+use SonsOfPHP\Contract\Cqrs\QueryBusInterface;
 use SonsOfPHP\Component\Cqrs\MessageHandlerProvider;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Cqrs\Query\QueryBus
+ * @coversDefaultClass \SonsOfPHP\Component\Cqrs\QueryBus
  *
- * @uses \SonsOfPHP\Component\Cqrs\Query\QueryBus
+ * @uses \SonsOfPHP\Component\Cqrs\QueryBus
  * @uses \SonsOfPHP\Component\Cqrs\AbstractBus
  */
 final class QueryBusTest extends TestCase
@@ -41,7 +41,7 @@ final class QueryBusTest extends TestCase
     {
         $this->provider->expects($this->once())->method('add');
         $bus = new QueryBus($this->provider);
-        $bus->addHandler(new \stdClass(), function () {});
+        $bus->addHandler(new \stdClass(), function (): void {});
     }
 
     /**
@@ -49,9 +49,7 @@ final class QueryBusTest extends TestCase
      */
     public function testHandle(): void
     {
-        $this->provider->expects($this->once())->method('getHandlerForMessage')->willReturn(function () {
-            return 'testing';
-        });
+        $this->provider->expects($this->once())->method('getHandlerForMessage')->willReturn(fn() => 'testing');
         $bus = new QueryBus($this->provider);
         $this->assertSame('testing', $bus->handle(new \stdClass()));
     }

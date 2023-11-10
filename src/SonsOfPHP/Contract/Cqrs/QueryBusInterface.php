@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Contract\Cqrs\Query;
-
-use SonsOfPHP\Contract\Cqrs\Query\QueryMessageInterface;
+namespace SonsOfPHP\Contract\Cqrs;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

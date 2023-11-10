@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Cqrs;
 
 use SonsOfPHP\Contract\Cqrs\MessageHandlerProviderInterface;
+use SonsOfPHP\Component\Cqrs\Exception\NoHandlerFoundException;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -45,7 +46,7 @@ class MessageHandlerProvider implements MessageHandlerProviderInterface
         }
 
         if (!array_key_exists($message, $this->handlers)) {
-            throw new \Exception(sprintf('No handler for message "%s" found.', $message));
+            throw new NoHandlerFoundException(sprintf('No handler for message "%s" found.', $message));
         }
 
         return $this->handlers[$message];

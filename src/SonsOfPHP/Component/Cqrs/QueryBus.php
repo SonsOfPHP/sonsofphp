@@ -2,13 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\Cqrs\Query;
+namespace SonsOfPHP\Component\Cqrs;
 
-use SonsOfPHP\Component\Cqrs\AbstractMessage;
-use SonsOfPHP\Component\Cqrs\AbstractBus;
-use SonsOfPHP\Component\Cqrs\MessageHandlerProvider;
-use SonsOfPHP\Contract\Cqrs\Query\QueryBusInterface;
-use SonsOfPHP\Contract\Cqrs\MessageHandlerProviderInterface;
+use SonsOfPHP\Contract\Cqrs\QueryBusInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

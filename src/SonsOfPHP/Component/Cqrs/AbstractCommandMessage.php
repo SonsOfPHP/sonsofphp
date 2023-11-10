@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\Cqrs\Command;
+namespace SonsOfPHP\Component\Cqrs;
 
-use SonsOfPHP\Component\Cqrs\AbstractMessage;
-use SonsOfPHP\Contract\Cqrs\Command\CommandMessageInterface;
+use SonsOfPHP\Contract\Cqrs\CommandMessageInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

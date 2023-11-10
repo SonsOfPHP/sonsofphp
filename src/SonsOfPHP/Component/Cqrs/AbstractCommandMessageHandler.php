@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\Cqrs\Command;
-
-use SonsOfPHP\Contract\Cqrs\MessageHandlerInterface;
+namespace SonsOfPHP\Component\Cqrs;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

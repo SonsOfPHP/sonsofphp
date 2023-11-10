@@ -7,6 +7,7 @@ namespace SonsOfPHP\Component\Cqrs\Tests;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Cqrs\MessageHandlerProvider;
 use SonsOfPHP\Contract\Cqrs\MessageHandlerProviderInterface;
+use SonsOfPHP\Contract\Cqrs\Exception\NoHandlerFoundExceptionInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Cqrs\MessageHandlerProvider
@@ -31,8 +32,8 @@ final class MessageHandlerProviderTest extends TestCase
     public function testAddWithHandlerClass(): void
     {
         $provider = new MessageHandlerProvider();
-        $provider->add(new \stdClass(), new class {
-            public function __invoke() {}
+        $provider->add(new \stdClass(), new class () {
+            public function __invoke(): void {}
         });
 
         $property = new \ReflectionProperty($provider, 'handlers');
@@ -47,7 +48,7 @@ final class MessageHandlerProviderTest extends TestCase
     public function testAddWithObject(): void
     {
         $provider = new MessageHandlerProvider();
-        $provider->add(new \stdClass(), function() {});
+        $provider->add(new \stdClass(), function (): void {});
 
         $property = new \ReflectionProperty($provider, 'handlers');
         $handlers = $property->getValue($provider);
@@ -61,7 +62,7 @@ final class MessageHandlerProviderTest extends TestCase
     public function testAddWithString(): void
     {
         $provider = new MessageHandlerProvider();
-        $provider->add('stdClass', function() {});
+        $provider->add('stdClass', function (): void {});
 
         $property = new \ReflectionProperty($provider, 'handlers');
         $handlers = $property->getValue($provider);
@@ -75,8 +76,8 @@ final class MessageHandlerProviderTest extends TestCase
     public function testGetHandlerForMessageWhenClassIsInvokable(): void
     {
         $provider = new MessageHandlerProvider();
-        $provider->add(new \stdClass(), new class {
-            public function __invoke() {}
+        $provider->add(new \stdClass(), new class () {
+            public function __invoke(): void {}
         });
 
         $this->assertNotNull($provider->getHandlerForMessage('stdClass'));
@@ -88,7 +89,7 @@ final class MessageHandlerProviderTest extends TestCase
     public function testGetHandlerForMessageWhenNoHandlerExists(): void
     {
         $provider = new MessageHandlerProvider();
-        $this->expectException('Exception');
+        $this->expectException(NoHandlerFoundExceptionInterface::class);
         $this->assertNotNull($provider->getHandlerForMessage('stdClass'));
     }
 
@@ -98,7 +99,7 @@ final class MessageHandlerProviderTest extends TestCase
     public function testGetHandlerForMessageWhenStringIsPassedIn(): void
     {
         $provider = new MessageHandlerProvider();
-        $provider->add(new \stdClass(), function() {});
+        $provider->add(new \stdClass(), function (): void {});
 
         $this->assertNotNull($provider->getHandlerForMessage('stdClass'));
     }
@@ -109,7 +110,7 @@ final class MessageHandlerProviderTest extends TestCase
     public function testGetHandlerForMessageWhenObjectIsPassedIn(): void
     {
         $provider = new MessageHandlerProvider();
-        $provider->add(new \stdClass(), function() {});
+        $provider->add(new \stdClass(), function (): void {});
 
         $this->assertNotNull($provider->getHandlerForMessage(new \stdClass()));
     }
