@@ -13,6 +13,9 @@ final class Context implements ContextInterface
 {
     public function __construct(private array $data = []) {}
 
+    /**
+     * $context[$offset] = $value;
+     */
     public function offsetSet($offset, $value): void
     {
         if (null === $offset) {
@@ -22,16 +25,26 @@ final class Context implements ContextInterface
         $this->data[$offset] = $value;
     }
 
+    /**
+     * isset($context[$offset])
+     * empty($context[$offset])
+     */
     public function offsetExists($offset): bool
     {
         return \array_key_exists($offset, $this->data);
     }
 
+    /**
+     * unset($context[$offset]);
+     */
     public function offsetUnset($offset): void
     {
         unset($this->data[$offset]);
     }
 
+    /**
+     * $value = $context[$offset];
+     */
     public function offsetGet($offset): mixed
     {
         return $this->data[$offset] ?? null;
@@ -47,12 +60,16 @@ final class Context implements ContextInterface
         return $this->data;
     }
 
-    public function get(string $key): mixed
+    public function get(string $key, mixed $default = null): mixed
     {
+        if (!$this->has($key)) {
+            return $default;
+        }
+
         return $this->offsetGet($key);
     }
 
-    public function set(string $key, $value): ContextInterface
+    public function set(string $key, mixed $value): ContextInterface
     {
         $this->offsetSet($key, $value);
 

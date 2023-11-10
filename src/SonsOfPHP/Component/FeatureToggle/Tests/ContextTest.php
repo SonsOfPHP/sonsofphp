@@ -40,4 +40,22 @@ final class ContextTest extends TestCase
         $context->set('test', 'value');
         $this->assertSame('value', $context->get('test'));
     }
+
+    /**
+     * @covers ::get
+     */
+    public function testGetWhenThereIsNoValueForKey(): void
+    {
+        $context = new Context();
+        $this->assertNull($context->get('test'));
+    }
+
+    /**
+     * @covers ::get
+     */
+    public function testGetWhenThereIsNoValueForKeyAndDefaultValueIsProvided(): void
+    {
+        $context = new Context();
+        $this->assertTrue($context->get('test', true));
+    }
 }
