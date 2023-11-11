@@ -7,8 +7,8 @@ namespace SonsOfPHP\Component\Money\Tests\Operator\Money;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\Money;
-use SonsOfPHP\Component\Money\Operator\Money\MoneyOperatorInterface;
 use SonsOfPHP\Component\Money\Operator\Money\MultiplyMoneyOperator;
+use SonsOfPHP\Contract\Money\Operator\Money\MoneyOperatorInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Operator\Money\MultiplyMoneyOperator

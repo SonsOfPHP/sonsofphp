@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\CurrencyProvider;
 
+use SonsOfPHP\Contract\Money\CurrencyProviderInterface;
+
 /**
  * Chain Currency Provider.
  *

@@ -16,5 +16,6 @@ return (new PhpCsFixer\Config())->setRules([
 
     // Rules
     'no_unused_imports' => true,
+    'ordered_imports' => true,
     'php_unit_test_class_requires_covers' => true,
 ])->setFinder($finder);

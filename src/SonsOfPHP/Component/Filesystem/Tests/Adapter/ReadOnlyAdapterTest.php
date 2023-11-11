@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem\Tests;
 
-use SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\MockObject;
+use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\CopyAwareInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\DirectoryAwareInterface;
+use SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter;
 use SonsOfPHP\Component\Filesystem\Adapter\MoveAwareInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\ReadOnlyAdapter;
 use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;

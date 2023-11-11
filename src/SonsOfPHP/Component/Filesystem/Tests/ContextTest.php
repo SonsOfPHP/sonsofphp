@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem\Tests;
 
-use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Filesystem\ContextInterface;
 use SonsOfPHP\Component\Filesystem\Context;
+use SonsOfPHP\Component\Filesystem\ContextInterface;
+use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Filesystem\Context

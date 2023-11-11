@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpFactory\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\HttpFactory\UploadedFileFactory;
-use Psr\Http\Message\UploadedFileInterface;
-use Psr\Http\Message\UploadedFileFactoryInterface;
 use Psr\Http\Message\StreamInterface;
+use Psr\Http\Message\UploadedFileFactoryInterface;
+use Psr\Http\Message\UploadedFileInterface;
+use SonsOfPHP\Component\HttpFactory\UploadedFileFactory;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\HttpFactory\UploadedFileFactory

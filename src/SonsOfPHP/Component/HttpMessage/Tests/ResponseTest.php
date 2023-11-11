@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpMessage\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\HttpMessage\Response;
 use Psr\Http\Message\ResponseInterface;
+use SonsOfPHP\Component\HttpMessage\Response;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\HttpMessage\Response

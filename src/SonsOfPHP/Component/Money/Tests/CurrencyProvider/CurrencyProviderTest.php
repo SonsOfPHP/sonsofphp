@@ -6,10 +6,10 @@ namespace SonsOfPHP\Component\Money\Tests\CurrencyProvider;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
-use SonsOfPHP\Component\Money\CurrencyInterface;
 use SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProvider;
-use SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProviderInterface;
-use SonsOfPHP\Component\Money\Exception\MoneyException;
+use SonsOfPHP\Contract\Money\CurrencyInterface;
+use SonsOfPHP\Contract\Money\CurrencyProviderInterface;
+use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProvider
@@ -91,7 +91,7 @@ final class CurrencyProviderTest extends TestCase
     {
         $provider = new CurrencyProvider();
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $this->assertFalse($provider->hasCurrency('xxxxxx'));
     }
 
@@ -131,7 +131,7 @@ final class CurrencyProviderTest extends TestCase
     {
         $provider = new CurrencyProvider();
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $provider->getCurrency('xxx');
     }
 
@@ -143,7 +143,7 @@ final class CurrencyProviderTest extends TestCase
     {
         $provider = new CurrencyProvider();
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $provider->getCurrency('xxxxxxxx');
     }
 }

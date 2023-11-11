@@ -1,4 +1,4 @@
-site_name: Sons of PHP - Documentation
+site_name: Sons of PHP
 site_url: https://docs.sonsofphp.com/
 site_author: Joshua Estes
 site_description: Sons of PHP creates and maintains helpful packages for PHP.
@@ -81,10 +81,6 @@ nav:
         - Clock: components/clock/index.md
         - CQRS:
             - components/cqrs/index.md
-            - Commands: components/cqrs/commands.md
-            - Command Handlers: components/cqrs/command-handlers.md
-            - Queries: components/cqrs/queries.md
-            - Query Handlers: components/cqrs/query-handlers.md
         - Event Dispatcher: components/event-dispatcher/index.md
         - Event Sourcing:
             - components/event-sourcing/index.md
@@ -118,4 +114,5 @@ nav:
         - Version: components/version/index.md
     - Contracts:
         - contracts/index.md
-        - Core: contracts/core/index.md
+        - Common: contracts/common/index.md
+        - Cqrs: contracts/cqrs/index.md

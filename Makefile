@@ -9,6 +9,10 @@ BARD                = src/SonsOfPHP/Bard/bin/bard
 
 COVERAGE_DIR = docs/coverage
 
+XDEBUG_MODE ?= off
+PHPUNIT_TESTSUITE ?= all
+PHPUNIT_OPTIONS ?=
+
 .DEFAULT_GOAL = help
 .PHONY        = help
 
@@ -39,16 +43,27 @@ purge: # Purge vendor and lock files
 	rm -rf vendor/ src/SonsOfPHP/Component/*/vendor/ src/SonsOfPHP/Component/*/composer.lock
 	rm -rf vendor/ src/SonsOfPHP/Contract/*/vendor/ src/SonsOfPHP/Contract/*/composer.lock
 
-test: ## Run PHPUnit Tests
-	XDEBUG_MODE=off \
+test: phpunit ## Run PHPUnit Tests
+
+test-cache: PHPUNIT_TESTSUITE=cache
+test-cache: phpunit
+
+test-clock: PHPUNIT_TESTSUITE=clock
+test-clock: phpunit
+
+test-cqrs: PHPUNIT_TESTSUITE=cqrs
+test-cqrs: phpunit
+
+phpunit:
+	XDEBUG_MODE=$(XDEBUG_MODE) \
 	$(PHP) \
-	-dxdebug.mode=off \
+	-dxdebug.mode=$(XDEBUG_MODE) \
 	-dapc.enable_cli=1 \
 	$(PHPUNIT) \
 	--cache-result \
-	--order-by=defects
-
-phpunit: test
+	--order-by=defects \
+	--testsuite=$(PHPUNIT_TESTSUITE) \
+	$(PHPUNIT_OPTIONS)
 
 phpunit-install:
 	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/phpunit --no-interaction --prefer-dist --optimize-autoloader
@@ -61,23 +76,18 @@ lint: lint-php ## Lint files
 lint-php: # lint php files
 	find src -name "*.php" -not -path "src/**/vendor/*" | xargs -I{} $(PHP) -l '{}'
 
-coverage: ## Build Code Coverage Report
-	XDEBUG_MODE=coverage \
-	$(PHP) \
-	-dxdebug.mode=coverage \
-	-dapc.enable_cli=1 \
-	$(PHPUNIT) \
-	--cache-result \
-	--coverage-html $(COVERAGE_DIR)
+coverage: XDEBUG_MODE=coverage
+coverage: PHPUNIT_OPTIONS=--coverage-html $(COVERAGE_DIR)
+coverage: phpunit ## Build Code Coverage Report
 
-coverage-cache:
-	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite cache --coverage-html $(COVERAGE_DIR)
+coverage-cache: PHPUNIT_TESTSUITE=cache
+coverage-cache: coverage
 
-coverage-clock:
-	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite clock --coverage-html $(COVERAGE_DIR)
+coverage-clock: PHPUNIT_TESTSUITE=clock
+coverage-clock: coverage
 
-coverage-cqrs:
-	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite cqrs --coverage-html $(COVERAGE_DIR)
+coverage-cqrs: PHPUNIT_TESTSUITE=cqrs
+coverage-cqrs: coverage
 
 coverage-event-dispatcher:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite event-dispatcher --coverage-html $(COVERAGE_DIR)

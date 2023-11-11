@@ -6,7 +6,6 @@ namespace SonsOfPHP\Component\Money;
 
 use SonsOfPHP\Component\Money\Operator\Money\AddMoneyOperator;
 use SonsOfPHP\Component\Money\Operator\Money\DivideMoneyOperator;
-use SonsOfPHP\Component\Money\Operator\Money\MoneyOperatorInterface;
 use SonsOfPHP\Component\Money\Operator\Money\MultiplyMoneyOperator;
 use SonsOfPHP\Component\Money\Operator\Money\SubtractMoneyOperator;
 use SonsOfPHP\Component\Money\Query\Money\IsEqualToMoneyQuery;
@@ -17,7 +16,11 @@ use SonsOfPHP\Component\Money\Query\Money\IsLessThanOrEqualToMoneyQuery;
 use SonsOfPHP\Component\Money\Query\Money\IsNegativeMoneyQuery;
 use SonsOfPHP\Component\Money\Query\Money\IsPositiveMoneyQuery;
 use SonsOfPHP\Component\Money\Query\Money\IsZeroMoneyQuery;
-use SonsOfPHP\Component\Money\Query\Money\MoneyQueryInterface;
+use SonsOfPHP\Contract\Money\AmountInterface;
+use SonsOfPHP\Contract\Money\CurrencyInterface;
+use SonsOfPHP\Contract\Money\MoneyInterface;
+use SonsOfPHP\Contract\Money\Operator\Money\MoneyOperatorInterface;
+use SonsOfPHP\Contract\Money\Query\Money\MoneyQueryInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

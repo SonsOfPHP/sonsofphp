@@ -6,7 +6,7 @@ namespace SonsOfPHP\Component\Money\Tests;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
-use SonsOfPHP\Component\Money\CurrencyInterface;
+use SonsOfPHP\Contract\Money\CurrencyInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Currency

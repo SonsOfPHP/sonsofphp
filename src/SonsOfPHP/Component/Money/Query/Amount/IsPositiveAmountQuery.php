@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\Query\Amount;
 
-use SonsOfPHP\Component\Money\AmountInterface;
+use SonsOfPHP\Contract\Money\AmountInterface;
+use SonsOfPHP\Contract\Money\Query\Amount\AmountQueryInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

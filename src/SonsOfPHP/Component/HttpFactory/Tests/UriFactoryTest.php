@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpFactory\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\HttpFactory\UriFactory;
-use Psr\Http\Message\UriInterface;
 use Psr\Http\Message\UriFactoryInterface;
+use Psr\Http\Message\UriInterface;
+use SonsOfPHP\Component\HttpFactory\UriFactory;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\HttpFactory\UriFactory

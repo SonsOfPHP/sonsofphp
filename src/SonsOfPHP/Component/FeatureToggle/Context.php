@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\FeatureToggle;
 
+use SonsOfPHP\Contract\FeatureToggle\ContextInterface;
+
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
@@ -11,54 +13,28 @@ final class Context implements ContextInterface
 {
     public function __construct(private array $data = []) {}
 
-    public function offsetSet($offset, $value): void
+    public function get(?string $key = null, mixed $default = null): mixed
     {
-        if (null === $offset) {
-            throw new \Exception('Requires a key');
+        if (null === $key) {
+            return $this->data;
         }
 
-        $this->data[$offset] = $value;
+        if (!$this->has($key)) {
+            return $default;
+        }
+
+        return $this->data[$key];
     }
 
-    public function offsetExists($offset): bool
+    public function set(string $key, mixed $value): ContextInterface
     {
-        return \array_key_exists($offset, $this->data);
-    }
-
-    public function offsetUnset($offset): void
-    {
-        unset($this->data[$offset]);
-    }
-
-    public function offsetGet($offset): mixed
-    {
-        return $this->data[$offset] ?? null;
-    }
-
-    public function getIterator(): \Traversable
-    {
-        return new \ArrayIterator($this->data);
-    }
-
-    public function jsonSerialize(): mixed
-    {
-        return $this->data;
-    }
-
-    public function get(string $key): mixed
-    {
-        return $this->offsetGet($key);
-    }
-
-    public function set(string $key, $value): ContextInterface
-    {
-        $this->offsetSet($key, $value);
+        $this->data[$key] = $value;
 
         return $this;
     }
 
     public function has(string $key): bool
     {
-        return $this->offsetExists($key);
+        return \array_key_exists($key, $this->data);
     }
 }

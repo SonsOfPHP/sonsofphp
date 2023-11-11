@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Cache\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Cache\SimpleCache;
+use Psr\Cache\CacheItemInterface;
 use Psr\SimpleCache\CacheInterface;
 use SonsOfPHP\Component\Cache\Adapter\AdapterInterface;
-use Psr\Cache\CacheItemInterface;
+use SonsOfPHP\Component\Cache\SimpleCache;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Cache\SimpleCache

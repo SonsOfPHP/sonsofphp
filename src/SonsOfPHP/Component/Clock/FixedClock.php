@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock;
 
-use SonsOfPHP\Component\Clock\Exception\ClockException;
 use Psr\Clock\ClockInterface;
+use SonsOfPHP\Component\Clock\Exception\ClockException;
 
 /**
  * Fixed Clock.

@@ -7,9 +7,9 @@ namespace SonsOfPHP\Component\Money\Tests\Query\Currency;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider;
-use SonsOfPHP\Component\Money\Exception\MoneyException;
-use SonsOfPHP\Component\Money\Query\CurrencyProvider\CurrencyProviderQueryInterface;
 use SonsOfPHP\Component\Money\Query\CurrencyProvider\HasCurrencyQuery;
+use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
+use SonsOfPHP\Contract\Money\Query\CurrencyProvider\CurrencyProviderQueryInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Query\CurrencyProvider\HasCurrencyQuery
@@ -64,7 +64,7 @@ final class HasCurrencyQueryTest extends TestCase
      */
     public function testConstructWithInvalidValue(): void
     {
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $query = new HasCurrencyQuery('1234');
     }
 

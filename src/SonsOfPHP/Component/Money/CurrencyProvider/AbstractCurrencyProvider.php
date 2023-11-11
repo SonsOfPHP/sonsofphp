@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\CurrencyProvider;
 
-use SonsOfPHP\Component\Money\CurrencyInterface;
-use SonsOfPHP\Component\Money\Query\CurrencyProvider\CurrencyProviderQueryInterface;
 use SonsOfPHP\Component\Money\Query\CurrencyProvider\GetCurrencyQuery;
 use SonsOfPHP\Component\Money\Query\CurrencyProvider\HasCurrencyQuery;
+use SonsOfPHP\Contract\Money\CurrencyInterface;
+use SonsOfPHP\Contract\Money\CurrencyProviderInterface;
+use SonsOfPHP\Contract\Money\Query\CurrencyProvider\CurrencyProviderQueryInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

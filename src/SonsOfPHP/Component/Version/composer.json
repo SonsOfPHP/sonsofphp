@@ -30,7 +30,11 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.1"
+        "php": ">=8.1",
+        "sonsofphp/version-contract": "0.3.x-dev"
+    },
+    "provide": {
+        "sonsofphp/version-implementation": "0.3.x-dev"
     },
     "extra": {
         "sort-packages": true,

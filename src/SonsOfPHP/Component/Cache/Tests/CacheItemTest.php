@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Cache\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Cache\CacheItem;
 use Psr\Cache\CacheItemInterface;
+use SonsOfPHP\Component\Cache\CacheItem;
 use SonsOfPHP\Component\Cache\Exception\InvalidArgumentException;
 
 /**

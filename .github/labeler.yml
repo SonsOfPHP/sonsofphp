@@ -8,7 +8,11 @@ Cache:
 
 Clock:
   - docs/components/clock/*
-  - src/SonsOfPHP/Component/Clock/*
+  - src/SonsOfPHP/**/Clock/*
+
+Common:
+  - docs/components/common/*
+  - src/SonsOfPHP/**/Common/*
 
 CQRS:
   - docs/components/cqrs/*

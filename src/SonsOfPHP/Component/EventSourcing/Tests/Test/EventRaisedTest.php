@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Tests\Test;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\EventSourcing\Test\EventRaised;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateInterface;
+use SonsOfPHP\Component\EventSourcing\Test\EventRaised;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Test\EventRaised

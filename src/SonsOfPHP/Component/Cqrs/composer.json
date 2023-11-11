@@ -33,10 +33,14 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.1"
+        "php": ">=8.1",
+        "sonsofphp/cqrs-contract": "0.3.x-dev"
     },
     "require-dev": {
-        "symfony/messenger": "^5|^6"
+        "symfony/messenger": "^5 || ^6"
+    },
+    "provide": {
+        "sonsofphp/cqrs-implementation": "0.3.x-dev"
     },
     "suggest": {
         "sonsofphp/event-sourcing": "Use with event sourcing",
