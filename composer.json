@@ -38,12 +38,12 @@
         "psr/http-factory-implementation": "^1.0",
         "psr/cache-implementation": "^2.0 || ^3.0",
         "psr/simple-cache-implementation": "^1.0 || ^2.0 || ^3.0",
-        "sonsofphp/cqrs-contract-implementation": "0.3.x-dev",
-        "sonsofphp/event-sourcing-contract-implementation": "0.3.x-dev",
-        "sonsofphp/feature-toggle-contract-implementation": "0.3.x-dev",
-        "sonsofphp/filesystem-contract-implementation": "0.3.x-dev",
-        "sonsofphp/money-contract-implementation": "0.3.x-dev",
-        "sonsofphp/version-contract-implementation": "0.3.x-dev"
+        "sonsofphp/cqrs-implementation": "0.3.x-dev",
+        "sonsofphp/event-sourcing-implementation": "0.3.x-dev",
+        "sonsofphp/feature-toggle-implementation": "0.3.x-dev",
+        "sonsofphp/filesystem-implementation": "0.3.x-dev",
+        "sonsofphp/money-implementation": "0.3.x-dev",
+        "sonsofphp/version-implementation": "0.3.x-dev"
     },
     "require": {
         "php": ">=8.1",
