@@ -1,35 +1,22 @@
-/.github @JoshuaEstes
-/tools @JoshuaEstes
-/docs @JoshuaEstes
+* @sonsofphp/Members
+
+# Make Documentation Team
+docs/ @sonsofphp/Members
+
+# Each project needs a Team
 /src/SonsOfPHP/Bard @JoshuaEstes
-/src/SonsOfPHP/Bridge/Doctrine/EventSourcing @JoshuaEstes
-/src/SonsOfPHP/Bridge/Doctrine/FeatureToggle @JoshuaEstes
-/src/SonsOfPHP/Bridge/Doctrine/Money @JoshuaEstes
-/src/SonsOfPHP/Bridge/Symfony/Cqrs @JoshuaEstes
-/src/SonsOfPHP/Bridge/Symfony/EventSourcing @JoshuaEstes
-/src/SonsOfPHP/Bridge/Symfony/Filesystem @JoshuaEstes
-/src/SonsOfPHP/Bundle/Cqrs @JoshuaEstes
-/src/SonsOfPHP/Bundle/FeatureToggle @JoshuaEstes
-/src/SonsOfPHP/Bundle/Filesystem @JoshuaEstes
-/src/SonsOfPHP/Component/Autoloader @JoshuaEstes
-/src/SonsOfPHP/Component/Cache @JoshuaEstes
-/src/SonsOfPHP/Component/Clock @JoshuaEstes
-/src/SonsOfPHP/Component/Cqrs @JoshuaEstes
-/src/SonsOfPHP/Component/Cvs @JoshuaEstes
-/src/SonsOfPHP/Component/EventDispatcher @JoshuaEstes
-/src/SonsOfPHP/Component/EventSourcing @JoshuaEstes
-/src/SonsOfPHP/Component/FeatureToggle @JoshuaEstes
-/src/SonsOfPHP/Component/Faker @JoshuaEstes
-/src/SonsOfPHP/Component/Filesystem @JoshuaEstes
-/src/SonsOfPHP/Component/HttpClient @JoshuaEstes
-/src/SonsOfPHP/Component/HttpFactory @JoshuaEstes
-/src/SonsOfPHP/Component/HttpHandler @JoshuaEstes
-/src/SonsOfPHP/Component/HttpMessage @JoshuaEstes
-/src/SonsOfPHP/Component/Json @JoshuaEstes
-/src/SonsOfPHP/Component/Logger @JoshuaEstes
-/src/SonsOfPHP/Component/Money @JoshuaEstes
-/src/SonsOfPHP/Component/Pdf @JoshuaEstes
-/src/SonsOfPHP/Component/PhoneNumber @JoshuaEstes
-/src/SonsOfPHP/Component/Queue @JoshuaEstes
-/src/SonsOfPHP/Component/Version @JoshuaEstes
-/src/SonsOfPHP/Contract/Common @JoshuaEstes
+
+# Each project/component/contract needs a Team
+/src/SonsOfPHP/**/Cache @JoshuaEstes
+/src/SonsOfPHP/**/Clock @JoshuaEstes
+/src/SonsOfPHP/**/Common @JoshuaEstes
+/src/SonsOfPHP/**/Cqrs @JoshuaEstes
+/src/SonsOfPHP/**/EventDispatcher @JoshuaEstes
+/src/SonsOfPHP/**/EventSourcing @JoshuaEstes
+/src/SonsOfPHP/**/FeatureToggle @JoshuaEstes
+/src/SonsOfPHP/**/Filesystem @JoshuaEstes
+/src/SonsOfPHP/**/HttpFactory @JoshuaEstes
+/src/SonsOfPHP/**/HttpMessage @JoshuaEstes
+/src/SonsOfPHP/**/HttpJson @JoshuaEstes
+/src/SonsOfPHP/**/Money @JoshuaEstes
+/src/SonsOfPHP/**/Version @JoshuaEstes
