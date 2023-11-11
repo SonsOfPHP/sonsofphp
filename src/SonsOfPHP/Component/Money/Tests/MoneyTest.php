@@ -6,7 +6,7 @@ namespace SonsOfPHP\Component\Money\Tests;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
-use SonsOfPHP\Component\Money\Exception\MoneyException;
+use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
 use SonsOfPHP\Component\Money\Money;
 use SonsOfPHP\Contract\Money\MoneyInterface;
 
@@ -143,7 +143,7 @@ final class MoneyTest extends TestCase
         $money1 = Money::USD(100);
         $money2 = Money::EUR(100);
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $money1->isGreaterThan($money2);
     }
 
@@ -171,7 +171,7 @@ final class MoneyTest extends TestCase
         $money1 = Money::USD(100);
         $money2 = Money::EUR(100);
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $money1->isGreaterThanOrEqualTo($money2);
     }
 
@@ -198,7 +198,7 @@ final class MoneyTest extends TestCase
         $money1 = Money::USD(100);
         $money2 = Money::EUR(100);
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $money1->isLessThan($money2);
     }
 
@@ -226,7 +226,7 @@ final class MoneyTest extends TestCase
         $money1 = Money::USD(100);
         $money2 = Money::EUR(100);
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $money1->isLessThanOrEqualTo($money2);
     }
 
@@ -297,7 +297,7 @@ final class MoneyTest extends TestCase
         $money1 = Money::USD(100);
         $money2 = Money::EUR(100);
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $money1->add($money2);
     }
 
@@ -323,7 +323,7 @@ final class MoneyTest extends TestCase
         $money1 = Money::USD(100);
         $money2 = Money::EUR(100);
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $money1->subtract($money2);
     }
 

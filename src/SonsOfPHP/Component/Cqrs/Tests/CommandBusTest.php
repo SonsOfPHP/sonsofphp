@@ -6,8 +6,8 @@ namespace SonsOfPHP\Component\Cqrs\Tests;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Cqrs\CommandBus;
-use SonsOfPHP\Contract\Cqrs\CommandBusInterface;
 use SonsOfPHP\Component\Cqrs\MessageHandlerProvider;
+use SonsOfPHP\Contract\Cqrs\CommandBusInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Cqrs\CommandBus

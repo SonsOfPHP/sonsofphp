@@ -6,11 +6,11 @@ namespace SonsOfPHP\Component\Money\Tests\CurrencyProvider;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
-use SonsOfPHP\Contract\Money\CurrencyInterface;
 use SonsOfPHP\Component\Money\CurrencyProvider\ChainCurrencyProvider;
 use SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProvider;
-use SonsOfPHP\Contract\Money\CurrencyProviderInterface;
 use SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider;
+use SonsOfPHP\Contract\Money\CurrencyInterface;
+use SonsOfPHP\Contract\Money\CurrencyProviderInterface;
 use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
 
 /**

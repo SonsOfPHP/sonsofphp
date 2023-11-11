@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Money\Tests\CurrencyProvider;
 
 use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider;
 use SonsOfPHP\Contract\Money\CurrencyInterface;
 use SonsOfPHP\Contract\Money\CurrencyProviderInterface;
-use SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider

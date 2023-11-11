@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money;
 
-use SonsOfPHP\Component\Money\Query\Currency\CurrencyQueryInterface;
 use SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery;
+use SonsOfPHP\Contract\Money\CurrencyInterface;
+use SonsOfPHP\Contract\Money\Query\Currency\CurrencyQueryInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

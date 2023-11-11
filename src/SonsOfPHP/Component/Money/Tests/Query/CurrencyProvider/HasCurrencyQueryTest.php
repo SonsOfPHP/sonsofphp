@@ -7,9 +7,9 @@ namespace SonsOfPHP\Component\Money\Tests\Query\Currency;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider;
+use SonsOfPHP\Component\Money\Query\CurrencyProvider\HasCurrencyQuery;
 use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
 use SonsOfPHP\Contract\Money\Query\CurrencyProvider\CurrencyProviderQueryInterface;
-use SonsOfPHP\Component\Money\Query\CurrencyProvider\HasCurrencyQuery;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Query\CurrencyProvider\HasCurrencyQuery

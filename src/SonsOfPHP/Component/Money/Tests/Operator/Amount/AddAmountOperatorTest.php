@@ -7,7 +7,7 @@ namespace SonsOfPHP\Component\Money\Tests\Operator\Amount;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Amount;
 use SonsOfPHP\Component\Money\Operator\Amount\AddAmountOperator;
-use SonsOfPHP\Component\Money\Operator\Amount\AmountOperatorInterface;
+use SonsOfPHP\Contract\Money\Operator\Amount\AmountOperatorInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Operator\Amount\AddAmountOperator

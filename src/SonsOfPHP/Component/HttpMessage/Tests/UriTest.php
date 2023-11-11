@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpMessage\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\HttpMessage\Uri;
 use Psr\Http\Message\UriInterface;
+use SonsOfPHP\Component\HttpMessage\Uri;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\HttpMessage\Uri

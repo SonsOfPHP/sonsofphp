@@ -6,11 +6,11 @@ namespace SonsOfPHP\Component\Filesystem\Tests;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
+use SonsOfPHP\Component\Filesystem\Adapter\ChainAdapter;
 use SonsOfPHP\Component\Filesystem\Adapter\CopyAwareInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\DirectoryAwareInterface;
-use SonsOfPHP\Component\Filesystem\Adapter\MoveAwareInterface;
-use SonsOfPHP\Component\Filesystem\Adapter\ChainAdapter;
 use SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter;
+use SonsOfPHP\Component\Filesystem\Adapter\MoveAwareInterface;
 use SonsOfPHP\Component\Filesystem\Exception\FileNotFoundException;
 
 /**

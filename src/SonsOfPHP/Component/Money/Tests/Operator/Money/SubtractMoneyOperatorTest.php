@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\Exception\MoneyException;
 use SonsOfPHP\Component\Money\Money;
-use SonsOfPHP\Component\Money\Operator\Money\MoneyOperatorInterface;
+use SonsOfPHP\Contract\Money\Operator\Money\MoneyOperatorInterface;
 use SonsOfPHP\Component\Money\Operator\Money\SubtractMoneyOperator;
 
 /**

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\FeatureToggle\Tests\Provider;
 
+use PHPUnit\Framework\MockObject;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\FeatureToggle\Feature;
-use SonsOfPHP\Contract\FeatureToggle\FeatureToggleProviderInterface;
 use SonsOfPHP\Component\FeatureToggle\Provider\InMemoryFeatureToggleProvider;
+use SonsOfPHP\Contract\FeatureToggle\FeatureToggleProviderInterface;
 use SonsOfPHP\Contract\FeatureToggle\ToggleInterface;
-use PHPUnit\Framework\MockObject;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\FeatureToggle\Provider\InMemoryFeatureToggleProvider

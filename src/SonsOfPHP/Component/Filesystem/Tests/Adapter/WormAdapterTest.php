@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem\Tests;
 
-use SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter;
-use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\CopyAwareInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\DirectoryAwareInterface;
+use SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter;
 use SonsOfPHP\Component\Filesystem\Adapter\MoveAwareInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\WormAdapter;
+use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Filesystem\Adapter\WormAdapter

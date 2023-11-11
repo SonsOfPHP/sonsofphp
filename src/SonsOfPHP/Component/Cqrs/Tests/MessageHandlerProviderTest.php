@@ -6,8 +6,8 @@ namespace SonsOfPHP\Component\Cqrs\Tests;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Cqrs\MessageHandlerProvider;
-use SonsOfPHP\Contract\Cqrs\MessageHandlerProviderInterface;
 use SonsOfPHP\Contract\Cqrs\Exception\NoHandlerFoundExceptionInterface;
+use SonsOfPHP\Contract\Cqrs\MessageHandlerProviderInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Cqrs\MessageHandlerProvider

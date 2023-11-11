@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpFactory\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\HttpFactory\StreamFactory;
-use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\StreamFactoryInterface;
+use Psr\Http\Message\StreamInterface;
+use SonsOfPHP\Component\HttpFactory\StreamFactory;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\HttpFactory\StreamFactory

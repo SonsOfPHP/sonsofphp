@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpFactory\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\HttpFactory\ServerRequestFactory;
-use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ServerRequestFactoryInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use SonsOfPHP\Component\HttpFactory\ServerRequestFactory;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\HttpFactory\ServerRequestFactory

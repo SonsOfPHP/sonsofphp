@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Filesystem\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Filesystem\FilesystemInterface;
-use SonsOfPHP\Component\Filesystem\Filesystem;
 use SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter;
+use SonsOfPHP\Component\Filesystem\Filesystem;
+use SonsOfPHP\Component\Filesystem\FilesystemInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Filesystem\Filesystem

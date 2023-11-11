@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Cqrs\Tests;
 
 use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\Cqrs\MessageHandlerProvider;
 use SonsOfPHP\Component\Cqrs\QueryBus;
 use SonsOfPHP\Contract\Cqrs\QueryBusInterface;
-use SonsOfPHP\Component\Cqrs\MessageHandlerProvider;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Cqrs\QueryBus

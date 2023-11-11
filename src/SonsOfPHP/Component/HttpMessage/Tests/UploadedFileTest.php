@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpMessage\Tests;
 
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\StreamInterface;
+use Psr\Http\Message\UploadedFileInterface;
 use SonsOfPHP\Component\HttpMessage\UploadedFile;
 use SonsOfPHP\Component\HttpMessage\UploadedFileError;
-use Psr\Http\Message\UploadedFileInterface;
-use Psr\Http\Message\StreamInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\HttpMessage\UploadedFile

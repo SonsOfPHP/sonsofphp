@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem;
 
-use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\CopyAwareInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\MoveAwareInterface;
+use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

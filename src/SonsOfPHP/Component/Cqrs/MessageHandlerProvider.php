@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Cqrs;
 
-use SonsOfPHP\Contract\Cqrs\MessageHandlerProviderInterface;
 use SonsOfPHP\Component\Cqrs\Exception\NoHandlerFoundException;
+use SonsOfPHP\Contract\Cqrs\MessageHandlerProviderInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

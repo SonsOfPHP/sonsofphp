@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpMessage\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\HttpMessage\Message;
 use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\StreamInterface;
+use SonsOfPHP\Component\HttpMessage\Message;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\HttpMessage\Message

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpMessage\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\HttpMessage\Stream;
 use Psr\Http\Message\StreamInterface;
+use SonsOfPHP\Component\HttpMessage\Stream;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\HttpMessage\Stream

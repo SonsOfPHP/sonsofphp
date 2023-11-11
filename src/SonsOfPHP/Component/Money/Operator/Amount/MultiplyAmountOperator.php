@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Money\Operator\Amount;
 
 use SonsOfPHP\Component\Money\Amount;
-use SonsOfPHP\Contract\Money\Operator\Amount\AmountOperatorInterface;
 use SonsOfPHP\Contract\Money\AmountInterface;
+use SonsOfPHP\Contract\Money\Operator\Amount\AmountOperatorInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

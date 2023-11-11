@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Cache\Tests\Adapter;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Cache\Adapter\ChainAdapter;
-use SonsOfPHP\Component\Cache\Adapter\ArrayAdapter;
-use SonsOfPHP\Component\Cache\Adapter\AdapterInterface;
-use Psr\Cache\CacheItemPoolInterface;
 use Psr\Cache\CacheItemInterface;
+use Psr\Cache\CacheItemPoolInterface;
+use SonsOfPHP\Component\Cache\Adapter\AdapterInterface;
+use SonsOfPHP\Component\Cache\Adapter\ArrayAdapter;
+use SonsOfPHP\Component\Cache\Adapter\ChainAdapter;
 use SonsOfPHP\Component\Cache\Exception\CacheException;
 
 /**
