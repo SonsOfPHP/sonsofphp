@@ -6,8 +6,8 @@ namespace SonsOfPHP\Component\Money\Tests;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
-use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
 use SonsOfPHP\Component\Money\Money;
+use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
 use SonsOfPHP\Contract\Money\MoneyInterface;
 
 /**

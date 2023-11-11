@@ -6,7 +6,6 @@ namespace SonsOfPHP\Component\Money\Tests\Query\Money;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
-use SonsOfPHP\Component\Money\Amount;
 use SonsOfPHP\Component\Money\Money;
 use SonsOfPHP\Component\Money\Query\Money\IsLessThanMoneyQuery;
 use SonsOfPHP\Contract\Money\Query\Money\MoneyQueryInterface;
