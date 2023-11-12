@@ -299,11 +299,16 @@ class Uri implements UriInterface, \Stringable
      *   ]);
      *   ?query=search%20string&page=1&limit=10&filters[active]=1
      */
-    public function withQueryParams(array $params): static
+    public function withQueryParams(?array $params): static
     {
         $that = clone $this;
 
-        $that->queryParams = $params;
+        if (null === $params) {
+            $that->queryParams = [];
+            return $that;
+        }
+
+        $that->queryParams += $params;
 
         return $that;
     }

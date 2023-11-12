@@ -28,6 +28,7 @@ Examples:
 * [PR #59](https://github.com/SonsOfPHP/sonsofphp/pull/59) Added new HttpFactory component
 * [PR #70](https://github.com/SonsOfPHP/sonsofphp/pull/70) Added new Core contract
 * [PR #112](https://github.com/SonsOfPHP/sonsofphp/pull/112) [Cache] Added new component
+* [PR #119](https://github.com/SonsOfPHP/sonsofphp/pull/119) [HttpMessage] Added `withQueryParams` and `withQueryParam` to `Uri`
 
 ## [0.3.8]
 

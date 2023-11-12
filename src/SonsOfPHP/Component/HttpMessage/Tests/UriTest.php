@@ -36,6 +36,24 @@ final class UriTest extends TestCase
     /**
      * @covers ::withQueryParams
      */
+    public function testWithQueryParamsCanBeUsedToRemove(): void
+    {
+        $uri = new Uri('https://docs.sonsofphp.com?page=1&limit=100');
+        $this->assertSame('', $uri->withQueryParams(null)->getQuery());
+    }
+
+    /**
+     * @covers ::withQueryParams
+     */
+    public function testWithQueryParamsWillAdd(): void
+    {
+        $uri = new Uri('https://docs.sonsofphp.com');
+        $this->assertSame('page=1&limit=100', $uri->withQueryParams(['page' => 1])->withQueryParams(['limit' => 100])->getQuery());
+    }
+
+    /**
+     * @covers ::withQueryParams
+     */
     public function testWithQueryParams(): void
     {
         $uri = new Uri('https://docs.sonsofphp.com');
@@ -56,7 +74,8 @@ final class UriTest extends TestCase
                 'filters' => [
                     'active' => '1',
                 ],
-            ])->getQuery());
+            ])->getQuery()
+        );
     }
 
     /**
