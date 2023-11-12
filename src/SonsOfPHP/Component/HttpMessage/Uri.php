@@ -21,6 +21,7 @@ class Uri implements UriInterface, \Stringable
     private ?string $password;
     private ?string $query;
     private ?string $fragment;
+    private array $queryParams = [];
 
     public function __construct(
         private string $uri = '',
@@ -36,6 +37,10 @@ class Uri implements UriInterface, \Stringable
             $this->path     = $parts['path'] ?? null;
             $this->query    = $parts['query'] ?? null;
             $this->fragment = $parts['fragment'] ?? null;
+
+            if (!empty($parts['query'])) {
+                parse_str($parts['query'], $this->queryParams);
+            }
         }
     }
 
@@ -113,7 +118,29 @@ class Uri implements UriInterface, \Stringable
      */
     public function getQuery(): string
     {
-        return $this->query ?? '';
+        //return http_build_query($this->queryParams, '', null, \PHP_QUERY_RFC3986);
+
+        $query = '';
+        foreach ($this->queryParams as $key => $value) {
+            if (is_array($value)) {
+                foreach ($value as $n => $v) {
+                    $query .= sprintf('&%s[%s]', $key, $n);
+                    if (!empty($v)) {
+                        $query .= '=' . rawurlencode((string) $v);
+                    }
+                }
+                continue;
+            }
+
+            $query .= '&' . $key;
+
+            // null or ''
+            if (!empty($value)) {
+                $query .= '=' . rawurlencode((string) $value);
+                continue;
+            }
+        }
+        return ltrim($query, '&');
     }
 
     /**
@@ -218,9 +245,12 @@ class Uri implements UriInterface, \Stringable
             return $this;
         }
 
+        parse_str($query, $output);
+
         $that = clone $this;
 
-        $that->query = $query;
+        //$that->query = $query;
+        $that->queryParams = $output;
 
         return $that;
     }
@@ -255,5 +285,45 @@ class Uri implements UriInterface, \Stringable
             ($this->query ? '?' . $this->query : '') .
             ($this->fragment ? '#' . $this->fragment : '')
         ;
+    }
+
+    /**
+     * Example:
+     *   ->withQueryParams([
+     *      'query' => 'search string',
+     *      'page' => '1',
+     *      'limit' => '10',
+     *      'filters' => [
+     *          'active' => '1',
+     *      ],
+     *   ]);
+     *   ?query=search%20string&page=1&limit=10&filters[active]=1
+     */
+    public function withQueryParams(?array $params): static
+    {
+        $that = clone $this;
+
+        if (null === $params) {
+            $that->queryParams = [];
+            return $that;
+        }
+
+        $that->queryParams += $params;
+
+        return $that;
+    }
+
+    /**
+     * Examples
+     *   ->withQueryParam('page', 1);
+     *   ?page=1
+     */
+    public function withQueryParam(string $name, int|string|array $value): static
+    {
+        $that = clone $this;
+
+        $that->queryParams[$name] = $value;
+
+        return $that;
     }
 }

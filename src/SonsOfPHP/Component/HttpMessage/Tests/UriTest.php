@@ -24,6 +24,88 @@ final class UriTest extends TestCase
     }
 
     /**
+     * @covers ::withQueryParam
+     */
+    public function testWithQueryParam(): void
+    {
+        $uri = new Uri('https://docs.sonsofphp.com');
+        $this->assertNotSame($uri, $uri->withQueryParam('page', 1));
+        $this->assertSame('page=1', $uri->withQueryParam('page', 1)->getQuery());
+    }
+
+    /**
+     * @covers ::withQueryParams
+     */
+    public function testWithQueryParamsCanBeUsedToRemove(): void
+    {
+        $uri = new Uri('https://docs.sonsofphp.com?page=1&limit=100');
+        $this->assertSame('', $uri->withQueryParams(null)->getQuery());
+    }
+
+    /**
+     * @covers ::withQueryParams
+     */
+    public function testWithQueryParamsWillAdd(): void
+    {
+        $uri = new Uri('https://docs.sonsofphp.com');
+        $this->assertSame('page=1&limit=100', $uri->withQueryParams(['page' => 1])->withQueryParams(['limit' => 100])->getQuery());
+    }
+
+    /**
+     * @covers ::withQueryParams
+     */
+    public function testWithQueryParams(): void
+    {
+        $uri = new Uri('https://docs.sonsofphp.com');
+        $this->assertNotSame($uri, $uri->withQueryParams(['page' => 1]));
+        $this->assertSame('page=1', $uri->withQueryParams(['page' => 1])->getQuery());
+    }
+
+    /**
+     * @covers ::getQuery
+     */
+    public function testGetQueryWorksAsExpectedWhenComplexQueryParams(): void
+    {
+        $uri = new Uri();
+        $this->assertSame(
+            'search=search%20term&filters[active]=1',
+            $uri->withQueryParams([
+                'search' => 'search term',
+                'filters' => [
+                    'active' => '1',
+                ],
+            ])->getQuery()
+        );
+    }
+
+    /**
+     * @covers ::getQuery
+     */
+    public function testGetQueryWorksAsExpected(): void
+    {
+        $uri = new Uri('https://docs.sonsofphp.com');
+        $this->assertSame('', $uri->getQuery());
+
+        $uri = new Uri('https://docs.sonsofphp.com?q');
+        $this->assertSame('q', $uri->getQuery());
+
+        $uri = new Uri('https://docs.sonsofphp.com?q=test%20query');
+        $this->assertSame('q=test%20query', $uri->getQuery());
+
+        $uri = new Uri('https://docs.sonsofphp.com?page=1&limit=100');
+        $this->assertSame('page=1&limit=100', $uri->getQuery());
+    }
+
+    /**
+     * @covers ::__construct
+     */
+    public function testConstructWithQuery(): void
+    {
+        $uri = new Uri('https://docs.sonsofphp.com?q=test');
+        $this->assertSame('q=test', $uri->getQuery());
+    }
+
+    /**
      * @covers ::__construct
      */
     public function testItCanBeCreatedWithBasicUri(): void
@@ -106,24 +188,6 @@ final class UriTest extends TestCase
 
         $uri = new Uri('https://docs.sonsofphp.com/components');
         $this->assertSame('/components', $uri->getPath());
-    }
-
-    /**
-     * @covers ::getQuery
-     */
-    public function testGetQueryWorksAsExpected(): void
-    {
-        $uri = new Uri('https://docs.sonsofphp.com');
-        $this->assertSame('', $uri->getQuery());
-
-        $uri = new Uri('https://docs.sonsofphp.com?q');
-        $this->assertSame('q', $uri->getQuery());
-
-        $uri = new Uri('https://docs.sonsofphp.com?q=test%20query');
-        $this->assertSame('q=test%20query', $uri->getQuery());
-
-        $uri = new Uri('https://docs.sonsofphp.com?page=1&limit=100');
-        $this->assertSame('page=1&limit=100', $uri->getQuery());
     }
 
     /**
@@ -224,8 +288,10 @@ final class UriTest extends TestCase
     public function testWithQueryWorksAsExpected(): void
     {
         $uri = new Uri('https://docs.sonsofphp.com');
-        $this->assertNotSame($uri, $uri->withQuery('/test'));
+        $this->assertNotSame($uri, $uri->withQuery('test=yes'));
         $this->assertSame($uri, $uri->withQuery(''));
+
+        $this->assertSame('testing=yes', $uri->withQuery('testing=yes')->getQuery());
     }
 
     /**
