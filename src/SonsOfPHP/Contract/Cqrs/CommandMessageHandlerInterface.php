@@ -9,5 +9,4 @@ namespace SonsOfPHP\Contract\Cqrs;
  */
 interface CommandMessageHandlerInterface extends MessageHandlerInterface
 {
-    //public function __invoke(CommandMessageInterface $message): void;
 }
