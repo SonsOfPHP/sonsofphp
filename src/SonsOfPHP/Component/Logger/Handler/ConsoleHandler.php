@@ -8,11 +8,11 @@ use SonsOfPHP\Contract\Logger\HandlerInterface;
 use SonsOfPHP\Contract\Logger\RecordInterface;
 
 /**
- * The handler that says, "fuck your message"
+ * Sends log messages to stderr/stdout
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class NullHandler extends AbstractHandler implements HandlerInterface
+class ConsoleHandler extends AbstractHandler implements HandlerInterface
 {
     public function handle(RecordInterface $record): void
     {

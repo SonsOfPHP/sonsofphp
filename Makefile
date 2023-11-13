@@ -54,6 +54,9 @@ test-clock: phpunit
 test-cqrs: PHPUNIT_TESTSUITE=cqrs
 test-cqrs: phpunit
 
+test-logger: PHPUNIT_TESTSUITE=logger
+test-logger: phpunit
+
 phpunit:
 	XDEBUG_MODE=$(XDEBUG_MODE) \
 	$(PHP) \

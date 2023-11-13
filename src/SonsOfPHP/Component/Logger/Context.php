@@ -61,4 +61,9 @@ class Context implements ContextInterface
             unset($this->context[$offset]);
         }
     }
+
+    public function getIterator(): \Traversable
+    {
+        return new ArrayIterator($this->context);
+    }
 }

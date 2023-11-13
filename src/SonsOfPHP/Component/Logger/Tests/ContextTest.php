@@ -26,6 +26,19 @@ final class ContextTest extends TestCase
     }
 
     /**
+     * @covers ::all
+     */
+    public function testAll(): void
+    {
+        $context = new Context([
+            'key' => 'value',
+        ]);
+        $context['test'] = 'testing';
+
+        $this->assertCount(2, $context->all());
+    }
+
+    /**
      * @covers ::offsetGet
      */
     public function testOffsetGet(): void

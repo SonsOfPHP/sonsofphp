@@ -6,6 +6,7 @@ namespace SonsOfPHP\Component\Logger;
 
 use SonsOfPHP\Contract\Logger\HandlerInterface;
 use SonsOfPHP\Contract\Logger\EnricherInterface;
+use SonsOfPHP\Contract\Logger\FilterInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\AbstractLogger;
 use Psr\Log\InvalidArgumentException;
@@ -19,14 +20,15 @@ class Logger extends AbstractLogger implements LoggerInterface
         private string $channel = '',
         private array $handlers = [],
         private array $enrichers = [],
+        private ?FilterInterface $filter = null,
     ) {}
 
-    public function pushHandler(HandlerInterface $handler): void
+    public function addHandler(HandlerInterface $handler): void
     {
         $this->handlers[] = $handler;
     }
 
-    public function pushEnricher(EnricherInterface $enricher): void
+    public function addEnricher(EnricherInterface $enricher): void
     {
         $this->enrichers[] = $enricher;
     }
@@ -36,16 +38,20 @@ class Logger extends AbstractLogger implements LoggerInterface
      */
     public function log($level, string|\Stringable $message, array $context = []): void
     {
-        if (null === Level::tryFrom($level)) {
+        if (null === Level::tryFromName((string) $level)) {
             throw new InvalidArgumentException('level is invalid');
         }
 
         $record = new Record(
             channel: $this->channel,
-            level: Level::from($level),
+            level: Level::fromName($level),
             message: (string) $message,
             context: new Context($context),
         );
+
+        if (null !== $this->filter && false === $this->filter->isLoggable($record)) {
+            return;
+        }
 
         foreach ($this->enrichers as $enricher) {
             $record = $enricher($record);

@@ -13,17 +13,17 @@ interface RecordInterface
 {
     public function getChannel(): string;
 
-    public function withChannel(): static;
+    public function withChannel(string $channel): static;
 
     public function getLevel();
 
-    public function withLevel(): static;
+    public function withLevel(LevelInterface $level): static;
 
     public function getMessage(): string;
 
-    public function withMessage(): static;
+    public function withMessage(string $message): static;
 
     public function getContext(): ContextInterface;
 
-    public function withContext(): static;
+    public function withContext(ContextInterface $context): static;
 }

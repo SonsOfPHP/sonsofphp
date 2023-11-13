@@ -7,8 +7,6 @@ namespace SonsOfPHP\Contract\Logger;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface FormatterInterface
+interface ManagerInterface
 {
-    // returns formatted message
-    public function formatMessage(RecordInterface $record): string;
 }
