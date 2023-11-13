@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Logger;
 
+use SonsOfPHP\Contract\Logger\HandlerInterface;
+use SonsOfPHP\Contract\Logger\EnricherInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\AbstractLogger;
 use Psr\Log\InvalidArgumentException;
@@ -14,12 +16,17 @@ use Psr\Log\InvalidArgumentException;
 class Logger extends AbstractLogger implements LoggerInterface
 {
     public function __construct(
-        private string $channel,
+        private string $channel = '',
         private array $handlers = [],
         private array $enrichers = [],
     ) {}
 
-    public function pushHandler($handler): void
+    public function pushHandler(HandlerInterface $handler): void
+    {
+        $this->handlers[] = $handler;
+    }
+
+    public function pushEnricher(EnricherInterface $enricher): void
     {
         $this->handlers[] = $handler;
     }
@@ -29,11 +36,19 @@ class Logger extends AbstractLogger implements LoggerInterface
      */
     public function log($level, string|\Stringable $message, array $context = []): void
     {
+        $record = new Record(
+            channel: $this->channel,
+            level: Level::from($level),
+            message: (string) $message,
+            context: new Context($context),
+        );
+
         foreach ($this->handlers as $handler) {
             foreach ($this->enrichers as $enricher) {
-                $enricher->enrich();
+                $enricher->enrich($record);
             }
-            $handler->handle($level, $message, $context);
+
+            $handler->handle($record);
         }
     }
 }

@@ -280,7 +280,7 @@ class Uri implements UriInterface, \Stringable
         return ($this->scheme ? $this->scheme . '://' : '') .
             ($this->getUserInfo() ? $this->getUserInfo() . '@' : '') .
             ($this->getHost()) .
-            ($this->getPort() ? ':' . $this->getPort() : '') .
+            ($this->port ? ':' . $this->port : '') .
             ($this->getPath() ?? '') .
             ($this->getQuery() ? '?' . $this->getQuery() : '') .
             ($this->getFragment() ? '#' . $this->getFragment() : '')

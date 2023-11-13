@@ -11,11 +11,11 @@ use Psr\Log\InvalidArgumentException;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class LogRecord
+class Record
 {
     public function __construct(
         private string $channel,
-        private mixed $level,
+        private Level $level,
         private string|\Stringable $message,
         private array $context,
     ) {}
