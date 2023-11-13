@@ -26,4 +26,8 @@ interface RecordInterface
     public function getContext(): ContextInterface;
 
     public function withContext(ContextInterface $context): static;
+
+    public function getDatetime(): \DateTimeImmutable;
+
+    public function withDatetime(\DateTimeImmutable $datetime): static;
 }

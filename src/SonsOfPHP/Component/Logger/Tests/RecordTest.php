@@ -105,4 +105,24 @@ final class RecordTest extends TestCase
         $this->assertSame($record, $record->withContext(new Context()));
         $this->assertNotSame($record, $record->withContext(new Context(['key' => 'value'])));
     }
+
+    /**
+     * @covers ::withContext
+     */
+    public function testWithContextWhenArgumentIsArray(): void
+    {
+        $record = new Record(
+            channel: 'app',
+            level: Level::Debug,
+            message: 'testing',
+            context: new Context(),
+        );
+
+        $record = $record->withContext([
+            'key' => 'value',
+        ]);
+
+        $this->assertArrayHasKey('key', $record->getContext());
+        $this->assertSame('value', $record->getContext()['key']);
+    }
 }

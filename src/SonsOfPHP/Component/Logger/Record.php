@@ -21,6 +21,7 @@ final class Record implements RecordInterface
         private LevelInterface $level,
         private string|\Stringable $message,
         private ContextInterface $context,
+        private \DateTimeImmutable $datetime = new \DateTimeImmutable(),
     ) {}
 
     public function getChannel(): string
@@ -79,14 +80,31 @@ final class Record implements RecordInterface
         return $this->context;
     }
 
-    public function withContext(ContextInterface $context): static
+    public function withContext(array|ContextInterface $context): static
     {
+        if (is_array($context)) {
+            $context = new Context($context);
+        }
+
         if ($this->context->all() === $context->all()) {
             return $this;
         }
 
         $that = clone $this;
         $that->context = $context;
+
+        return $that;
+    }
+
+    public function getDatetime()
+    {
+        return $this->datetime;
+    }
+
+    public function withDatetime(\DateTimeImmutable $datetime): static
+    {
+        $that = clone $this;
+        $that->datatime = $datatime;
 
         return $that;
     }

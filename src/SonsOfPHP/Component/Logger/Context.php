@@ -45,7 +45,7 @@ class Context implements ContextInterface
         }
 
         if (is_object($value) && !$value instanceof \Stringable) {
-            throw new \InvalidArgumentException('Only strings are supported as values');
+            throw new \InvalidArgumentException('Only Stringable Objects are supported');
         }
 
         $this->context[$offset] = $value;

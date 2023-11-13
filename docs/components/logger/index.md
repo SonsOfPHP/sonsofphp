@@ -20,6 +20,7 @@ Simple usage
 
 use SonsOfPHP\Component\Logger\Logger;
 
+// Logger is PSR-3 Logger
 $logger = new Logger('app');
 // ...
 $logger->debug('Debug Log Message');
@@ -67,8 +68,11 @@ hash or memory usage, or anything else you want.
 
 ### Filters
 
-Filters can be used to determine it the log message should be handled.
+Filters can be used to determine it the log message should be handled. Custom
+filters could be specific to an HTTP Request so that ONLY requests matching a
+specific path would be handled. You could also make a custom filter to log only
+authenticated users
 
 ### Formatters
 
-Formatters are used by Handlers to format the message that needs to be logged
+Formatters are used by Handlers to format the message that needs to be logged.

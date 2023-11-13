@@ -16,12 +16,14 @@ class SimpleFormater implements FormatterInterface
 {
     public function formatMessage(RecordInterface $record): string
     {
-        $message = $record->getMessage();
+        $message = '[' . $record->getChannel() . ']' . '[' . $record->getLevel()->getName() . ']' . $record->getMessage();
+
         foreach ($record->getContext() as $key => $value) {
             if (!is_array($value) && (!is_object($value) || method_exists($value, '__toString'))) {
                 $message = strtr($message, '{' . $key . '}', $value);
             }
         }
+
         return $message;
     }
 }

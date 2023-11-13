@@ -26,6 +26,19 @@ final class ContextTest extends TestCase
     }
 
     /**
+     * @covers ::offsetSet
+     */
+    public function testOffsetSetWithComplex(): void
+    {
+        $context = new Context();
+        $context['test'] = [
+            'key' => 'value',
+        ];
+
+        $this->assertSame('value', $context['test']['key']);
+    }
+
+    /**
      * @covers ::all
      */
     public function testAll(): void

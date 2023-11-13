@@ -10,7 +10,7 @@ namespace SonsOfPHP\Contract\Logger;
  *
  * Examples:
  *   - Add Http Request information to the Context
- *   - Sanitize Context values, for example, if someone accendentally added
+ *   - Mask Context values, for example, if someone accendentally added
  *     "creditCardNumber" to the context, it will "****" the value out.
  *     - Can be used for PCI / Hippa Compliance
  *
