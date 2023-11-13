@@ -6,7 +6,7 @@ docs/ @sonsofphp/Members
 # Each project needs a Team
 /src/SonsOfPHP/Bard @JoshuaEstes
 
-# Each project/component/contract needs a Team
+# Each component/contract needs a Team
 /src/SonsOfPHP/**/Cache @JoshuaEstes
 /src/SonsOfPHP/**/Clock @JoshuaEstes
 /src/SonsOfPHP/**/Common @JoshuaEstes
@@ -17,6 +17,7 @@ docs/ @sonsofphp/Members
 /src/SonsOfPHP/**/Filesystem @JoshuaEstes
 /src/SonsOfPHP/**/HttpFactory @JoshuaEstes
 /src/SonsOfPHP/**/HttpMessage @JoshuaEstes
-/src/SonsOfPHP/**/HttpJson @JoshuaEstes
+/src/SonsOfPHP/**/Json @JoshuaEstes
+/src/SonsOfPHP/**/Logger @JoshuaEstes
 /src/SonsOfPHP/**/Money @JoshuaEstes
 /src/SonsOfPHP/**/Version @JoshuaEstes
