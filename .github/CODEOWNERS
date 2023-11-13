@@ -1,7 +1,7 @@
-* @Members
+* @SonsOfPHP/members
 
 # Make Documentation Team
-docs/ @Members
+docs/ @SonsOfPHP/members
 
 # Each project needs a Team
 /src/SonsOfPHP/Bard @JoshuaEstes
