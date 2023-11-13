@@ -28,7 +28,7 @@ class Logger extends AbstractLogger implements LoggerInterface
 
     public function pushEnricher(EnricherInterface $enricher): void
     {
-        $this->handlers[] = $handler;
+        $this->enrichers[] = $enricher;
     }
 
     /**
@@ -36,6 +36,10 @@ class Logger extends AbstractLogger implements LoggerInterface
      */
     public function log($level, string|\Stringable $message, array $context = []): void
     {
+        if (null === Level::tryFrom($level)) {
+            throw new InvalidArgumentException('level is invalid');
+        }
+
         $record = new Record(
             channel: $this->channel,
             level: Level::from($level),
@@ -43,11 +47,11 @@ class Logger extends AbstractLogger implements LoggerInterface
             context: new Context($context),
         );
 
-        foreach ($this->handlers as $handler) {
-            foreach ($this->enrichers as $enricher) {
-                $enricher->enrich($record);
-            }
+        foreach ($this->enrichers as $enricher) {
+            $record = $enricher($record);
+        }
 
+        foreach ($this->handlers as $handler) {
             $handler->handle($record);
         }
     }

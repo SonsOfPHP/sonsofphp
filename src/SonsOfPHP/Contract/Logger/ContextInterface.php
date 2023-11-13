@@ -7,7 +7,6 @@ namespace SonsOfPHP\Contract\Logger;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface EnricherInterface
+interface ContextInterface extends \ArrayAccess
 {
-    public function __invoke(RecordInterface $record): RecordInterface;
 }

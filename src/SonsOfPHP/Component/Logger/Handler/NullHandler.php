@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Logger\Handler;
 
 use SonsOfPHP\Contract\Logger\HandlerInterface;
+use SonsOfPHP\Contract\Logger\RecordInterface;
 
 /**
  * The handler that says, "fuck your message"
@@ -13,7 +14,7 @@ use SonsOfPHP\Contract\Logger\HandlerInterface;
  */
 class NullHandler implements HandlerInterface
 {
-    public function handle($logRecord)
+    public function handle(RecordInterface $record): void
     {
     }
 }

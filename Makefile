@@ -110,6 +110,9 @@ coverage-http-message:
 coverage-json:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite json --coverage-html $(COVERAGE_DIR)
 
+coverage-logger: PHPUNIT_TESTSUITE=logger
+coverage-logger: coverage
+
 coverage-money:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite money --coverage-html $(COVERAGE_DIR)
 

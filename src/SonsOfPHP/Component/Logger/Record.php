@@ -7,6 +7,7 @@ namespace SonsOfPHP\Component\Logger;
 use Psr\Log\LoggerInterface;
 use Psr\Log\AbstractLogger;
 use Psr\Log\InvalidArgumentException;
+use SonsOfPHP\Contract\Logger\ContextInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -17,7 +18,7 @@ class Record
         private string $channel,
         private Level $level,
         private string|\Stringable $message,
-        private array $context,
+        private ContextInterface $context,
     ) {}
 
     public function getLevel()

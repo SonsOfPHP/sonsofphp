@@ -12,5 +12,5 @@ interface HandlerInterface
     /**
      * Handles the log record
      */
-    public function handle($record): void;
+    public function handle(RecordInterface $record): void;
 }
