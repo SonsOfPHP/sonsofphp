@@ -57,9 +57,9 @@ final class FileHandlerTest extends TestCase
             datetime: new \DateTimeImmutable('2020-04-20T04:20:00+00:00'),
         );
 
-        $this->assertFalse(file_exists('/tmp/testing.log'));
+        $this->assertFileNotExists('/tmp/testing.log');
         $handler->handle($record);
-        $this->assertTrue(file_exists('/tmp/testing.log'));
+        $this->assertFileExists('/tmp/testing.log');
 
         unset($handler);
     }
