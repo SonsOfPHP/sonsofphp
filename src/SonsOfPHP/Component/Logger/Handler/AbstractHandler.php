@@ -34,7 +34,7 @@ abstract class AbstractHandler implements HandlerInterface
 
     public function getFormatter(): ?FormatterInterface
     {
-        return $this->formatter;
+        return $this->formatter ?? null;
     }
 
     public function setFormatter(FormatterInterface $formatter): void
@@ -44,12 +44,12 @@ abstract class AbstractHandler implements HandlerInterface
 
     public function handle(RecordInterface $record): void
     {
-        if (null !== $this->filter && false === $this->filter->isLoggable($record)) {
+        if (null !== $this->getFilter() && false === $this->filter->isLoggable($record)) {
             return;
         }
 
         $message = $record->getMessage();
-        if (null !== $this->formatter) {
+        if (null !== $this->getFormatter()) {
             $message = $record->withMessage($this->formatter->formatMessage($record));
         }
 
