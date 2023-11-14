@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Logger\Tests\Filter;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Logger\Filter\MockFilter;
-use SonsOfPHP\Contract\Logger\FilterInterface;
-use SonsOfPHP\Component\Logger\Record;
-use SonsOfPHP\Component\Logger\Level;
 use SonsOfPHP\Component\Logger\Context;
+use SonsOfPHP\Component\Logger\Filter\MockFilter;
+use SonsOfPHP\Component\Logger\Level;
+use SonsOfPHP\Component\Logger\Record;
+use SonsOfPHP\Contract\Logger\FilterInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Logger\Filter\MockFilter

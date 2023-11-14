@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Logger\Filter;
 
-use SonsOfPHP\Contract\Logger\FilterInterface;
-use SonsOfPHP\Contract\Logger\RecordInterface;
-use SonsOfPHP\Contract\Logger\LevelInterface;
 use SonsOfPHP\Component\Logger\Level;
+use SonsOfPHP\Contract\Logger\FilterInterface;
+use SonsOfPHP\Contract\Logger\LevelInterface;
+use SonsOfPHP\Contract\Logger\RecordInterface;
 
 /**
  * Only log the message if it's $level or higher

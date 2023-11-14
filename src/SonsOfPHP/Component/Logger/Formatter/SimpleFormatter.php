@@ -17,7 +17,7 @@ class SimpleFormatter implements FormatterInterface
     public function formatMessage(RecordInterface $record): string
     {
         $output = "[%datetime%] %channel%.%level_name%: %message% %context%\n";
-        $message = '['.$record->getDatetime()->format('c').'] ' . $record->getChannel() . '.' . $record->getLevel()->getName() . ' ' . $record->getMessage();
+        $message = '[' . $record->getDatetime()->format('c') . '] ' . $record->getChannel() . '.' . $record->getLevel()->getName() . ' ' . $record->getMessage();
 
         $message = $record->getMessage();
         foreach ($record->getContext() as $key => $value) {

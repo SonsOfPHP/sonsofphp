@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Logger;
 
-use SonsOfPHP\Contract\Logger\HandlerInterface;
-use SonsOfPHP\Contract\Logger\EnricherInterface;
-use SonsOfPHP\Contract\Logger\FilterInterface;
-use Psr\Log\LoggerInterface;
 use Psr\Log\AbstractLogger;
 use Psr\Log\InvalidArgumentException;
+use Psr\Log\LoggerInterface;
+use SonsOfPHP\Contract\Logger\EnricherInterface;
+use SonsOfPHP\Contract\Logger\FilterInterface;
+use SonsOfPHP\Contract\Logger\HandlerInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

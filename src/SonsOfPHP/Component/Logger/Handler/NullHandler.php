@@ -14,7 +14,5 @@ use SonsOfPHP\Contract\Logger\RecordInterface;
  */
 class NullHandler extends AbstractHandler implements HandlerInterface
 {
-    public function handle(RecordInterface $record): void
-    {
-    }
+    public function handle(RecordInterface $record): void {}
 }

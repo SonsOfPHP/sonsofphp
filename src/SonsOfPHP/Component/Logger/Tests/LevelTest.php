@@ -7,7 +7,6 @@ namespace SonsOfPHP\Component\Logger\Tests;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Logger\Level;
 use SonsOfPHP\Contract\Logger\LevelInterface;
-use Psr\Log\LogLevel;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Logger\Level

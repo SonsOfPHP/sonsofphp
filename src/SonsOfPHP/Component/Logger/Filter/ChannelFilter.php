@@ -6,7 +6,6 @@ namespace SonsOfPHP\Component\Logger\Filter;
 
 use SonsOfPHP\Contract\Logger\FilterInterface;
 use SonsOfPHP\Contract\Logger\RecordInterface;
-use SonsOfPHP\Contract\Logger\Level;
 
 /**
  * Only allow logs based on the channel name. For example, if the channel is
@@ -23,8 +22,7 @@ class ChannelFilter implements FilterInterface
     public function __construct(
         private string $channel,
         private bool $isLoggable = true,
-    ) {
-    }
+    ) {}
 
     public function isLoggable(RecordInterface $record): bool
     {

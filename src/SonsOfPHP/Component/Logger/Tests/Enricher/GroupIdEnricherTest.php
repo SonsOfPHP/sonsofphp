@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Logger\Tests\Enricher;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Logger\Enricher\GroupIdEnricher;
-use SonsOfPHP\Contract\Logger\EnricherInterface;
-use SonsOfPHP\Component\Logger\Record;
-use SonsOfPHP\Component\Logger\Level;
 use SonsOfPHP\Component\Logger\Context;
+use SonsOfPHP\Component\Logger\Enricher\GroupIdEnricher;
+use SonsOfPHP\Component\Logger\Level;
+use SonsOfPHP\Component\Logger\Record;
+use SonsOfPHP\Contract\Logger\EnricherInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Logger\Enricher\GroupIdEnricher

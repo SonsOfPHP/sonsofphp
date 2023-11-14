@@ -70,11 +70,11 @@ final class ContextTest extends TestCase
         $context = new Context();
 
         $this->assertFalse(isset($context['test']));
-        $this->assertTrue(empty($context['test']));
+        $this->assertEmpty($context['test']);
 
         $context['test'] = 'testing';
         $this->assertTrue(isset($context['test']));
-        $this->assertFalse(empty($context['test']));
+        $this->assertNotEmpty($context['test']);
     }
 
     /**
@@ -86,11 +86,11 @@ final class ContextTest extends TestCase
 
         $context['key'] = 'value';
         $this->assertTrue(isset($context['key']));
-        $this->assertFalse(empty($context['key']));
+        $this->assertNotEmpty($context['key']);
 
         unset($context['key']);
         $this->assertFalse(isset($context['key']));
-        $this->assertTrue(empty($context['key']));
+        $this->assertEmpty($context['key']);
     }
 
     /**
@@ -102,10 +102,10 @@ final class ContextTest extends TestCase
 
         $context['test'] = 'unit test';
         $this->assertTrue(isset($context['test']));
-        $this->assertFalse(empty($context['test']));
+        $this->assertNotEmpty($context['test']);
 
         $context['key'] = 'value';
         $this->assertTrue(isset($context['key']));
-        $this->assertFalse(empty($context['key']));
+        $this->assertNotEmpty($context['key']);
     }
 }

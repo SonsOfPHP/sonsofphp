@@ -6,7 +6,6 @@ namespace SonsOfPHP\Component\Logger\Filter;
 
 use SonsOfPHP\Contract\Logger\FilterInterface;
 use SonsOfPHP\Contract\Logger\RecordInterface;
-use SonsOfPHP\Contract\Logger\Level;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

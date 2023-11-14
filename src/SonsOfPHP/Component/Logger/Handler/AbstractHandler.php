@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Logger\Handler;
 
-use SonsOfPHP\Contract\Logger\HandlerInterface;
-use SonsOfPHP\Contract\Logger\FormatterInterface;
 use SonsOfPHP\Contract\Logger\FilterInterface;
+use SonsOfPHP\Contract\Logger\FormatterInterface;
+use SonsOfPHP\Contract\Logger\HandlerInterface;
 use SonsOfPHP\Contract\Logger\RecordInterface;
 
 /**

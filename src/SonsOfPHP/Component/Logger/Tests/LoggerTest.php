@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Logger\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Logger\Logger;
-use SonsOfPHP\Component\Logger\Handler\NullHandler;
+use Psr\Log\LoggerInterface;
+use SonsOfPHP\Component\Logger\Context;
 use SonsOfPHP\Component\Logger\Enricher\NullEnricher;
+use SonsOfPHP\Component\Logger\Handler\NullHandler;
+use SonsOfPHP\Component\Logger\Level;
+use SonsOfPHP\Component\Logger\Logger;
+use SonsOfPHP\Component\Logger\Record;
 use SonsOfPHP\Contract\Logger\EnricherInterface;
 use SonsOfPHP\Contract\Logger\HandlerInterface;
-use SonsOfPHP\Component\Logger\Record;
-use SonsOfPHP\Component\Logger\Context;
-use SonsOfPHP\Component\Logger\Level;
-use Psr\Log\LoggerInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Logger\Logger

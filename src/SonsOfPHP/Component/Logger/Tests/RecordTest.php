@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Logger\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Logger\Record;
 use SonsOfPHP\Component\Logger\Context;
 use SonsOfPHP\Component\Logger\Level;
+use SonsOfPHP\Component\Logger\Record;
 use SonsOfPHP\Contract\Logger\RecordInterface;
 
 /**
