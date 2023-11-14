@@ -12,8 +12,23 @@ use SonsOfPHP\Contract\Logger\RecordInterface;
  */
 class StreamHandler extends AbstractHandler implements HandlerInterface
 {
-    public function handle(RecordInterface $record): void
+    private bool $isOpen = false;
+    private $stream;
+
+    public function __construct($stream)
     {
-        throw new \RuntimeException('To Be Implemented');
+        $this->stream = $stream;
+    }
+
+    public function doHandle(RecordInterface $record, string $message): void
+    {
+        $this->write($message);
+    }
+
+    private function write(string $message): void
+    {
+        if (false === fwrite($this->stream, $message)) {
+            throw new \RuntimeException(sprintf('stream could not be written to'));
+        }
     }
 }
