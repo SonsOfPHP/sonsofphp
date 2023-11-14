@@ -67,8 +67,7 @@
         "psr/http-factory": "^1.0",
         "psr/cache": "^2.0 || ^3.0",
         "psr/simple-cache": "^3.0",
-        "psr/log": "^1.0 || ^2.0 || ^3.0",
-        "sonsofphp/logger-contract": "0.3.x-dev"
+        "psr/log": "^1.0 || ^2.0 || ^3.0"
     },
     "replace": {
         "sonsofphp/bard": "self.version",
