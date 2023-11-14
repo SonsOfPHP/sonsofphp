@@ -12,18 +12,26 @@ use SonsOfPHP\Contract\Logger\RecordInterface;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class SimpleFormater implements FormatterInterface
+class SimpleFormatter implements FormatterInterface
 {
     public function formatMessage(RecordInterface $record): string
     {
-        $message = '[' . $record->getChannel() . ']' . '[' . $record->getLevel()->getName() . ']' . $record->getMessage();
+        $output = "[%datetime%] %channel%.%level_name%: %message% %context%\n";
+        $message = '['.$record->getDatetime()->format('c').'] ' . $record->getChannel() . '.' . $record->getLevel()->getName() . ' ' . $record->getMessage();
 
+        $message = $record->getMessage();
         foreach ($record->getContext() as $key => $value) {
             if (!is_array($value) && (!is_object($value) || method_exists($value, '__toString'))) {
-                $message = strtr($message, '{' . $key . '}', $value);
+                $message = str_replace('{' . $key . '}', $value, $message);
             }
         }
 
-        return $message;
+        $output = str_replace('%datetime%', $record->getDatetime()->format('c'), $output);
+        $output = str_replace('%channel%', $record->getChannel(), $output);
+        $output = str_replace('%level_name%', $record->getLevel()->getName(), $output);
+        $output = str_replace('%message%', $message, $output);
+        $output = str_replace('%context%', json_encode($record->getContext()->all()), $output);
+
+        return $output;
     }
 }

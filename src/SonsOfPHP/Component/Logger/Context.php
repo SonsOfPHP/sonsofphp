@@ -64,6 +64,6 @@ class Context implements ContextInterface
 
     public function getIterator(): \Traversable
     {
-        return new ArrayIterator($this->context);
+        return new \ArrayIterator($this->context);
     }
 }

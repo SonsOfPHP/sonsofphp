@@ -14,5 +14,6 @@ class StreamHandler extends AbstractHandler implements HandlerInterface
 {
     public function handle(RecordInterface $record): void
     {
+        throw new \RuntimeException('To Be Implemented');
     }
 }

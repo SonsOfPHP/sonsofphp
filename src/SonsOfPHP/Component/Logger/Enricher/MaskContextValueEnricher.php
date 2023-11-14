@@ -35,11 +35,14 @@ class MaskContextValueEnricher implements EnricherInterface
     public function __invoke(RecordInterface $record): RecordInterface
     {
         $context = $record->getContext();
-        if (is_string($this->key) && !isset($context[$this->key])) {
-            return $record;
+
+        $keys = $this->key;
+
+        if (!is_array($keys)) {
+            $keys = [$keys];
         }
 
-        foreach ($this->key as $key) {
+        foreach ($keys as $key) {
             if (isset($context[$key])) {
                 $context[$key] = $this->maskValue;
             }

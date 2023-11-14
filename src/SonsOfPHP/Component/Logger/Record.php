@@ -96,7 +96,7 @@ final class Record implements RecordInterface
         return $that;
     }
 
-    public function getDatetime()
+    public function getDatetime(): \DateTimeImmutable
     {
         return $this->datetime;
     }
