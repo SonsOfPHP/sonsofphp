@@ -63,6 +63,10 @@
       <directory>src/SonsOfPHP/Component/Json/Tests</directory>
     </testsuite>
 
+    <testsuite name="logger">
+      <directory>src/SonsOfPHP/Component/Logger/Tests</directory>
+    </testsuite>
+
     <testsuite name="money">
       <directory>src/SonsOfPHP/Component/Money/Tests</directory>
     </testsuite>

@@ -54,6 +54,9 @@ test-clock: phpunit
 test-cqrs: PHPUNIT_TESTSUITE=cqrs
 test-cqrs: phpunit
 
+test-logger: PHPUNIT_TESTSUITE=logger
+test-logger: phpunit
+
 phpunit:
 	XDEBUG_MODE=$(XDEBUG_MODE) \
 	$(PHP) \
@@ -109,6 +112,9 @@ coverage-http-message:
 
 coverage-json:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite json --coverage-html $(COVERAGE_DIR)
+
+coverage-logger: PHPUNIT_TESTSUITE=logger
+coverage-logger: coverage
 
 coverage-money:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite money --coverage-html $(COVERAGE_DIR)

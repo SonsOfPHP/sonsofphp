@@ -63,6 +63,10 @@
             "repository": "git@github.com:SonsOfPHP/json.git"
         },
         {
+            "path": "src/SonsOfPHP/Component/Logger",
+            "repository": "git@github.com:SonsOfPHP/logger.git"
+        },
+        {
             "path": "src/SonsOfPHP/Component/Money",
             "repository": "git@github.com:SonsOfPHP/money.git"
         },
@@ -89,6 +93,10 @@
         {
             "path": "src/SonsOfPHP/Contract/Filesystem",
             "repository": "git@github.com:SonsOfPHP/filesystem-contract.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Contract/Logger",
+            "repository": "git@github.com:SonsOfPHP/logger-contract.git"
         },
         {
             "path": "src/SonsOfPHP/Contract/Money",

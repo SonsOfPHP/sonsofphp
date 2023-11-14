@@ -43,7 +43,9 @@
         "sonsofphp/feature-toggle-implementation": "0.3.x-dev",
         "sonsofphp/filesystem-implementation": "0.3.x-dev",
         "sonsofphp/money-implementation": "0.3.x-dev",
-        "sonsofphp/version-implementation": "0.3.x-dev"
+        "sonsofphp/version-implementation": "0.3.x-dev",
+        "psr/log-implementation": "^1.0 || ^2.0 || ^3.0",
+        "sonsofphp/logger-implementation": "0.3.x-dev"
     },
     "require": {
         "php": ">=8.1",
@@ -64,7 +66,9 @@
         "psr/http-message": "^1.0 || ^2.0",
         "psr/http-factory": "^1.0",
         "psr/cache": "^2.0 || ^3.0",
-        "psr/simple-cache": "^3.0"
+        "psr/simple-cache": "^3.0",
+        "psr/log": "^1.0 || ^2.0 || ^3.0",
+        "sonsofphp/logger-contract": "0.3.x-dev"
     },
     "replace": {
         "sonsofphp/bard": "self.version",
@@ -91,7 +95,9 @@
         "sonsofphp/filesystem-contract": "self.version",
         "sonsofphp/money-contract": "self.version",
         "sonsofphp/version-contract": "self.version",
-        "sonsofphp/common-contract": "self.version"
+        "sonsofphp/common-contract": "self.version",
+        "sonsofphp/logger": "self.version",
+        "sonsofphp/logger-contract": "self.version"
     },
     "autoload": {
         "psr-4": {
@@ -110,6 +116,7 @@
             "SonsOfPHP\\Component\\HttpFactory\\": "src/SonsOfPHP/Component/HttpFactory",
             "SonsOfPHP\\Component\\HttpMessage\\": "src/SonsOfPHP/Component/HttpMessage",
             "SonsOfPHP\\Component\\Json\\": "src/SonsOfPHP/Component/Json",
+            "SonsOfPHP\\Component\\Logger\\": "src/SonsOfPHP/Component/Logger",
             "SonsOfPHP\\Component\\Money\\": "src/SonsOfPHP/Component/Money",
             "SonsOfPHP\\Component\\Version\\": "src/SonsOfPHP/Component/Version",
             "SonsOfPHP\\Contract\\Common\\": "src/SonsOfPHP/Contract/Common",
@@ -117,6 +124,7 @@
             "SonsOfPHP\\Contract\\EventSourcing\\": "src/SonsOfPHP/Contract/EventSourcing",
             "SonsOfPHP\\Contract\\FeatureToggle\\": "src/SonsOfPHP/Contract/FeatureToggle",
             "SonsOfPHP\\Contract\\Filesystem\\": "src/SonsOfPHP/Contract/Filesystem",
+            "SonsOfPHP\\Contract\\Logger\\": "src/SonsOfPHP/Contract/Logger",
             "SonsOfPHP\\Contract\\Money\\": "src/SonsOfPHP/Contract/Money",
             "SonsOfPHP\\Contract\\Version\\": "src/SonsOfPHP/Contract/Version"
         },
@@ -136,6 +144,7 @@
             "src/SonsOfPHP/Component/HttpFactory/Tests",
             "src/SonsOfPHP/Component/HttpMessage/Tests",
             "src/SonsOfPHP/Component/Json/Tests",
+            "src/SonsOfPHP/Component/Logger/Tests",
             "src/SonsOfPHP/Component/Money/Tests",
             "src/SonsOfPHP/Component/Version/Tests"
         ]

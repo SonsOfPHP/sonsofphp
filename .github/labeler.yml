@@ -50,6 +50,10 @@ Money:
   - docs/components/money/*
   - src/SonsOfPHP/**/Money/*
 
+Logger:
+  - docs/components/logger/*
+  - src/SonsOfPHP/**/Logger/*
+
 Queue:
   - docs/components/queue/*
   - src/SonsOfPHP/**/Queue/*
