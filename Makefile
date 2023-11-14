@@ -37,11 +37,12 @@ composer-install: composer.json # Install Dependencies via Composer
 	XDEBUG_MODE=off $(COMPOSER) install --working-dir=src/SonsOfPHP/Bard --no-interaction --prefer-dist --optimize-autoloader
 
 purge: # Purge vendor and lock files
-	rm -rf vendor/ src/SonsOfPHP/Bard/vendor/ src/SonsOfPHP/Bard/composer.lock
-	rm -rf vendor/ src/SonsOfPHP/Bridge/*/vendor/ src/SonsOfPHP/Bridge/*/composer.lock
-	rm -rf vendor/ src/SonsOfPHP/Bundle/*/vendor/ src/SonsOfPHP/Bundle/*/composer.lock
-	rm -rf vendor/ src/SonsOfPHP/Component/*/vendor/ src/SonsOfPHP/Component/*/composer.lock
-	rm -rf vendor/ src/SonsOfPHP/Contract/*/vendor/ src/SonsOfPHP/Contract/*/composer.lock
+	rm -rf vendor/ composer.lock
+	rm -rf src/SonsOfPHP/Bard/vendor/ src/SonsOfPHP/Bard/composer.lock
+	rm -rf src/SonsOfPHP/Bridge/*/vendor/ src/SonsOfPHP/Bridge/*/composer.lock
+	rm -rf src/SonsOfPHP/Bundle/*/vendor/ src/SonsOfPHP/Bundle/*/composer.lock
+	rm -rf src/SonsOfPHP/Component/*/vendor/ src/SonsOfPHP/Component/*/composer.lock
+	rm -rf src/SonsOfPHP/Contract/*/vendor/ src/SonsOfPHP/Contract/*/composer.lock
 
 test: phpunit ## Run PHPUnit Tests
 
