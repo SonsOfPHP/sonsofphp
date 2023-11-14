@@ -20,6 +20,8 @@ abstract class AbstractHandler implements HandlerInterface
         protected ?FormatterInterface $formatter = null,
     ) {}
 
+    //abstract public function doHandle(RecordInterface $record, string $message): void;
+
     public function getFilter(): ?FilterInterface
     {
         return $this->filter ?? null;
@@ -46,10 +48,11 @@ abstract class AbstractHandler implements HandlerInterface
             return;
         }
 
+        $message = $record->getMessage();
         if (null !== $this->formatter) {
-            $record = $record->withMessage($this->formatter->formatMessage($record));
+            $message = $record->withMessage($this->formatter->formatMessage($record));
         }
 
-        // ... doHandle
+        $this->doHandle($record, $message);
     }
 }
