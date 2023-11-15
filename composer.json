@@ -45,7 +45,8 @@
         "sonsofphp/money-implementation": "0.3.x-dev",
         "sonsofphp/version-implementation": "0.3.x-dev",
         "psr/log-implementation": "^1.0 || ^2.0 || ^3.0",
-        "sonsofphp/logger-implementation": "0.3.x-dev"
+        "sonsofphp/logger-implementation": "0.3.x-dev",
+        "sonsofphp/pager-implementation": "0.3.x-dev"
     },
     "require": {
         "php": ">=8.1",
@@ -97,7 +98,8 @@
         "sonsofphp/common-contract": "self.version",
         "sonsofphp/logger": "self.version",
         "sonsofphp/logger-contract": "self.version",
-        "sonsofphp/pager-contract": "self.version"
+        "sonsofphp/pager-contract": "self.version",
+        "sonsofphp/pager": "self.version"
     },
     "autoload": {
         "psr-4": {
@@ -118,6 +120,7 @@
             "SonsOfPHP\\Component\\Json\\": "src/SonsOfPHP/Component/Json",
             "SonsOfPHP\\Component\\Logger\\": "src/SonsOfPHP/Component/Logger",
             "SonsOfPHP\\Component\\Money\\": "src/SonsOfPHP/Component/Money",
+            "SonsOfPHP\\Component\\Pager\\": "src/SonsOfPHP/Component/Pager",
             "SonsOfPHP\\Component\\Version\\": "src/SonsOfPHP/Component/Version",
             "SonsOfPHP\\Contract\\Common\\": "src/SonsOfPHP/Contract/Common",
             "SonsOfPHP\\Contract\\Cqrs\\": "src/SonsOfPHP/Contract/Cqrs",
@@ -147,6 +150,7 @@
             "src/SonsOfPHP/Component/Json/Tests",
             "src/SonsOfPHP/Component/Logger/Tests",
             "src/SonsOfPHP/Component/Money/Tests",
+            "src/SonsOfPHP/Component/Pager/Tests",
             "src/SonsOfPHP/Component/Version/Tests"
         ]
     },

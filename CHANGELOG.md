@@ -18,6 +18,7 @@ To get the diff between two versions, go to https://github.com/SonsOfPHP/sonsofp
 * [PR #119](https://github.com/SonsOfPHP/sonsofphp/pull/119) [HttpMessage] Added `withQueryParams` and `withQueryParam` to `Uri`
 * [PR #120](https://github.com/SonsOfPHP/sonsofphp/pull/120) [Logger] New Component
 * [PR #133](https://github.com/SonsOfPHP/sonsofphp/pull/133) [Pager] New Contract
+* [PR #134](https://github.com/SonsOfPHP/sonsofphp/pull/134) [Pager] New Component
 
 ## [0.3.8]
 
