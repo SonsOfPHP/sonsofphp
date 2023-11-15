@@ -8,19 +8,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 To get the diff for a specific change, go to https://github.com/SonsOfPHP/sonsofphp/commit/XXX where XXX is the change hash
 To get the diff between two versions, go to https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.4...v0.3.5
 
-<!--
-Please Use (and keep them organized in this order as well):
- - Added for new features.
- - Changed for changes in existing functionality.
- - Deprecated for soon-to-be removed features.
- - Removed for now removed features.
- - Fixed for any bug fixes.
- - Security in case of vulnerabilities.
-
-Examples:
-* [PR #69](https://github.com/SonsOfPHP/sonsofphp/pull/69) Added new feature
--->
-
 ## [Unreleased]
 
 * [PR #51](https://github.com/SonsOfPHP/sonsofphp/pull/51) Added new Filesystem component
@@ -30,6 +17,7 @@ Examples:
 * [PR #112](https://github.com/SonsOfPHP/sonsofphp/pull/112) [Cache] Added new component
 * [PR #119](https://github.com/SonsOfPHP/sonsofphp/pull/119) [HttpMessage] Added `withQueryParams` and `withQueryParam` to `Uri`
 * [PR #120](https://github.com/SonsOfPHP/sonsofphp/pull/120) [Logger] New Component
+* [PR #133](https://github.com/SonsOfPHP/sonsofphp/pull/133) [Pager] New Contract
 
 ## [0.3.8]
 
