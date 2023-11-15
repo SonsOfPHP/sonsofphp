@@ -96,7 +96,8 @@
         "sonsofphp/version-contract": "self.version",
         "sonsofphp/common-contract": "self.version",
         "sonsofphp/logger": "self.version",
-        "sonsofphp/logger-contract": "self.version"
+        "sonsofphp/logger-contract": "self.version",
+        "sonsofphp/pager-contract": "self.version"
     },
     "autoload": {
         "psr-4": {
@@ -125,6 +126,7 @@
             "SonsOfPHP\\Contract\\Filesystem\\": "src/SonsOfPHP/Contract/Filesystem",
             "SonsOfPHP\\Contract\\Logger\\": "src/SonsOfPHP/Contract/Logger",
             "SonsOfPHP\\Contract\\Money\\": "src/SonsOfPHP/Contract/Money",
+            "SonsOfPHP\\Contract\\Pager\\": "src/SonsOfPHP/Contract/Pager",
             "SonsOfPHP\\Contract\\Version\\": "src/SonsOfPHP/Contract/Version"
         },
         "exclude-from-classmap": [
