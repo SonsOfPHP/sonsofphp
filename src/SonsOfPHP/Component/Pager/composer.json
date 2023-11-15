@@ -1,16 +1,12 @@
 {
-    "name": "sonsofphp/pager-contract",
+    "name": "sonsofphp/pager",
     "type": "library",
-    "description": "",
+    "description": "Allows you to easily paginate results",
     "keywords": [
-        "abstractions",
-        "contracts",
-        "decoupling",
-        "interfaces",
-        "interoperability",
-        "standards"
+        "pager",
+        "pagination"
     ],
-    "homepage": "https://github.com/SonsOfPHP/pager-contract",
+    "homepage": "https://github.com/SonsOfPHP/pager",
     "license": "MIT",
     "authors": [
         {
@@ -25,13 +21,20 @@
     },
     "autoload": {
         "psr-4": {
-            "SonsOfPHP\\Contract\\Pager\\": ""
-        }
+            "SonsOfPHP\\Component\\Pager\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.1"
+        "php": ">=8.1",
+        "sonsofphp/pager-contract": "0.3.x-dev"
+    },
+    "provide": {
+        "sonsofphp/pager-implementation": "0.3.x-dev"
     },
     "extra": {
         "sort-packages": true,

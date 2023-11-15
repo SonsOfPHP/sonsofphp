@@ -46,17 +46,17 @@ JSON:
   - docs/components/json/*
   - src/SonsOfPHP/**/Json/*
 
-Money:
-  - docs/components/money/*
-  - src/SonsOfPHP/**/Money/*
-
 Logger:
   - docs/components/logger/*
   - src/SonsOfPHP/**/Logger/*
 
-Queue:
-  - docs/components/queue/*
-  - src/SonsOfPHP/**/Queue/*
+Money:
+  - docs/components/money/*
+  - src/SonsOfPHP/**/Money/*
+
+Pager:
+  - docs/components/pager/*
+  - src/SonsOfPHP/**/Pager/*
 
 Version:
   - docs/components/version/*
