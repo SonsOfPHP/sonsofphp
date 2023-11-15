@@ -21,8 +21,8 @@ final class CallableAdapterTest extends TestCase
     public function testItHasTheCorrectInterface(): void
     {
         $adapter = new CallableAdapter(
-            count: function () { return 0; },
-            slice: function () { return []; },
+            count: fn() => 0,
+            slice: fn() => [],
         );
 
         $this->assertInstanceOf(AdapterInterface::class, $adapter);
@@ -34,8 +34,8 @@ final class CallableAdapterTest extends TestCase
     public function testCount(): void
     {
         $adapter = new CallableAdapter(
-            count: function () { return 100; },
-            slice: function () { return []; },
+            count: fn() => 100,
+            slice: fn() => [],
         );
 
         $this->assertCount(100, $adapter);
@@ -47,8 +47,8 @@ final class CallableAdapterTest extends TestCase
     public function testGetSlice(): void
     {
         $adapter = new CallableAdapter(
-            count: function () { return 100; },
-            slice: function () { return ['unit.test']; },
+            count: fn() => 100,
+            slice: fn() => ['unit.test'],
         );
 
         $this->assertCount(1, $adapter->getSlice(0, null));

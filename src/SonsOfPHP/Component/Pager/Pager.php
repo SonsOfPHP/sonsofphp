@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Pager;
 
-use SonsOfPHP\Contract\Pager\PagerInterface;
 use SonsOfPHP\Contract\Pager\AdapterInterface;
+use SonsOfPHP\Contract\Pager\PagerInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

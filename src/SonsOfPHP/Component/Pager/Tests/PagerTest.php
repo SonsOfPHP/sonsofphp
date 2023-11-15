@@ -247,7 +247,7 @@ final class PagerTest extends TestCase
     {
         $pager = new Pager(new ArrayAdapter([]));
 
-        $this->assertSame(0, count($pager));
+        $this->assertCount(0, $pager);
         $this->assertSame(0, $pager->count());
     }
 
@@ -257,7 +257,7 @@ final class PagerTest extends TestCase
     public function testGetIteratorWhenGenerator(): void
     {
         $pager = new Pager(new CallableAdapter(
-            count: function () { return 0; },
+            count: fn() => 0,
             slice: function () {
                 yield new \stdClass();
                 yield new \stdClass();
@@ -273,10 +273,11 @@ final class PagerTest extends TestCase
     public function testGetIteratorWhenIteratorAggregateIsReturned(): void
     {
         $pager = new Pager(new CallableAdapter(
-            count: function () { return 1; },
+            count: fn() => 1,
             slice: function () {
-                return new class implements \IteratorAggregate {
-                    public function getIterator(): \Traversable {
+                return new class () implements \IteratorAggregate {
+                    public function getIterator(): \Traversable
+                    {
                         return new \ArrayIterator([]);
                     }
                 };
@@ -292,8 +293,8 @@ final class PagerTest extends TestCase
     public function testGetIteratorWhenIteratorIsReturned(): void
     {
         $pager = new Pager(new CallableAdapter(
-            count: function () { return 1; },
-            slice: function () { return new \ArrayIterator([]); },
+            count: fn() => 1,
+            slice: fn() => new \ArrayIterator([]),
         ));
 
         $this->assertInstanceOf('ArrayIterator', $pager->getIterator());
@@ -315,7 +316,7 @@ final class PagerTest extends TestCase
     public function testJsonSerializeWhenResultsAreTraversable(): void
     {
         $pager = new Pager(new CallableAdapter(
-            count: function () { return 2; },
+            count: fn() => 2,
             slice: function () {
                 yield new \stdClass();
                 yield new \stdClass();
