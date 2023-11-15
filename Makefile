@@ -58,6 +58,9 @@ test-cqrs: phpunit
 test-logger: PHPUNIT_TESTSUITE=logger
 test-logger: phpunit
 
+test-pager: PHPUNIT_TESTSUITE=pager
+test-pager: phpunit
+
 phpunit:
 	XDEBUG_MODE=$(XDEBUG_MODE) \
 	$(PHP) \
@@ -119,6 +122,9 @@ coverage-logger: coverage
 
 coverage-money:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite money --coverage-html $(COVERAGE_DIR)
+
+coverage-pager: PHPUNIT_TESTSUITE=pager
+coverage-pager: coverage
 
 coverage-version:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite version --coverage-html $(COVERAGE_DIR)
