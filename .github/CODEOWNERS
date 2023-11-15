@@ -18,6 +18,7 @@ docs/ @JoshuaEstes
 /src/SonsOfPHP/**/HttpFactory @JoshuaEstes
 /src/SonsOfPHP/**/HttpMessage @JoshuaEstes
 /src/SonsOfPHP/**/Json @JoshuaEstes
+/src/SonsOfPHP/**/Link @JoshuaEstes
 /src/SonsOfPHP/**/Logger @JoshuaEstes
 /src/SonsOfPHP/**/Money @JoshuaEstes
 /src/SonsOfPHP/**/Pager @JoshuaEstes

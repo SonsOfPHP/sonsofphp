@@ -46,6 +46,10 @@ JSON:
   - docs/components/json/*
   - src/SonsOfPHP/**/Json/*
 
+Link:
+  - docs/components/link/*
+  - src/SonsOfPHP/**/Link/*
+
 Logger:
   - docs/components/logger/*
   - src/SonsOfPHP/**/Logger/*
