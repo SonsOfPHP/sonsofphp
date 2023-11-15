@@ -117,3 +117,4 @@ nav:
         - contracts/index.md
         - Common: contracts/common/index.md
         - Cqrs: contracts/cqrs/index.md
+        - Pager: contracts/pager/index.md
