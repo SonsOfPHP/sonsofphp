@@ -22,7 +22,7 @@ class LinkProvider implements LinkProviderInterface
                 throw new \InvalidArgumentException('At least one link does not implement LinkInterface');
             }
 
-            $this->link[spl_object_hash($link)] = $link;
+            $this->links[spl_object_hash($link)] = $link;
         }
     }
 
@@ -53,7 +53,7 @@ class LinkProvider implements LinkProviderInterface
     public function getLinksByRel(string $rel): iterable
     {
         foreach ($this->links as $link) {
-            if (in_array($rel, $link_.getRels())) {
+            if (in_array($rel, $link->getRels())) {
                 yield $link;
             }
         }

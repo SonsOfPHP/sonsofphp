@@ -28,6 +28,15 @@ final class LinkTest extends TestCase
     /**
      * @covers ::__construct
      */
+    public function testItWillThrowInvalidArgumentException(): void
+    {
+        $this->expectException('InvalidArgumentException');
+        $link = new Link();
+    }
+
+    /**
+     * @covers ::__construct
+     */
     public function testConstructWithRelsArray(): void
     {
         $link = new Link('https://docs.sonsofphp.com', rels: ['next', 'prev']);

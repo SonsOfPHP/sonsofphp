@@ -26,7 +26,7 @@ class EvolvableLinkProvider extends LinkProvider implements EvolvableLinkProvide
     public function withLink(LinkInterface $link): static
     {
         $that = clone $this;
-        $that->link[spl_object_hash($link)] = $link;
+        $that->links[spl_object_hash($link)] = $link;
 
         return $that;
     }
@@ -45,7 +45,7 @@ class EvolvableLinkProvider extends LinkProvider implements EvolvableLinkProvide
     public function withoutLink(LinkInterface $link): static
     {
         $that = clone $this;
-        unset($that->link[spl_object_hash($link)]);
+        unset($that->links[spl_object_hash($link)]);
 
         return $that;
     }
