@@ -1,12 +1,11 @@
 {
-    "name": "sonsofphp/money",
+    "name": "sonsofphp/money-twig",
     "type": "library",
-    "description": "Provides abstraction for projects working with money inspired by JSR 354",
+    "description": "Twig Extension for the Money Component",
     "keywords": [
         "money",
         "currency",
-        "ISO4217",
-        "jsr-354"
+        "ISO4217"
     ],
     "homepage": "https://github.com/SonsOfPHP/money",
     "license": "MIT",
@@ -23,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SonsOfPHP\\Component\\Money\\": ""
+            "SonsOfPHP\\Bridge\\Twig\\Money\\": ""
         },
         "exclude-from-classmap": [
             "/Tests/"
@@ -33,11 +32,8 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.1",
-        "ext-intl": "*",
-        "sonsofphp/money-contract": "0.3.x-dev"
-    },
-    "provide": {
-        "sonsofphp/money-implementation": "0.3.x-dev"
+        "sonsofphp/money": "^0.3.x-dev",
+        "twig/twig": "^3.0"
     },
     "extra": {
         "sort-packages": true,

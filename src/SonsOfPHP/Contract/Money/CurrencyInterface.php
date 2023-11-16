@@ -18,14 +18,14 @@ interface CurrencyInterface
     /**
      * Returns the Alphabetic Code of the currency.
      *
-     * Defined by the ISO 4217 standard
+     * Defined by the ISO-4217 standard
      */
     public function getCurrencyCode(): string;
 
     /**
      * The Currency's Numeric Code.
      *
-     * Defined by the ISO 4217 standard
+     * Defined by the ISO-4217 standard
      *
      * @return int|null This may return null if the either does not have one or is unknown
      */
@@ -34,7 +34,7 @@ interface CurrencyInterface
     /**
      * The Currency's Minor Unit.
      *
-     * Defined by the ISO 4217 standard
+     * Defined by the ISO-4217 standard
      *
      * “0” means that there is no minor unit for that currency, whereas “1”,
      * “2” and “3” signify a ratio of 10:1, 100:1 and 1000:1 respectively.
@@ -48,5 +48,8 @@ interface CurrencyInterface
      */
     public function isEqualTo(self $currency): bool;
 
+    /**
+     * Able to pass in custom queries
+     */
     public function query(CurrencyQueryInterface $query);
 }

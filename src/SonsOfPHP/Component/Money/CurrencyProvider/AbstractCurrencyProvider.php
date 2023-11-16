@@ -15,17 +15,26 @@ use SonsOfPHP\Contract\Money\Query\CurrencyProvider\CurrencyProviderQueryInterfa
  */
 abstract class AbstractCurrencyProvider implements CurrencyProviderInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public function query(CurrencyProviderQueryInterface $query)
     {
         return $query->queryFrom($this);
     }
 
-    public function hasCurrency($currency): bool
+    /**
+     * {@inheritdoc}
+     */
+    public function hasCurrency(CurrencyInterface|string $currency): bool
     {
         return $this->query(new HasCurrencyQuery($currency));
     }
 
-    public function getCurrency($currency): CurrencyInterface
+    /**
+     * {@inheritdoc}
+     */
+    public function getCurrency(CurrencyInterface|string $currency): CurrencyInterface
     {
         return $this->query(new GetCurrencyQuery($currency));
     }
