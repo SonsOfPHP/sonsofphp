@@ -8,8 +8,8 @@ use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\Money;
 use SonsOfPHP\Component\Money\Query\Money\IsLessThanOrEqualToMoneyQuery;
-use SonsOfPHP\Contract\Money\Query\Money\MoneyQueryInterface;
 use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
+use SonsOfPHP\Contract\Money\Query\Money\MoneyQueryInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Query\Money\IsLessThanOrEqualToMoneyQuery

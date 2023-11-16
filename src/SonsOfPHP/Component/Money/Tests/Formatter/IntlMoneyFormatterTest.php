@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Money\Tests\Formatter;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Money\Money;
 use SonsOfPHP\Component\Money\Formatter\IntlMoneyFormatter;
+use SonsOfPHP\Component\Money\Money;
 use SonsOfPHP\Contract\Money\MoneyFormatterInterface;
 
 /**

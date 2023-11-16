@@ -7,8 +7,8 @@ namespace SonsOfPHP\Bridge\Twig\Money\Tests;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Twig\Money\MoneyExtension;
 use SonsOfPHP\Component\Money\Money;
-use Twig\Extension\ExtensionInterface;
 use SonsOfPHP\Contract\Money\MoneyFormatterInterface;
+use Twig\Extension\ExtensionInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Twig\Money\MoneyExtension

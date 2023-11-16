@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Twig\Money;
 
+use SonsOfPHP\Contract\Money\MoneyFormatterInterface;
 use SonsOfPHP\Contract\Money\MoneyInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
-use SonsOfPHP\Contract\Money\MoneyFormatterInterface;
 
 /**
  */
