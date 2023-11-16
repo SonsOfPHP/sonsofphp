@@ -7,11 +7,16 @@ namespace SonsOfPHP\Bridge\Twig\Money;
 use SonsOfPHP\Contract\Money\MoneyInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
+use SonsOfPHP\Contract\Money\MoneyFormatterInterface;
 
 /**
  */
 class MoneyExtension extends AbstractExtension
 {
+    public function __construct(
+        private MoneyFormatterInterface $formatter,
+    ) {}
+
     /**
      * {@inheritdoc}
      */
@@ -30,10 +35,6 @@ class MoneyExtension extends AbstractExtension
      */
     public function formatMoney(MoneyInterface $money): string
     {
-        $formatter = new \NumberFormatter('en_US', \NumberFormatter::CURRENCY);
-        $amount    = $money->getAmount()->toFloat();
-        $currency  = (string) $money->getCurrency();
-
-        return $formatter->formatCurrency($amount, $currency);
+        return $this->formatter->format($money);
     }
 }

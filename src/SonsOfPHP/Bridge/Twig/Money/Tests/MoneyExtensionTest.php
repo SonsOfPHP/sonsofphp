@@ -8,25 +8,43 @@ use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Twig\Money\MoneyExtension;
 use SonsOfPHP\Component\Money\Money;
 use Twig\Extension\ExtensionInterface;
+use SonsOfPHP\Contract\Money\MoneyFormatterInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Twig\Money\MoneyExtension
  *
- * @uses \SonsOfPHP\Bridge\Twig\Money\Tests\MoneyExtensionTest
  * @uses \SonsOfPHP\Component\Money\Amount
  * @uses \SonsOfPHP\Component\Money\Currency
  * @uses \SonsOfPHP\Component\Money\Money
+ * @uses \SonsOfPHP\Bridge\Twig\Money\MoneyExtension
  */
 final class MoneyExtensionTest extends TestCase
 {
+    private $formatter;
+
+    public function setUp(): void
+    {
+        $this->formatter = $this->createMock(MoneyFormatterInterface::class);
+    }
+
     /**
-     * @coversNothing
+     * @covers ::__construct
      */
     public function testItHasTheRightInterface(): void
     {
-        $extension = new MoneyExtension();
+        $extension = new MoneyExtension($this->formatter);
 
         $this->assertInstanceOf(ExtensionInterface::class, $extension);
+    }
+
+    /**
+     * @covers ::getFilters
+     */
+    public function testGetFilters(): void
+    {
+        $extension = new MoneyExtension($this->formatter);
+
+        $this->assertGreaterThan(0, $extension->getFilters());
     }
 
     /**
@@ -34,8 +52,9 @@ final class MoneyExtensionTest extends TestCase
      */
     public function testItCanFormatMoney(): void
     {
-        $extension = new MoneyExtension();
+        $this->formatter->expects($this->once())->method('format')->willReturn('');
 
-        $this->assertSame('$10.00', $extension->formatMoney(Money::USD(10)));
+        $extension = new MoneyExtension($this->formatter);
+        $extension->formatMoney(Money::USD(10));
     }
 }
