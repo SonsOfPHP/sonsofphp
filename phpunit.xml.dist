@@ -102,6 +102,7 @@
       <directory>src/SonsOfPHP/Bundle/*/vendor</directory>
       <directory>src/SonsOfPHP/Component/*/Tests</directory>
       <directory>src/SonsOfPHP/Component/*/vendor</directory>
+      <directory>src/SonsOfPHP/Contract/*/vendor</directory>
     </exclude>
   </source>
 
