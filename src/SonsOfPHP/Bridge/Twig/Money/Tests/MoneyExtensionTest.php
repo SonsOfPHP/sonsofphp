@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Twig\Money\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Twig\Extension\ExtensionInterface;
 use SonsOfPHP\Bridge\Twig\Money\MoneyExtension;
 use SonsOfPHP\Component\Money\Money;
+use Twig\Extension\ExtensionInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Twig\Money\MoneyExtension
