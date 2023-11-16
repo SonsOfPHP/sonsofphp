@@ -9,6 +9,7 @@ use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\Money;
 use SonsOfPHP\Component\Money\Query\Money\IsGreaterThanMoneyQuery;
 use SonsOfPHP\Contract\Money\Query\Money\MoneyQueryInterface;
+use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Query\Money\IsGreaterThanMoneyQuery
@@ -41,5 +42,16 @@ final class IsGreaterThanMoneyQueryTest extends TestCase
         $query = new IsGreaterThanMoneyQuery(new Money(100, Currency::USD()));
 
         $this->assertTrue($query->queryFrom(new Money(200, Currency::USD())));
+    }
+
+    /**
+     * @covers ::queryFrom
+     */
+    public function testQueryThrowsExceptionWhenCurrencyIsDifferent(): void
+    {
+        $query = new IsGreaterThanMoneyQuery(new Money(100, Currency::USD()));
+
+        $this->expectException(MoneyExceptionInterface::class);
+        $query->queryFrom(new Money(200, Currency::EUR()));
     }
 }
