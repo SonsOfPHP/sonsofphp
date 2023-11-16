@@ -71,7 +71,8 @@
         "psr/simple-cache": "^3.0",
         "psr/log": "^1.0 || ^2.0 || ^3.0",
         "psr/link": "^1.0 || ^2.0",
-        "twig/twig": "^3.0"
+        "twig/twig": "^3.0",
+        "ext-intl": "*"
     },
     "replace": {
         "sonsofphp/bard": "self.version",
