@@ -55,6 +55,9 @@ test-clock: phpunit
 test-cqrs: PHPUNIT_TESTSUITE=cqrs
 test-cqrs: phpunit
 
+test-link: PHPUNIT_TESTSUITE=link
+test-link: phpunit
+
 test-logger: PHPUNIT_TESTSUITE=logger
 test-logger: phpunit
 
@@ -116,6 +119,9 @@ coverage-http-message:
 
 coverage-json:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite json --coverage-html $(COVERAGE_DIR)
+
+coverage-link: PHPUNIT_TESTSUITE=link
+coverage-link: coverage
 
 coverage-logger: PHPUNIT_TESTSUITE=logger
 coverage-logger: coverage

@@ -19,6 +19,7 @@ To get the diff between two versions, go to https://github.com/SonsOfPHP/sonsofp
 * [PR #120](https://github.com/SonsOfPHP/sonsofphp/pull/120) [Logger] New Component
 * [PR #133](https://github.com/SonsOfPHP/sonsofphp/pull/133) [Pager] New Contract
 * [PR #134](https://github.com/SonsOfPHP/sonsofphp/pull/134) [Pager] New Component
+* [PR #170](https://github.com/SonsOfPHP/sonsofphp/pull/170) [Link] New Component (PSR-13)
 
 ## [0.3.8]
 

@@ -46,7 +46,8 @@
         "sonsofphp/version-implementation": "0.3.x-dev",
         "psr/log-implementation": "^1.0 || ^2.0 || ^3.0",
         "sonsofphp/logger-implementation": "0.3.x-dev",
-        "sonsofphp/pager-implementation": "0.3.x-dev"
+        "sonsofphp/pager-implementation": "0.3.x-dev",
+        "psr/link-implementation": "^1.0 || ^2.0"
     },
     "require": {
         "php": ">=8.1",
@@ -68,7 +69,8 @@
         "psr/http-factory": "^1.0",
         "psr/cache": "^2.0 || ^3.0",
         "psr/simple-cache": "^3.0",
-        "psr/log": "^1.0 || ^2.0 || ^3.0"
+        "psr/log": "^1.0 || ^2.0 || ^3.0",
+        "psr/link": "^1.0 || ^2.0"
     },
     "replace": {
         "sonsofphp/bard": "self.version",
@@ -99,7 +101,8 @@
         "sonsofphp/logger": "self.version",
         "sonsofphp/logger-contract": "self.version",
         "sonsofphp/pager-contract": "self.version",
-        "sonsofphp/pager": "self.version"
+        "sonsofphp/pager": "self.version",
+        "sonsofphp/link": "self.version"
     },
     "autoload": {
         "psr-4": {
@@ -118,6 +121,7 @@
             "SonsOfPHP\\Component\\HttpFactory\\": "src/SonsOfPHP/Component/HttpFactory",
             "SonsOfPHP\\Component\\HttpMessage\\": "src/SonsOfPHP/Component/HttpMessage",
             "SonsOfPHP\\Component\\Json\\": "src/SonsOfPHP/Component/Json",
+            "SonsOfPHP\\Component\\Link\\": "src/SonsOfPHP/Component/Link",
             "SonsOfPHP\\Component\\Logger\\": "src/SonsOfPHP/Component/Logger",
             "SonsOfPHP\\Component\\Money\\": "src/SonsOfPHP/Component/Money",
             "SonsOfPHP\\Component\\Pager\\": "src/SonsOfPHP/Component/Pager",
@@ -148,6 +152,7 @@
             "src/SonsOfPHP/Component/HttpFactory/Tests",
             "src/SonsOfPHP/Component/HttpMessage/Tests",
             "src/SonsOfPHP/Component/Json/Tests",
+            "src/SonsOfPHP/Component/Link/Tests",
             "src/SonsOfPHP/Component/Logger/Tests",
             "src/SonsOfPHP/Component/Money/Tests",
             "src/SonsOfPHP/Component/Pager/Tests",

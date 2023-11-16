@@ -54,13 +54,16 @@
             "repository": "git@github.com:SonsOfPHP/http-factory.git"
         },
         {
-
             "path": "src/SonsOfPHP/Component/HttpMessage",
             "repository": "git@github.com:SonsOfPHP/http-message.git"
         },
         {
             "path": "src/SonsOfPHP/Component/Json",
             "repository": "git@github.com:SonsOfPHP/json.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Component/Link",
+            "repository": "git@github.com:SonsOfPHP/link.git"
         },
         {
             "path": "src/SonsOfPHP/Component/Logger",
