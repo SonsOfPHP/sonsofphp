@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Link;
 
 use Psr\Link\LinkInterface;
-use Psr\Link\EvolvableLinkInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

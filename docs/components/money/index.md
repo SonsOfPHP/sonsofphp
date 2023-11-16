@@ -72,6 +72,51 @@ $currency = new Currency('USD');
 $currency = Currency::USD();
 ```
 
+### Formatters
+
+```php
+<?php
+
+use SonsOfPHP\Component\Money\Formatter\IntlMoneyFormatter;
+use SonsOfPHP\Component\Money\Money;
+
+$formatter = new IntlMoneyFormatter(new \NumberFormatter('en_US', \NumberFormatter::CURRENCY));
+$output = $formatter->format(Money::USD(4.20));
+echo $output; // $4.20
+```
+
+## Twig Bridge
+
+### Installation
+
+```shell
+composer require sonsofphp/money-twig
+```
+
+### Usage
+
+#### Add Extension to Twig Environment
+
+```php
+<?php
+
+use SonsOfPHP\Bridge\Twig\Money\MoneyExtension;
+use SonsOfPHP\Component\Money\Formatter\IntlMoneyFormatter;
+
+$formatter = new IntlMoneyFormatter(new \NumberFormatter('en_US', \NumberFormatter::CURRENCY));
+$extension = new MoneyExtension($formatter);
+
+$twig = new \Twig\Environment($loader);
+$twig->addExtension($extension);
+```
+
+#### Usage in Twig Templates
+
+```twig
+Your total is {{ money|format_money }}.
+```
+
+
 ## Need Help?
 
 Check out [Sons of PHP's Organization Discussions][discussions].

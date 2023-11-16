@@ -109,7 +109,7 @@ nav:
         - Link: components/link/index.md
         - Logger: components/logger/index.md
         - Money:
-            - components/money/index.md
+            - Overview: components/money/index.md
             - Currency Providers: components/money/currency-providers.md
             - Operators: components/money/operators.md
             - Queries: components/money/queries.md
