@@ -1,7 +1,7 @@
 {
     "name": "sonsofphp/link",
     "type": "library",
-    "description": "Allows you to easily paginate results",
+    "description": "PSR-13 Link Component",
     "keywords": [
         "link",
         "http",
