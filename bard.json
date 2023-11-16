@@ -30,6 +30,10 @@
             "repository": "git@github.com:SonsOfPHP/event-sourcing-symfony.git"
         },
         {
+            "path": "src/SonsOfPHP/Bridge/Twig/Money",
+            "repository": "git@github.com:SonsOfPHP/money-twig.git"
+        },
+        {
             "path": "src/SonsOfPHP/Component/EventDispatcher",
             "repository": "git@github.com:SonsOfPHP/event-dispatcher.git"
         },

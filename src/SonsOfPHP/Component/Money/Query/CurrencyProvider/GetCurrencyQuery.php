@@ -17,7 +17,7 @@ class GetCurrencyQuery implements CurrencyProviderQueryInterface
 {
     private CurrencyInterface $currency;
 
-    public function __construct($currency)
+    public function __construct(CurrencyInterface|string $currency)
     {
         if ($currency instanceof CurrencyInterface) {
             $this->currency = $currency;

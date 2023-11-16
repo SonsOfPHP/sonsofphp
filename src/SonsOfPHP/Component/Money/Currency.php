@@ -13,15 +13,12 @@ use SonsOfPHP\Contract\Money\Query\Currency\CurrencyQueryInterface;
  */
 final class Currency implements CurrencyInterface
 {
-    private string $currencyCode;
-    private ?int $numericCode;
-    private ?int $minorUnit;
-
-    public function __construct(string $currencyCode, int $numericCode = null, int $minorUnit = null)
-    {
+    public function __construct(
+        private string $currencyCode,
+        private ?int $numericCode = null,
+        private ?int $minorUnit = null
+    ) {
         $this->currencyCode = strtoupper($currencyCode);
-        $this->numericCode  = $numericCode;
-        $this->minorUnit    = $minorUnit;
     }
 
     /**
@@ -47,26 +44,41 @@ final class Currency implements CurrencyInterface
         return new static($currencyCode, $numericCode, $minorUnit);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function query(CurrencyQueryInterface $query)
     {
         return $query->queryFrom($this);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getCurrencyCode(): string
     {
         return $this->currencyCode;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getNumericCode(): ?int
     {
         return $this->numericCode;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getMinorUnit(): ?int
     {
         return $this->minorUnit;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isEqualTo(CurrencyInterface $currency): bool
     {
         return $this->query(new IsEqualToCurrencyQuery($currency));

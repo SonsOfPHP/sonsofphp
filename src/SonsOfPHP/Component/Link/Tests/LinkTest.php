@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Link\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Link\Link;
 use Psr\Link\LinkInterface;
+use SonsOfPHP\Component\Link\Link;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Link\Link

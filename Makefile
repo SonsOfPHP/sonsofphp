@@ -61,6 +61,9 @@ test-link: phpunit
 test-logger: PHPUNIT_TESTSUITE=logger
 test-logger: phpunit
 
+test-money: PHPUNIT_TESTSUITE=money
+test-money: phpunit
+
 test-pager: PHPUNIT_TESTSUITE=pager
 test-pager: phpunit
 
@@ -126,8 +129,8 @@ coverage-link: coverage
 coverage-logger: PHPUNIT_TESTSUITE=logger
 coverage-logger: coverage
 
-coverage-money:
-	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite money --coverage-html $(COVERAGE_DIR)
+coverage-money: PHPUNIT_TESTSUITE=money
+coverage-money: coverage
 
 coverage-pager: PHPUNIT_TESTSUITE=pager
 coverage-pager: coverage

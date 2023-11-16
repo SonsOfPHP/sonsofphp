@@ -13,6 +13,7 @@
     <testsuite name="all">
       <!--<directory>src/SonsOfPHP/Bard/src/Tests</directory>-->
       <directory>src/SonsOfPHP/Bridge/*/*/Tests</directory>
+      <directory>src/SonsOfPHP/Bridge/*/*/*/Tests</directory>
       <directory>src/SonsOfPHP/Bundle/*/Tests</directory>
       <directory>src/SonsOfPHP/Component/*/Tests</directory>
     </testsuite>
@@ -72,6 +73,7 @@
     </testsuite>
 
     <testsuite name="money">
+      <directory>src/SonsOfPHP/Bridge/*/Money/Tests</directory>
       <directory>src/SonsOfPHP/Component/Money/Tests</directory>
     </testsuite>
 
@@ -94,10 +96,8 @@
     <exclude>
       <!--<directory>src/SonsOfPHP/Bard/src/Tests</directory>-->
       <directory>src/SonsOfPHP/Bard/vendor</directory>
-      <directory>src/SonsOfPHP/Bridge/Doctrine/*/Tests</directory>
-      <directory>src/SonsOfPHP/Bridge/Doctrine/*/vendor</directory>
-      <directory>src/SonsOfPHP/Bridge/Symfony/*/Tests</directory>
-      <directory>src/SonsOfPHP/Bridge/Symfony/*/vendor</directory>
+      <directory>src/SonsOfPHP/Bridge/*/*/Tests</directory>
+      <directory>src/SonsOfPHP/Bridge/*/*/vendor</directory>
       <directory>src/SonsOfPHP/Bundle/*/Tests</directory>
       <directory>src/SonsOfPHP/Bundle/*/vendor</directory>
       <directory>src/SonsOfPHP/Component/*/Tests</directory>

@@ -70,7 +70,9 @@
         "psr/cache": "^2.0 || ^3.0",
         "psr/simple-cache": "^3.0",
         "psr/log": "^1.0 || ^2.0 || ^3.0",
-        "psr/link": "^1.0 || ^2.0"
+        "psr/link": "^1.0 || ^2.0",
+        "twig/twig": "^3.0",
+        "ext-intl": "*"
     },
     "replace": {
         "sonsofphp/bard": "self.version",
@@ -102,7 +104,8 @@
         "sonsofphp/logger-contract": "self.version",
         "sonsofphp/pager-contract": "self.version",
         "sonsofphp/pager": "self.version",
-        "sonsofphp/link": "self.version"
+        "sonsofphp/link": "self.version",
+        "sonsofphp/money-twig": "self.version"
     },
     "autoload": {
         "psr-4": {
@@ -113,6 +116,7 @@
             "SonsOfPHP\\Bundle\\Cqrs\\": "src/SonsOfPHP/Bundle/Cqrs",
             "SonsOfPHP\\Bridge\\Symfony\\Cqrs\\": "src/SonsOfPHP/Bridge/Symfony/Cqrs",
             "SonsOfPHP\\Bridge\\Symfony\\EventSourcing\\": "src/SonsOfPHP/Bridge/Symfony/EventSourcing",
+            "SonsOfPHP\\Bridge\\Twig\\Money\\": "src/SonsOfPHP/Bridge/Twig/Money",
             "SonsOfPHP\\Component\\EventDispatcher\\": "src/SonsOfPHP/Component/EventDispatcher",
             "SonsOfPHP\\Component\\EventSourcing\\": "src/SonsOfPHP/Component/EventSourcing",
             "SonsOfPHP\\Bridge\\Doctrine\\EventSourcing\\": "src/SonsOfPHP/Bridge/Doctrine/EventSourcing",
@@ -144,6 +148,7 @@
             "src/SonsOfPHP/Bundle/Cqrs/Tests",
             "src/SonsOfPHP/Bridge/Symfony/Cqrs/Tests",
             "src/SonsOfPHP/Bridge/Symfony/EventSourcing/Tests",
+            "src/SonsOfPHP/Bridge/Twig/Money/Tests",
             "src/SonsOfPHP/Component/EventDispatcher/Tests",
             "src/SonsOfPHP/Component/EventSourcing/Tests",
             "src/SonsOfPHP/Bridge/Doctrine/EventSourcing/Tests",

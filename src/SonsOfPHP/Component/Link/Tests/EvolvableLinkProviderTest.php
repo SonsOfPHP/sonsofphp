@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Link\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Link\Link;
-use SonsOfPHP\Component\Link\EvolvableLinkProvider;
 use Psr\Link\EvolvableLinkProviderInterface;
+use SonsOfPHP\Component\Link\EvolvableLinkProvider;
+use SonsOfPHP\Component\Link\Link;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Link\EvolvableLinkProvider
