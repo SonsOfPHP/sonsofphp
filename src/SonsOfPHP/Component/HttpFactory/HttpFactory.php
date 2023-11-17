@@ -15,7 +15,7 @@ final class HttpFactory implements RequestFactoryInterface
 {
     use RequestFactoryTrait;
     use ResponseFactoryTrait;
-    use ServerResponseFactoryTrait;
+    use ServerRequestFactoryTrait;
     use StreamFactoryTrait;
     use UploadedFileFactoryTrait;
     use UriFactoryTrait;

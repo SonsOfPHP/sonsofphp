@@ -12,8 +12,6 @@ use SonsOfPHP\Component\EventSourcing\Message\AbstractMessage;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 
-class Msg extends AbstractMessage {}
-
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\AbstractMessage
  *
@@ -31,7 +29,7 @@ final class AbstractMessageTest extends TestCase
      */
     public function testItHasTheRightInterface(): void
     {
-        $message = Msg::new();
+        $message = $this->createMock(AbstractMessage::class);
 
         $this->assertInstanceOf(MessageInterface::class, $message);
     }
@@ -41,7 +39,7 @@ final class AbstractMessageTest extends TestCase
      */
     public function testGetMetadataHasEmptyArraryAsDefaultValue(): void
     {
-        $message = Msg::new();
+        $message = $this->createMock(AbstractMessage::class)::new();
 
         $this->assertCount(6, $message->getMetadata());
     }
@@ -51,7 +49,7 @@ final class AbstractMessageTest extends TestCase
      */
     public function testWithMetadataReturnsNewStatic(): void
     {
-        $message = Msg::new();
+        $message = $this->createMock(AbstractMessage::class)::new();
 
         $return = $message->withMetadata([
             Metadata::EVENT_TYPE => 'test',
@@ -64,7 +62,8 @@ final class AbstractMessageTest extends TestCase
      */
     public function testWithMetadataWorksCorrectly(): void
     {
-        $message = Msg::new()->withMetadata([
+        $message = $this->createMock(AbstractMessage::class);
+        $message = $message::new()->withMetadata([
             Metadata::EVENT_TYPE => 'test',
         ]);
 
@@ -81,7 +80,7 @@ final class AbstractMessageTest extends TestCase
      */
     public function testGettersWithEmptyMetadata(): void
     {
-        $message = Msg::new();
+        $message = $this->createMock(AbstractMessage::class)::new();
 
         $this->expectException(EventSourcingException::class);
         $this->assertSame('', $message->getEventId());
@@ -103,7 +102,8 @@ final class AbstractMessageTest extends TestCase
      */
     public function testGettersWithMetadata(): void
     {
-        $message = Msg::new()->withMetadata([
+        $message = $this->createMock(AbstractMessage::class);
+        $message = $message::new()->withMetadata([
             Metadata::EVENT_ID          => 'event-id',
             Metadata::EVENT_TYPE        => 'event.type',
             Metadata::TIMESTAMP         => '2022-04-20',
@@ -126,7 +126,8 @@ final class AbstractMessageTest extends TestCase
      */
     public function testGetAggregateIdReturnsCorrectInterface(): void
     {
-        $message = Msg::new()->withMetadata([
+        $message = $this->createMock(AbstractMessage::class);
+        $message = $message::new()->withMetadata([
             Metadata::AGGREGATE_ID => 'aggregate-id',
         ]);
 
@@ -139,7 +140,8 @@ final class AbstractMessageTest extends TestCase
      */
     public function testGetAggregateVersionReturnsCorrectInterface(): void
     {
-        $message = Msg::new()->withMetadata([
+        $message = $this->createMock(AbstractMessage::class);
+        $message = $message::new()->withMetadata([
             Metadata::AGGREGATE_VERSION => 123,
         ]);
 
@@ -151,7 +153,7 @@ final class AbstractMessageTest extends TestCase
      */
     public function testGetPayloadHasEmptyArraryAsDefaultValue(): void
     {
-        $message = Msg::new();
+        $message = $this->createMock(AbstractMessage::class)::new();
 
         $this->assertCount(0, $message->getPayload());
     }
@@ -161,7 +163,7 @@ final class AbstractMessageTest extends TestCase
      */
     public function testWithPayloadReturnsNewStatic(): void
     {
-        $message = Msg::new();
+        $message = $this->createMock(AbstractMessage::class)::new();
 
         $return = $message->withPayload([
             'key' => 'val',
@@ -174,7 +176,8 @@ final class AbstractMessageTest extends TestCase
      */
     public function testWithPayloadWorksCorrectly(): void
     {
-        $message = Msg::new()->withPayload([
+        $message = $this->createMock(AbstractMessage::class);
+        $message = $message::new()->withPayload([
             'key' => 'val',
         ]);
 

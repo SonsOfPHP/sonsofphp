@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\EventSourcing\Tests\Message;
+namespace SonsOfPHP\Component\EventSourcing\Tests\Message\Enricher;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\NullMessageEnricherHandler;

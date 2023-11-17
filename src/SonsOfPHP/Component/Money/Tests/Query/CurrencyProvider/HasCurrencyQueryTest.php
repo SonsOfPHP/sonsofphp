@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\Money\Tests\Query\Currency;
+namespace SonsOfPHP\Component\Money\Tests\Query\CurrencyProvider;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
