@@ -363,4 +363,14 @@ final class MoneyTest extends TestCase
         $output = $money1->divide(5);
         $this->assertSame('20', (string) $output->getAmount());
     }
+
+    /**
+     * @covers ::jsonSerialize
+     */
+    public function testJsonSerialize(): void
+    {
+        $money = Money::USD(420);
+
+        $this->assertSame('{"amount":420,"currency":"USD"}', json_encode($money));
+    }
 }

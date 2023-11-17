@@ -25,7 +25,7 @@ use SonsOfPHP\Contract\Money\MoneyQueryInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class Money implements MoneyInterface
+final class Money implements MoneyInterface, \JsonSerializable
 {
     private AmountInterface $amount;
     private CurrencyInterface $currency;
@@ -150,5 +150,13 @@ final class Money implements MoneyInterface
     public function divide($divisor): MoneyInterface
     {
         return $this->with(new DivideMoneyOperator($divisor));
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'amount' => $this->getAmount()->toInt(),
+            'currency' => $this->getCurrency()->getCurrencyCode(),
+        ];
     }
 }
