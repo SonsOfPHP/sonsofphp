@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Contract\Money;
 
-use SonsOfPHP\Contract\Money\AmountOperatorInterface;
-use SonsOfPHP\Contract\Money\AmountQueryInterface;
-
 /**
  * Amount.
  *
@@ -17,7 +14,7 @@ use SonsOfPHP\Contract\Money\AmountQueryInterface;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface AmountInterface// extends \Stringable
+interface AmountInterface // extends \Stringable
 {
     /**
      * Allows you to run you own operations of the amount.
