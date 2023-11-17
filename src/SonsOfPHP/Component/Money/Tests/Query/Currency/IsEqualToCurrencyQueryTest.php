@@ -7,7 +7,7 @@ namespace SonsOfPHP\Component\Money\Tests\Query\Currency;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery;
-use SonsOfPHP\Contract\Money\Query\Currency\CurrencyQueryInterface;
+use SonsOfPHP\Contract\Money\CurrencyQueryInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery

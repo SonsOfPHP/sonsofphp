@@ -8,7 +8,7 @@ use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\Exception\MoneyException;
 use SonsOfPHP\Contract\Money\CurrencyInterface;
 use SonsOfPHP\Contract\Money\CurrencyProviderInterface;
-use SonsOfPHP\Contract\Money\Query\CurrencyProvider\CurrencyProviderQueryInterface;
+use SonsOfPHP\Contract\Money\CurrencyProviderQueryInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

@@ -9,7 +9,7 @@ use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider;
 use SonsOfPHP\Component\Money\Query\CurrencyProvider\HasCurrencyQuery;
 use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
-use SonsOfPHP\Contract\Money\Query\CurrencyProvider\CurrencyProviderQueryInterface;
+use SonsOfPHP\Contract\Money\CurrencyProviderQueryInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Query\CurrencyProvider\HasCurrencyQuery

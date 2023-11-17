@@ -6,7 +6,7 @@ namespace SonsOfPHP\Component\Money\Operator\Money;
 
 use SonsOfPHP\Component\Money\Money;
 use SonsOfPHP\Contract\Money\MoneyInterface;
-use SonsOfPHP\Contract\Money\Operator\Money\MoneyOperatorInterface;
+use SonsOfPHP\Contract\Money\MoneyOperatorInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

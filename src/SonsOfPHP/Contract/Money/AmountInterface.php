@@ -4,24 +4,21 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Contract\Money;
 
-use SonsOfPHP\Contract\Money\Operator\Amount\AmountOperatorInterface;
-use SonsOfPHP\Contract\Money\Query\Amount\AmountQueryInterface;
+use SonsOfPHP\Contract\Money\AmountOperatorInterface;
+use SonsOfPHP\Contract\Money\AmountQueryInterface;
 
 /**
  * Amount.
  *
  * The amount is used to represent the Numerical Value of the Money.
  *
+ * The amount SHOULD be represented in the smallest form of the currency. So
+ * for USD a value of `420` would represent `$4.20`.
+ *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface AmountInterface
+interface AmountInterface// extends \Stringable
 {
-    /**
-     * Considering some of these methods.
-     */
-    // public function getPrecision(): int;
-    // public function getScale(): int;
-
     /**
      * Allows you to run you own operations of the amount.
      */
@@ -31,7 +28,7 @@ interface AmountInterface
      * Allows you to ask different questions about the amount and get
      * different results returned to you.
      */
-    public function query(AmountQueryInterface $query);
+    public function query(AmountQueryInterface $query)/*: mixed*/;
 
     /**
      * Returns the value for this amount as a string.
