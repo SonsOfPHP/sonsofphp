@@ -14,12 +14,12 @@ namespace SonsOfPHP\Contract\Money;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface AmountInterface // extends \Stringable
+interface AmountInterface// extends \Stringable
 {
     /**
      * Allows you to run you own operations of the amount.
      */
-    public function with(AmountOperatorInterface $operator): self;
+    public function with(AmountOperatorInterface $operator): static;
 
     /**
      * Allows you to ask different questions about the amount and get
@@ -40,7 +40,7 @@ interface AmountInterface // extends \Stringable
     /**
      * Returns the value for this amount as a float.
      */
-    public function toFloat(): float;
+    //public function toFloat(): float;
 
     /**
      * Returns the value that this is for the object.
@@ -50,7 +50,7 @@ interface AmountInterface // extends \Stringable
     /**
      * Add amounts together.
      */
-    public function add(self $amount): self;
+    public function add(AmountInterface $amount): static;
 
     /**
      * Subtract amounts from each other.
@@ -61,27 +61,27 @@ interface AmountInterface // extends \Stringable
      *   $amount1->subtract($amount2) == 50
      *   $amount2->subtract($amount1) == -50
      */
-    public function subtract(self $amount): self;
+    public function subtract(AmountInterface $amount): static;
 
     /**
      * Multiply amount by a specific amount.
      */
-    public function multiply($multiplier): self;
+    public function multiply(/*int */$multiplier): static;
 
     /**
      * Divide the amount by a specific amount.
      */
-    public function divide($divisor): self;
+    public function divide(/*int */$divisor): static;
 
-    public function isEqualTo(self $amount): bool;
+    public function isEqualTo(AmountInterface $amount): bool;
 
-    public function isGreaterThan(self $amount): bool;
+    public function isGreaterThan(AmountInterface $amount): bool;
 
-    public function isGreaterThanOrEqualTo(self $amount): bool;
+    public function isGreaterThanOrEqualTo(AmountInterface $amount): bool;
 
-    public function isLessThan(self $amount): bool;
+    public function isLessThan(AmountInterface $amount): bool;
 
-    public function isLessThanOrEqualTo(self $amount): bool;
+    public function isLessThanOrEqualTo(AmountInterface $amount): bool;
 
     public function isNegative(): bool;
 

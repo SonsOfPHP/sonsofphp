@@ -44,6 +44,14 @@ use SonsOfPHP\Contract\Money\MoneyInterface;
  */
 final class MoneyTest extends TestCase
 {
+    public static function validMoneyConstructorArgumentsProvider(): iterable
+    {
+        yield [420, 'usd'];
+        yield [420, new Currency('usd')];
+        yield [-420, 'usd'];
+        yield [-420, new Currency('usd')];
+    }
+
     /**
      * @covers ::__callStatic
      * @covers ::__construct
