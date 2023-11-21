@@ -38,8 +38,7 @@ final class MessageNormalizerTest extends TestCase
     {
         $normalizer = new MessageNormalizer();
 
-        $message = new class extends AbstractMessage {
-        };
+        $message = new class () extends AbstractMessage {};
 
         $this->assertTrue($normalizer->supportsNormalization($message));
 

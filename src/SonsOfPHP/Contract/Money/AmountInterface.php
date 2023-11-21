@@ -14,7 +14,7 @@ namespace SonsOfPHP\Contract\Money;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface AmountInterface// extends \Stringable
+interface AmountInterface // extends \Stringable
 {
     /**
      * Allows you to run you own operations of the amount.

@@ -68,7 +68,7 @@ final class AggregateRepositoryTest extends TestCase
 
         $aggregate = new FakeAggregate('unique-id');
 
-        $message = new class extends AbstractMessage {};
+        $message = new class () extends AbstractMessage {};
         $aggregate->raiseThisEvent($message);
 
         $repository->persist($aggregate);
@@ -88,7 +88,7 @@ final class AggregateRepositoryTest extends TestCase
 
         $aggregate = new FakeAggregate('unique-id');
 
-        $message = new class extends AbstractMessage {};
+        $message = new class () extends AbstractMessage {};
         $aggregate->raiseThisEvent($message);
 
         $repository->persist($aggregate);
@@ -111,7 +111,7 @@ final class AggregateRepositoryTest extends TestCase
 
         $aggregate = new FakeAggregate('unique-id');
 
-        $message = new class extends AbstractMessage {};
+        $message = new class () extends AbstractMessage {};
         $aggregate->raiseThisEvent($message);
 
         $repository->persist($aggregate);
