@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Doctrine\ORM\Pager\Tests;
 
 use Doctrine\ORM\QueryBuilder;
-use SonsOfPHP\Contract\Pager\AdapterInterface;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Doctrine\ORM\Pager\QueryBuilderAdapter;
+use SonsOfPHP\Contract\Pager\AdapterInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Doctrine\ORM\Pager\QueryBuilderAdapter

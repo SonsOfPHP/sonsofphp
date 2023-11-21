@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Doctrine\Collections\Pager\Tests;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use SonsOfPHP\Contract\Pager\AdapterInterface;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Doctrine\Collections\Pager\ArrayCollectionAdapter;
+use SonsOfPHP\Contract\Pager\AdapterInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Doctrine\Collections\Pager\ArrayCollectionAdapter

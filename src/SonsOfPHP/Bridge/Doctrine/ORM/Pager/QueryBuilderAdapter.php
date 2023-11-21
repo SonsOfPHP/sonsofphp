@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Doctrine\ORM\Pager;
 
 use Doctrine\ORM\QueryBuilder;
-use SonsOfPHP\Contract\Pager\AdapterInterface;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use SonsOfPHP\Contract\Pager\AdapterInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

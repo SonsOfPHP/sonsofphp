@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Doctrine\DBAL\Pager\Tests;
 
 use Doctrine\DBAL\Query\QueryBuilder;
-use SonsOfPHP\Contract\Pager\AdapterInterface;
+use Doctrine\DBAL\Result;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Doctrine\DBAL\Pager\QueryBuilderAdapter;
-use Doctrine\DBAL\Result;
+use SonsOfPHP\Contract\Pager\AdapterInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Doctrine\DBAL\Pager\QueryBuilderAdapter
