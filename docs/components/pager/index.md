@@ -66,7 +66,14 @@ if ($pager->hasNextPage()) {
 }
 ```
 
-## Adapters
+## Custom Adapters
+
+Creating Custom Adapters is easy. You can take a look at the available adapters
+to see how easy it is.
+
+Please see the [Pager Contract](../../contracts/pager/index.md) to learn more.
+
+## Available Adapters
 
 ### ArrayAdapter
 
@@ -97,10 +104,9 @@ $adapter = new CallableAdapter(
 );
 ```
 
-### ArrayCollectionAdapter
+### ArrayCollectionAdapter (doctrine/collections)
 
-
-!!! warning
+!!! warning "Requires `sonsofphp/pager-doctrine-collections`"
     ```shell
     composer require sonsofphp/pager-doctrine-collections
     ```
@@ -114,4 +120,24 @@ use SonsOfPHP\Bridge\Doctrine\Collections\Pager\ArrayCollectionAdapter;
 $collection = new ArrayCollection();
 
 $adapter = new ArrayCollectionAdapter($collection);
+```
+
+### QueryBuilderAdapter (doctrine/dbal)
+
+!!! warning "Requires `sonsofphp/pager-doctrine-dbal`"
+    ```shell
+    composer require sonsofphp/pager-doctrine-dbal
+    ```
+
+```php
+<?php
+
+use Doctrine\DBAL\Query\QueryBuilder;
+use SonsOfPHP\Bridge\Doctrine\DBAL\Pager\QueryBuilderAdapter;
+
+// ...
+
+$adapter = new QueryBuilderAdapter($builder, function (QueryBuilder $builder): void {
+    $builder->select('COUNT(e.id) as total');
+});
 ```
