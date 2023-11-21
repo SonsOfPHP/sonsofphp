@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Bridge\Doctrine\Collections\Pager;
+namespace SonsOfPHP\Bridge\Doctrine\DBAL\Pager;
 
 use Doctrine\DBAL\Query\QueryBuilder;
 use SonsOfPHP\Contract\Pager\AdapterInterface;

@@ -72,7 +72,9 @@
         "psr/log": "^1.0 || ^2.0 || ^3.0",
         "psr/link": "^1.0 || ^2.0",
         "twig/twig": "^3.0",
-        "ext-intl": "*"
+        "ext-intl": "*",
+        "doctrine/collections": "^2",
+        "doctrine/orm": "^2"
     },
     "replace": {
         "sonsofphp/bard": "self.version",
@@ -105,7 +107,10 @@
         "sonsofphp/pager-contract": "self.version",
         "sonsofphp/pager": "self.version",
         "sonsofphp/link": "self.version",
-        "sonsofphp/money-twig": "self.version"
+        "sonsofphp/money-twig": "self.version",
+        "sonsofphp/pager-doctrine-collections": "self.version",
+        "sonsofphp/pager-doctrine-dbal": "self.version",
+        "sonsofphp/pager-doctrine-orm": "self.version"
     },
     "autoload": {
         "psr-4": {
@@ -129,6 +134,9 @@
             "SonsOfPHP\\Component\\Logger\\": "src/SonsOfPHP/Component/Logger",
             "SonsOfPHP\\Component\\Money\\": "src/SonsOfPHP/Component/Money",
             "SonsOfPHP\\Component\\Pager\\": "src/SonsOfPHP/Component/Pager",
+            "SonsOfPHP\\Bridge\\Doctrine\\Collections\\Pager\\": "src/SonsOfPHP/Bridge/Doctrine/Collections/Pager",
+            "SonsOfPHP\\Bridge\\Doctrine\\DBAL\\Pager\\": "src/SonsOfPHP/Bridge/Doctrine/DBAL/Pager",
+            "SonsOfPHP\\Bridge\\Doctrine\\ORM\\Pager\\": "src/SonsOfPHP/Bridge/Doctrine/ORM/Pager",
             "SonsOfPHP\\Component\\Version\\": "src/SonsOfPHP/Component/Version",
             "SonsOfPHP\\Contract\\Common\\": "src/SonsOfPHP/Contract/Common",
             "SonsOfPHP\\Contract\\Cqrs\\": "src/SonsOfPHP/Contract/Cqrs",
@@ -161,6 +169,9 @@
             "src/SonsOfPHP/Component/Logger/Tests",
             "src/SonsOfPHP/Component/Money/Tests",
             "src/SonsOfPHP/Component/Pager/Tests",
+            "src/SonsOfPHP/Bridge/Doctrine/Collections/Pager/Tests",
+            "src/SonsOfPHP/Bridge/Doctrine/DBAL/Pager/Tests",
+            "src/SonsOfPHP/Bridge/Doctrine/ORM/Pager/Tests",
             "src/SonsOfPHP/Component/Version/Tests"
         ]
     },
