@@ -82,6 +82,18 @@
             "repository": "git@github.com:SonsOfPHP/pager.git"
         },
         {
+            "path": "src/SonsOfPHP/Bridge/Doctrine/Collections/Pager",
+            "repository": "git@github.com:SonsOfPHP/pager-doctrine-collections.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Bridge/Doctrine/DBAL/Pager",
+            "repository": "git@github.com:SonsOfPHP/pager-doctrine-dbal.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Bridge/Doctrine/ORM/Pager",
+            "repository": "git@github.com:SonsOfPHP/pager-doctrine-orm.git"
+        },
+        {
             "path": "src/SonsOfPHP/Component/Version",
             "repository": "git@github.com:SonsOfPHP/version.git"
         },

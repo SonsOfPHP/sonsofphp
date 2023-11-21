@@ -1,0 +1,26 @@
+{
+    "$schema": "https://raw.githubusercontent.com/infection/infection/0.27.8/resources/schema.json",
+    "source": {
+        "directories": [
+            "."
+        ],
+        "excludes": [
+            "docs",
+            "tools",
+            "vendor",
+            "Tests"
+        ]
+    },
+    "mutators": {
+        "@default": true
+    },
+    "logs": {
+        "html": "docs/infection/index.html"
+    },
+    "phpUnit": {
+        "configDir": ".",
+        "customPath": "tools\/phpunit\/vendor\/bin\/phpunit"
+    },
+    "testFrameworkOptions": "--testsuite=all",
+    "initialTestsPhpOptions": "-dxdebug.mode=coverage -dapc.enable_cli=1"
+}

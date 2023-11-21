@@ -9,7 +9,5 @@ namespace SonsOfPHP\Contract\Common;
  */
 interface ArrayableInterface
 {
-    /**
-     */
     public function toArray(): array;
 }

@@ -55,6 +55,9 @@ test-clock: phpunit
 test-cqrs: PHPUNIT_TESTSUITE=cqrs
 test-cqrs: phpunit
 
+test-http-factory: PHPUNIT_TESTSUITE=http-factory
+test-http-factory: phpunit
+
 test-link: PHPUNIT_TESTSUITE=link
 test-link: phpunit
 
@@ -164,6 +167,13 @@ php-cs-fixer-upgrade:
 
 testdox: ## Run tests and output testdox
 	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHPUNIT) --testdox
+
+infection:
+	XDEBUG_MODE=develop \
+	$(PHP) \
+	-dxdebug.mode=develop \
+	-dapc.enable_cli=1 \
+	tools/infection/vendor/bin/infection --debug -vvv --show-mutations
 
 tools-install: psalm-install php-cs-fixer-install phpunit-install
 

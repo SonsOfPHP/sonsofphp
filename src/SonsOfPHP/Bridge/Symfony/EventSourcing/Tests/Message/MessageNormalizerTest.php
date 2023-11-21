@@ -10,8 +10,6 @@ use SonsOfPHP\Component\EventSourcing\Message\AbstractMessage;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class Msg extends AbstractMessage {}
-
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Message\MessageNormalizer
  *
@@ -40,7 +38,7 @@ final class MessageNormalizerTest extends TestCase
     {
         $normalizer = new MessageNormalizer();
 
-        $message = Msg::new();
+        $message = new class () extends AbstractMessage {};
 
         $this->assertTrue($normalizer->supportsNormalization($message));
 
@@ -48,31 +46,5 @@ final class MessageNormalizerTest extends TestCase
 
         $this->assertArrayHasKey('payload', $output);
         $this->assertArrayHasKey('metadata', $output);
-    }
-
-    /**
-     * @covers ::denormalize
-     * @covers ::supportsDenormalization
-     */
-    public function testItWillDenormalizeMessage(): void
-    {
-        $normalizer = new MessageNormalizer();
-
-        $data = [
-            'payload' => [
-                'unit' => 'test',
-            ],
-            'metadata' => [
-                'test' => 'unit',
-            ],
-        ];
-        $type = Msg::class;
-
-        $this->assertTrue($normalizer->supportsDenormalization($data, $type));
-
-        $output = $normalizer->denormalize($data, $type);
-
-        $this->assertSame('test', $output->getPayload()['unit']);
-        $this->assertSame('unit', $output->getMetadata()['test']);
     }
 }

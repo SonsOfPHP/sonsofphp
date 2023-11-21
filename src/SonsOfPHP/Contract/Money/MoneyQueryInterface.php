@@ -2,18 +2,17 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Contract\Money\Query\Currency;
+namespace SonsOfPHP\Contract\Money;
 
-use SonsOfPHP\Contract\Money\CurrencyInterface;
 use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface CurrencyQueryInterface
+interface MoneyQueryInterface
 {
     /**
      * @throws MoneyExceptionInterface
      */
-    public function queryFrom(CurrencyInterface $currency);
+    public function queryFrom(MoneyInterface $money);
 }

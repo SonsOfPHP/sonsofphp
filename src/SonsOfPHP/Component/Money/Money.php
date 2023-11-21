@@ -19,13 +19,13 @@ use SonsOfPHP\Component\Money\Query\Money\IsZeroMoneyQuery;
 use SonsOfPHP\Contract\Money\AmountInterface;
 use SonsOfPHP\Contract\Money\CurrencyInterface;
 use SonsOfPHP\Contract\Money\MoneyInterface;
-use SonsOfPHP\Contract\Money\Operator\Money\MoneyOperatorInterface;
-use SonsOfPHP\Contract\Money\Query\Money\MoneyQueryInterface;
+use SonsOfPHP\Contract\Money\MoneyOperatorInterface;
+use SonsOfPHP\Contract\Money\MoneyQueryInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class Money implements MoneyInterface
+final class Money implements MoneyInterface, \JsonSerializable
 {
     private AmountInterface $amount;
     private CurrencyInterface $currency;
@@ -150,5 +150,13 @@ final class Money implements MoneyInterface
     public function divide($divisor): MoneyInterface
     {
         return $this->with(new DivideMoneyOperator($divisor));
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'amount' => $this->getAmount()->toInt(),
+            'currency' => $this->getCurrency()->getCurrencyCode(),
+        ];
     }
 }

@@ -6,7 +6,7 @@ namespace SonsOfPHP\Component\Money\Query\Money;
 
 use SonsOfPHP\Component\Money\Exception\MoneyException;
 use SonsOfPHP\Contract\Money\MoneyInterface;
-use SonsOfPHP\Contract\Money\Query\Money\MoneyQueryInterface;
+use SonsOfPHP\Contract\Money\MoneyQueryInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

@@ -1,4 +1,5 @@
 /docs/coverage/
+/docs/infection/
 /site/
 vendor/
 /.php-cs-fixer.cache
@@ -10,3 +11,4 @@ phpunit.xml
 composer.phar
 packages.json
 results.sarif
+infection.log

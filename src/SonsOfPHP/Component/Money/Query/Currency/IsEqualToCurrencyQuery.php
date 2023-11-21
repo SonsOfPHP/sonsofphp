@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Money\Query\Currency;
 
 use SonsOfPHP\Contract\Money\CurrencyInterface;
-use SonsOfPHP\Contract\Money\Query\Currency\CurrencyQueryInterface;
+use SonsOfPHP\Contract\Money\CurrencyQueryInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

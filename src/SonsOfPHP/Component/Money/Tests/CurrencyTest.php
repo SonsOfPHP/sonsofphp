@@ -17,6 +17,16 @@ use SonsOfPHP\Contract\Money\CurrencyInterface;
 final class CurrencyTest extends TestCase
 {
     /**
+     * @covers ::__construct
+     */
+    public function testContructWillValidateCurrencyCode(): void
+    {
+        $currency = new Currency('usd');
+
+        $this->assertSame('USD', $currency->getCurrencyCode());
+    }
+
+    /**
      * @covers ::__callStatic
      * @covers ::__construct
      */

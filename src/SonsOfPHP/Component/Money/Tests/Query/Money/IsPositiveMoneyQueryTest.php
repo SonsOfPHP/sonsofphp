@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\Money;
 use SonsOfPHP\Component\Money\Query\Money\IsPositiveMoneyQuery;
-use SonsOfPHP\Contract\Money\Query\Money\MoneyQueryInterface;
+use SonsOfPHP\Contract\Money\MoneyQueryInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Query\Money\IsPositiveMoneyQuery

@@ -11,6 +11,7 @@ use SonsOfPHP\Component\HttpFactory\ResponseFactory;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\HttpFactory\ResponseFactory
+ * @uses \SonsOfPHP\Component\HttpMessage\Response
  */
 final class ResponseFactoryTest extends TestCase
 {
@@ -23,13 +24,21 @@ final class ResponseFactoryTest extends TestCase
     }
 
     /**
+     * @dataProvider validCreateResponseProvider
+     *
      * @covers ::createResponse
-     * @uses \SonsOfPHP\Component\HttpMessage\Response
      */
-    public function testCreateResponseWorksAsExpected(): void
+    public function testCreateResponseWorksAsExpected(int $code, string $reasonPhrase): void
     {
         $factory = new ResponseFactory();
 
-        $this->assertInstanceOf(ResponseInterface::class, $factory->createResponse());
+        $this->assertInstanceOf(ResponseInterface::class, $factory->createResponse($code, $reasonPhrase));
+    }
+
+    public static function validCreateResponseProvider(): iterable
+    {
+        yield [200, 'OK'];
+        yield [201, 'Not Content'];
+        yield [404, 'Not Found'];
     }
 }

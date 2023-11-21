@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Contract\Money;
 
 use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
-use SonsOfPHP\Contract\Money\Query\CurrencyProvider\CurrencyProviderQueryInterface;
 
 /**
  * Currency Provider.

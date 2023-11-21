@@ -35,6 +35,9 @@ class Pager implements PagerInterface
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getCurrentPageResults(): iterable
     {
         if (null === $this->results) {
@@ -49,6 +52,9 @@ class Pager implements PagerInterface
         return $this->results;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getTotalResults(): int
     {
         if (null === $this->count) {
@@ -58,6 +64,9 @@ class Pager implements PagerInterface
         return $this->count;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getTotalPages(): int
     {
         if (null === $this->getMaxPerPage() || 0 === $this->getTotalResults()) {
@@ -67,6 +76,9 @@ class Pager implements PagerInterface
         return (int) ceil($this->getTotalResults() / $this->getMaxPerPage());
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function haveToPaginate(): bool
     {
         if (null === $this->getMaxPerPage()) {
@@ -76,11 +88,17 @@ class Pager implements PagerInterface
         return $this->getTotalResults() > $this->getMaxPerPage();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function hasPreviousPage(): bool
     {
         return $this->getCurrentPage() > 1;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getPreviousPage(): ?int
     {
         if ($this->hasPreviousPage()) {
@@ -90,11 +108,17 @@ class Pager implements PagerInterface
         return null;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function hasNextPage(): bool
     {
         return $this->getCurrentPage() < $this->getTotalPages();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getNextPage(): ?int
     {
         if ($this->hasNextPage()) {
@@ -104,11 +128,17 @@ class Pager implements PagerInterface
         return null;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getCurrentPage(): int
     {
         return $this->currentPage;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setCurrentPage(int $page): void
     {
         if (1 > $page) {
@@ -119,11 +149,17 @@ class Pager implements PagerInterface
         $this->results     = null;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getMaxPerPage(): ?int
     {
         return $this->maxPerPage;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setMaxPerPage(?int $maxPerPage): void
     {
         if (is_int($maxPerPage) && 1 > $maxPerPage) {

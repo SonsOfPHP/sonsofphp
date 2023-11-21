@@ -78,6 +78,7 @@
     </testsuite>
 
     <testsuite name="pager">
+      <directory>src/SonsOfPHP/Bridge/*/*/Pager/Tests</directory>
       <directory>src/SonsOfPHP/Component/Pager/Tests</directory>
     </testsuite>
 
@@ -86,7 +87,7 @@
     </testsuite>
   </testsuites>
 
-  <coverage includeUncoveredFiles="true" pathCoverage="true" ignoreDeprecatedCodeUnits="true" disableCodeCoverageIgnore="true">
+  <coverage includeUncoveredFiles="true" pathCoverage="false" ignoreDeprecatedCodeUnits="true" disableCodeCoverageIgnore="true">
   </coverage>
 
   <source>
@@ -96,6 +97,8 @@
     <exclude>
       <!--<directory>src/SonsOfPHP/Bard/src/Tests</directory>-->
       <directory>src/SonsOfPHP/Bard/vendor</directory>
+      <directory>src/SonsOfPHP/Bridge/*/*/*/Tests</directory>
+      <directory>src/SonsOfPHP/Bridge/*/*/*/vendor</directory>
       <directory>src/SonsOfPHP/Bridge/*/*/Tests</directory>
       <directory>src/SonsOfPHP/Bridge/*/*/vendor</directory>
       <directory>src/SonsOfPHP/Bundle/*/Tests</directory>

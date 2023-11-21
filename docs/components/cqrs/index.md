@@ -48,11 +48,11 @@ $queryBus->addHandler(GetUser::class, $handler);
 
 $query = (new GetUser())->with('id', 123);
 $user  = $queryBus->handle($query);
+```
 
 !!! success "Symfony CQRS Bridge"
     Once the CQRS Symfony Bridge is installed, you can use the Query Bus that
     comes with that to gain addition features and functionality.
-```
 
 ## Messages
 

@@ -27,6 +27,22 @@ use SonsOfPHP\Contract\Money\AmountInterface;
  */
 final class AmountTest extends TestCase
 {
+    public static function validAmountProvider(): iterable
+    {
+        yield [420];
+        yield ['420'];
+        yield [-420];
+        yield ['-420'];
+    }
+
+    public static function invalidAmountProvider(): iterable
+    {
+        yield [4.20];
+        yield ['4.20'];
+        yield [-4.20];
+        yield ['-4.20'];
+    }
+
     /**
      * @covers ::__construct
      */

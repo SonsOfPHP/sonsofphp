@@ -4,34 +4,28 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Contract\Money;
 
-use SonsOfPHP\Contract\Money\Operator\Amount\AmountOperatorInterface;
-use SonsOfPHP\Contract\Money\Query\Amount\AmountQueryInterface;
-
 /**
  * Amount.
  *
  * The amount is used to represent the Numerical Value of the Money.
  *
+ * The amount SHOULD be represented in the smallest form of the currency. So
+ * for USD a value of `420` would represent `$4.20`.
+ *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface AmountInterface
+interface AmountInterface // extends \Stringable
 {
-    /**
-     * Considering some of these methods.
-     */
-    // public function getPrecision(): int;
-    // public function getScale(): int;
-
     /**
      * Allows you to run you own operations of the amount.
      */
-    public function with(AmountOperatorInterface $operator): self;
+    public function with(AmountOperatorInterface $operator): static;
 
     /**
      * Allows you to ask different questions about the amount and get
      * different results returned to you.
      */
-    public function query(AmountQueryInterface $query);
+    public function query(AmountQueryInterface $query)/*: mixed*/;
 
     /**
      * Returns the value for this amount as a string.
@@ -46,7 +40,7 @@ interface AmountInterface
     /**
      * Returns the value for this amount as a float.
      */
-    public function toFloat(): float;
+    //public function toFloat(): float;
 
     /**
      * Returns the value that this is for the object.
@@ -56,7 +50,7 @@ interface AmountInterface
     /**
      * Add amounts together.
      */
-    public function add(self $amount): self;
+    public function add(AmountInterface $amount): static;
 
     /**
      * Subtract amounts from each other.
@@ -67,27 +61,27 @@ interface AmountInterface
      *   $amount1->subtract($amount2) == 50
      *   $amount2->subtract($amount1) == -50
      */
-    public function subtract(self $amount): self;
+    public function subtract(AmountInterface $amount): static;
 
     /**
      * Multiply amount by a specific amount.
      */
-    public function multiply($multiplier): self;
+    public function multiply(/*int */$multiplier): static;
 
     /**
      * Divide the amount by a specific amount.
      */
-    public function divide($divisor): self;
+    public function divide(/*int */$divisor): static;
 
-    public function isEqualTo(self $amount): bool;
+    public function isEqualTo(AmountInterface $amount): bool;
 
-    public function isGreaterThan(self $amount): bool;
+    public function isGreaterThan(AmountInterface $amount): bool;
 
-    public function isGreaterThanOrEqualTo(self $amount): bool;
+    public function isGreaterThanOrEqualTo(AmountInterface $amount): bool;
 
-    public function isLessThan(self $amount): bool;
+    public function isLessThan(AmountInterface $amount): bool;
 
-    public function isLessThanOrEqualTo(self $amount): bool;
+    public function isLessThanOrEqualTo(AmountInterface $amount): bool;
 
     public function isNegative(): bool;
 

@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Contract\Money\Query\Amount;
+namespace SonsOfPHP\Contract\Money;
 
-use SonsOfPHP\Contract\Money\AmountInterface;
 use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
 
 /**
