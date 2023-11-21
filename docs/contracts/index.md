@@ -20,7 +20,7 @@ If you want to provide a concrete library for others to use, add this to your
 
 ```json
     "provide": {
-        "sonsofphp/common-contract-implementation": "^1.0"
+        "sonsofphp/common-implementation": "^1.0"
     },
 ```
 

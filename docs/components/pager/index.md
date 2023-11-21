@@ -45,6 +45,25 @@ $pager = new Pager(new ArrayAdapter($results), [
 // You can also set current page and max per page
 $pager->setCurrentPage(1);
 $pager->setMaxPerPage(10);
+
+
+$totalPages   = $pager->getTotalPages();
+$totalResults = $pager->getTotalResults();
+$currentPage  = $pager->getCurrentPage();
+
+if ($pager->haveToPaginate()) {
+    // ...
+}
+
+if ($pager->hasPreviousPage()) {
+    $prevPage = $pager->getPreviousPage();
+    // ...
+}
+
+if ($pager->hasNextPage()) {
+    $nextPage = $pager->getNextPage();
+    // ...
+}
 ```
 
 ## Adapters
@@ -76,4 +95,23 @@ $adapter = new CallableAdapter(
         // ...
     },
 );
+```
+
+### ArrayCollectionAdapter
+
+
+!!! warning
+    ```shell
+    composer require sonsofphp/pager-doctrine-collections
+    ```
+
+```php
+<?php
+
+use Doctrine\Common\Collections\ArrayCollection;
+use SonsOfPHP\Bridge\Doctrine\Collections\Pager\ArrayCollectionAdapter;
+
+$collection = new ArrayCollection();
+
+$adapter = new ArrayCollectionAdapter($collection);
 ```

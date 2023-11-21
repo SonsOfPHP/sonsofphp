@@ -13,6 +13,9 @@ abstract class AbstractMessage implements MessageInterface, \JsonSerializable, \
 {
     private array $payload = [];
 
+    /**
+     * {@inheritdoc}
+     */
     public function with(string|array $key, mixed $value = null): static
     {
         if (is_object($value) && !$value instanceof \Stringable) {
@@ -54,6 +57,9 @@ abstract class AbstractMessage implements MessageInterface, \JsonSerializable, \
         return $that;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function get(?string $key = null): mixed
     {
         if (null === $key) {
