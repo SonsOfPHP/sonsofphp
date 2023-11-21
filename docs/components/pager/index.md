@@ -141,3 +141,21 @@ $adapter = new QueryBuilderAdapter($builder, function (QueryBuilder $builder): v
     $builder->select('COUNT(e.id) as total');
 });
 ```
+
+### QueryBuilderAdapter (doctrine/orm)
+
+!!! warning "Requires `sonsofphp/pager-doctrine-orm`"
+    ```shell
+    composer require sonsofphp/pager-doctrine-orm
+    ```
+
+```php
+<?php
+
+use Doctrine\ORM\QueryBuilder;
+use SonsOfPHP\Bridge\Doctrine\ORM\Pager\QueryBuilderAdapter;
+
+$builder = $repository->createQueryBuilder('e');
+
+$adapter = new QueryBuilderAdapter($builder);
+```
