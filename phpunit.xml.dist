@@ -78,6 +78,7 @@
     </testsuite>
 
     <testsuite name="pager">
+      <directory>src/SonsOfPHP/Bridge/*/*/Pager/Tests</directory>
       <directory>src/SonsOfPHP/Component/Pager/Tests</directory>
     </testsuite>
 
