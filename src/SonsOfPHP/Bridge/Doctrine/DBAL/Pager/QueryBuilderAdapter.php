@@ -8,20 +8,36 @@ use Doctrine\DBAL\Query\QueryBuilder;
 use SonsOfPHP\Contract\Pager\AdapterInterface;
 
 /**
+ * Usage:
+ *    $adapter = new QueryBuilderAdapter($queryBuilder, function (QueryBuilder $builder): void {
+ *        $builder->select('COUNT(DISTINCT e.id) AS cnt');
+ *    });
+ *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 class QueryBuilderAdapter implements AdapterInterface
 {
+    private $countQuery;
+
     public function __construct(
-        private QueryBuilder $builder,
-    ) {}
+        private readonly QueryBuilder $builder,
+        callable $countQuery,
+    ) {
+        $this->countQuery = $countQuery;
+    }
 
     /**
      * {@inheritdoc}
      */
     public function count(): int
     {
-        throw new \Exception('@todo');
+        $builder  = clone $this->builder;
+        $callable = $this->countQuery;
+
+        $callable($builder);
+        $builder->setMaxResults(1);
+
+        return (int) $builder->executeQuery()->fetchOne();
     }
 
     /**
@@ -29,6 +45,13 @@ class QueryBuilderAdapter implements AdapterInterface
      */
     public function getSlice(int $offset, ?int $length): iterable
     {
-        throw new \Exception('@todo');
+        $builder = clone $this->builder;
+
+        return $builder
+            ->setFirstResult($offset)
+            ->setMaxResults($length)
+            ->executeQuery()
+            ->fetchAllAssociative()
+        ;
     }
 }
