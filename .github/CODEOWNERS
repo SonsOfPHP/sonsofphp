@@ -22,4 +22,5 @@ docs/ @JoshuaEstes
 /src/SonsOfPHP/**/Logger @JoshuaEstes
 /src/SonsOfPHP/**/Money @JoshuaEstes
 /src/SonsOfPHP/**/Pager @JoshuaEstes
+/src/SonsOfPHP/**/Search @JoshuaEstes
 /src/SonsOfPHP/**/Version @JoshuaEstes

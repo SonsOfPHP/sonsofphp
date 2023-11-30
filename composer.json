@@ -47,7 +47,8 @@
         "psr/log-implementation": "^1.0 || ^2.0 || ^3.0",
         "sonsofphp/logger-implementation": "0.3.x-dev",
         "sonsofphp/pager-implementation": "0.3.x-dev",
-        "psr/link-implementation": "^1.0 || ^2.0"
+        "psr/link-implementation": "^1.0 || ^2.0",
+        "sonsofphp/search-implementation": "0.3.x-dev"
     },
     "require": {
         "php": ">=8.1",
@@ -110,7 +111,9 @@
         "sonsofphp/money-twig": "self.version",
         "sonsofphp/pager-doctrine-collections": "self.version",
         "sonsofphp/pager-doctrine-dbal": "self.version",
-        "sonsofphp/pager-doctrine-orm": "self.version"
+        "sonsofphp/pager-doctrine-orm": "self.version",
+        "sonsofphp/search-contract": "self.version",
+        "sonsofphp/search": "self.version"
     },
     "autoload": {
         "psr-4": {
@@ -146,6 +149,8 @@
             "SonsOfPHP\\Contract\\Logger\\": "src/SonsOfPHP/Contract/Logger",
             "SonsOfPHP\\Contract\\Money\\": "src/SonsOfPHP/Contract/Money",
             "SonsOfPHP\\Contract\\Pager\\": "src/SonsOfPHP/Contract/Pager",
+            "SonsOfPHP\\Component\\Search\\": "src/SonsOfPHP/Component/Search",
+            "SonsOfPHP\\Contract\\Search\\": "src/SonsOfPHP/Contract/Search",
             "SonsOfPHP\\Contract\\Version\\": "src/SonsOfPHP/Contract/Version"
         },
         "exclude-from-classmap": [
@@ -172,7 +177,8 @@
             "src/SonsOfPHP/Bridge/Doctrine/Collections/Pager/Tests",
             "src/SonsOfPHP/Bridge/Doctrine/DBAL/Pager/Tests",
             "src/SonsOfPHP/Bridge/Doctrine/ORM/Pager/Tests",
-            "src/SonsOfPHP/Component/Version/Tests"
+            "src/SonsOfPHP/Component/Version/Tests",
+            "src/SonsOfPHP/Component/Search/Tests"
         ]
     },
     "extra": {

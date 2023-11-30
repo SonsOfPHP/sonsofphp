@@ -62,6 +62,10 @@ Pager:
   - docs/components/pager/*
   - src/SonsOfPHP/**/Pager/*
 
+Search:
+  - docs/components/search/*
+  - src/SonsOfPHP/**/Search/*
+
 Version:
   - docs/components/version/*
   - src/SonsOfPHP/**/Version/*

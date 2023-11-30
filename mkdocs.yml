@@ -114,6 +114,7 @@ nav:
             - Operators: components/money/operators.md
             - Queries: components/money/queries.md
         - Pager: components/pager/index.md
+        - Search: components/search/index.md
         - Version: components/version/index.md
     - Contracts:
         - contracts/index.md
