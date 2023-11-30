@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\UserAgent;
+namespace SonsOfPHP\Contract\UserAgent;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

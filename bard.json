@@ -130,6 +130,14 @@
             "repository": "git@github.com:SonsOfPHP/pager-contract.git"
         },
         {
+            "path": "src/SonsOfPHP/Component/UserAgent",
+            "repository": "git@github.com:SonsOfPHP/user-agent.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Contract/UserAgent",
+            "repository": "git@github.com:SonsOfPHP/user-agent-contract.git"
+        },
+        {
             "path": "src/SonsOfPHP/Contract/Version",
             "repository": "git@github.com:SonsOfPHP/version-contract.git"
         }
