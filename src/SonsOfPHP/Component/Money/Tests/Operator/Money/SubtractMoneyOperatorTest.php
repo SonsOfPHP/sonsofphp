@@ -8,8 +8,8 @@ use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\Exception\MoneyException;
 use SonsOfPHP\Component\Money\Money;
-use SonsOfPHP\Component\Money\Operator\Money\MoneyOperatorInterface;
 use SonsOfPHP\Component\Money\Operator\Money\SubtractMoneyOperator;
+use SonsOfPHP\Contract\Money\MoneyOperatorInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Operator\Money\SubtractMoneyOperator
@@ -17,8 +17,9 @@ use SonsOfPHP\Component\Money\Operator\Money\SubtractMoneyOperator;
  * @uses \SonsOfPHP\Component\Money\Amount
  * @uses \SonsOfPHP\Component\Money\Currency
  * @uses \SonsOfPHP\Component\Money\Money
- *
- * @internal
+ * @uses \SonsOfPHP\Component\Money\Operator\Amount\SubtractAmountOperator
+ * @uses \SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery
+ * @uses \SonsOfPHP\Component\Money\Operator\Money\SubtractMoneyOperator
  */
 final class SubtractMoneyOperatorTest extends TestCase
 {

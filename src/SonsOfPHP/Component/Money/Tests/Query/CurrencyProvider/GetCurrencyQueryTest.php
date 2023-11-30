@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\Money\Tests\Query\Currency;
+namespace SonsOfPHP\Component\Money\Tests\Query\CurrencyProvider;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider;
-use SonsOfPHP\Component\Money\Exception\MoneyException;
-use SonsOfPHP\Component\Money\Query\CurrencyProvider\CurrencyProviderQueryInterface;
 use SonsOfPHP\Component\Money\Query\CurrencyProvider\GetCurrencyQuery;
+use SonsOfPHP\Contract\Money\CurrencyProviderQueryInterface;
+use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Query\CurrencyProvider\GetCurrencyQuery
  *
  * @uses \SonsOfPHP\Component\Money\Currency
  * @uses \SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider
- *
- * @internal
+ * @uses \SonsOfPHP\Component\Money\Query\CurrencyProvider\GetCurrencyQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery
  */
 final class GetCurrencyQueryTest extends TestCase
 {
@@ -64,7 +64,7 @@ final class GetCurrencyQueryTest extends TestCase
      */
     public function testConstructWithInvalidValue(): void
     {
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $query = new GetCurrencyQuery('1234');
     }
 
@@ -75,7 +75,7 @@ final class GetCurrencyQueryTest extends TestCase
     {
         $query = new GetCurrencyQuery('usd');
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $output = $query->queryFrom(new XCurrencyProvider());
     }
 }

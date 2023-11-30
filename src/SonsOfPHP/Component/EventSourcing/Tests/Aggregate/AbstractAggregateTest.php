@@ -13,7 +13,9 @@ use SonsOfPHP\Component\EventSourcing\Tests\FakeAggregate;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregate
  *
- * @internal
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregate
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
  */
 final class AbstractAggregateTest extends TestCase
 {
@@ -87,5 +89,21 @@ final class AbstractAggregateTest extends TestCase
     {
         $this->expectException(\TypeError::class);
         $this->getMockForAbstractClass(AbstractAggregate::class, [new \stdClass()]);
+    }
+
+    /**
+     * @covers ::peekPendingEvents
+     */
+    public function testPeekWillNotRemoveAnyPendingEvents(): void
+    {
+        $aggregate = new FakeAggregate('id');
+        $this->assertCount(0, $aggregate->peekPendingEvents());
+        $method = new \ReflectionMethod($aggregate, 'raiseEvent');
+
+        $message = $this->createMock(MessageInterface::class);
+        $method->invoke($aggregate, $message);
+
+        $this->assertCount(1, $aggregate->peekPendingEvents());
+        $this->assertCount(1, $aggregate->peekPendingEvents());
     }
 }

@@ -14,7 +14,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Aggregate\AggregateVersionNormalizer
  *
- * @internal
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
  */
 final class AggregateVersionNormalizerTest extends TestCase
 {

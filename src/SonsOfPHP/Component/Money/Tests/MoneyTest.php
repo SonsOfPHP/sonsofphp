@@ -6,20 +6,52 @@ namespace SonsOfPHP\Component\Money\Tests;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
-use SonsOfPHP\Component\Money\Exception\MoneyException;
 use SonsOfPHP\Component\Money\Money;
-use SonsOfPHP\Component\Money\MoneyInterface;
+use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
+use SonsOfPHP\Contract\Money\MoneyInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Money
  *
  * @uses \SonsOfPHP\Component\Money\Amount
  * @uses \SonsOfPHP\Component\Money\Currency
- *
- * @internal
+ * @uses \SonsOfPHP\Component\Money\Money
+ * @uses \SonsOfPHP\Component\Money\Operator\Amount\DivideAmountOperator
+ * @uses \SonsOfPHP\Component\Money\Operator\Money\DivideMoneyOperator
+ * @uses \SonsOfPHP\Component\Money\Operator\Amount\MultiplyAmountOperator
+ * @uses \SonsOfPHP\Component\Money\Operator\Money\MultiplyMoneyOperator
+ * @uses \SonsOfPHP\Component\Money\Operator\Money\SubtractMoneyOperator
+ * @uses \SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery
+ * @uses \SonsOfPHP\Component\Money\Operator\Money\AddMoneyOperator
+ * @uses \SonsOfPHP\Component\Money\Operator\Amount\SubtractAmountOperator
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsZeroAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Money\IsZeroMoneyQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsNegativeAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Money\IsNegativeMoneyQuery
+ * @uses \SonsOfPHP\Component\Money\Operator\Amount\AddAmountOperator
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsPositiveAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Money\IsPositiveMoneyQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsLessThanOrEqualToAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Money\IsLessThanOrEqualToMoneyQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsLessThanAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Money\IsLessThanMoneyQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsGreaterThanOrEqualToAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Money\IsGreaterThanOrEqualToMoneyQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsGreaterThanAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Money\IsGreaterThanMoneyQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Amount\IsEqualToAmountQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Money\IsEqualToMoneyQuery
  */
 final class MoneyTest extends TestCase
 {
+    public static function validMoneyConstructorArgumentsProvider(): iterable
+    {
+        yield [420, 'usd'];
+        yield [420, new Currency('usd')];
+        yield [-420, 'usd'];
+        yield [-420, new Currency('usd')];
+    }
+
     /**
      * @covers ::__callStatic
      * @covers ::__construct
@@ -119,7 +151,7 @@ final class MoneyTest extends TestCase
         $money1 = Money::USD(100);
         $money2 = Money::EUR(100);
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $money1->isGreaterThan($money2);
     }
 
@@ -147,7 +179,7 @@ final class MoneyTest extends TestCase
         $money1 = Money::USD(100);
         $money2 = Money::EUR(100);
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $money1->isGreaterThanOrEqualTo($money2);
     }
 
@@ -174,7 +206,7 @@ final class MoneyTest extends TestCase
         $money1 = Money::USD(100);
         $money2 = Money::EUR(100);
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $money1->isLessThan($money2);
     }
 
@@ -202,7 +234,7 @@ final class MoneyTest extends TestCase
         $money1 = Money::USD(100);
         $money2 = Money::EUR(100);
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $money1->isLessThanOrEqualTo($money2);
     }
 
@@ -273,7 +305,7 @@ final class MoneyTest extends TestCase
         $money1 = Money::USD(100);
         $money2 = Money::EUR(100);
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $money1->add($money2);
     }
 
@@ -299,7 +331,7 @@ final class MoneyTest extends TestCase
         $money1 = Money::USD(100);
         $money2 = Money::EUR(100);
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $money1->subtract($money2);
     }
 
@@ -338,5 +370,15 @@ final class MoneyTest extends TestCase
 
         $output = $money1->divide(5);
         $this->assertSame('20', (string) $output->getAmount());
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     */
+    public function testJsonSerialize(): void
+    {
+        $money = Money::USD(420);
+
+        $this->assertSame('{"amount":420,"currency":"USD"}', json_encode($money));
     }
 }

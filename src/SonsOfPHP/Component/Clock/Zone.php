@@ -9,14 +9,10 @@ namespace SonsOfPHP\Component\Clock;
  */
 final class Zone implements ZoneInterface
 {
-    private string $name;
-    private ZoneOffsetInterface $offset;
-
-    public function __construct(string $name, ZoneOffsetInterface $offset)
-    {
-        $this->name   = $name;
-        $this->offset = $offset;
-    }
+    public function __construct(
+        private string $name,
+        private ZoneOffsetInterface $offset,
+    ) {}
 
     public function __toString(): string
     {

@@ -6,17 +6,23 @@ namespace SonsOfPHP\Component\Money\Tests\CurrencyProvider;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
-use SonsOfPHP\Component\Money\CurrencyInterface;
 use SonsOfPHP\Component\Money\CurrencyProvider\ChainCurrencyProvider;
 use SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProvider;
-use SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProviderInterface;
 use SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider;
-use SonsOfPHP\Component\Money\Exception\MoneyException;
+use SonsOfPHP\Contract\Money\CurrencyInterface;
+use SonsOfPHP\Contract\Money\CurrencyProviderInterface;
+use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\CurrencyProvider\ChainCurrencyProvider
  *
- * @internal
+ * @uses \SonsOfPHP\Component\Money\Currency
+ * @uses \SonsOfPHP\Component\Money\CurrencyProvider\ChainCurrencyProvider
+ * @uses \SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProvider
+ * @uses \SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider
+ * @uses \SonsOfPHP\Component\Money\Query\CurrencyProvider\GetCurrencyQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery
+ * @uses \SonsOfPHP\Component\Money\Query\CurrencyProvider\HasCurrencyQuery
  */
 final class ChainCurrencyProviderTest extends TestCase
 {
@@ -118,7 +124,7 @@ final class ChainCurrencyProviderTest extends TestCase
             new XCurrencyProvider(),
         ]);
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $this->assertFalse($provider->hasCurrency('xxxxxx'));
     }
 
@@ -167,7 +173,7 @@ final class ChainCurrencyProviderTest extends TestCase
             new XCurrencyProvider(),
         ]);
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $provider->getCurrency('zzz');
     }
 
@@ -182,7 +188,7 @@ final class ChainCurrencyProviderTest extends TestCase
             new XCurrencyProvider(),
         ]);
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $provider->getCurrency('xxxxxxxx');
     }
 }

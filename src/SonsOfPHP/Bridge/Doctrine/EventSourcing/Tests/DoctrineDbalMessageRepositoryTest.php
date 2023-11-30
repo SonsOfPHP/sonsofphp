@@ -26,8 +26,11 @@ use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;
  *
  * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId
  * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
- *
- * @internal
+ * @uses \SonsOfPHP\Bridge\Doctrine\EventSourcing\DoctrineDbalMessageRepository
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\AbstractMessage
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\MessageMetadata
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\MessagePayload
  */
 final class DoctrineDbalMessageRepositoryTest extends TestCase
 {

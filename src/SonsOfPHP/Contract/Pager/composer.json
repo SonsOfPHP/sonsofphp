@@ -1,0 +1,52 @@
+{
+    "name": "sonsofphp/pager-contract",
+    "type": "library",
+    "description": "",
+    "keywords": [
+        "abstractions",
+        "contracts",
+        "decoupling",
+        "interfaces",
+        "interoperability",
+        "standards"
+    ],
+    "homepage": "https://github.com/SonsOfPHP/pager-contract",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joshua Estes",
+            "email": "joshua@sonsofphp.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/SonsOfPHP/sonsofphp/issues",
+        "forum": "https://github.com/orgs/SonsOfPHP/discussions",
+        "docs": "https://docs.sonsofphp.com"
+    },
+    "autoload": {
+        "psr-4": {
+            "SonsOfPHP\\Contract\\Pager\\": ""
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.1"
+    },
+    "extra": {
+        "sort-packages": true,
+        "branch-alias": {
+            "dev-main": "0.3.x-dev"
+        }
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/JoshuaEstes"
+        },
+        {
+            "type": "tidelift",
+            "url": "https://tidelift.com/subscription/pkg/packagist-sonsofphp-sonsofphp"
+        }
+    ]
+}

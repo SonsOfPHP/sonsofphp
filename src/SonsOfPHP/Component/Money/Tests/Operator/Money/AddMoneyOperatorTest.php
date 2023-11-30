@@ -9,7 +9,7 @@ use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\Exception\MoneyException;
 use SonsOfPHP\Component\Money\Money;
 use SonsOfPHP\Component\Money\Operator\Money\AddMoneyOperator;
-use SonsOfPHP\Component\Money\Operator\Money\MoneyOperatorInterface;
+use SonsOfPHP\Contract\Money\MoneyOperatorInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Operator\Money\AddMoneyOperator
@@ -17,8 +17,9 @@ use SonsOfPHP\Component\Money\Operator\Money\MoneyOperatorInterface;
  * @uses \SonsOfPHP\Component\Money\Amount
  * @uses \SonsOfPHP\Component\Money\Currency
  * @uses \SonsOfPHP\Component\Money\Money
- *
- * @internal
+ * @uses \SonsOfPHP\Component\Money\Operator\Amount\AddAmountOperator
+ * @uses \SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery
+ * @uses \SonsOfPHP\Component\Money\Operator\Money\AddMoneyOperator
  */
 final class AddMoneyOperatorTest extends TestCase
 {

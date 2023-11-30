@@ -12,7 +12,7 @@ use SonsOfPHP\Component\Version\VersionInterface;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Version\Version
  *
- * @internal
+ * @uses \SonsOfPHP\Component\Version\Version
  */
 final class VersionTest extends TestCase
 {

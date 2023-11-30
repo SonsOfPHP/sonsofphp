@@ -6,13 +6,13 @@ namespace SonsOfPHP\Component\EventDispatcher\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\ListenerProviderInterface;
-use SonsOfPHP\Component\EventDispatcher\ListenerProvider;
 use SonsOfPHP\Component\EventDispatcher\EventSubscriberInterface;
+use SonsOfPHP\Component\EventDispatcher\ListenerProvider;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventDispatcher\ListenerProvider
  *
- * @internal
+ * @uses \SonsOfPHP\Component\EventDispatcher\ListenerProvider
  */
 final class ListenerProviderTest extends TestCase
 {

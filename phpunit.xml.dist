@@ -7,19 +7,88 @@
     bootstrap="vendor/autoload.php"
     cacheDirectory=".phpunit.cache"
     requireCoverageMetadata="true"
-    beStrictAboutCoverageMetadata="false">
+    beStrictAboutCoverageMetadata="true">
 
   <testsuites>
     <testsuite name="all">
       <!--<directory>src/SonsOfPHP/Bard/src/Tests</directory>-->
-      <directory>src/SonsOfPHP/Bridge/Doctrine/*/Tests</directory>
-      <directory>src/SonsOfPHP/Bridge/Symfony/*/Tests</directory>
+      <directory>src/SonsOfPHP/Bridge/*/*/Tests</directory>
+      <directory>src/SonsOfPHP/Bridge/*/*/*/Tests</directory>
       <directory>src/SonsOfPHP/Bundle/*/Tests</directory>
       <directory>src/SonsOfPHP/Component/*/Tests</directory>
     </testsuite>
+
+    <testsuite name="bard">
+      <!--<directory>src/SonsOfPHP/Bard/src/Tests</directory>-->
+    </testsuite>
+
+    <testsuite name="cache">
+      <directory>src/SonsOfPHP/Component/Clock/Tests</directory>
+    </testsuite>
+
+    <testsuite name="clock">
+      <directory>src/SonsOfPHP/Component/Clock/Tests</directory>
+    </testsuite>
+
+    <testsuite name="cqrs">
+      <directory>src/SonsOfPHP/Bridge/*/Cqrs/Tests</directory>
+      <!--<directory>src/SonsOfPHP/Component/Cqrs/Tests</directory>-->
+    </testsuite>
+
+    <testsuite name="event-dispatcher">
+      <directory>src/SonsOfPHP/Component/EventDispatcher/Tests</directory>
+    </testsuite>
+
+    <testsuite name="event-sourcing">
+      <directory>src/SonsOfPHP/Bridge/*/EventSourcing/Tests</directory>
+      <directory>src/SonsOfPHP/Component/EventSourcing/Tests</directory>
+    </testsuite>
+
+    <testsuite name="feature-toggle">
+      <directory>src/SonsOfPHP/Component/FeatureToggle/Tests</directory>
+    </testsuite>
+
+    <testsuite name="filesystem">
+      <directory>src/SonsOfPHP/Component/Filesystem/Tests</directory>
+    </testsuite>
+
+    <testsuite name="http-factory">
+      <directory>src/SonsOfPHP/Component/HttpFactory/Tests</directory>
+    </testsuite>
+
+    <testsuite name="http-message">
+      <directory>src/SonsOfPHP/Component/HttpMessage/Tests</directory>
+    </testsuite>
+
+    <testsuite name="json">
+      <directory>src/SonsOfPHP/Component/Json/Tests</directory>
+    </testsuite>
+
+    <testsuite name="link">
+      <directory>src/SonsOfPHP/Component/Link/Tests</directory>
+    </testsuite>
+
+    <testsuite name="logger">
+      <directory>src/SonsOfPHP/Component/Logger/Tests</directory>
+    </testsuite>
+
+    <testsuite name="money">
+      <directory>src/SonsOfPHP/Bridge/*/Money/Tests</directory>
+      <directory>src/SonsOfPHP/Component/Money/Tests</directory>
+    </testsuite>
+
+    <testsuite name="pager">
+      <directory>src/SonsOfPHP/Bridge/*/*/Pager/Tests</directory>
+      <directory>src/SonsOfPHP/Component/Pager/Tests</directory>
+    </testsuite>
+
+    <testsuite name="version">
+      <directory>src/SonsOfPHP/Component/Version/Tests</directory>
+    </testsuite>
   </testsuites>
 
-  <coverage/>
+  <coverage includeUncoveredFiles="true" pathCoverage="false" ignoreDeprecatedCodeUnits="true" disableCodeCoverageIgnore="true">
+  </coverage>
 
   <source>
     <include>
@@ -28,14 +97,15 @@
     <exclude>
       <!--<directory>src/SonsOfPHP/Bard/src/Tests</directory>-->
       <directory>src/SonsOfPHP/Bard/vendor</directory>
-      <directory>src/SonsOfPHP/Bridge/Doctrine/*/Tests</directory>
-      <directory>src/SonsOfPHP/Bridge/Doctrine/*/vendor</directory>
-      <directory>src/SonsOfPHP/Bridge/Symfony/*/Tests</directory>
-      <directory>src/SonsOfPHP/Bridge/Symfony/*/vendor</directory>
+      <directory>src/SonsOfPHP/Bridge/*/*/*/Tests</directory>
+      <directory>src/SonsOfPHP/Bridge/*/*/*/vendor</directory>
+      <directory>src/SonsOfPHP/Bridge/*/*/Tests</directory>
+      <directory>src/SonsOfPHP/Bridge/*/*/vendor</directory>
       <directory>src/SonsOfPHP/Bundle/*/Tests</directory>
       <directory>src/SonsOfPHP/Bundle/*/vendor</directory>
       <directory>src/SonsOfPHP/Component/*/Tests</directory>
       <directory>src/SonsOfPHP/Component/*/vendor</directory>
+      <directory>src/SonsOfPHP/Contract/*/vendor</directory>
     </exclude>
   </source>
 

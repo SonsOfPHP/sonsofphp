@@ -1,0 +1,54 @@
+{
+    "name": "sonsofphp/money-twig",
+    "type": "library",
+    "description": "Twig Extension for the Money Component",
+    "keywords": [
+        "money",
+        "currency",
+        "ISO4217"
+    ],
+    "homepage": "https://github.com/SonsOfPHP/money",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joshua Estes",
+            "email": "joshua@sonsofphp.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/SonsOfPHP/sonsofphp/issues",
+        "forum": "https://github.com/orgs/SonsOfPHP/discussions",
+        "docs": "https://docs.sonsofphp.com"
+    },
+    "autoload": {
+        "psr-4": {
+            "SonsOfPHP\\Bridge\\Twig\\Money\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.1",
+        "sonsofphp/money": "^0.3.x-dev",
+        "twig/twig": "^3.0"
+    },
+    "extra": {
+        "sort-packages": true,
+        "branch-alias": {
+            "dev-main": "0.3.x-dev"
+        }
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/JoshuaEstes"
+        },
+        {
+            "type": "tidelift",
+            "url": "https://tidelift.com/subscription/pkg/packagist-sonsofphp-sonsofphp"
+        }
+    ]
+}

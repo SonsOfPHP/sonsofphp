@@ -7,12 +7,12 @@ namespace SonsOfPHP\Bridge\Symfony\Cqrs\Tests\Command;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Symfony\Cqrs\Command\AbstractOptionsResolverCommandMessage;
 use SonsOfPHP\Bridge\Symfony\Cqrs\Tests\DummyCommand;
-use SonsOfPHP\Component\Cqrs\Command\CommandMessageInterface;
+use SonsOfPHP\Contract\Cqrs\CommandMessageInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\Cqrs\Command\AbstractOptionsResolverCommandMessage
  *
- * @internal
+ * @uses \SonsOfPHP\Bridge\Symfony\Cqrs\Command\AbstractOptionsResolverCommandMessage
  */
 final class AbstractOptionsResolverCommandMessageTest extends TestCase
 {

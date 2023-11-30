@@ -6,15 +6,26 @@ namespace SonsOfPHP\Component\Money\Tests;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
-use SonsOfPHP\Component\Money\CurrencyInterface;
+use SonsOfPHP\Contract\Money\CurrencyInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Currency
  *
- * @internal
+ * @uses \SonsOfPHP\Component\Money\Currency
+ * @uses \SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery
  */
 final class CurrencyTest extends TestCase
 {
+    /**
+     * @covers ::__construct
+     */
+    public function testContructWillValidateCurrencyCode(): void
+    {
+        $currency = new Currency('usd');
+
+        $this->assertSame('USD', $currency->getCurrencyCode());
+    }
+
     /**
      * @covers ::__callStatic
      * @covers ::__construct

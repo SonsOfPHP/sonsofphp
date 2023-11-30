@@ -1,13 +1,18 @@
-documentation:
-  - docs/*
-
 Bard:
   - docs/bard/*
   - src/SonsOfPHP/Bard/*
 
+Cache:
+  - docs/components/cache/*
+  - src/SonsOfPHP/**/Cache/*
+
 Clock:
   - docs/components/clock/*
-  - src/SonsOfPHP/Component/Clock/*
+  - src/SonsOfPHP/**/Clock/*
+
+Common:
+  - docs/components/common/*
+  - src/SonsOfPHP/**/Common/*
 
 CQRS:
   - docs/components/cqrs/*
@@ -25,14 +30,45 @@ FeatureToggle:
   - docs/components/feature-toggle/*
   - src/SonsOfPHP/**/FeatureToggle/*
 
+Filesystem:
+  - docs/components/filesystem/*
+  - src/SonsOfPHP/**/Filesystem/*
+
+HttpFactory:
+  - docs/components/http-factory/*
+  - src/SonsOfPHP/**/HttpFactory/*
+
+HttpMessage:
+  - docs/components/http-message/*
+  - src/SonsOfPHP/**/HttpMessage/*
+
 JSON:
   - docs/components/json/*
   - src/SonsOfPHP/**/Json/*
+
+Link:
+  - docs/components/link/*
+  - src/SonsOfPHP/**/Link/*
+
+Logger:
+  - docs/components/logger/*
+  - src/SonsOfPHP/**/Logger/*
 
 Money:
   - docs/components/money/*
   - src/SonsOfPHP/**/Money/*
 
+Pager:
+  - docs/components/pager/*
+  - src/SonsOfPHP/**/Pager/*
+
 Version:
   - docs/components/version/*
   - src/SonsOfPHP/**/Version/*
+
+Contracts:
+  - docs/contracts/**
+  - src/SonsOfPHP/Contract/**
+
+documentation:
+  - docs/**

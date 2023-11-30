@@ -14,12 +14,19 @@ use SonsOfPHP\Component\EventSourcing\Message\Repository\InMemoryMessageReposito
 use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterface;
 use SonsOfPHP\Component\EventSourcing\Tests\FakeAggregate;
 
-class Msg extends AbstractMessage {}
-
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Aggregate\Repository\AggregateRepository
  *
- * @internal
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\Repository\AggregateRepository
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricher
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregate
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\Repository\InMemoryMessageRepository
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\AbstractMessage
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\NullMessageEnricherProvider
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\MessageMetadata
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\MessagePayload
  */
 final class AggregateRepositoryTest extends TestCase
 {
@@ -61,7 +68,7 @@ final class AggregateRepositoryTest extends TestCase
 
         $aggregate = new FakeAggregate('unique-id');
 
-        $message = Msg::new();
+        $message = new class () extends AbstractMessage {};
         $aggregate->raiseThisEvent($message);
 
         $repository->persist($aggregate);
@@ -81,7 +88,7 @@ final class AggregateRepositoryTest extends TestCase
 
         $aggregate = new FakeAggregate('unique-id');
 
-        $message = Msg::new();
+        $message = new class () extends AbstractMessage {};
         $aggregate->raiseThisEvent($message);
 
         $repository->persist($aggregate);
@@ -104,7 +111,7 @@ final class AggregateRepositoryTest extends TestCase
 
         $aggregate = new FakeAggregate('unique-id');
 
-        $message = Msg::new();
+        $message = new class () extends AbstractMessage {};
         $aggregate->raiseThisEvent($message);
 
         $repository->persist($aggregate);

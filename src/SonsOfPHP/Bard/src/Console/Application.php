@@ -24,6 +24,7 @@ final class Application extends BaseApplication
     {
         return array_merge(parent::getDefaultCommands(), [
             new \SonsOfPHP\Bard\Console\Command\AddCommand(),
+            new \SonsOfPHP\Bard\Console\Command\CopyCommand(),
             new \SonsOfPHP\Bard\Console\Command\InitCommand(),
             new \SonsOfPHP\Bard\Console\Command\InstallCommand(),
             new \SonsOfPHP\Bard\Console\Command\MergeCommand(),

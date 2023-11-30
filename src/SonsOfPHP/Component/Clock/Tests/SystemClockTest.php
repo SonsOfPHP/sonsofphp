@@ -26,6 +26,7 @@ final class SystemClockTest extends TestCase
     }
 
     /**
+     * @covers ::__construct
      * @covers ::now
      */
     public function testImmutable(): void
@@ -61,7 +62,9 @@ final class SystemClockTest extends TestCase
     }
 
     /**
+     * @covers ::__construct
      * @covers ::__toString
+     * @covers ::getZone
      */
     public function testToStringMagicMethod(): void
     {

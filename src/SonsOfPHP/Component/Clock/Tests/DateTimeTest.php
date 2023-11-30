@@ -40,6 +40,11 @@ final class DateTimeTest extends TestCase
      * @covers ::getTime
      * @covers ::getZone
      * @covers ::toString
+     *
+     * @uses \SonsOfPHP\Component\Clock\Date
+     * @uses \SonsOfPHP\Component\Clock\Time
+     * @uses \SonsOfPHP\Component\Clock\Zone
+     * @uses \SonsOfPHP\Component\Clock\ZoneOffset
      */
     public function testToString(): void
     {

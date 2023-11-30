@@ -38,6 +38,13 @@ interface AggregateInterface
     public function getPendingEvents(): iterable;
 
     /**
+     * Returns pending events, but does not clear them out
+     *
+     * @return MessageInterface[]
+     */
+    public function peekPendingEvents(): iterable;
+
+    /**
      * Build Aggregate from a collection of Domain Events.
      *
      * @param \Generator $events yields MessageInterface objects

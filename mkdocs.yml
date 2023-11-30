@@ -1,23 +1,30 @@
-site_name: Sons of PHP - Documentation
+site_name: Sons of PHP
 site_url: https://docs.sonsofphp.com/
 site_author: Joshua Estes
+site_description: Sons of PHP creates and maintains helpful packages for PHP.
 
 repo_url: https://github.com/SonsOfPHP/sonsofphp
 repo_name: Mother Repository
 
-copyright: Copyright &copy 2022 Sons of PHP
+copyright: Copyright &copy 2022 to Present Sons of PHP
 
 edit_uri: https://github.com/SonsOfPHP/sonsofphp/edit/main/docs/
 
 theme:
     name: material
+    palette:
+        scheme: slate
     features:
         #- navigation.instant
         - navigation.tabs
         #- navigation.sections
         - navigation.top
         - navigation.indexes
+        - content.action.edit
+        - content.action.view
         - content.code.annotate
+        - content.code.copy
+        - content.tabs.link
     icon:
         repo: fontawesome/brands/github
 
@@ -27,6 +34,8 @@ plugins:
     #    minify_html: true
 
 extra:
+    #version:
+    #    default: latest
     generator: false
     #version:
     #    provider: mike
@@ -46,24 +55,32 @@ markdown_extensions:
     - pymdownx.snippets
     - pymdownx.superfences
     - pymdownx.emoji
+    - attr_list
+    - md_in_html
 
 nav:
     - Home:
         - index.md
         - Reporting Issues: reporting-issues.md
-        - Contributing: contributing.md
+        - Contributing:
+            - contributing/index.md
+            - Documentation:
+                - contributing/documentation/index.md
+            - Code:
+                - contributing/code/index.md
+            - Discussions:
+                - contributing/discussions/index.md
         - Getting Help: getting-help.md
         - Code of Conduct: code-of-conduct.md
         - Security Policy: security.md
+    - Bard:
+        - bard/index.md
     - Components:
         - components/index.md
+        - Cache: components/cache/index.md
         - Clock: components/clock/index.md
         - CQRS:
             - components/cqrs/index.md
-            - Commands: components/cqrs/commands.md
-            - Command Handlers: components/cqrs/command-handlers.md
-            - Queries: components/cqrs/queries.md
-            - Query Handlers: components/cqrs/query-handlers.md
         - Event Dispatcher: components/event-dispatcher/index.md
         - Event Sourcing:
             - components/event-sourcing/index.md
@@ -83,10 +100,23 @@ nav:
                 - Upcasters:
                     - components/event-sourcing/event-messages/upcaster/index.md
         - Feature Toggle: components/feature-toggle/index.md
+        - Filesystem:
+            - components/filesystem/index.md
+            - Adapters: components/filesystem/adapters.md
+        - HttpFactory: components/http-factory/index.md
+        - HttpMessage: components/http-message/index.md
         - JSON: components/json/index.md
+        - Link: components/link/index.md
+        - Logger: components/logger/index.md
         - Money:
-            - components/money/index.md
+            - Overview: components/money/index.md
             - Currency Providers: components/money/currency-providers.md
             - Operators: components/money/operators.md
             - Queries: components/money/queries.md
+        - Pager: components/pager/index.md
         - Version: components/version/index.md
+    - Contracts:
+        - contracts/index.md
+        - Common: contracts/common/index.md
+        - Cqrs: contracts/cqrs/index.md
+        - Pager: contracts/pager/index.md

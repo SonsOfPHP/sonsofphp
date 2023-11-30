@@ -36,3 +36,8 @@ bard release patch
 
 Bard will track the versions so you can just use the keywords: major, minor,
 patch.
+
+Copy the LICENSE file from the root to all packages
+```shell
+bard copy LICENSE
+```

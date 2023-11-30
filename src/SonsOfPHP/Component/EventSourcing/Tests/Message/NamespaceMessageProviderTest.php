@@ -13,7 +13,10 @@ use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\NamespaceMessageProvider
  *
- * @internal
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\NamespaceMessageProvider
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\AbstractMessage
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\MessageMetadata
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\MessagePayload
  */
 final class NamespaceMessageProviderTest extends TestCase
 {

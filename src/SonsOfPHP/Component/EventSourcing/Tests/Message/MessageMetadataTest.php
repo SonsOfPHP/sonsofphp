@@ -11,7 +11,8 @@ use SonsOfPHP\Component\EventSourcing\Metadata;
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\MessageMetadata
  *
- * @internal
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
  */
 final class MessageMetadataTest extends TestCase
 {

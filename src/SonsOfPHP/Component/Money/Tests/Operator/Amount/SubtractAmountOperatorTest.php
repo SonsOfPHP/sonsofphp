@@ -6,8 +6,8 @@ namespace SonsOfPHP\Component\Money\Tests\Operator\Amount;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Amount;
-use SonsOfPHP\Component\Money\Operator\Amount\AmountOperatorInterface;
 use SonsOfPHP\Component\Money\Operator\Amount\SubtractAmountOperator;
+use SonsOfPHP\Contract\Money\AmountOperatorInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Operator\Amount\SubtractAmountOperator

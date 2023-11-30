@@ -15,7 +15,9 @@ use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterf
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\Repository\InMemoryMessageRepository
  *
- * @internal
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
+ * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
+ * @uses \SonsOfPHP\Component\EventSourcing\Message\Repository\InMemoryMessageRepository
  */
 final class InMemoryMessageRepositoryTest extends TestCase
 {

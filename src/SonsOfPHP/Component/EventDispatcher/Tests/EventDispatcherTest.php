@@ -7,13 +7,14 @@ namespace SonsOfPHP\Component\EventDispatcher\Tests;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use SonsOfPHP\Component\EventDispatcher\EventDispatcher;
-use SonsOfPHP\Component\EventDispatcher\ListenerProvider;
 use SonsOfPHP\Component\EventDispatcher\EventSubscriberInterface;
+use SonsOfPHP\Component\EventDispatcher\ListenerProvider;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventDispatcher\EventDispatcher
  *
- * @internal
+ * @uses \SonsOfPHP\Component\EventDispatcher\EventDispatcher
+ * @uses \SonsOfPHP\Component\EventDispatcher\ListenerProvider
  */
 final class EventDispatcherTest extends TestCase
 {

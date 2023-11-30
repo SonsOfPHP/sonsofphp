@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\BlameableMessageEnricherHandler
  *
- * @internal
+ * @uses \SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\BlameableMessageEnricherHandler
  */
 final class BlameableMessageEnricherHandlerTest extends TestCase
 {

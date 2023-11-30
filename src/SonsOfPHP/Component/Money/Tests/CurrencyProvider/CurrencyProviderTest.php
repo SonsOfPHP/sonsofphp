@@ -6,15 +6,20 @@ namespace SonsOfPHP\Component\Money\Tests\CurrencyProvider;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
-use SonsOfPHP\Component\Money\CurrencyInterface;
 use SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProvider;
-use SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProviderInterface;
-use SonsOfPHP\Component\Money\Exception\MoneyException;
+use SonsOfPHP\Contract\Money\CurrencyInterface;
+use SonsOfPHP\Contract\Money\CurrencyProviderInterface;
+use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProvider
  *
- * @internal
+ * @uses \SonsOfPHP\Component\Money\Query\CurrencyProvider\GetCurrencyQuery
+ * @uses \SonsOfPHP\Component\Money\Currency
+ * @uses \SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProvider
+ * @uses \SonsOfPHP\Component\Money\Query\CurrencyProvider\GetCurrencyQuery
+ * @uses \SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery
+ * @uses \SonsOfPHP\Component\Money\Query\CurrencyProvider\HasCurrencyQuery
  */
 final class CurrencyProviderTest extends TestCase
 {
@@ -86,7 +91,7 @@ final class CurrencyProviderTest extends TestCase
     {
         $provider = new CurrencyProvider();
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $this->assertFalse($provider->hasCurrency('xxxxxx'));
     }
 
@@ -126,7 +131,7 @@ final class CurrencyProviderTest extends TestCase
     {
         $provider = new CurrencyProvider();
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $provider->getCurrency('xxx');
     }
 
@@ -138,7 +143,7 @@ final class CurrencyProviderTest extends TestCase
     {
         $provider = new CurrencyProvider();
 
-        $this->expectException(MoneyException::class);
+        $this->expectException(MoneyExceptionInterface::class);
         $provider->getCurrency('xxxxxxxx');
     }
 }

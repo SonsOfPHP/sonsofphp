@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock;
 
-use SonsOfPHP\Component\Clock\Exception\ClockException;
 use Psr\Clock\ClockInterface;
+use SonsOfPHP\Component\Clock\Exception\ClockException;
 
 /**
  * Fixed Clock.
@@ -17,11 +17,11 @@ use Psr\Clock\ClockInterface;
  */
 final class FixedClock implements ClockInterface
 {
-    private \DateTimeZone $zone;
     private \DateTimeInterface $time;
 
-    public function __construct(\DateTimeZone $zone = null)
-    {
+    public function __construct(
+        private ?\DateTimeZone $zone = null,
+    ) {
         $this->zone = $zone ?? new \DateTimeZone('UTC');
         $this->tick();
     }
