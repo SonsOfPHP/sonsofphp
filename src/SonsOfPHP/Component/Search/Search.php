@@ -14,12 +14,18 @@ final class Search implements SearchInterface
 {
     public function __construct(private BackendInterface $backend) {}
 
+    /**
+     * {@inheritdoc}
+     */
     public function getBackend(): BackendInterface
     {
         return $this->backend;
     }
 
-    public function query(QueryInterface $query): iterable
+    /**
+     * {@inheritdoc}
+     */
+    public function query(QueryInterface|string $query): iterable
     {
         return $this->backend->query($query);
     }

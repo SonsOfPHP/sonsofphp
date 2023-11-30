@@ -9,7 +9,17 @@ namespace SonsOfPHP\Contract\Search;
  */
 interface SearchInterface
 {
+    /**
+     */
     public function getBackend(): BackendInterface;
 
-    public function query(QueryInterface $query): iterable;
+    /**
+     * Takes a QueryInterface or a String
+     *
+     * If a string is passed in, it MUST be able to be converted to a QueryInterface
+     *
+     * @throws \SonsOfPHP\Contract\Search\SearchExceptionInterface
+     *   If the $query is invalid for any reason
+     */
+    public function query(QueryInterface|string $query): iterable;
 }
