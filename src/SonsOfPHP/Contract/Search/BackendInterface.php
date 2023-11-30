@@ -14,5 +14,5 @@ interface BackendInterface
     public function deleteDocument(mixed $document): void;
     public function getDocument(mixed $document): void;
 
-    public function query(string $index, QueryInterface $query): iterable;
+    public function query(QueryInterface $query): iterable;
 }
