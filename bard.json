@@ -14,6 +14,10 @@
             "repository": "git@github.com:SonsOfPHP/clock.git"
         },
         {
+            "path": "src/SonsOfPHP/Component/Cookie",
+            "repository": "git@github.com:SonsOfPHP/cookie.git"
+        },
+        {
             "path": "src/SonsOfPHP/Component/Cqrs",
             "repository": "git@github.com:SonsOfPHP/cqrs.git"
         },
@@ -100,6 +104,10 @@
         {
             "path": "src/SonsOfPHP/Contract/Common",
             "repository": "git@github.com:SonsOfPHP/common-contract.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Contract/Cookie",
+            "repository": "git@github.com:SonsOfPHP/cookie-contract.git"
         },
         {
             "path": "src/SonsOfPHP/Contract/Cqrs",

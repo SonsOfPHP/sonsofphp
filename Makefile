@@ -52,6 +52,9 @@ test-cache: phpunit
 test-clock: PHPUNIT_TESTSUITE=clock
 test-clock: phpunit
 
+test-cookie: PHPUNIT_TESTSUITE=cookie
+test-cookie: phpunit
+
 test-cqrs: PHPUNIT_TESTSUITE=cqrs
 test-cqrs: phpunit
 

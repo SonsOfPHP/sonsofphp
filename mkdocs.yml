@@ -79,6 +79,7 @@ nav:
         - components/index.md
         - Cache: components/cache/index.md
         - Clock: components/clock/index.md
+        - Cookie: components/cookie/index.md
         - CQRS:
             - components/cqrs/index.md
         - Event Dispatcher: components/event-dispatcher/index.md
@@ -118,5 +119,6 @@ nav:
     - Contracts:
         - contracts/index.md
         - Common: contracts/common/index.md
+        - Cookie: contracts/cookie/index.md
         - Cqrs: contracts/cqrs/index.md
         - Pager: contracts/pager/index.md

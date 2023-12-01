@@ -30,6 +30,10 @@
       <directory>src/SonsOfPHP/Component/Clock/Tests</directory>
     </testsuite>
 
+    <testsuite name="cookie">
+      <directory>src/SonsOfPHP/Component/Cookie/Tests</directory>
+    </testsuite>
+
     <testsuite name="cqrs">
       <directory>src/SonsOfPHP/Bridge/*/Cqrs/Tests</directory>
       <!--<directory>src/SonsOfPHP/Component/Cqrs/Tests</directory>-->
