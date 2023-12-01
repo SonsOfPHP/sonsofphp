@@ -9,13 +9,27 @@ use SonsOfPHP\Contract\Cookie\CookieInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class Cookie implements CookieInterface
+final class Cookie implements CookieInterface
 {
     public function __construct(
         private string $name,
         private string $value = '',
         private array $options = ['expires' => 0, 'secure' => false, 'httponly' => false],
     ) {}
+
+    public function __toString(): string
+    {
+        $cookie = $this->name . '=' . $this->value;
+
+        foreach ($this->options as $key => $val) {
+            $cookie .= '; ' . $key;
+            if (!is_bool($val)) {
+                $cookie .= '=' . $val;
+            }
+        }
+
+        return $cookie;
+    }
 
     /**
      * {@inheritdoc}
@@ -131,8 +145,10 @@ class Cookie implements CookieInterface
      */
     public function withExpires(\DateTimeImmutable|int|string $expires): static
     {
-        if (is_string($expires)) {
-            $expires = (new \DateTimeImmutable($expires))->format('U');
+        if (!is_numeric($expires)) {
+            if (false === $expires = strtotime($expires)) {
+                throw new \InvalidArgumentException('$expires is invalid');
+            }
         } elseif ($expires instanceof \DateTimeImmutable) {
             $expires = $expires->format('U');
         }
@@ -150,14 +166,14 @@ class Cookie implements CookieInterface
     /**
      * {@inheritdoc}
      */
-    public function send(bool $raw = false): void
-    {
-        if (true === $raw) {
-            // raw dog those values
-            setrawcookie($this->name, $this->value, $this->options);
-            return;
-        }
+    //public function send(bool $raw = false): void
+    //{
+    //    if (true === $raw) {
+    //        // raw dog those values
+    //        setrawcookie($this->name, $this->value, $this->options);
+    //        return;
+    //    }
 
-        setcookie($this->name, $this->value, $this->options);
-    }
+    //    setcookie($this->name, $this->value, $this->options);
+    //}
 }

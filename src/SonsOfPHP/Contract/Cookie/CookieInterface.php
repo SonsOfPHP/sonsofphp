@@ -7,7 +7,7 @@ namespace SonsOfPHP\Contract\Cookie;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface CookieInterface
+interface CookieInterface extends \Stringable
 {
     /**
      * Set's the cookie name
@@ -44,12 +44,7 @@ interface CookieInterface
     public function withSameSite(string $sameSite): static;
 
     /**
-     * @throws CookieExceptionInterface
+     * @throws CookieExceptionInterface when $expires is invalid
      */
     public function withExpires(\DateTimeImmutable|int|string $expires): static;
-
-    /**
-     * @throws CookieExceptionInterface is something went wrong
-     */
-    public function send(bool $raw = false): void;
 }
