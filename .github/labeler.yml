@@ -10,6 +10,10 @@ Clock:
   - docs/components/clock/*
   - src/SonsOfPHP/**/Clock/*
 
+Cookie:
+  - docs/components/cookie/*
+  - src/SonsOfPHP/**/Cookie/*
+
 Common:
   - docs/components/common/*
   - src/SonsOfPHP/**/Common/*
