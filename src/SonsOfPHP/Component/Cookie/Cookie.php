@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Cookie;
 
-use SonsOfPHP\Contract\Cookie\CookieInterface;
 use SonsOfPHP\Component\Cookie\Exception\CookieException;
+use SonsOfPHP\Contract\Cookie\CookieInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

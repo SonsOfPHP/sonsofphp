@@ -6,8 +6,8 @@ namespace SonsOfPHP\Component\Cookie\Tests;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Cookie\Cookie;
-use SonsOfPHP\Contract\Cookie\CookieInterface;
 use SonsOfPHP\Contract\Cookie\CookieExceptionInterface;
+use SonsOfPHP\Contract\Cookie\CookieInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Cookie\Cookie
