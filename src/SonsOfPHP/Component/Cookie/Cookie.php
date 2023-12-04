@@ -15,7 +15,7 @@ final class Cookie implements CookieInterface
     public function __construct(
         private string $name,
         private string $value = '',
-        private array $options = [],
+        private array $attributes = [],
     ) {}
 
     public function __toString(): string
@@ -30,7 +30,7 @@ final class Cookie implements CookieInterface
     {
         $cookie = $this->name . '=' . $this->value;
 
-        foreach ($this->options as $key => $val) {
+        foreach ($this->attributes as $key => $val) {
             if (is_bool($val) && true === $val) {
                 $cookie .= '; ' . $key;
             }
@@ -78,12 +78,12 @@ final class Cookie implements CookieInterface
      */
     public function withPath(string $path): static
     {
-        if (array_key_exists('Path', $this->options) && $path === $this->options['Path']) {
+        if (array_key_exists('Path', $this->attributes) && $path === $this->attributes['Path']) {
             return $this;
         }
 
         $that = clone $this;
-        $that->options['Path'] = $path;
+        $that->attributes['Path'] = $path;
 
         return $that;
     }
@@ -93,12 +93,12 @@ final class Cookie implements CookieInterface
      */
     public function withDomain(string $domain): static
     {
-        if (array_key_exists('Domain', $this->options) && $domain === $this->options['Domain']) {
+        if (array_key_exists('Domain', $this->attributes) && $domain === $this->attributes['Domain']) {
             return $this;
         }
 
         $that = clone $this;
-        $that->options['Domain'] = $domain;
+        $that->attributes['Domain'] = $domain;
 
         return $that;
     }
@@ -108,12 +108,12 @@ final class Cookie implements CookieInterface
      */
     public function withSecure(bool $secure): static
     {
-        if (array_key_exists('Secure', $this->options) && $secure === $this->options['Secure']) {
+        if (array_key_exists('Secure', $this->attributes) && $secure === $this->attributes['Secure']) {
             return $this;
         }
 
         $that = clone $this;
-        $that->options['Secure'] = $secure;
+        $that->attributes['Secure'] = $secure;
 
         return $that;
     }
@@ -123,12 +123,12 @@ final class Cookie implements CookieInterface
      */
     public function withHttpOnly(bool $httpOnly): static
     {
-        if (array_key_exists('HttpOnly', $this->options) && $httpOnly === $this->options['HttpOnly']) {
+        if (array_key_exists('HttpOnly', $this->attributes) && $httpOnly === $this->attributes['HttpOnly']) {
             return $this;
         }
 
         $that = clone $this;
-        $that->options['HttpOnly'] = $httpOnly;
+        $that->attributes['HttpOnly'] = $httpOnly;
 
         return $that;
     }
@@ -138,7 +138,7 @@ final class Cookie implements CookieInterface
      */
     public function withSameSite(string $sameSite): static
     {
-        if (array_key_exists('SameSite', $this->options) && $sameSite === $this->options['SameSite']) {
+        if (array_key_exists('SameSite', $this->attributes) && $sameSite === $this->attributes['SameSite']) {
             return $this;
         }
 
@@ -147,7 +147,7 @@ final class Cookie implements CookieInterface
         }
 
         $that = clone $this;
-        $that->options['SameSite'] = $sameSite;
+        $that->attributes['SameSite'] = $sameSite;
 
         return $that;
     }
@@ -157,12 +157,12 @@ final class Cookie implements CookieInterface
      */
     public function withPartitioned(bool $partitioned): static
     {
-        if (array_key_exists('Partitioned', $this->options) && $partitioned === $this->options['Partitioned']) {
+        if (array_key_exists('Partitioned', $this->attributes) && $partitioned === $this->attributes['Partitioned']) {
             return $this;
         }
 
         $that = clone $this;
-        $that->options['Partitioned'] = $partitioned;
+        $that->attributes['Partitioned'] = $partitioned;
 
         return $that;
     }
@@ -174,12 +174,12 @@ final class Cookie implements CookieInterface
     {
         $expires = $expires->format('r');
 
-        if (array_key_exists('Expires', $this->options) && $expires === $this->options['Expires']) {
+        if (array_key_exists('Expires', $this->attributes) && $expires === $this->attributes['Expires']) {
             return $this;
         }
 
         $that = clone $this;
-        $that->options['Expires'] = $expires;
+        $that->attributes['Expires'] = $expires;
 
         return $that;
     }
@@ -189,12 +189,12 @@ final class Cookie implements CookieInterface
      */
     public function withMaxAge(int $maxAge): static
     {
-        if (array_key_exists('Max-Age', $this->options) && $maxAge === $this->options['Max-Age']) {
+        if (array_key_exists('Max-Age', $this->attributes) && $maxAge === $this->attributes['Max-Age']) {
             return $this;
         }
 
         $that = clone $this;
-        $that->options['Max-Age'] = $maxAge;
+        $that->attributes['Max-Age'] = $maxAge;
 
         return $that;
     }
