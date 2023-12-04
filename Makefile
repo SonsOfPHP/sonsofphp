@@ -105,6 +105,9 @@ coverage-cache: coverage
 coverage-clock: PHPUNIT_TESTSUITE=clock
 coverage-clock: coverage
 
+coverage-cookie: PHPUNIT_TESTSUITE=cookie
+coverage-cookie: coverage
+
 coverage-cqrs: PHPUNIT_TESTSUITE=cqrs
 coverage-cqrs: coverage
 

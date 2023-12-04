@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Cookie;
 
 use SonsOfPHP\Contract\Cookie\CookieInterface;
+use SonsOfPHP\Component\Cookie\Exception\CookieException;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -14,17 +15,28 @@ final class Cookie implements CookieInterface
     public function __construct(
         private string $name,
         private string $value = '',
-        private array $options = ['expires' => 0, 'secure' => false, 'httponly' => false],
+        private array $options = [],
     ) {}
 
     public function __toString(): string
     {
+        return $this->getHeaderValue();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHeaderValue(): string
+    {
         $cookie = $this->name . '=' . $this->value;
 
         foreach ($this->options as $key => $val) {
-            $cookie .= '; ' . $key;
+            if (is_bool($val) && true === $val) {
+                $cookie .= '; ' . $key;
+            }
+
             if (!is_bool($val)) {
-                $cookie .= '=' . $val;
+                $cookie .= '; ' . $key . '=' . $val;
             }
         }
 
@@ -66,12 +78,12 @@ final class Cookie implements CookieInterface
      */
     public function withPath(string $path): static
     {
-        if (array_key_exists('path', $this->options) && $path === $this->options['path']) {
+        if (array_key_exists('Path', $this->options) && $path === $this->options['Path']) {
             return $this;
         }
 
         $that = clone $this;
-        $that->options['path'] = $path;
+        $that->options['Path'] = $path;
 
         return $that;
     }
@@ -81,12 +93,12 @@ final class Cookie implements CookieInterface
      */
     public function withDomain(string $domain): static
     {
-        if (array_key_exists('domain', $this->options) && $domain === $this->options['domain']) {
+        if (array_key_exists('Domain', $this->options) && $domain === $this->options['Domain']) {
             return $this;
         }
 
         $that = clone $this;
-        $that->options['domain'] = $domain;
+        $that->options['Domain'] = $domain;
 
         return $that;
     }
@@ -96,12 +108,12 @@ final class Cookie implements CookieInterface
      */
     public function withSecure(bool $secure): static
     {
-        if (array_key_exists('secure', $this->options) && $secure === $this->options['secure']) {
+        if (array_key_exists('Secure', $this->options) && $secure === $this->options['Secure']) {
             return $this;
         }
 
         $that = clone $this;
-        $that->options['secure'] = $secure;
+        $that->options['Secure'] = $secure;
 
         return $that;
     }
@@ -111,12 +123,12 @@ final class Cookie implements CookieInterface
      */
     public function withHttpOnly(bool $httpOnly): static
     {
-        if (array_key_exists('httponly', $this->options) && $httpOnly === $this->options['httponly']) {
+        if (array_key_exists('HttpOnly', $this->options) && $httpOnly === $this->options['HttpOnly']) {
             return $this;
         }
 
         $that = clone $this;
-        $that->options['httponly'] = $httpOnly;
+        $that->options['HttpOnly'] = $httpOnly;
 
         return $that;
     }
@@ -126,16 +138,16 @@ final class Cookie implements CookieInterface
      */
     public function withSameSite(string $sameSite): static
     {
-        if (array_key_exists('samesite', $this->options) && $sameSite === $this->options['samesite']) {
+        if (array_key_exists('SameSite', $this->options) && $sameSite === $this->options['SameSite']) {
             return $this;
         }
 
         if (!in_array(strtolower($sameSite), ['none', 'lax', 'strict'])) {
-            throw new \InvalidArgumentException('Invalid value for $sameSite');
+            throw new CookieException('Invalid value for $sameSite');
         }
 
         $that = clone $this;
-        $that->options['samesite'] = $sameSite;
+        $that->options['SameSite'] = $sameSite;
 
         return $that;
     }
@@ -143,22 +155,14 @@ final class Cookie implements CookieInterface
     /**
      * {@inheritdoc}
      */
-    public function withExpires(\DateTimeImmutable|int|string $expires): static
+    public function withPartitioned(bool $partitioned): static
     {
-        if (!is_numeric($expires)) {
-            if (false === $expires = strtotime($expires)) {
-                throw new \InvalidArgumentException('$expires is invalid');
-            }
-        } elseif ($expires instanceof \DateTimeImmutable) {
-            $expires = $expires->format('U');
-        }
-
-        if (array_key_exists('expires', $this->options) && $expires === $this->options['expires']) {
+        if (array_key_exists('Partitioned', $this->options) && $partitioned === $this->options['Partitioned']) {
             return $this;
         }
 
         $that = clone $this;
-        $that->options['expires'] = $expires;
+        $that->options['Partitioned'] = $partitioned;
 
         return $that;
     }
@@ -166,14 +170,32 @@ final class Cookie implements CookieInterface
     /**
      * {@inheritdoc}
      */
-    //public function send(bool $raw = false): void
-    //{
-    //    if (true === $raw) {
-    //        // raw dog those values
-    //        setrawcookie($this->name, $this->value, $this->options);
-    //        return;
-    //    }
+    public function withExpires(\DateTimeImmutable $expires): static
+    {
+        $expires = $expires->format('r');
 
-    //    setcookie($this->name, $this->value, $this->options);
-    //}
+        if (array_key_exists('Expires', $this->options) && $expires === $this->options['Expires']) {
+            return $this;
+        }
+
+        $that = clone $this;
+        $that->options['Expires'] = $expires;
+
+        return $that;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function withMaxAge(int $maxAge): static
+    {
+        if (array_key_exists('Max-Age', $this->options) && $maxAge === $this->options['Max-Age']) {
+            return $this;
+        }
+
+        $that = clone $this;
+        $that->options['Max-Age'] = $maxAge;
+
+        return $that;
+    }
 }
