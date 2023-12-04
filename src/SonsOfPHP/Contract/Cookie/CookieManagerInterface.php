@@ -39,5 +39,5 @@ interface CookieManagerInterface
      *
      * @throws CookieExceptionInterface
      */
-    public function remove(string $name): bool;
+    //public function remove(string $name): bool;
 }
