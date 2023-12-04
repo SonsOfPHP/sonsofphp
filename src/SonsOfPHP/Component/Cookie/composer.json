@@ -1,0 +1,54 @@
+{
+    "name": "sonsofphp/cookie",
+    "type": "library",
+    "description": "Manage Cookies with ease",
+    "keywords": [
+        "cookie"
+    ],
+    "homepage": "https://github.com/SonsOfPHP/cookie",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joshua Estes",
+            "email": "joshua@sonsofphp.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/SonsOfPHP/sonsofphp/issues",
+        "forum": "https://github.com/orgs/SonsOfPHP/discussions",
+        "docs": "https://docs.sonsofphp.com/components/cookie"
+    },
+    "autoload": {
+        "psr-4": {
+            "SonsOfPHP\\Component\\Cookie\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.1",
+        "sonsofphp/cookie-contract": "0.3.x-dev"
+    },
+    "provide": {
+        "sonsofphp/cookie-implementation": "0.3.x-dev"
+    },
+    "extra": {
+        "sort-packages": true,
+        "branch-alias": {
+            "dev-main": "0.3.x-dev"
+        }
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/JoshuaEstes"
+        },
+        {
+            "type": "tidelift",
+            "url": "https://tidelift.com/subscription/pkg/packagist-sonsofphp-sonsofphp"
+        }
+    ]
+}

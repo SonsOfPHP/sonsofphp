@@ -52,6 +52,9 @@ test-cache: phpunit
 test-clock: PHPUNIT_TESTSUITE=clock
 test-clock: phpunit
 
+test-cookie: PHPUNIT_TESTSUITE=cookie
+test-cookie: phpunit
+
 test-cqrs: PHPUNIT_TESTSUITE=cqrs
 test-cqrs: phpunit
 
@@ -101,6 +104,9 @@ coverage-cache: coverage
 
 coverage-clock: PHPUNIT_TESTSUITE=clock
 coverage-clock: coverage
+
+coverage-cookie: PHPUNIT_TESTSUITE=cookie
+coverage-cookie: coverage
 
 coverage-cqrs: PHPUNIT_TESTSUITE=cqrs
 coverage-cqrs: coverage

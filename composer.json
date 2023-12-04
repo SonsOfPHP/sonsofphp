@@ -47,7 +47,8 @@
         "psr/log-implementation": "^1.0 || ^2.0 || ^3.0",
         "sonsofphp/logger-implementation": "0.3.x-dev",
         "sonsofphp/pager-implementation": "0.3.x-dev",
-        "psr/link-implementation": "^1.0 || ^2.0"
+        "psr/link-implementation": "^1.0 || ^2.0",
+        "sonsofphp/cookie-implementation": "0.3.x-dev"
     },
     "require": {
         "php": ">=8.1",
@@ -74,7 +75,8 @@
         "twig/twig": "^3.0",
         "ext-intl": "*",
         "doctrine/collections": "^2",
-        "doctrine/orm": "^2"
+        "doctrine/orm": "^2",
+        "sonsofphp/cookie-contract": "0.3.x-dev"
     },
     "replace": {
         "sonsofphp/bard": "self.version",
@@ -110,13 +112,16 @@
         "sonsofphp/money-twig": "self.version",
         "sonsofphp/pager-doctrine-collections": "self.version",
         "sonsofphp/pager-doctrine-dbal": "self.version",
-        "sonsofphp/pager-doctrine-orm": "self.version"
+        "sonsofphp/pager-doctrine-orm": "self.version",
+        "sonsofphp/cookie": "self.version",
+        "sonsofphp/cookie-contract": "self.version"
     },
     "autoload": {
         "psr-4": {
             "SonsOfPHP\\Bard\\": "src/SonsOfPHP/Bard/src",
             "SonsOfPHP\\Component\\Cache\\": "src/SonsOfPHP/Component/Cache",
             "SonsOfPHP\\Component\\Clock\\": "src/SonsOfPHP/Component/Clock",
+            "SonsOfPHP\\Component\\Cookie\\": "src/SonsOfPHP/Component/Cookie",
             "SonsOfPHP\\Component\\Cqrs\\": "src/SonsOfPHP/Component/Cqrs",
             "SonsOfPHP\\Bundle\\Cqrs\\": "src/SonsOfPHP/Bundle/Cqrs",
             "SonsOfPHP\\Bridge\\Symfony\\Cqrs\\": "src/SonsOfPHP/Bridge/Symfony/Cqrs",
@@ -139,6 +144,7 @@
             "SonsOfPHP\\Bridge\\Doctrine\\ORM\\Pager\\": "src/SonsOfPHP/Bridge/Doctrine/ORM/Pager",
             "SonsOfPHP\\Component\\Version\\": "src/SonsOfPHP/Component/Version",
             "SonsOfPHP\\Contract\\Common\\": "src/SonsOfPHP/Contract/Common",
+            "SonsOfPHP\\Contract\\Cookie\\": "src/SonsOfPHP/Contract/Cookie",
             "SonsOfPHP\\Contract\\Cqrs\\": "src/SonsOfPHP/Contract/Cqrs",
             "SonsOfPHP\\Contract\\EventSourcing\\": "src/SonsOfPHP/Contract/EventSourcing",
             "SonsOfPHP\\Contract\\FeatureToggle\\": "src/SonsOfPHP/Contract/FeatureToggle",
@@ -152,6 +158,7 @@
             "src/SonsOfPHP/Bard/Tests",
             "src/SonsOfPHP/Component/Cache/Tests",
             "src/SonsOfPHP/Component/Clock/Tests",
+            "src/SonsOfPHP/Component/Cookie/Tests",
             "src/SonsOfPHP/Component/Cqrs/Tests",
             "src/SonsOfPHP/Bundle/Cqrs/Tests",
             "src/SonsOfPHP/Bridge/Symfony/Cqrs/Tests",

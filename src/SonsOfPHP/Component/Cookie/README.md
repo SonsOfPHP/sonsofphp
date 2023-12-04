@@ -1,5 +1,5 @@
-Sons of PHP - Pager
-===================
+Sons of PHP - Cookie
+====================
 
 ## Learn More
 
@@ -11,6 +11,6 @@ Sons of PHP - Pager
 [discussions]: https://github.com/orgs/SonsOfPHP/discussions
 [mother-repo]: https://github.com/SonsOfPHP/sonsofphp
 [contributing]: https://docs.sonsofphp.com/contributing/
-[docs]: https://docs.sonsofphp.com/components/pager/
-[issues]: https://github.com/SonsOfPHP/sonsofphp/issues?q=is%3Aopen+is%3Aissue+label%3APager
-[pull-requests]: https://github.com/SonsOfPHP/sonsofphp/pulls?q=is%3Aopen+is%3Apr+label%3APager
+[docs]: https://docs.sonsofphp.com/components/cookie/
+[issues]: https://github.com/SonsOfPHP/sonsofphp/issues?q=is%3Aopen+is%3Aissue+label%3ACookie
+[pull-requests]: https://github.com/SonsOfPHP/sonsofphp/pulls?q=is%3Aopen+is%3Apr+label%3ACookie
