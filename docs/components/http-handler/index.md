@@ -10,7 +10,7 @@ Simple PSR-15 Http Handler
 composer require sonsofphp/http-handler
 ```
 
-### Usage
+## Usage
 
 Usage is pretty simple.
 
@@ -18,12 +18,13 @@ Usage is pretty simple.
 <?php
 
 use SonsOfPHP\Component\HttpHandler\HttpHandler;
+use SonsOfPHP\Component\HttpHandler\MiddlewareStack;
 
-$middlewares = [];
-$middlewares[] = new RouterMiddleware();
-$middlewares[] = new CookieMiddleware();
+$stack = new MiddlewareStack();
+$stack->add(new RouterMiddleware());
+$stack->add(new CookieMiddleware());
 // ...
 
-$app = new HttpHandler($middlewares);
+$app = new HttpHandler($stack);
 $response = $app->handle($request);
 ```

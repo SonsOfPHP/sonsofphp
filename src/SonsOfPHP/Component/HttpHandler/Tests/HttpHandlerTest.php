@@ -6,6 +6,7 @@ namespace SonsOfPHP\Component\HttpHandler\Tests;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\HttpHandler\HttpHandler;
+use SonsOfPHP\Component\HttpHandler\MiddlewareStack;
 use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -16,24 +17,19 @@ use SonsOfPHP\Component\HttpMessage\Response;
  * @coversDefaultClass \SonsOfPHP\Component\HttpHandler\HttpHandler
  *
  * @uses \SonsOfPHP\Component\HttpHandler\HttpHandler
+ * @uses \SonsOfPHP\Component\HttpHandler\MiddlewareStack
  */
 final class HttpHandlerTest extends TestCase
 {
     private $request;
     private $response;
-    private array $middlewares = [];
+    private MiddlewareStack $stack;
 
     protected function setUp(): void
     {
         $this->request = $this->createMock(ServerRequestInterface::class);
         $this->response = $this->createMock(ResponseInterface::class);
-
-        $this->middlewares[] = new class implements MiddlewareInterface {
-            public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
-            {
-                return new Response();
-            }
-        };
+        $this->stack = new MiddlewareStack();
     }
 
     /**
@@ -41,7 +37,7 @@ final class HttpHandlerTest extends TestCase
      */
     public function testItHasTheCorrectInterface(): void
     {
-        $handler = new HttpHandler();
+        $handler = new HttpHandler($this->stack);
 
         $this->assertInstanceOf(RequestHandlerInterface::class, $handler);
     }
@@ -51,7 +47,13 @@ final class HttpHandlerTest extends TestCase
      */
     public function testHandle(): void
     {
-        $handler = new HttpHandler($this->middlewares);
+        $this->stack->add(new class implements MiddlewareInterface {
+            public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+            {
+                return new Response();
+            }
+        });
+        $handler = new HttpHandler($this->stack);
 
         $this->assertNotNull($handler->handle($this->request));
     }

@@ -11,18 +11,18 @@ use Psr\Http\Message\ServerRequestInterface;
 // RequestHandler?
 class HttpHandler implements RequestHandlerInterface
 {
-    public function __construct(private array $queue = []) {}
+    public function __construct(private MiddlewareStack $stack) {}
 
     /**
      * {@inheritdoc}
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        if (0 === count($this->queue)) {
+        if (0 === $this->stack->count()) {
             throw new \Exception('No Middleware in the queue.');
         }
 
-        $middleware = array_shift($this->queue);
+        $middleware = $this->stack->shift();
 
         return $middleware->process($request, $this);
     }
