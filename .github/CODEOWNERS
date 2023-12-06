@@ -9,6 +9,7 @@ docs/ @JoshuaEstes
 # Each component/contract needs a Team
 /src/SonsOfPHP/**/Cache @JoshuaEstes
 /src/SonsOfPHP/**/Clock @JoshuaEstes
+/src/SonsOfPHP/**/Container @JoshuaEstes
 /src/SonsOfPHP/**/Cookie @JoshuaEstes
 /src/SonsOfPHP/**/Common @JoshuaEstes
 /src/SonsOfPHP/**/Cqrs @JoshuaEstes
