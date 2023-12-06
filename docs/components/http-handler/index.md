@@ -20,6 +20,7 @@ Usage is pretty simple.
 use SonsOfPHP\Component\HttpHandler\HttpHandler;
 
 $middlewares = [];
+$middlewares[] = new RouterMiddleware();
 $middlewares[] = new CookieMiddleware();
 // ...
 
