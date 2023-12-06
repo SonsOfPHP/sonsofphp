@@ -6,17 +6,22 @@ namespace SonsOfPHP\Component\HttpHandler;
 
 use Psr\Http\Server\MiddlewareInterface;
 
+// @todo implement interface (make contract)
 class MiddlewareStack
 {
     private array $middlewares = [];
+    private $resolver;
 
     public function __construct($resolver)
     {
         $this->resolver = $resolver;
     }
 
+    // @todo Set Priorities
     public function add($middleware): self
     {
+        // $this->middlewares[$priority][] = $middleware;
+        // ksort($this->middlewares);
         $this->middlewares[] = $middleware;
 
         return $this;
@@ -43,6 +48,7 @@ class MiddlewareStack
 
         if (is_string($middleware)) {
             // use the resolver to figure out wtf this is
+            return $this->resolver($middleware);
         }
 
         throw new \Exception('Unknown Middleware Type: ' . gettype($middleware));

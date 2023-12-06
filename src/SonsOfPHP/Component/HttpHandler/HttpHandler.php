@@ -8,7 +8,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-// RequestHandler?
+// ServerRequestHandler? RequestHandler?
 class HttpHandler implements RequestHandlerInterface
 {
     public function __construct(private MiddlewareStack $stack) {}
