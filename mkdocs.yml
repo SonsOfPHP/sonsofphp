@@ -79,6 +79,7 @@ nav:
         - components/index.md
         - Cache: components/cache/index.md
         - Clock: components/clock/index.md
+        - Container: components/container/index.md
         - Cookie: components/cookie/index.md
         - CQRS:
             - components/cqrs/index.md
