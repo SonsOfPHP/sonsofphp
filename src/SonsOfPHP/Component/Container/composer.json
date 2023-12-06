@@ -1,16 +1,13 @@
 {
-    "name": "sonsofphp/cookie-contract",
+    "name": "sonsofphp/container",
     "type": "library",
-    "description": "",
+    "description": "Lightweight PSR-11 Container",
     "keywords": [
-        "abstractions",
-        "contracts",
-        "decoupling",
-        "interfaces",
-        "interoperability",
-        "standards"
+        "psr11",
+        "psr-11",
+        "container"
     ],
-    "homepage": "https://github.com/SonsOfPHP/cookie-contract",
+    "homepage": "https://github.com/SonsOfPHP/container",
     "license": "MIT",
     "authors": [
         {
@@ -25,13 +22,20 @@
     },
     "autoload": {
         "psr-4": {
-            "SonsOfPHP\\Contract\\Cookie\\": ""
-        }
+            "SonsOfPHP\\Component\\Container\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.1"
+        "php": ">=8.1",
+        "psr/container": "^1.0 || ^2.0"
+    },
+    "provide": {
+        "psr/container": "2.0"
     },
     "extra": {
         "sort-packages": true,

@@ -76,7 +76,8 @@
         "ext-intl": "*",
         "doctrine/collections": "^2",
         "doctrine/orm": "^2",
-        "sonsofphp/cookie-contract": "0.3.x-dev"
+        "sonsofphp/cookie-contract": "0.3.x-dev",
+        "psr/container": "^1.0 || ^2.0"
     },
     "replace": {
         "sonsofphp/bard": "self.version",
@@ -114,13 +115,15 @@
         "sonsofphp/pager-doctrine-dbal": "self.version",
         "sonsofphp/pager-doctrine-orm": "self.version",
         "sonsofphp/cookie": "self.version",
-        "sonsofphp/cookie-contract": "self.version"
+        "sonsofphp/cookie-contract": "self.version",
+        "sonsofphp/container": "self.version"
     },
     "autoload": {
         "psr-4": {
             "SonsOfPHP\\Bard\\": "src/SonsOfPHP/Bard/src",
             "SonsOfPHP\\Component\\Cache\\": "src/SonsOfPHP/Component/Cache",
             "SonsOfPHP\\Component\\Clock\\": "src/SonsOfPHP/Component/Clock",
+            "SonsOfPHP\\Component\\Container\\": "src/SonsOfPHP/Component/Container",
             "SonsOfPHP\\Component\\Cookie\\": "src/SonsOfPHP/Component/Cookie",
             "SonsOfPHP\\Component\\Cqrs\\": "src/SonsOfPHP/Component/Cqrs",
             "SonsOfPHP\\Bundle\\Cqrs\\": "src/SonsOfPHP/Bundle/Cqrs",
@@ -158,6 +161,7 @@
             "src/SonsOfPHP/Bard/Tests",
             "src/SonsOfPHP/Component/Cache/Tests",
             "src/SonsOfPHP/Component/Clock/Tests",
+            "src/SonsOfPHP/Component/Container/Tests",
             "src/SonsOfPHP/Component/Cookie/Tests",
             "src/SonsOfPHP/Component/Cqrs/Tests",
             "src/SonsOfPHP/Bundle/Cqrs/Tests",
