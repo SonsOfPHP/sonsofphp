@@ -6,4 +6,4 @@ namespace SonsOfPHP\Component\Container\Exception;
 
 use Psr\Container\ContainerExceptionInterface;
 
-class ContainerException implements ContainerExceptionInterface {}
+class ContainerException extends \Exception implements ContainerExceptionInterface {}

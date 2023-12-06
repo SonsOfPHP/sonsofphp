@@ -30,7 +30,7 @@ class Container implements ContainerInterface
         }
 
         if (!array_key_exists($id, $this->cachedServices)) {
-            $this->cachedServices[$id] = call_user_func($this->services['id'], $this);
+            $this->cachedServices[$id] = call_user_func($this->services[$id], $this);
         }
 
         return $this->cachedServices[$id];

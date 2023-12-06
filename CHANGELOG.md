@@ -22,6 +22,7 @@ To get the diff between two versions, go to https://github.com/SonsOfPHP/sonsofp
 * [PR #170](https://github.com/SonsOfPHP/sonsofphp/pull/170) [Link] New Component (PSR-13)
 * [PR #173](https://github.com/SonsOfPHP/sonsofphp/pull/173) [Money] Twig Bridge
 * [PR #181](https://github.com/SonsOfPHP/sonsofphp/pull/181) [Cookie] New Component and Contract
+* [PR #182](https://github.com/SonsOfPHP/sonsofphp/pull/182) [Container] New Component (PSR-11)
 
 ## [0.3.8]
 

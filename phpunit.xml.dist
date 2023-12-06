@@ -30,6 +30,10 @@
       <directory>src/SonsOfPHP/Component/Clock/Tests</directory>
     </testsuite>
 
+    <testsuite name="container">
+      <directory>src/SonsOfPHP/Component/Container/Tests</directory>
+    </testsuite>
+
     <testsuite name="cookie">
       <directory>src/SonsOfPHP/Component/Cookie/Tests</directory>
     </testsuite>
