@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Container;
 
+use Psr\Container\ContainerInterface;
 use SonsOfPHP\Component\Container\Exception\ContainerException;
 use SonsOfPHP\Component\Container\Exception\NotFoundException;
-use Psr\Container\ContainerInterface;
 
 /**
  * Usage:
