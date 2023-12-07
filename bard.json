@@ -70,6 +70,10 @@
             "repository": "git@github.com:SonsOfPHP/http-handler.git"
         },
         {
+            "path": "src/SonsOfPHP/Contract/HttpHandler",
+            "repository": "git@github.com:SonsOfPHP/http-handler-contract.git"
+        },
+        {
             "path": "src/SonsOfPHP/Component/HttpMessage",
             "repository": "git@github.com:SonsOfPHP/http-message.git"
         },

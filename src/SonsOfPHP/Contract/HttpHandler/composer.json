@@ -1,13 +1,16 @@
 {
-    "name": "sonsofphp/http-handler",
+    "name": "sonsofphp/http-handler-contract",
     "type": "library",
     "description": "",
     "keywords": [
-        "psr15",
-        "psr-15",
-        "http-handler"
+        "abstractions",
+        "contracts",
+        "decoupling",
+        "interfaces",
+        "interoperability",
+        "standards"
     ],
-    "homepage": "https://github.com/SonsOfPHP/http-handler",
+    "homepage": "https://github.com/SonsOfPHP/http-handler-contract",
     "license": "MIT",
     "authors": [
         {
@@ -22,27 +25,15 @@
     },
     "autoload": {
         "psr-4": {
-            "SonsOfPHP\\Component\\HttpHandler\\": ""
-        },
-        "exclude-from-classmap": [
-            "/Tests/"
-        ]
+            "SonsOfPHP\\Contract\\HttpHandler\\": ""
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
         "php": ">=8.1",
-        "sonsofphp/http-handler-contract": "0.3.x-dev",
         "psr/http-server-handler": "^1.0",
         "psr/http-server-middleware": "^1.0"
-    },
-    "require-dev": {
-        "sonsofphp/http-message": "0.3.x-dev"
-    },
-    "provide": {
-        "sonsofphp/http-handler-implementation": "0.3.x-dev",
-        "psr/http-server-handler-implementation": "^1.0",
-        "psr/http-server-middleware-implementation": "^1.0"
     },
     "extra": {
         "sort-packages": true,
