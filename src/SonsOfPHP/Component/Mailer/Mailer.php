@@ -7,20 +7,27 @@ namespace SonsOfPHP\Component\Mailer;
 use SonsOfPHP\Contract\Mailer\MailerInterface;
 use SonsOfPHP\Contract\Mailer\TransportInterface;
 use SonsOfPHP\Contract\Mailer\MessageInterface;
+use SonsOfPHP\Contract\Mailer\MiddlewareInterface;
+use SonsOfPHP\Contract\Mailer\MiddlewareHandlerInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 final class Mailer implements MailerInterface
 {
-    public function __construct(private TransportInterface $transport) {}
+    public function __construct(
+        private TransportInterface $transport,
+        private MiddlewareHandlerInterface $handler = new MiddlewareHandler(),
+    ) {}
+
+    public function addMiddleware(MiddlewareInterface $middleware): void
+    {
+        $this->handler->getMiddlewareStack()->add($middleware);
+    }
 
     public function send(MessageInterface $message)
     {
-        // message enrichers?
-        // Before a message is sent, should there be some enrichers that will
-        // be able to minipulate this before it's sent? Example could be extra
-        // Headers
+        $message = $this->handler->handle($message);
 
         $this->transport->send($message);
     }

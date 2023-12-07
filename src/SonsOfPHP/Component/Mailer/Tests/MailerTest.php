@@ -14,6 +14,8 @@ use SonsOfPHP\Contract\Mailer\MessageInterface;
  * @coversDefaultClass \SonsOfPHP\Component\Mailer\Mailer
  *
  * @uses \SonsOfPHP\Component\Mailer\Mailer
+ * @uses \SonsOfPHP\Component\Mailer\MiddlewareHandler
+ * @uses \SonsOfPHP\Component\Mailer\MiddlewareStack
  */
 final class MailerTest extends TestCase
 {
