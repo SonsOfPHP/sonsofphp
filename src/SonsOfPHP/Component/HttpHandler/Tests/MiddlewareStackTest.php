@@ -45,6 +45,18 @@ final class MiddlewareStackTest extends TestCase
     }
 
     /**
+     * @covers ::count
+     */
+    public function testCount(): void
+    {
+        $stack = new MiddlewareStack();
+        $this->assertCount(0, $stack);
+
+        $stack->add(function () {});
+        $this->assertCount(1, $stack);
+    }
+
+    /**
      * @covers ::add
      */
     public function testAddWillPrioritizeCorrectly(): void
