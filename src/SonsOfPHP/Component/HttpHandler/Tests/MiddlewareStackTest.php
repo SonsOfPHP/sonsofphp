@@ -5,14 +5,12 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpHandler\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\HttpHandler\HttpHandler;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use SonsOfPHP\Component\HttpHandler\MiddlewareStack;
 use SonsOfPHP\Contract\HttpHandler\MiddlewareStackInterface;
-use Psr\Http\Server\RequestHandlerInterface;
-use Psr\Http\Server\MiddlewareInterface;
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use SonsOfPHP\Component\HttpMessage\Response;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\HttpHandler\MiddlewareStack
@@ -40,7 +38,7 @@ final class MiddlewareStackTest extends TestCase
         $middlewares = new \ReflectionProperty($stack, 'middlewares');
         $this->assertCount(0, $middlewares->getValue($stack));
 
-        $stack->add(function () {});
+        $stack->add(function (): void {});
         $this->assertCount(1, $middlewares->getValue($stack));
     }
 
@@ -52,7 +50,7 @@ final class MiddlewareStackTest extends TestCase
         $stack = new MiddlewareStack();
         $this->assertCount(0, $stack);
 
-        $stack->add(function () {});
+        $stack->add(function (): void {});
         $this->assertCount(1, $stack);
     }
 
@@ -65,9 +63,9 @@ final class MiddlewareStackTest extends TestCase
         $middlewares = new \ReflectionProperty($stack, 'middlewares');
         $this->assertCount(0, $middlewares->getValue($stack));
 
-        $one   = function () {};
-        $two   = function () {};
-        $three = function () {};
+        $one   = function (): void {};
+        $two   = function (): void {};
+        $three = function (): void {};
 
         $stack->add($three, 255);
         $stack->add($two); // default
@@ -87,7 +85,7 @@ final class MiddlewareStackTest extends TestCase
     {
         $stack = new MiddlewareStack();
 
-        $stack->add(function () {});
+        $stack->add(function (): void {});
 
         $this->assertInstanceOf(MiddlewareInterface::class, $stack->next());
     }
@@ -99,19 +97,19 @@ final class MiddlewareStackTest extends TestCase
     {
         $stack = new MiddlewareStack();
 
-        $one = new class implements MiddlewareInterface {
+        $one = new class () implements MiddlewareInterface {
             public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
             {
                 return $handler->handle($request);
             }
         };
-        $two = new class implements MiddlewareInterface {
+        $two = new class () implements MiddlewareInterface {
             public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
             {
                 return $handler->handle($request);
             }
         };
-        $three = new class implements MiddlewareInterface {
+        $three = new class () implements MiddlewareInterface {
             public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
             {
                 return $handler->handle($request);
@@ -135,19 +133,19 @@ final class MiddlewareStackTest extends TestCase
     {
         $stack = new MiddlewareStack();
 
-        $one = new class implements MiddlewareInterface {
+        $one = new class () implements MiddlewareInterface {
             public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
             {
                 return $handler->handle($request);
             }
         };
-        $two = new class implements MiddlewareInterface {
+        $two = new class () implements MiddlewareInterface {
             public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
             {
                 return $handler->handle($request);
             }
         };
-        $three = new class implements MiddlewareInterface {
+        $three = new class () implements MiddlewareInterface {
             public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
             {
                 return $handler->handle($request);

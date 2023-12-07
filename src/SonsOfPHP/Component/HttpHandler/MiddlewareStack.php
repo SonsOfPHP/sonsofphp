@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\HttpHandler;
 
-use Psr\Http\Server\MiddlewareInterface;
-use SonsOfPHP\Contract\HttpHandler\MiddlewareStackInterface;
-use SonsOfPHP\Component\HttpHandler\Exception\HttpHandlerException;
-use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use SonsOfPHP\Contract\HttpHandler\MiddlewareStackInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -46,7 +45,7 @@ class MiddlewareStack implements MiddlewareStackInterface
         }
 
         if ($middleware instanceof \Closure) {
-            return new class($middleware) implements MiddlewareInterface {
+            return new class ($middleware) implements MiddlewareInterface {
                 public function __construct(private \Closure $closure) {}
 
                 public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface

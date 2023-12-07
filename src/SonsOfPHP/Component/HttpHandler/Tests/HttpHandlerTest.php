@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpHandler\Tests;
 
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use SonsOfPHP\Component\HttpHandler\HttpHandler;
 use SonsOfPHP\Component\HttpHandler\MiddlewareStack;
-use Psr\Http\Server\RequestHandlerInterface;
-use Psr\Http\Server\MiddlewareInterface;
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Message\ResponseInterface;
 use SonsOfPHP\Component\HttpMessage\Response;
 
 /**
@@ -47,7 +47,7 @@ final class HttpHandlerTest extends TestCase
      */
     public function testHandle(): void
     {
-        $this->stack->add(new class implements MiddlewareInterface {
+        $this->stack->add(new class () implements MiddlewareInterface {
             public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
             {
                 return new Response();
