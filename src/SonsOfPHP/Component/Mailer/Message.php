@@ -63,7 +63,7 @@ class Message implements MessageInterface
     public function addHeader(string $name, AddressInterface|string $value): self
     {
         if ($this->hasHeader($name)) {
-            $value .= ', ' . $this->headers[strtolower($name)];
+            $value = $this->headers[strtolower($name)] . ', ' . $value;
         }
 
         $this->headers[strtolower($name)] = $value;
