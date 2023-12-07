@@ -111,6 +111,7 @@ nav:
         - JSON: components/json/index.md
         - Link: components/link/index.md
         - Logger: components/logger/index.md
+        - Mailer: components/mailer/index.md
         - Money:
             - Overview: components/money/index.md
             - Currency Providers: components/money/currency-providers.md
@@ -123,4 +124,5 @@ nav:
         - Common: contracts/common/index.md
         - Cookie: contracts/cookie/index.md
         - Cqrs: contracts/cqrs/index.md
+        - Mailer: contracts/mailer/index.md
         - Pager: contracts/pager/index.md

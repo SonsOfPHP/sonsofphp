@@ -52,7 +52,8 @@
         "psr/container-implementation": "^1.0 || ^2.0",
         "psr/http-server-handler-implementation": "^1.0",
         "psr/http-server-middleware-implementation": "^1.0",
-        "sonsofphp/http-handler-implementation": "0.3.x-dev"
+        "sonsofphp/http-handler-implementation": "0.3.x-dev",
+        "sonsofphp/mailer-implementation": "0.3.x-dev"
     },
     "require": {
         "php": ">=8.1",
@@ -123,11 +124,15 @@
         "sonsofphp/cookie-contract": "self.version",
         "sonsofphp/container": "self.version",
         "sonsofphp/http-handler": "self.version",
-        "sonsofphp/http-handler-contract": "self.version"
+        "sonsofphp/http-handler-contract": "self.version",
+        "sonsofphp/mailer-contract": "self.version",
+        "sonsofphp/mailer": "self.version"
     },
     "autoload": {
         "psr-4": {
             "SonsOfPHP\\Bard\\": "src/SonsOfPHP/Bard/src",
+            "SonsOfPHP\\Contract\\Mailer\\": "src/SonsOfPHP/Contract/Mailer",
+            "SonsOfPHP\\Component\\Mailer\\": "src/SonsOfPHP/Component/Mailer",
             "SonsOfPHP\\Component\\Cache\\": "src/SonsOfPHP/Component/Cache",
             "SonsOfPHP\\Component\\Clock\\": "src/SonsOfPHP/Component/Clock",
             "SonsOfPHP\\Component\\Container\\": "src/SonsOfPHP/Component/Container",
@@ -168,6 +173,7 @@
         },
         "exclude-from-classmap": [
             "src/SonsOfPHP/Bard/Tests",
+            "src/SonsOfPHP/Component/Mailer/Tests",
             "src/SonsOfPHP/Component/Cache/Tests",
             "src/SonsOfPHP/Component/Clock/Tests",
             "src/SonsOfPHP/Component/Container/Tests",
@@ -209,8 +215,7 @@
         "symfony/error-handler": "^6",
         "symfony/messenger": "^5 || ^6",
         "phpunit/phpunit": "^10.4",
-        "psr/simple-cache": "^1.0 || ^2.0 || ^3.0",
-        "sonsofphp/http-message": "0.3.x-dev"
+        "psr/simple-cache": "^1.0 || ^2.0 || ^3.0"
     },
     "autoload-dev": {
         "psr-4": {
