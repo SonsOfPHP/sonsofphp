@@ -29,7 +29,7 @@ final class CookieManager implements CookieManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function has(string $name): CookieInterface
+    public function has(string $name): bool
     {
         return array_key_exists($name, $_COOKIE);
     }

@@ -43,6 +43,7 @@ purge: # Purge vendor and lock files
 	rm -rf src/SonsOfPHP/Bundle/*/vendor/ src/SonsOfPHP/Bundle/*/composer.lock
 	rm -rf src/SonsOfPHP/Component/*/vendor/ src/SonsOfPHP/Component/*/composer.lock
 	rm -rf src/SonsOfPHP/Contract/*/vendor/ src/SonsOfPHP/Contract/*/composer.lock
+	rm -rf src/tools/*/vendor/ src/tools/*/composer.lock
 
 test: phpunit ## Run PHPUnit Tests
 

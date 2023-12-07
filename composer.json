@@ -80,11 +80,9 @@
         "ext-intl": "*",
         "doctrine/collections": "^2",
         "doctrine/orm": "^2",
-        "sonsofphp/cookie-contract": "0.3.x-dev",
         "psr/container": "^1.0 || ^2.0",
         "psr/http-server-handler": "^1.0",
-        "psr/http-server-middleware": "^1.0",
-        "sonsofphp/http-handler-contract": "0.3.x-dev"
+        "psr/http-server-middleware": "^1.0"
     },
     "replace": {
         "sonsofphp/bard": "self.version",
