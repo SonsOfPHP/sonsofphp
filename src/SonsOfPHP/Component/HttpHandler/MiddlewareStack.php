@@ -6,7 +6,11 @@ namespace SonsOfPHP\Component\HttpHandler;
 
 use Psr\Http\Server\MiddlewareInterface;
 use SonsOfPHP\Contract\HttpHandler\MiddlewareStackInterface;
+use SonsOfPHP\Component\HttpHandler\Exception\HttpHandlerException;
 
+/**
+ * @author Joshua Estes <joshua@sonsofphp.com>
+ */
 class MiddlewareStack implements MiddlewareStackInterface
 {
     private array $middlewares = [];
@@ -17,19 +21,26 @@ class MiddlewareStack implements MiddlewareStackInterface
     //    $this->resolver = $resolver;
     //}
 
-    // @todo Set Priorities
-    public function add($middleware): self
+    /**
+     * Adds a new middleware to the stack. Middlewares can be prioritized and
+     * will be ordered from the lowest number to the highest number (ascending
+     * order).
+     */
+    public function add(MiddlewareInterface|\Closure $middleware, int $priority = 0): self
     {
-        // $this->middlewares[$priority][] = $middleware;
-        // ksort($this->middlewares);
-        $this->middlewares[] = $middleware;
+        $this->middlewares[$priority][] = $middleware;
+        ksort($this->middlewares);
 
         return $this;
     }
 
     public function next(): MiddlewareInterface
     {
-        $middleware = array_shift($this->middlewares);
+        $priorityStack = array_shift($this->middlewares);
+        $middleware = array_shift($priorityStack);
+        if (0 !== count($priorityStack)) {
+            array_shift($this->middlewares, $priorityStack);
+        }
 
         if ($middleware instanceof MiddlewareInterface) {
             return $middleware;
@@ -51,7 +62,7 @@ class MiddlewareStack implements MiddlewareStackInterface
         //    return $this->resolver($middleware);
         //}
 
-        throw new \Exception('Unknown Middleware Type: ' . gettype($middleware));
+        throw new HttpHandlerException('Unknown Middleware Type: ' . gettype($middleware));
     }
 
     public function count(): int

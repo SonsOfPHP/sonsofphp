@@ -8,7 +8,9 @@ use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-// ServerRequestHandler? RequestHandler?
+/**
+ * @author Joshua Estes <joshua@sonsofphp.com>
+ */
 class HttpHandler implements RequestHandlerInterface
 {
     public function __construct(private MiddlewareStack $stack) {}
