@@ -6,6 +6,7 @@ namespace SonsOfPHP\Component\Mailer;
 
 use SonsOfPHP\Contract\Mailer\MailerInterface;
 use SonsOfPHP\Contract\Mailer\TransportInterface;
+use SonsOfPHP\Contract\Mailer\MessageInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

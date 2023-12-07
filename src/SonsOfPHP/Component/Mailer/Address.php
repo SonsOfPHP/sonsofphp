@@ -23,7 +23,7 @@ final class Address implements AddressInterface, \Stringable
     }
 
     /**
-     * {@inheritdoc{
+     * {@inheritdoc}
      */
     public static function from(string $address): self
     {
@@ -31,7 +31,7 @@ final class Address implements AddressInterface, \Stringable
     }
 
     /**
-     * {@inheritdoc{
+     * {@inheritdoc}
      */
     public function getEmail(): string
     {
@@ -39,7 +39,7 @@ final class Address implements AddressInterface, \Stringable
     }
 
     /**
-     * {@inheritdoc{
+     * {@inheritdoc}
      */
     public function withEmail(string $email): static
     {
@@ -54,7 +54,7 @@ final class Address implements AddressInterface, \Stringable
     }
 
     /**
-     * {@inheritdoc{
+     * {@inheritdoc}
      */
     public function getName(): ?string
     {
@@ -62,7 +62,7 @@ final class Address implements AddressInterface, \Stringable
     }
 
     /**
-     * {@inheritdoc{
+     * {@inheritdoc}
      */
     public function withName(?string $name): static
     {

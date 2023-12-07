@@ -84,6 +84,10 @@
       <directory>src/SonsOfPHP/Component/Logger/Tests</directory>
     </testsuite>
 
+    <testsuite name="mailer">
+      <directory>src/SonsOfPHP/Component/Mailer/Tests</directory>
+    </testsuite>
+
     <testsuite name="money">
       <directory>src/SonsOfPHP/Bridge/*/Money/Tests</directory>
       <directory>src/SonsOfPHP/Component/Money/Tests</directory>

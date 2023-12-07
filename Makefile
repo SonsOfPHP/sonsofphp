@@ -74,6 +74,9 @@ test-link: phpunit
 test-logger: PHPUNIT_TESTSUITE=logger
 test-logger: phpunit
 
+test-mailer: PHPUNIT_TESTSUITE=mailer
+test-mailer: phpunit
+
 test-money: PHPUNIT_TESTSUITE=money
 test-money: phpunit
 
@@ -150,6 +153,9 @@ coverage-link: coverage
 
 coverage-logger: PHPUNIT_TESTSUITE=logger
 coverage-logger: coverage
+
+coverage-mailer: PHPUNIT_TESTSUITE=mailer
+coverage-mailer: coverage
 
 coverage-money: PHPUNIT_TESTSUITE=money
 coverage-money: coverage
