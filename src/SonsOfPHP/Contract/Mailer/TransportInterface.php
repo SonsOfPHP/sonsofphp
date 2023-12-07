@@ -12,5 +12,8 @@ namespace SonsOfPHP\Contract\Mailer;
  */
 interface TransportInterface
 {
+    /**
+     * @throws MailerExceptionInterface
+     */
     public function send(MessageInterface $message);
 }
