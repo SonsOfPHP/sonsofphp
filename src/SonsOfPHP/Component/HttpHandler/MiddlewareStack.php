@@ -7,6 +7,9 @@ namespace SonsOfPHP\Component\HttpHandler;
 use Psr\Http\Server\MiddlewareInterface;
 use SonsOfPHP\Contract\HttpHandler\MiddlewareStackInterface;
 use SonsOfPHP\Component\HttpHandler\Exception\HttpHandlerException;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -39,11 +42,7 @@ class MiddlewareStack implements MiddlewareStackInterface
         $priorityStack = array_shift($this->middlewares);
         $middleware = array_shift($priorityStack);
         if (0 !== count($priorityStack)) {
-            array_shift($this->middlewares, $priorityStack);
-        }
-
-        if ($middleware instanceof MiddlewareInterface) {
-            return $middleware;
+            array_unshift($this->middlewares, $priorityStack);
         }
 
         if ($middleware instanceof \Closure) {
@@ -57,12 +56,7 @@ class MiddlewareStack implements MiddlewareStackInterface
             };
         }
 
-        //if (is_string($middleware)) {
-        //    // use the resolver to figure out wtf this is
-        //    return $this->resolver($middleware);
-        //}
-
-        throw new HttpHandlerException('Unknown Middleware Type: ' . gettype($middleware));
+        return $middleware;
     }
 
     public function count(): int
