@@ -1,5 +1,5 @@
-Sons of PHP - Container
-=======================
+Sons of PHP - HttpHandler
+=========================
 
 ## Learn More
 
@@ -11,6 +11,6 @@ Sons of PHP - Container
 [discussions]: https://github.com/orgs/SonsOfPHP/discussions
 [mother-repo]: https://github.com/SonsOfPHP/sonsofphp
 [contributing]: https://docs.sonsofphp.com/contributing/
-[docs]: https://docs.sonsofphp.com/components/container/
-[issues]: https://github.com/SonsOfPHP/sonsofphp/issues?q=is%3Aopen+is%3Aissue+label%3AContainer
-[pull-requests]: https://github.com/SonsOfPHP/sonsofphp/pulls?q=is%3Aopen+is%3Apr+label%3AContainer
+[docs]: https://docs.sonsofphp.com/components/http-handler/
+[issues]: https://github.com/SonsOfPHP/sonsofphp/issues?q=is%3Aopen+is%3Aissue+label%3AHttpHandler
+[pull-requests]: https://github.com/SonsOfPHP/sonsofphp/pulls?q=is%3Aopen+is%3Apr+label%3AHttpHandler

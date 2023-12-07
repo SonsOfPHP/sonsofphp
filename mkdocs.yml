@@ -106,6 +106,7 @@ nav:
             - components/filesystem/index.md
             - Adapters: components/filesystem/adapters.md
         - HttpFactory: components/http-factory/index.md
+        - HttpHandler: components/http-handler/index.md
         - HttpMessage: components/http-message/index.md
         - JSON: components/json/index.md
         - Link: components/link/index.md

@@ -64,6 +64,9 @@ test-cqrs: phpunit
 test-http-factory: PHPUNIT_TESTSUITE=http-factory
 test-http-factory: phpunit
 
+test-http-handler: PHPUNIT_TESTSUITE=http-handler
+test-http-handler: phpunit
+
 test-link: PHPUNIT_TESTSUITE=link
 test-link: phpunit
 
@@ -131,6 +134,9 @@ coverage-filesystem:
 
 coverage-http-factory:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite http-factory --coverage-html $(COVERAGE_DIR)
+
+coverage-http-handler: PHPUNIT_TESTSUITE=http-handler
+coverage-http-handler: coverage
 
 coverage-http-message:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite http-message --coverage-html $(COVERAGE_DIR)

@@ -1,13 +1,16 @@
 {
-    "name": "sonsofphp/container",
+    "name": "sonsofphp/http-handler-contract",
     "type": "library",
-    "description": "Lightweight PSR-11 Container",
+    "description": "",
     "keywords": [
-        "psr11",
-        "psr-11",
-        "container"
+        "abstractions",
+        "contracts",
+        "decoupling",
+        "interfaces",
+        "interoperability",
+        "standards"
     ],
-    "homepage": "https://github.com/SonsOfPHP/container",
+    "homepage": "https://github.com/SonsOfPHP/http-handler-contract",
     "license": "MIT",
     "authors": [
         {
@@ -22,20 +25,15 @@
     },
     "autoload": {
         "psr-4": {
-            "SonsOfPHP\\Component\\Container\\": ""
-        },
-        "exclude-from-classmap": [
-            "/Tests/"
-        ]
+            "SonsOfPHP\\Contract\\HttpHandler\\": ""
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
         "php": ">=8.1",
-        "psr/container": "^1.0 || ^2.0"
-    },
-    "provide": {
-        "psr/container-implementation": "^1.0 || ^2.0"
+        "psr/http-server-handler": "^1.0",
+        "psr/http-server-middleware": "^1.0"
     },
     "extra": {
         "sort-packages": true,

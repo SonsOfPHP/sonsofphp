@@ -18,6 +18,7 @@ docs/ @JoshuaEstes
 /src/SonsOfPHP/**/FeatureToggle @JoshuaEstes
 /src/SonsOfPHP/**/Filesystem @JoshuaEstes
 /src/SonsOfPHP/**/HttpFactory @JoshuaEstes
+/src/SonsOfPHP/**/HttpHandler @JoshuaEstes
 /src/SonsOfPHP/**/HttpMessage @JoshuaEstes
 /src/SonsOfPHP/**/Json @JoshuaEstes
 /src/SonsOfPHP/**/Link @JoshuaEstes

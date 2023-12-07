@@ -64,6 +64,10 @@
       <directory>src/SonsOfPHP/Component/HttpFactory/Tests</directory>
     </testsuite>
 
+    <testsuite name="http-handler">
+      <directory>src/SonsOfPHP/Component/HttpHandler/Tests</directory>
+    </testsuite>
+
     <testsuite name="http-message">
       <directory>src/SonsOfPHP/Component/HttpMessage/Tests</directory>
     </testsuite>
