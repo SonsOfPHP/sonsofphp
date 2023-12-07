@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpHandler;
 
 use Psr\Http\Server\MiddlewareInterface;
+use SonsOfPHP\Contract\HttpHandler\MiddlewareStackInterface;
 
-// @todo implement interface (make contract)
-class MiddlewareStack
+class MiddlewareStack implements MiddlewareStackInterface
 {
     private array $middlewares = [];
-    private $resolver;
+    //private $resolver;
 
-    public function __construct($resolver)
-    {
-        $this->resolver = $resolver;
-    }
+    //public function __construct($resolver)
+    //{
+    //    $this->resolver = $resolver;
+    //}
 
     // @todo Set Priorities
     public function add($middleware): self
@@ -27,7 +27,7 @@ class MiddlewareStack
         return $this;
     }
 
-    public function shift(): MiddlewareInterface
+    public function next(): MiddlewareInterface
     {
         $middleware = array_shift($this->middlewares);
 
@@ -46,10 +46,10 @@ class MiddlewareStack
             };
         }
 
-        if (is_string($middleware)) {
-            // use the resolver to figure out wtf this is
-            return $this->resolver($middleware);
-        }
+        //if (is_string($middleware)) {
+        //    // use the resolver to figure out wtf this is
+        //    return $this->resolver($middleware);
+        //}
 
         throw new \Exception('Unknown Middleware Type: ' . gettype($middleware));
     }

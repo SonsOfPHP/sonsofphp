@@ -22,7 +22,7 @@ class HttpHandler implements RequestHandlerInterface
             throw new \Exception('No Middleware in the queue.');
         }
 
-        $middleware = $this->stack->shift();
+        $middleware = $this->stack->next();
 
         return $middleware->process($request, $this);
     }
