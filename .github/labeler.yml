@@ -66,6 +66,10 @@ Logger:
   - docs/components/logger/*
   - src/SonsOfPHP/**/Logger/*
 
+Mailer:
+  - docs/components/mailer/*
+  - src/SonsOfPHP/**/Mailer/*
+
 Money:
   - docs/components/money/*
   - src/SonsOfPHP/**/Money/*
