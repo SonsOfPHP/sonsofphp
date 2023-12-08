@@ -7,10 +7,10 @@ namespace SonsOfPHP\Component\Mailer\Tests;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Mailer\MiddlewareHandler;
 use SonsOfPHP\Component\Mailer\MiddlewareStack;
-use SonsOfPHP\Contract\Mailer\MiddlewareStackInterface;
-use SonsOfPHP\Contract\Mailer\MiddlewareInterface;
-use SonsOfPHP\Contract\Mailer\MiddlewareHandlerInterface;
 use SonsOfPHP\Contract\Mailer\MessageInterface;
+use SonsOfPHP\Contract\Mailer\MiddlewareHandlerInterface;
+use SonsOfPHP\Contract\Mailer\MiddlewareInterface;
+use SonsOfPHP\Contract\Mailer\MiddlewareStackInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Mailer\MiddlewareHandler
@@ -66,7 +66,7 @@ final class MiddlewareHandlerTest extends TestCase
      */
     public function testHandle(): void
     {
-        $middleware = new class implements MiddlewareInterface {
+        $middleware = new class () implements MiddlewareInterface {
             public function __invoke(MessageInterface $message, MiddlewareHandlerInterface $handler)
             {
                 return $message;

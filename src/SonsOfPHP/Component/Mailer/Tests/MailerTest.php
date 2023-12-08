@@ -7,8 +7,8 @@ namespace SonsOfPHP\Component\Mailer\Tests;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Mailer\Mailer;
 use SonsOfPHP\Contract\Mailer\MailerInterface;
-use SonsOfPHP\Contract\Mailer\TransportInterface;
 use SonsOfPHP\Contract\Mailer\MessageInterface;
+use SonsOfPHP\Contract\Mailer\TransportInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Mailer\Mailer

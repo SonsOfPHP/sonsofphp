@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Mailer;
 
-use SonsOfPHP\Contract\Mailer\MessageInterface;
 use SonsOfPHP\Contract\Mailer\AddressInterface;
+use SonsOfPHP\Contract\Mailer\MessageInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

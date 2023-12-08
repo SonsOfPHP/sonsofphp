@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Mailer\Transport;
 
-use SonsOfPHP\Contract\Mailer\TransportInterface;
 use SonsOfPHP\Contract\Mailer\MessageInterface;
+use SonsOfPHP\Contract\Mailer\TransportInterface;
 
 /**
  * Bullshit Transport that uses `mail`. Don't wanna use this in production, but
@@ -20,7 +20,7 @@ class NativeMailTransport implements TransportInterface
     /**
      * {@inheritdoc}
      */
-    public function send(MessageInterface $message)
+    public function send(MessageInterface $message): void
     {
         mail($message->getHeader('to'), $message->getHeader('subject'), $message->getBody(), $message->getHeaders());
     }
