@@ -24,6 +24,7 @@ To get the diff between two versions, go to https://github.com/SonsOfPHP/sonsofp
 * [PR #181](https://github.com/SonsOfPHP/sonsofphp/pull/181) [Cookie] New Component and Contract
 * [PR #182](https://github.com/SonsOfPHP/sonsofphp/pull/182) [Container] New Component (PSR-11)
 * [PR #187](https://github.com/SonsOfPHP/sonsofphp/pull/187) [HttpHandler] New Component (PSR-15) and Contract
+* [PR #190](https://github.com/SonsOfPHP/sonsofphp/pull/190) [Mailer] New Component and Contract
 
 ## [0.3.8]
 
