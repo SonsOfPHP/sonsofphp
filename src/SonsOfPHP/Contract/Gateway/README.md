@@ -1,7 +1,8 @@
 Sons of PHP - Gateway Contract
 ==============================
 
-
+The Gateway Contract is an abstract way to interact with payment gateways or
+processors. An example of this would be Stripe.
 
 ## Learn More
 

@@ -11,9 +11,18 @@ namespace SonsOfPHP\Contract\Gateway;
  * Processor Examples
  *   - Stripe
  *   - Authorize.net
+ *   - Dummy or Mock
+ *   - Round Robin
+ *   - Capped
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface ProcessorInterface
+interface PaymentProcessorInterface
 {
+    /**
+     * MUST return the friendly name such as "Stripe"
+     *
+     * This MAY BE used as a display on the frontend
+     */
+    public function getName(): string;
 }

@@ -29,11 +29,14 @@ Out of Scope
 ```php
 <?php
 
-$processor = new StripeProcessor(key: '...', secret: '...');
+$processor = new PaymentProcessor(key: '...', secret: '...');
 $gateway = new Gateway($processor);
 
-$transaction = $gateway->authorize(...);
-$transaction = $gateway->capture(...);
+$card = new CreditCard();
+$card->setNumber(...)->setCvv(...);
+
+$transaction = $gateway->authorize(['card' => $card]);
+$transaction = $gateway->capture(['card' => $card]);
 
 // Token Based processors
 $transaction = $gateway->purchase($token);

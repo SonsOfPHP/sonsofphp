@@ -9,7 +9,7 @@ namespace SonsOfPHP\Contract\Gateway;
  */
 interface AuthorizableInterface
 {
-    public function authorize($options): void;
+    public function authorize(array $options): void;
 
-    public function authorizeComplete($options): void;
+    public function authorizeComplete(array $options): void;
 }
