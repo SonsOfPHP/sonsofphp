@@ -9,7 +9,7 @@ namespace SonsOfPHP\Contract\Mailer;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface AddressInterface
+interface AddressInterface extends \Stringable
 {
     /**
      * @throws InvalidArgumentException

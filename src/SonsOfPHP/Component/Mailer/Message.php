@@ -15,6 +15,36 @@ class Message implements MessageInterface
     private array $headers = [];
     private string $body;
 
+    public function setSubject(string $subject): self
+    {
+        $this->addHeader('subject', $subject);
+    }
+
+    public function getSubject(): ?string
+    {
+        return $this->getHeader('subject');
+    }
+
+    public function setFrom(AddressInterface|string $address): self
+    {
+        $this->addHeader('from', $address);
+    }
+
+    public function getFrom(): ?string
+    {
+        return $this->getHeader('from');
+    }
+
+    public function setTo(AddressInterface|string $address): self
+    {
+        $this->addHeader('to', $address);
+    }
+
+    public function getTo(): ?string
+    {
+        return $this->getHeader('to');
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -62,6 +92,10 @@ class Message implements MessageInterface
      */
     public function addHeader(string $name, AddressInterface|string $value): self
     {
+        if ($value instanceof AddressInterface) {
+            $value = (string) $value;
+        }
+
         if ($this->hasHeader($name)) {
             $value = $this->headers[strtolower($name)] . ', ' . $value;
         }

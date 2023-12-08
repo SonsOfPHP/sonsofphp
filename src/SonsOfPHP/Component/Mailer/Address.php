@@ -9,7 +9,7 @@ use SonsOfPHP\Contract\Mailer\AddressInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class Address implements AddressInterface, \Stringable
+final class Address implements AddressInterface
 {
     public function __construct(private string $email, private ?string $name = null) {}
 
