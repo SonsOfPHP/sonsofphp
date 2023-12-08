@@ -33,6 +33,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.1",
+        "ext-intl": "*",
         "sonsofphp/money-contract": "0.3.x-dev"
     },
     "provide": {

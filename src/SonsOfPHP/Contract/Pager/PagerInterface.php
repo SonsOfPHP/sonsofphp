@@ -20,12 +20,25 @@ interface PagerInterface extends \Countable, \IteratorAggregate, \JsonSerializab
      */
     public function getCurrentPageResults(): iterable;
 
+    /**
+     * Returns the total number of results that the adapter can return
+     */
     public function getTotalResults(): int;
 
+    /**
+     * Returns the total number of pages that exist based on the total results
+     * and the max results per page
+     */
     public function getTotalPages(): int;
 
+    /**
+     * Returns true if there are 2 or more total pages
+     */
     public function haveToPaginate(): bool;
 
+    /**
+     * If there is a previous page available, this will return true
+     */
     public function hasPreviousPage(): bool;
 
     /**
@@ -33,6 +46,9 @@ interface PagerInterface extends \Countable, \IteratorAggregate, \JsonSerializab
      */
     public function getPreviousPage(): ?int;
 
+    /**
+     * If there is a next page available, this will return true
+     */
     public function hasNextPage(): bool;
 
     /**

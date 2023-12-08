@@ -10,6 +10,14 @@ Clock:
   - docs/components/clock/*
   - src/SonsOfPHP/**/Clock/*
 
+Container:
+  - docs/components/container/*
+  - src/SonsOfPHP/**/Container/*
+
+Cookie:
+  - docs/components/cookie/*
+  - src/SonsOfPHP/**/Cookie/*
+
 Common:
   - docs/components/common/*
   - src/SonsOfPHP/**/Common/*
@@ -38,6 +46,10 @@ HttpFactory:
   - docs/components/http-factory/*
   - src/SonsOfPHP/**/HttpFactory/*
 
+HttpHandler:
+  - docs/components/http-handler/*
+  - src/SonsOfPHP/**/HttpHandler/*
+
 HttpMessage:
   - docs/components/http-message/*
   - src/SonsOfPHP/**/HttpMessage/*
@@ -53,6 +65,10 @@ Link:
 Logger:
   - docs/components/logger/*
   - src/SonsOfPHP/**/Logger/*
+
+Mailer:
+  - docs/components/mailer/*
+  - src/SonsOfPHP/**/Mailer/*
 
 Money:
   - docs/components/money/*

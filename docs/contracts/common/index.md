@@ -1,5 +1,6 @@
 ---
 title: Common Contracts - Overview
+description: PHP Common Contracts
 ---
 
 # Common Contracts
@@ -15,7 +16,8 @@ composer require sonsofphp/common-contract
 
 ## Includes Interfaces
 
-* ArrayableInterface
-* ComparableInterface
-* EquatableInterface
-* JsonableInterface
+* `ArrayableInterface`
+* `ComparableInterface`
+* `EquatableInterface`
+* `JsonableInterface`
+* `TryableInterface`

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\Money\Tests\Query\Currency;
+namespace SonsOfPHP\Component\Money\Tests\Query\CurrencyProvider;
 
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider;
 use SonsOfPHP\Component\Money\Query\CurrencyProvider\HasCurrencyQuery;
+use SonsOfPHP\Contract\Money\CurrencyProviderQueryInterface;
 use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
-use SonsOfPHP\Contract\Money\Query\CurrencyProvider\CurrencyProviderQueryInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Query\CurrencyProvider\HasCurrencyQuery

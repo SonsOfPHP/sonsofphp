@@ -8,24 +8,33 @@ use SonsOfPHP\Component\Money\Query\CurrencyProvider\GetCurrencyQuery;
 use SonsOfPHP\Component\Money\Query\CurrencyProvider\HasCurrencyQuery;
 use SonsOfPHP\Contract\Money\CurrencyInterface;
 use SonsOfPHP\Contract\Money\CurrencyProviderInterface;
-use SonsOfPHP\Contract\Money\Query\CurrencyProvider\CurrencyProviderQueryInterface;
+use SonsOfPHP\Contract\Money\CurrencyProviderQueryInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 abstract class AbstractCurrencyProvider implements CurrencyProviderInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public function query(CurrencyProviderQueryInterface $query)
     {
         return $query->queryFrom($this);
     }
 
-    public function hasCurrency($currency): bool
+    /**
+     * {@inheritdoc}
+     */
+    public function hasCurrency(CurrencyInterface|string $currency): bool
     {
         return $this->query(new HasCurrencyQuery($currency));
     }
 
-    public function getCurrency($currency): CurrencyInterface
+    /**
+     * {@inheritdoc}
+     */
+    public function getCurrency(CurrencyInterface|string $currency): CurrencyInterface
     {
         return $this->query(new GetCurrencyQuery($currency));
     }

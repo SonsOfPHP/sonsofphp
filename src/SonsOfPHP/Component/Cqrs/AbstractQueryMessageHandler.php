@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Cqrs;
 
+use SonsOfPHP\Contract\Cqrs\QueryMessageHandlerInterface;
+
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */

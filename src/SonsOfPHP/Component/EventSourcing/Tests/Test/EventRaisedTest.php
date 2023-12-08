@@ -10,6 +10,8 @@ use SonsOfPHP\Component\EventSourcing\Test\EventRaised;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Test\EventRaised
+ *
+ * @uses \SonsOfPHP\Component\EventSourcing\Test\EventRaised
  */
 final class EventRaisedTest extends TestCase
 {

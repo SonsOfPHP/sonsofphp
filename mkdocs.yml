@@ -79,6 +79,8 @@ nav:
         - components/index.md
         - Cache: components/cache/index.md
         - Clock: components/clock/index.md
+        - Container: components/container/index.md
+        - Cookie: components/cookie/index.md
         - CQRS:
             - components/cqrs/index.md
         - Event Dispatcher: components/event-dispatcher/index.md
@@ -104,18 +106,23 @@ nav:
             - components/filesystem/index.md
             - Adapters: components/filesystem/adapters.md
         - HttpFactory: components/http-factory/index.md
+        - HttpHandler: components/http-handler/index.md
         - HttpMessage: components/http-message/index.md
         - JSON: components/json/index.md
         - Link: components/link/index.md
         - Logger: components/logger/index.md
+        - Mailer: components/mailer/index.md
         - Money:
-            - components/money/index.md
+            - Overview: components/money/index.md
             - Currency Providers: components/money/currency-providers.md
             - Operators: components/money/operators.md
             - Queries: components/money/queries.md
+        - Pager: components/pager/index.md
         - Version: components/version/index.md
     - Contracts:
         - contracts/index.md
         - Common: contracts/common/index.md
+        - Cookie: contracts/cookie/index.md
         - Cqrs: contracts/cqrs/index.md
+        - Mailer: contracts/mailer/index.md
         - Pager: contracts/pager/index.md

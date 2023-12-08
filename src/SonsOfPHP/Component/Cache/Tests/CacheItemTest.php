@@ -151,10 +151,10 @@ final class CacheItemTest extends TestCase
 
     public static function invalidKeysProvider(): iterable
     {
-        yield [''];
+        yield 'empty' => [''];
 
-        yield ['not allowed'];
+        yield 'space' => ['not allowed'];
 
-        yield ['contains@reserved}characters'];
+        yield 'reserved' => ['contains@reserved}characters'];
     }
 }

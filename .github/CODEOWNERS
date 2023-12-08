@@ -9,6 +9,8 @@ docs/ @JoshuaEstes
 # Each component/contract needs a Team
 /src/SonsOfPHP/**/Cache @JoshuaEstes
 /src/SonsOfPHP/**/Clock @JoshuaEstes
+/src/SonsOfPHP/**/Container @JoshuaEstes
+/src/SonsOfPHP/**/Cookie @JoshuaEstes
 /src/SonsOfPHP/**/Common @JoshuaEstes
 /src/SonsOfPHP/**/Cqrs @JoshuaEstes
 /src/SonsOfPHP/**/EventDispatcher @JoshuaEstes
@@ -16,10 +18,12 @@ docs/ @JoshuaEstes
 /src/SonsOfPHP/**/FeatureToggle @JoshuaEstes
 /src/SonsOfPHP/**/Filesystem @JoshuaEstes
 /src/SonsOfPHP/**/HttpFactory @JoshuaEstes
+/src/SonsOfPHP/**/HttpHandler @JoshuaEstes
 /src/SonsOfPHP/**/HttpMessage @JoshuaEstes
 /src/SonsOfPHP/**/Json @JoshuaEstes
 /src/SonsOfPHP/**/Link @JoshuaEstes
 /src/SonsOfPHP/**/Logger @JoshuaEstes
+/src/SonsOfPHP/**/Mailer @JoshuaEstes
 /src/SonsOfPHP/**/Money @JoshuaEstes
 /src/SonsOfPHP/**/Pager @JoshuaEstes
 /src/SonsOfPHP/**/Version @JoshuaEstes

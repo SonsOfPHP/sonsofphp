@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Contract\Money;
 
-use SonsOfPHP\Contract\Money\Operator\Money\MoneyOperatorInterface;
-use SonsOfPHP\Contract\Money\Query\Money\MoneyQueryInterface;
-
 /**
  * Money Interface.
  *
@@ -14,7 +11,7 @@ use SonsOfPHP\Contract\Money\Query\Money\MoneyQueryInterface;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface MoneyInterface
+interface MoneyInterface // extends \JsonSerializable
 {
     public function getAmount(): AmountInterface;
 

@@ -17,8 +17,8 @@ use SonsOfPHP\Component\Money\Query\Amount\IsNegativeAmountQuery;
 use SonsOfPHP\Component\Money\Query\Amount\IsPositiveAmountQuery;
 use SonsOfPHP\Component\Money\Query\Amount\IsZeroAmountQuery;
 use SonsOfPHP\Contract\Money\AmountInterface;
-use SonsOfPHP\Contract\Money\Operator\Amount\AmountOperatorInterface;
-use SonsOfPHP\Contract\Money\Query\Amount\AmountQueryInterface;
+use SonsOfPHP\Contract\Money\AmountOperatorInterface;
+use SonsOfPHP\Contract\Money\AmountQueryInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -60,32 +60,32 @@ final class Amount implements AmountInterface
         return $this->amount;
     }
 
-    public function with(AmountOperatorInterface $operator): AmountInterface
+    public function with(AmountOperatorInterface $operator): static
     {
         return $operator->apply($this);
     }
 
-    public function query(AmountQueryInterface $query)
+    public function query(AmountQueryInterface $query)/*: mixed*/
     {
         return $query->queryFrom($this);
     }
 
-    public function add(AmountInterface $amount): AmountInterface
+    public function add(AmountInterface $amount): static
     {
         return $this->with(new AddAmountOperator($amount));
     }
 
-    public function subtract(AmountInterface $amount): AmountInterface
+    public function subtract(AmountInterface $amount): static
     {
         return $this->with(new SubtractAmountOperator($amount));
     }
 
-    public function multiply($multiplier): AmountInterface
+    public function multiply($multiplier): static
     {
         return $this->with(new MultiplyAmountOperator($multiplier));
     }
 
-    public function divide($divisor): AmountInterface
+    public function divide($divisor): static
     {
         return $this->with(new DivideAmountOperator($divisor));
     }

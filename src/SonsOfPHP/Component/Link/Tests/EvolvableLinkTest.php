@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Link\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Link\EvolvableLink;
 use Psr\Link\EvolvableLinkInterface;
+use SonsOfPHP\Component\Link\EvolvableLink;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Link\EvolvableLink
@@ -31,7 +31,7 @@ final class EvolvableLinkTest extends TestCase
      */
     public function testWithHrefWhenStringable(): void
     {
-        $href = new class implements \Stringable {
+        $href = new class () implements \Stringable {
             public function __toString(): string
             {
                 return 'https://docs.sonsofphp.com';

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Link;
 
-use Psr\Link\LinkProviderInterface;
 use Psr\Link\LinkInterface;
+use Psr\Link\LinkProviderInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

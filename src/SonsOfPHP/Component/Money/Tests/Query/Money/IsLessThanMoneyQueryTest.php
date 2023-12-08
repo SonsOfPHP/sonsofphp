@@ -8,7 +8,8 @@ use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\Money;
 use SonsOfPHP\Component\Money\Query\Money\IsLessThanMoneyQuery;
-use SonsOfPHP\Contract\Money\Query\Money\MoneyQueryInterface;
+use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
+use SonsOfPHP\Contract\Money\MoneyQueryInterface;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\Money\Query\Money\IsLessThanMoneyQuery
@@ -41,5 +42,16 @@ final class IsLessThanMoneyQueryTest extends TestCase
         $query = new IsLessThanMoneyQuery(new Money(100, Currency::USD()));
 
         $this->assertTrue($query->queryFrom(new Money(50, Currency::USD())));
+    }
+
+    /**
+     * @covers ::queryFrom
+     */
+    public function testQueryFromThrowsExceptionWhenCurrencyIsDifferent(): void
+    {
+        $query = new IsLessThanMoneyQuery(new Money(100, Currency::USD()));
+
+        $this->expectException(MoneyExceptionInterface::class);
+        $query->queryFrom(new Money(200, Currency::EUR()));
     }
 }

@@ -44,6 +44,14 @@ use SonsOfPHP\Contract\Money\MoneyInterface;
  */
 final class MoneyTest extends TestCase
 {
+    public static function validMoneyConstructorArgumentsProvider(): iterable
+    {
+        yield [420, 'usd'];
+        yield [420, new Currency('usd')];
+        yield [-420, 'usd'];
+        yield [-420, new Currency('usd')];
+    }
+
     /**
      * @covers ::__callStatic
      * @covers ::__construct
@@ -362,5 +370,15 @@ final class MoneyTest extends TestCase
 
         $output = $money1->divide(5);
         $this->assertSame('20', (string) $output->getAmount());
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     */
+    public function testJsonSerialize(): void
+    {
+        $money = Money::USD(420);
+
+        $this->assertSame('{"amount":420,"currency":"USD"}', json_encode($money));
     }
 }

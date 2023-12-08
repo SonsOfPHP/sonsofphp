@@ -13,6 +13,7 @@
     <testsuite name="all">
       <!--<directory>src/SonsOfPHP/Bard/src/Tests</directory>-->
       <directory>src/SonsOfPHP/Bridge/*/*/Tests</directory>
+      <directory>src/SonsOfPHP/Bridge/*/*/*/Tests</directory>
       <directory>src/SonsOfPHP/Bundle/*/Tests</directory>
       <directory>src/SonsOfPHP/Component/*/Tests</directory>
     </testsuite>
@@ -27,6 +28,14 @@
 
     <testsuite name="clock">
       <directory>src/SonsOfPHP/Component/Clock/Tests</directory>
+    </testsuite>
+
+    <testsuite name="container">
+      <directory>src/SonsOfPHP/Component/Container/Tests</directory>
+    </testsuite>
+
+    <testsuite name="cookie">
+      <directory>src/SonsOfPHP/Component/Cookie/Tests</directory>
     </testsuite>
 
     <testsuite name="cqrs">
@@ -55,6 +64,10 @@
       <directory>src/SonsOfPHP/Component/HttpFactory/Tests</directory>
     </testsuite>
 
+    <testsuite name="http-handler">
+      <directory>src/SonsOfPHP/Component/HttpHandler/Tests</directory>
+    </testsuite>
+
     <testsuite name="http-message">
       <directory>src/SonsOfPHP/Component/HttpMessage/Tests</directory>
     </testsuite>
@@ -71,11 +84,17 @@
       <directory>src/SonsOfPHP/Component/Logger/Tests</directory>
     </testsuite>
 
+    <testsuite name="mailer">
+      <directory>src/SonsOfPHP/Component/Mailer/Tests</directory>
+    </testsuite>
+
     <testsuite name="money">
+      <directory>src/SonsOfPHP/Bridge/*/Money/Tests</directory>
       <directory>src/SonsOfPHP/Component/Money/Tests</directory>
     </testsuite>
 
     <testsuite name="pager">
+      <directory>src/SonsOfPHP/Bridge/*/*/Pager/Tests</directory>
       <directory>src/SonsOfPHP/Component/Pager/Tests</directory>
     </testsuite>
 
@@ -84,7 +103,7 @@
     </testsuite>
   </testsuites>
 
-  <coverage includeUncoveredFiles="true" pathCoverage="true" ignoreDeprecatedCodeUnits="true" disableCodeCoverageIgnore="true">
+  <coverage includeUncoveredFiles="true" pathCoverage="false" ignoreDeprecatedCodeUnits="true" disableCodeCoverageIgnore="true">
   </coverage>
 
   <source>
@@ -94,10 +113,10 @@
     <exclude>
       <!--<directory>src/SonsOfPHP/Bard/src/Tests</directory>-->
       <directory>src/SonsOfPHP/Bard/vendor</directory>
-      <directory>src/SonsOfPHP/Bridge/Doctrine/*/Tests</directory>
-      <directory>src/SonsOfPHP/Bridge/Doctrine/*/vendor</directory>
-      <directory>src/SonsOfPHP/Bridge/Symfony/*/Tests</directory>
-      <directory>src/SonsOfPHP/Bridge/Symfony/*/vendor</directory>
+      <directory>src/SonsOfPHP/Bridge/*/*/*/Tests</directory>
+      <directory>src/SonsOfPHP/Bridge/*/*/*/vendor</directory>
+      <directory>src/SonsOfPHP/Bridge/*/*/Tests</directory>
+      <directory>src/SonsOfPHP/Bridge/*/*/vendor</directory>
       <directory>src/SonsOfPHP/Bundle/*/Tests</directory>
       <directory>src/SonsOfPHP/Bundle/*/vendor</directory>
       <directory>src/SonsOfPHP/Component/*/Tests</directory>

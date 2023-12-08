@@ -43,6 +43,7 @@ purge: # Purge vendor and lock files
 	rm -rf src/SonsOfPHP/Bundle/*/vendor/ src/SonsOfPHP/Bundle/*/composer.lock
 	rm -rf src/SonsOfPHP/Component/*/vendor/ src/SonsOfPHP/Component/*/composer.lock
 	rm -rf src/SonsOfPHP/Contract/*/vendor/ src/SonsOfPHP/Contract/*/composer.lock
+	rm -rf src/tools/*/vendor/ src/tools/*/composer.lock
 
 test: phpunit ## Run PHPUnit Tests
 
@@ -52,14 +53,32 @@ test-cache: phpunit
 test-clock: PHPUNIT_TESTSUITE=clock
 test-clock: phpunit
 
+test-container: PHPUNIT_TESTSUITE=container
+test-container: phpunit
+
+test-cookie: PHPUNIT_TESTSUITE=cookie
+test-cookie: phpunit
+
 test-cqrs: PHPUNIT_TESTSUITE=cqrs
 test-cqrs: phpunit
+
+test-http-factory: PHPUNIT_TESTSUITE=http-factory
+test-http-factory: phpunit
+
+test-http-handler: PHPUNIT_TESTSUITE=http-handler
+test-http-handler: phpunit
 
 test-link: PHPUNIT_TESTSUITE=link
 test-link: phpunit
 
 test-logger: PHPUNIT_TESTSUITE=logger
 test-logger: phpunit
+
+test-mailer: PHPUNIT_TESTSUITE=mailer
+test-mailer: phpunit
+
+test-money: PHPUNIT_TESTSUITE=money
+test-money: phpunit
 
 test-pager: PHPUNIT_TESTSUITE=pager
 test-pager: phpunit
@@ -96,6 +115,12 @@ coverage-cache: coverage
 coverage-clock: PHPUNIT_TESTSUITE=clock
 coverage-clock: coverage
 
+coverage-container: PHPUNIT_TESTSUITE=container
+coverage-container: coverage
+
+coverage-cookie: PHPUNIT_TESTSUITE=cookie
+coverage-cookie: coverage
+
 coverage-cqrs: PHPUNIT_TESTSUITE=cqrs
 coverage-cqrs: coverage
 
@@ -114,6 +139,9 @@ coverage-filesystem:
 coverage-http-factory:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite http-factory --coverage-html $(COVERAGE_DIR)
 
+coverage-http-handler: PHPUNIT_TESTSUITE=http-handler
+coverage-http-handler: coverage
+
 coverage-http-message:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite http-message --coverage-html $(COVERAGE_DIR)
 
@@ -126,8 +154,11 @@ coverage-link: coverage
 coverage-logger: PHPUNIT_TESTSUITE=logger
 coverage-logger: coverage
 
-coverage-money:
-	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite money --coverage-html $(COVERAGE_DIR)
+coverage-mailer: PHPUNIT_TESTSUITE=mailer
+coverage-mailer: coverage
+
+coverage-money: PHPUNIT_TESTSUITE=money
+coverage-money: coverage
 
 coverage-pager: PHPUNIT_TESTSUITE=pager
 coverage-pager: coverage
@@ -161,6 +192,13 @@ php-cs-fixer-upgrade:
 
 testdox: ## Run tests and output testdox
 	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHPUNIT) --testdox
+
+infection:
+	XDEBUG_MODE=develop \
+	$(PHP) \
+	-dxdebug.mode=develop \
+	-dapc.enable_cli=1 \
+	tools/infection/vendor/bin/infection --debug -vvv --show-mutations
 
 tools-install: psalm-install php-cs-fixer-install phpunit-install
 

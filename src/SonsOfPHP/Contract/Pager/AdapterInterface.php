@@ -20,7 +20,7 @@ interface AdapterInterface extends \Countable
      * Length is how many results to return. For example, if length is 10, a
      * MAXIMUM of 10 results will be returned
      *
-     * Length should always be a positive number that is 1 or greater
+     * Length MUST always be a positive number that is 1 or greater OR be null
      *
      * If null is passed in as length, this should return ALL the results.
      *
