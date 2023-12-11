@@ -25,4 +25,9 @@ interface PaymentProcessorInterface
      * This MAY BE used as a display on the frontend
      */
     public function getName(): string;
+
+    /**
+     * Request is sent to the payment processor and a response is returned
+     */
+    public function request(RequestInterface $request): ResponseInterface;
 }
