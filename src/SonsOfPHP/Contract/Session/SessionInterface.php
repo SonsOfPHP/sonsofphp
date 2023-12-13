@@ -21,4 +21,8 @@ interface SessionInterface
 
     public function getId(): string;
     public function setId(string $id): void;
+
+    public function get(string $attribute, mixed $default = null): mixed;
+    public function set(string $attribute, mixed $value): mixed;
+    public function remove(string $attribute): mixed;
 }
