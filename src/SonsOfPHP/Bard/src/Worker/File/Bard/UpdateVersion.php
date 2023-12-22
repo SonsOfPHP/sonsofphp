@@ -13,12 +13,7 @@ use SonsOfPHP\Component\Version\VersionInterface;
  */
 final class UpdateVersion implements WorkerInterface
 {
-    private VersionInterface $version;
-
-    public function __construct(VersionInterface $version)
-    {
-        $this->version = $version;
-    }
+    public function __construct(private VersionInterface $version) {}
 
     public function apply(JsonFile $bardJsonFile): JsonFile
     {

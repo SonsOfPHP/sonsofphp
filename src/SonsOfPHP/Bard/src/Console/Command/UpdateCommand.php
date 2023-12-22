@@ -16,19 +16,12 @@ final class UpdateCommand extends AbstractCommand
 {
     protected static $defaultName = 'update';
 
-    // public function __construct()
-    // {
-    //    parent::__construct();
-    // }
-
     protected function configure(): void
     {
         $this
             ->setDescription('Runs composer update for all packages')
         ;
     }
-
-    protected function initialize(InputInterface $input, OutputInterface $output): void {}
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {

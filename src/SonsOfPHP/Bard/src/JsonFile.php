@@ -7,17 +7,18 @@ namespace SonsOfPHP\Bard;
 use SonsOfPHP\Component\Json\Json;
 
 /**
+ * Used to manage bard.json and composer.json files
+ *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 final class JsonFile
 {
-    private string $filename;
     private array $config = [];
     private Json $json;
 
-    public function __construct(string $filename)
-    {
-        $this->filename = $filename;
+    public function __construct(
+        private string $filename,
+    ) {
         $this->json     = new Json();
         $this->load();
     }
