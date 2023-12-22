@@ -12,3 +12,4 @@ composer.phar
 packages.json
 results.sarif
 infection.log
+.churn.cache
