@@ -4,6 +4,7 @@ PHP                 = php
 PHP_CS_FIXER        = tools/php-cs-fixer/vendor/bin/php-cs-fixer
 PHPUNIT             = tools/phpunit/vendor/bin/phpunit
 PSALM               = tools/psalm/vendor/bin/psalm
+CHURN               = tools/churn/vendor/bin/churn
 PSALM_BASELINE_FILE = psalm-baseline.xml
 BARD                = src/SonsOfPHP/Bard/bin/bard
 
@@ -200,9 +201,18 @@ infection:
 	-dapc.enable_cli=1 \
 	tools/infection/vendor/bin/infection --debug -vvv --show-mutations
 
-tools-install: psalm-install php-cs-fixer-install phpunit-install
+churn: ## Run Churn PHP
+	$(CHURN)
 
-tools-upgrade: psalm-upgrade php-cs-fixer-upgrade phpunit-upgrade
+churn-install:
+	$(COMPOSER) install --working-dir=tools/churn --no-interaction --prefer-dist --optimize-autoloader
+
+churn-upgrade:
+	$(COMPOSER) upgrade --working-dir=tools/churn --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
+
+tools-install: psalm-install php-cs-fixer-install phpunit-install churn-install
+
+tools-upgrade: psalm-upgrade php-cs-fixer-upgrade phpunit-upgrade churn-upgrade
 
 ## Documentation
 docs-install: ## Install deps for building docs
