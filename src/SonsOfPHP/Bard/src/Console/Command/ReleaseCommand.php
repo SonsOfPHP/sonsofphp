@@ -28,11 +28,6 @@ final class ReleaseCommand extends AbstractCommand
     private $releaseVersion;
     private bool $isDryRun = true;
 
-    // public function __construct()
-    // {
-    //    parent::__construct();
-    // }
-
     protected function configure(): void
     {
         $this
@@ -41,16 +36,16 @@ final class ReleaseCommand extends AbstractCommand
             ->addOption('branch', null, InputOption::VALUE_REQUIRED, 'What branch we working with?', 'main')
             ->addArgument('release', InputArgument::REQUIRED, 'Next Release you want to start? Use format <major>.<minor>.<patch>-<PreRelease>+<BuildMetadata> or "major", "minor", "patch"')
             ->setHelp(
-                <<<EOT
-                                        This command allows you to create a new release and will update the various
-                                        repos that have been configured. The current version can be found in the
-                                        `bard.json` file. This will will update the version based on the type of release
-                                        that you are doing.
+                <<<'EOT'
+This command allows you to create a new release and will update the various
+repos that have been configured. The current version can be found in the
+`bard.json` file. This will will update the version based on the type of release
+that you are doing.
 
-                                            <comment>%command.full_name%</comment>
+    <comment>%command.full_name%</comment>
 
-                                        Read more at https://docs.SonsOfPHP.com
-                    EOT
+Read more at https://docs.SonsOfPHP.com
+EOT
             );
     }
 
@@ -86,8 +81,6 @@ final class ReleaseCommand extends AbstractCommand
 
         $this->isDryRun = $input->getOption('dry-run');
     }
-
-    protected function interact(InputInterface $input, OutputInterface $output): void {}
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
@@ -156,6 +149,7 @@ final class ReleaseCommand extends AbstractCommand
         $io->success('Mother Repository Released');
 
         // 4. Subtree Split for each package
+        // @todo run split command
         $io->newLine();
         $io->title(sprintf('updating package repos with release %s', $this->releaseVersion->toString()));
         foreach ($this->bardConfig->getSection('packages') as $pkg) {

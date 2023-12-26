@@ -7,6 +7,7 @@ namespace SonsOfPHP\Bard\Console\Command;
 use SonsOfPHP\Bard\JsonFile;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
  * Creates the initial bard.json file.
@@ -17,11 +18,6 @@ final class InitCommand extends AbstractCommand
 {
     protected static $defaultName = 'init';
 
-    // public function __construct()
-    // {
-    //    parent::__construct();
-    // }
-
     protected function configure(): void
     {
         $this
@@ -29,14 +25,13 @@ final class InitCommand extends AbstractCommand
         ;
     }
 
-    protected function initialize(InputInterface $input, OutputInterface $output): void {}
-
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $io       = new SymfonyStyle($input, $output);
         $filename = $input->getOption('working-dir') . '/bard.json';
 
         if (file_exists($filename)) {
-            $output->writeln('bard.json file already exists');
+            $io->error(sprintf('%s/bard.json file already exists', $input->getOption('working-dir')));
 
             return self::FAILURE;
         }
@@ -51,7 +46,7 @@ final class InitCommand extends AbstractCommand
             ['path' => 'packages/component', 'repository' => 'git@github.com/org/component'],
         ]);
 
-        $output->writeln($bardJsonFile->toJson());
+        $io->text($bardJsonFile->toJson());
 
         file_put_contents($bardJsonFile->getFilename(), $bardJsonFile->toJson());
 
