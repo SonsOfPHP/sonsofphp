@@ -10,6 +10,10 @@ namespace SonsOfPHP\Component\EventDispatcher;
 interface EventSubscriberInterface
 {
     /**
+     * Returns an iterable with one or more of the following
+     *   - ['eventName' => 'methodName'], ...
+     *   - ['eventName' => ['methodName', $priority], ...], ...
+     *   - ['eventName' => [['methodName', $priority], ['methodName']], ...], ...
      */
     public static function getSubscribedEvents();
 }
