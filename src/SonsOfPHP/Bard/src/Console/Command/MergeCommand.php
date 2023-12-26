@@ -16,8 +16,11 @@ use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateReplaceSection;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateRequireDevSection;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateRequireSection;
 use SonsOfPHP\Component\Json\Json;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
  * Merges composer.json files.
@@ -42,8 +45,9 @@ final class MergeCommand extends AbstractCommand
     protected function configure(): void
     {
         $this
-            // options for dry-run, by default it should be a dry-run
             ->setDescription('Merges package composer.json files into main composer.json file')
+            ->addOption('dry-run', null, InputOption::VALUE_NONE, 'Dry Run (Do not make any changes)')
+            ->addArgument('package', InputArgument::OPTIONAL, 'Which package?')
         ;
     }
 
@@ -66,6 +70,9 @@ final class MergeCommand extends AbstractCommand
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $io       = new SymfonyStyle($input, $output);
+        $isDryRun = $input->getOption('dry-run');
+
         $this->formatter = $this->getHelper('formatter');
 
         $rootComposerJsonFile = new JsonFile($input->getOption('working-dir') . '/composer.json');
@@ -75,13 +82,17 @@ final class MergeCommand extends AbstractCommand
         $rootComposerJsonFile = $rootComposerJsonFile->setSection('autoload-dev', []);
 
         foreach ($this->bardConfig['packages'] as $pkg) {
-            $packageComposerFile = realpath($input->getOption('working-dir') . '/' . $pkg['path'] . '/composer.json');
-            if (!file_exists($packageComposerFile)) {
+            $pkgComposerFile = realpath($input->getOption('working-dir') . '/' . $pkg['path'] . '/composer.json');
+            if (!file_exists($pkgComposerFile)) {
                 $output->writeln(sprintf('No "%s" found, skipping', $packageComposerFile));
                 continue;
             }
 
-            $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir') . '/' . $pkg['path'] . '/composer.json'));
+            $pkgComposerJsonFile = new JsonFile($pkgComposerFile);
+            $pkgName             = $pkgComposerJsonFile->getSection('name');
+            if (null !== $input->getArgument('package') && $pkgName !== $input->getArgument('package')) {
+                continue;
+            }
 
             $output->writeln($this->formatter->formatSection('bard', sprintf('Merging "%s" into root composer.json', $pkgComposerJsonFile->getSection('name'))));
 
@@ -100,12 +111,18 @@ final class MergeCommand extends AbstractCommand
             $pkgComposerJsonFile = $pkgComposerJsonFile->with(new Authors($rootComposerJsonFile));
             $pkgComposerJsonFile = $pkgComposerJsonFile->with(new Funding($rootComposerJsonFile));
 
-            file_put_contents($pkgComposerJsonFile->getFilename(), $pkgComposerJsonFile->toJson());
+            if (!$isDryRun) {
+                file_put_contents($pkgComposerJsonFile->getFilename(), $pkgComposerJsonFile->toJson());
+                $io->text(sprintf('Updated "%s"', $pkgComposerJsonFile->getFilename()));
+            }
         }
 
-        file_put_contents($rootComposerJsonFile->getFilename(), $rootComposerJsonFile->toJson());
+        if (!$isDryRun) {
+            file_put_contents($rootComposerJsonFile->getFilename(), $rootComposerJsonFile->toJson());
+            $io->text(sprintf('Updated "%s"', $rootComposerJsonFile->getFilename()));
+        }
 
-        $output->writeln('complete');
+        $io->success('Merge Complete');
 
         return self::SUCCESS;
     }
