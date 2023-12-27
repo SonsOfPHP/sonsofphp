@@ -6,10 +6,10 @@ namespace SonsOfPHP\Component\EventDispatcher\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use SonsOfPHP\Component\EventDispatcher\AbstractStoppableEvent;
 use SonsOfPHP\Component\EventDispatcher\EventDispatcher;
 use SonsOfPHP\Component\EventDispatcher\EventSubscriberInterface;
 use SonsOfPHP\Component\EventDispatcher\ListenerProvider;
-use SonsOfPHP\Component\EventDispatcher\AbstractStoppableEvent;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventDispatcher\EventDispatcher
@@ -36,7 +36,7 @@ final class EventDispatcherTest extends TestCase
     public function testDispatch(): void
     {
         $dispatcher = new EventDispatcher();
-        $dispatcher->addListener('stdClass', function ($event) {});
+        $dispatcher->addListener('stdClass', function ($event): void {});
 
         $event = new \stdClass();
         $this->assertSame($event, $dispatcher->dispatch($event));
@@ -50,7 +50,7 @@ final class EventDispatcherTest extends TestCase
         $event = new class () extends AbstractStoppableEvent {};
 
         $dispatcher = new EventDispatcher();
-        $dispatcher->addListener($event, function ($event) {
+        $dispatcher->addListener($event, function ($event): void {
             throw new \RuntimeException('This should never run');
         });
 
