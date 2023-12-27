@@ -9,12 +9,14 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 use SonsOfPHP\Component\EventDispatcher\EventDispatcher;
 use SonsOfPHP\Component\EventDispatcher\EventSubscriberInterface;
 use SonsOfPHP\Component\EventDispatcher\ListenerProvider;
+use SonsOfPHP\Component\EventDispatcher\AbstractStoppableEvent;
 
 /**
  * @coversDefaultClass \SonsOfPHP\Component\EventDispatcher\EventDispatcher
  *
  * @uses \SonsOfPHP\Component\EventDispatcher\EventDispatcher
  * @uses \SonsOfPHP\Component\EventDispatcher\ListenerProvider
+ * @uses \SonsOfPHP\Component\EventDispatcher\StoppableEventTrait
  */
 final class EventDispatcherTest extends TestCase
 {
@@ -26,6 +28,35 @@ final class EventDispatcherTest extends TestCase
         $dispatcher = new EventDispatcher();
 
         $this->assertInstanceOf(EventDispatcherInterface::class, $dispatcher); // @phpstan-ignore-line
+    }
+
+    /**
+     * @covers ::dispatch
+     */
+    public function testDispatch(): void
+    {
+        $dispatcher = new EventDispatcher();
+        $dispatcher->addListener('stdClass', function ($event) {});
+
+        $event = new \stdClass();
+        $this->assertSame($event, $dispatcher->dispatch($event));
+    }
+
+    /**
+     * @covers ::dispatch
+     */
+    public function testDispatchWithStoppedEvent(): void
+    {
+        $event = new class () extends AbstractStoppableEvent {};
+
+        $dispatcher = new EventDispatcher();
+        $dispatcher->addListener($event, function ($event) {
+            throw new \RuntimeException('This should never run');
+        });
+
+        $event->stopPropagation();
+
+        $this->assertSame($event, $dispatcher->dispatch($event));
     }
 
     /**
@@ -50,6 +81,19 @@ final class EventDispatcherTest extends TestCase
         $dispatcher = new EventDispatcher($provider);
 
         $dispatcher->addListener('stdClass', function (): void {});
+    }
+
+    /**
+     * @covers ::addListener
+     */
+    public function testAddListenerWithObject(): void
+    {
+        $provider = $this->createMock(ListenerProvider::class);
+        $provider->expects($this->once())->method('add')->with($this->identicalTo('stdClass'));
+
+        $dispatcher = new EventDispatcher($provider);
+
+        $dispatcher->addListener(new \stdClass(), function (): void {});
     }
 
     /**
