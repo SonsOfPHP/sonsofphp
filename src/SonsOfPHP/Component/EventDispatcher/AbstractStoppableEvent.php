@@ -11,18 +11,5 @@ use Psr\EventDispatcher\StoppableEventInterface;
  */
 abstract class AbstractStoppableEvent implements StoppableEventInterface
 {
-    private bool $isStopped = false;
-
-    public function isPropagationStopped(): bool
-    {
-        return $this->isStopped;
-    }
-
-    /**
-     * Makes `isPropagationStopped` return true
-     */
-    public function stopPropagation(): void
-    {
-        $this->isStopped = true;
-    }
+    use StoppableEventTrait;
 }
