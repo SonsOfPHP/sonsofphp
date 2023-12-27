@@ -1,0 +1,9 @@
+{
+    "version": "1.2.3",
+    "packages": [
+        {
+            "path": "path/to/Repo",
+            "repository": "git@github.com:SonsOfPHP/read-only-repo.git"
+        }
+    ]
+}
