@@ -86,6 +86,23 @@ class OrderListener
 }
 ```
 
+You can also create Stoppable Events by using the `StoppableEventInterface` and
+`StoppableEventTrait`.
+
+```php
+<?php
+
+use SonsOfPHP\Component\EventDispatcher\StoppableEventTrait;
+use Psr\EventDispatcher\StoppableEventInterface;
+
+class OrderCreated implements StoppableEventInterface
+{
+    use StoppableEventTrait;
+
+    // ...
+}
+```
+
 ## Creating an Event Listener
 
 ```php
