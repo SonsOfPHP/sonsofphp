@@ -63,6 +63,9 @@ test-cookie: phpunit
 test-cqrs: PHPUNIT_TESTSUITE=cqrs
 test-cqrs: phpunit
 
+test-event-dispatcher: PHPUNIT_TESTSUITE=event-dispatcher
+test-event-dispatcher: phpunit
+
 test-http-factory: PHPUNIT_TESTSUITE=http-factory
 test-http-factory: phpunit
 
@@ -125,8 +128,8 @@ coverage-cookie: coverage
 coverage-cqrs: PHPUNIT_TESTSUITE=cqrs
 coverage-cqrs: coverage
 
-coverage-event-dispatcher:
-	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite event-dispatcher --coverage-html $(COVERAGE_DIR)
+coverage-event-dispatcher: PHPUNIT_TESTSUITE=event-dispatcher
+coverage-event-dispatcher: coverage
 
 coverage-event-sourcing:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite event-sourcing --coverage-html $(COVERAGE_DIR)

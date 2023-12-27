@@ -19,17 +19,24 @@ class ListenerProvider implements ListenerProviderInterface
     private array $listeners = [];
     private array $sorted    = [];
 
+    /**
+     * {@inheritdoc}
+     */
     public function getListenersForEvent(object $event): iterable
     {
         return $this->getListenersForEventName($event::class);
     }
 
+    /**
+     */
     public function add(string $eventName, callable|array $listener, int $priority = 0): void
     {
         $this->listeners[$eventName][$priority][] = $listener;
         unset($this->sorted[$eventName]);
     }
 
+    /**
+     */
     public function addSubscriber(EventSubscriberInterface $subscriber): void
     {
         foreach ($subscriber::getSubscribedEvents() as $eventName => $params) {
@@ -48,6 +55,8 @@ class ListenerProvider implements ListenerProviderInterface
         }
     }
 
+    /**
+     */
     public function getListenersForEventName(string $eventName): iterable
     {
         if (!\array_key_exists($eventName, $this->listeners)) {
@@ -61,6 +70,8 @@ class ListenerProvider implements ListenerProviderInterface
         return $this->sorted[$eventName];
     }
 
+    /**
+     */
     private function sortListeners(string $eventName): void
     {
         ksort($this->listeners[$eventName]);
