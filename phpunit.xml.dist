@@ -11,7 +11,7 @@
 
   <testsuites>
     <testsuite name="all">
-      <!--<directory>src/SonsOfPHP/Bard/src/Tests</directory>-->
+      <directory>src/SonsOfPHP/Bard/Tests</directory>
       <directory>src/SonsOfPHP/Bridge/*/*/Tests</directory>
       <directory>src/SonsOfPHP/Bridge/*/*/*/Tests</directory>
       <directory>src/SonsOfPHP/Bundle/*/Tests</directory>
@@ -19,7 +19,7 @@
     </testsuite>
 
     <testsuite name="bard">
-      <!--<directory>src/SonsOfPHP/Bard/src/Tests</directory>-->
+      <directory>src/SonsOfPHP/Bard/Tests</directory>
     </testsuite>
 
     <testsuite name="cache">
@@ -111,7 +111,7 @@
       <directory>src/*</directory>
     </include>
     <exclude>
-      <!--<directory>src/SonsOfPHP/Bard/src/Tests</directory>-->
+      <directory>src/SonsOfPHP/Bard/Tests</directory>
       <directory>src/SonsOfPHP/Bard/vendor</directory>
       <directory>src/SonsOfPHP/Bridge/*/*/*/Tests</directory>
       <directory>src/SonsOfPHP/Bridge/*/*/*/vendor</directory>

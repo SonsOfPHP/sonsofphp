@@ -37,15 +37,15 @@ final class ReleaseCommand extends AbstractCommand
             ->addArgument('release', InputArgument::REQUIRED, 'Next Release you want to start? Use format <major>.<minor>.<patch>-<PreRelease>+<BuildMetadata> or "major", "minor", "patch"')
             ->setHelp(
                 <<<'EOT'
-This command allows you to create a new release and will update the various
-repos that have been configured. The current version can be found in the
-`bard.json` file. This will will update the version based on the type of release
-that you are doing.
+                    This command allows you to create a new release and will update the various
+                    repos that have been configured. The current version can be found in the
+                    `bard.json` file. This will will update the version based on the type of release
+                    that you are doing.
 
-    <comment>%command.full_name%</comment>
+                        <comment>%command.full_name%</comment>
 
-Read more at https://docs.SonsOfPHP.com
-EOT
+                    Read more at https://docs.SonsOfPHP.com
+                    EOT
             );
     }
 

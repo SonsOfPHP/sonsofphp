@@ -28,15 +28,15 @@ final class CopyCommand extends AbstractCommand
             ->addArgument('package', InputArgument::OPTIONAL, 'Which package?')
             ->setHelp(
                 <<<'HELP'
-The <info>copy</info> command will copy whatever file you give it to all the other
-repositories it is managing. This is useful for LICENSE files.
+                    The <info>copy</info> command will copy whatever file you give it to all the other
+                    repositories it is managing. This is useful for LICENSE files.
 
-Examples:
+                    Examples:
 
-    <comment>%command.full_name% LICENSE</comment>
+                        <comment>%command.full_name% LICENSE</comment>
 
-Read more at https://docs.sonsofphp.com/bard/
-HELP
+                    Read more at https://docs.sonsofphp.com/bard/
+                    HELP
             )
         ;
     }

@@ -29,15 +29,15 @@ final class AddCommand extends AbstractCommand
             ->addArgument('repository', InputArgument::REQUIRED, 'Repository Uri')
             ->setHelp(
                 <<<'HELP'
-The <info>add</info> command will add additional repositories that need to be managed
-into the `bard.json` file.
+                    The <info>add</info> command will add additional repositories that need to be managed
+                    into the `bard.json` file.
 
-Examples:
+                    Examples:
 
-    <comment>%command.full_name% src/SonsOfPHP/Bard git@github.com:vendor/package.git</comment>
+                        <comment>%command.full_name% src/SonsOfPHP/Bard git@github.com:vendor/package.git</comment>
 
-Read more at https://docs.sonsofphp.com/bard/
-HELP
+                    Read more at https://docs.sonsofphp.com/bard/
+                    HELP
             )
         ;
     }
