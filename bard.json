@@ -6,12 +6,28 @@
             "repository": "git@github.com:SonsOfPHP/bard.git"
         },
         {
+            "path": "src/SonsOfPHP/Contract/Mailer",
+            "repository": "git@github.com:SonsOfPHP/mailer-contract.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Component/Mailer",
+            "repository": "git@github.com:SonsOfPHP/mailer.git"
+        },
+        {
             "path": "src/SonsOfPHP/Component/Cache",
             "repository": "git@github.com:SonsOfPHP/cache.git"
         },
         {
             "path": "src/SonsOfPHP/Component/Clock",
             "repository": "git@github.com:SonsOfPHP/clock.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Component/Container",
+            "repository": "git@github.com:SonsOfPHP/container.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Component/Cookie",
+            "repository": "git@github.com:SonsOfPHP/cookie.git"
         },
         {
             "path": "src/SonsOfPHP/Component/Cqrs",
@@ -58,6 +74,14 @@
             "repository": "git@github.com:SonsOfPHP/http-factory.git"
         },
         {
+            "path": "src/SonsOfPHP/Component/HttpHandler",
+            "repository": "git@github.com:SonsOfPHP/http-handler.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Contract/HttpHandler",
+            "repository": "git@github.com:SonsOfPHP/http-handler-contract.git"
+        },
+        {
             "path": "src/SonsOfPHP/Component/HttpMessage",
             "repository": "git@github.com:SonsOfPHP/http-message.git"
         },
@@ -100,6 +124,10 @@
         {
             "path": "src/SonsOfPHP/Contract/Common",
             "repository": "git@github.com:SonsOfPHP/common-contract.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Contract/Cookie",
+            "repository": "git@github.com:SonsOfPHP/cookie-contract.git"
         },
         {
             "path": "src/SonsOfPHP/Contract/Cqrs",

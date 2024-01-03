@@ -5,6 +5,7 @@
     "minimum-stability": "dev",
     "keywords": [
         "php",
+        "sonsofphp",
         "sons of php",
         "mother repo"
     ],
@@ -47,7 +48,13 @@
         "psr/log-implementation": "^1.0 || ^2.0 || ^3.0",
         "sonsofphp/logger-implementation": "0.3.x-dev",
         "sonsofphp/pager-implementation": "0.3.x-dev",
-        "psr/link-implementation": "^1.0 || ^2.0"
+        "psr/link-implementation": "^1.0 || ^2.0",
+        "sonsofphp/cookie-implementation": "0.3.x-dev",
+        "psr/container-implementation": "^1.0 || ^2.0",
+        "psr/http-server-handler-implementation": "^1.0",
+        "psr/http-server-middleware-implementation": "^1.0",
+        "sonsofphp/http-handler-implementation": "0.3.x-dev",
+        "sonsofphp/mailer-implementation": "0.3.x-dev"
     },
     "require": {
         "php": ">=8.1",
@@ -74,7 +81,10 @@
         "twig/twig": "^3.0",
         "ext-intl": "*",
         "doctrine/collections": "^2",
-        "doctrine/orm": "^2"
+        "doctrine/orm": "^2",
+        "psr/container": "^1.0 || ^2.0",
+        "psr/http-server-handler": "^1.0",
+        "psr/http-server-middleware": "^1.0"
     },
     "replace": {
         "sonsofphp/bard": "self.version",
@@ -110,13 +120,24 @@
         "sonsofphp/money-twig": "self.version",
         "sonsofphp/pager-doctrine-collections": "self.version",
         "sonsofphp/pager-doctrine-dbal": "self.version",
-        "sonsofphp/pager-doctrine-orm": "self.version"
+        "sonsofphp/pager-doctrine-orm": "self.version",
+        "sonsofphp/cookie": "self.version",
+        "sonsofphp/cookie-contract": "self.version",
+        "sonsofphp/container": "self.version",
+        "sonsofphp/http-handler": "self.version",
+        "sonsofphp/http-handler-contract": "self.version",
+        "sonsofphp/mailer-contract": "self.version",
+        "sonsofphp/mailer": "self.version"
     },
     "autoload": {
         "psr-4": {
             "SonsOfPHP\\Bard\\": "src/SonsOfPHP/Bard/src",
+            "SonsOfPHP\\Contract\\Mailer\\": "src/SonsOfPHP/Contract/Mailer",
+            "SonsOfPHP\\Component\\Mailer\\": "src/SonsOfPHP/Component/Mailer",
             "SonsOfPHP\\Component\\Cache\\": "src/SonsOfPHP/Component/Cache",
             "SonsOfPHP\\Component\\Clock\\": "src/SonsOfPHP/Component/Clock",
+            "SonsOfPHP\\Component\\Container\\": "src/SonsOfPHP/Component/Container",
+            "SonsOfPHP\\Component\\Cookie\\": "src/SonsOfPHP/Component/Cookie",
             "SonsOfPHP\\Component\\Cqrs\\": "src/SonsOfPHP/Component/Cqrs",
             "SonsOfPHP\\Bundle\\Cqrs\\": "src/SonsOfPHP/Bundle/Cqrs",
             "SonsOfPHP\\Bridge\\Symfony\\Cqrs\\": "src/SonsOfPHP/Bridge/Symfony/Cqrs",
@@ -128,6 +149,8 @@
             "SonsOfPHP\\Component\\FeatureToggle\\": "src/SonsOfPHP/Component/FeatureToggle",
             "SonsOfPHP\\Component\\Filesystem\\": "src/SonsOfPHP/Component/Filesystem",
             "SonsOfPHP\\Component\\HttpFactory\\": "src/SonsOfPHP/Component/HttpFactory",
+            "SonsOfPHP\\Component\\HttpHandler\\": "src/SonsOfPHP/Component/HttpHandler",
+            "SonsOfPHP\\Contract\\HttpHandler\\": "src/SonsOfPHP/Contract/HttpHandler",
             "SonsOfPHP\\Component\\HttpMessage\\": "src/SonsOfPHP/Component/HttpMessage",
             "SonsOfPHP\\Component\\Json\\": "src/SonsOfPHP/Component/Json",
             "SonsOfPHP\\Component\\Link\\": "src/SonsOfPHP/Component/Link",
@@ -139,6 +162,7 @@
             "SonsOfPHP\\Bridge\\Doctrine\\ORM\\Pager\\": "src/SonsOfPHP/Bridge/Doctrine/ORM/Pager",
             "SonsOfPHP\\Component\\Version\\": "src/SonsOfPHP/Component/Version",
             "SonsOfPHP\\Contract\\Common\\": "src/SonsOfPHP/Contract/Common",
+            "SonsOfPHP\\Contract\\Cookie\\": "src/SonsOfPHP/Contract/Cookie",
             "SonsOfPHP\\Contract\\Cqrs\\": "src/SonsOfPHP/Contract/Cqrs",
             "SonsOfPHP\\Contract\\EventSourcing\\": "src/SonsOfPHP/Contract/EventSourcing",
             "SonsOfPHP\\Contract\\FeatureToggle\\": "src/SonsOfPHP/Contract/FeatureToggle",
@@ -150,8 +174,11 @@
         },
         "exclude-from-classmap": [
             "src/SonsOfPHP/Bard/Tests",
+            "src/SonsOfPHP/Component/Mailer/Tests",
             "src/SonsOfPHP/Component/Cache/Tests",
             "src/SonsOfPHP/Component/Clock/Tests",
+            "src/SonsOfPHP/Component/Container/Tests",
+            "src/SonsOfPHP/Component/Cookie/Tests",
             "src/SonsOfPHP/Component/Cqrs/Tests",
             "src/SonsOfPHP/Bundle/Cqrs/Tests",
             "src/SonsOfPHP/Bridge/Symfony/Cqrs/Tests",
@@ -163,6 +190,7 @@
             "src/SonsOfPHP/Component/FeatureToggle/Tests",
             "src/SonsOfPHP/Component/Filesystem/Tests",
             "src/SonsOfPHP/Component/HttpFactory/Tests",
+            "src/SonsOfPHP/Component/HttpHandler/Tests",
             "src/SonsOfPHP/Component/HttpMessage/Tests",
             "src/SonsOfPHP/Component/Json/Tests",
             "src/SonsOfPHP/Component/Link/Tests",
@@ -184,11 +212,9 @@
     "require-dev": {
         "symfony/http-foundation": "^5 || ^6",
         "symfony/serializer": "^5 || ^6",
-        "symfony/phpunit-bridge": "^6",
+        "symfony/phpunit-bridge": "^6 || ^7",
         "symfony/error-handler": "^6",
-        "symfony/messenger": "^5 || ^6",
-        "phpunit/phpunit": "^10.4",
-        "psr/simple-cache": "^1.0 || ^2.0 || ^3.0"
+        "phpunit/phpunit": "^10.4"
     },
     "autoload-dev": {
         "psr-4": {

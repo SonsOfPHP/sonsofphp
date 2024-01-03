@@ -7,17 +7,18 @@ namespace SonsOfPHP\Bard;
 use SonsOfPHP\Component\Json\Json;
 
 /**
+ * Used to manage bard.json and composer.json files
+ *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 final class JsonFile
 {
-    private string $filename;
     private array $config = [];
     private Json $json;
 
-    public function __construct(string $filename)
-    {
-        $this->filename = $filename;
+    public function __construct(
+        private string $filename,
+    ) {
         $this->json     = new Json();
         $this->load();
     }
@@ -35,9 +36,11 @@ final class JsonFile
     }
 
     /**
+     * Grabs and returns a section from the JSON file
+     *
      * @return array|int|string|null
      */
-    public function getSection(string $section)
+    public function getSection(string $section): mixed
     {
         if (!isset($this->config)) {
             $this->load();
@@ -50,6 +53,8 @@ final class JsonFile
         return null;
     }
 
+    /**
+     */
     public function setSection(string $section, $value): self
     {
         if (!isset($this->config)) {
@@ -62,6 +67,8 @@ final class JsonFile
         return $clone;
     }
 
+    /**
+     */
     public function toJson(): string
     {
         return $this->json->getEncoder()
@@ -72,13 +79,8 @@ final class JsonFile
     }
 
     /**
-     * The idea is something like this
-     * $newRootComposerJsonFile = $rootComposerJsonFile->with($updateReplaceSection, $pkgComposerJsonFile);
-     * or
-     * $newRootComposerJsonFile = $rootComposerJsonFile->with($bumpBranchAlias);.
-     *
-     * Can even use this for the package composer.json file
-     * $newPkgComposerJsonFile = $pkgComposerJsonFile->with($updateSupportSection, $rootComposerJsonFile);
+     * $operator = new Operator();
+     * $jsonFile->with(new ExampleOperator());
      */
     public function with($operator): self
     {

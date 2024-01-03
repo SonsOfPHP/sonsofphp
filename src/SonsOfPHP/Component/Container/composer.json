@@ -1,0 +1,56 @@
+{
+    "name": "sonsofphp/container",
+    "type": "library",
+    "description": "Lightweight PSR-11 Container",
+    "keywords": [
+        "psr11",
+        "psr-11",
+        "container"
+    ],
+    "homepage": "https://github.com/SonsOfPHP/container",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joshua Estes",
+            "email": "joshua@sonsofphp.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/SonsOfPHP/sonsofphp/issues",
+        "forum": "https://github.com/orgs/SonsOfPHP/discussions",
+        "docs": "https://docs.sonsofphp.com"
+    },
+    "autoload": {
+        "psr-4": {
+            "SonsOfPHP\\Component\\Container\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.1",
+        "psr/container": "^1.0 || ^2.0"
+    },
+    "provide": {
+        "psr/container-implementation": "^1.0 || ^2.0"
+    },
+    "extra": {
+        "sort-packages": true,
+        "branch-alias": {
+            "dev-main": "0.3.x-dev"
+        }
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/JoshuaEstes"
+        },
+        {
+            "type": "tidelift",
+            "url": "https://tidelift.com/subscription/pkg/packagist-sonsofphp-sonsofphp"
+        }
+    ]
+}

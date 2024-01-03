@@ -4,6 +4,7 @@ PHP                 = php
 PHP_CS_FIXER        = tools/php-cs-fixer/vendor/bin/php-cs-fixer
 PHPUNIT             = tools/phpunit/vendor/bin/phpunit
 PSALM               = tools/psalm/vendor/bin/psalm
+CHURN               = tools/churn/vendor/bin/churn
 PSALM_BASELINE_FILE = psalm-baseline.xml
 BARD                = src/SonsOfPHP/Bard/bin/bard
 
@@ -43,6 +44,7 @@ purge: # Purge vendor and lock files
 	rm -rf src/SonsOfPHP/Bundle/*/vendor/ src/SonsOfPHP/Bundle/*/composer.lock
 	rm -rf src/SonsOfPHP/Component/*/vendor/ src/SonsOfPHP/Component/*/composer.lock
 	rm -rf src/SonsOfPHP/Contract/*/vendor/ src/SonsOfPHP/Contract/*/composer.lock
+	rm -rf src/tools/*/vendor/ src/tools/*/composer.lock
 
 test: phpunit ## Run PHPUnit Tests
 
@@ -52,17 +54,32 @@ test-cache: phpunit
 test-clock: PHPUNIT_TESTSUITE=clock
 test-clock: phpunit
 
+test-container: PHPUNIT_TESTSUITE=container
+test-container: phpunit
+
+test-cookie: PHPUNIT_TESTSUITE=cookie
+test-cookie: phpunit
+
 test-cqrs: PHPUNIT_TESTSUITE=cqrs
 test-cqrs: phpunit
 
+test-event-dispatcher: PHPUNIT_TESTSUITE=event-dispatcher
+test-event-dispatcher: phpunit
+
 test-http-factory: PHPUNIT_TESTSUITE=http-factory
 test-http-factory: phpunit
+
+test-http-handler: PHPUNIT_TESTSUITE=http-handler
+test-http-handler: phpunit
 
 test-link: PHPUNIT_TESTSUITE=link
 test-link: phpunit
 
 test-logger: PHPUNIT_TESTSUITE=logger
 test-logger: phpunit
+
+test-mailer: PHPUNIT_TESTSUITE=mailer
+test-mailer: phpunit
 
 test-money: PHPUNIT_TESTSUITE=money
 test-money: phpunit
@@ -105,11 +122,17 @@ coverage-cache: coverage
 coverage-clock: PHPUNIT_TESTSUITE=clock
 coverage-clock: coverage
 
+coverage-container: PHPUNIT_TESTSUITE=container
+coverage-container: coverage
+
+coverage-cookie: PHPUNIT_TESTSUITE=cookie
+coverage-cookie: coverage
+
 coverage-cqrs: PHPUNIT_TESTSUITE=cqrs
 coverage-cqrs: coverage
 
-coverage-event-dispatcher:
-	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite event-dispatcher --coverage-html $(COVERAGE_DIR)
+coverage-event-dispatcher: PHPUNIT_TESTSUITE=event-dispatcher
+coverage-event-dispatcher: coverage
 
 coverage-event-sourcing:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite event-sourcing --coverage-html $(COVERAGE_DIR)
@@ -123,6 +146,9 @@ coverage-filesystem:
 coverage-http-factory:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite http-factory --coverage-html $(COVERAGE_DIR)
 
+coverage-http-handler: PHPUNIT_TESTSUITE=http-handler
+coverage-http-handler: coverage
+
 coverage-http-message:
 	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite http-message --coverage-html $(COVERAGE_DIR)
 
@@ -134,6 +160,9 @@ coverage-link: coverage
 
 coverage-logger: PHPUNIT_TESTSUITE=logger
 coverage-logger: coverage
+
+coverage-mailer: PHPUNIT_TESTSUITE=mailer
+coverage-mailer: coverage
 
 coverage-money: PHPUNIT_TESTSUITE=money
 coverage-money: coverage
@@ -178,9 +207,18 @@ infection:
 	-dapc.enable_cli=1 \
 	tools/infection/vendor/bin/infection --debug -vvv --show-mutations
 
-tools-install: psalm-install php-cs-fixer-install phpunit-install
+churn: ## Run Churn PHP
+	$(CHURN)
 
-tools-upgrade: psalm-upgrade php-cs-fixer-upgrade phpunit-upgrade
+churn-install:
+	$(COMPOSER) install --working-dir=tools/churn --no-interaction --prefer-dist --optimize-autoloader
+
+churn-upgrade:
+	$(COMPOSER) upgrade --working-dir=tools/churn --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
+
+tools-install: psalm-install php-cs-fixer-install phpunit-install churn-install
+
+tools-upgrade: psalm-upgrade php-cs-fixer-upgrade phpunit-upgrade churn-upgrade
 
 ## Documentation
 docs-install: ## Install deps for building docs
