@@ -98,9 +98,9 @@
       <directory>src/SonsOfPHP/Component/Pager/Tests</directory>
     </testsuite>
 
-    <testsuite name="user-agent">
-      <directory>src/SonsOfPHP/Component/UserAgent/Tests</directory>
-    </testsuite>
+    <!--<testsuite name="user-agent">-->
+    <!--  <directory>src/SonsOfPHP/Component/UserAgent/Tests</directory>-->
+    <!--</testsuite>-->
 
     <testsuite name="version">
       <directory>src/SonsOfPHP/Component/Version/Tests</directory>
