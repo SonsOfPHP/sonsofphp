@@ -81,7 +81,7 @@
         "twig/twig": "^3.0",
         "ext-intl": "*",
         "doctrine/collections": "^2",
-        "doctrine/orm": "^2",
+        "doctrine/orm": "^2 || ^3",
         "psr/container": "^1.0 || ^2.0",
         "psr/http-server-handler": "^1.0",
         "psr/http-server-middleware": "^1.0"
