@@ -5,6 +5,7 @@ PHP_CS_FIXER        = tools/php-cs-fixer/vendor/bin/php-cs-fixer
 PHPUNIT             = tools/phpunit/vendor/bin/phpunit
 PSALM               = tools/psalm/vendor/bin/psalm
 CHURN               = tools/churn/vendor/bin/churn
+RECTOR              = tools/rector/vendor/bin/rector
 PSALM_BASELINE_FILE = psalm-baseline.xml
 BARD                = src/SonsOfPHP/Bard/bin/bard
 
@@ -213,9 +214,18 @@ churn-install:
 churn-upgrade:
 	$(COMPOSER) upgrade --working-dir=tools/churn --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
 
-tools-install: psalm-install php-cs-fixer-install phpunit-install churn-install
+rector:
+	$(RECTOR) --dry-run
 
-tools-upgrade: psalm-upgrade php-cs-fixer-upgrade phpunit-upgrade churn-upgrade
+rector-install:
+	$(COMPOSER) install --working-dir=tools/rector --no-interaction --prefer-dist --optimize-autoloader
+
+rector-upgrade:
+	$(COMPOSER) upgrade --working-dir=tools/rector --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
+
+tools-install: psalm-install php-cs-fixer-install phpunit-install churn-install rector-install
+
+tools-upgrade: psalm-upgrade php-cs-fixer-upgrade phpunit-upgrade churn-upgrade rector-upgrade
 
 ## Documentation
 docs-install: ## Install deps for building docs
