@@ -17,10 +17,10 @@
         "sonsofphp/json": "^0.3.x-dev",
         "sonsofphp/logger": "^0.3.x-dev",
         "sonsofphp/version": "^0.3.x-dev",
-        "symfony/console": "^4 || ^5 || ^6",
-        "symfony/dotenv": "^5 || ^6",
-        "symfony/finder": "^5 || ^6",
-        "symfony/process": "^5 || ^6"
+        "symfony/console": "^4 || ^5 || ^6 || ^7",
+        "symfony/dotenv": "^5 || ^6 || ^7",
+        "symfony/finder": "^5 || ^6 || ^7",
+        "symfony/process": "^5 || ^6 || ^7"
     },
     "license": "MIT",
     "autoload": {

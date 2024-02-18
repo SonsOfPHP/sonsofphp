@@ -37,7 +37,7 @@
         "sonsofphp/cqrs-contract": "0.3.x-dev"
     },
     "require-dev": {
-        "symfony/messenger": "^5 || ^6"
+        "symfony/messenger": "^5 || ^6 || ^7"
     },
     "provide": {
         "sonsofphp/cqrs-implementation": "0.3.x-dev"
