@@ -60,7 +60,7 @@
         "php": ">=8.1",
         "ext-json": "*",
         "psr/event-dispatcher": "^1.0",
-        "doctrine/dbal": "^3",
+        "doctrine/dbal": "^3 || ^4",
         "symfony/options-resolver": "^6 || ^7",
         "symfony/uid": "^5 || ^6 || ^7",
         "symfony/console": "^4 || ^5 || ^6 || ^7",
