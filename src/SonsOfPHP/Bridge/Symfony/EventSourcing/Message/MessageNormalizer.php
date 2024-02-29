@@ -25,7 +25,7 @@ class MessageNormalizer implements NormalizerInterface, DenormalizerInterface
     /**
      * @return array
      */
-    public function normalize($object, string $format = null, array $context = [])
+    public function normalize(mixed $object, ?string $format = null, array $context = []): \ArrayObject|array|string|int|float|bool|null
     {
         return [
             'payload'  => $object->getPayload(),
@@ -33,7 +33,7 @@ class MessageNormalizer implements NormalizerInterface, DenormalizerInterface
         ];
     }
 
-    public function supportsNormalization($data, string $format = null, array $context = []): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof MessageInterface;
     }
@@ -41,12 +41,12 @@ class MessageNormalizer implements NormalizerInterface, DenormalizerInterface
     /**
      * @return MessageInterface
      */
-    public function denormalize($data, string $type, string $format = null, array $context = [])
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
         return $type::new()->withPayload($data['payload'])->withMetadata($data['metadata']);
     }
 
-    public function supportsDenormalization($data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         if (false === \is_array($data)) {
             return false;

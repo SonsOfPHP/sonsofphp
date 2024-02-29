@@ -28,12 +28,12 @@ class AggregateVersionNormalizer implements NormalizerInterface, DenormalizerInt
     /**
      * @return int
      */
-    public function normalize($object, string $format = null, array $context = [])
+    public function normalize(mixed $object, ?string $format = null, array $context = []): \ArrayObject|array|string|int|float|bool|null
     {
         return $object->toInt();
     }
 
-    public function supportsNormalization($data, string $format = null, array $context = []): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof AggregateVersionInterface;
     }
@@ -41,7 +41,7 @@ class AggregateVersionNormalizer implements NormalizerInterface, DenormalizerInt
     /**
      * @return AggregateVersionInterface
      */
-    public function denormalize($data, string $type, string $format = null, array $context = [])
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
         if (AggregateVersionInterface::class === $type) {
             return new AggregateVersion($data);
@@ -50,7 +50,7 @@ class AggregateVersionNormalizer implements NormalizerInterface, DenormalizerInt
         return $type::fromInt($data);
     }
 
-    public function supportsDenormalization($data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return is_a($type, AggregateVersionInterface::class, true);
     }

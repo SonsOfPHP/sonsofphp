@@ -28,12 +28,12 @@ class AggregateIdNormalizer implements NormalizerInterface, DenormalizerInterfac
     /**
      * @return string
      */
-    public function normalize($object, string $format = null, array $context = [])
+    public function normalize(mixed $object, ?string $format = null, array $context = []): \ArrayObject|array|string|int|float|bool|null
     {
         return (string) $object;
     }
 
-    public function supportsNormalization($data, string $format = null, array $context = []): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof AggregateIdInterface;
     }
@@ -41,7 +41,7 @@ class AggregateIdNormalizer implements NormalizerInterface, DenormalizerInterfac
     /**
      * @return AggregateIdInterface
      */
-    public function denormalize($data, string $type, string $format = null, array $context = [])
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
         if (AggregateIdInterface::class === $type) {
             return new AggregateId($data);
@@ -50,7 +50,7 @@ class AggregateIdNormalizer implements NormalizerInterface, DenormalizerInterfac
         return $type::fromString($data);
     }
 
-    public function supportsDenormalization($data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return is_a($type, AggregateIdInterface::class, true);
     }
