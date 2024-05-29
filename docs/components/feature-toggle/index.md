@@ -46,6 +46,10 @@ $context['user'] = $user;
 $isEnabled = $feature->isEnabled($context);
 ```
 
+When you create your own toggles, you may need to introduce additional context
+to the toggle to check if everything should be enabled or disabled. This is
+where this comes into play at.
+
 ### Chain Toggle
 
 The chain toggle allows you to use many toggles together. If ANY toggle returns
@@ -107,5 +111,24 @@ $toggle = new ChainToggle(
 
 ## Create your own Toggle
 
-Take a look at the `AlwaysEnabledToggle` and `AlwaysDisabledToggle`. This is how
-more complex Toggles can be created. These two are as simple as you can get.
+Take a look at how some of the other toggles are implemented. Creating your own
+toggles are very easy. You just need to make sure they implement the interface
+`ToggleInterface`.
+
+```php
+<?php
+
+use SonsOfPHP\Contract\FeatureToggle\ContextInterface;
+use SonsOfPHP\Contract\FeatureToggle\ToggleInterface;
+
+class MyCustomToggle implements ToggleInterface
+{
+    public function isEnabled(?ContextInterface $context = null): bool
+    {
+        // ...
+    }
+}
+```
+
+Once you make your custom toggle, you can use it just like all the rest of the
+toggles.
