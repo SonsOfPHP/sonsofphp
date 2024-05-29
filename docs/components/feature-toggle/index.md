@@ -11,6 +11,8 @@ composer require sonsofphp/feature-toggle
 ## Usage
 
 ```php
+<?php
+
 use SonsOfPHP\Component\FeatureToggle\Feature;
 use SonsOfPHP\Component\FeatureToggle\Provider\InMemoryFeatureToggleProvider;
 use SonsOfPHP\Component\FeatureToggle\Toggle\AlwaysEnabledToggle;
@@ -28,6 +30,8 @@ $isEnabled = $feature->isEnabled();
 ## Advanced Usage
 
 ```php
+<?php
+
 // ...
 use SonsOfPHP\Component\FeatureToggle\Context;
 
