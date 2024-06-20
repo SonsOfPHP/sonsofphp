@@ -126,3 +126,4 @@ nav:
         - Cqrs: contracts/cqrs/index.md
         - Mailer: contracts/mailer/index.md
         - Pager: contracts/pager/index.md
+        - Validator: contracts/validator/index.md
