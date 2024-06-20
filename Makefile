@@ -88,6 +88,9 @@ test-money: phpunit
 test-pager: PHPUNIT_TESTSUITE=pager
 test-pager: phpunit
 
+test-user-agent: PHPUNIT_TESTSUITE=user-agent
+test-user-agent: phpunit
+
 phpunit:
 	XDEBUG_MODE=$(XDEBUG_MODE) \
 	$(PHP) \
