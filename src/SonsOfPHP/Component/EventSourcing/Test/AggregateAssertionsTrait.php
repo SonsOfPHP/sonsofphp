@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Test;
 
+use PHPUnit\Framework\Assert;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateInterface;
 
 /**
@@ -15,13 +16,13 @@ trait AggregateAssertionsTrait
     {
         $constraint = new EventRaised($eventClass);
 
-        \PHPUnit\Framework\Assert::assertThat($aggregate, $constraint, $message);
+        Assert::assertThat($aggregate, $constraint, $message);
     }
 
     final public function assertCountEventsRaised(int $count, AggregateInterface $aggregate, string $message): void
     {
         $constraint = new CountEventsRaised($count);
 
-        \PHPUnit\Framework\Assert::assertThat($aggregate, $constraint, $message);
+        Assert::assertThat($aggregate, $constraint, $message);
     }
 }

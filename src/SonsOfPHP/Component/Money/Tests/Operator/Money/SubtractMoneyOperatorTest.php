@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\Tests\Operator\Money;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\Exception\MoneyException;
@@ -12,7 +13,6 @@ use SonsOfPHP\Component\Money\Operator\Money\SubtractMoneyOperator;
 use SonsOfPHP\Contract\Money\MoneyOperatorInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Money\Operator\Money\SubtractMoneyOperator
  *
  * @uses \SonsOfPHP\Component\Money\Amount
  * @uses \SonsOfPHP\Component\Money\Currency
@@ -20,7 +20,9 @@ use SonsOfPHP\Contract\Money\MoneyOperatorInterface;
  * @uses \SonsOfPHP\Component\Money\Operator\Amount\SubtractAmountOperator
  * @uses \SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery
  * @uses \SonsOfPHP\Component\Money\Operator\Money\SubtractMoneyOperator
+ * @coversNothing
  */
+#[CoversClass(SubtractMoneyOperator::class)]
 final class SubtractMoneyOperatorTest extends TestCase
 {
     /**
@@ -34,10 +36,6 @@ final class SubtractMoneyOperatorTest extends TestCase
         $this->assertInstanceOf(MoneyOperatorInterface::class, $operator);
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::apply
-     */
     public function testApplyWithSameCurrencies(): void
     {
         $money    = new Money(100, new Currency('usd'));
@@ -49,9 +47,6 @@ final class SubtractMoneyOperatorTest extends TestCase
         $this->assertSame('200', $output->getAmount()->toString());
     }
 
-    /**
-     * @covers ::apply
-     */
     public function testApplyWillThrowExceptionWhenCurrenciesAreDifferent(): void
     {
         $money    = new Money(100, new Currency('usd'));

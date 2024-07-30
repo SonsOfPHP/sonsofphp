@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Link\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Link\EvolvableLinkInterface;
 use SonsOfPHP\Component\Link\EvolvableLink;
+use Stringable;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Link\EvolvableLink
  *
  * @uses \SonsOfPHP\Component\Link\EvolvableLink
  * @uses \SonsOfPHP\Component\Link\Link
+ * @coversNothing
  */
+#[CoversClass(EvolvableLink::class)]
 final class EvolvableLinkTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $link = new EvolvableLink();
@@ -26,12 +26,9 @@ final class EvolvableLinkTest extends TestCase
         $this->assertInstanceOf(EvolvableLinkInterface::class, $link);
     }
 
-    /**
-     * @covers ::withHref
-     */
     public function testWithHrefWhenStringable(): void
     {
-        $href = new class () implements \Stringable {
+        $href = new class () implements Stringable {
             public function __toString(): string
             {
                 return 'https://docs.sonsofphp.com';
@@ -43,9 +40,6 @@ final class EvolvableLinkTest extends TestCase
         $this->assertSame((string) $href, $link->withHref($href)->getHref());
     }
 
-    /**
-     * @covers ::withHref
-     */
     public function testWithHref(): void
     {
         $href = 'https://docs.sonsofphp.com';
@@ -55,9 +49,6 @@ final class EvolvableLinkTest extends TestCase
         $this->assertSame($href, $link->withHref($href)->getHref());
     }
 
-    /**
-     * @covers ::withRel
-     */
     public function testWithRelWhenAlreadyExists(): void
     {
         $rel = 'next';
@@ -66,9 +57,6 @@ final class EvolvableLinkTest extends TestCase
         $this->assertSame($link, $link->withRel($rel));
     }
 
-    /**
-     * @covers ::withRel
-     */
     public function testWithRel(): void
     {
         $rel = 'next';
@@ -78,9 +66,6 @@ final class EvolvableLinkTest extends TestCase
         $this->assertContains($rel, $link->withRel($rel)->getRels());
     }
 
-    /**
-     * @covers ::withoutRel
-     */
     public function testWithoutRelWhenRelNotPresent(): void
     {
         $rel = 'next';
@@ -90,9 +75,6 @@ final class EvolvableLinkTest extends TestCase
         $this->assertNotContains($rel, $link->withoutRel($rel)->getRels());
     }
 
-    /**
-     * @covers ::withoutRel
-     */
     public function testWithoutRel(): void
     {
         $rel = 'next';
@@ -102,9 +84,6 @@ final class EvolvableLinkTest extends TestCase
         $this->assertNotContains($rel, $link->withoutRel($rel)->getRels());
     }
 
-    /**
-     * @covers ::withAttribute
-     */
     public function testWithAttribute(): void
     {
         $key = 'key';
@@ -115,9 +94,6 @@ final class EvolvableLinkTest extends TestCase
         $this->assertArrayHasKey($key, $link->withAttribute($key, $value)->getAttributes());
     }
 
-    /**
-     * @covers ::withoutAttribute
-     */
     public function testWithoutAttributeWhenKeyDoesNotExist(): void
     {
         $key = 'key';
@@ -127,9 +103,6 @@ final class EvolvableLinkTest extends TestCase
         $this->assertArrayNotHasKey($key, $link->withoutAttribute($key)->getAttributes());
     }
 
-    /**
-     * @covers ::withoutAttribute
-     */
     public function testWithoutAttribute(): void
     {
         $key = 'key';

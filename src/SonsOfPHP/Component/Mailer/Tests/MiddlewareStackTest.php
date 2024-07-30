@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Mailer\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use ReflectionProperty;
 use SonsOfPHP\Component\Mailer\MiddlewareStack;
 use SonsOfPHP\Contract\Mailer\MessageInterface;
 use SonsOfPHP\Contract\Mailer\MiddlewareHandlerInterface;
@@ -12,10 +14,10 @@ use SonsOfPHP\Contract\Mailer\MiddlewareInterface;
 use SonsOfPHP\Contract\Mailer\MiddlewareStackInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Mailer\MiddlewareStack
- *
  * @uses \SonsOfPHP\Component\Mailer\MiddlewareStack
+ * @coversNothing
  */
+#[CoversClass(MiddlewareStack::class)]
 final class MiddlewareStackTest extends TestCase
 {
     /**
@@ -28,18 +30,15 @@ final class MiddlewareStackTest extends TestCase
         $this->assertInstanceOf(MiddlewareStackInterface::class, $stack);
     }
 
-    /**
-     * @covers ::add
-     */
     public function testAdd(): void
     {
         $middleware = new class () implements MiddlewareInterface {
-            public function __invoke(MessageInterface $message, MiddlewareHandlerInterface $handler)
+            public function __invoke(MessageInterface $message, MiddlewareHandlerInterface $handler): MessageInterface
             {
                 return $message;
             }
         };
-        $property = new \ReflectionProperty(MiddlewareStack::class, 'middlewares');
+        $property = new ReflectionProperty(MiddlewareStack::class, 'middlewares');
 
         $stack = new MiddlewareStack();
 
@@ -48,13 +47,10 @@ final class MiddlewareStackTest extends TestCase
         $this->assertCount(1, $property->getValue($stack));
     }
 
-    /**
-     * @covers ::next
-     */
     public function testNext(): void
     {
         $middleware = new class () implements MiddlewareInterface {
-            public function __invoke(MessageInterface $message, MiddlewareHandlerInterface $handler)
+            public function __invoke(MessageInterface $message, MiddlewareHandlerInterface $handler): MessageInterface
             {
                 return $message;
             }
@@ -65,13 +61,10 @@ final class MiddlewareStackTest extends TestCase
         $this->assertSame($middleware, $stack->next());
     }
 
-    /**
-     * @covers ::count
-     */
     public function testCount(): void
     {
         $middleware = new class () implements MiddlewareInterface {
-            public function __invoke(MessageInterface $message, MiddlewareHandlerInterface $handler)
+            public function __invoke(MessageInterface $message, MiddlewareHandlerInterface $handler): MessageInterface
             {
                 return $message;
             }

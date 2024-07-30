@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Logger\Tests\Enricher;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Logger\Context;
 use SonsOfPHP\Component\Logger\Enricher\MaskContextValueEnricher;
@@ -12,17 +13,15 @@ use SonsOfPHP\Component\Logger\Record;
 use SonsOfPHP\Contract\Logger\EnricherInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Logger\Enricher\MaskContextValueEnricher
  *
  * @uses \SonsOfPHP\Component\Logger\Enricher\MaskContextValueEnricher
  * @uses \SonsOfPHP\Component\Logger\Context
  * @uses \SonsOfPHP\Component\Logger\Record
+ * @coversNothing
  */
+#[CoversClass(MaskContextValueEnricher::class)]
 final class MaskContextValueEnricherTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $enricher = new MaskContextValueEnricher('password');
@@ -30,9 +29,6 @@ final class MaskContextValueEnricherTest extends TestCase
         $this->assertInstanceOf(EnricherInterface::class, $enricher);
     }
 
-    /**
-     * @covers ::__invoke
-     */
     public function testInvokeWhenKeyIsNotAvailable(): void
     {
         $enricher = new MaskContextValueEnricher('password');
@@ -46,9 +42,6 @@ final class MaskContextValueEnricherTest extends TestCase
         $this->assertArrayNotHasKey('password', $record->getContext());
     }
 
-    /**
-     * @covers ::__invoke
-     */
     public function testInvokeWhenKeyIsArray(): void
     {
         $enricher = new MaskContextValueEnricher(['password', 'card_number']);
@@ -65,9 +58,6 @@ final class MaskContextValueEnricherTest extends TestCase
         $this->assertNotSame('4222-2222-2222-2222', $record->getContext()['card_number']);
     }
 
-    /**
-     * @covers ::__invoke
-     */
     public function testInvokeWhenKeyIsString(): void
     {
         $enricher = new MaskContextValueEnricher('password');

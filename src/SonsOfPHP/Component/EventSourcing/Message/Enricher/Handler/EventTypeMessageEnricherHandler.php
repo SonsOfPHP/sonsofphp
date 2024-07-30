@@ -17,12 +17,7 @@ use SonsOfPHP\Component\EventSourcing\Metadata;
  */
 final class EventTypeMessageEnricherHandler implements MessageEnricherHandlerInterface
 {
-    private MessageProviderInterface $messageProvider;
-
-    public function __construct(MessageProviderInterface $messageProvider)
-    {
-        $this->messageProvider = $messageProvider;
-    }
+    public function __construct(private readonly MessageProviderInterface $messageProvider) {}
 
     public function enrich(MessageInterface $message): MessageInterface
     {

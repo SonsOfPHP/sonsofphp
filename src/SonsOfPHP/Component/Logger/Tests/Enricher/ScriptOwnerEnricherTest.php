@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Logger\Tests\Enricher;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Logger\Context;
 use SonsOfPHP\Component\Logger\Enricher\ScriptOwnerEnricher;
@@ -12,11 +13,12 @@ use SonsOfPHP\Component\Logger\Record;
 use SonsOfPHP\Contract\Logger\EnricherInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Logger\Enricher\ScriptOwnerEnricher
  *
  * @uses \SonsOfPHP\Component\Logger\Context
  * @uses \SonsOfPHP\Component\Logger\Record
+ * @coversNothing
  */
+#[CoversClass(ScriptOwnerEnricher::class)]
 final class ScriptOwnerEnricherTest extends TestCase
 {
     /**
@@ -29,9 +31,6 @@ final class ScriptOwnerEnricherTest extends TestCase
         $this->assertInstanceOf(EnricherInterface::class, $enricher);
     }
 
-    /**
-     * @covers ::__invoke
-     */
     public function testInvoke(): void
     {
         $enricher = new ScriptOwnerEnricher();

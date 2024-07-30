@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\HttpMessage;
 
+use InvalidArgumentException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
 
@@ -21,15 +22,15 @@ class Request extends Message implements RequestInterface
         private ?string $method = null,
         UriInterface|string $uri = null,
     ) {
-        if (null !== $method && null === Method::tryFrom(strtoupper($method))) {
-            throw new \InvalidArgumentException(sprintf('The value of "%s" for $method is invalid', strtoupper($method)));
+        if (null !== $method && !Method::tryFrom(strtoupper($method)) instanceof Method) {
+            throw new InvalidArgumentException(sprintf('The value of "%s" for $method is invalid', strtoupper($method)));
         }
 
         if (is_string($uri)) {
             $uri = new Uri($uri);
         }
 
-        if (null !== $uri) {
+        if ($uri instanceof UriInterface) {
             $this->uri = $uri;
         }
     }
@@ -71,8 +72,8 @@ class Request extends Message implements RequestInterface
      */
     public function withMethod(string $method): RequestInterface
     {
-        if (null !== $method && null === Method::tryFrom(strtoupper($method))) {
-            throw new \InvalidArgumentException(sprintf('The value of "%s" for $method is invalid', strtoupper($method)));
+        if (null !== $method && !Method::tryFrom(strtoupper($method)) instanceof Method) {
+            throw new InvalidArgumentException(sprintf('The value of "%s" for $method is invalid', strtoupper($method)));
         }
 
         if ($method === $this->method) {

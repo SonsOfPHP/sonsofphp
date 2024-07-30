@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Clock\Year;
 use SonsOfPHP\Component\Clock\YearInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Clock\Year
- *
  * @internal
+ * @coversNothing
  */
+#[CoversClass(Year::class)]
 final class YearTest extends TestCase
 {
     /**
@@ -25,11 +26,6 @@ final class YearTest extends TestCase
         $this->assertInstanceOf(YearInterface::class, $year);
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::__toString
-     * @covers ::toString
-     */
     public function testToString(): void
     {
         $year = new Year(2022);
@@ -38,10 +34,6 @@ final class YearTest extends TestCase
         $this->assertSame('2022', (string) $year);
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::toInt
-     */
     public function testToInt(): void
     {
         $year = new Year(2022);

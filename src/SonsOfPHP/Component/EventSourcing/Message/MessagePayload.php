@@ -4,20 +4,25 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Message;
 
+use ArrayIterator;
+use Countable;
+use IteratorAggregate;
+use Traversable;
+
 /**
  * The Event Message Payload is stored in here.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class MessagePayload implements \IteratorAggregate, \Countable
+final class MessagePayload implements IteratorAggregate, Countable
 {
     public function __construct(
         private array $payload = [],
     ) {}
 
-    public function getIterator(): \Traversable
+    public function getIterator(): Traversable
     {
-        return new \ArrayIterator($this->payload);
+        return new ArrayIterator($this->payload);
     }
 
     public function count(): int
@@ -30,7 +35,7 @@ final class MessagePayload implements \IteratorAggregate, \Countable
         return $this->payload;
     }
 
-    public function with(string $key, $value)
+    public function with(string $key, $value): self
     {
         $that                = clone $this;
         $that->payload[$key] = $value;

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Doctrine\EventSourcing;
 
+use DateTimeImmutable;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\DBAL\Schema\Table;
 use Doctrine\DBAL\Types\Type;
@@ -59,7 +60,7 @@ class TableSchemaV2 implements TableSchemaInterface
             'aggregate_id'      => $data['metadata'][Metadata::AGGREGATE_ID],
             'aggregate_version' => $data['metadata'][Metadata::AGGREGATE_VERSION],
             'event_data'        => $data,
-            'created_at'        => new \DateTimeImmutable($data['metadata'][Metadata::TIMESTAMP]),
+            'created_at'        => new DateTimeImmutable($data['metadata'][Metadata::TIMESTAMP]),
             'event_type'        => $data['metadata'][Metadata::EVENT_TYPE],
         ];
     }
@@ -72,6 +73,6 @@ class TableSchemaV2 implements TableSchemaInterface
      */
     public function mapColumnsToEventData(array $result): array
     {
-        return json_decode($result['event_data'], true);
+        return json_decode((string) $result['event_data'], true);
     }
 }

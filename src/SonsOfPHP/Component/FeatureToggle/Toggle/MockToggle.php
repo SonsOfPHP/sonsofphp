@@ -13,7 +13,7 @@ use SonsOfPHP\Contract\FeatureToggle\ToggleInterface;
 class MockToggle implements ToggleInterface
 {
     public function __construct(
-        private bool $enabled = true,
+        private readonly bool $enabled = true,
     ) {}
 
     public function isEnabled(?ContextInterface $context = null): bool

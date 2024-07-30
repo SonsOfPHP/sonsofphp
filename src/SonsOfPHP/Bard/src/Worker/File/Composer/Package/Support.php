@@ -12,12 +12,7 @@ use SonsOfPHP\Bard\Worker\WorkerInterface;
  */
 final class Support implements WorkerInterface
 {
-    private JsonFile $rootComposerJsonFile;
-
-    public function __construct(JsonFile $rootComposerJsonFile)
-    {
-        $this->rootComposerJsonFile = $rootComposerJsonFile;
-    }
+    public function __construct(private readonly JsonFile $rootComposerJsonFile) {}
 
     public function apply(JsonFile $pkgComposerJsonFile): JsonFile
     {

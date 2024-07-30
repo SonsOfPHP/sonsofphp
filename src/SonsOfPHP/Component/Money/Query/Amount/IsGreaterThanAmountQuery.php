@@ -12,14 +12,9 @@ use SonsOfPHP\Contract\Money\AmountQueryInterface;
  */
 class IsGreaterThanAmountQuery implements AmountQueryInterface
 {
-    private AmountInterface $amount;
+    public function __construct(private readonly AmountInterface $amount) {}
 
-    public function __construct(AmountInterface $amount)
-    {
-        $this->amount = $amount;
-    }
-
-    public function queryFrom(AmountInterface $amount)
+    public function queryFrom(AmountInterface $amount): bool
     {
         return $amount->getAmount() > $this->amount->getAmount();
     }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Link;
 
 use Psr\Link\EvolvableLinkInterface;
+use Stringable;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -14,7 +15,7 @@ class EvolvableLink extends Link implements EvolvableLinkInterface
     /**
      * Returns an instance with the specified href.
      *
-     * @param string|\Stringable $href
+     * @param string|Stringable $href
      *   The href value to include.  It must be one of:
      *     - An absolute URI, as defined by RFC 5988.
      *     - A relative URI, as defined by RFC 5988. The base of the relative link
@@ -28,9 +29,9 @@ class EvolvableLink extends Link implements EvolvableLinkInterface
      *
      * @return static
      */
-    public function withHref(string|\Stringable $href): static
+    public function withHref(string|Stringable $href): static
     {
-        if ($href instanceof \Stringable) {
+        if ($href instanceof Stringable) {
             $href = (string) $href;
         }
 
@@ -92,11 +93,11 @@ class EvolvableLink extends Link implements EvolvableLinkInterface
      *
      * @param string $attribute
      *   The attribute to include.
-     * @param string|\Stringable|int|float|bool|array $value
+     * @param string|Stringable|int|float|bool|array $value
      *   The value of the attribute to set.
      * @return static
      */
-    public function withAttribute(string $attribute, string|\Stringable|int|float|bool|array $value): static
+    public function withAttribute(string $attribute, string|Stringable|int|float|bool|array $value): static
     {
         $that = clone $this;
         $that->attributes[$attribute] = $value;

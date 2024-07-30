@@ -4,15 +4,18 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\HttpFactory\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use SonsOfPHP\Component\HttpFactory\ResponseFactory;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\HttpFactory\ResponseFactory
  * @uses \SonsOfPHP\Component\HttpMessage\Response
+ * @coversNothing
  */
+#[CoversClass(ResponseFactory::class)]
 final class ResponseFactoryTest extends TestCase
 {
     /**
@@ -23,11 +26,8 @@ final class ResponseFactoryTest extends TestCase
         $this->assertInstanceOf(ResponseFactoryInterface::class, new ResponseFactory());
     }
 
-    /**
-     * @dataProvider validCreateResponseProvider
-     *
-     * @covers ::createResponse
-     */
+
+    #[DataProvider('validCreateResponseProvider')]
     public function testCreateResponseWorksAsExpected(int $code, string $reasonPhrase): void
     {
         $factory = new ResponseFactory();

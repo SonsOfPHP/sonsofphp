@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Mailer\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Mailer\MiddlewareHandler;
 use SonsOfPHP\Component\Mailer\MiddlewareStack;
@@ -13,14 +15,15 @@ use SonsOfPHP\Contract\Mailer\MiddlewareInterface;
 use SonsOfPHP\Contract\Mailer\MiddlewareStackInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Mailer\MiddlewareHandler
  *
  * @uses \SonsOfPHP\Component\Mailer\MiddlewareHandler
  * @uses \SonsOfPHP\Component\Mailer\MiddlewareStack
+ * @coversNothing
  */
+#[CoversClass(MiddlewareHandler::class)]
 final class MiddlewareHandlerTest extends TestCase
 {
-    private $message;
+    private MockObject $message;
     private MiddlewareStackInterface $stack;
 
     public function setUp(): void
@@ -29,9 +32,6 @@ final class MiddlewareHandlerTest extends TestCase
         $this->stack = new MiddlewareStack();
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $handler = new MiddlewareHandler();
@@ -39,9 +39,6 @@ final class MiddlewareHandlerTest extends TestCase
         $this->assertInstanceOf(MiddlewareHandlerInterface::class, $handler);
     }
 
-    /**
-     * @covers ::getMiddlewareStack
-     */
     public function testGetMiddlewareStack(): void
     {
         $handler = new MiddlewareHandler();
@@ -51,9 +48,6 @@ final class MiddlewareHandlerTest extends TestCase
         $this->assertSame($this->stack, $handler->getMiddlewareStack());
     }
 
-    /**
-     * @covers ::handle
-     */
     public function testHandleWhenNoMoreMiddleware(): void
     {
         $handler = new MiddlewareHandler();
@@ -61,13 +55,10 @@ final class MiddlewareHandlerTest extends TestCase
         $this->assertSame($this->message, $handler->handle($this->message));
     }
 
-    /**
-     * @covers ::handle
-     */
     public function testHandle(): void
     {
         $middleware = new class () implements MiddlewareInterface {
-            public function __invoke(MessageInterface $message, MiddlewareHandlerInterface $handler)
+            public function __invoke(MessageInterface $message, MiddlewareHandlerInterface $handler): MessageInterface
             {
                 return $message;
             }

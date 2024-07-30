@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\HttpFactory;
 
+use InvalidArgumentException;
 use Psr\Http\Message\StreamInterface;
 use SonsOfPHP\Component\HttpMessage\Stream;
 
@@ -42,7 +43,7 @@ trait StreamFactoryTrait
     public function createStreamFromResource($resource): StreamInterface
     {
         if (!is_resource($resource)) {
-            throw new \InvalidArgumentException('resource is invalid');
+            throw new InvalidArgumentException('resource is invalid');
         }
 
         return new Stream($resource);

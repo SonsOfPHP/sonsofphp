@@ -12,7 +12,7 @@ use SonsOfPHP\Contract\Money\AmountQueryInterface;
  */
 class IsNegativeAmountQuery implements AmountQueryInterface
 {
-    public function queryFrom(AmountInterface $amount)
+    public function queryFrom(AmountInterface $amount): bool
     {
         return $amount->getAmount() < 0;
     }

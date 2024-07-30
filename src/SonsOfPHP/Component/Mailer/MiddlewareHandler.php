@@ -14,7 +14,7 @@ use SonsOfPHP\Contract\Mailer\MiddlewareStackInterface;
 class MiddlewareHandler implements MiddlewareHandlerInterface
 {
     public function __construct(
-        private MiddlewareStackInterface $stack = new MiddlewareStack()
+        private readonly MiddlewareStackInterface $stack = new MiddlewareStack()
     ) {}
 
     public function getMiddlewareStack(): MiddlewareStackInterface

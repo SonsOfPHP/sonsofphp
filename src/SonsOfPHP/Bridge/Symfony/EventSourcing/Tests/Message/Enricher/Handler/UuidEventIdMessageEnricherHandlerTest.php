@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests\Message\Enricher\Handler;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\UuidEventIdMessageEnricherHandler;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\MessageEnricherHandlerInterface;
@@ -12,10 +13,10 @@ use SonsOfPHP\Component\EventSourcing\Metadata;
 use Symfony\Component\Uid\Uuid;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\UuidEventIdMessageEnricherHandler
- *
  * @internal
+ * @coversNothing
  */
+#[CoversClass(UuidEventIdMessageEnricherHandler::class)]
 final class UuidEventIdMessageEnricherHandlerTest extends TestCase
 {
     /**
@@ -28,9 +29,6 @@ final class UuidEventIdMessageEnricherHandlerTest extends TestCase
         $this->assertInstanceOf(MessageEnricherHandlerInterface::class, $handler);
     }
 
-    /**
-     * @covers ::enrich
-     */
     public function testItWillGenerateUuid(): void
     {
         $handler = new UuidEventIdMessageEnricherHandler();
@@ -38,7 +36,7 @@ final class UuidEventIdMessageEnricherHandlerTest extends TestCase
         $message = $this->createMock(MessageInterface::class);
         $message->expects($this->once())
             ->method('withMetadata')
-            ->with($this->callback(fn($metadata) => Uuid::isValid($metadata[Metadata::EVENT_ID])))
+            ->with($this->callback(fn($metadata): bool => Uuid::isValid($metadata[Metadata::EVENT_ID])))
         ;
 
         $handler->enrich($message);

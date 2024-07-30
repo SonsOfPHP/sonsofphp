@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem;
 
+use ArrayAccess;
+use IteratorAggregate;
+
 /**
  * Context is an object that may be passed into some of the methods. The purpose
  * of this is having the ability to use specific context based on the adapter
@@ -12,4 +15,4 @@ namespace SonsOfPHP\Component\Filesystem;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface ContextInterface extends \ArrayAccess, \IteratorAggregate {}
+interface ContextInterface extends ArrayAccess, IteratorAggregate {}

@@ -4,29 +4,30 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Cqrs\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Cqrs\CommandBus;
 use SonsOfPHP\Component\Cqrs\MessageHandlerProvider;
 use SonsOfPHP\Contract\Cqrs\CommandBusInterface;
+use stdClass;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Cqrs\CommandBus
  *
  * @uses \SonsOfPHP\Component\Cqrs\CommandBus
  * @uses \SonsOfPHP\Component\Cqrs\AbstractBus
+ * @coversNothing
  */
+#[CoversClass(CommandBus::class)]
 final class CommandBusTest extends TestCase
 {
-    private $provider;
+    private MockObject $provider;
 
     public function setUp(): void
     {
         $this->provider = $this->createMock(MessageHandlerProvider::class);
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $bus = new CommandBus();
@@ -34,23 +35,17 @@ final class CommandBusTest extends TestCase
         $this->assertInstanceOf(CommandBusInterface::class, $bus);
     }
 
-    /**
-     * @covers ::addHandler
-     */
     public function testAddHandler(): void
     {
         $this->provider->expects($this->once())->method('add');
         $bus = new CommandBus($this->provider);
-        $bus->addHandler(new \stdClass(), function (): void {});
+        $bus->addHandler(new stdClass(), function (): void {});
     }
 
-    /**
-     * @covers ::dispatch
-     */
     public function testDispatch(): void
     {
         $this->provider->expects($this->once())->method('getHandlerForMessage')->willReturn(function (): void {});
         $bus = new CommandBus($this->provider);
-        $bus->dispatch(new \stdClass());
+        $bus->dispatch(new stdClass());
     }
 }

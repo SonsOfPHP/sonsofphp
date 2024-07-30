@@ -12,12 +12,7 @@ use Symfony\Component\Messenger\MessageBusInterface;
  */
 class EventMessageBus implements EventDispatcherInterface
 {
-    private MessageBusInterface $eventBus;
-
-    public function __construct(MessageBusInterface $eventBus)
-    {
-        $this->eventBus = $eventBus;
-    }
+    public function __construct(private readonly MessageBusInterface $eventBus) {}
 
     /**
      * @return object

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Cache\Tests\Adapter;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
@@ -11,14 +12,16 @@ use SonsOfPHP\Component\Cache\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Cache\Adapter\ArrayAdapter;
 use SonsOfPHP\Component\Cache\Adapter\ChainAdapter;
 use SonsOfPHP\Component\Cache\Exception\CacheException;
+use stdClass;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Cache\Adapter\ChainAdapter
  *
  * @uses \SonsOfPHP\Component\Cache\CacheItem
  * @uses \SonsOfPHP\Component\Cache\Adapter\ChainAdapter
  * @uses \SonsOfPHP\Component\Cache\Adapter\ArrayAdapter
+ * @coversNothing
  */
+#[CoversClass(ChainAdapter::class)]
 final class ChainAdapterTest extends TestCase
 {
     private $adapters = [];
@@ -29,9 +32,6 @@ final class ChainAdapterTest extends TestCase
         $this->adapters[] = new ArrayAdapter();
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $adapter = new ChainAdapter($this->adapters);
@@ -40,20 +40,14 @@ final class ChainAdapterTest extends TestCase
         $this->assertInstanceOf(CacheItemPoolInterface::class, $adapter);
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testConstructWhenInvalidAdapter(): void
     {
-        $this->adapters[] = new \stdClass();
+        $this->adapters[] = new stdClass();
 
         $this->expectException(CacheException::class);
         $adapter = new ChainAdapter($this->adapters);
     }
 
-    /**
-     * @covers ::getItem
-     */
     public function testGetItem(): void
     {
         $adapter = new ChainAdapter($this->adapters);
@@ -62,9 +56,6 @@ final class ChainAdapterTest extends TestCase
         $this->assertInstanceOf(CacheItemInterface::class, $item);
     }
 
-    /**
-     * @covers ::getItem
-     */
     public function testGetItemAfterSave(): void
     {
         $adapter = new ChainAdapter($this->adapters);
@@ -75,9 +66,6 @@ final class ChainAdapterTest extends TestCase
         $this->assertTrue($adapter->getItem('unit.test')->isHit());
     }
 
-    /**
-     * @covers ::getItems
-     */
     public function testGetItems(): void
     {
         $adapter = new ChainAdapter($this->adapters);
@@ -87,9 +75,6 @@ final class ChainAdapterTest extends TestCase
         }
     }
 
-    /**
-     * @covers ::hasItem
-     */
     public function testHasItem(): void
     {
         $adapter = new ChainAdapter($this->adapters);
@@ -97,9 +82,6 @@ final class ChainAdapterTest extends TestCase
         $this->assertFalse($adapter->hasItem('item.key'));
     }
 
-    /**
-     * @covers ::hasItem
-     */
     public function testHasItemWhenOneHasKey(): void
     {
         // Create new mock adapter and place at end of stack
@@ -112,9 +94,6 @@ final class ChainAdapterTest extends TestCase
         $this->assertTrue($adapter->hasItem('item.key'));
     }
 
-    /**
-     * @covers ::clear
-     */
     public function testClear(): void
     {
         $adapter = new ChainAdapter($this->adapters);
@@ -122,9 +101,6 @@ final class ChainAdapterTest extends TestCase
         $this->assertTrue($adapter->clear());
     }
 
-    /**
-     * @covers ::deleteItem
-     */
     public function testDeleteHasItem(): void
     {
         $adapter = new ChainAdapter($this->adapters);
@@ -132,9 +108,6 @@ final class ChainAdapterTest extends TestCase
         $this->assertTrue($adapter->deleteItem('item.key'));
     }
 
-    /**
-     * @covers ::deleteItems
-     */
     public function testDeleteHasItems(): void
     {
         $adapter = new ChainAdapter($this->adapters);
@@ -142,9 +115,6 @@ final class ChainAdapterTest extends TestCase
         $this->assertTrue($adapter->deleteItems(['item.key']));
     }
 
-    /**
-     * @covers ::commit
-     */
     public function testCommit(): void
     {
         $adapter = new ChainAdapter($this->adapters);
@@ -152,9 +122,6 @@ final class ChainAdapterTest extends TestCase
         $this->assertTrue($adapter->commit());
     }
 
-    /**
-     * @covers ::save
-     */
     public function testSave(): void
     {
         $adapter = new ChainAdapter($this->adapters);
@@ -162,9 +129,6 @@ final class ChainAdapterTest extends TestCase
         $this->assertTrue($adapter->save($this->createMock(CacheItemInterface::class)));
     }
 
-    /**
-     * @covers ::saveDeferred
-     */
     public function testSaveDeferred(): void
     {
         $adapter = new ChainAdapter($this->adapters);

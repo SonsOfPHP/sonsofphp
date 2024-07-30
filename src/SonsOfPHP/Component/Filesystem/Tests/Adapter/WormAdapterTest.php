@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem\Tests\Adapter;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\CopyAwareInterface;
@@ -14,11 +15,12 @@ use SonsOfPHP\Component\Filesystem\Adapter\WormAdapter;
 use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Filesystem\Adapter\WormAdapter
  *
  * @uses \SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter
  * @uses \SonsOfPHP\Component\Filesystem\Adapter\WormAdapter
+ * @coversNothing
  */
+#[CoversClass(WormAdapter::class)]
 final class WormAdapterTest extends TestCase
 {
     private AdapterInterface $adapter;
@@ -28,9 +30,6 @@ final class WormAdapterTest extends TestCase
         $this->adapter = new InMemoryAdapter();
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $adapter = new WormAdapter($this->adapter);
@@ -41,9 +40,6 @@ final class WormAdapterTest extends TestCase
         $this->assertInstanceOf(MoveAwareInterface::class, $adapter);
     }
 
-    /**
-     * @covers ::add
-     */
     public function testItCanAddFileOnlyOnce(): void
     {
         $adapter = new WormAdapter($this->adapter);
@@ -53,9 +49,6 @@ final class WormAdapterTest extends TestCase
         $adapter->add('/path/to/file.ext', 'contents');
     }
 
-    /**
-     * @covers ::remove
-     */
     public function testItCannotRemoveFile(): void
     {
         $adapter = new WormAdapter($this->adapter);
@@ -64,9 +57,6 @@ final class WormAdapterTest extends TestCase
         $adapter->remove('/path/to/file.ext');
     }
 
-    /**
-     * @covers ::move
-     */
     public function testItCannotMoveFile(): void
     {
         $adapter = new WormAdapter($this->adapter);
@@ -75,9 +65,6 @@ final class WormAdapterTest extends TestCase
         $adapter->move('/path/to/file.ext', '/path/to/dest.ext');
     }
 
-    /**
-     * @covers ::get
-     */
     public function testItCanGetFileContents(): void
     {
         $adapter = new WormAdapter($this->adapter);
@@ -86,9 +73,6 @@ final class WormAdapterTest extends TestCase
         $this->assertSame('contents', $adapter->get('/path/to/file.ext'));
     }
 
-    /**
-     * @covers ::has
-     */
     public function testItCanHas(): void
     {
         $adapter = new WormAdapter($this->adapter);
@@ -98,9 +82,6 @@ final class WormAdapterTest extends TestCase
         $this->assertTrue($adapter->has('/path/to/file.ext'));
     }
 
-    /**
-     * @covers ::isFile
-     */
     public function testItCanCheckIfIsFile(): void
     {
         $adapter = new WormAdapter($this->adapter);
@@ -110,9 +91,6 @@ final class WormAdapterTest extends TestCase
         $this->assertTrue($adapter->isFile('/path/to/file.ext'));
     }
 
-    /**
-     * @covers ::isDirectory
-     */
     public function testItCanCheckIfIsDirectory(): void
     {
         $adapter = new WormAdapter($this->adapter);
@@ -122,9 +100,6 @@ final class WormAdapterTest extends TestCase
         $this->assertTrue($adapter->isDirectory('/path/to'));
     }
 
-    /**
-     * @covers ::copy
-     */
     public function testItCanCopyFileOnlyIfDestinationExists(): void
     {
         $adapter = new WormAdapter($this->adapter);

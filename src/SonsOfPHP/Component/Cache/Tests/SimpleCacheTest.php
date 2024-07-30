@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Cache\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemInterface;
 use Psr\SimpleCache\CacheInterface;
@@ -11,22 +13,19 @@ use SonsOfPHP\Component\Cache\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Cache\SimpleCache;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Cache\SimpleCache
- *
  * @uses \SonsOfPHP\Component\Cache\SimpleCache
+ * @coversNothing
  */
+#[CoversClass(SimpleCache::class)]
 final class SimpleCacheTest extends TestCase
 {
-    private $adapter;
+    private MockObject $adapter;
 
     public function setUp(): void
     {
         $this->adapter = $this->createMock(AdapterInterface::class);
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $cache = new SimpleCache($this->adapter);
@@ -34,9 +33,6 @@ final class SimpleCacheTest extends TestCase
         $this->assertInstanceOf(CacheInterface::class, $cache);
     }
 
-    /**
-     * @covers ::get
-     */
     public function testGetWhenHit(): void
     {
         $item = $this->createMock(CacheItemInterface::class);
@@ -50,9 +46,6 @@ final class SimpleCacheTest extends TestCase
         $this->assertSame('item.value', $cache->get('item.key'));
     }
 
-    /**
-     * @covers ::get
-     */
     public function testGetWhenMiss(): void
     {
         $item = $this->createMock(CacheItemInterface::class);
@@ -65,9 +58,6 @@ final class SimpleCacheTest extends TestCase
         $this->assertSame('default.value', $cache->get('item.key', 'default.value'));
     }
 
-    /**
-     * @covers ::delete
-     */
     public function testDelete(): void
     {
         $this->adapter->expects($this->once())->method('deleteItem')->willReturn(true);
@@ -77,9 +67,6 @@ final class SimpleCacheTest extends TestCase
         $this->assertTrue($cache->delete('item.key'));
     }
 
-    /**
-     * @covers ::clear
-     */
     public function testClear(): void
     {
         $this->adapter->expects($this->once())->method('clear')->willReturn(true);
@@ -89,9 +76,6 @@ final class SimpleCacheTest extends TestCase
         $this->assertTrue($cache->clear());
     }
 
-    /**
-     * @covers ::has
-     */
     public function testHas(): void
     {
         $this->adapter->expects($this->once())->method('hasItem')->willReturn(false);
@@ -101,9 +85,6 @@ final class SimpleCacheTest extends TestCase
         $this->assertFalse($cache->has('item.key'));
     }
 
-    /**
-     * @covers ::deleteMultiple
-     */
     public function testDeleteMultiple(): void
     {
         $this->adapter->expects($this->once())->method('deleteItems')->willReturn(true);
@@ -113,9 +94,6 @@ final class SimpleCacheTest extends TestCase
         $this->assertTrue($cache->deleteMultiple(['item.key']));
     }
 
-    /**
-     * @covers ::set
-     */
     public function testSet(): void
     {
         $item = $this->createMock(CacheItemInterface::class);
@@ -129,9 +107,6 @@ final class SimpleCacheTest extends TestCase
         $this->assertTrue($cache->set('item.key', 'item.value'));
     }
 
-    /**
-     * @covers ::setMultiple
-     */
     public function testSetMultiple(): void
     {
         $item = $this->createMock(CacheItemInterface::class);
@@ -145,9 +120,6 @@ final class SimpleCacheTest extends TestCase
         $this->assertTrue($cache->setMultiple(['item.key' => 'item.value']));
     }
 
-    /**
-     * @covers ::getMultiple
-     */
     public function testGetMultiple(): void
     {
         $item = $this->createMock(CacheItemInterface::class);

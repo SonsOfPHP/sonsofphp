@@ -4,22 +4,14 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock;
 
+use Stringable;
+
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class DateTime implements DateTimeInterface
+final class DateTime implements DateTimeInterface, Stringable
 {
-    private DateInterface $date;
-    private TimeInterface $time;
-    private ZoneInterface $zone;
-
-    public function __construct(DateInterface $date, TimeInterface $time, ZoneInterface $zone)
-    {
-        $this->date = $date;
-        $this->time = $time;
-        $this->zone = $zone;
-    }
-
+    public function __construct(private readonly DateInterface $date, private readonly TimeInterface $time, private readonly ZoneInterface $zone) {}
     /**
      * @see self::toString()
      */
@@ -27,7 +19,6 @@ final class DateTime implements DateTimeInterface
     {
         return $this->toString();
     }
-
     public function toString(): string
     {
         return sprintf(
@@ -37,17 +28,14 @@ final class DateTime implements DateTimeInterface
             $this->getZone()->getOffset()
         );
     }
-
     public function getDate(): DateInterface
     {
         return $this->date;
     }
-
     public function getTime(): TimeInterface
     {
         return $this->time;
     }
-
     public function getZone(): ZoneInterface
     {
         return $this->zone;

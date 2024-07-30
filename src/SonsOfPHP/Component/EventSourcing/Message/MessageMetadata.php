@@ -4,19 +4,24 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Message;
 
+use ArrayIterator;
+use Countable;
+use DateTimeImmutable;
+use IteratorAggregate;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Metadata;
+use Traversable;
 
 /**
  * The Event Message Metadata is stored in here.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class MessageMetadata implements \IteratorAggregate, \Countable
+final class MessageMetadata implements IteratorAggregate, Countable
 {
     public function __construct(
         private array $metadata = [],
@@ -31,9 +36,9 @@ final class MessageMetadata implements \IteratorAggregate, \Countable
         ], $metadata);
     }
 
-    public function getIterator(): \Traversable
+    public function getIterator(): Traversable
     {
-        return new \ArrayIterator($this->metadata);
+        return new ArrayIterator($this->metadata);
     }
 
     public function count(): int
@@ -46,7 +51,7 @@ final class MessageMetadata implements \IteratorAggregate, \Countable
         return $this->metadata;
     }
 
-    public function with(string $key, $value)
+    public function with(string $key, $value): self
     {
         $that                 = clone $this;
         $that->metadata[$key] = $value;
@@ -87,13 +92,13 @@ final class MessageMetadata implements \IteratorAggregate, \Countable
         return $this->get(Metadata::EVENT_TYPE);
     }
 
-    public function getTimestamp(): \DateTimeImmutable
+    public function getTimestamp(): DateTimeImmutable
     {
         if (false === $this->has(Metadata::TIMESTAMP) || null === $this->get(Metadata::TIMESTAMP)) {
             throw new EventSourcingException('Timestamp is required.');
         }
 
-        return new \DateTimeImmutable($this->get(Metadata::TIMESTAMP));
+        return new DateTimeImmutable($this->get(Metadata::TIMESTAMP));
     }
 
     public function getTimestampFormat(): string

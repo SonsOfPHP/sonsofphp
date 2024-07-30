@@ -12,12 +12,7 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
  */
 final class MessageEnricher implements MessageEnricherInterface
 {
-    private MessageEnricherProviderInterface $provider;
-
-    public function __construct(MessageEnricherProviderInterface $provider)
-    {
-        $this->provider = $provider;
-    }
+    public function __construct(private readonly MessageEnricherProviderInterface $provider) {}
 
     public function enrich(MessageInterface $message): MessageInterface
     {

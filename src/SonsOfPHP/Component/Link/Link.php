@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Link;
 
+use InvalidArgumentException;
 use Psr\Link\LinkInterface;
 
 /**
@@ -19,7 +20,7 @@ class Link implements LinkInterface
         protected array $attributes = [],
     ) {
         if ('' === $href && !$this instanceof EvolvableLink) {
-            throw new \InvalidArgumentException('MUST pass in href');
+            throw new InvalidArgumentException('MUST pass in href');
         }
 
         if (null === $rels) {

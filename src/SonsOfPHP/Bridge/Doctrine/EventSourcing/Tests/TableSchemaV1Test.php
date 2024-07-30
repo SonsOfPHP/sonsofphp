@@ -4,20 +4,19 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Doctrine\EventSourcing\Tests;
 
+use DateTimeImmutable;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Doctrine\EventSourcing\TableSchemaV1;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Bridge\Doctrine\EventSourcing\TableSchemaV1
- *
  * @internal
+ * @coversNothing
  */
+#[CoversClass(TableSchemaV1::class)]
 final class TableSchemaV1Test extends TestCase
 {
-    /**
-     * @covers ::getTableName
-     */
     public function testGetTableName(): void
     {
         $schema = new TableSchemaV1();
@@ -25,9 +24,6 @@ final class TableSchemaV1Test extends TestCase
         $this->assertSame('event_store', $schema->getTableName());
     }
 
-    /**
-     * @covers ::getAggregateIdColumn
-     */
     public function testGetAggregateIdColumn(): void
     {
         $schema = new TableSchemaV1();
@@ -35,9 +31,6 @@ final class TableSchemaV1Test extends TestCase
         $this->assertSame('aggregate_root_id', $schema->getAggregateIdColumn());
     }
 
-    /**
-     * @covers ::getAggregateVersionColumn
-     */
     public function testGetAggregateVersionColumn(): void
     {
         $schema = new TableSchemaV1();
@@ -45,9 +38,6 @@ final class TableSchemaV1Test extends TestCase
         $this->assertSame('aggregate_root_version', $schema->getAggregateVersionColumn());
     }
 
-    /**
-     * @covers ::getColumns
-     */
     public function testGetColumns(): void
     {
         $schema = new TableSchemaV1();
@@ -76,9 +66,6 @@ final class TableSchemaV1Test extends TestCase
         $this->assertSame('array', $columns['metadata']->getName());
     }
 
-    /**
-     * @covers ::mapEventDataToColumns
-     */
     public function testMapEventDataToColumns(): void
     {
         $schema = new TableSchemaV1();
@@ -103,12 +90,9 @@ final class TableSchemaV1Test extends TestCase
         $this->assertSame(123, $output['aggregate_root_version']);
         $this->assertSame($eventData['payload'], $output['payload']);
         $this->assertSame($eventData['metadata'], $output['metadata']);
-        $this->assertInstanceOf(\DateTimeImmutable::class, $output['created_at']);
+        $this->assertInstanceOf(DateTimeImmutable::class, $output['created_at']);
     }
 
-    /**
-     * @covers ::mapColumnsToEventData
-     */
     public function testMapColumnsToEventData(): void
     {
         $schema = new TableSchemaV1();

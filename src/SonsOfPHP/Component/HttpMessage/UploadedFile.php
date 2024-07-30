@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\HttpMessage;
 
+use InvalidArgumentException;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UploadedFileInterface;
+use RuntimeException;
 
 /**
  * {@inheritdoc}
@@ -16,17 +18,17 @@ class UploadedFile implements UploadedFileInterface
 {
     public function __construct(
         private ?StreamInterface $stream,
-        private ?int $size = null,
-        private int $error = \UPLOAD_ERR_OK,
-        private ?string $clientFilename = null,
-        private ?string $clientMediaType = null,
+        private readonly ?int $size = null,
+        private readonly int $error = \UPLOAD_ERR_OK,
+        private readonly ?string $clientFilename = null,
+        private readonly ?string $clientMediaType = null,
     ) {
-        if (null === $stream || !$stream->isReadable()) {
-            throw new \InvalidArgumentException('Stream is invalid');
+        if (!$stream instanceof StreamInterface || !$stream->isReadable()) {
+            throw new InvalidArgumentException('Stream is invalid');
         }
 
-        if (null === UploadedFileError::tryFrom($error)) {
-            throw new \InvalidArgumentException(sprintf('The value "%s" for $error is invalid.', $error));
+        if (!UploadedFileError::tryFrom($error) instanceof UploadedFileError) {
+            throw new InvalidArgumentException(sprintf('The value "%s" for $error is invalid.', $error));
         }
     }
 
@@ -35,8 +37,8 @@ class UploadedFile implements UploadedFileInterface
      */
     public function getStream(): StreamInterface
     {
-        if (null === $this->stream) {
-            throw new \RuntimeException('File has already been moved');
+        if (!$this->stream instanceof StreamInterface) {
+            throw new RuntimeException('File has already been moved');
         }
 
         return $this->stream;
@@ -49,12 +51,12 @@ class UploadedFile implements UploadedFileInterface
     {
         // @todo throw new \InvalidArgumentExcpetion if targetPath is invalid
 
-        if (null === $this->stream) {
-            throw new \RuntimeException();
+        if (!$this->stream instanceof StreamInterface) {
+            throw new RuntimeException();
         }
 
         if (false === move_uploaded_file($this->stream->getMetadata('uri'), $targetPath)) {
-            throw new \RuntimeException('File could not be moved');
+            throw new RuntimeException('File could not be moved');
         }
 
         $this->stream = null;
@@ -69,7 +71,7 @@ class UploadedFile implements UploadedFileInterface
             return $this->size;
         }
 
-        if (null !== $this->stream) {
+        if ($this->stream instanceof StreamInterface) {
             return $this->stream->getSize();
         }
 

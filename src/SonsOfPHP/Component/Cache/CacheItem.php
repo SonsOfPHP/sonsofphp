@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Cache;
 
+use DateInterval;
+use DateTimeImmutable;
+use DateTimeInterface;
 use Psr\Cache\CacheItemInterface;
 use SonsOfPHP\Component\Cache\Exception\InvalidArgumentException;
 
@@ -13,7 +16,7 @@ use SonsOfPHP\Component\Cache\Exception\InvalidArgumentException;
 final class CacheItem implements CacheItemInterface
 {
     protected mixed $value;
-    protected int|float|null $expiry;
+    protected int|float|null $expiry = null;
 
     public function __construct(
         protected string $key,
@@ -74,9 +77,9 @@ final class CacheItem implements CacheItemInterface
     /**
      * {@inheritdoc}
      */
-    public function expiresAt(?\DateTimeInterface $expiration): static
+    public function expiresAt(?DateTimeInterface $expiration): static
     {
-        $this->expiry = null !== $expiration ? (float) $expiration->format('U.u') : null;
+        $this->expiry = $expiration instanceof DateTimeInterface ? (float) $expiration->format('U.u') : null;
 
         return $this;
     }
@@ -84,12 +87,12 @@ final class CacheItem implements CacheItemInterface
     /**
      * {@inheritdoc}
      */
-    public function expiresAfter(int|\DateInterval|null $time): static
+    public function expiresAfter(int|DateInterval|null $time): static
     {
         if (is_int($time)) {
             $this->expiry = $time + microtime(true);
-        } elseif ($time instanceof \DateInterval) {
-            $this->expiry = microtime(true) + \DateTimeImmutable::createFromFormat('U', '0')->add($time)->format('U.u');
+        } elseif ($time instanceof DateInterval) {
+            $this->expiry = microtime(true) + DateTimeImmutable::createFromFormat('U', '0')->add($time)->format('U.u');
         } elseif (null === $time) {
             $this->expiry = null;
         }

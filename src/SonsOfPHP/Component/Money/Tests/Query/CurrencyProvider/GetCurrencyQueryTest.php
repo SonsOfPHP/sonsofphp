@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\Tests\Query\CurrencyProvider;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider;
@@ -12,13 +13,14 @@ use SonsOfPHP\Contract\Money\CurrencyProviderQueryInterface;
 use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Money\Query\CurrencyProvider\GetCurrencyQuery
  *
  * @uses \SonsOfPHP\Component\Money\Currency
  * @uses \SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider
  * @uses \SonsOfPHP\Component\Money\Query\CurrencyProvider\GetCurrencyQuery
  * @uses \SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery
+ * @coversNothing
  */
+#[CoversClass(GetCurrencyQuery::class)]
 final class GetCurrencyQueryTest extends TestCase
 {
     /**
@@ -32,10 +34,6 @@ final class GetCurrencyQueryTest extends TestCase
         $this->assertInstanceOf(CurrencyProviderQueryInterface::class, $query);
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::queryFrom
-     */
     public function testConstructWithCurrencyObject(): void
     {
         $currency = new Currency('xts');
@@ -46,10 +44,6 @@ final class GetCurrencyQueryTest extends TestCase
         $this->assertTrue($currency->isEqualTo($output));
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::queryFrom
-     */
     public function testConstructWithCurrencyString(): void
     {
         $query = new GetCurrencyQuery('xts');
@@ -59,18 +53,12 @@ final class GetCurrencyQueryTest extends TestCase
         $this->assertSame('XTS', $output->getCurrencyCode());
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testConstructWithInvalidValue(): void
     {
         $this->expectException(MoneyExceptionInterface::class);
         $query = new GetCurrencyQuery('1234');
     }
 
-    /**
-     * @covers ::queryFrom
-     */
     public function testQueryFromWillThrowExceptionWhenCurrencyNotFound(): void
     {
         $query = new GetCurrencyQuery('usd');

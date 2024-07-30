@@ -20,8 +20,8 @@ use SonsOfPHP\Contract\Logger\RecordInterface;
 class ChannelFilter implements FilterInterface
 {
     public function __construct(
-        private string $channel,
-        private bool $isLoggable = true,
+        private readonly string $channel,
+        private readonly bool $isLoggable = true,
     ) {}
 
     public function isLoggable(RecordInterface $record): bool

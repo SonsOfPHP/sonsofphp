@@ -12,7 +12,7 @@ use SonsOfPHP\Contract\Pager\AdapterInterface;
 class ArrayAdapter implements AdapterInterface
 {
     public function __construct(
-        private array $array,
+        private readonly array $array,
     ) {}
 
     public function count(): int

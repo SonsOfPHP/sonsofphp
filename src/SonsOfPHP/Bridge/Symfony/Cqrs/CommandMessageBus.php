@@ -24,13 +24,9 @@ use Symfony\Component\Messenger\Stamp\StampInterface;
  */
 class CommandMessageBus
 {
-    private MessageBusInterface $messageBus;
     private array $stamps = [];
 
-    public function __construct(MessageBusInterface $commandBus)
-    {
-        $this->messageBus = $commandBus;
-    }
+    public function __construct(private MessageBusInterface $messageBus) {}
 
     /**
      * Allows you to dispatch the command with additional stamps if

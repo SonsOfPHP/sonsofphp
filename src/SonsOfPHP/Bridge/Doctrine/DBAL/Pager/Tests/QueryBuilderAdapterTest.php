@@ -6,19 +6,21 @@ namespace SonsOfPHP\Bridge\Doctrine\DBAL\Pager\Tests;
 
 use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\DBAL\Result;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Doctrine\DBAL\Pager\QueryBuilderAdapter;
 use SonsOfPHP\Contract\Pager\AdapterInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Bridge\Doctrine\DBAL\Pager\QueryBuilderAdapter
- *
  * @uses \SonsOfPHP\Bridge\Doctrine\DBAL\Pager\QueryBuilderAdapter
+ * @coversNothing
  */
+#[CoversClass(QueryBuilderAdapter::class)]
 final class QueryBuilderAdapterTest extends TestCase
 {
-    private $builder;
-    private $result;
+    private MockObject $builder;
+    private MockObject $result;
 
     public function setUp(): void
     {
@@ -26,9 +28,6 @@ final class QueryBuilderAdapterTest extends TestCase
         $this->result = $this->createMock(Result::class);
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheRightInterface(): void
     {
         $adapter = new QueryBuilderAdapter($this->builder, function (QueryBuilder $builder): void {});
@@ -36,9 +35,6 @@ final class QueryBuilderAdapterTest extends TestCase
         $this->assertInstanceOf(AdapterInterface::class, $adapter);
     }
 
-    /**
-     * @covers ::count
-     */
     public function testCount(): void
     {
         $this->builder->method('executeQuery')->willReturn($this->result);
@@ -53,9 +49,6 @@ final class QueryBuilderAdapterTest extends TestCase
         $this->assertCount(123, $adapter);
     }
 
-    /**
-     * @covers ::getSlice
-     */
     public function testSlice(): void
     {
         $this->builder

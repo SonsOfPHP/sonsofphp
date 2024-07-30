@@ -5,20 +5,18 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Doctrine\Collections\Pager\Tests;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Doctrine\Collections\Pager\ArrayCollectionAdapter;
 use SonsOfPHP\Contract\Pager\AdapterInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Bridge\Doctrine\Collections\Pager\ArrayCollectionAdapter
- *
  * @uses \SonsOfPHP\Bridge\Doctrine\Collections\Pager\ArrayCollectionAdapter
+ * @coversNothing
  */
+#[CoversClass(ArrayCollectionAdapter::class)]
 final class ArrayCollectionAdapterTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheRightInterface(): void
     {
         $adapter = new ArrayCollectionAdapter(new ArrayCollection());
@@ -26,9 +24,6 @@ final class ArrayCollectionAdapterTest extends TestCase
         $this->assertInstanceOf(AdapterInterface::class, $adapter);
     }
 
-    /**
-     * @covers ::count
-     */
     public function testCount(): void
     {
         $adapter = new ArrayCollectionAdapter(new ArrayCollection(range(0, 9)));
@@ -36,9 +31,6 @@ final class ArrayCollectionAdapterTest extends TestCase
         $this->assertCount(10, $adapter);
     }
 
-    /**
-     * @covers ::getSlice
-     */
     public function testGetSlice(): void
     {
         $adapter = new ArrayCollectionAdapter(new ArrayCollection(range(0, 9)));

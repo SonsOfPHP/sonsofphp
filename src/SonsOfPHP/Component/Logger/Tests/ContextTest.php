@@ -4,20 +4,18 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Logger\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Logger\Context;
 use SonsOfPHP\Contract\Logger\ContextInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Logger\Context
- *
  * @uses \SonsOfPHP\Component\Logger\Context
+ * @coversNothing
  */
+#[CoversClass(Context::class)]
 final class ContextTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $context = new Context();
@@ -25,9 +23,6 @@ final class ContextTest extends TestCase
         $this->assertInstanceOf(ContextInterface::class, $context);
     }
 
-    /**
-     * @covers ::offsetSet
-     */
     public function testOffsetSetWithComplex(): void
     {
         $context = new Context();
@@ -38,9 +33,6 @@ final class ContextTest extends TestCase
         $this->assertSame('value', $context['test']['key']);
     }
 
-    /**
-     * @covers ::all
-     */
     public function testAll(): void
     {
         $context = new Context([
@@ -51,9 +43,6 @@ final class ContextTest extends TestCase
         $this->assertCount(2, $context->all());
     }
 
-    /**
-     * @covers ::offsetGet
-     */
     public function testOffsetGet(): void
     {
         $context = new Context();
@@ -62,9 +51,6 @@ final class ContextTest extends TestCase
         $this->assertSame('testing', $context['test']);
     }
 
-    /**
-     * @covers ::offsetExists
-     */
     public function testOffsetExists(): void
     {
         $context = new Context();
@@ -77,9 +63,6 @@ final class ContextTest extends TestCase
         $this->assertNotEmpty($context['test']);
     }
 
-    /**
-     * @covers ::offsetUnset
-     */
     public function testOffsetUnset(): void
     {
         $context = new Context();
@@ -93,9 +76,6 @@ final class ContextTest extends TestCase
         $this->assertEmpty($context['key']);
     }
 
-    /**
-     * @covers ::offsetSet
-     */
     public function testOffsetSet(): void
     {
         $context = new Context();

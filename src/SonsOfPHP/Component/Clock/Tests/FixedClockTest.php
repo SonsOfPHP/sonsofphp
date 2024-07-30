@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock\Tests;
 
+use DateTimeZone;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Clock\ClockInterface;
 use SonsOfPHP\Component\Clock\Exception\ClockException;
 use SonsOfPHP\Component\Clock\FixedClock;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Clock\FixedClock
+ * @coversNothing
  */
+#[CoversClass(FixedClock::class)]
 final class FixedClockTest extends TestCase
 {
     /**
@@ -25,8 +28,6 @@ final class FixedClockTest extends TestCase
     }
 
     /**
-     * @covers ::__construct
-     * @covers ::getZone
      *
      * @uses \SonsOfPHP\Component\Clock\FixedClock
      */
@@ -37,20 +38,16 @@ final class FixedClockTest extends TestCase
     }
 
     /**
-     * @covers ::__construct
-     * @covers ::getZone
      *
      * @uses \SonsOfPHP\Component\Clock\FixedClock
      */
     public function testSettingTheTimezoneInTheConstructorWorks(): void
     {
-        $clock = new FixedClock(new \DateTimeZone('America/New_York'));
+        $clock = new FixedClock(new DateTimeZone('America/New_York'));
         $this->assertSame('America/New_York', $clock->getZone()->getName());
     }
 
     /**
-     * @covers ::now
-     *
      * @uses \SonsOfPHP\Component\Clock\FixedClock
      */
     public function testNowRemainsTheSame(): void
@@ -62,8 +59,6 @@ final class FixedClockTest extends TestCase
     }
 
     /**
-     * @covers ::now
-     * @covers ::tick
      *
      * @uses \SonsOfPHP\Component\Clock\FixedClock
      */
@@ -74,12 +69,10 @@ final class FixedClockTest extends TestCase
         usleep(100);
         $clock->tick();
         $tickTwo = $clock->now();
-        $this->assertTrue($tickOne < $tickTwo);
+        $this->assertLessThan($tickTwo, $tickOne);
     }
 
     /**
-     * @covers ::now
-     * @covers ::tickTo
      *
      * @uses \SonsOfPHP\Component\Clock\FixedClock
      */
@@ -92,7 +85,6 @@ final class FixedClockTest extends TestCase
     }
 
     /**
-     * @covers ::tickTo
      *
      * @uses \SonsOfPHP\Component\Clock\Exception\ClockException
      * @uses \SonsOfPHP\Component\Clock\FixedClock
@@ -106,8 +98,6 @@ final class FixedClockTest extends TestCase
     }
 
     /**
-     * @covers ::__toString
-     *
      * @uses \SonsOfPHP\Component\Clock\FixedClock
      */
     public function testToStringMagicMethod(): void

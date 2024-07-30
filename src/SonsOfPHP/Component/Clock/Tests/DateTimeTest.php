@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Clock\Date;
 use SonsOfPHP\Component\Clock\DateTime;
@@ -13,10 +14,10 @@ use SonsOfPHP\Component\Clock\Zone;
 use SonsOfPHP\Component\Clock\ZoneOffset;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Clock\DateTime
- *
  * @internal
+ * @coversNothing
  */
+#[CoversClass(DateTime::class)]
 final class DateTimeTest extends TestCase
 {
     /**
@@ -34,12 +35,6 @@ final class DateTimeTest extends TestCase
     }
 
     /**
-     * @covers ::__construct
-     * @covers ::__toString
-     * @covers ::getDate
-     * @covers ::getTime
-     * @covers ::getZone
-     * @covers ::toString
      *
      * @uses \SonsOfPHP\Component\Clock\Date
      * @uses \SonsOfPHP\Component\Clock\Time

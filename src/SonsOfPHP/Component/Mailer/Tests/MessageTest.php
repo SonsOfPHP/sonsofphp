@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Mailer\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Mailer\Message;
 use SonsOfPHP\Contract\Mailer\MessageInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Mailer\Message
- *
  * @uses \SonsOfPHP\Component\Mailer\Message
+ * @coversNothing
  */
+#[CoversClass(Message::class)]
 final class MessageTest extends TestCase
 {
     /**
@@ -25,9 +26,6 @@ final class MessageTest extends TestCase
         $this->assertInstanceOf(MessageInterface::class, $message);
     }
 
-    /**
-     * @covers ::setBody
-     */
     public function testSetBody(): void
     {
         $message = new Message();
@@ -35,9 +33,6 @@ final class MessageTest extends TestCase
         $this->assertSame('body', $message->getBody());
     }
 
-    /**
-     * @covers ::getBody
-     */
     public function testGetBody(): void
     {
         $message = new Message();
@@ -47,18 +42,12 @@ final class MessageTest extends TestCase
         $this->assertSame('body', $message->getBody());
     }
 
-    /**
-     * @covers ::getHeaders
-     */
     public function testGetHeadersWhenEmpty(): void
     {
         $message = new Message();
         $this->assertCount(0, $message->getHeaders());
     }
 
-    /**
-     * @covers ::getHeader
-     */
     public function testGetHeader(): void
     {
         $message = new Message();
@@ -68,9 +57,6 @@ final class MessageTest extends TestCase
         $this->assertSame('joshua@sonsofphp.com', $message->getHeader('to'));
     }
 
-    /**
-     * @covers ::hasHeader
-     */
     public function testHasHeader(): void
     {
         $message = new Message();
@@ -80,9 +66,6 @@ final class MessageTest extends TestCase
         $this->assertTrue($message->hasHeader('TO'));
     }
 
-    /**
-     * @covers ::addHeader
-     */
     public function testAddHeader(): void
     {
         $message = new Message();

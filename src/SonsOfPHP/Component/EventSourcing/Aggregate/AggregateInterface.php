@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Aggregate;
 
+use Generator;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 
@@ -47,9 +48,9 @@ interface AggregateInterface
     /**
      * Build Aggregate from a collection of Domain Events.
      *
-     * @param \Generator $events yields MessageInterface objects
+     * @param Generator $events yields MessageInterface objects
      *
      * @throws EventSourcingException
      */
-    public static function buildFromEvents(AggregateIdInterface $id, \Generator $events): self;
+    public static function buildFromEvents(AggregateIdInterface $id, Generator $events): self;
 }

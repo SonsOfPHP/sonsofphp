@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\FeatureToggle\Tests\Provider;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\FeatureToggle\Feature;
@@ -12,10 +13,10 @@ use SonsOfPHP\Contract\FeatureToggle\FeatureToggleProviderInterface;
 use SonsOfPHP\Contract\FeatureToggle\ToggleInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\FeatureToggle\Provider\InMemoryFeatureToggleProvider
- *
  * @uses \SonsOfPHP\Component\FeatureToggle\Feature
+ * @coversNothing
  */
+#[CoversClass(InMemoryFeatureToggleProvider::class)]
 final class InMemoryFeatureToggleProviderTest extends TestCase
 {
     private MockObject|ToggleInterface $toggle;
@@ -35,11 +36,6 @@ final class InMemoryFeatureToggleProviderTest extends TestCase
         $this->assertInstanceOf(FeatureToggleProviderInterface::class, $provider);
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::addFeature
-     * @covers ::getFeatureToggleByKey
-     */
     public function testAddingFeatures(): void
     {
         $features = [

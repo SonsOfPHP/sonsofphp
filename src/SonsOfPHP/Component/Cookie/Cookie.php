@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Cookie;
 
+use DateTimeImmutable;
 use SonsOfPHP\Component\Cookie\Exception\CookieException;
 use SonsOfPHP\Contract\Cookie\CookieInterface;
 
@@ -170,7 +171,7 @@ final class Cookie implements CookieInterface
     /**
      * {@inheritdoc}
      */
-    public function withExpires(\DateTimeImmutable $expires): static
+    public function withExpires(DateTimeImmutable $expires): static
     {
         $expires = $expires->format('r');
 

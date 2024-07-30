@@ -11,4 +11,4 @@ use Exception;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class VersionException extends \Exception {}
+class VersionException extends Exception {}

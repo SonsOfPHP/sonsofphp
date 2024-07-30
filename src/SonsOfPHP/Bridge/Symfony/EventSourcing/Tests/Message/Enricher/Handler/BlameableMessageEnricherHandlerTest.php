@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests\Message\Enricher\Handler;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\BlameableMessageEnricherHandler;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\MessageEnricherHandlerInterface;
@@ -12,10 +13,10 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\BlameableMessageEnricherHandler
- *
  * @uses \SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\BlameableMessageEnricherHandler
+ * @coversNothing
  */
+#[CoversClass(BlameableMessageEnricherHandler::class)]
 final class BlameableMessageEnricherHandlerTest extends TestCase
 {
     private Security $security;
@@ -25,9 +26,6 @@ final class BlameableMessageEnricherHandlerTest extends TestCase
         $this->security = $this->createStub(Security::class);
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheRightInterface(): void
     {
         $handler = new BlameableMessageEnricherHandler($this->security);
@@ -35,9 +33,6 @@ final class BlameableMessageEnricherHandlerTest extends TestCase
         $this->assertInstanceOf(MessageEnricherHandlerInterface::class, $handler);
     }
 
-    /**
-     * @covers ::enrich
-     */
     public function testEnrichWithoutUserWillNotEnrichMessage(): void
     {
         $handler = new BlameableMessageEnricherHandler($this->security);
@@ -48,9 +43,6 @@ final class BlameableMessageEnricherHandlerTest extends TestCase
         $this->assertSame($message, $output);
     }
 
-    /**
-     * @covers ::enrich
-     */
     public function testEnrichWithUserWillEnrichTheMessage(): void
     {
         $user = $this->createMock(UserInterface::class);
@@ -63,7 +55,7 @@ final class BlameableMessageEnricherHandlerTest extends TestCase
         $message = $this->createMock(MessageInterface::class);
         $message->expects($this->once())
             ->method('withMetadata')
-            ->with($this->callback(function ($metadata) {
+            ->with($this->callback(function (array $metadata): bool {
                 $this->assertArrayHasKey('__user', $metadata);
                 $this->assertArrayHasKey('identifier', $metadata['__user']);
                 $this->assertSame('satoshi', $metadata['__user']['identifier']);

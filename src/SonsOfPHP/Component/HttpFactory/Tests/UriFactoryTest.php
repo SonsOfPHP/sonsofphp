@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\HttpFactory\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\UriFactoryInterface;
 use Psr\Http\Message\UriInterface;
 use SonsOfPHP\Component\HttpFactory\UriFactory;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\HttpFactory\UriFactory
- *
  * @internal
+ * @coversNothing
  */
+#[CoversClass(UriFactory::class)]
 final class UriFactoryTest extends TestCase
 {
     /**
@@ -25,7 +26,6 @@ final class UriFactoryTest extends TestCase
     }
 
     /**
-     * @covers ::createUri
      * @uses \SonsOfPHP\Component\HttpMessage\Uri
      */
     public function testCreateUriWorksAsExpected(): void

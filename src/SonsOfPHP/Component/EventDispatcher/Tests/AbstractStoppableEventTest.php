@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventDispatcher\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\StoppableEventInterface;
 use SonsOfPHP\Component\EventDispatcher\AbstractStoppableEvent;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\EventDispatcher\AbstractStoppableEvent
- *
  * @uses \SonsOfPHP\Component\EventDispatcher\AbstractStoppableEvent
+ * @coversNothing
  */
+#[CoversClass(AbstractStoppableEvent::class)]
 final class AbstractStoppableEventTest extends TestCase
 {
     /**
@@ -25,10 +26,6 @@ final class AbstractStoppableEventTest extends TestCase
         $this->assertInstanceOf(StoppableEventInterface::class, $event);
     }
 
-    /**
-     * @covers ::isPropagationStopped
-     * @covers ::stopPropagation
-     */
     public function testItCanStopPropagation(): void
     {
         $event = new class () extends AbstractStoppableEvent {};

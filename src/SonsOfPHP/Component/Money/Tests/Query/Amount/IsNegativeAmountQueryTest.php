@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\Tests\Query\Amount;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Amount;
 use SonsOfPHP\Component\Money\Query\Amount\IsNegativeAmountQuery;
 use SonsOfPHP\Contract\Money\AmountQueryInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Money\Query\Amount\IsNegativeAmountQuery
  *
  * @uses \SonsOfPHP\Component\Money\Amount
- *
  * @internal
+ * @coversNothing
  */
+#[CoversClass(IsNegativeAmountQuery::class)]
 final class IsNegativeAmountQueryTest extends TestCase
 {
     /**
@@ -28,9 +29,6 @@ final class IsNegativeAmountQueryTest extends TestCase
         $this->assertInstanceOf(AmountQueryInterface::class, $query);
     }
 
-    /**
-     * @covers ::queryFrom
-     */
     public function testQuery(): void
     {
         $amount = new Amount(-100);

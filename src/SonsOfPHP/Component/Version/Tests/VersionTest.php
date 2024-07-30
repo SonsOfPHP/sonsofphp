@@ -4,21 +4,20 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Version\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Version\Exception\VersionException;
 use SonsOfPHP\Component\Version\Version;
 use SonsOfPHP\Component\Version\VersionInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Version\Version
- *
  * @uses \SonsOfPHP\Component\Version\Version
+ * @coversNothing
  */
+#[CoversClass(Version::class)]
 final class VersionTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $version = new Version('1.2.3');
@@ -26,10 +25,6 @@ final class VersionTest extends TestCase
         $this->assertInstanceOf(VersionInterface::class, $version);
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::from
-     */
     public function testItHasTheCorrectInterfaceWhenUsingFrom(): void
     {
         $version = Version::from('1.2.3');
@@ -37,18 +32,8 @@ final class VersionTest extends TestCase
         $this->assertInstanceOf(VersionInterface::class, $version);
     }
 
-    /**
-     * @dataProvider validVersions
-     *
-     * @covers ::__construct
-     * @covers ::__toString
-     * @covers ::getBuild
-     * @covers ::getMajor
-     * @covers ::getMinor
-     * @covers ::getPatch
-     * @covers ::getPreRelease
-     * @covers ::toString
-     */
+
+    #[DataProvider('validVersions')]
     public function testItParsesCorrectly(string $ver, int $major, int $minor, int $patch, ?string $preRelease = '', ?string $build = ''): void
     {
         $version = new Version($ver);
@@ -61,30 +46,21 @@ final class VersionTest extends TestCase
         $this->assertSame($ver, (string) $version);
     }
 
-    /**
-     * @dataProvider invalidVersions
-     *
-     * @covers ::__construct
-     */
+
+    #[DataProvider('invalidVersions')]
     public function testItThrowsExceptionForInvalidVersions(string $ver): void
     {
         $this->expectException(VersionException::class);
         $version = new Version($ver);
     }
 
-    /**
-     * @dataProvider compareVersions
-     *
-     * @covers ::compare
-     */
+
+    #[DataProvider('compareVersions')]
     public function testCompareWorksCorrectly(VersionInterface $v1, VersionInterface $v2, int $result): void
     {
         $this->assertSame($result, $v1->compare($v2));
     }
 
-    /**
-     * @covers ::nextPatch
-     */
     public function testNextPatch(): void
     {
         $version = new Version('1.2.3');
@@ -95,9 +71,6 @@ final class VersionTest extends TestCase
         $this->assertSame('1.2.4', $newVer->toString());
     }
 
-    /**
-     * @covers ::nextMinor
-     */
     public function testNextMinor(): void
     {
         $version = new Version('1.2.3');
@@ -108,9 +81,6 @@ final class VersionTest extends TestCase
         $this->assertSame('1.3.0', $newVer->toString());
     }
 
-    /**
-     * @covers ::nextMajor
-     */
     public function testNextMajor(): void
     {
         $version = new Version('1.2.3');
@@ -121,9 +91,6 @@ final class VersionTest extends TestCase
         $this->assertSame('2.0.0', $newVer->toString());
     }
 
-    /**
-     * @covers ::isGreaterThan
-     */
     public function testIsGreaterThan(): void
     {
         $version = new Version('1.2.3');
@@ -131,9 +98,6 @@ final class VersionTest extends TestCase
         $this->assertTrue($version->isGreaterThan(new Version('1.2.0')));
     }
 
-    /**
-     * @covers ::isLessThan
-     */
     public function testIsLessThan(): void
     {
         $version = new Version('1.2.3');
@@ -141,9 +105,6 @@ final class VersionTest extends TestCase
         $this->assertTrue($version->isLessThan(new Version('1.2.4')));
     }
 
-    /**
-     * @covers ::isEqualTo
-     */
     public function testIsEqualTo(): void
     {
         $version = new Version('1.2.3');

@@ -4,20 +4,18 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Link\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Link\LinkInterface;
 use SonsOfPHP\Component\Link\Link;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Link\Link
- *
  * @uses \SonsOfPHP\Component\Link\Link
+ * @coversNothing
  */
+#[CoversClass(Link::class)]
 final class LinkTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $link = new Link('https://docs.sonsofphp.com');
@@ -25,18 +23,12 @@ final class LinkTest extends TestCase
         $this->assertInstanceOf(LinkInterface::class, $link);
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testItWillThrowInvalidArgumentException(): void
     {
         $this->expectException('InvalidArgumentException');
         $link = new Link();
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testConstructWithRelsArray(): void
     {
         $link = new Link('https://docs.sonsofphp.com', rels: ['next', 'prev']);
@@ -46,9 +38,6 @@ final class LinkTest extends TestCase
         $this->assertContains('prev', $link->getRels());
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testConstructWithRelsString(): void
     {
         $link = new Link('https://docs.sonsofphp.com', rels: 'next');
@@ -57,9 +46,6 @@ final class LinkTest extends TestCase
         $this->assertContains('next', $link->getRels());
     }
 
-    /**
-     * @covers ::getHref
-     */
     public function testGetHref(): void
     {
         $link = new Link('https://docs.sonsofphp.com');
@@ -67,9 +53,6 @@ final class LinkTest extends TestCase
         $this->assertSame('https://docs.sonsofphp.com', $link->getHref());
     }
 
-    /**
-     * @covers ::isTemplated
-     */
     public function testIsTemplated(): void
     {
         $link = new Link('https://docs.sonsofphp.com/components/{component}');
@@ -77,9 +60,6 @@ final class LinkTest extends TestCase
         $this->assertTrue($link->isTemplated());
     }
 
-    /**
-     * @covers ::getRels
-     */
     public function testGetRels(): void
     {
         $link = new Link('https://docs.sonsofphp.com');
@@ -87,9 +67,6 @@ final class LinkTest extends TestCase
         $this->assertCount(0, $link->getRels());
     }
 
-    /**
-     * @covers ::getAttributes
-     */
     public function testGetAttributes(): void
     {
         $link = new Link('https://docs.sonsofphp.com');

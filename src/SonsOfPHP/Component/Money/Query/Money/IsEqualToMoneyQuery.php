@@ -12,14 +12,9 @@ use SonsOfPHP\Contract\Money\MoneyQueryInterface;
  */
 class IsEqualToMoneyQuery implements MoneyQueryInterface
 {
-    private MoneyInterface $money;
+    public function __construct(private readonly MoneyInterface $money) {}
 
-    public function __construct(MoneyInterface $money)
-    {
-        $this->money = $money;
-    }
-
-    public function queryFrom(MoneyInterface $money)
+    public function queryFrom(MoneyInterface $money): bool
     {
         return $this->money->getAmount()->isEqualTo($money->getAmount()) && $this->money->getCurrency()->isEqualTo($money->getCurrency());
     }

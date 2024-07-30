@@ -4,19 +4,21 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\HttpHandler\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use ReflectionProperty;
 use SonsOfPHP\Component\HttpHandler\MiddlewareStack;
 use SonsOfPHP\Contract\HttpHandler\MiddlewareStackInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\HttpHandler\MiddlewareStack
- *
  * @uses \SonsOfPHP\Component\HttpHandler\MiddlewareStack
+ * @coversNothing
  */
+#[CoversClass(MiddlewareStack::class)]
 final class MiddlewareStackTest extends TestCase
 {
     /**
@@ -29,22 +31,16 @@ final class MiddlewareStackTest extends TestCase
         $this->assertInstanceOf(MiddlewareStackInterface::class, $stack);
     }
 
-    /**
-     * @covers ::add
-     */
     public function testAdd(): void
     {
         $stack = new MiddlewareStack();
-        $middlewares = new \ReflectionProperty($stack, 'middlewares');
+        $middlewares = new ReflectionProperty($stack, 'middlewares');
         $this->assertCount(0, $middlewares->getValue($stack));
 
         $stack->add(function (): void {});
         $this->assertCount(1, $middlewares->getValue($stack));
     }
 
-    /**
-     * @covers ::count
-     */
     public function testCount(): void
     {
         $stack = new MiddlewareStack();
@@ -54,13 +50,10 @@ final class MiddlewareStackTest extends TestCase
         $this->assertCount(1, $stack);
     }
 
-    /**
-     * @covers ::add
-     */
     public function testAddWillPrioritizeCorrectly(): void
     {
         $stack = new MiddlewareStack();
-        $middlewares = new \ReflectionProperty($stack, 'middlewares');
+        $middlewares = new ReflectionProperty($stack, 'middlewares');
         $this->assertCount(0, $middlewares->getValue($stack));
 
         $one   = function (): void {};
@@ -78,9 +71,6 @@ final class MiddlewareStackTest extends TestCase
         $this->assertSame($three, $middlewareStack[255][0]);
     }
 
-    /**
-     * @covers ::next
-     */
     public function testNextReturnsMiddlewareIfClosure(): void
     {
         $stack = new MiddlewareStack();
@@ -90,9 +80,6 @@ final class MiddlewareStackTest extends TestCase
         $this->assertInstanceOf(MiddlewareInterface::class, $stack->next());
     }
 
-    /**
-     * @covers ::next
-     */
     public function testNextReturnsCorrectlyWhenMultipleMiddlewareHasSamePriority(): void
     {
         $stack = new MiddlewareStack();
@@ -126,9 +113,6 @@ final class MiddlewareStackTest extends TestCase
         $this->assertSame($three, $stack->next());
     }
 
-    /**
-     * @covers ::next
-     */
     public function testNextReturnsMiddlewareInCorrectOrder(): void
     {
         $stack = new MiddlewareStack();

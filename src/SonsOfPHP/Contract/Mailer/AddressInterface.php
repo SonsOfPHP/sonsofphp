@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Contract\Mailer;
 
+use Stringable;
+
 /**
  * Represents and Email Address such as "Joshua Estes <joshua@sonsofphp.com>"
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface AddressInterface extends \Stringable
+interface AddressInterface extends Stringable
 {
     /**
      * @throws InvalidArgumentException

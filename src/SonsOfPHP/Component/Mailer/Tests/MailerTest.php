@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Mailer\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Mailer\Mailer;
 use SonsOfPHP\Contract\Mailer\MailerInterface;
@@ -11,16 +13,17 @@ use SonsOfPHP\Contract\Mailer\MessageInterface;
 use SonsOfPHP\Contract\Mailer\TransportInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Mailer\Mailer
  *
  * @uses \SonsOfPHP\Component\Mailer\Mailer
  * @uses \SonsOfPHP\Component\Mailer\MiddlewareHandler
  * @uses \SonsOfPHP\Component\Mailer\MiddlewareStack
+ * @coversNothing
  */
+#[CoversClass(Mailer::class)]
 final class MailerTest extends TestCase
 {
-    private $transport;
-    private $message;
+    private MockObject $transport;
+    private MockObject $message;
 
     public function setUp(): void
     {
@@ -28,9 +31,6 @@ final class MailerTest extends TestCase
         $this->message = $this->createMock(MessageInterface::class);
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $mailer = new Mailer($this->transport);
@@ -38,9 +38,6 @@ final class MailerTest extends TestCase
         $this->assertInstanceOf(MailerInterface::class, $mailer);
     }
 
-    /**
-     * @covers ::send
-     */
     public function testSend(): void
     {
         $this->transport->expects($this->once())->method('send');

@@ -4,21 +4,22 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Cache\Tests;
 
+use DateInterval;
+use DateTimeImmutable;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemInterface;
 use SonsOfPHP\Component\Cache\CacheItem;
 use SonsOfPHP\Component\Cache\Exception\InvalidArgumentException;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Cache\CacheItem
- *
  * @uses \SonsOfPHP\Component\Cache\CacheItem
+ * @coversNothing
  */
+#[CoversClass(CacheItem::class)]
 final class CacheItemTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $item = new CacheItem('testing');
@@ -26,9 +27,6 @@ final class CacheItemTest extends TestCase
         $this->assertInstanceOf(CacheItemInterface::class, $item);
     }
 
-    /**
-     * @covers ::getKey
-     */
     public function testGetKeyWorksAsExpected(): void
     {
         $item = new CacheItem('testing');
@@ -36,9 +34,6 @@ final class CacheItemTest extends TestCase
         $this->assertSame('testing', $item->getKey());
     }
 
-    /**
-     * @covers ::isHit
-     */
     public function testDefaultValueForIsHit(): void
     {
         $item = new CacheItem('testing');
@@ -46,9 +41,6 @@ final class CacheItemTest extends TestCase
         $this->assertFalse($item->isHit());
     }
 
-    /**
-     * @covers ::get
-     */
     public function testDefaultValueForGet(): void
     {
         $item = new CacheItem('testing');
@@ -56,9 +48,6 @@ final class CacheItemTest extends TestCase
         $this->assertNull($item->get());
     }
 
-    /**
-     * @covers ::set
-     */
     public function testSetWorksAsExpected(): void
     {
         $item = new CacheItem('testing');
@@ -66,9 +55,6 @@ final class CacheItemTest extends TestCase
         $this->assertSame('value', $item->get());
     }
 
-    /**
-     * @covers ::expiresAt
-     */
     public function testExpiresAtWorksAsExpectedWithNull(): void
     {
         $item = new CacheItem('testing');
@@ -81,24 +67,18 @@ final class CacheItemTest extends TestCase
         $this->assertNull($itemAsArray["\0*\0expiry"]);
     }
 
-    /**
-     * @covers ::expiresAt
-     */
     public function testExpiresAtWorksAsExpectedWithDateTimeInterface(): void
     {
         $item = new CacheItem('testing');
         $itemAsArray = (array) $item;
         $this->assertFalse(isset($itemAsArray["\0*\0expiry"]));
 
-        $item->expiresAt(new \DateTimeImmutable('2020-04-20 04:20:00'));
+        $item->expiresAt(new DateTimeImmutable('2020-04-20 04:20:00'));
         $itemAsArray = (array) $item;
         $this->assertNotNull($itemAsArray["\0*\0expiry"]);
         $this->assertSame(1587356400.0, $itemAsArray["\0*\0expiry"]);
     }
 
-    /**
-     * @covers ::expiresAfter
-     */
     public function testExpiresAfterWorksAsExpectedWithIntegers(): void
     {
         $item = new CacheItem('testing');
@@ -110,23 +90,17 @@ final class CacheItemTest extends TestCase
         $this->assertNotNull($itemAsArray["\0*\0expiry"]);
     }
 
-    /**
-     * @covers ::expiresAfter
-     */
     public function testExpiresAfterWorksAsExpectedWithDateInterval(): void
     {
         $item = new CacheItem('testing');
         $itemAsArray = (array) $item;
         $this->assertFalse(isset($itemAsArray["\0*\0expiry"]));
 
-        $item->expiresAfter(new \DateInterval('PT60S'));
+        $item->expiresAfter(new DateInterval('PT60S'));
         $itemAsArray = (array) $item;
         $this->assertNotNull($itemAsArray["\0*\0expiry"]);
     }
 
-    /**
-     * @covers ::expiresAfter
-     */
     public function testExpiresAfterWorksAsExpectedWithNull(): void
     {
         $item = new CacheItem('testing');
@@ -138,11 +112,8 @@ final class CacheItemTest extends TestCase
         $this->assertNull($itemAsArray["\0*\0expiry"]);
     }
 
-    /**
-     * @covers ::validateKey
-     *
-     * @dataProvider invalidKeysProvider
-     */
+
+    #[DataProvider('invalidKeysProvider')]
     public function testValidateKeyWithInvalidValues(string $key): void
     {
         $this->expectException(InvalidArgumentException::class);

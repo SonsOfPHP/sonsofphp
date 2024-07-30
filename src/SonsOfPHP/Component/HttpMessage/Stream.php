@@ -4,14 +4,18 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\HttpMessage;
 
+use InvalidArgumentException;
 use Psr\Http\Message\StreamInterface;
+use RuntimeException;
+use Stringable;
+use Throwable;
 
 /**
  * {@inheritdoc}
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class Stream implements StreamInterface, \Stringable
+class Stream implements StreamInterface, Stringable
 {
     /**
      * @param resource|null $stream
@@ -20,7 +24,7 @@ class Stream implements StreamInterface, \Stringable
     public function __construct(protected $stream = null)
     {
         if (null !== $stream && !is_resource($stream)) {
-            throw new \InvalidArgumentException('Only a resource and null are supported.');
+            throw new InvalidArgumentException('Only a resource and null are supported.');
         }
 
         if (!is_resource($stream)) {
@@ -44,7 +48,7 @@ class Stream implements StreamInterface, \Stringable
             $this->rewind();
 
             return $this->getContents();
-        } catch (\Throwable $e) {
+        } catch (Throwable) {
         }
 
         return '';
@@ -99,11 +103,11 @@ class Stream implements StreamInterface, \Stringable
     public function tell(): int
     {
         if (null === $this->stream) {
-            throw new \RuntimeException('Stream is detached');
+            throw new RuntimeException('Stream is detached');
         }
 
         if (false === $position = ftell($this->stream)) {
-            throw new \RuntimeException('Unable to figure out the current position');
+            throw new RuntimeException('Unable to figure out the current position');
         }
 
         return $position;
@@ -115,7 +119,7 @@ class Stream implements StreamInterface, \Stringable
     public function eof(): bool
     {
         if (null === $this->stream) {
-            throw new \RuntimeException('Stream is detached');
+            throw new RuntimeException('Stream is detached');
         }
 
         return feof($this->stream);
@@ -139,15 +143,15 @@ class Stream implements StreamInterface, \Stringable
     public function seek(int $offset, int $whence = SEEK_SET): void
     {
         if (null === $this->stream) {
-            throw new \RuntimeException('Stream is detached');
+            throw new RuntimeException('Stream is detached');
         }
 
         if (false === $this->isSeekable()) {
-            throw new \RuntimeException('Stream is not seekable');
+            throw new RuntimeException('Stream is not seekable');
         }
 
         if (-1 === fseek($this->stream, $offset, $whence)) {
-            throw new \RuntimeException('Unable to seek');
+            throw new RuntimeException('Unable to seek');
         }
     }
 
@@ -177,15 +181,15 @@ class Stream implements StreamInterface, \Stringable
     public function write(string $string): int
     {
         if (null === $this->stream) {
-            throw new \RuntimeException('Stream is detached');
+            throw new RuntimeException('Stream is detached');
         }
 
         if (false === $this->isWritable()) {
-            throw new \RuntimeException('Stream is un-writeable');
+            throw new RuntimeException('Stream is un-writeable');
         }
 
         if (false === $size = fwrite($this->stream, $string)) {
-            throw new \RuntimeException('Unable to write to stream');
+            throw new RuntimeException('Unable to write to stream');
         }
 
         return $size;
@@ -209,11 +213,11 @@ class Stream implements StreamInterface, \Stringable
     public function read(int $length): string
     {
         if (null === $this->stream) {
-            throw new \RuntimeException('Stream is detached');
+            throw new RuntimeException('Stream is detached');
         }
 
         if (false === $this->isReadable()) {
-            throw new \RuntimeException('Stream is un-readable');
+            throw new RuntimeException('Stream is un-readable');
         }
 
         return fread($this->stream, $length);
@@ -225,11 +229,11 @@ class Stream implements StreamInterface, \Stringable
     public function getContents(): string
     {
         if (null === $this->stream) {
-            throw new \RuntimeException('Stream is detached');
+            throw new RuntimeException('Stream is detached');
         }
 
         if (false === $this->isReadable()) {
-            throw new \RuntimeException('Stream is unreadable');
+            throw new RuntimeException('Stream is unreadable');
         }
 
         return stream_get_contents($this->stream);

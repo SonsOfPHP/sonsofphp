@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Logger\Handler;
 
+use RuntimeException;
 use SonsOfPHP\Contract\Logger\HandlerInterface;
 use SonsOfPHP\Contract\Logger\RecordInterface;
 
@@ -18,7 +19,7 @@ class FileHandler extends AbstractHandler implements HandlerInterface
     private $handle;
 
     public function __construct(
-        private string $filename,
+        private readonly string $filename,
     ) {}
 
     public function doHandle(RecordInterface $record, string $message): void
@@ -31,7 +32,7 @@ class FileHandler extends AbstractHandler implements HandlerInterface
     private function write(string $message): void
     {
         if (false === fwrite($this->handle, $message)) {
-            throw new \RuntimeException(sprintf('"%s" could not be written to', $this->filename));
+            throw new RuntimeException(sprintf('"%s" could not be written to', $this->filename));
         }
     }
 
@@ -42,7 +43,7 @@ class FileHandler extends AbstractHandler implements HandlerInterface
         }
 
         if (false === $this->handle = fopen($this->filename, 'a')) {
-            throw new \RuntimeException(sprintf('"%s" could not be opened', $this->filename));
+            throw new RuntimeException(sprintf('"%s" could not be opened', $this->filename));
         }
         $this->isOpen = true;
     }

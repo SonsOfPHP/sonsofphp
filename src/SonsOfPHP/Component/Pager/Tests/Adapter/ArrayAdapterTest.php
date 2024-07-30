@@ -4,29 +4,24 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Pager\Tests\Adapter;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Pager\Adapter\ArrayAdapter;
 use SonsOfPHP\Contract\Pager\AdapterInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Pager\Adapter\ArrayAdapter
- *
  * @uses \SonsOfPHP\Component\Pager\Adapter\ArrayAdapter
+ * @coversNothing
  */
+#[CoversClass(ArrayAdapter::class)]
 final class ArrayAdapterTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $adapter = new ArrayAdapter([]);
         $this->assertInstanceOf(AdapterInterface::class, $adapter);
     }
 
-    /**
-     * @covers ::count
-     */
     public function testCount(): void
     {
         $adapter = new ArrayAdapter([]);
@@ -34,9 +29,6 @@ final class ArrayAdapterTest extends TestCase
         $this->assertCount(0, $adapter);
     }
 
-    /**
-     * @covers ::getSlice
-     */
     public function testGetSlice(): void
     {
         $adapter = new ArrayAdapter([

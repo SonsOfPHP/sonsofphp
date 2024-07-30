@@ -26,7 +26,7 @@ use SonsOfPHP\Component\Cache\Exception\CacheException;
 class ChainAdapter implements AdapterInterface
 {
     public function __construct(
-        private array $adapters,
+        private readonly array $adapters,
     ) {
         foreach ($this->adapters as $adapter) {
             if (!$adapter instanceof AdapterInterface) {

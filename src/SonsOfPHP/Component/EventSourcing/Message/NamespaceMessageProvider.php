@@ -13,12 +13,7 @@ use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
  */
 class NamespaceMessageProvider implements MessageProviderInterface
 {
-    private string $namespace;
-
-    public function __construct(string $namespace)
-    {
-        $this->namespace = $namespace;
-    }
+    public function __construct(private readonly string $namespace) {}
 
     public function getEventTypeForMessage($message): string
     {
@@ -32,7 +27,7 @@ class NamespaceMessageProvider implements MessageProviderInterface
 
         $eventType = trim(substr($message, \strlen($this->namespace)), '\\');
 
-        if ($this->namespace !== substr($message, 0, \strlen($this->namespace))) {
+        if (!str_starts_with($message, $this->namespace)) {
             throw new EventSourcingException(sprintf('Message "%s" is not in the Namespace "%s"', $message, $this->namespace));
         }
 

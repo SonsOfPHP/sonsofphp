@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock;
 
+use DateTimeImmutable;
+use DateTimeInterface;
+use DateTimeZone;
 use Psr\Clock\ClockInterface;
 use SonsOfPHP\Component\Clock\Exception\ClockException;
+use Stringable;
 
 /**
  * Fixed Clock.
@@ -15,40 +19,33 @@ use SonsOfPHP\Component\Clock\Exception\ClockException;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class FixedClock implements ClockInterface
+final class FixedClock implements ClockInterface, Stringable
 {
-    private \DateTimeInterface $time;
-
+    private DateTimeInterface $time;
     public function __construct(
-        private ?\DateTimeZone $zone = null,
+        private readonly DateTimeZone $zone = new DateTimeZone('UTC'),
     ) {
-        $this->zone = $zone ?? new \DateTimeZone('UTC');
         $this->tick();
     }
-
     public function __toString(): string
     {
         return 'FixedClock[' . $this->zone->getName() . ']';
     }
-
-    public function now(): \DateTimeImmutable
+    public function now(): DateTimeImmutable
     {
         return $this->time;
     }
-
-    public function getZone(): \DateTimeZone
+    public function getZone(): DateTimeZone
     {
         return $this->zone;
     }
-
     /**
      * Updates the current clock time to be when the tick happened.
      */
     public function tick(): void
     {
-        $this->time = new \DateTimeImmutable('now', $this->zone);
+        $this->time = new DateTimeImmutable('now', $this->zone);
     }
-
     /**
      * Updates the clock to a specific date and time that can be in the past or
      * in the future.
@@ -62,7 +59,7 @@ final class FixedClock implements ClockInterface
      */
     public function tickTo(string $input): void
     {
-        $time = \DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $input, $this->zone);
+        $time = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $input, $this->zone);
         if (false === $time) {
             throw new ClockException(sprintf('The input "%s" is invalid', $input));
         }

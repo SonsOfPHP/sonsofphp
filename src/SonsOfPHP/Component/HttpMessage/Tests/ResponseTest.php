@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\HttpMessage\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use SonsOfPHP\Component\HttpMessage\Response;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\HttpMessage\Response
- *
  * @internal
+ * @coversNothing
  */
+#[CoversClass(Response::class)]
 final class ResponseTest extends TestCase
 {
     /**
@@ -23,11 +24,6 @@ final class ResponseTest extends TestCase
         $this->assertInstanceOf(ResponseInterface::class, new Response());
     }
 
-    /**
-     * @covers ::withStatus
-     * @covers ::getStatusCode
-     * @covers ::getReasonPhrase
-     */
     public function testWithStatusWorksAsExpected(): void
     {
         $response = new Response();

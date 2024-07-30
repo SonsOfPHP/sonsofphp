@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem\Tests\Adapter;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter;
 use SonsOfPHP\Component\Filesystem\Exception\UnableToReadFileException;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter
- *
  * @uses \SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter
+ * @coversNothing
  */
+#[CoversClass(InMemoryAdapter::class)]
 final class InMemoryAdapterTest extends TestCase
 {
     /**
@@ -26,10 +27,6 @@ final class InMemoryAdapterTest extends TestCase
         $this->assertInstanceOf(AdapterInterface::class, $adapter);
     }
 
-    /**
-     * @covers ::add
-     * @covers ::get
-     */
     public function testItCanWriteAFileAndReadItLater(): void
     {
         $adapter = new InMemoryAdapter();
@@ -40,9 +37,6 @@ final class InMemoryAdapterTest extends TestCase
         $this->assertSame($contents, $adapter->get('/path/to/test.txt'));
     }
 
-    /**
-     * @covers ::get
-     */
     public function testItWillThrowExceptionWhenFileNotFound(): void
     {
         $adapter = new InMemoryAdapter();
@@ -50,9 +44,6 @@ final class InMemoryAdapterTest extends TestCase
         $adapter->get('test.txt');
     }
 
-    /**
-     * @covers ::remove
-     */
     public function testItCanDeleteFile(): void
     {
         $adapter = new InMemoryAdapter();
@@ -64,9 +55,6 @@ final class InMemoryAdapterTest extends TestCase
         $adapter->get('/path/to/test.txt');
     }
 
-    /**
-     * @covers ::copy
-     */
     public function testItCanCopyFile(): void
     {
         $adapter = new InMemoryAdapter();
@@ -76,9 +64,6 @@ final class InMemoryAdapterTest extends TestCase
         $this->assertSame('testing', $adapter->get('test2.txt'));
     }
 
-    /**
-     * @covers ::move
-     */
     public function testItCanMoveFile(): void
     {
         $adapter = new InMemoryAdapter();
@@ -89,9 +74,6 @@ final class InMemoryAdapterTest extends TestCase
         $adapter->get('test.txt');
     }
 
-    /**
-     * @covers ::get
-     */
     public function testItCanSupportStream(): void
     {
         $adapter = new InMemoryAdapter();
@@ -103,9 +85,6 @@ final class InMemoryAdapterTest extends TestCase
         $this->assertSame('Just a test', $adapter->get('test.txt'));
     }
 
-    /**
-     * @covers ::has
-     */
     public function testItCanCheckIfFilesExist(): void
     {
         $adapter = new InMemoryAdapter();
@@ -114,9 +93,6 @@ final class InMemoryAdapterTest extends TestCase
         $this->assertTrue($adapter->has('test.txt'));
     }
 
-    /**
-     * @covers ::isFile
-     */
     public function testItCanCheckIfIsFile(): void
     {
         $adapter = new InMemoryAdapter();
@@ -125,9 +101,6 @@ final class InMemoryAdapterTest extends TestCase
         $this->assertTrue($adapter->isFile('/path/to/file.txt'));
     }
 
-    /**
-     * @covers ::isDirectory
-     */
     public function testItCanCheckIfIsDirectory(): void
     {
         $adapter = new InMemoryAdapter();

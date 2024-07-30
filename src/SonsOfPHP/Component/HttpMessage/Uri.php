@@ -5,22 +5,23 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpMessage;
 
 use Psr\Http\Message\UriInterface;
+use Stringable;
 
 /**
  * {@inheritdoc}
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class Uri implements UriInterface, \Stringable
+class Uri implements UriInterface, Stringable
 {
     private string $scheme;
     private string $host;
-    private ?string $path;
-    private ?int $port;
-    private ?string $user;
-    private ?string $password;
-    private ?string $query;
-    private ?string $fragment;
+    private ?string $path = null;
+    private ?int $port = null;
+    private ?string $user = null;
+    private ?string $password = null;
+    private ?string $query = null;
+    private ?string $fragment = null;
     private array $queryParams = [];
 
     public function __construct(
@@ -277,13 +278,13 @@ class Uri implements UriInterface, \Stringable
      */
     public function __toString(): string
     {
-        return ($this->scheme ? $this->scheme . '://' : '') .
-            ($this->getUserInfo() ? $this->getUserInfo() . '@' : '') .
+        return ($this->scheme !== '' && $this->scheme !== '0' ? $this->scheme . '://' : '') .
+            ($this->getUserInfo() !== '' && $this->getUserInfo() !== '0' ? $this->getUserInfo() . '@' : '') .
             ($this->getHost()) .
             ($this->port ? ':' . $this->port : '') .
             ($this->getPath() ?? '') .
-            ($this->getQuery() ? '?' . $this->getQuery() : '') .
-            ($this->getFragment() ? '#' . $this->getFragment() : '')
+            ($this->getQuery() !== '' && $this->getQuery() !== '0' ? '?' . $this->getQuery() : '') .
+            ($this->getFragment() !== '' && $this->getFragment() !== '0' ? '#' . $this->getFragment() : '')
         ;
     }
 

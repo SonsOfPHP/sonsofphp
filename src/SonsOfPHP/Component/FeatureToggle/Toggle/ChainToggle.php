@@ -16,7 +16,7 @@ use SonsOfPHP\Contract\FeatureToggle\ToggleInterface;
 class ChainToggle implements ToggleInterface
 {
     public function __construct(
-        private array $toggles,
+        private readonly array $toggles,
     ) {}
 
     public function isEnabled(?ContextInterface $context = null): bool

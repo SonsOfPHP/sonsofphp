@@ -13,7 +13,7 @@ use SonsOfPHP\Contract\Logger\RecordInterface;
 final class MockFilter implements FilterInterface
 {
     public function __construct(
-        private bool $isLoggable = true,
+        private readonly bool $isLoggable = true,
     ) {}
 
     public function isLoggable(RecordInterface $record): bool

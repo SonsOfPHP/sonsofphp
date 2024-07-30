@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message\Serializer;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Message\MessageProviderInterface;
 use SonsOfPHP\Component\EventSourcing\Message\SerializableMessageInterface;
@@ -13,7 +14,6 @@ use SonsOfPHP\Component\EventSourcing\Metadata;
 use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\Serializer\MessageSerializer
  *
  * @uses \SonsOfPHP\Component\EventSourcing\Message\AbstractMessage
  * @uses \SonsOfPHP\Component\EventSourcing\Message\AbstractSerializableMessage
@@ -25,12 +25,11 @@ use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;
  * @uses \SonsOfPHP\Component\EventSourcing\Message\Serializer\MessageSerializer
  * @uses \SonsOfPHP\Component\EventSourcing\Message\Upcaster\MessageUpcaster
  * @uses \SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\NullMessageUpcasterProvider
+ * @coversNothing
  */
+#[CoversClass(MessageSerializer::class)]
 final class MessageSerializerTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheRightInterface(): void
     {
         $provider   = $this->createMock(MessageProviderInterface::class);
@@ -38,10 +37,6 @@ final class MessageSerializerTest extends TestCase
         $this->assertInstanceOf(MessageSerializerInterface::class, $serializer);
     }
 
-    /**
-     * @covers ::ensureRequiredMetadataExists
-     * @covers ::serialize
-     */
     public function testSerialize(): void
     {
         $provider = $this->createMock(MessageProviderInterface::class);
@@ -66,10 +61,6 @@ final class MessageSerializerTest extends TestCase
         $this->assertArrayHasKey(Metadata::EVENT_TYPE, $data['metadata'], 'Assert that "event_type" is added to metadata');
     }
 
-    /**
-     * @covers ::deserialize
-     * @covers ::ensureRequiredMetadataExists
-     */
     public function testDeserialize(): void
     {
         $data = [

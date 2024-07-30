@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Aggregate\Repository;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
@@ -13,9 +14,9 @@ use SonsOfPHP\Component\EventSourcing\Message\AbstractMessage;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\InMemoryMessageRepository;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterface;
 use SonsOfPHP\Component\EventSourcing\Tests\FakeAggregate;
+use TypeError;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Aggregate\Repository\AggregateRepository
  *
  * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\Repository\AggregateRepository
  * @uses \SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricher
@@ -27,7 +28,9 @@ use SonsOfPHP\Component\EventSourcing\Tests\FakeAggregate;
  * @uses \SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\NullMessageEnricherProvider
  * @uses \SonsOfPHP\Component\EventSourcing\Message\MessageMetadata
  * @uses \SonsOfPHP\Component\EventSourcing\Message\MessagePayload
+ * @coversNothing
  */
+#[CoversClass(AggregateRepository::class)]
 final class AggregateRepositoryTest extends TestCase
 {
     private string $aggregateClass;
@@ -41,9 +44,6 @@ final class AggregateRepositoryTest extends TestCase
         $this->messageRepository = new InMemoryMessageRepository();
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheRightInterface(): void
     {
         $repository = new AggregateRepository(
@@ -54,9 +54,6 @@ final class AggregateRepositoryTest extends TestCase
         $this->assertInstanceOf(AggregateRepositoryInterface::class, $repository);
     }
 
-    /**
-     * @covers ::persist
-     */
     public function testPersistWillUseEventDispatcher(): void
     {
         $this->eventDispatcher->expects($this->once())->method('dispatch'); // @phpstan-ignore-line
@@ -74,10 +71,6 @@ final class AggregateRepositoryTest extends TestCase
         $repository->persist($aggregate);
     }
 
-    /**
-     * @covers ::find
-     * @covers ::persist
-     */
     public function testPersistAndFind(): void
     {
         $repository = new AggregateRepository(
@@ -97,10 +90,6 @@ final class AggregateRepositoryTest extends TestCase
         $this->assertTrue($aggregate->getAggregateId()->equals($result->getAggregateId()));
     }
 
-    /**
-     * @covers ::find
-     * @covers ::persist
-     */
     public function testPersistAndFindWithoutUsingAggregateId(): void
     {
         $repository = new AggregateRepository(
@@ -120,9 +109,6 @@ final class AggregateRepositoryTest extends TestCase
         $this->assertTrue($aggregate->getAggregateId()->equals($result->getAggregateId()));
     }
 
-    /**
-     * @covers ::find
-     */
     public function testItThrowsExceptionWhenPassingInIncorrectArgumentType(): void
     {
         $repository = new AggregateRepository(
@@ -131,13 +117,10 @@ final class AggregateRepositoryTest extends TestCase
             $this->messageRepository
         );
 
-        $this->expectException(\TypeError::class);
+        $this->expectException(TypeError::class);
         $result = $repository->find(123);
     }
 
-    /**
-     * @covers ::find
-     */
     public function testItReturnsNullWhenAggregateNotFound(): void
     {
         $repository = new AggregateRepository(

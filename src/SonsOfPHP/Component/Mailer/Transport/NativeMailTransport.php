@@ -22,6 +22,6 @@ class NativeMailTransport implements TransportInterface
      */
     public function send(MessageInterface $message): void
     {
-        mail($message->getHeader('to'), $message->getHeader('subject'), $message->getBody(), $message->getHeaders());
+        mail((string) $message->getHeader('to'), (string) $message->getHeader('subject'), (string) $message->getBody(), $message->getHeaders());
     }
 }

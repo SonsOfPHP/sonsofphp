@@ -34,8 +34,8 @@ namespace SonsOfPHP\Component\Json;
  */
 class Json
 {
-    private JsonDecoder $decoder;
-    private JsonEncoder $encoder;
+    private readonly JsonDecoder $decoder;
+    private readonly JsonEncoder $encoder;
 
     public function __construct(JsonEncoder $encoder = null, JsonDecoder $decoder = null)
     {

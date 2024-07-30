@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests\Message;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Symfony\EventSourcing\Message\MessageNormalizer;
 use SonsOfPHP\Component\EventSourcing\Message\AbstractMessage;
@@ -11,12 +12,13 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Message\MessageNormalizer
  *
  * @uses \SonsOfPHP\Component\EventSourcing\Message\AbstractMessage
  * @uses \SonsOfPHP\Component\EventSourcing\Message\MessageMetadata
  * @uses \SonsOfPHP\Component\EventSourcing\Message\MessagePayload
+ * @coversNothing
  */
+#[CoversClass(MessageNormalizer::class)]
 final class MessageNormalizerTest extends TestCase
 {
     /**
@@ -30,10 +32,6 @@ final class MessageNormalizerTest extends TestCase
         $this->assertInstanceOf(NormalizerInterface::class, $normalizer);
     }
 
-    /**
-     * @covers ::normalize
-     * @covers ::supportsNormalization
-     */
     public function testItWillNormalizeMessage(): void
     {
         $normalizer = new MessageNormalizer();

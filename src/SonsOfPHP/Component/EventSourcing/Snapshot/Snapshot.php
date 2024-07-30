@@ -12,16 +12,7 @@ use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
  */
 final class Snapshot implements SnapshotInterface
 {
-    private AggregateIdInterface $id;
-    private AggregateVersionInterface $version;
-    private $state;
-
-    public function __construct(AggregateIdInterface $id, AggregateVersionInterface $version, $state)
-    {
-        $this->id      = $id;
-        $this->version = $version;
-        $this->state   = $state;
-    }
+    public function __construct(private readonly AggregateIdInterface $id, private readonly AggregateVersionInterface $version, private $state) {}
 
     public function getAggregateId(): AggregateIdInterface
     {

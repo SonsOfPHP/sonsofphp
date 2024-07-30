@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\HttpFactory\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\StreamInterface;
 use SonsOfPHP\Component\HttpFactory\StreamFactory;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\HttpFactory\StreamFactory
- *
  * @internal
+ * @coversNothing
  */
+#[CoversClass(StreamFactory::class)]
 final class StreamFactoryTest extends TestCase
 {
     /**
@@ -25,7 +26,6 @@ final class StreamFactoryTest extends TestCase
     }
 
     /**
-     * @covers ::createStream
      * @uses \SonsOfPHP\Component\HttpMessage\Stream
      */
     public function testCreateStreamWorksAsExpected(): void
@@ -36,7 +36,6 @@ final class StreamFactoryTest extends TestCase
     }
 
     /**
-     * @covers ::createStreamFromResource
      * @uses \SonsOfPHP\Component\HttpMessage\Stream
      */
     public function testCreateStreamFromResourceWorksAsExpected(): void
@@ -47,7 +46,6 @@ final class StreamFactoryTest extends TestCase
     }
 
     /**
-     * @covers ::createStreamFromResource
      * @uses \SonsOfPHP\Component\HttpMessage\Stream
      */
     public function testCreateStreamFromResourceWillThrowExceptionWhenNotResource(): void

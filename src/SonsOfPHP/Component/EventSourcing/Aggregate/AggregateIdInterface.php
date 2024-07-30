@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Aggregate;
 
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
+use Stringable;
 
 /**
  * Aggregate ID.
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface AggregateIdInterface extends \Stringable
+interface AggregateIdInterface extends Stringable
 {
     /**
      * Create a new AggregateID.

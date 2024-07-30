@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Mailer;
 
+use Countable;
 use SonsOfPHP\Contract\Mailer\MiddlewareInterface;
 use SonsOfPHP\Contract\Mailer\MiddlewareStackInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class MiddlewareStack implements MiddlewareStackInterface, \Countable
+class MiddlewareStack implements MiddlewareStackInterface, Countable
 {
     private array $middlewares = [];
 

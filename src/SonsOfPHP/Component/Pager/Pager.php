@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Pager;
 
+use ArrayIterator;
+use InvalidArgumentException;
+use Iterator;
+use IteratorAggregate;
 use SonsOfPHP\Contract\Pager\AdapterInterface;
 use SonsOfPHP\Contract\Pager\PagerInterface;
+use Traversable;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -23,7 +28,7 @@ class Pager implements PagerInterface
      *   - max_per_page (default: 10)
      */
     public function __construct(
-        private AdapterInterface $adapter,
+        private readonly AdapterInterface $adapter,
         array $options = [],
     ) {
         if (array_key_exists('current_page', $options)) {
@@ -142,7 +147,7 @@ class Pager implements PagerInterface
     public function setCurrentPage(int $page): void
     {
         if (1 > $page) {
-            throw new \InvalidArgumentException('$page is invalid');
+            throw new InvalidArgumentException('$page is invalid');
         }
 
         $this->currentPage = $page;
@@ -163,7 +168,7 @@ class Pager implements PagerInterface
     public function setMaxPerPage(?int $maxPerPage): void
     {
         if (is_int($maxPerPage) && 1 > $maxPerPage) {
-            throw new \InvalidArgumentException('maxPerPage is invalid');
+            throw new InvalidArgumentException('maxPerPage is invalid');
         }
 
         $this->maxPerPage = $maxPerPage;
@@ -175,26 +180,26 @@ class Pager implements PagerInterface
         return $this->getTotalResults();
     }
 
-    public function getIterator(): \Traversable
+    public function getIterator(): Traversable
     {
         $results = $this->getCurrentPageResults();
 
-        if ($results instanceof \Iterator) {
+        if ($results instanceof Iterator) {
             return $results;
         }
 
-        if ($results instanceof \IteratorAggregate) {
+        if ($results instanceof IteratorAggregate) {
             return $results->getIterator();
         }
 
-        return new \ArrayIterator($results);
+        return new ArrayIterator($results);
     }
 
     public function jsonSerialize(): array
     {
         $results = $this->getCurrentPageResults();
 
-        if ($results instanceof \Traversable) {
+        if ($results instanceof Traversable) {
             return iterator_to_array($results);
         }
 

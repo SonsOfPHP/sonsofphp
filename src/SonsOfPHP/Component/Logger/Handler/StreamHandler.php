@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Logger\Handler;
 
+use RuntimeException;
 use SonsOfPHP\Contract\Logger\HandlerInterface;
 use SonsOfPHP\Contract\Logger\RecordInterface;
 
@@ -13,12 +14,8 @@ use SonsOfPHP\Contract\Logger\RecordInterface;
 class StreamHandler extends AbstractHandler implements HandlerInterface
 {
     private bool $isOpen = false;
-    private $stream;
 
-    public function __construct($stream)
-    {
-        $this->stream = $stream;
-    }
+    public function __construct(private $stream) {}
 
     public function doHandle(RecordInterface $record, string $message): void
     {
@@ -28,7 +25,7 @@ class StreamHandler extends AbstractHandler implements HandlerInterface
     private function write(string $message): void
     {
         if (false === fwrite($this->stream, $message)) {
-            throw new \RuntimeException(sprintf('stream could not be written to'));
+            throw new RuntimeException(sprintf('stream could not be written to'));
         }
     }
 }

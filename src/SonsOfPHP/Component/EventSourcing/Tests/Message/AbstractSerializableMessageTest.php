@@ -4,22 +4,25 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
+use SonsOfPHP\Component\EventSourcing\Message\AbstractSerializableMessage;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\SerializableMessageInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\AbstractSerializableMessage
  *
  * @uses \SonsOfPHP\Component\EventSourcing\Message\AbstractMessage
  * @uses \SonsOfPHP\Component\EventSourcing\Message\MessageMetadata
  * @uses \SonsOfPHP\Component\EventSourcing\Message\MessagePayload
  * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
  * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
+ * @coversNothing
  */
+#[CoversClass(AbstractSerializableMessage::class)]
 final class AbstractSerializableMessageTest extends TestCase
 {
     /**
@@ -32,9 +35,6 @@ final class AbstractSerializableMessageTest extends TestCase
         $this->assertInstanceOf(SerializableMessageInterface::class, $message); // @phpstan-ignore-line
     }
 
-    /**
-     * @covers ::serialize
-     */
     public function testSerializeOnEmptyMessage(): void
     {
         $message = FakeSerializableMessage::new();
@@ -43,9 +43,6 @@ final class AbstractSerializableMessageTest extends TestCase
         $this->assertArrayHasKey('metadata', $return);
     }
 
-    /**
-     * @covers ::deserialize
-     */
     public function testDeserializeWithEmptyData(): void
     {
         $message = FakeSerializableMessage::new();
@@ -53,9 +50,6 @@ final class AbstractSerializableMessageTest extends TestCase
         $message::deserialize([]);
     }
 
-    /**
-     * @covers ::deserialize
-     */
     public function testDeserializeWithNoPayloadData(): void
     {
         $message = FakeSerializableMessage::new();
@@ -65,9 +59,6 @@ final class AbstractSerializableMessageTest extends TestCase
         ]);
     }
 
-    /**
-     * @covers ::deserialize
-     */
     public function testDeserializeWithNoMetadataData(): void
     {
         $message = FakeSerializableMessage::new();
@@ -77,9 +68,6 @@ final class AbstractSerializableMessageTest extends TestCase
         ]);
     }
 
-    /**
-     * @covers ::deserialize
-     */
     public function testDeserialize(): void
     {
         $message = FakeSerializableMessage::new();

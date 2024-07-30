@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\HttpMessage;
 
+use InvalidArgumentException;
 use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -87,7 +88,7 @@ class Message implements MessageInterface
     public function withHeader(string $name, $value): MessageInterface
     {
         if (!preg_match('/^[a-zA-Z0-9\'`#$%&*+.^_|~!-]+$/D', $name)) {
-            throw new \InvalidArgumentException(sprintf('"%s" is not valid header name.', $name));
+            throw new InvalidArgumentException(sprintf('"%s" is not valid header name.', $name));
         }
 
         $that = clone $this;
@@ -113,7 +114,7 @@ class Message implements MessageInterface
     public function withAddedHeader(string $name, $value): MessageInterface
     {
         if (!preg_match('/^[a-zA-Z0-9\'`#$%&*+.^_|~!-]+$/D', $name)) {
-            throw new \InvalidArgumentException(sprintf('"%s" is not valid header name.', $name));
+            throw new InvalidArgumentException(sprintf('"%s" is not valid header name.', $name));
         }
 
         if (!$this->hasHeader($name)) {

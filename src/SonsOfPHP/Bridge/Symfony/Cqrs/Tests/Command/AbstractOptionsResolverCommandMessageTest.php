@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Symfony\Cqrs\Tests\Command;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Symfony\Cqrs\Command\AbstractOptionsResolverCommandMessage;
 use SonsOfPHP\Bridge\Symfony\Cqrs\Tests\DummyCommand;
 use SonsOfPHP\Contract\Cqrs\CommandMessageInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\Cqrs\Command\AbstractOptionsResolverCommandMessage
- *
  * @uses \SonsOfPHP\Bridge\Symfony\Cqrs\Command\AbstractOptionsResolverCommandMessage
+ * @coversNothing
  */
+#[CoversClass(AbstractOptionsResolverCommandMessage::class)]
 final class AbstractOptionsResolverCommandMessageTest extends TestCase
 {
     /**
@@ -26,12 +27,6 @@ final class AbstractOptionsResolverCommandMessageTest extends TestCase
         $this->assertInstanceOf(CommandMessageInterface::class, $command); // @phpstan-ignore-line
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::configureOptions
-     * @covers ::getOption
-     * @covers ::getOptions
-     */
     public function testConstructor(): void
     {
         DummyCommand::setConfigureOptionsCallback(function ($resolver): void {
@@ -46,10 +41,6 @@ final class AbstractOptionsResolverCommandMessageTest extends TestCase
         $this->assertSame('unique-id', $command->getOption('id'));
     }
 
-    /**
-     * @covers ::__get
-     * @covers ::getOption
-     */
     public function testMagicMethodGetWorks(): void
     {
         DummyCommand::setConfigureOptionsCallback(function ($resolver): void {
@@ -62,10 +53,6 @@ final class AbstractOptionsResolverCommandMessageTest extends TestCase
         $this->assertSame('unique-id', $command->id);
     }
 
-    /**
-     * @covers ::__isset
-     * @covers ::hasOption
-     */
     public function testMagicMethodIssetWorks(): void
     {
         DummyCommand::setConfigureOptionsCallback(function ($resolver): void {

@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Json\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use ReflectionObject;
+use SonsOfPHP\Component\Json\AbstractEncoderDecoder;
 use SonsOfPHP\Component\Json\JsonEncoder;
 use SonsOfPHP\Component\Json\JsonException;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Json\JsonEncoder
- *
  * @uses \SonsOfPHP\Component\Json\AbstractEncoderDecoder
+ * @coversNothing
  */
+#[CoversClass(JsonEncoder::class)]
+#[CoversClass(AbstractEncoderDecoder::class)]
 final class JsonEncoderTest extends TestCase
 {
-    /**
-     * @covers \SonsOfPHP\Component\Json\AbstractEncoderDecoder::__construct
-     * @covers \SonsOfPHP\Component\Json\AbstractEncoderDecoder::withFlags
-     */
     public function testWithFlagsReturnsNewObject(): void
     {
         $encoder      = new JsonEncoder();
@@ -27,10 +27,6 @@ final class JsonEncoderTest extends TestCase
         $this->assertNotSame($encoder, $encoderOther);
     }
 
-    /**
-     * @covers \SonsOfPHP\Component\Json\AbstractEncoderDecoder::__construct
-     * @covers \SonsOfPHP\Component\Json\AbstractEncoderDecoder::withOutFlags
-     */
     public function testWithoutFlagsReturnsNewObject(): void
     {
         $encoder      = new JsonEncoder();
@@ -39,15 +35,10 @@ final class JsonEncoderTest extends TestCase
         $this->assertNotSame($encoder, $encoderOther);
     }
 
-    /**
-     * @covers \SonsOfPHP\Component\Json\AbstractEncoderDecoder::__construct
-     * @covers \SonsOfPHP\Component\Json\AbstractEncoderDecoder::withFlags
-     * @covers \SonsOfPHP\Component\Json\AbstractEncoderDecoder::withOutFlags
-     */
     public function testWithoutFlagsDoesntRemoveMoreThanItShould(): void
     {
         $encoder = new JsonEncoder();
-        $ref     = new \ReflectionObject($encoder);
+        $ref     = new ReflectionObject($encoder);
         $prop    = $ref->getProperty('flags');
         $prop->setAccessible(true);
 
@@ -61,15 +52,10 @@ final class JsonEncoderTest extends TestCase
         $this->assertSame(0, $prop->getValue($encoder));
     }
 
-    /**
-     * @covers \SonsOfPHP\Component\Json\AbstractEncoderDecoder::__construct
-     * @covers \SonsOfPHP\Component\Json\AbstractEncoderDecoder::withFlags
-     * @covers \SonsOfPHP\Component\Json\AbstractEncoderDecoder::withOutFlags
-     */
     public function testWithoutFlagsRemovesFlag(): void
     {
         $encoder = new JsonEncoder();
-        $ref     = new \ReflectionObject($encoder);
+        $ref     = new ReflectionObject($encoder);
         $prop    = $ref->getProperty('flags');
         $prop->setAccessible(true);
 
@@ -80,13 +66,10 @@ final class JsonEncoderTest extends TestCase
         $this->assertSame(0, $prop->getValue($encoder));
     }
 
-    /**
-     * @covers \SonsOfPHP\Component\Json\AbstractEncoderDecoder::withDepth
-     */
     public function testChangingDepthActuallyChangesDepth(): void
     {
         $encoder = new JsonEncoder();
-        $ref     = new \ReflectionObject($encoder);
+        $ref     = new ReflectionObject($encoder);
         $prop    = $ref->getProperty('depth');
         $prop->setAccessible(true);
 
@@ -94,9 +77,6 @@ final class JsonEncoderTest extends TestCase
         $this->assertSame(123, $prop->getValue($encoder));
     }
 
-    /**
-     * @covers ::encode
-     */
     public function testEncodeOnSimpleJsonString(): void
     {
         $value   = ['test' => true];
@@ -106,9 +86,6 @@ final class JsonEncoderTest extends TestCase
         $this->assertSame('{"test":true}', $return);
     }
 
-    /**
-     * @covers ::encode
-     */
     public function testEncodeOnFuckedUpJson(): void
     {
         $value   = "\xB1\x31"; // invalid UTF8

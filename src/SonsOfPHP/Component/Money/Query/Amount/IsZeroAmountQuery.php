@@ -12,7 +12,7 @@ use SonsOfPHP\Contract\Money\AmountQueryInterface;
  */
 class IsZeroAmountQuery implements AmountQueryInterface
 {
-    public function queryFrom(AmountInterface $amount)
+    public function queryFrom(AmountInterface $amount): bool
     {
         return 0 == $amount->getAmount();
     }

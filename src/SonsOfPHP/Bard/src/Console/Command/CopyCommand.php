@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bard\Console\Command;
 
+use RuntimeException;
 use SonsOfPHP\Bard\JsonFile;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -49,7 +50,7 @@ final class CopyCommand extends AbstractCommand
         // ---
         $sourceFile = $input->getOption('working-dir') . '/' . $input->getArgument('source');
         if (!is_file($sourceFile)) {
-            throw new \RuntimeException(sprintf('The file "%s" is an invalid file.', $sourceFile));
+            throw new RuntimeException(sprintf('The file "%s" is an invalid file.', $sourceFile));
         }
         // ---
 
