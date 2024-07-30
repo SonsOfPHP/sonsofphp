@@ -6,22 +6,20 @@ namespace SonsOfPHP\Component\Money\Tests\Formatter;
 
 use NumberFormatter;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RequiresPhpExtension;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\Money\Amount;
+use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\Formatter\IntlMoneyFormatter;
 use SonsOfPHP\Component\Money\Money;
 use SonsOfPHP\Contract\Money\MoneyFormatterInterface;
 
-/**
- * @requires extension intl
- *
- *
- * @uses \SonsOfPHP\Component\Money\Amount
- * @uses \SonsOfPHP\Component\Money\Currency
- * @uses \SonsOfPHP\Component\Money\Formatter\IntlMoneyFormatter
- * @uses \SonsOfPHP\Component\Money\Money
- * @coversNothing
- */
+#[RequiresPhpExtension('intl')]
 #[CoversClass(IntlMoneyFormatter::class)]
+#[UsesClass(Amount::class)]
+#[UsesClass(Currency::class)]
+#[UsesClass(Money::class)]
 final class IntlMoneyFormatterTest extends TestCase
 {
     public function testItHasTheCorrectInterface(): void

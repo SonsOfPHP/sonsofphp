@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Logger\Tests\Filter;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Logger\Context;
 use SonsOfPHP\Component\Logger\Filter\MockFilter;
@@ -12,15 +13,9 @@ use SonsOfPHP\Component\Logger\Level;
 use SonsOfPHP\Component\Logger\Record;
 use SonsOfPHP\Contract\Logger\FilterInterface;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Logger\Filter\MockFilter
- * @uses \SonsOfPHP\Component\Logger\Context
- * @uses \SonsOfPHP\Component\Logger\Record
- * @uses \SonsOfPHP\Component\Logger\Level
- * @coversNothing
- */
 #[CoversClass(MockFilter::class)]
+#[UsesClass(Context::class)]
+#[UsesClass(Record::class)]
 final class MockFilterTest extends TestCase
 {
     public function testItHasTheCorrectInterface(): void

@@ -6,23 +6,19 @@ namespace SonsOfPHP\Component\Logger\Tests\Handler;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Logger\Context;
+use SonsOfPHP\Component\Logger\Handler\AbstractHandler;
 use SonsOfPHP\Component\Logger\Handler\FileHandler;
 use SonsOfPHP\Component\Logger\Level;
 use SonsOfPHP\Component\Logger\Record;
 use SonsOfPHP\Contract\Logger\HandlerInterface;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Logger\Handler\FileHandler
- * @uses \SonsOfPHP\Component\Logger\Context
- * @uses \SonsOfPHP\Component\Logger\Record
- * @uses \SonsOfPHP\Component\Logger\Level
- * @uses \SonsOfPHP\Component\Logger\Handler\AbstractHandler
- * @coversNothing
- */
 #[CoversClass(FileHandler::class)]
+#[UsesClass(Context::class)]
+#[UsesClass(AbstractHandler::class)]
+#[UsesClass(Record::class)]
 final class FileHandlerTest extends TestCase
 {
     public function setUp(): void

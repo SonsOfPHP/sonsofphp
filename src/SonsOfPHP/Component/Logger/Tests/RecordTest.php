@@ -5,20 +5,15 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Logger\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Logger\Context;
 use SonsOfPHP\Component\Logger\Level;
 use SonsOfPHP\Component\Logger\Record;
 use SonsOfPHP\Contract\Logger\RecordInterface;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Logger\Record
- * @uses \SonsOfPHP\Component\Logger\Level
- * @uses \SonsOfPHP\Component\Logger\Context
- * @coversNothing
- */
 #[CoversClass(Record::class)]
+#[UsesClass(Context::class)]
 final class RecordTest extends TestCase
 {
     public function testItHasTheCorrectInterface(): void

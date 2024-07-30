@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Filesystem\Tests\Adapter;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\ChainAdapter;
@@ -14,13 +15,8 @@ use SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter;
 use SonsOfPHP\Component\Filesystem\Adapter\MoveAwareInterface;
 use SonsOfPHP\Component\Filesystem\Exception\FileNotFoundException;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Filesystem\Adapter\ChainAdapter
- * @uses \SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter
- * @coversNothing
- */
 #[CoversClass(ChainAdapter::class)]
+#[UsesClass(InMemoryAdapter::class)]
 final class ChainAdapterTest extends TestCase
 {
     private array $adapters = [];

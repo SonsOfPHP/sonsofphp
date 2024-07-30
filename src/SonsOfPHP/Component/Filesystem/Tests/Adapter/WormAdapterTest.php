@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Filesystem\Tests\Adapter;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\CopyAwareInterface;
@@ -14,13 +15,8 @@ use SonsOfPHP\Component\Filesystem\Adapter\MoveAwareInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\WormAdapter;
 use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter
- * @uses \SonsOfPHP\Component\Filesystem\Adapter\WormAdapter
- * @coversNothing
- */
 #[CoversClass(WormAdapter::class)]
+#[UsesClass(InMemoryAdapter::class)]
 final class WormAdapterTest extends TestCase
 {
     private AdapterInterface $adapter;

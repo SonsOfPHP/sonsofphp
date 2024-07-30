@@ -5,18 +5,14 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Link\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Link\LinkProviderInterface;
 use SonsOfPHP\Component\Link\Link;
 use SonsOfPHP\Component\Link\LinkProvider;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Link\Link
- * @uses \SonsOfPHP\Component\Link\LinkProvider
- * @coversNothing
- */
 #[CoversClass(LinkProvider::class)]
+#[UsesClass(Link::class)]
 final class LinkProviderTest extends TestCase
 {
     public function testItHasTheCorrectInterface(): void

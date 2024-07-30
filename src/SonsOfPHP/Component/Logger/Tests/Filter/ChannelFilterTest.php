@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Logger\Tests\Filter;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Logger\Context;
 use SonsOfPHP\Component\Logger\Filter\ChannelFilter;
@@ -12,14 +13,9 @@ use SonsOfPHP\Component\Logger\Level;
 use SonsOfPHP\Component\Logger\Record;
 use SonsOfPHP\Contract\Logger\FilterInterface;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Logger\Filter\ChannelFilter
- * @uses \SonsOfPHP\Component\Logger\Context
- * @uses \SonsOfPHP\Component\Logger\Record
- * @coversNothing
- */
 #[CoversClass(ChannelFilter::class)]
+#[UsesClass(Context::class)]
+#[UsesClass(Record::class)]
 final class ChannelFilterTest extends TestCase
 {
     public function testItHasTheCorrectInterface(): void

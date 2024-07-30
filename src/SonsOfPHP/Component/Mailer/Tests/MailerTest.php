@@ -5,21 +5,19 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Mailer\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Mailer\Mailer;
+use SonsOfPHP\Component\Mailer\MiddlewareHandler;
+use SonsOfPHP\Component\Mailer\MiddlewareStack;
 use SonsOfPHP\Contract\Mailer\MailerInterface;
 use SonsOfPHP\Contract\Mailer\MessageInterface;
 use SonsOfPHP\Contract\Mailer\TransportInterface;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Mailer\Mailer
- * @uses \SonsOfPHP\Component\Mailer\MiddlewareHandler
- * @uses \SonsOfPHP\Component\Mailer\MiddlewareStack
- * @coversNothing
- */
 #[CoversClass(Mailer::class)]
+#[UsesClass(MiddlewareHandler::class)]
+#[UsesClass(MiddlewareStack::class)]
 final class MailerTest extends TestCase
 {
     private MockObject $transport;

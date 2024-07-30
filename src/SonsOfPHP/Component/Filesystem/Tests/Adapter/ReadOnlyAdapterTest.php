@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Filesystem\Tests\Adapter;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
@@ -15,13 +16,8 @@ use SonsOfPHP\Component\Filesystem\Adapter\MoveAwareInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\ReadOnlyAdapter;
 use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Filesystem\Adapter\ReadOnlyAdapter
- * @uses \SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter
- * @coversNothing
- */
 #[CoversClass(ReadOnlyAdapter::class)]
+#[UsesClass(InMemoryAdapter::class)]
 final class ReadOnlyAdapterTest extends TestCase
 {
     private AdapterInterface|MockObject $adapter;

@@ -5,18 +5,15 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Link\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Link\EvolvableLinkInterface;
 use SonsOfPHP\Component\Link\EvolvableLink;
+use SonsOfPHP\Component\Link\Link;
 use Stringable;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Link\EvolvableLink
- * @uses \SonsOfPHP\Component\Link\Link
- * @coversNothing
- */
 #[CoversClass(EvolvableLink::class)]
+#[UsesClass(Link::class)]
 final class EvolvableLinkTest extends TestCase
 {
     public function testItHasTheCorrectInterface(): void
