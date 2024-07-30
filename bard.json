@@ -6,6 +6,14 @@
             "repository": "git@github.com:SonsOfPHP/bard.git"
         },
         {
+            "path": "src/SonsOfPHP/Contract/Attribute",
+            "repository": "git@github.com:SonsOfPHP/attribute-contract.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Component/Attribute",
+            "repository": "git@github.com:SonsOfPHP/attribute.git"
+        },
+        {
             "path": "src/SonsOfPHP/Contract/Mailer",
             "repository": "git@github.com:SonsOfPHP/mailer-contract.git"
         },
