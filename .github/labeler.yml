@@ -2,6 +2,11 @@ Bard:
   - docs/bard/*
   - src/SonsOfPHP/Bard/*
 
+Attribute:
+  - docs/components/attribute/*
+  - docs/contracts/attribute/*
+  - src/SonsOfPHP/**/Attribute/*
+
 Cache:
   - docs/components/cache/*
   - src/SonsOfPHP/**/Cache/*

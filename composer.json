@@ -54,7 +54,8 @@
         "psr/http-server-handler-implementation": "^1.0",
         "psr/http-server-middleware-implementation": "^1.0",
         "sonsofphp/http-handler-implementation": "0.3.x-dev",
-        "sonsofphp/mailer-implementation": "0.3.x-dev"
+        "sonsofphp/mailer-implementation": "0.3.x-dev",
+        "sonsofphp/attribute-implementation": "0.3.x-dev"
     },
     "require": {
         "php": ">=8.1",
@@ -127,11 +128,15 @@
         "sonsofphp/http-handler": "self.version",
         "sonsofphp/http-handler-contract": "self.version",
         "sonsofphp/mailer-contract": "self.version",
-        "sonsofphp/mailer": "self.version"
+        "sonsofphp/mailer": "self.version",
+        "sonsofphp/attribute-contract": "self.version",
+        "sonsofphp/attribute": "self.version"
     },
     "autoload": {
         "psr-4": {
             "SonsOfPHP\\Bard\\": "src/SonsOfPHP/Bard/src",
+            "SonsOfPHP\\Contract\\Attribute\\": "src/SonsOfPHP/Contract/Attribute",
+            "SonsOfPHP\\Component\\Attribute\\": "src/SonsOfPHP/Component/Attribute",
             "SonsOfPHP\\Contract\\Mailer\\": "src/SonsOfPHP/Contract/Mailer",
             "SonsOfPHP\\Component\\Mailer\\": "src/SonsOfPHP/Component/Mailer",
             "SonsOfPHP\\Component\\Cache\\": "src/SonsOfPHP/Component/Cache",
@@ -174,6 +179,7 @@
         },
         "exclude-from-classmap": [
             "src/SonsOfPHP/Bard/Tests",
+            "src/SonsOfPHP/Component/Attribute/Tests",
             "src/SonsOfPHP/Component/Mailer/Tests",
             "src/SonsOfPHP/Component/Cache/Tests",
             "src/SonsOfPHP/Component/Clock/Tests",
