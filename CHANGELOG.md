@@ -10,6 +10,7 @@ To get the diff between two versions, go to https://github.com/SonsOfPHP/sonsofp
 
 ## [Unreleased]
 
+* [PR #210](https://github.com/SonsOfPHP/sonsofphp/pull/210) Added new Attribute component and contact
 * [PR #51](https://github.com/SonsOfPHP/sonsofphp/pull/51) Added new Filesystem component
 * [PR #59](https://github.com/SonsOfPHP/sonsofphp/pull/59) Added new HttpMessage component
 * [PR #59](https://github.com/SonsOfPHP/sonsofphp/pull/59) Added new HttpFactory component
