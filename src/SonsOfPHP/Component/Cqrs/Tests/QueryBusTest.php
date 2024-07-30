@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Cqrs\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Cqrs\MessageHandlerProvider;
@@ -12,13 +13,8 @@ use SonsOfPHP\Component\Cqrs\QueryBus;
 use SonsOfPHP\Contract\Cqrs\QueryBusInterface;
 use stdClass;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Cqrs\QueryBus
- * @uses \SonsOfPHP\Component\Cqrs\AbstractBus
- * @coversNothing
- */
 #[CoversClass(QueryBus::class)]
+#[UsesClass(AbstactBus::class)]
 final class QueryBusTest extends TestCase
 {
     private MockObject $provider;

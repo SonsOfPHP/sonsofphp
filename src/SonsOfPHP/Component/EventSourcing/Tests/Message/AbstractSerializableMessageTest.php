@@ -5,24 +5,26 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
+use SonsOfPHP\Component\EventSourcing\Message\AbstractMessage;
 use SonsOfPHP\Component\EventSourcing\Message\AbstractSerializableMessage;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
+use SonsOfPHP\Component\EventSourcing\Message\MessageMetadata;
+use SonsOfPHP\Component\EventSourcing\Message\MessagePayload;
 use SonsOfPHP\Component\EventSourcing\Message\SerializableMessageInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;
 
-/**
- *
- * @uses \SonsOfPHP\Component\EventSourcing\Message\AbstractMessage
- * @uses \SonsOfPHP\Component\EventSourcing\Message\MessageMetadata
- * @uses \SonsOfPHP\Component\EventSourcing\Message\MessagePayload
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
- * @coversNothing
- */
 #[CoversClass(AbstractSerializableMessage::class)]
+#[UsesClass(AbstractAggregateId::class)]
+#[UsesClass(AggregateVersion::class)]
+#[UsesClass(AbstractMessage::class)]
+#[UsesClass(MessageMetadata::class)]
+#[UsesClass(MessagePayload::class)]
 final class AbstractSerializableMessageTest extends TestCase
 {
     /**

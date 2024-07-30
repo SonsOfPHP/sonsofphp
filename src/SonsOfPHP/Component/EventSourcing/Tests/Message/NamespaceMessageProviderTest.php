@@ -5,22 +5,21 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
+use SonsOfPHP\Component\EventSourcing\Message\AbstractMessage;
+use SonsOfPHP\Component\EventSourcing\Message\MessageMetadata;
+use SonsOfPHP\Component\EventSourcing\Message\MessagePayload;
 use SonsOfPHP\Component\EventSourcing\Message\MessageProviderInterface;
 use SonsOfPHP\Component\EventSourcing\Message\NamespaceMessageProvider;
 use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;
 use stdClass;
 
-/**
- *
- * @uses \SonsOfPHP\Component\EventSourcing\Message\NamespaceMessageProvider
- * @uses \SonsOfPHP\Component\EventSourcing\Message\AbstractMessage
- * @uses \SonsOfPHP\Component\EventSourcing\Message\MessageMetadata
- * @uses \SonsOfPHP\Component\EventSourcing\Message\MessagePayload
- * @coversNothing
- */
 #[CoversClass(NamespaceMessageProvider::class)]
+#[UsesClass(AbstractMessage::class)]
+#[UsesClass(MessageMetadata::class)]
+#[UsesClass(MessagePayload::class)]
 final class NamespaceMessageProviderTest extends TestCase
 {
     private string $namespace;

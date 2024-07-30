@@ -6,24 +6,23 @@ namespace SonsOfPHP\Component\EventSourcing\Tests\Aggregate;
 
 use Generator;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
 use ReflectionObject;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregate;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Tests\FakeAggregate;
 use stdClass;
 use TypeError;
 
-/**
- *
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregate
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
- * @coversNothing
- */
 #[CoversClass(AbstractAggregate::class)]
+#[UsesClass(AbstractAggregate::class)]
+#[UsesClass(AbstractAggregateId::class)]
+#[UsesClass(AggregateVersion::class)]
 final class AbstractAggregateTest extends TestCase
 {
     public function testItHasPendingEvents(): void

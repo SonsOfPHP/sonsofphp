@@ -5,19 +5,16 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Cache\Tests\Adapter;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use SonsOfPHP\Component\Cache\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Cache\Adapter\NullAdapter;
+use SonsOfPHP\Component\Cache\CacheItem;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Cache\CacheItem
- * @uses \SonsOfPHP\Component\Cache\Adapter\NullAdapter
- * @coversNothing
- */
 #[CoversClass(NullAdapter::class)]
+#[UsesClass(CacheItem::class)]
 final class NullAdapterTest extends TestCase
 {
     /**

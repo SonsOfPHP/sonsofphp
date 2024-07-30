@@ -17,8 +17,10 @@
         <ignoreFiles>
             <directory name="src/SonsOfPHP/Bard/vendor/*"/>
             <directory name="src/SonsOfPHP/Bridge/*/*/vendor/*"/>
+            <directory name="src/SonsOfPHP/Bridge/*/*/*/vendor/*"/>
             <directory name="src/SonsOfPHP/Bundle/*/vendor/*"/>
             <directory name="src/SonsOfPHP/Component/*/vendor/*"/>
+            <directory name="src/SonsOfPHP/Contract/*/vendor/*"/>
         </ignoreFiles>
     </projectFiles>
     <extraFiles>

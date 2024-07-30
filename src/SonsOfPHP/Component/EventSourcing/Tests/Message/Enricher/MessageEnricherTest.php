@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message\Enricher;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\NullMessageEnricherHandler;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricher;
@@ -13,15 +14,10 @@ use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\AllMessageEnrich
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\NullMessageEnricherProvider;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 
-/**
- *
- * @uses \SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricher
- * @uses \SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\NullMessageEnricherProvider
- * @uses \SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\NullMessageEnricherHandler
- * @uses \SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\AllMessageEnricherProvider
- * @coversNothing
- */
 #[CoversClass(MessageEnricher::class)]
+#[UsesClass(NullMessageEnricherHandler::class)]
+#[UsesClass(NullMessageEnricherProvider::class)]
+#[UsesClass(AllMessageEnricherProvider::class)]
 final class MessageEnricherTest extends TestCase
 {
     public function testItHasTheRightInterface(): void

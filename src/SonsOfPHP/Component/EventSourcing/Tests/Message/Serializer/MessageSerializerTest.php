@@ -5,29 +5,34 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message\Serializer;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\EventSourcing\Message\AbstractMessage;
+use SonsOfPHP\Component\EventSourcing\Message\AbstractSerializableMessage;
+use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\EventTypeMessageEnricherHandler;
+use SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricher;
+use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\AllMessageEnricherProvider;
+use SonsOfPHP\Component\EventSourcing\Message\MessageMetadata;
+use SonsOfPHP\Component\EventSourcing\Message\MessagePayload;
 use SonsOfPHP\Component\EventSourcing\Message\MessageProviderInterface;
 use SonsOfPHP\Component\EventSourcing\Message\SerializableMessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Serializer\MessageSerializer;
 use SonsOfPHP\Component\EventSourcing\Message\Serializer\MessageSerializerInterface;
+use SonsOfPHP\Component\EventSourcing\Message\Upcaster\MessageUpcaster;
+use SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\NullMessageUpcasterProvider;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;
 
-/**
- *
- * @uses \SonsOfPHP\Component\EventSourcing\Message\AbstractMessage
- * @uses \SonsOfPHP\Component\EventSourcing\Message\AbstractSerializableMessage
- * @uses \SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\EventTypeMessageEnricherHandler
- * @uses \SonsOfPHP\Component\EventSourcing\Message\Enricher\MessageEnricher
- * @uses \SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\AllMessageEnricherProvider
- * @uses \SonsOfPHP\Component\EventSourcing\Message\MessageMetadata
- * @uses \SonsOfPHP\Component\EventSourcing\Message\MessagePayload
- * @uses \SonsOfPHP\Component\EventSourcing\Message\Serializer\MessageSerializer
- * @uses \SonsOfPHP\Component\EventSourcing\Message\Upcaster\MessageUpcaster
- * @uses \SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\NullMessageUpcasterProvider
- * @coversNothing
- */
 #[CoversClass(MessageSerializer::class)]
+#[UsesClass(AbstractMessage::class)]
+#[UsesClass(AbstractSerializableMessage::class)]
+#[UsesClass(EventTypeMessageEnricherHandler::class)]
+#[UsesClass(MessageEnricher::class)]
+#[UsesClass(AllMessageEnricherProvider::class)]
+#[UsesClass(MessageMetadata::class)]
+#[UsesClass(MessagePayload::class)]
+#[UsesClass(MessageUpcaster::class)]
+#[UsesClass(NullMessageUpcasterProvider::class)]
 final class MessageSerializerTest extends TestCase
 {
     public function testItHasTheRightInterface(): void
