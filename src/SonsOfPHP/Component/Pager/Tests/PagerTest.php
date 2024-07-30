@@ -8,6 +8,7 @@ use ArrayIterator;
 use Generator;
 use IteratorAggregate;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Pager\Adapter\ArrayAdapter;
 use SonsOfPHP\Component\Pager\Adapter\CallableAdapter;
@@ -16,14 +17,9 @@ use SonsOfPHP\Contract\Pager\PagerInterface;
 use stdClass;
 use Traversable;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Pager\Pager
- * @uses \SonsOfPHP\Component\Pager\Adapter\ArrayAdapter
- * @uses \SonsOfPHP\Component\Pager\Adapter\CallableAdapter
- * @coversNothing
- */
 #[CoversClass(Pager::class)]
+#[UsesClass(ArrayAdapter::class)]
+#[UsesClass(CallableAdapter::class)]
 final class PagerTest extends TestCase
 {
     public function testItHasTheCorrectInterface(): void
