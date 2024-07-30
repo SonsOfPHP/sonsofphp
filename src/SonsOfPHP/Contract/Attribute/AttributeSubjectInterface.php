@@ -9,6 +9,8 @@ use Doctrine\Common\Collections\Collection;
 /**
  * Classes should implement this is they want to use attributes. For example, the Product
  * class would implement this
+ *
+ * @author Joshua Estes <joshua@sonsofphp.com>
  */
 interface AttributeSubjectInterface
 {

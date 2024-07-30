@@ -1,17 +1,11 @@
 {
-    "name": "sonsofphp/attribute-contract",
+    "name": "sonsofphp/attribute",
     "type": "library",
-    "description": "Attribute Contract for objects that have attributes",
+    "description": "Attribute library for PHP",
     "keywords": [
-        "abstractions",
-        "contracts",
-        "decoupling",
-        "interfaces",
-        "interoperability",
-        "standards",
         "attribute"
     ],
-    "homepage": "https://github.com/SonsOfPHP/attribute-contract",
+    "homepage": "https://github.com/SonsOfPHP/attribute",
     "license": "MIT",
     "authors": [
         {
@@ -26,14 +20,20 @@
     },
     "autoload": {
         "psr-4": {
-            "SonsOfPHP\\Contract\\Attribute\\": ""
-        }
+            "SonsOfPHP\\Component\\Attribute\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
         "php": ">=8.2",
-        "doctrine/collections": "^2.2"
+        "sonsofphp/attribute-contract": "0.3.x-dev"
+    },
+    "provide": {
+        "sonsofphp/attribute-implementation": "0.3.x-dev"
     },
     "extra": {
         "sort-packages": true,

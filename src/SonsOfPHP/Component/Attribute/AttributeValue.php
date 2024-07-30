@@ -10,6 +10,7 @@ use SonsOfPHP\Contract\Attribute\AttributeTypeInterface;
 use SonsOfPHP\Contract\Attribute\AttributeValueInterface;
 
 /**
+ * @author Joshua Estes <joshua@sonsofphp.com>
  */
 class AttributeValue implements AttributeValueInterface
 {

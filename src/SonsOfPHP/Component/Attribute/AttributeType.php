@@ -6,6 +6,9 @@ namespace SonsOfPHP\Component\Attribute;
 
 use SonsOfPHP\Contract\Attribute\AttributeTypeInterface;
 
+/**
+ * @author Joshua Estes <joshua@sonsofphp.com>
+ */
 enum AttributeType: string implements AttributeTypeInterface
 {
     case TYPE_TEXT = 'text';

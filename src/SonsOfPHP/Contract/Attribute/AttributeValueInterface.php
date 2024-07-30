@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Contract\Attribute;
 
 /**
+ * @author Joshua Estes <joshua@sonsofphp.com>
  */
 interface AttributeValueInterface
 {

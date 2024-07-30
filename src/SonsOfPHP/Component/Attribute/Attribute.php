@@ -8,9 +8,11 @@ use SonsOfPHP\Contract\Attribute\AttributeInterface;
 use SonsOfPHP\Contract\Attribute\AttributeTypeInterface;
 
 /**
+ * @author Joshua Estes <joshua@sonsofphp.com>
  */
 class Attribute implements AttributeInterface, \Stringable
 {
+    protected ?string $code = null;
     protected ?string $name = null;
     protected int $position = 0;
     protected ?AttributeTypeInterface $type = null;
@@ -18,6 +20,11 @@ class Attribute implements AttributeInterface, \Stringable
     public function __toString(): string
     {
         return (string) $this->getName();
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
     }
 
     public function setCode(?string $code): static
