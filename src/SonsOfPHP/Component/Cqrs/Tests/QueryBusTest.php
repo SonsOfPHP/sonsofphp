@@ -8,13 +8,14 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\Cqrs\AbstractBus;
 use SonsOfPHP\Component\Cqrs\MessageHandlerProvider;
 use SonsOfPHP\Component\Cqrs\QueryBus;
 use SonsOfPHP\Contract\Cqrs\QueryBusInterface;
 use stdClass;
 
 #[CoversClass(QueryBus::class)]
-#[UsesClass(AbstactBus::class)]
+#[UsesClass(AbstractBus::class)]
 final class QueryBusTest extends TestCase
 {
     private MockObject $provider;

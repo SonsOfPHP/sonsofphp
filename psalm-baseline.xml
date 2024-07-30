@@ -416,21 +416,6 @@
       <code><![CDATA[ApcuAdapter]]></code>
     </UnusedClass>
   </file>
-  <file src="src/SonsOfPHP/Component/Cache/Adapter/ArrayAdapter.php">
-    <UnusedClass>
-      <code><![CDATA[ArrayAdapter]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/Cache/Adapter/ChainAdapter.php">
-    <UnusedClass>
-      <code><![CDATA[ChainAdapter]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/Cache/Adapter/NullAdapter.php">
-    <UnusedClass>
-      <code><![CDATA[NullAdapter]]></code>
-    </UnusedClass>
-  </file>
   <file src="src/SonsOfPHP/Component/Cache/Adapter/TagAwareAdapterInterface.php">
     <UnusedClass>
       <code><![CDATA[TagAwareAdapterInterface]]></code>
@@ -468,21 +453,6 @@
   <file src="src/SonsOfPHP/Component/Cache/Tests/Adapter/ApcuAdapterTest.php">
     <UnusedClass>
       <code><![CDATA[ApcuAdapterTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/Cache/Tests/Adapter/ArrayAdapterTest.php">
-    <UnusedClass>
-      <code><![CDATA[ArrayAdapterTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/Cache/Tests/Adapter/ChainAdapterTest.php">
-    <UnusedClass>
-      <code><![CDATA[ChainAdapterTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/Cache/Tests/Adapter/NullAdapterTest.php">
-    <UnusedClass>
-      <code><![CDATA[NullAdapterTest]]></code>
     </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Component/Cache/Tests/CacheItemFactoryTest.php">
@@ -651,10 +621,6 @@
     </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Component/Cqrs/AbstractBus.php">
-    <PossiblyUnusedMethod>
-      <code><![CDATA[__construct]]></code>
-      <code><![CDATA[addHandler]]></code>
-    </PossiblyUnusedMethod>
     <UndefinedInterfaceMethod>
       <code><![CDATA[add]]></code>
     </UndefinedInterfaceMethod>
@@ -699,11 +665,6 @@
       <code><![CDATA[AsMessageHandler]]></code>
     </UnusedClass>
   </file>
-  <file src="src/SonsOfPHP/Component/Cqrs/CommandBus.php">
-    <UnusedClass>
-      <code><![CDATA[CommandBus]]></code>
-    </UnusedClass>
-  </file>
   <file src="src/SonsOfPHP/Component/Cqrs/Exception/CqrsException.php">
     <UnusedClass>
       <code><![CDATA[CqrsException]]></code>
@@ -718,9 +679,6 @@
     <ParamNameMismatch>
       <code><![CDATA[$command]]></code>
     </ParamNameMismatch>
-    <UnusedClass>
-      <code><![CDATA[QueryBus]]></code>
-    </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Component/Cqrs/Tests/AbstractMessageTest.php">
     <UnusedClass>
@@ -730,19 +688,9 @@
       <code><![CDATA[$value]]></code>
     </UnusedParam>
   </file>
-  <file src="src/SonsOfPHP/Component/Cqrs/Tests/CommandBusTest.php">
-    <UnusedClass>
-      <code><![CDATA[CommandBusTest]]></code>
-    </UnusedClass>
-  </file>
   <file src="src/SonsOfPHP/Component/Cqrs/Tests/MessageHandlerProviderTest.php">
     <UnusedClass>
       <code><![CDATA[MessageHandlerProviderTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/Cqrs/Tests/QueryBusTest.php">
-    <UnusedClass>
-      <code><![CDATA[QueryBusTest]]></code>
     </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Component/EventDispatcher/AbstractStoppableEvent.php">
@@ -785,7 +733,6 @@
   </file>
   <file src="src/SonsOfPHP/Component/EventSourcing/Aggregate/AbstractAggregate.php">
     <PossiblyUnusedMethod>
-      <code><![CDATA[hasPendingEvents]]></code>
       <code><![CDATA[new]]></code>
     </PossiblyUnusedMethod>
   </file>
@@ -805,17 +752,6 @@
       <code><![CDATA[AbstractSnapshotableAggregate]]></code>
     </UnusedClass>
   </file>
-  <file src="src/SonsOfPHP/Component/EventSourcing/Aggregate/AggregateIdInterface.php">
-    <PossiblyUnusedMethod>
-      <code><![CDATA[equals]]></code>
-    </PossiblyUnusedMethod>
-  </file>
-  <file src="src/SonsOfPHP/Component/EventSourcing/Aggregate/AggregateInterface.php">
-    <PossiblyUnusedMethod>
-      <code><![CDATA[buildFromEvents]]></code>
-      <code><![CDATA[peekPendingEvents]]></code>
-    </PossiblyUnusedMethod>
-  </file>
   <file src="src/SonsOfPHP/Component/EventSourcing/Aggregate/AggregateVersion.php">
     <ParamNameMismatch>
       <code><![CDATA[$version]]></code>
@@ -825,18 +761,6 @@
     <PossiblyUnusedMethod>
       <code><![CDATA[equals]]></code>
       <code><![CDATA[prev]]></code>
-      <code><![CDATA[zero]]></code>
-    </PossiblyUnusedMethod>
-  </file>
-  <file src="src/SonsOfPHP/Component/EventSourcing/Aggregate/Repository/AggregateRepository.php">
-    <UnusedClass>
-      <code><![CDATA[AggregateRepository]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/EventSourcing/Aggregate/Repository/AggregateRepositoryInterface.php">
-    <PossiblyUnusedMethod>
-      <code><![CDATA[find]]></code>
-      <code><![CDATA[persist]]></code>
     </PossiblyUnusedMethod>
   </file>
   <file src="src/SonsOfPHP/Component/EventSourcing/Aggregate/SnapshotableAggregateInterface.php">
@@ -879,20 +803,10 @@
       <code><![CDATA[MessageHandlerInterface]]></code>
     </UnusedClass>
   </file>
-  <file src="src/SonsOfPHP/Component/EventSourcing/Message/MessageInterface.php">
-    <PossiblyUnusedMethod>
-      <code><![CDATA[getEventId]]></code>
-      <code><![CDATA[getEventType]]></code>
-      <code><![CDATA[getTimestamp]]></code>
-    </PossiblyUnusedMethod>
-  </file>
   <file src="src/SonsOfPHP/Component/EventSourcing/Message/MessageMetadata.php">
     <MissingTemplateParam>
       <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
-    <PossiblyUnusedMethod>
-      <code><![CDATA[with]]></code>
-    </PossiblyUnusedMethod>
   </file>
   <file src="src/SonsOfPHP/Component/EventSourcing/Message/MessagePayload.php">
     <MissingTemplateParam>
@@ -908,16 +822,6 @@
       <code><![CDATA[NameableMessageInterface]]></code>
     </UnusedClass>
   </file>
-  <file src="src/SonsOfPHP/Component/EventSourcing/Message/NamespaceMessageProvider.php">
-    <UnusedClass>
-      <code><![CDATA[NamespaceMessageProvider]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/EventSourcing/Message/Repository/InMemoryMessageRepository.php">
-    <UnusedClass>
-      <code><![CDATA[InMemoryMessageRepository]]></code>
-    </UnusedClass>
-  </file>
   <file src="src/SonsOfPHP/Component/EventSourcing/Message/SerializableMessageInterface.php">
     <PossiblyUnusedMethod>
       <code><![CDATA[deserialize]]></code>
@@ -928,9 +832,6 @@
     <UndefinedInterfaceMethod>
       <code><![CDATA[serialize]]></code>
     </UndefinedInterfaceMethod>
-    <UnusedClass>
-      <code><![CDATA[MessageSerializer]]></code>
-    </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Component/EventSourcing/Message/Upcaster/Handler/MessageUpcasterHandlerInterface.php">
     <PossiblyUnusedMethod>
@@ -946,17 +847,6 @@
     <UnusedClass>
       <code><![CDATA[EventTypeMessageUpcasterProvider]]></code>
     </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/EventSourcing/Snapshot/Repository/InMemorySnapshotRepository.php">
-    <UnusedClass>
-      <code><![CDATA[InMemorySnapshotRepository]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/EventSourcing/Snapshot/Repository/SnapshotRepositoryInterface.php">
-    <PossiblyUnusedMethod>
-      <code><![CDATA[find]]></code>
-      <code><![CDATA[persist]]></code>
-    </PossiblyUnusedMethod>
   </file>
   <file src="src/SonsOfPHP/Component/EventSourcing/Snapshot/SnapshotInterface.php">
     <PossiblyUnusedMethod>
@@ -974,11 +864,6 @@
       <code><![CDATA[EventRaised]]></code>
     </UnusedClass>
   </file>
-  <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Aggregate/AbstractAggregateTest.php">
-    <UnusedClass>
-      <code><![CDATA[AbstractAggregateTest]]></code>
-    </UnusedClass>
-  </file>
   <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Aggregate/AggregateIdTest.php">
     <UnusedClass>
       <code><![CDATA[AggregateIdTest]]></code>
@@ -987,31 +872,6 @@
   <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Aggregate/AggregateVersionTest.php">
     <UnusedClass>
       <code><![CDATA[AggregateVersionTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Aggregate/Repository/AggregateRepositoryTest.php">
-    <UnusedClass>
-      <code><![CDATA[AggregateRepositoryTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/EventSourcing/Tests/FakeAggregate.php">
-    <UnusedClass>
-      <code><![CDATA[FakeAggregate]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/EventSourcing/Tests/FakeSerializableMessage.php">
-    <UnusedClass>
-      <code><![CDATA[FakeSerializableMessage]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Message/AbstractMessageTest.php">
-    <UnusedClass>
-      <code><![CDATA[AbstractMessageTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Message/AbstractSerializableMessageTest.php">
-    <UnusedClass>
-      <code><![CDATA[AbstractSerializableMessageTest]]></code>
     </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Message/Enricher/MessageEnricherTest.php">
@@ -1029,29 +889,9 @@
       <code><![CDATA[ChainMessageEnricherProviderTest]]></code>
     </UnusedClass>
   </file>
-  <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Message/MessageMetadataTest.php">
-    <UnusedClass>
-      <code><![CDATA[MessageMetadataTest]]></code>
-    </UnusedClass>
-  </file>
   <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Message/MessagePayloadTest.php">
     <UnusedClass>
       <code><![CDATA[MessagePayloadTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Message/NamespaceMessageProviderTest.php">
-    <UnusedClass>
-      <code><![CDATA[NamespaceMessageProviderTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Message/Repository/InMemoryMessageRepositoryTest.php">
-    <UnusedClass>
-      <code><![CDATA[InMemoryMessageRepositoryTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Message/Serializer/MessageSerializerTest.php">
-    <UnusedClass>
-      <code><![CDATA[MessageSerializerTest]]></code>
     </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Message/Upcaster/MessageUpcasterTest.php">
@@ -1062,11 +902,6 @@
   <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Message/Upcaster/Provider/EventTypeMessageUpcasterProviderTest.php">
     <UnusedClass>
       <code><![CDATA[EventTypeMessageUpcasterProviderTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Snapshot/Repository/InMemorySnapshotRepositoryTest.php">
-    <UnusedClass>
-      <code><![CDATA[InMemorySnapshotRepositoryTest]]></code>
     </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Component/EventSourcing/Tests/Snapshot/SnapshotTest.php">
@@ -2224,9 +2059,6 @@
     <InvalidThrow>
       <code><![CDATA[CqrsExceptionInterface]]></code>
     </InvalidThrow>
-    <PossiblyUnusedMethod>
-      <code><![CDATA[dispatch]]></code>
-    </PossiblyUnusedMethod>
     <UndefinedDocblockClass>
       <code><![CDATA[\SonsOfPHP\Contract\Cqrs\Exception\NoHandlerExceptionInterface]]></code>
     </UndefinedDocblockClass>
@@ -2249,9 +2081,6 @@
     <InvalidThrow>
       <code><![CDATA[CqrsExceptionInterface]]></code>
     </InvalidThrow>
-    <PossiblyUnusedMethod>
-      <code><![CDATA[handle]]></code>
-    </PossiblyUnusedMethod>
     <UndefinedDocblockClass>
       <code><![CDATA[\SonsOfPHP\Contract\Cqrs\Exception\NoHandlerExceptionInterface]]></code>
     </UndefinedDocblockClass>
