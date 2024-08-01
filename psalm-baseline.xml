@@ -11,38 +11,21 @@
     </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Bard/src/Console/Command/AddCommand.php">
-    <PossiblyUnusedProperty>
-      <code><![CDATA[$defaultName]]></code>
-    </PossiblyUnusedProperty>
     <UndefinedInterfaceMethod>
       <code><![CDATA[mustRun]]></code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="src/SonsOfPHP/Bard/src/Console/Command/CopyCommand.php">
-    <PossiblyUnusedProperty>
-      <code><![CDATA[$defaultName]]></code>
-    </PossiblyUnusedProperty>
     <UndefinedInterfaceMethod>
       <code><![CDATA[run]]></code>
     </UndefinedInterfaceMethod>
   </file>
-  <file src="src/SonsOfPHP/Bard/src/Console/Command/InitCommand.php">
-    <PossiblyUnusedProperty>
-      <code><![CDATA[$defaultName]]></code>
-    </PossiblyUnusedProperty>
-  </file>
   <file src="src/SonsOfPHP/Bard/src/Console/Command/InstallCommand.php">
-    <PossiblyUnusedProperty>
-      <code><![CDATA[$defaultName]]></code>
-    </PossiblyUnusedProperty>
     <UndefinedInterfaceMethod>
       <code><![CDATA[run]]></code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="src/SonsOfPHP/Bard/src/Console/Command/MergeCommand.php">
-    <PossiblyUnusedProperty>
-      <code><![CDATA[$defaultName]]></code>
-    </PossiblyUnusedProperty>
     <UndefinedInterfaceMethod>
       <code><![CDATA[formatSection]]></code>
     </UndefinedInterfaceMethod>
@@ -51,9 +34,6 @@
     </UndefinedVariable>
   </file>
   <file src="src/SonsOfPHP/Bard/src/Console/Command/PullCommand.php">
-    <PossiblyUnusedProperty>
-      <code><![CDATA[$defaultName]]></code>
-    </PossiblyUnusedProperty>
     <UndefinedInterfaceMethod>
       <code><![CDATA[mustRun]]></code>
     </UndefinedInterfaceMethod>
@@ -62,17 +42,11 @@
     </UnusedVariable>
   </file>
   <file src="src/SonsOfPHP/Bard/src/Console/Command/PushCommand.php">
-    <PossiblyUnusedProperty>
-      <code><![CDATA[$defaultName]]></code>
-    </PossiblyUnusedProperty>
     <UndefinedInterfaceMethod>
       <code><![CDATA[mustRun]]></code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="src/SonsOfPHP/Bard/src/Console/Command/ReleaseCommand.php">
-    <PossiblyUnusedProperty>
-      <code><![CDATA[$defaultName]]></code>
-    </PossiblyUnusedProperty>
     <UndefinedInterfaceMethod>
       <code><![CDATA[formatSection]]></code>
       <code><![CDATA[mustRun]]></code>
@@ -81,17 +55,11 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="src/SonsOfPHP/Bard/src/Console/Command/SplitCommand.php">
-    <PossiblyUnusedProperty>
-      <code><![CDATA[$defaultName]]></code>
-    </PossiblyUnusedProperty>
     <UndefinedInterfaceMethod>
       <code><![CDATA[mustRun]]></code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="src/SonsOfPHP/Bard/src/Console/Command/UpdateCommand.php">
-    <PossiblyUnusedProperty>
-      <code><![CDATA[$defaultName]]></code>
-    </PossiblyUnusedProperty>
     <UndefinedInterfaceMethod>
       <code><![CDATA[run]]></code>
     </UndefinedInterfaceMethod>
