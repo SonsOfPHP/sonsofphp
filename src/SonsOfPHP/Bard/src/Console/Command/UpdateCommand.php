@@ -14,11 +14,10 @@ use Symfony\Component\Process\Process;
  */
 final class UpdateCommand extends AbstractCommand
 {
-    protected static $defaultName = 'update';
-
     protected function configure(): void
     {
         $this
+            ->setName('update')
             ->setDescription('Runs composer update for all packages')
         ;
     }

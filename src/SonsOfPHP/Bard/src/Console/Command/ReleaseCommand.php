@@ -25,7 +25,6 @@ use Symfony\Component\Process\Process;
  */
 final class ReleaseCommand extends AbstractCommand
 {
-    protected static $defaultName = 'release';
     private JsonFile $bardConfig;
     private VersionInterface|Version|null $releaseVersion = null;
     private bool $isDryRun = true;
@@ -33,6 +32,7 @@ final class ReleaseCommand extends AbstractCommand
     protected function configure(): void
     {
         $this
+            ->setName('release')
             ->setDescription('Create a new release')
             ->addOption('dry-run', null, InputOption::VALUE_NONE, 'Execute a dry-run with nothing being updated or released')
             ->addOption('branch', null, InputOption::VALUE_REQUIRED, 'What branch we working with?', 'main')

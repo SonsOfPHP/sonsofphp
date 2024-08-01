@@ -17,11 +17,10 @@ use Symfony\Component\Process\Process;
  */
 final class SplitCommand extends AbstractCommand
 {
-    protected static $defaultName = 'split';
-
     protected function configure(): void
     {
         $this
+            ->setName('split')
             ->setDescription('Push changes to package repos using git subtree split')
             ->addOption('branch', null, InputOption::VALUE_REQUIRED, 'What branch we working with?', 'main')
             ->addOption('dry-run', null, InputOption::VALUE_NONE, 'Dry Run (Do not make any changes)')

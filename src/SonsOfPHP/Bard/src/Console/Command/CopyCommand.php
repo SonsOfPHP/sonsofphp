@@ -18,11 +18,10 @@ use Symfony\Component\Process\Process;
  */
 final class CopyCommand extends AbstractCommand
 {
-    protected static $defaultName = 'copy';
-
     protected function configure(): void
     {
         $this
+            ->setName('copy')
             ->setDescription('Copies a file to each package')
             ->addOption('dry-run', null, InputOption::VALUE_NONE, 'Dry Run (Do not make any changes)')
             ->addArgument('source', InputArgument::REQUIRED, 'Source file to copy')
