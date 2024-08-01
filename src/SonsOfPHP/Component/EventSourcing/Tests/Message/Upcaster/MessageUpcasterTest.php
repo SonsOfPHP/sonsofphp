@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message\Upcaster;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Message\Upcaster\Handler\NullUpcasterHandler;
 use SonsOfPHP\Component\EventSourcing\Message\Upcaster\MessageUpcaster;
@@ -12,28 +14,18 @@ use SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\EventTypeMessage
 use SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\NullMessageUpcasterProvider;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\Upcaster\MessageUpcaster
- *
- * @uses \SonsOfPHP\Component\EventSourcing\Message\Upcaster\MessageUpcaster
- * @uses \SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\NullMessageUpcasterProvider
- * @uses \SonsOfPHP\Component\EventSourcing\Message\Upcaster\Handler\NullUpcasterHandler
- * @uses \SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\EventTypeMessageUpcasterProvider
- */
+#[CoversClass(MessageUpcaster::class)]
+#[UsesClass(NullUpcasterHandler::class)]
+#[UsesClass(EventTypeMessageUpcasterProvider::class)]
+#[UsesClass(NullMessageUpcasterProvider::class)]
 final class MessageUpcasterTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheRightInterface(): void
     {
         $upcaster = new MessageUpcaster(new NullMessageUpcasterProvider());
         $this->assertInstanceOf(MessageUpcasterInterface::class, $upcaster); // @phpstan-ignore-line
     }
 
-    /**
-     * @covers ::upcast
-     */
     public function testItWillReturnDataUntouchedWithNoHandlers(): void
     {
         $upcaster = new MessageUpcaster(new NullMessageUpcasterProvider());
@@ -47,9 +39,6 @@ final class MessageUpcasterTest extends TestCase
         $this->assertSame($eventData, $upcastedData);
     }
 
-    /**
-     * @covers ::upcast
-     */
     public function testItWillUpcastEventData(): void
     {
         $provider = new EventTypeMessageUpcasterProvider();

@@ -4,32 +4,19 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Message\MessageMetadata;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\MessageMetadata
- *
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
- */
+#[CoversClass(MessageMetadata::class)]
+#[UsesClass(AbstractAggregateId::class)]
+#[UsesClass(AggregateVersion::class)]
 final class MessageMetadataTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     * @covers ::count
-     * @covers ::get
-     * @covers ::getAggregateId
-     * @covers ::getAggregateVersion
-     * @covers ::getEventId
-     * @covers ::getEventType
-     * @covers ::getIterator
-     * @covers ::getTimestamp
-     * @covers ::getTimestampFormat
-     * @covers ::has
-     * @covers ::with
-     */
     public function testAllTheThings(): void
     {
         $metadata = new MessageMetadata([

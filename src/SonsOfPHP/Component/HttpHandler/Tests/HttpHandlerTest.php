@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\HttpHandler\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -13,16 +16,12 @@ use SonsOfPHP\Component\HttpHandler\HttpHandler;
 use SonsOfPHP\Component\HttpHandler\MiddlewareStack;
 use SonsOfPHP\Component\HttpMessage\Response;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\HttpHandler\HttpHandler
- *
- * @uses \SonsOfPHP\Component\HttpHandler\HttpHandler
- * @uses \SonsOfPHP\Component\HttpHandler\MiddlewareStack
- */
+#[CoversClass(HttpHandler::class)]
+#[UsesClass(MiddlewareStack::class)]
 final class HttpHandlerTest extends TestCase
 {
-    private $request;
-    private $response;
+    private MockObject $request;
+    private MockObject $response;
     private MiddlewareStack $stack;
 
     protected function setUp(): void
@@ -32,9 +31,6 @@ final class HttpHandlerTest extends TestCase
         $this->stack = new MiddlewareStack();
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $handler = new HttpHandler($this->stack);
@@ -42,9 +38,6 @@ final class HttpHandlerTest extends TestCase
         $this->assertInstanceOf(RequestHandlerInterface::class, $handler);
     }
 
-    /**
-     * @covers ::handle
-     */
     public function testHandle(): void
     {
         $this->stack->add(new class () implements MiddlewareInterface {

@@ -4,24 +4,18 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Logger\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Logger\Context;
 use SonsOfPHP\Component\Logger\Level;
 use SonsOfPHP\Component\Logger\Record;
 use SonsOfPHP\Contract\Logger\RecordInterface;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\Logger\Record
- *
- * @uses \SonsOfPHP\Component\Logger\Record
- * @uses \SonsOfPHP\Component\Logger\Level
- * @uses \SonsOfPHP\Component\Logger\Context
- */
+#[CoversClass(Record::class)]
+#[UsesClass(Context::class)]
 final class RecordTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $record = new Record(
@@ -34,10 +28,6 @@ final class RecordTest extends TestCase
         $this->assertInstanceOf(RecordInterface::class, $record);
     }
 
-    /**
-     * @covers ::getChannel
-     * @covers ::withChannel
-     */
     public function testChannel(): void
     {
         $record = new Record(
@@ -52,10 +42,6 @@ final class RecordTest extends TestCase
         $this->assertNotSame($record, $record->withChannel('api'));
     }
 
-    /**
-     * @covers ::getLevel
-     * @covers ::withLevel
-     */
     public function testLevel(): void
     {
         $record = new Record(
@@ -70,10 +56,6 @@ final class RecordTest extends TestCase
         $this->assertNotSame($record, $record->withLevel(Level::Info));
     }
 
-    /**
-     * @covers ::getMessage
-     * @covers ::withMessage
-     */
     public function testMessage(): void
     {
         $record = new Record(
@@ -88,10 +70,6 @@ final class RecordTest extends TestCase
         $this->assertNotSame($record, $record->withMessage('more test'));
     }
 
-    /**
-     * @covers ::getContext
-     * @covers ::withContext
-     */
     public function testContext(): void
     {
         $record = new Record(
@@ -106,9 +84,6 @@ final class RecordTest extends TestCase
         $this->assertNotSame($record, $record->withContext(new Context(['key' => 'value'])));
     }
 
-    /**
-     * @covers ::withContext
-     */
     public function testWithContextWhenArgumentIsArray(): void
     {
         $record = new Record(

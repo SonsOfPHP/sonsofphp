@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\Exception;
 
+use Exception;
 use SonsOfPHP\Contract\Money\Exception\ArithmeticExceptionInterface;
 
 /**
@@ -13,4 +14,4 @@ use SonsOfPHP\Contract\Money\Exception\ArithmeticExceptionInterface;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class ArithmeticException extends \Exception implements ArithmeticExceptionInterface {}
+class ArithmeticException extends Exception implements ArithmeticExceptionInterface {}

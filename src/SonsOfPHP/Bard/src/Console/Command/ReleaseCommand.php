@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bard\Console\Command;
 
+use RuntimeException;
 use SonsOfPHP\Bard\JsonFile;
 use SonsOfPHP\Bard\Worker\File\Bard\UpdateVersion;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateReplaceSection;
 use SonsOfPHP\Component\Json\Json;
 use SonsOfPHP\Component\Version\Version;
+use SonsOfPHP\Component\Version\VersionInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -25,7 +27,7 @@ final class ReleaseCommand extends AbstractCommand
 {
     protected static $defaultName = 'release';
     private JsonFile $bardConfig;
-    private $releaseVersion;
+    private VersionInterface|Version|null $releaseVersion = null;
     private bool $isDryRun = true;
 
     protected function configure(): void
@@ -76,7 +78,7 @@ final class ReleaseCommand extends AbstractCommand
         }
 
         if ($currentVersion->isGreaterThan($this->releaseVersion)) {
-            throw new \RuntimeException('Cannot release a lower version');
+            throw new RuntimeException('Cannot release a lower version');
         }
 
         $this->isDryRun = $input->getOption('dry-run');

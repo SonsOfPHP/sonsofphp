@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Aggregate;
 
+use ArrayObject;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -28,7 +29,7 @@ class AggregateVersionNormalizer implements NormalizerInterface, DenormalizerInt
     /**
      * @return int
      */
-    public function normalize(mixed $object, ?string $format = null, array $context = []): \ArrayObject|array|string|int|float|bool|null
+    public function normalize(mixed $object, ?string $format = null, array $context = []): ArrayObject|array|string|int|float|bool|null
     {
         return $object->toInt();
     }

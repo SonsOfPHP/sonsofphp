@@ -4,18 +4,15 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\Tests\Operator\Amount;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Amount;
 use SonsOfPHP\Component\Money\Operator\Amount\SubtractAmountOperator;
 use SonsOfPHP\Contract\Money\AmountOperatorInterface;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\Money\Operator\Amount\SubtractAmountOperator
- *
- * @uses \SonsOfPHP\Component\Money\Amount
- *
- * @internal
- */
+#[CoversClass(SubtractAmountOperator::class)]
+#[UsesClass(Amount::class)]
 final class SubtractAmountOperatorTest extends TestCase
 {
     /**
@@ -29,10 +26,6 @@ final class SubtractAmountOperatorTest extends TestCase
         $this->assertInstanceOf(AmountOperatorInterface::class, $operator);
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::apply
-     */
     public function testApplyWillSubtractAmountAndReturnNewObject(): void
     {
         $amount   = new Amount(75);

@@ -4,34 +4,36 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Doctrine\EventSourcing\Tests;
 
+use ArrayIterator;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\DBAL\Result;
 use Doctrine\DBAL\Types\Type;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Doctrine\EventSourcing\DoctrineDbalMessageRepository;
 use SonsOfPHP\Bridge\Doctrine\EventSourcing\TableSchemaInterface;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Exception\AggregateNotFoundException;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
+use SonsOfPHP\Component\EventSourcing\Message\AbstractMessage;
+use SonsOfPHP\Component\EventSourcing\Message\MessageMetadata;
+use SonsOfPHP\Component\EventSourcing\Message\MessagePayload;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterface;
 use SonsOfPHP\Component\EventSourcing\Message\SerializableMessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Serializer\MessageSerializerInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Bridge\Doctrine\EventSourcing\DoctrineDbalMessageRepository
- *
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
- * @uses \SonsOfPHP\Bridge\Doctrine\EventSourcing\DoctrineDbalMessageRepository
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
- * @uses \SonsOfPHP\Component\EventSourcing\Message\AbstractMessage
- * @uses \SonsOfPHP\Component\EventSourcing\Message\MessageMetadata
- * @uses \SonsOfPHP\Component\EventSourcing\Message\MessagePayload
- */
+#[CoversClass(DoctrineDbalMessageRepository::class)]
+#[UsesClass(AbstractAggregateId::class)]
+#[UsesClass(AggregateVersion::class)]
+#[UsesClass(AbstractMessage::class)]
+#[UsesClass(MessageMetadata::class)]
+#[UsesClass(MessagePayload::class)]
 final class DoctrineDbalMessageRepositoryTest extends TestCase
 {
     private Connection $connection;
@@ -45,9 +47,6 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
         $this->tableSchema       = $this->createMock(TableSchemaInterface::class);
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheRightInterface(): void
     {
         $repository = new DoctrineDbalMessageRepository(
@@ -59,9 +58,6 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
         $this->assertInstanceOf(MessageRepositoryInterface::class, $repository);
     }
 
-    /**
-     * @covers ::persist
-     */
     public function testPersist(): void
     {
         // @phpstan-ignore-next-line
@@ -104,9 +100,6 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
         $repository->persist($message);
     }
 
-    /**
-     * @covers ::persist
-     */
     public function testPersistWillThrowExceptionWhenThereIsNoAggregateId(): void
     {
         $repository = new DoctrineDbalMessageRepository(
@@ -121,9 +114,6 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
         $repository->persist($message);
     }
 
-    /**
-     * @covers ::persist
-     */
     public function testPersistWillThrowExceptionWhenThereIsNoAggregateVersion(): void
     {
         $repository = new DoctrineDbalMessageRepository(
@@ -137,9 +127,6 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
         $repository->persist($message);
     }
 
-    /**
-     * @covers ::persist
-     */
     public function testPersistWillThrowExceptionWhenThereIsMissingMetadata(): void
     {
         // @phpstan-ignore-next-line
@@ -171,9 +158,6 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
         $repository->persist($message);
     }
 
-    /**
-     * @covers ::find
-     */
     public function testFindWithoutVersion(): void
     {
         // @phpstan-ignore-next-line
@@ -204,7 +188,7 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
         $result
             ->expects($this->once())
             ->method('iterateAssociative')
-            ->willReturn(new \ArrayIterator([
+            ->willReturn(new ArrayIterator([
                 [
                     'id'                => 'db-unique-id',
                     'aggregate_id'      => 'unique-id',
@@ -243,9 +227,6 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
         $this->assertSame($message, $output);
     }
 
-    /**
-     * @covers ::find
-     */
     public function testFindWillThrowExceptionWhenAggregateNotFound(): void
     {
         // @phpstan-ignore-next-line
@@ -268,7 +249,7 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
         $result
             ->expects($this->once())
             ->method('iterateAssociative')
-            ->willReturn(new \ArrayIterator());
+            ->willReturn(new ArrayIterator());
 
         $builder = $this->createMock(QueryBuilder::class);
         $builder
@@ -292,9 +273,6 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
         $repository->find(new AggregateId('unique-id'))->current();
     }
 
-    /**
-     * @covers ::find
-     */
     public function testFindWithVersion(): void
     {
         // @phpstan-ignore-next-line
@@ -330,7 +308,7 @@ final class DoctrineDbalMessageRepositoryTest extends TestCase
         $result
             ->expects($this->once())
             ->method('iterateAssociative')
-            ->willReturn(new \ArrayIterator([
+            ->willReturn(new ArrayIterator([
                 [
                     'id'                => 'db-unique-id',
                     'aggregate_id'      => 'unique-id',

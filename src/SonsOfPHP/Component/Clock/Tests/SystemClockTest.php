@@ -4,15 +4,18 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock\Tests;
 
+use DateTimeImmutable;
+use DateTimeZone;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Clock\ClockInterface;
 use SonsOfPHP\Component\Clock\SystemClock;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Clock\SystemClock
- *
  * @internal
+ * @coversNothing
  */
+#[CoversClass(SystemClock::class)]
 final class SystemClockTest extends TestCase
 {
     /**
@@ -25,10 +28,6 @@ final class SystemClockTest extends TestCase
         $this->assertInstanceOf(ClockInterface::class, $clock);
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::now
-     */
     public function testImmutable(): void
     {
         $clock   = new SystemClock();
@@ -36,36 +35,23 @@ final class SystemClockTest extends TestCase
         usleep(1);
         $tickTwo = $clock->now();
 
-        $this->assertInstanceOf(\DateTimeImmutable::class, $tickOne);
-        $this->assertInstanceOf(\DateTimeImmutable::class, $tickTwo);
-        $this->assertTrue($tickOne < $tickTwo);
+        $this->assertInstanceOf(DateTimeImmutable::class, $tickOne);
+        $this->assertInstanceOf(DateTimeImmutable::class, $tickTwo);
+        $this->assertLessThan($tickTwo, $tickOne);
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::getZone
-     */
     public function testDefaultTimezone(): void
     {
         $clock = new SystemClock();
         $this->assertSame('UTC', $clock->getZone()->getName());
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::getZone
-     */
     public function testSetTimezoneWithObject(): void
     {
-        $clock = new SystemClock(new \DateTimeZone('America/New_York'));
+        $clock = new SystemClock(new DateTimeZone('America/New_York'));
         $this->assertSame('America/New_York', $clock->getZone()->getName());
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::__toString
-     * @covers ::getZone
-     */
     public function testToStringMagicMethod(): void
     {
         $clock = new SystemClock();

@@ -4,18 +4,15 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\Tests\Query\Currency;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery;
 use SonsOfPHP\Contract\Money\CurrencyQueryInterface;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery
- *
- * @uses \SonsOfPHP\Component\Money\Currency
- *
- * @internal
- */
+#[CoversClass(IsEqualToCurrencyQuery::class)]
+#[UsesClass(Currency::class)]
 final class IsEqualToCurrencyQueryTest extends TestCase
 {
     /**
@@ -29,10 +26,6 @@ final class IsEqualToCurrencyQueryTest extends TestCase
         $this->assertInstanceOf(CurrencyQueryInterface::class, $query);
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::queryFrom
-     */
     public function testQueryFrom(): void
     {
         $currency = new Currency('usd');

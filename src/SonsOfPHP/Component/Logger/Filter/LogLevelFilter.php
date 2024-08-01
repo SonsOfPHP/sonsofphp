@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Logger\Filter;
 
+use InvalidArgumentException;
 use SonsOfPHP\Component\Logger\Level;
 use SonsOfPHP\Contract\Logger\FilterInterface;
 use SonsOfPHP\Contract\Logger\LevelInterface;
@@ -19,14 +20,12 @@ use SonsOfPHP\Contract\Logger\RecordInterface;
  */
 class LogLevelFilter implements FilterInterface
 {
-    private Level $level;
+    private readonly Level $level;
 
     public function __construct(string|LevelInterface $level = Level::Debug)
     {
-        if (is_string($level)) {
-            if (null === $level = Level::tryFromName($level)) {
-                throw new \InvalidArgumentException(sprintf('The level "%s" is invalid', $level));
-            }
+        if (is_string($level) && !($level = Level::tryFromName($level)) instanceof LevelInterface) {
+            throw new InvalidArgumentException(sprintf('The level "%s" is invalid', $level));
         }
 
         $this->level = $level;

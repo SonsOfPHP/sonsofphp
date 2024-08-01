@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Link\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Link\EvolvableLinkProviderInterface;
 use SonsOfPHP\Component\Link\EvolvableLinkProvider;
 use SonsOfPHP\Component\Link\Link;
+use SonsOfPHP\Component\Link\LinkProvider;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\Link\EvolvableLinkProvider
- *
- * @uses \SonsOfPHP\Component\Link\Link
- * @uses \SonsOfPHP\Component\Link\EvolvableLinkProvider
- * @uses \SonsOfPHP\Component\Link\LinkProvider
- */
+#[CoversClass(EvolvableLinkProvider::class)]
+#[UsesClass(Link::class)]
+#[UsesClass(LinkProvider::class)]
 final class EvolvableLinkProviderTest extends TestCase
 {
     /**
@@ -28,9 +27,6 @@ final class EvolvableLinkProviderTest extends TestCase
         $this->assertInstanceOf(EvolvableLinkProviderInterface::class, $provider);
     }
 
-    /**
-     * @covers ::withLink
-     */
     public function testWithLink(): void
     {
         $provider = new EvolvableLinkProvider();
@@ -40,9 +36,6 @@ final class EvolvableLinkProviderTest extends TestCase
         $this->assertCount(1, $provider->getLinks());
     }
 
-    /**
-     * @covers ::withoutLink
-     */
     public function testWithoutLink(): void
     {
         $provider = new EvolvableLinkProvider([

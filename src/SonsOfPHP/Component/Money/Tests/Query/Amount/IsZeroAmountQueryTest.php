@@ -4,18 +4,15 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\Tests\Query\Amount;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Amount;
 use SonsOfPHP\Component\Money\Query\Amount\IsZeroAmountQuery;
 use SonsOfPHP\Contract\Money\AmountQueryInterface;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\Money\Query\Amount\IsZeroAmountQuery
- *
- * @uses \SonsOfPHP\Component\Money\Amount
- *
- * @internal
- */
+#[CoversClass(IsZeroAmountQuery::class)]
+#[UsesClass(Amount::class)]
 final class IsZeroAmountQueryTest extends TestCase
 {
     /**
@@ -28,9 +25,6 @@ final class IsZeroAmountQueryTest extends TestCase
         $this->assertInstanceOf(AmountQueryInterface::class, $query);
     }
 
-    /**
-     * @covers ::queryFrom
-     */
     public function testQuery(): void
     {
         $amount = new Amount(0);

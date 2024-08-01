@@ -19,14 +19,7 @@ use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterf
  */
 class AggregateRepository implements AggregateRepositoryInterface
 {
-    public function __construct(
-        protected string $aggregateClass,
-        protected EventDispatcherInterface $eventDispatcher,
-        protected MessageRepositoryInterface $messageRepository,
-        protected ?MessageEnricherInterface $messageEnricher = null
-    ) {
-        $this->messageEnricher = $messageEnricher ?? new MessageEnricher(new NullMessageEnricherProvider());
-    }
+    public function __construct(protected string $aggregateClass, protected EventDispatcherInterface $eventDispatcher, protected MessageRepositoryInterface $messageRepository, protected MessageEnricherInterface $messageEnricher = new MessageEnricher(new NullMessageEnricherProvider())) {}
 
     public function find(AggregateIdInterface|string $id): ?AggregateInterface
     {
@@ -39,7 +32,7 @@ class AggregateRepository implements AggregateRepositoryInterface
             $aggregateClass = $this->aggregateClass;
 
             return $aggregateClass::buildFromEvents($id, $events);
-        } catch (AggregateNotFoundException $e) {
+        } catch (AggregateNotFoundException) {
         }
 
         return null;

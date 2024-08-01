@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message\Enricher\Provider;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\MessageEnricherHandlerInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\AllMessageEnricherProvider;
@@ -11,26 +12,18 @@ use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\MessageEnricherP
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\AllMessageEnricherProvider
- *
  * @internal
+ * @coversNothing
  */
+#[CoversClass(AllMessageEnricherProvider::class)]
 final class AllMessageEnricherProviderTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheRightInterface(): void
     {
         $provider = new AllMessageEnricherProvider();
         $this->assertInstanceOf(MessageEnricherProviderInterface::class, $provider);
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::getEnrichersForMessage
-     * @covers ::register
-     */
     public function testRegisteredHandlerWillReturnWhenGettingEnrichers(): void
     {
         $handler = $this->createMock(MessageEnricherHandlerInterface::class);

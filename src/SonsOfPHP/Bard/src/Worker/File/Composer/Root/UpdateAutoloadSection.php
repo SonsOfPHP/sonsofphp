@@ -12,12 +12,7 @@ use SonsOfPHP\Bard\Worker\WorkerInterface;
  */
 final class UpdateAutoloadSection implements WorkerInterface
 {
-    private JsonFile $pkgComposerJsonFile;
-
-    public function __construct(JsonFile $pkgComposerJsonFile)
-    {
-        $this->pkgComposerJsonFile = $pkgComposerJsonFile;
-    }
+    public function __construct(private readonly JsonFile $pkgComposerJsonFile) {}
 
     public function apply(JsonFile $rootComposerJsonFile): JsonFile
     {
@@ -34,7 +29,7 @@ final class UpdateAutoloadSection implements WorkerInterface
                     $rootAutoloadSection['psr-4'] = [];
                 }
                 foreach ($config as $namespace => $pkgPath) {
-                    $rootAutoloadSection['psr-4'][$namespace] = trim($path . '/' . trim($pkgPath, '/'), '/');
+                    $rootAutoloadSection['psr-4'][$namespace] = trim($path . '/' . trim((string) $pkgPath, '/'), '/');
                 }
             }
 
@@ -43,7 +38,7 @@ final class UpdateAutoloadSection implements WorkerInterface
                     $rootAutoloadSection['exclude-from-classmap'] = [];
                 }
                 foreach ($config as $pkgPath) {
-                    $rootAutoloadSection['exclude-from-classmap'][] = trim($path . '/' . trim($pkgPath, '/'), '/');
+                    $rootAutoloadSection['exclude-from-classmap'][] = trim($path . '/' . trim((string) $pkgPath, '/'), '/');
                 }
             }
         }

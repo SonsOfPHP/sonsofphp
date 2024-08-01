@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests\Aggregate;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Symfony\EventSourcing\Aggregate\AggregateVersionNormalizer;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
@@ -11,11 +14,8 @@ use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Aggregate\AggregateVersionNormalizer
- *
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
- */
+#[CoversClass(AggregateVersionNormalizer::class)]
+#[UsesClass(AggregateVersion::class)]
 final class AggregateVersionNormalizerTest extends TestCase
 {
     /**
@@ -29,10 +29,6 @@ final class AggregateVersionNormalizerTest extends TestCase
         $this->assertInstanceOf(DenormalizerInterface::class, $normalizer); // @phpstan-ignore-line
     }
 
-    /**
-     * @covers ::normalize
-     * @covers ::supportsNormalization
-     */
     public function testItWillNormalize(): void
     {
         $normalizer = new AggregateVersionNormalizer();
@@ -43,14 +39,11 @@ final class AggregateVersionNormalizerTest extends TestCase
         $this->assertSame(2131, $normalizer->normalize($id));
     }
 
-    /**
-     * @dataProvider providerForSupportsDenormalization
-     *
-     * @covers ::supportsDenormalization
-     */
+
+    #[DataProvider('providerForSupportsDenormalization')]
     public function testItSupportsDenormalize(
         bool $expected,
-        $data,
+        mixed $data,
         string $type,
         string $format = null
     ): void {
@@ -66,13 +59,10 @@ final class AggregateVersionNormalizerTest extends TestCase
         yield [false, 2131, 'stdClass'];
     }
 
-    /**
-     * @dataProvider providerForDenormalize
-     *
-     * @covers ::denormalize
-     */
+
+    #[DataProvider('providerForDenormalize')]
     public function testItWillDenormalize(
-        $data,
+        mixed $data,
         string $type,
         string $format = null,
         array $context = []

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem;
 
+use ArrayIterator;
 use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
+use Traversable;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -51,8 +53,8 @@ class Context implements ContextInterface
         return $this->context[$offset] ?? null;
     }
 
-    public function getIterator(): \Traversable
+    public function getIterator(): Traversable
     {
-        return new \ArrayIterator($this->context);
+        return new ArrayIterator($this->context);
     }
 }

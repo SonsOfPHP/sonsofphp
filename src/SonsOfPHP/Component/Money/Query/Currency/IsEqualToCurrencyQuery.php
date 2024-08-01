@@ -12,14 +12,9 @@ use SonsOfPHP\Contract\Money\CurrencyQueryInterface;
  */
 class IsEqualToCurrencyQuery implements CurrencyQueryInterface
 {
-    private CurrencyInterface $currency;
+    public function __construct(private readonly CurrencyInterface $currency) {}
 
-    public function __construct(CurrencyInterface $currency)
-    {
-        $this->currency = $currency;
-    }
-
-    public function queryFrom(CurrencyInterface $currency)
+    public function queryFrom(CurrencyInterface $currency): bool
     {
         return $currency->getCurrencyCode() === $this->currency->getCurrencyCode();
     }

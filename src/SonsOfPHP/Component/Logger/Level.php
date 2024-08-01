@@ -6,6 +6,8 @@ namespace SonsOfPHP\Component\Logger;
 
 use Psr\Log\LogLevel;
 use SonsOfPHP\Contract\Logger\LevelInterface;
+use UnhandledMatchError;
+use ValueError;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -34,8 +36,8 @@ enum Level: int implements LevelInterface
                 'info'      => self::Info,
                 'debug'     => self::Debug,
             };
-        } catch (\UnhandledMatchError $e) {
-            throw new \ValueError(sprintf('"%s" is invalid', $name), $e->getCode(), $e);
+        } catch (UnhandledMatchError $e) {
+            throw new ValueError(sprintf('"%s" is invalid', $name), $e->getCode(), $e);
         }
     }
 
@@ -43,7 +45,7 @@ enum Level: int implements LevelInterface
     {
         try {
             return self::fromName($name);
-        } catch (\ValueError $e) {
+        } catch (ValueError) {
         }
 
         return null;

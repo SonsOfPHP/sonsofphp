@@ -41,7 +41,7 @@ final class InMemoryMessageRepository implements MessageRepositoryInterface
         }
 
         foreach ($this->storage[$id->toString()] as $ver => $message) {
-            if (null !== $version && $ver <= $version->toInt()) {
+            if ($version instanceof AggregateVersionInterface && $ver <= $version->toInt()) {
                 continue;
             }
 

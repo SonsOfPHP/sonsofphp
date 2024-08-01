@@ -4,18 +4,15 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\Tests\Operator\Amount;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Amount;
 use SonsOfPHP\Component\Money\Operator\Amount\MultiplyAmountOperator;
 use SonsOfPHP\Contract\Money\AmountOperatorInterface;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\Money\Operator\Amount\MultiplyAmountOperator
- *
- * @uses \SonsOfPHP\Component\Money\Amount
- *
- * @internal
- */
+#[CoversClass(MultiplyAmountOperator::class)]
+#[UsesClass(Amount::class)]
 final class MultiplyAmountOperatorTest extends TestCase
 {
     /**
@@ -28,10 +25,6 @@ final class MultiplyAmountOperatorTest extends TestCase
         $this->assertInstanceOf(AmountOperatorInterface::class, $operator);
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::apply
-     */
     public function testApplyWillMultiplyAmountAndReturnNewObject(): void
     {
         $amount   = new Amount(10);

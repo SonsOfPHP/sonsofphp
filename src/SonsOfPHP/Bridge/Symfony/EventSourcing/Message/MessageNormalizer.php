@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Message;
 
+use ArrayObject;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
@@ -25,7 +26,7 @@ class MessageNormalizer implements NormalizerInterface, DenormalizerInterface
     /**
      * @return array
      */
-    public function normalize(mixed $object, ?string $format = null, array $context = []): \ArrayObject|array|string|int|float|bool|null
+    public function normalize(mixed $object, ?string $format = null, array $context = []): ArrayObject|array|string|int|float|bool|null
     {
         return [
             'payload'  => $object->getPayload(),

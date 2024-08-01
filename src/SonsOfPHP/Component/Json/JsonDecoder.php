@@ -16,7 +16,7 @@ class JsonDecoder extends AbstractEncoderDecoder
         parent::__construct($flags, $depth);
 
         if (true === $associative) {
-            $this->flags = $this->flags | \JSON_OBJECT_AS_ARRAY;
+            $this->flags |= \JSON_OBJECT_AS_ARRAY;
         }
     }
 
@@ -31,7 +31,7 @@ class JsonDecoder extends AbstractEncoderDecoder
         return $return;
     }
 
-    public function asArray()
+    public function asArray(): static
     {
         return $this->withFlags(\JSON_OBJECT_AS_ARRAY);
     }
@@ -39,7 +39,7 @@ class JsonDecoder extends AbstractEncoderDecoder
     /**
      * Decodes large integers as their original string value.
      */
-    public function bigintAsString()
+    public function bigintAsString(): static
     {
         return $this->withFlags(\JSON_BIGINT_AS_STRING);
     }
@@ -47,7 +47,7 @@ class JsonDecoder extends AbstractEncoderDecoder
     /**
      * Decodes JSON objects as PHP array.
      */
-    public function objectAsArray()
+    public function objectAsArray(): static
     {
         return $this->withFlags(\JSON_OBJECT_AS_ARRAY);
     }

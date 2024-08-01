@@ -4,15 +4,19 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\HttpMessage\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
 use SonsOfPHP\Component\HttpMessage\Stream;
+use stdClass;
+use Stringable;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\HttpMessage\Stream
- *
  * @uses \SonsOfPHP\Component\HttpMessage\Stream
+ * @coversNothing
  */
+#[CoversClass(Stream::class)]
 final class StreamTest extends TestCase
 {
     /**
@@ -22,15 +26,11 @@ final class StreamTest extends TestCase
     {
         $stream = new Stream();
         $this->assertInstanceOf(StreamInterface::class, $stream);
-        $this->assertInstanceOf(\Stringable::class, $stream);
+        $this->assertInstanceOf(Stringable::class, $stream);
     }
 
-    /**
-     * @dataProvider modeProvider
-     *
-     * @covers ::isReadable
-     * @covers ::isWritable
-     */
+
+    #[DataProvider('modeProvider')]
     public function testStreamModes(string $mode, bool $isReadable, bool $isWritable): void
     {
         $stream = new Stream(fopen('php://memory', $mode));
@@ -52,9 +52,6 @@ final class StreamTest extends TestCase
         yield 'c+' => ['c+', true, true];
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testConstructWorksAsExpectedWhenNoStreamIsPassed(): void
     {
         $stream = new Stream();
@@ -63,9 +60,6 @@ final class StreamTest extends TestCase
         $this->assertTrue($stream->isWritable());
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testConstructWorksAsExpectedWhenStreamIsPassed(): void
     {
         $stream = new Stream(fopen('php://memory', 'w+'));
@@ -74,18 +68,12 @@ final class StreamTest extends TestCase
         $this->assertTrue($stream->isWritable());
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testConstructWorksAsExpectedWhenInvalidStreamIsPassed(): void
     {
         $this->expectException('InvalidArgumentException');
-        $stream = new Stream(new \stdClass());
+        $stream = new Stream(new stdClass());
     }
 
-    /**
-     * @covers ::__toString
-     */
     public function testStringableWorksAsExpected(): void
     {
         $stream = new Stream();
@@ -94,9 +82,6 @@ final class StreamTest extends TestCase
         $this->assertSame('just a test', (string) $stream);
     }
 
-    /**
-     * @covers ::detach
-     */
     public function testDetachWorksAsExpected(): void
     {
         $stream = new Stream();
@@ -105,9 +90,6 @@ final class StreamTest extends TestCase
         $this->assertNull($stream->detach());
     }
 
-    /**
-     * @covers ::getSize
-     */
     public function testGetSizeWorksAsExpected(): void
     {
         $stream = new Stream();
@@ -120,10 +102,6 @@ final class StreamTest extends TestCase
         $this->assertNull($stream->getSize());
     }
 
-    /**
-     * @covers ::__destruct
-     * @covers ::close
-     */
     public function testCloseWorksAsExpected(): void
     {
         $stream = new Stream();
@@ -134,9 +112,6 @@ final class StreamTest extends TestCase
         $this->assertFalse($stream->isWritable());
     }
 
-    /**
-     * @covers ::tell
-     */
     public function testTellWorksAsExpected(): void
     {
         $stream = new Stream();
@@ -149,9 +124,6 @@ final class StreamTest extends TestCase
         $this->assertSame(0, $stream->tell());
     }
 
-    /**
-     * @covers ::eof
-     */
     public function testEofWorksAsExpected(): void
     {
         $stream = new Stream();
@@ -161,18 +133,12 @@ final class StreamTest extends TestCase
         $this->assertTrue($stream->eof());
     }
 
-    /**
-     * @covers ::write
-     */
     public function testWriteWorksAsExpected(): void
     {
         $stream = new Stream();
         $this->assertSame(11, $stream->write('just a test'), 'Assert that write() returns correct size');
     }
 
-    /**
-     * @covers ::write
-     */
     public function testWriteWorksAsExpectedWhenStreamHasBeenClosed(): void
     {
         $stream = new Stream();
@@ -181,9 +147,6 @@ final class StreamTest extends TestCase
         $stream->write('test');
     }
 
-    /**
-     * @covers ::write
-     */
     public function testWriteWorksAsExpectedWhenStreamHasBeenDetached(): void
     {
         $stream = new Stream();
@@ -192,9 +155,6 @@ final class StreamTest extends TestCase
         $stream->write('test');
     }
 
-    /**
-     * @covers ::write
-     */
     public function testWriteWorksAsExpectedWhenStreamIsNotWritable(): void
     {
         $stream = new Stream(fopen('php://memory', 'r'));
@@ -202,18 +162,12 @@ final class StreamTest extends TestCase
         $stream->write('test');
     }
 
-    /**
-     * @covers ::read
-     */
     public function testReadWorksAsExpected(): void
     {
         $stream = new Stream();
         $this->assertSame('', $stream->read(1024));
     }
 
-    /**
-     * @covers ::read
-     */
     public function testReadWorksAsExpectedWhenStreamHasBeenClosed(): void
     {
         $stream = new Stream();
@@ -222,9 +176,6 @@ final class StreamTest extends TestCase
         $stream->read(1024);
     }
 
-    /**
-     * @covers ::read
-     */
     public function testReadWorksAsExpectedWhenStreamHasBeenDetached(): void
     {
         $stream = new Stream();
@@ -233,9 +184,6 @@ final class StreamTest extends TestCase
         $stream->read(1024);
     }
 
-    /**
-     * @covers ::getContents
-     */
     public function testGetContentsWorksAsExpected(): void
     {
         $stream = new Stream();
@@ -245,9 +193,6 @@ final class StreamTest extends TestCase
         $this->assertSame('just a test', $stream->getContents());
     }
 
-    /**
-     * @covers ::getContents
-     */
     public function testGetContentsWorksAsExpectedWhenStreamIsClosed(): void
     {
         $stream = new Stream();
@@ -256,9 +201,6 @@ final class StreamTest extends TestCase
         $stream->getContents();
     }
 
-    /**
-     * @covers ::getContents
-     */
     public function testGetContentsWorksAsExpectedWhenStreamIsDetached(): void
     {
         $stream = new Stream();
@@ -267,9 +209,6 @@ final class StreamTest extends TestCase
         $stream->getContents();
     }
 
-    /**
-     * @covers ::getMetadata
-     */
     public function testGetMetadataWorksAsExpected(): void
     {
         $stream = new Stream();
@@ -280,9 +219,6 @@ final class StreamTest extends TestCase
         $this->assertNotNull($stream->getMetadata('uri'));
     }
 
-    /**
-     * @covers ::getMetadata
-     */
     public function testGetMetadataWorksAsExpectedWhenStreamHasBeenClosed(): void
     {
         $stream = new Stream();
@@ -290,9 +226,6 @@ final class StreamTest extends TestCase
         $this->assertNull($stream->getMetadata());
     }
 
-    /**
-     * @covers ::getMetadata
-     */
     public function testGetMetadataWorksAsExpectedWhenStreamHasBeenDetached(): void
     {
         $stream = new Stream();
@@ -300,9 +233,6 @@ final class StreamTest extends TestCase
         $this->assertNull($stream->getMetadata());
     }
 
-    /**
-     * @covers ::rewind
-     */
     public function testRewindWorksAsExpected(): void
     {
         $stream = new Stream();
@@ -312,9 +242,6 @@ final class StreamTest extends TestCase
         $this->assertSame('test', $stream->getContents());
     }
 
-    /**
-     * @covers ::seek
-     */
     public function testSeekWorksAsExpected(): void
     {
         $stream = new Stream();
@@ -323,9 +250,6 @@ final class StreamTest extends TestCase
         $this->assertSame('test', $stream->getContents());
     }
 
-    /**
-     * @covers ::seek
-     */
     public function testSeekWorksAsExpectedWhenStreamHasBeenClosed(): void
     {
         $stream = new Stream();
@@ -336,9 +260,6 @@ final class StreamTest extends TestCase
         $stream->seek(0);
     }
 
-    /**
-     * @covers ::seek
-     */
     public function testSeekWorksAsExpectedWhenStreamHasBeenDetached(): void
     {
         $stream = new Stream();
@@ -349,9 +270,6 @@ final class StreamTest extends TestCase
         $stream->seek(0);
     }
 
-    /**
-     * @covers ::seek
-     */
     public function testSeekWorksAsExpectedWhenOffsetIsNegative(): void
     {
         $stream = new Stream();
@@ -359,9 +277,6 @@ final class StreamTest extends TestCase
         $stream->seek(-1);
     }
 
-    /**
-     * @covers ::__toString
-     */
     public function testToStringWorksAsExpectedWhenStreamHasBeenClosed(): void
     {
         $stream = new Stream();
@@ -372,9 +287,6 @@ final class StreamTest extends TestCase
         $this->assertSame('', (string) $stream);
     }
 
-    /**
-     * @covers ::tell
-     */
     public function testTellWorksAsExpectedWhenStreamHasBeenClosed(): void
     {
         $stream = new Stream();
@@ -385,9 +297,6 @@ final class StreamTest extends TestCase
         $stream->tell();
     }
 
-    /**
-     * @covers ::tell
-     */
     public function testTellWorksAsExpectedWhenStreamHasBeenDetached(): void
     {
         $stream = new Stream();
@@ -398,9 +307,6 @@ final class StreamTest extends TestCase
         $stream->tell();
     }
 
-    /**
-     * @covers ::eof
-     */
     public function testEofWorksAsExpectedWhenStreamHasBeenClosed(): void
     {
         $stream = new Stream();
@@ -411,9 +317,6 @@ final class StreamTest extends TestCase
         $stream->eof();
     }
 
-    /**
-     * @covers ::eof
-     */
     public function testEofWorksAsExpectedWhenStreamHasBeenDetached(): void
     {
         $stream = new Stream();
@@ -424,9 +327,6 @@ final class StreamTest extends TestCase
         $stream->eof();
     }
 
-    /**
-     * @covers ::isSeekable
-     */
     public function testIsSeekableWorksAsExpectedWhenStreamHasBeenClosed(): void
     {
         $stream = new Stream();
@@ -435,9 +335,6 @@ final class StreamTest extends TestCase
         $this->assertFalse($stream->isSeekable());
     }
 
-    /**
-     * @covers ::isSeekable
-     */
     public function testIsSeekableWorksAsExpectedWhenStreamHasBeenDetached(): void
     {
         $stream = new Stream();

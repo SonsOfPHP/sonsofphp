@@ -4,22 +4,17 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Link\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Link\LinkProviderInterface;
 use SonsOfPHP\Component\Link\Link;
 use SonsOfPHP\Component\Link\LinkProvider;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\Link\LinkProvider
- *
- * @uses \SonsOfPHP\Component\Link\Link
- * @uses \SonsOfPHP\Component\Link\LinkProvider
- */
+#[CoversClass(LinkProvider::class)]
+#[UsesClass(Link::class)]
 final class LinkProviderTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $provider = new LinkProvider();
@@ -27,9 +22,6 @@ final class LinkProviderTest extends TestCase
         $this->assertInstanceOf(LinkProviderInterface::class, $provider);
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testConstructWilThrowException(): void
     {
         $this->expectException('InvalidArgumentException');
@@ -38,9 +30,6 @@ final class LinkProviderTest extends TestCase
         ]);
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testConstructCanAddLinks(): void
     {
         $provider = new LinkProvider([
@@ -50,9 +39,6 @@ final class LinkProviderTest extends TestCase
         $this->assertCount(1, $provider->getLinks());
     }
 
-    /**
-     * @covers ::getLinks
-     */
     public function testGetLinks(): void
     {
         $provider = new LinkProvider();
@@ -60,9 +46,6 @@ final class LinkProviderTest extends TestCase
         $this->assertCount(0, $provider->getLinks());
     }
 
-    /**
-     * @covers ::getLinksByRel
-     */
     public function testGetLinksByRel(): void
     {
         $provider = new LinkProvider([

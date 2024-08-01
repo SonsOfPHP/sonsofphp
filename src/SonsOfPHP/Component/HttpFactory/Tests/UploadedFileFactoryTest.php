@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\HttpFactory\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UploadedFileFactoryInterface;
@@ -11,13 +13,13 @@ use Psr\Http\Message\UploadedFileInterface;
 use SonsOfPHP\Component\HttpFactory\UploadedFileFactory;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\HttpFactory\UploadedFileFactory
- *
  * @internal
+ * @coversNothing
  */
+#[CoversClass(UploadedFileFactory::class)]
 final class UploadedFileFactoryTest extends TestCase
 {
-    private $stream;
+    private MockObject $stream;
 
     public function setUp(): void
     {
@@ -34,7 +36,6 @@ final class UploadedFileFactoryTest extends TestCase
     }
 
     /**
-     * @covers ::createUploadedFile
      * @uses \SonsOfPHP\Component\HttpMessage\UploadedFile
      */
     public function testCreateUploadedFileWorksAsExpected(): void

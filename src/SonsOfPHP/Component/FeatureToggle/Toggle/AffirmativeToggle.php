@@ -16,7 +16,7 @@ use SonsOfPHP\Contract\FeatureToggle\ToggleInterface;
 class AffirmativeToggle implements ToggleInterface
 {
     public function __construct(
-        private array $toggles,
+        private readonly array $toggles,
     ) {}
 
     public function isEnabled(?ContextInterface $context = null): bool

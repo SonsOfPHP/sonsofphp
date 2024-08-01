@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Aggregate;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
@@ -12,16 +14,13 @@ use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 /**
  * @todo Make this the AbstractAggregateIdTest class
  *
- * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
  *
  * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
+ * @coversNothing
  */
+#[CoversClass(AbstractAggregateId::class)]
 final class AggregateIdTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     * @covers ::fromString
-     */
     public function testItHasTheRightInterface(): void
     {
         $id = AggregateId::fromString('123');
@@ -31,11 +30,6 @@ final class AggregateIdTest extends TestCase
         $this->assertInstanceOf(AggregateIdInterface::class, $id);
     }
 
-    /**
-     * @covers ::__toString
-     * @covers ::fromString
-     * @covers ::toString
-     */
     public function testToString(): void
     {
         $id = AggregateId::fromString('123');
@@ -44,9 +38,6 @@ final class AggregateIdTest extends TestCase
         $this->assertSame('123', (string) $id);
     }
 
-    /**
-     * @covers ::equals
-     */
     public function testEquals(): void
     {
         $idOne   = AggregateId::fromString('1ecb77a6-4b15-6a2e-a38c-3758fccf8ba6');
@@ -60,9 +51,6 @@ final class AggregateIdTest extends TestCase
         $this->assertFalse($idThree->equals($idTwo));
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testItThrowsAnExceptionWhenNoIDPassingInConstructor(): void
     {
         $this->expectException(EventSourcingException::class);

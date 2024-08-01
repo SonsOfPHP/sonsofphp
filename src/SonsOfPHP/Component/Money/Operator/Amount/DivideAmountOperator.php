@@ -13,12 +13,7 @@ use SonsOfPHP\Contract\Money\AmountOperatorInterface;
  */
 class DivideAmountOperator implements AmountOperatorInterface
 {
-    private $divisor;
-
-    public function __construct($divisor)
-    {
-        $this->divisor = $divisor;
-    }
+    public function __construct(private $divisor) {}
 
     public function apply(AmountInterface $amount): AmountInterface
     {

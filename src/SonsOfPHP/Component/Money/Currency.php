@@ -7,20 +7,20 @@ namespace SonsOfPHP\Component\Money;
 use SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery;
 use SonsOfPHP\Contract\Money\CurrencyInterface;
 use SonsOfPHP\Contract\Money\CurrencyQueryInterface;
+use Stringable;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class Currency implements CurrencyInterface
+final class Currency implements CurrencyInterface, Stringable
 {
     public function __construct(
         private string $currencyCode,
-        private ?int $numericCode = null,
-        private ?int $minorUnit = null
+        private readonly ?int $numericCode = null,
+        private readonly ?int $minorUnit = null
     ) {
         $this->currencyCode = strtoupper($currencyCode);
     }
-
     /**
      * @see self::getCurrencyCode()
      */
@@ -28,7 +28,6 @@ final class Currency implements CurrencyInterface
     {
         return $this->getCurrencyCode();
     }
-
     /**
      * Makes it easy to create new currencies.
      *
@@ -43,7 +42,6 @@ final class Currency implements CurrencyInterface
 
         return new static($currencyCode, $numericCode, $minorUnit);
     }
-
     /**
      * {@inheritdoc}
      */
@@ -51,7 +49,6 @@ final class Currency implements CurrencyInterface
     {
         return $query->queryFrom($this);
     }
-
     /**
      * {@inheritdoc}
      */
@@ -59,7 +56,6 @@ final class Currency implements CurrencyInterface
     {
         return $this->currencyCode;
     }
-
     /**
      * {@inheritdoc}
      */
@@ -67,7 +63,6 @@ final class Currency implements CurrencyInterface
     {
         return $this->numericCode;
     }
-
     /**
      * {@inheritdoc}
      */
@@ -75,7 +70,6 @@ final class Currency implements CurrencyInterface
     {
         return $this->minorUnit;
     }
-
     /**
      * {@inheritdoc}
      */

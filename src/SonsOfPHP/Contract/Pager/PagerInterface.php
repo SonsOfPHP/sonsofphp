@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Contract\Pager;
 
+use Countable;
+use InvalidArgumentException;
+use IteratorAggregate;
+use JsonSerializable;
+
 /**
  * The pager should take an adapter and optional arguments when being created.
  *
@@ -12,7 +17,7 @@ namespace SonsOfPHP\Contract\Pager;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface PagerInterface extends \Countable, \IteratorAggregate, \JsonSerializable
+interface PagerInterface extends Countable, IteratorAggregate, JsonSerializable
 {
     /**
      * This will return the current results based on the current page and max
@@ -68,7 +73,7 @@ interface PagerInterface extends \Countable, \IteratorAggregate, \JsonSerializab
      *
      * If the page is out of bounds, this may throw an exception
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      *   If $page is invalid
      */
     public function setCurrentPage(int $page): void;
@@ -86,7 +91,7 @@ interface PagerInterface extends \Countable, \IteratorAggregate, \JsonSerializab
      * If the value is set to null, and results are grabbed, all the results
      * will be returned.
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      *   If $maxPerPage is invalid
      */
     public function setMaxPerPage(?int $maxPerPage): void;

@@ -17,7 +17,7 @@ use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 abstract class AbstractAggregateId implements AggregateIdInterface
 {
     public function __construct(
-        private ?string $id = null,
+        private readonly ?string $id = null,
     ) {
         if (null === $id) {
             throw new EventSourcingException('Argument (#1) $id cannot be null');

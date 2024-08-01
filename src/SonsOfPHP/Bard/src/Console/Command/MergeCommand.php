@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bard\Console\Command;
 
+use RuntimeException;
 use SonsOfPHP\Bard\JsonFile;
 use SonsOfPHP\Bard\Worker\File\Composer\Package\Authors;
 use SonsOfPHP\Bard\Worker\File\Composer\Package\BranchAlias;
@@ -16,6 +17,7 @@ use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateReplaceSection;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateRequireDevSection;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateRequireSection;
 use SonsOfPHP\Component\Json\Json;
+use Symfony\Component\Console\Helper\HelperInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -30,10 +32,10 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 final class MergeCommand extends AbstractCommand
 {
     protected static $defaultName = 'merge';
-    private Json $json;
+    private readonly Json $json;
     private array $bardConfig;
     private string $mainComposerFile;
-    private $formatter;
+    private ?HelperInterface $formatter = null;
 
     public function __construct()
     {
@@ -55,7 +57,7 @@ final class MergeCommand extends AbstractCommand
     {
         $bardConfigFile = $input->getOption('working-dir') . '/bard.json';
         if (!file_exists($bardConfigFile)) {
-            throw new \RuntimeException(sprintf('"%s" file does not exist', $bardConfigFile));
+            throw new RuntimeException(sprintf('"%s" file does not exist', $bardConfigFile));
         }
 
         $this->bardConfig = $this->json->getDecoder()
@@ -64,7 +66,7 @@ final class MergeCommand extends AbstractCommand
 
         $this->mainComposerFile = $input->getOption('working-dir') . '/composer.json';
         if (!file_exists($this->mainComposerFile)) {
-            throw new \RuntimeException(sprintf('"%s" file does not exist', $this->mainComposerFile));
+            throw new RuntimeException(sprintf('"%s" file does not exist', $this->mainComposerFile));
         }
     }
 

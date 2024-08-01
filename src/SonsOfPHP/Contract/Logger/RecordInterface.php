@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Contract\Logger;
 
+use DateTimeImmutable;
+
 /**
  * "Record" is a log record, this is what is used by Handlers, Formatters, and Enrichers
  *
@@ -27,7 +29,7 @@ interface RecordInterface
 
     public function withContext(ContextInterface $context): static;
 
-    public function getDatetime(): \DateTimeImmutable;
+    public function getDatetime(): DateTimeImmutable;
 
-    public function withDatetime(\DateTimeImmutable $datetime): static;
+    public function withDatetime(DateTimeImmutable $datetime): static;
 }

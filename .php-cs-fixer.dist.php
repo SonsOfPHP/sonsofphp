@@ -1,13 +1,18 @@
 <?php
 
-$finder = PhpCsFixer\Finder::create()
+declare(strict_types=1);
+
+use PhpCsFixer\Config;
+use PhpCsFixer\Finder;
+
+$finder = Finder::create()
     ->in(__DIR__)
     ->exclude('docs')
     ->exclude('tools')
     ->exclude('vendor')
 ;
 
-return (new PhpCsFixer\Config())->setRules([
+return (new Config())->setRules([
     // Rule sets
     '@PER-CS' => true,
     '@PHP80Migration:risky' => true,
@@ -17,5 +22,5 @@ return (new PhpCsFixer\Config())->setRules([
     // Rules
     'no_unused_imports' => true,
     'ordered_imports' => true,
-    'php_unit_test_class_requires_covers' => true,
+    //'php_unit_test_class_requires_covers' => true,
 ])->setFinder($finder);

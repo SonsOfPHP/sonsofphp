@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Cache\Tests\Adapter;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use SonsOfPHP\Component\Cache\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Cache\Adapter\NullAdapter;
+use SonsOfPHP\Component\Cache\CacheItem;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\Cache\Adapter\NullAdapter
- *
- * @uses \SonsOfPHP\Component\Cache\CacheItem
- * @uses \SonsOfPHP\Component\Cache\Adapter\NullAdapter
- */
+#[CoversClass(NullAdapter::class)]
+#[UsesClass(CacheItem::class)]
 final class NullAdapterTest extends TestCase
 {
     /**
@@ -29,9 +28,6 @@ final class NullAdapterTest extends TestCase
         $this->assertInstanceOf(CacheItemPoolInterface::class, $adapter);
     }
 
-    /**
-     * @covers ::getItem
-     */
     public function testGetItem(): void
     {
         $adapter = new NullAdapter();
@@ -40,9 +36,6 @@ final class NullAdapterTest extends TestCase
         $this->assertInstanceOf(CacheItemInterface::class, $item);
     }
 
-    /**
-     * @covers ::getItems
-     */
     public function testGetItems(): void
     {
         $adapter = new NullAdapter();
@@ -52,9 +45,6 @@ final class NullAdapterTest extends TestCase
         }
     }
 
-    /**
-     * @covers ::hasItem
-     */
     public function testHasItem(): void
     {
         $adapter = new NullAdapter();
@@ -62,9 +52,6 @@ final class NullAdapterTest extends TestCase
         $this->assertFalse($adapter->hasItem('item.key'));
     }
 
-    /**
-     * @covers ::clear
-     */
     public function testClear(): void
     {
         $adapter = new NullAdapter();
@@ -72,9 +59,6 @@ final class NullAdapterTest extends TestCase
         $this->assertTrue($adapter->clear());
     }
 
-    /**
-     * @covers ::deleteItem
-     */
     public function testDeleteHasItem(): void
     {
         $adapter = new NullAdapter();
@@ -82,9 +66,6 @@ final class NullAdapterTest extends TestCase
         $this->assertTrue($adapter->deleteItem('item.key'));
     }
 
-    /**
-     * @covers ::deleteItems
-     */
     public function testDeleteHasItems(): void
     {
         $adapter = new NullAdapter();
@@ -92,9 +73,6 @@ final class NullAdapterTest extends TestCase
         $this->assertTrue($adapter->deleteItems(['item.key']));
     }
 
-    /**
-     * @covers ::commit
-     */
     public function testCommit(): void
     {
         $adapter = new NullAdapter();
@@ -102,9 +80,6 @@ final class NullAdapterTest extends TestCase
         $this->assertTrue($adapter->commit());
     }
 
-    /**
-     * @covers ::save
-     */
     public function testSave(): void
     {
         $adapter = new NullAdapter();
@@ -112,9 +87,6 @@ final class NullAdapterTest extends TestCase
         $this->assertTrue($adapter->save($this->createMock(CacheItemInterface::class)));
     }
 
-    /**
-     * @covers ::saveDeferred
-     */
     public function testSaveDeferred(): void
     {
         $adapter = new NullAdapter();

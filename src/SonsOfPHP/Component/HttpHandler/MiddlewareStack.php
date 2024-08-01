@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\HttpHandler;
 
+use Closure;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -28,7 +29,7 @@ class MiddlewareStack implements MiddlewareStackInterface
      * will be ordered from the lowest number to the highest number (ascending
      * order).
      */
-    public function add(MiddlewareInterface|\Closure $middleware, int $priority = 0): self
+    public function add(MiddlewareInterface|Closure $middleware, int $priority = 0): self
     {
         $this->middlewares[$priority][] = $middleware;
         ksort($this->middlewares);
@@ -44,9 +45,9 @@ class MiddlewareStack implements MiddlewareStackInterface
             array_unshift($this->middlewares, $priorityStack);
         }
 
-        if ($middleware instanceof \Closure) {
+        if ($middleware instanceof Closure) {
             return new class ($middleware) implements MiddlewareInterface {
-                public function __construct(private \Closure $closure) {}
+                public function __construct(private readonly Closure $closure) {}
 
                 public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
                 {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\HttpMessage;
 
+use InvalidArgumentException;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -29,8 +30,8 @@ class Response extends Message implements ResponseInterface
      */
     public function withStatus(int $code, string $reasonPhrase = ''): ResponseInterface
     {
-        if (null === Status::tryFrom($code)) {
-            throw new \InvalidArgumentException(sprintf('The status code "%d" is invalid', $code));
+        if (!Status::tryFrom($code) instanceof Status) {
+            throw new InvalidArgumentException(sprintf('The status code "%d" is invalid', $code));
         }
 
         if (isset($this->statusCode) && $this->statusCode === $code && $this->reasonPhrase === $reasonPhrase) {

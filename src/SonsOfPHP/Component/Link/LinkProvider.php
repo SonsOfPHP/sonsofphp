@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Link;
 
+use InvalidArgumentException;
 use Psr\Link\LinkInterface;
 use Psr\Link\LinkProviderInterface;
 
@@ -19,7 +20,7 @@ class LinkProvider implements LinkProviderInterface
     ) {
         foreach ($links as $link) {
             if (!$link instanceof LinkInterface) {
-                throw new \InvalidArgumentException('At least one link does not implement LinkInterface');
+                throw new InvalidArgumentException('At least one link does not implement LinkInterface');
             }
 
             $this->links[spl_object_hash($link)] = $link;

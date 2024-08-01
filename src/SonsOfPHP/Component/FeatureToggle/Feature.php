@@ -15,14 +15,7 @@ use SonsOfPHP\Contract\FeatureToggle\ToggleInterface;
  */
 final class Feature implements FeatureInterface
 {
-    private string $key;
-    private ToggleInterface $toggle;
-
-    public function __construct(string $key, ToggleInterface $toggle)
-    {
-        $this->key    = $key;
-        $this->toggle = $toggle;
-    }
+    public function __construct(private readonly string $key, private readonly ToggleInterface $toggle) {}
 
     public function getKey(): string
     {

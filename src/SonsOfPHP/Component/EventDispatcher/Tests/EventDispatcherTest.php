@@ -4,25 +4,23 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventDispatcher\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use RuntimeException;
 use SonsOfPHP\Component\EventDispatcher\AbstractStoppableEvent;
 use SonsOfPHP\Component\EventDispatcher\EventDispatcher;
 use SonsOfPHP\Component\EventDispatcher\EventSubscriberInterface;
 use SonsOfPHP\Component\EventDispatcher\ListenerProvider;
+use SonsOfPHP\Component\EventDispatcher\StoppableEventTrait;
+use stdClass;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\EventDispatcher\EventDispatcher
- *
- * @uses \SonsOfPHP\Component\EventDispatcher\EventDispatcher
- * @uses \SonsOfPHP\Component\EventDispatcher\ListenerProvider
- * @uses \SonsOfPHP\Component\EventDispatcher\StoppableEventTrait
- */
+#[CoversClass(EventDispatcher::class)]
+#[UsesClass(ListenerProvider::class)]
+#[UsesClass(StoppableEventTrait::class)]
 final class EventDispatcherTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $dispatcher = new EventDispatcher();
@@ -30,28 +28,22 @@ final class EventDispatcherTest extends TestCase
         $this->assertInstanceOf(EventDispatcherInterface::class, $dispatcher); // @phpstan-ignore-line
     }
 
-    /**
-     * @covers ::dispatch
-     */
     public function testDispatch(): void
     {
         $dispatcher = new EventDispatcher();
         $dispatcher->addListener('stdClass', function ($event): void {});
 
-        $event = new \stdClass();
+        $event = new stdClass();
         $this->assertSame($event, $dispatcher->dispatch($event));
     }
 
-    /**
-     * @covers ::dispatch
-     */
     public function testDispatchWithStoppedEvent(): void
     {
         $event = new class () extends AbstractStoppableEvent {};
 
         $dispatcher = new EventDispatcher();
-        $dispatcher->addListener($event, function ($event): void {
-            throw new \RuntimeException('This should never run');
+        $dispatcher->addListener($event, function ($event): never {
+            throw new RuntimeException('This should never run');
         });
 
         $event->stopPropagation();
@@ -59,20 +51,14 @@ final class EventDispatcherTest extends TestCase
         $this->assertSame($event, $dispatcher->dispatch($event));
     }
 
-    /**
-     * @covers ::dispatch
-     */
     public function testItWillReturnTheSameEventWhenNoListeners(): void
     {
         $dispatcher = new EventDispatcher();
 
-        $event = new \stdClass();
+        $event = new stdClass();
         $this->assertSame($event, $dispatcher->dispatch($event));
     }
 
-    /**
-     * @covers ::addListener
-     */
     public function testItCanAddEventListener(): void
     {
         $provider = $this->createMock(ListenerProvider::class);
@@ -83,9 +69,6 @@ final class EventDispatcherTest extends TestCase
         $dispatcher->addListener('stdClass', function (): void {});
     }
 
-    /**
-     * @covers ::addListener
-     */
     public function testAddListenerWithObject(): void
     {
         $provider = $this->createMock(ListenerProvider::class);
@@ -93,12 +76,9 @@ final class EventDispatcherTest extends TestCase
 
         $dispatcher = new EventDispatcher($provider);
 
-        $dispatcher->addListener(new \stdClass(), function (): void {});
+        $dispatcher->addListener(new stdClass(), function (): void {});
     }
 
-    /**
-     * @covers ::addSubscriber
-     */
     public function testItCanAddEventSubscriber(): void
     {
         $provider = $this->createMock(ListenerProvider::class);

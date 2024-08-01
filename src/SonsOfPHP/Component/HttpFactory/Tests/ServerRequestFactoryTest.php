@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\HttpFactory\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestFactoryInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use SonsOfPHP\Component\HttpFactory\ServerRequestFactory;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\HttpFactory\ServerRequestFactory
- *
  * @internal
+ * @coversNothing
  */
+#[CoversClass(ServerRequestFactory::class)]
 final class ServerRequestFactoryTest extends TestCase
 {
     /**
@@ -25,7 +26,6 @@ final class ServerRequestFactoryTest extends TestCase
     }
 
     /**
-     * @covers ::createServerRequest
      * @uses \SonsOfPHP\Component\HttpMessage\Request
      * @uses \SonsOfPHP\Component\HttpMessage\ServerRequest
      * @uses \SonsOfPHP\Component\HttpMessage\Uri

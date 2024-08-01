@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter;
 use SonsOfPHP\Component\Filesystem\Filesystem;
 use SonsOfPHP\Component\Filesystem\FilesystemInterface;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\Filesystem\Filesystem
- *
- * @uses \SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter
- * @uses \SonsOfPHP\Component\Filesystem\Filesystem
- */
+#[CoversClass(Filesystem::class)]
+#[UsesClass(InMemoryAdapter::class)]
 final class FilesystemTest extends TestCase
 {
     private InMemoryAdapter $adapter;
@@ -24,9 +22,6 @@ final class FilesystemTest extends TestCase
         $this->adapter = new InMemoryAdapter();
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $filesystem = new Filesystem($this->adapter);
@@ -34,9 +29,6 @@ final class FilesystemTest extends TestCase
         $this->assertInstanceOf(FilesystemInterface::class, $filesystem);
     }
 
-    /**
-     * @covers ::write
-     */
     public function testItCanWrite(): void
     {
         $filesystem = new Filesystem($this->adapter);
@@ -45,9 +37,6 @@ final class FilesystemTest extends TestCase
         $this->assertSame('contents', $filesystem->read('/path/to/file.ext'));
     }
 
-    /**
-     * @covers ::read
-     */
     public function testItCanRead(): void
     {
         $filesystem = new Filesystem($this->adapter);
@@ -56,9 +45,6 @@ final class FilesystemTest extends TestCase
         $this->assertSame('contents', $filesystem->read('/path/to/file.ext'));
     }
 
-    /**
-     * @covers ::exists
-     */
     public function testItCanCheckIfExists(): void
     {
         $filesystem = new Filesystem($this->adapter);
@@ -68,9 +54,6 @@ final class FilesystemTest extends TestCase
         $this->assertTrue($filesystem->exists('/path/to/file.ext'));
     }
 
-    /**
-     * @covers ::delete
-     */
     public function testItCanDeleteFile(): void
     {
         $filesystem = new Filesystem($this->adapter);
@@ -82,9 +65,6 @@ final class FilesystemTest extends TestCase
         $this->assertFalse($filesystem->exists('/path/to/file.ext'));
     }
 
-    /**
-     * @covers ::copy
-     */
     public function testItCanCopyFiles(): void
     {
         $filesystem = new Filesystem($this->adapter);
@@ -98,9 +78,6 @@ final class FilesystemTest extends TestCase
         $this->assertTrue($filesystem->exists('/path/to/destination.ext'));
     }
 
-    /**
-     * @covers ::move
-     */
     public function testItCanMoveFiles(): void
     {
         $filesystem = new Filesystem($this->adapter);

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\Exception;
 
+use Exception;
 use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
 
 /**
@@ -11,4 +12,4 @@ use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class MoneyException extends \Exception implements MoneyExceptionInterface {}
+class MoneyException extends Exception implements MoneyExceptionInterface {}

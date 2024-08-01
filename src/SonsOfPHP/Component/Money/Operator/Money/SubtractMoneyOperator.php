@@ -14,12 +14,7 @@ use SonsOfPHP\Contract\Money\MoneyOperatorInterface;
  */
 class SubtractMoneyOperator implements MoneyOperatorInterface
 {
-    private MoneyInterface $money;
-
-    public function __construct(MoneyInterface $money)
-    {
-        $this->money = $money;
-    }
+    public function __construct(private readonly MoneyInterface $money) {}
 
     public function apply(MoneyInterface $money): MoneyInterface
     {

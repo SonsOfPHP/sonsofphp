@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message\Upcaster\Provider;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\Upcaster\Handler\NullUpcasterHandler;
@@ -12,10 +13,10 @@ use SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\MessageUpcasterP
 use SonsOfPHP\Component\EventSourcing\Metadata;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\EventTypeMessageUpcasterProvider
- *
  * @internal
+ * @coversNothing
  */
+#[CoversClass(EventTypeMessageUpcasterProvider::class)]
 final class EventTypeMessageUpcasterProviderTest extends TestCase
 {
     /**
@@ -27,9 +28,6 @@ final class EventTypeMessageUpcasterProviderTest extends TestCase
         $this->assertInstanceOf(MessageUpcasterProviderInterface::class, $provider); // @phpstan-ignore-line
     }
 
-    /**
-     * @covers ::getUpcastersForEventData
-     */
     public function testGetUpcastersForEventDataWillReturnEmptyArrayWhenNoHandlers(): void
     {
         $provider = new EventTypeMessageUpcasterProvider();
@@ -44,9 +42,6 @@ final class EventTypeMessageUpcasterProviderTest extends TestCase
         $this->assertCount(0, iterator_to_array($handlers));
     }
 
-    /**
-     * @covers ::getUpcastersForEventData
-     */
     public function testGetUpcastersForEventDataWillThrowExceptionWhenCannotFindEventType(): void
     {
         $provider = new EventTypeMessageUpcasterProvider();
@@ -55,10 +50,6 @@ final class EventTypeMessageUpcasterProviderTest extends TestCase
         $provider->getUpcastersForEventData([])->current(); // @phpstan-ignore-line
     }
 
-    /**
-     * @covers ::getUpcastersForEventData
-     * @covers ::register
-     */
     public function testGetUpcastersForEventData(): void
     {
         $provider = new EventTypeMessageUpcasterProvider();

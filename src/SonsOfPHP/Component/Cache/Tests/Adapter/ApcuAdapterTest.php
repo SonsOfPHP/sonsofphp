@@ -4,20 +4,19 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Cache\Tests\Adapter;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RequiresPhpExtension;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use SonsOfPHP\Component\Cache\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Cache\Adapter\ApcuAdapter;
+use SonsOfPHP\Component\Cache\CacheItem;
 
-/**
- * @requires extension apcu
- *
- * @coversDefaultClass \SonsOfPHP\Component\Cache\Adapter\ApcuAdapter
- *
- * @uses \SonsOfPHP\Component\Cache\CacheItem
- * @uses \SonsOfPHP\Component\Cache\Adapter\ApcuAdapter
- */
+#[RequiresPhpExtension('apcu')]
+#[CoversClass(ApcuAdapter::class)]
+#[UsesClass(CacheItem::class)]
 final class ApcuAdapterTest extends TestCase
 {
     public function setUp(): void
@@ -30,9 +29,6 @@ final class ApcuAdapterTest extends TestCase
         apcu_clear_cache();
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $adapter = new ApcuAdapter();
@@ -41,9 +37,6 @@ final class ApcuAdapterTest extends TestCase
         $this->assertInstanceOf(CacheItemPoolInterface::class, $adapter);
     }
 
-    /**
-     * @covers ::getItem
-     */
     public function testGetItem(): void
     {
         $adapter = new ApcuAdapter();
@@ -52,9 +45,6 @@ final class ApcuAdapterTest extends TestCase
         $this->assertInstanceOf(CacheItemInterface::class, $item);
     }
 
-    /**
-     * @covers ::getItem
-     */
     public function testGetItemAfterSave(): void
     {
         $adapter = new ApcuAdapter();
@@ -65,9 +55,6 @@ final class ApcuAdapterTest extends TestCase
         $this->assertTrue($adapter->getItem('unit.test')->isHit());
     }
 
-    /**
-     * @covers ::getItems
-     */
     public function testGetItems(): void
     {
         $adapter = new ApcuAdapter();
@@ -77,9 +64,6 @@ final class ApcuAdapterTest extends TestCase
         }
     }
 
-    /**
-     * @covers ::hasItem
-     */
     public function testHasItem(): void
     {
         $adapter = new ApcuAdapter();
@@ -87,9 +71,6 @@ final class ApcuAdapterTest extends TestCase
         $this->assertFalse($adapter->hasItem('item.key'));
     }
 
-    /**
-     * @covers ::clear
-     */
     public function testClear(): void
     {
         $adapter = new ApcuAdapter();
@@ -97,9 +78,6 @@ final class ApcuAdapterTest extends TestCase
         $this->assertTrue($adapter->clear());
     }
 
-    /**
-     * @covers ::deleteItem
-     */
     public function testDeleteItem(): void
     {
         $adapter = new ApcuAdapter();
@@ -107,9 +85,6 @@ final class ApcuAdapterTest extends TestCase
         $this->assertFalse($adapter->deleteItem('item.key'));
     }
 
-    /**
-     * @covers ::deleteItems
-     */
     public function testDeleteItemsWithValuesInCache(): void
     {
         $adapter = new ApcuAdapter();
@@ -120,9 +95,6 @@ final class ApcuAdapterTest extends TestCase
         $this->assertTrue($adapter->deleteItems(['unit.test']));
     }
 
-    /**
-     * @covers ::deleteItems
-     */
     public function testDeleteItemsWithEmptyCache(): void
     {
         $adapter = new ApcuAdapter();
@@ -130,9 +102,6 @@ final class ApcuAdapterTest extends TestCase
         $this->assertFalse($adapter->deleteItems(['item.key']));
     }
 
-    /**
-     * @covers ::commit
-     */
     public function testCommit(): void
     {
         $adapter = new ApcuAdapter();
@@ -140,9 +109,6 @@ final class ApcuAdapterTest extends TestCase
         $this->assertTrue($adapter->commit());
     }
 
-    /**
-     * @covers ::commit
-     */
     public function testCommitWithDeferredValues(): void
     {
         $adapter = new ApcuAdapter();
@@ -155,9 +121,6 @@ final class ApcuAdapterTest extends TestCase
         $this->assertTrue($adapter->hasItem('unit.test'));
     }
 
-    /**
-     * @covers ::save
-     */
     public function testSave(): void
     {
         $adapter = new ApcuAdapter();
@@ -165,9 +128,6 @@ final class ApcuAdapterTest extends TestCase
         $this->assertTrue($adapter->save($this->createMock(CacheItemInterface::class)));
     }
 
-    /**
-     * @covers ::save
-     */
     public function testSaveItemWithValue(): void
     {
         $adapter = new ApcuAdapter();
@@ -179,9 +139,6 @@ final class ApcuAdapterTest extends TestCase
         $this->assertSame('item.value', $adapter->getItem('unit.test')->get());
     }
 
-    /**
-     * @covers ::saveDeferred
-     */
     public function testSaveDeferred(): void
     {
         $adapter = new ApcuAdapter();

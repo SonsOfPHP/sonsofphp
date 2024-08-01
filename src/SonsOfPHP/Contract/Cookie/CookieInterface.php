@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Contract\Cookie;
 
+use DateTimeImmutable;
+use Stringable;
+
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface CookieInterface extends \Stringable
+interface CookieInterface extends Stringable
 {
     /**
      * Returns the Header Value for "Set-Cookie"
@@ -73,7 +76,7 @@ interface CookieInterface extends \Stringable
      *
      * @throws CookieExceptionInterface when $expires is invalid
      */
-    public function withExpires(\DateTimeImmutable $expires): static;
+    public function withExpires(DateTimeImmutable $expires): static;
 
     /**
      * Set "Max-Age="

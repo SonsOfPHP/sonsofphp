@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Aggregate;
 
+use DateTimeImmutable;
+use Generator;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 
@@ -12,7 +14,7 @@ use SonsOfPHP\Component\EventSourcing\Metadata;
  */
 abstract class AbstractAggregate implements AggregateInterface
 {
-    private AggregateIdInterface $id;
+    private readonly AggregateIdInterface $id;
     private AggregateVersionInterface $version;
     private array $pendingEvents = [];
 
@@ -72,7 +74,7 @@ abstract class AbstractAggregate implements AggregateInterface
         return $this->pendingEvents;
     }
 
-    final public static function buildFromEvents(AggregateIdInterface $id, \Generator $events): AggregateInterface
+    final public static function buildFromEvents(AggregateIdInterface $id, Generator $events): AggregateInterface
     {
         $aggregate = new static($id);
         foreach ($events as $event) {
@@ -93,7 +95,7 @@ abstract class AbstractAggregate implements AggregateInterface
         // Prepopulate with some metadata
         $event = $event->withMetadata([
             Metadata::AGGREGATE_ID     => $this->getAggregateId()->toString(),
-            Metadata::TIMESTAMP        => (new \DateTimeImmutable())->format(Metadata::DEFAULT_TIMESTAMP_FORMAT),
+            Metadata::TIMESTAMP        => (new DateTimeImmutable())->format(Metadata::DEFAULT_TIMESTAMP_FORMAT),
             Metadata::TIMESTAMP_FORMAT => Metadata::DEFAULT_TIMESTAMP_FORMAT,
         ]);
 

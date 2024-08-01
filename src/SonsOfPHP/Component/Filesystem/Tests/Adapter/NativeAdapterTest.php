@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem\Tests\Adapter;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\CopyAwareInterface;
@@ -12,15 +13,12 @@ use SonsOfPHP\Component\Filesystem\Adapter\MoveAwareInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\NativeAdapter;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Filesystem\Adapter\NativeAdapter
- *
  * @internal
+ * @coversNothing
  */
+#[CoversClass(NativeAdapter::class)]
 final class NativeAdapterTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $adapter = new NativeAdapter('/tmp');

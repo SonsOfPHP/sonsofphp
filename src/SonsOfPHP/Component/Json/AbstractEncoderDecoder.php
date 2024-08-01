@@ -21,7 +21,7 @@ abstract class AbstractEncoderDecoder
         $this->depth = $depth ?? $this->depth;
     }
 
-    public function withFlags(int $flag)
+    public function withFlags(int $flag): static
     {
         $that        = clone $this;
         $that->flags = $this->flags | $flag;
@@ -29,7 +29,7 @@ abstract class AbstractEncoderDecoder
         return $that;
     }
 
-    public function withoutFlags(int $flag)
+    public function withoutFlags(int $flag): static
     {
         $that        = clone $this;
         $that->flags = $this->flags & ~$flag;
@@ -37,7 +37,7 @@ abstract class AbstractEncoderDecoder
         return $that;
     }
 
-    public function withDepth(int $depth)
+    public function withDepth(int $depth): static
     {
         $that        = clone $this;
         $that->depth = $depth;
@@ -48,7 +48,7 @@ abstract class AbstractEncoderDecoder
     /**
      * Ignore invalid UTF-8 characters. Available as of PHP 7.2.0.
      */
-    public function invalidUtf8Ignore()
+    public function invalidUtf8Ignore(): static
     {
         return $this->withFlags(\JSON_INVALID_UTF8_IGNORE);
     }
@@ -57,7 +57,7 @@ abstract class AbstractEncoderDecoder
      * Convert invalid UTF-8 characters to \0xfffd (Unicode Character
      * 'REPLACEMENT CHARACTER') Available as of PHP 7.2.0.
      */
-    public function invalidUtf8Substitute()
+    public function invalidUtf8Substitute(): static
     {
         return $this->withFlags(\JSON_INVALID_UTF8_SUBSTITUTE);
     }
@@ -68,7 +68,7 @@ abstract class AbstractEncoderDecoder
      * json_last_error_msg(). JSON_PARTIAL_OUTPUT_ON_ERROR takes precedence
      * over JSON_THROW_ON_ERROR. Available as of PHP 7.3.0.
      */
-    public function throwOnError()
+    public function throwOnError(): static
     {
         return $this->withFlags(\JSON_THROW_ON_ERROR);
     }

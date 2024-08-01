@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\HttpMessage\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
 use SonsOfPHP\Component\HttpMessage\Request;
 use SonsOfPHP\Component\HttpMessage\Uri;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\HttpMessage\Request
- *
- * @uses \SonsOfPHP\Component\HttpMessage\Request
- * @uses \SonsOfPHP\Component\HttpMessage\Uri
- */
+#[CoversClass(Request::class)]
+#[UsesClass(Uri::class)]
 final class RequestTest extends TestCase
 {
     /**
@@ -26,10 +24,6 @@ final class RequestTest extends TestCase
         $this->assertInstanceOf(RequestInterface::class, new Request());
     }
 
-    /**
-     * @covers ::getRequestTarget
-     * @covers ::withRequestTarget
-     */
     public function testWithRequestTargetWorksAsExpected(): void
     {
         $request = new Request();
@@ -39,9 +33,6 @@ final class RequestTest extends TestCase
         $this->assertSame('/testing', $req->getRequestTarget());
     }
 
-    /**
-     * @covers ::withRequestTarget
-     */
     public function testWithRequestTargetWorksAsExpectedWhenSameRequestTarget(): void
     {
         $request = (new Request())->withRequestTarget('/testing');
@@ -50,10 +41,6 @@ final class RequestTest extends TestCase
         $this->assertSame($request, $req);
     }
 
-    /**
-     * @covers ::getMethod
-     * @covers ::withMethod
-     */
     public function testWithMethodWorksAsExpected(): void
     {
         $request = new Request();
@@ -63,9 +50,6 @@ final class RequestTest extends TestCase
         $this->assertSame('get', $req->getMethod());
     }
 
-    /**
-     * @covers ::withMethod
-     */
     public function testWithMethodWorksAsExpectedWhenInvalidMethod(): void
     {
         $request = new Request();
@@ -73,9 +57,6 @@ final class RequestTest extends TestCase
         $request->withMethod('not a valid method');
     }
 
-    /**
-     * @covers ::withMethod
-     */
     public function testWithMethodWorksAsExpectedWhenMethodIsSame(): void
     {
         $request = new Request('get');
@@ -83,10 +64,6 @@ final class RequestTest extends TestCase
         $this->assertSame($request, $req);
     }
 
-    /**
-     * @covers ::getUri
-     * @covers ::withUri
-     */
     public function testWithUriWorksAsExpected(): void
     {
         $request = new Request();
@@ -97,9 +74,6 @@ final class RequestTest extends TestCase
         $this->assertSame($uri, $req->getUri());
     }
 
-    /**
-     * @covers ::withUri
-     */
     public function testWithUriWorksAsExpectedWhenSame(): void
     {
         $request = new Request('get', 'https://docs.sonsofphp.com');
@@ -108,18 +82,12 @@ final class RequestTest extends TestCase
         $this->assertSame($request, $req);
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testItWillThrowExceptionWhenInvalidMethod(): void
     {
         $this->expectException('InvalidArgumentException');
         $request = new Request('not valid');
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testItCanBeCreatedWithStringAsUri(): void
     {
         $request = new Request('get', 'https://docs.sonsofphp.com');

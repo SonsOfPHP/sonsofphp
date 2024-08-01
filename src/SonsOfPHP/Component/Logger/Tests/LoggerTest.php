@@ -4,10 +4,15 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Logger\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
+use ReflectionProperty;
 use SonsOfPHP\Component\Logger\Context;
 use SonsOfPHP\Component\Logger\Enricher\NullEnricher;
+use SonsOfPHP\Component\Logger\Handler\AbstractHandler;
 use SonsOfPHP\Component\Logger\Handler\NullHandler;
 use SonsOfPHP\Component\Logger\Level;
 use SonsOfPHP\Component\Logger\Logger;
@@ -15,19 +20,15 @@ use SonsOfPHP\Component\Logger\Record;
 use SonsOfPHP\Contract\Logger\EnricherInterface;
 use SonsOfPHP\Contract\Logger\HandlerInterface;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\Logger\Logger
- *
- * @uses \SonsOfPHP\Component\Logger\Logger
- * @uses \SonsOfPHP\Component\Logger\Context
- * @uses \SonsOfPHP\Component\Logger\Record
- * @uses \SonsOfPHP\Component\Logger\Level
- * @uses \SonsOfPHP\Component\Logger\Handler\AbstractHandler
- */
+#[CoversClass(Logger::class)]
+#[UsesClass(Context::class)]
+#[UsesClass(Level::class)]
+#[UsesClass(Record::class)]
+#[UsesClass(AbstractHandler::class)]
 final class LoggerTest extends TestCase
 {
-    private $enricher;
-    private $handler;
+    private MockObject $enricher;
+    private MockObject $handler;
 
     public function setUp(): void
     {
@@ -35,9 +36,6 @@ final class LoggerTest extends TestCase
         $this->handler = $this->createMock(HandlerInterface::class);
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $logger = new Logger();
@@ -45,9 +43,6 @@ final class LoggerTest extends TestCase
         $this->assertInstanceOf(LoggerInterface::class, $logger);
     }
 
-    /**
-     * @covers ::log
-     */
     public function testLogWithOneHandlersAndOneEnricher(): void
     {
         $this->enricher->expects($this->once())->method('__invoke')->willReturn($record = new Record(
@@ -66,9 +61,6 @@ final class LoggerTest extends TestCase
         $logger->log(level: 'debug', message: 'testing', context: []);
     }
 
-    /**
-     * @covers ::log
-     */
     public function testLogWithNoHandlersAndOneEnricher(): void
     {
         $this->enricher->expects($this->once())->method('__invoke')->willReturn($record = new Record(
@@ -85,7 +77,6 @@ final class LoggerTest extends TestCase
     }
 
     /**
-     * @covers ::log
      * @doesNotPerformAssertions
      */
     public function testLogWithNoHandlersAndNoEnrichers(): void
@@ -95,13 +86,10 @@ final class LoggerTest extends TestCase
         $logger->log(level: 'debug', message: 'testing', context: []);
     }
 
-    /**
-     * @covers ::addEnricher
-     */
     public function testaddEnricher(): void
     {
         $logger = new Logger();
-        $enrichers = new \ReflectionProperty($logger, 'enrichers');
+        $enrichers = new ReflectionProperty($logger, 'enrichers');
         $this->assertCount(0, $enrichers->getValue($logger));
 
         $logger->addEnricher(new NullEnricher());
@@ -111,13 +99,10 @@ final class LoggerTest extends TestCase
         $this->assertCount(2, $enrichers->getValue($logger));
     }
 
-    /**
-     * @covers ::addHandler
-     */
     public function testaddHandler(): void
     {
         $logger = new Logger();
-        $handlers = new \ReflectionProperty($logger, 'handlers');
+        $handlers = new ReflectionProperty($logger, 'handlers');
         $this->assertCount(0, $handlers->getValue($logger));
 
         $logger->addHandler(new NullHandler());

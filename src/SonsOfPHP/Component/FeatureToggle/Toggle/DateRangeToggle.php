@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\FeatureToggle\Toggle;
 
+use DateTimeImmutable;
 use SonsOfPHP\Contract\FeatureToggle\ContextInterface;
 use SonsOfPHP\Contract\FeatureToggle\ToggleInterface;
 
@@ -15,13 +16,13 @@ use SonsOfPHP\Contract\FeatureToggle\ToggleInterface;
 class DateRangeToggle implements ToggleInterface
 {
     public function __construct(
-        private \DateTimeImmutable $start,
-        private \DateTimeImmutable $stop,
+        private readonly DateTimeImmutable $start,
+        private readonly DateTimeImmutable $stop,
     ) {}
 
     public function isEnabled(?ContextInterface $context = null): bool
     {
-        $now = new \DateTimeImmutable();
+        $now = new DateTimeImmutable();
 
         return ($this->start <= $now && $now <= $this->stop);
     }

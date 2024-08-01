@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Clock\Zone;
 use SonsOfPHP\Component\Clock\ZoneInterface;
 use SonsOfPHP\Component\Clock\ZoneOffset;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Clock\Zone
+ * @coversNothing
  */
+#[CoversClass(Zone::class)]
 final class ZoneTest extends TestCase
 {
     /**
@@ -25,9 +27,6 @@ final class ZoneTest extends TestCase
     }
 
     /**
-     * @covers ::__construct
-     * @covers ::__toString
-     * @covers ::toString
      *
      * @uses \SonsOfPHP\Component\Clock\ZoneOffset
      */
@@ -40,8 +39,6 @@ final class ZoneTest extends TestCase
     }
 
     /**
-     * @covers ::__construct
-     * @covers ::getName
      *
      * @uses \SonsOfPHP\Component\Clock\ZoneOffset
      */
@@ -53,8 +50,6 @@ final class ZoneTest extends TestCase
     }
 
     /**
-     * @covers ::__construct
-     * @covers ::getOffset
      *
      * @uses \SonsOfPHP\Component\Clock\ZoneOffset
      */

@@ -28,10 +28,6 @@ final class InMemoryFeatureToggleProvider implements FeatureToggleProviderInterf
 
     public function getFeatureToggleByKey(string $key): ?FeatureInterface
     {
-        if (isset($this->features[$key])) {
-            return $this->features[$key];
-        }
-
-        return null;
+        return $this->features[$key] ?? null;
     }
 }

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Logger\Tests\Enricher;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Logger\Context;
 use SonsOfPHP\Component\Logger\Enricher\ProcessIdEnricher;
@@ -11,17 +13,11 @@ use SonsOfPHP\Component\Logger\Level;
 use SonsOfPHP\Component\Logger\Record;
 use SonsOfPHP\Contract\Logger\EnricherInterface;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\Logger\Enricher\ProcessIdEnricher
- *
- * @uses \SonsOfPHP\Component\Logger\Context
- * @uses \SonsOfPHP\Component\Logger\Record
- */
+#[CoversClass(ProcessIdEnricher::class)]
+#[UsesClass(Context::class)]
+#[UsesClass(Record::class)]
 final class ProcessIdEnricherTest extends TestCase
 {
-    /**
-     * @coversNothing
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $enricher = new ProcessIdEnricher();
@@ -29,9 +25,6 @@ final class ProcessIdEnricherTest extends TestCase
         $this->assertInstanceOf(EnricherInterface::class, $enricher);
     }
 
-    /**
-     * @covers ::__invoke
-     */
     public function testInvoke(): void
     {
         $enricher = new ProcessIdEnricher();

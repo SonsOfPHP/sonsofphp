@@ -34,7 +34,7 @@ class HasCurrencyQuery implements CurrencyProviderQueryInterface
         throw new MoneyException('Value Error');
     }
 
-    public function queryFrom(CurrencyProviderInterface $provider)
+    public function queryFrom(CurrencyProviderInterface $provider): bool
     {
         foreach ($provider->getCurrencies() as $currency) {
             if ($currency->isEqualTo($this->currency)) {

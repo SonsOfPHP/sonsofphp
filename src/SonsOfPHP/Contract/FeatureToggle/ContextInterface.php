@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Contract\FeatureToggle;
 
+use InvalidArgumentException;
+
 /**
  * Context is used to pass additional paramters to a toggle
  *
@@ -16,12 +18,12 @@ interface ContextInterface // extends \ArrayAccess, \IteratorAggregate, \JsonSer
      *
      * If the key does not exist, the $default should be returned
      *
-     * @throws \InvalidArgumentException if key or default is invalid
+     * @throws InvalidArgumentException if key or default is invalid
      */
     public function get(string $key, mixed $default = null);
 
     /**
-     * @throws \InvalidArgumentException if key or value is invalid
+     * @throws InvalidArgumentException if key or value is invalid
      */
     public function set(string $key, mixed $value): self;
 

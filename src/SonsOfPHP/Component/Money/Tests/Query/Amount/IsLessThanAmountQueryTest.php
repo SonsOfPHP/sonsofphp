@@ -4,18 +4,15 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\Tests\Query\Amount;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Amount;
 use SonsOfPHP\Component\Money\Query\Amount\IsLessThanAmountQuery;
 use SonsOfPHP\Contract\Money\AmountQueryInterface;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\Money\Query\Amount\IsLessThanAmountQuery
- *
- * @uses \SonsOfPHP\Component\Money\Amount
- *
- * @internal
- */
+#[CoversClass(IsLessThanAmountQuery::class)]
+#[UsesClass(Amount::class)]
 final class IsLessThanAmountQueryTest extends TestCase
 {
     /**
@@ -29,10 +26,6 @@ final class IsLessThanAmountQueryTest extends TestCase
         $this->assertInstanceOf(AmountQueryInterface::class, $query);
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::queryFrom
-     */
     public function testQuery(): void
     {
         $amount = new Amount(100);

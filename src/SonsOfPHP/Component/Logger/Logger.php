@@ -10,6 +10,8 @@ use Psr\Log\LoggerInterface;
 use SonsOfPHP\Contract\Logger\EnricherInterface;
 use SonsOfPHP\Contract\Logger\FilterInterface;
 use SonsOfPHP\Contract\Logger\HandlerInterface;
+use SonsOfPHP\Contract\Logger\LevelInterface;
+use Stringable;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -17,10 +19,10 @@ use SonsOfPHP\Contract\Logger\HandlerInterface;
 class Logger extends AbstractLogger implements LoggerInterface
 {
     public function __construct(
-        private string $channel = '',
+        private readonly string $channel = '',
         private array $handlers = [],
         private array $enrichers = [],
-        private ?FilterInterface $filter = null,
+        private readonly ?FilterInterface $filter = null,
     ) {}
 
     public function addHandler(HandlerInterface $handler): void
@@ -36,9 +38,9 @@ class Logger extends AbstractLogger implements LoggerInterface
     /**
      * {@inheritdoc}
      */
-    public function log($level, string|\Stringable $message, array $context = []): void
+    public function log($level, string|Stringable $message, array $context = []): void
     {
-        if (null === Level::tryFromName((string) $level)) {
+        if (!Level::tryFromName((string) $level) instanceof LevelInterface) {
             throw new InvalidArgumentException('level is invalid');
         }
 
@@ -49,7 +51,7 @@ class Logger extends AbstractLogger implements LoggerInterface
             context: new Context($context),
         );
 
-        if (null !== $this->filter && false === $this->filter->isLoggable($record)) {
+        if ($this->filter instanceof FilterInterface && false === $this->filter->isLoggable($record)) {
             return;
         }
 

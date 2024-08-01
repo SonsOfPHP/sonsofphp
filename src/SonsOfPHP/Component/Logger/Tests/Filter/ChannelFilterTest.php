@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Logger\Tests\Filter;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Logger\Context;
 use SonsOfPHP\Component\Logger\Filter\ChannelFilter;
@@ -11,18 +13,11 @@ use SonsOfPHP\Component\Logger\Level;
 use SonsOfPHP\Component\Logger\Record;
 use SonsOfPHP\Contract\Logger\FilterInterface;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\Logger\Filter\ChannelFilter
- *
- * @uses \SonsOfPHP\Component\Logger\Filter\ChannelFilter
- * @uses \SonsOfPHP\Component\Logger\Context
- * @uses \SonsOfPHP\Component\Logger\Record
- */
+#[CoversClass(ChannelFilter::class)]
+#[UsesClass(Context::class)]
+#[UsesClass(Record::class)]
 final class ChannelFilterTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $filter = new ChannelFilter('app');
@@ -30,9 +25,6 @@ final class ChannelFilterTest extends TestCase
         $this->assertInstanceOf(FilterInterface::class, $filter);
     }
 
-    /**
-     * @covers ::isLoggable
-     */
     public function testIsLoggableIsTrueWhenIsLoggableIsFalse(): void
     {
         $filter = new ChannelFilter('app', false);
@@ -46,9 +38,6 @@ final class ChannelFilterTest extends TestCase
         $this->assertTrue($filter->isLoggable($record));
     }
 
-    /**
-     * @covers ::isLoggable
-     */
     public function testIsLoggableIsFalseWhenIsLoggableIsFalse(): void
     {
         $filter = new ChannelFilter('app', false);
@@ -62,9 +51,6 @@ final class ChannelFilterTest extends TestCase
         $this->assertFalse($filter->isLoggable($record));
     }
 
-    /**
-     * @covers ::isLoggable
-     */
     public function testIsLoggableIsFalse(): void
     {
         $filter = new ChannelFilter('app');
@@ -78,9 +64,6 @@ final class ChannelFilterTest extends TestCase
         $this->assertFalse($filter->isLoggable($record));
     }
 
-    /**
-     * @covers ::isLoggable
-     */
     public function testIsLoggableIsTrue(): void
     {
         $filter = new ChannelFilter('app');

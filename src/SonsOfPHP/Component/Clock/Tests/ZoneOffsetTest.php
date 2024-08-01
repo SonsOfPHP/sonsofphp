@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Clock\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Clock\ZoneOffset;
 use SonsOfPHP\Component\Clock\ZoneOffsetInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Clock\ZoneOffset
+ * @coversNothing
  */
+#[CoversClass(ZoneOffset::class)]
 final class ZoneOffsetTest extends TestCase
 {
     /**
@@ -23,13 +25,6 @@ final class ZoneOffsetTest extends TestCase
         $this->assertInstanceOf(ZoneOffsetInterface::class, $zoneOffset);
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::__toString
-     * @covers ::toString
-     * @covers ::getHours
-     * @covers ::getSeconds
-     */
     public function testToString(): void
     {
         $zoneOffset = new ZoneOffset(-19800);
@@ -38,10 +33,6 @@ final class ZoneOffsetTest extends TestCase
         $this->assertSame('-05:30', (string) $zoneOffset);
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::getSeconds
-     */
     public function testGetSeconds(): void
     {
         $zoneOffset = new ZoneOffset(-18000);
@@ -49,11 +40,6 @@ final class ZoneOffsetTest extends TestCase
         $this->assertSame(-18000, $zoneOffset->getSeconds());
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::getHours
-     * @covers ::getSeconds
-     */
     public function testGetHours(): void
     {
         $zoneOffset = new ZoneOffset(-18000);

@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Cache;
 
+use DateInterval;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\SimpleCache\CacheInterface;
+use Traversable;
 
 /**
  * PSR-16 Simple Cache
@@ -18,7 +20,7 @@ final class SimpleCache implements CacheInterface
      * @codeCoverageIgnore
      */
     public function __construct(
-        private CacheItemPoolInterface $pool,
+        private readonly CacheItemPoolInterface $pool,
     ) {}
 
     /**
@@ -34,7 +36,7 @@ final class SimpleCache implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function set(string $key, mixed $value, null|int|\DateInterval $ttl = null): bool
+    public function set(string $key, mixed $value, null|int|DateInterval $ttl = null): bool
     {
         $item = $this->pool->getItem($key);
         $item->set($value);
@@ -76,7 +78,7 @@ final class SimpleCache implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function setMultiple(iterable $values, null|int|\DateInterval $ttl = null): bool
+    public function setMultiple(iterable $values, null|int|DateInterval $ttl = null): bool
     {
         foreach ($values as $key => $value) {
             $this->set($key, $value, $ttl);
@@ -90,7 +92,7 @@ final class SimpleCache implements CacheInterface
      */
     public function deleteMultiple(iterable $keys): bool
     {
-        if ($keys instanceof \Traversable) {
+        if ($keys instanceof Traversable) {
             $keys = iterator_to_array($keys);
         }
 

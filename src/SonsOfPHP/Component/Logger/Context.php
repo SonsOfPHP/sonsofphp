@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Logger;
 
+use ArrayIterator;
+use InvalidArgumentException;
 use SonsOfPHP\Contract\Logger\ContextInterface;
+use Stringable;
+use Traversable;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -23,7 +27,7 @@ class Context implements ContextInterface
     public function offsetExists(mixed $offset): bool
     {
         if (!is_string($offset)) {
-            throw new \InvalidArgumentException('Only strings are supported as keys');
+            throw new InvalidArgumentException('Only strings are supported as keys');
         }
 
         return array_key_exists($offset, $this->context);
@@ -32,7 +36,7 @@ class Context implements ContextInterface
     public function offsetGet(mixed $offset): mixed
     {
         if (!is_string($offset)) {
-            throw new \InvalidArgumentException('Only strings are supported as keys');
+            throw new InvalidArgumentException('Only strings are supported as keys');
         }
 
         return $this->context[$offset] ?? null;
@@ -41,11 +45,11 @@ class Context implements ContextInterface
     public function offsetSet(mixed $offset, mixed $value): void
     {
         if (!is_string($offset)) {
-            throw new \InvalidArgumentException('Only strings are supported as keys');
+            throw new InvalidArgumentException('Only strings are supported as keys');
         }
 
-        if (is_object($value) && !$value instanceof \Stringable) {
-            throw new \InvalidArgumentException('Only Stringable Objects are supported');
+        if (is_object($value) && !$value instanceof Stringable) {
+            throw new InvalidArgumentException('Only Stringable Objects are supported');
         }
 
         $this->context[$offset] = $value;
@@ -54,7 +58,7 @@ class Context implements ContextInterface
     public function offsetUnset(mixed $offset): void
     {
         if (!is_string($offset)) {
-            throw new \InvalidArgumentException('Only strings are supported as keys');
+            throw new InvalidArgumentException('Only strings are supported as keys');
         }
 
         if ($this->offsetExists($offset)) {
@@ -62,8 +66,8 @@ class Context implements ContextInterface
         }
     }
 
-    public function getIterator(): \Traversable
+    public function getIterator(): Traversable
     {
-        return new \ArrayIterator($this->context);
+        return new ArrayIterator($this->context);
     }
 }

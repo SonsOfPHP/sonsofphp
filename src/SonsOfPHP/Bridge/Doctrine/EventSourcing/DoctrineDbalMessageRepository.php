@@ -22,23 +22,14 @@ use SonsOfPHP\Component\EventSourcing\Metadata;
  */
 class DoctrineDbalMessageRepository implements MessageRepositoryInterface
 {
-    private Connection $connection;
-    private MessageSerializerInterface $serializer;
-    private TableSchemaInterface $tableSchema;
-
-    public function __construct(Connection $connection, MessageSerializerInterface $serializer, TableSchemaInterface $tableSchema)
-    {
-        $this->connection  = $connection;
-        $this->serializer  = $serializer;
-        $this->tableSchema = $tableSchema;
-    }
+    public function __construct(private readonly Connection $connection, private readonly MessageSerializerInterface $serializer, private readonly TableSchemaInterface $tableSchema) {}
 
     public function persist(MessageInterface $message): void
     {
         $id      = $message->getAggregateId();
         $version = $message->getAggregateVersion();
 
-        if (null === $id || null === $version) {
+        if (!$id instanceof AggregateIdInterface || !$version instanceof AggregateVersionInterface) {
             throw new EventSourcingException('No ID or Verion');
         }
 
@@ -86,7 +77,7 @@ class DoctrineDbalMessageRepository implements MessageRepositoryInterface
         $builder->orderBy($aggregateVersionColumn, 'ASC');
         $builder->setParameter('aggregate_id', $id->toString(), $columnsWithTypes[$aggregateIdColumn]);
 
-        if (null !== $version) {
+        if ($version instanceof AggregateVersionInterface) {
             $builder->andWhere(sprintf('%s > :aggregate_version', $aggregateVersionColumn));
             $builder->setParameter('aggregate_version', $version->toInt(), $columnsWithTypes[$aggregateVersionColumn]);
         }

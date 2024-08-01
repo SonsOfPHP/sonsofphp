@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Snapshot\Repository;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Snapshot\Repository\InMemorySnapshotRepository;
 use SonsOfPHP\Component\EventSourcing\Snapshot\Repository\SnapshotRepositoryInterface;
 use SonsOfPHP\Component\EventSourcing\Snapshot\Snapshot;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Snapshot\Repository\InMemorySnapshotRepository
- *
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
- * @uses \SonsOfPHP\Component\EventSourcing\Snapshot\Snapshot
- */
+#[CoversClass(InMemorySnapshotRepository::class)]
+#[UsesClass(AbstractAggregateId::class)]
+#[UsesClass(AggregateVersion::class)]
+#[UsesClass(Snapshot::class)]
 final class InMemorySnapshotRepositoryTest extends TestCase
 {
     /**
@@ -29,10 +29,6 @@ final class InMemorySnapshotRepositoryTest extends TestCase
         $this->assertInstanceOf(SnapshotRepositoryInterface::class, $repository);
     }
 
-    /**
-     * @covers ::find
-     * @covers ::persist
-     */
     public function testPersistAndFind(): void
     {
         $repository = new InMemorySnapshotRepository();
@@ -44,9 +40,6 @@ final class InMemorySnapshotRepositoryTest extends TestCase
         $this->assertSame($snapshot, $result);
     }
 
-    /**
-     * @covers ::find
-     */
     public function testFindReturnsNullIfNoSnapshotFound(): void
     {
         $repository = new InMemorySnapshotRepository();

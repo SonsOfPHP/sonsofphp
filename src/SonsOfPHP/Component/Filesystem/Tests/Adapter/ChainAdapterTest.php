@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem\Tests\Adapter;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\ChainAdapter;
@@ -13,12 +15,8 @@ use SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter;
 use SonsOfPHP\Component\Filesystem\Adapter\MoveAwareInterface;
 use SonsOfPHP\Component\Filesystem\Exception\FileNotFoundException;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\Filesystem\Adapter\ChainAdapter
- *
- * @uses \SonsOfPHP\Component\Filesystem\Adapter\ChainAdapter
- * @uses \SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter
- */
+#[CoversClass(ChainAdapter::class)]
+#[UsesClass(InMemoryAdapter::class)]
 final class ChainAdapterTest extends TestCase
 {
     private array $adapters = [];
@@ -28,9 +26,6 @@ final class ChainAdapterTest extends TestCase
         $this->adapters[] = new InMemoryAdapter();
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $adapter = new ChainAdapter($this->adapters);
@@ -41,9 +36,6 @@ final class ChainAdapterTest extends TestCase
         $this->assertInstanceOf(MoveAwareInterface::class, $adapter);
     }
 
-    /**
-     * @covers ::add
-     */
     public function testItCanAdd(): void
     {
         $adp = $this->createMock(AdapterInterface::class);
@@ -54,9 +46,6 @@ final class ChainAdapterTest extends TestCase
         $adapter->add('/path/to/file.txt', 'testing');
     }
 
-    /**
-     * @covers ::get
-     */
     public function testItCanGetFile(): void
     {
         $adp = $this->createMock(AdapterInterface::class);
@@ -68,9 +57,6 @@ final class ChainAdapterTest extends TestCase
         $adapter->get('/path/to/file.txt');
     }
 
-    /**
-     * @covers ::get
-     */
     public function testItWillThrowExceptionWhenFileNotFound(): void
     {
         $adp = $this->createMock(AdapterInterface::class);
@@ -82,9 +68,6 @@ final class ChainAdapterTest extends TestCase
         $adapter->get('/path/to/file.txt');
     }
 
-    /**
-     * @covers ::remove
-     */
     public function testItCanRemoveFiles(): void
     {
         $adapter = new ChainAdapter($this->adapters);
@@ -95,9 +78,6 @@ final class ChainAdapterTest extends TestCase
         $this->assertFalse($adapter->has('/path/to/file.txt'));
     }
 
-    /**
-     * @covers ::has
-     */
     public function testItCanHas(): void
     {
         $adapter = new ChainAdapter($this->adapters);
@@ -106,9 +86,6 @@ final class ChainAdapterTest extends TestCase
         $this->assertTrue($adapter->has('/path/to/file.txt'));
     }
 
-    /**
-     * @covers ::isFile
-     */
     public function testItCanIsFile(): void
     {
         $adapter = new ChainAdapter($this->adapters);
@@ -118,9 +95,6 @@ final class ChainAdapterTest extends TestCase
         $this->assertTrue($adapter->isFile('/path/to/file.txt'));
     }
 
-    /**
-     * @covers ::copy
-     */
     public function testItCanCopyFile(): void
     {
         $adapter = new ChainAdapter($this->adapters);
@@ -136,9 +110,6 @@ final class ChainAdapterTest extends TestCase
         $this->assertTrue($adapter->has('/path/to/destination.txt'));
     }
 
-    /**
-     * @covers ::isDirectory
-     */
     public function testItCanCheckIfIsDirectoryExists(): void
     {
         $adapter = new ChainAdapter($this->adapters);
@@ -147,9 +118,6 @@ final class ChainAdapterTest extends TestCase
         $this->assertTrue($adapter->isDirectory('/path/to'));
     }
 
-    /**
-     * @covers ::move
-     */
     public function testItCanMoveFiles(): void
     {
         $adapter = new ChainAdapter($this->adapters);

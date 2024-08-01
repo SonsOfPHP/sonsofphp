@@ -13,12 +13,7 @@ use SonsOfPHP\Contract\Money\AmountOperatorInterface;
  */
 class MultiplyAmountOperator implements AmountOperatorInterface
 {
-    private $multiplier;
-
-    public function __construct($multiplier)
-    {
-        $this->multiplier = $multiplier;
-    }
+    public function __construct(private $multiplier) {}
 
     public function apply(AmountInterface $amount): AmountInterface
     {

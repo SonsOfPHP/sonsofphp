@@ -13,12 +13,8 @@ use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
  */
 final class AggregateVersion implements AggregateVersionInterface
 {
-    private int $version;
-
-    public function __construct(int $version = 0)
+    public function __construct(private readonly int $version = 0)
     {
-        $this->version = $version;
-
         if (!$this->isValid()) {
             throw new EventSourcingException(sprintf('Version "%s" is invalid.', $this->version));
         }

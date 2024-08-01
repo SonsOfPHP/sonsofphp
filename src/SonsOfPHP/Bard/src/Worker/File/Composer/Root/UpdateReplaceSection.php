@@ -12,12 +12,7 @@ use SonsOfPHP\Bard\Worker\WorkerInterface;
  */
 final class UpdateReplaceSection implements WorkerInterface
 {
-    private JsonFile $pkgComposerJsonFile;
-
-    public function __construct(JsonFile $pkgComposerJsonFile)
-    {
-        $this->pkgComposerJsonFile = $pkgComposerJsonFile;
-    }
+    public function __construct(private readonly JsonFile $pkgComposerJsonFile) {}
 
     public function apply(JsonFile $rootComposerJsonFile): JsonFile
     {

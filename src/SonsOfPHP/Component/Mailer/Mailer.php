@@ -16,8 +16,8 @@ use SonsOfPHP\Contract\Mailer\TransportInterface;
 final class Mailer implements MailerInterface
 {
     public function __construct(
-        private TransportInterface $transport,
-        private MiddlewareHandlerInterface $handler = new MiddlewareHandler(),
+        private readonly TransportInterface $transport,
+        private readonly MiddlewareHandlerInterface $handler = new MiddlewareHandler(),
     ) {}
 
     public function addMiddleware(MiddlewareInterface $middleware): void

@@ -14,7 +14,7 @@ use Twig\TwigFilter;
 class MoneyExtension extends AbstractExtension
 {
     public function __construct(
-        private MoneyFormatterInterface $formatter,
+        private readonly MoneyFormatterInterface $formatter,
     ) {}
 
     /**
@@ -23,7 +23,7 @@ class MoneyExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-            new TwigFilter('format_money', [$this, 'formatMoney']),
+            new TwigFilter('format_money', $this->formatMoney(...)),
         ];
     }
 

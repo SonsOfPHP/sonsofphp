@@ -13,7 +13,7 @@ use SonsOfPHP\Contract\Pager\AdapterInterface;
 class ArrayCollectionAdapter implements AdapterInterface
 {
     public function __construct(
-        private ArrayCollection $collection,
+        private readonly ArrayCollection $collection,
     ) {}
 
     /**

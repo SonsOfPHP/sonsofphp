@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Logger\Tests\Formatter;
 
+use DateTimeImmutable;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Logger\Context;
 use SonsOfPHP\Component\Logger\Formatter\SimpleFormatter;
@@ -11,14 +14,10 @@ use SonsOfPHP\Component\Logger\Level;
 use SonsOfPHP\Component\Logger\Record;
 use SonsOfPHP\Contract\Logger\FormatterInterface;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\Logger\Formatter\SimpleFormatter
- *
- * @uses \SonsOfPHP\Component\Logger\Formatter\SimpleFormatter
- * @uses \SonsOfPHP\Component\Logger\Context
- * @uses \SonsOfPHP\Component\Logger\Record
- * @uses \SonsOfPHP\Component\Logger\Level
- */
+#[CoversClass(SimpleFormatter::class)]
+#[UsesClass(Context::class)]
+#[UsesClass(Level::class)]
+#[UsesClass(Record::class)]
 final class SimpleFormatterTest extends TestCase
 {
     /**
@@ -31,9 +30,6 @@ final class SimpleFormatterTest extends TestCase
         $this->assertInstanceOf(FormatterInterface::class, $formatter);
     }
 
-    /**
-     * @covers ::formatMessage
-     */
     public function testIsLoggableIsTrue(): void
     {
         $formatter = new SimpleFormatter();
@@ -42,7 +38,7 @@ final class SimpleFormatterTest extends TestCase
             level: Level::Debug,
             message: 'Example {key} Message',
             context: new Context(['key' => 'value']),
-            datetime: new \DateTimeImmutable('2020-04-20T04:20:00+00:00'),
+            datetime: new DateTimeImmutable('2020-04-20T04:20:00+00:00'),
         );
 
         $this->assertSame("[2020-04-20T04:20:00+00:00] app.DEBUG: Example value Message {\"key\":\"value\"}\n", $formatter->formatMessage($record));

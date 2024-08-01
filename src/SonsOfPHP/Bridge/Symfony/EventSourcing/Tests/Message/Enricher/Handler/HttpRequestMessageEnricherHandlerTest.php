@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests\Message\Enricher\Handler;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\HttpRequestMessageEnricherHandler;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\MessageEnricherHandlerInterface;
@@ -12,15 +13,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\HttpRequestMessageEnricherHandler
- *
  * @uses \SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\HttpRequestMessageEnricherHandler
+ * @coversNothing
  */
+#[CoversClass(HttpRequestMessageEnricherHandler::class)]
 final class HttpRequestMessageEnricherHandlerTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     */
     public function testItHasTheRightInterface(): void
     {
         $handler = new HttpRequestMessageEnricherHandler(new RequestStack());
@@ -28,9 +26,6 @@ final class HttpRequestMessageEnricherHandlerTest extends TestCase
         $this->assertInstanceOf(MessageEnricherHandlerInterface::class, $handler);
     }
 
-    /**
-     * @covers ::enrich
-     */
     public function testItWillEnrichTheMessageWithMainRequest(): void
     {
         $request = new Request();
@@ -46,9 +41,6 @@ final class HttpRequestMessageEnricherHandlerTest extends TestCase
         $handler->enrich($message);
     }
 
-    /**
-     * @covers ::enrich
-     */
     public function testItWillNotEnrichTheMessageWhenThereIsNoMainRequest(): void
     {
         $stack = new RequestStack();

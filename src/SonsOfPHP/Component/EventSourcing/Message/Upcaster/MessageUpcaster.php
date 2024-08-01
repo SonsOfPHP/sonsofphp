@@ -11,12 +11,7 @@ use SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\MessageUpcasterP
  */
 final class MessageUpcaster implements MessageUpcasterInterface
 {
-    private MessageUpcasterProviderInterface $provider;
-
-    public function __construct(MessageUpcasterProviderInterface $provider)
-    {
-        $this->provider = $provider;
-    }
+    public function __construct(private readonly MessageUpcasterProviderInterface $provider) {}
 
     public function upcast(array $data): array
     {

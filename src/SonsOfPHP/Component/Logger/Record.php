@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Logger;
 
+use DateTimeImmutable;
 use SonsOfPHP\Contract\Logger\ContextInterface;
 use SonsOfPHP\Contract\Logger\LevelInterface;
 use SonsOfPHP\Contract\Logger\RecordInterface;
+use Stringable;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -16,9 +18,9 @@ final class Record implements RecordInterface
     public function __construct(
         private string $channel,
         private LevelInterface $level,
-        private string|\Stringable $message,
+        private string|Stringable $message,
         private ContextInterface $context,
-        private \DateTimeImmutable $datetime = new \DateTimeImmutable(),
+        private DateTimeImmutable $datetime = new DateTimeImmutable(),
     ) {}
 
     public function getChannel(): string
@@ -38,7 +40,7 @@ final class Record implements RecordInterface
         return $that;
     }
 
-    public function getLevel()
+    public function getLevel(): LevelInterface
     {
         return $this->level;
     }
@@ -93,12 +95,12 @@ final class Record implements RecordInterface
         return $that;
     }
 
-    public function getDatetime(): \DateTimeImmutable
+    public function getDatetime(): DateTimeImmutable
     {
         return $this->datetime;
     }
 
-    public function withDatetime(\DateTimeImmutable $datetime): static
+    public function withDatetime(DateTimeImmutable $datetime): static
     {
         $that = clone $this;
         $that->datatime = $datatime;

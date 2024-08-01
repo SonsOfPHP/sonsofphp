@@ -18,7 +18,7 @@ use SonsOfPHP\Component\Filesystem\Exception\FileNotFoundException;
 final class ChainAdapter implements AdapterInterface, CopyAwareInterface, DirectoryAwareInterface, MoveAwareInterface
 {
     public function __construct(
-        private iterable $adapters,
+        private readonly iterable $adapters,
     ) {}
 
     public function add(string $path, mixed $contents, ?ContextInterface $context = null): void

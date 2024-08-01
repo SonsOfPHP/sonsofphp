@@ -4,29 +4,27 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\AbstractMessage;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
+use SonsOfPHP\Component\EventSourcing\Message\MessageMetadata;
+use SonsOfPHP\Component\EventSourcing\Message\MessagePayload;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\AbstractMessage
- *
- * @uses \SonsOfPHP\Component\EventSourcing\Message\AbstractMessage
- * @uses \SonsOfPHP\Component\EventSourcing\Message\MessageMetadata
- * @uses \SonsOfPHP\Component\EventSourcing\Message\MessagePayload
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
- */
+#[CoversClass(AbstractMessage::class)]
+#[UsesClass(MessageMetadata::class)]
+#[UsesClass(MessagePayload::class)]
+#[UsesClass(AbstractAggregateId::class)]
+#[UsesClass(AggregateVersion::class)]
 final class AbstractMessageTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     * @covers ::new
-     */
     public function testItHasTheRightInterface(): void
     {
         $message = $this->createMock(AbstractMessage::class);
@@ -34,9 +32,6 @@ final class AbstractMessageTest extends TestCase
         $this->assertInstanceOf(MessageInterface::class, $message);
     }
 
-    /**
-     * @covers ::getMetadata
-     */
     public function testGetMetadataHasEmptyArraryAsDefaultValue(): void
     {
         $message = $this->createMock(AbstractMessage::class)::new();
@@ -44,9 +39,6 @@ final class AbstractMessageTest extends TestCase
         $this->assertCount(6, $message->getMetadata());
     }
 
-    /**
-     * @covers ::withMetadata
-     */
     public function testWithMetadataReturnsNewStatic(): void
     {
         $message = $this->createMock(AbstractMessage::class)::new();
@@ -57,9 +49,6 @@ final class AbstractMessageTest extends TestCase
         $this->assertNotSame($return, $message);
     }
 
-    /**
-     * @covers ::withMetadata
-     */
     public function testWithMetadataWorksCorrectly(): void
     {
         $message = $this->createMock(AbstractMessage::class);
@@ -70,14 +59,6 @@ final class AbstractMessageTest extends TestCase
         $this->assertArrayHasKey(Metadata::EVENT_TYPE, $message->getMetadata());
     }
 
-    /**
-     * @covers ::getAggregateId
-     * @covers ::getAggregateVersion
-     * @covers ::getEventId
-     * @covers ::getEventType
-     * @covers ::getTimestamp
-     * @covers ::getTimestampFormat
-     */
     public function testGettersWithEmptyMetadata(): void
     {
         $message = $this->createMock(AbstractMessage::class)::new();
@@ -91,15 +72,6 @@ final class AbstractMessageTest extends TestCase
         $this->assertSame(0, $message->getAggregateVersion()->toInt());
     }
 
-    /**
-     * @covers ::getAggregateId
-     * @covers ::getAggregateVersion
-     * @covers ::getEventId
-     * @covers ::getEventType
-     * @covers ::getTimestamp
-     * @covers ::getTimestampFormat
-     * @covers ::withMetadata
-     */
     public function testGettersWithMetadata(): void
     {
         $message = $this->createMock(AbstractMessage::class);
@@ -120,10 +92,6 @@ final class AbstractMessageTest extends TestCase
         $this->assertSame(123, $message->getAggregateVersion()->toInt());
     }
 
-    /**
-     * @covers ::getAggregateId
-     * @covers ::withMetadata
-     */
     public function testGetAggregateIdReturnsCorrectInterface(): void
     {
         $message = $this->createMock(AbstractMessage::class);
@@ -134,10 +102,6 @@ final class AbstractMessageTest extends TestCase
         $this->assertInstanceOf(AggregateIdInterface::class, $message->getAggregateId());
     }
 
-    /**
-     * @covers ::getAggregateVersion
-     * @covers ::withMetadata
-     */
     public function testGetAggregateVersionReturnsCorrectInterface(): void
     {
         $message = $this->createMock(AbstractMessage::class);
@@ -148,9 +112,6 @@ final class AbstractMessageTest extends TestCase
         $this->assertInstanceOf(AggregateVersionInterface::class, $message->getAggregateVersion());
     }
 
-    /**
-     * @covers ::getPayload
-     */
     public function testGetPayloadHasEmptyArraryAsDefaultValue(): void
     {
         $message = $this->createMock(AbstractMessage::class)::new();
@@ -158,9 +119,6 @@ final class AbstractMessageTest extends TestCase
         $this->assertCount(0, $message->getPayload());
     }
 
-    /**
-     * @covers ::withPayload
-     */
     public function testWithPayloadReturnsNewStatic(): void
     {
         $message = $this->createMock(AbstractMessage::class)::new();
@@ -171,9 +129,6 @@ final class AbstractMessageTest extends TestCase
         $this->assertNotSame($return, $message);
     }
 
-    /**
-     * @covers ::withPayload
-     */
     public function testWithPayloadWorksCorrectly(): void
     {
         $message = $this->createMock(AbstractMessage::class);

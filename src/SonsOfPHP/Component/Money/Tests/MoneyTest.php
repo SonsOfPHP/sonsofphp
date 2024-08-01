@@ -4,44 +4,68 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\Money\Amount;
 use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\Money;
+use SonsOfPHP\Component\Money\Operator\Amount\AddAmountOperator;
+use SonsOfPHP\Component\Money\Operator\Amount\DivideAmountOperator;
+use SonsOfPHP\Component\Money\Operator\Amount\MultiplyAmountOperator;
+use SonsOfPHP\Component\Money\Operator\Amount\SubtractAmountOperator;
+use SonsOfPHP\Component\Money\Operator\Money\AddMoneyOperator;
+use SonsOfPHP\Component\Money\Operator\Money\DivideMoneyOperator;
+use SonsOfPHP\Component\Money\Operator\Money\MultiplyMoneyOperator;
+use SonsOfPHP\Component\Money\Operator\Money\SubtractMoneyOperator;
+use SonsOfPHP\Component\Money\Query\Amount\IsEqualToAmountQuery;
+use SonsOfPHP\Component\Money\Query\Amount\IsGreaterThanAmountQuery;
+use SonsOfPHP\Component\Money\Query\Amount\IsGreaterThanOrEqualToAmountQuery;
+use SonsOfPHP\Component\Money\Query\Amount\IsLessThanAmountQuery;
+use SonsOfPHP\Component\Money\Query\Amount\IsLessThanOrEqualToAmountQuery;
+use SonsOfPHP\Component\Money\Query\Amount\IsNegativeAmountQuery;
+use SonsOfPHP\Component\Money\Query\Amount\IsPositiveAmountQuery;
+use SonsOfPHP\Component\Money\Query\Amount\IsZeroAmountQuery;
+use SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery;
+use SonsOfPHP\Component\Money\Query\Money\IsEqualToMoneyQuery;
+use SonsOfPHP\Component\Money\Query\Money\IsGreaterThanMoneyQuery;
+use SonsOfPHP\Component\Money\Query\Money\IsGreaterThanOrEqualToMoneyQuery;
+use SonsOfPHP\Component\Money\Query\Money\IsLessThanMoneyQuery;
+use SonsOfPHP\Component\Money\Query\Money\IsLessThanOrEqualToMoneyQuery;
+use SonsOfPHP\Component\Money\Query\Money\IsNegativeMoneyQuery;
+use SonsOfPHP\Component\Money\Query\Money\IsPositiveMoneyQuery;
+use SonsOfPHP\Component\Money\Query\Money\IsZeroMoneyQuery;
 use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
 use SonsOfPHP\Contract\Money\MoneyInterface;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\Money\Money
- *
- * @uses \SonsOfPHP\Component\Money\Amount
- * @uses \SonsOfPHP\Component\Money\Currency
- * @uses \SonsOfPHP\Component\Money\Money
- * @uses \SonsOfPHP\Component\Money\Operator\Amount\DivideAmountOperator
- * @uses \SonsOfPHP\Component\Money\Operator\Money\DivideMoneyOperator
- * @uses \SonsOfPHP\Component\Money\Operator\Amount\MultiplyAmountOperator
- * @uses \SonsOfPHP\Component\Money\Operator\Money\MultiplyMoneyOperator
- * @uses \SonsOfPHP\Component\Money\Operator\Money\SubtractMoneyOperator
- * @uses \SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery
- * @uses \SonsOfPHP\Component\Money\Operator\Money\AddMoneyOperator
- * @uses \SonsOfPHP\Component\Money\Operator\Amount\SubtractAmountOperator
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsZeroAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Money\IsZeroMoneyQuery
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsNegativeAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Money\IsNegativeMoneyQuery
- * @uses \SonsOfPHP\Component\Money\Operator\Amount\AddAmountOperator
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsPositiveAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Money\IsPositiveMoneyQuery
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsLessThanOrEqualToAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Money\IsLessThanOrEqualToMoneyQuery
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsLessThanAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Money\IsLessThanMoneyQuery
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsGreaterThanOrEqualToAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Money\IsGreaterThanOrEqualToMoneyQuery
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsGreaterThanAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Money\IsGreaterThanMoneyQuery
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsEqualToAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Money\IsEqualToMoneyQuery
- */
+#[CoversClass(Money::class)]
+#[UsesClass(Amount::class)]
+#[UsesClass(Currency::class)]
+#[UsesClass(AddMoneyOperator::class)]
+#[UsesClass(IsEqualToCurrencyQuery::class)]
+#[UsesClass(IsGreaterThanOrEqualToAmountQuery::class)]
+#[UsesClass(IsGreaterThanOrEqualToMoneyQuery::class)]
+#[UsesClass(SubtractAmountOperator::class)]
+#[UsesClass(SubtractMoneyOperator::class)]
+#[UsesClass(IsNegativeAmountQuery::class)]
+#[UsesClass(IsNegativeMoneyQuery::class)]
+#[UsesClass(IsLessThanAmountQuery::class)]
+#[UsesClass(IsLessThanMoneyQuery::class)]
+#[UsesClass(IsEqualToAmountQuery::class)]
+#[UsesClass(IsEqualToMoneyQuery::class)]
+#[UsesClass(IsZeroAmountQuery::class)]
+#[UsesClass(IsZeroMoneyQuery::class)]
+#[UsesClass(DivideAmountOperator::class)]
+#[UsesClass(DivideMoneyOperator::class)]
+#[UsesClass(IsGreaterThanMoneyQuery::class)]
+#[UsesClass(MultiplyAmountOperator::class)]
+#[UsesClass(MultiplyMoneyOperator::class)]
+#[UsesClass(IsGreaterThanAmountQuery::class)]
+#[UsesClass(IsLessThanOrEqualToMoneyQuery::class)]
+#[UsesClass(AddAmountOperator::class)]
+#[UsesClass(IsLessThanOrEqualToAmountQuery::class)]
+#[UsesClass(IsPositiveAmountQuery::class)]
+#[UsesClass(IsPositiveMoneyQuery::class)]
 final class MoneyTest extends TestCase
 {
     public static function validMoneyConstructorArgumentsProvider(): iterable
@@ -52,10 +76,6 @@ final class MoneyTest extends TestCase
         yield [-420, new Currency('usd')];
     }
 
-    /**
-     * @covers ::__callStatic
-     * @covers ::__construct
-     */
     public function testItHasTheCorrectInterface(): void
     {
         $money = new Money(100, new Currency('usd'));
@@ -65,12 +85,6 @@ final class MoneyTest extends TestCase
         $this->assertInstanceOf(MoneyInterface::class, $money);
     }
 
-    /**
-     * @covers ::__callStatic
-     * @covers ::__construct
-     * @covers ::getAmount
-     * @covers ::getCurrency
-     */
     public function testMoneyFactoryMagicMethod(): void
     {
         $money = Money::USD(100);
@@ -79,19 +93,12 @@ final class MoneyTest extends TestCase
         $this->assertSame('USD', $money->getCurrency()->getCurrencyCode());
     }
 
-    /**
-     * @covers ::__toString
-     */
     public function testToStringMagicMethod(): void
     {
         $money = Money::USD(100);
         $this->assertSame('100', (string) $money);
     }
 
-    /**
-     * @covers ::isEqualTo
-     * @covers ::query
-     */
     public function testEquals(): void
     {
         $money1 = Money::USD(100);
@@ -111,12 +118,6 @@ final class MoneyTest extends TestCase
         $this->assertTrue($money3->isEqualTo($money3));
     }
 
-    /**
-     * @covers ::compare
-     * @covers ::isGreaterThan
-     * @covers ::isLessThan
-     * @covers ::query
-     */
     public function testCompare(): void
     {
         $money1 = Money::USD(100);
@@ -128,10 +129,6 @@ final class MoneyTest extends TestCase
         $this->assertSame(0, $money3->compare($money2));
     }
 
-    /**
-     * @covers ::isGreaterThan
-     * @covers ::query
-     */
     public function testGreaterThan(): void
     {
         $money1 = Money::USD(100);
@@ -142,10 +139,6 @@ final class MoneyTest extends TestCase
         $this->assertFalse($money1->isGreaterThan($money1));
     }
 
-    /**
-     * @covers ::isGreaterThan
-     * @covers ::query
-     */
     public function testGreaterThanWithDifferentCurrencies(): void
     {
         $money1 = Money::USD(100);
@@ -155,10 +148,6 @@ final class MoneyTest extends TestCase
         $money1->isGreaterThan($money2);
     }
 
-    /**
-     * @covers ::isGreaterThanOrEqualTo
-     * @covers ::query
-     */
     public function testGreaterThanOrEquals(): void
     {
         $money1 = Money::USD(100);
@@ -170,10 +159,6 @@ final class MoneyTest extends TestCase
         $this->assertTrue($money3->isGreaterThanOrEqualTo($money2));
     }
 
-    /**
-     * @covers ::isGreaterThanOrEqualTo
-     * @covers ::query
-     */
     public function testGreaterThanOrEqualsWithDifferentCurrencies(): void
     {
         $money1 = Money::USD(100);
@@ -183,10 +168,6 @@ final class MoneyTest extends TestCase
         $money1->isGreaterThanOrEqualTo($money2);
     }
 
-    /**
-     * @covers ::isLessThan
-     * @covers ::query
-     */
     public function testLessThan(): void
     {
         $money1 = Money::USD(100);
@@ -197,10 +178,6 @@ final class MoneyTest extends TestCase
         $this->assertFalse($money1->isLessThan($money1));
     }
 
-    /**
-     * @covers ::isLessThan
-     * @covers ::query
-     */
     public function testLessThanWithDifferentCurrencies(): void
     {
         $money1 = Money::USD(100);
@@ -210,10 +187,6 @@ final class MoneyTest extends TestCase
         $money1->isLessThan($money2);
     }
 
-    /**
-     * @covers ::isLessThanOrEqualTo
-     * @covers ::query
-     */
     public function testLessThanOrEquals(): void
     {
         $money1 = Money::USD(100);
@@ -225,10 +198,6 @@ final class MoneyTest extends TestCase
         $this->assertTrue($money3->isLessThanOrEqualTo($money2));
     }
 
-    /**
-     * @covers ::isLessThanOrEqualTo
-     * @covers ::query
-     */
     public function testLessThanOrEqualsWithDifferentCurrencies(): void
     {
         $money1 = Money::USD(100);
@@ -238,10 +207,6 @@ final class MoneyTest extends TestCase
         $money1->isLessThanOrEqualTo($money2);
     }
 
-    /**
-     * @covers ::isNegative
-     * @covers ::query
-     */
     public function testIsNegative(): void
     {
         $money1 = Money::USD(-100);
@@ -253,10 +218,6 @@ final class MoneyTest extends TestCase
         $this->assertFalse($money3->isNegative());
     }
 
-    /**
-     * @covers ::isPositive
-     * @covers ::query
-     */
     public function testIsPositive(): void
     {
         $money1 = Money::USD(-100);
@@ -268,10 +229,6 @@ final class MoneyTest extends TestCase
         $this->assertFalse($money3->isPositive());
     }
 
-    /**
-     * @covers ::isZero
-     * @covers ::query
-     */
     public function testIsZero(): void
     {
         $money1 = Money::USD(-100);
@@ -283,10 +240,6 @@ final class MoneyTest extends TestCase
         $this->assertTrue($money3->isZero());
     }
 
-    /**
-     * @covers ::add
-     * @covers ::with
-     */
     public function testAdd(): void
     {
         $money1 = Money::USD(100);
@@ -296,10 +249,6 @@ final class MoneyTest extends TestCase
         $this->assertSame('200', (string) $output->getAmount());
     }
 
-    /**
-     * @covers ::add
-     * @covers ::with
-     */
     public function testAddWithDifferenctCurrencies(): void
     {
         $money1 = Money::USD(100);
@@ -309,10 +258,6 @@ final class MoneyTest extends TestCase
         $money1->add($money2);
     }
 
-    /**
-     * @covers ::subtract
-     * @covers ::with
-     */
     public function testSubtract(): void
     {
         $money1 = Money::USD(100);
@@ -322,10 +267,6 @@ final class MoneyTest extends TestCase
         $this->assertSame('0', (string) $output->getAmount());
     }
 
-    /**
-     * @covers ::subtract
-     * @covers ::with
-     */
     public function testSubtractWithDifferenctCurrencies(): void
     {
         $money1 = Money::USD(100);
@@ -335,10 +276,6 @@ final class MoneyTest extends TestCase
         $money1->subtract($money2);
     }
 
-    /**
-     * @covers ::subtract
-     * @covers ::with
-     */
     public function testSubtractWithLargerAmount(): void
     {
         $money1 = Money::USD(100);
@@ -348,10 +285,6 @@ final class MoneyTest extends TestCase
         $this->assertSame('-100', (string) $output->getAmount());
     }
 
-    /**
-     * @covers ::multiply
-     * @covers ::with
-     */
     public function testMultiply(): void
     {
         $money1 = Money::USD(100);
@@ -360,10 +293,6 @@ final class MoneyTest extends TestCase
         $this->assertSame('200', (string) $output->getAmount());
     }
 
-    /**
-     * @covers ::divide
-     * @covers ::with
-     */
     public function testDivide(): void
     {
         $money1 = Money::USD(100);
@@ -372,9 +301,6 @@ final class MoneyTest extends TestCase
         $this->assertSame('20', (string) $output->getAmount());
     }
 
-    /**
-     * @covers ::jsonSerialize
-     */
     public function testJsonSerialize(): void
     {
         $money = Money::USD(420);

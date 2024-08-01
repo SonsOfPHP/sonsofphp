@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Contract\Pager;
 
+use Countable;
+use InvalidArgumentException;
+
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface AdapterInterface extends \Countable
+interface AdapterInterface extends Countable
 {
     /**
      * This will return part of the total results
@@ -27,7 +30,7 @@ interface AdapterInterface extends \Countable
      * If the total number of results is less than length, an exception must
      * not be thrown.
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      *   If offset or length is invalid, this expection will be thrown
      */
     public function getSlice(int $offset, ?int $length): iterable;

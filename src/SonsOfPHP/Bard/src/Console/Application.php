@@ -4,6 +4,16 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bard\Console;
 
+use SonsOfPHP\Bard\Console\Command\AddCommand;
+use SonsOfPHP\Bard\Console\Command\CopyCommand;
+use SonsOfPHP\Bard\Console\Command\InitCommand;
+use SonsOfPHP\Bard\Console\Command\InstallCommand;
+use SonsOfPHP\Bard\Console\Command\MergeCommand;
+use SonsOfPHP\Bard\Console\Command\PullCommand;
+use SonsOfPHP\Bard\Console\Command\PushCommand;
+use SonsOfPHP\Bard\Console\Command\ReleaseCommand;
+use SonsOfPHP\Bard\Console\Command\SplitCommand;
+use SonsOfPHP\Bard\Console\Command\UpdateCommand;
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputOption;
@@ -23,16 +33,16 @@ final class Application extends BaseApplication
     protected function getDefaultCommands(): array
     {
         return array_merge(parent::getDefaultCommands(), [
-            new \SonsOfPHP\Bard\Console\Command\AddCommand(),
-            new \SonsOfPHP\Bard\Console\Command\CopyCommand(),
-            new \SonsOfPHP\Bard\Console\Command\InitCommand(),
-            new \SonsOfPHP\Bard\Console\Command\InstallCommand(),
-            new \SonsOfPHP\Bard\Console\Command\MergeCommand(),
-            new \SonsOfPHP\Bard\Console\Command\PullCommand(),
-            new \SonsOfPHP\Bard\Console\Command\PushCommand(),
-            new \SonsOfPHP\Bard\Console\Command\ReleaseCommand(),
-            new \SonsOfPHP\Bard\Console\Command\SplitCommand(),
-            new \SonsOfPHP\Bard\Console\Command\UpdateCommand(),
+            new AddCommand(),
+            new CopyCommand(),
+            new InitCommand(),
+            new InstallCommand(),
+            new MergeCommand(),
+            new PullCommand(),
+            new PushCommand(),
+            new ReleaseCommand(),
+            new SplitCommand(),
+            new UpdateCommand(),
         ]);
     }
 

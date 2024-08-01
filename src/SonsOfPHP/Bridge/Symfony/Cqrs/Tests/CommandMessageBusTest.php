@@ -4,23 +4,21 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Symfony\Cqrs\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Symfony\Cqrs\CommandMessageBus;
+use stdClass;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Stamp\StampInterface;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\Cqrs\CommandMessageBus
- *
  * @internal
+ * @coversNothing
  */
+#[CoversClass(CommandMessageBus::class)]
 final class CommandMessageBusTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     * @covers ::withStamps
-     */
     public function testWithStampsIsImmutable(): void
     {
         $commandBus = new CommandMessageBus($this->createMock(MessageBusInterface::class));
@@ -32,10 +30,6 @@ final class CommandMessageBusTest extends TestCase
         $this->assertNotSame($commandBus, $anotherCommandBus);
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::dispatch
-     */
     public function testItWillUseMessageBusToDispatchCommand(): void
     {
         $bus = $this->createMock(MessageBusInterface::class);
@@ -43,6 +37,6 @@ final class CommandMessageBusTest extends TestCase
 
         $commandBus = new CommandMessageBus($bus);
 
-        $commandBus->dispatch(new \stdClass());
+        $commandBus->dispatch(new stdClass());
     }
 }

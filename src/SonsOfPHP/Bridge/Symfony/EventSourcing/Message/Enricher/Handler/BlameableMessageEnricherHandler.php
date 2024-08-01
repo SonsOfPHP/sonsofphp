@@ -28,7 +28,7 @@ class BlameableMessageEnricherHandler implements MessageEnricherHandlerInterface
     public const METADATA_BLAMEABLE = '__user';
 
     public function __construct(
-        private Security $security
+        private readonly Security $security
     ) {}
 
     public function enrich(MessageInterface $message): MessageInterface

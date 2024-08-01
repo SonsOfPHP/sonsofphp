@@ -14,4 +14,4 @@ use Exception;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class EventSourcingException extends \Exception {}
+class EventSourcingException extends Exception {}

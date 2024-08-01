@@ -15,7 +15,7 @@ use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 final class Filesystem implements FilesystemInterface
 {
     public function __construct(
-        private AdapterInterface $adapter,
+        private readonly AdapterInterface $adapter,
     ) {}
 
     public function write(string $path, mixed $contents, ?ContextInterface $context = null): void

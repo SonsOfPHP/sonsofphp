@@ -4,18 +4,15 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\Tests\Operator\Amount;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Amount;
 use SonsOfPHP\Component\Money\Operator\Amount\DivideAmountOperator;
 use SonsOfPHP\Contract\Money\AmountOperatorInterface;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\Money\Operator\Amount\DivideAmountOperator
- *
- * @uses \SonsOfPHP\Component\Money\Amount
- *
- * @internal
- */
+#[CoversClass(DivideAmountOperator::class)]
+#[UsesClass(Amount::class)]
 final class DivideAmountOperatorTest extends TestCase
 {
     /**
@@ -28,10 +25,6 @@ final class DivideAmountOperatorTest extends TestCase
         $this->assertInstanceOf(AmountOperatorInterface::class, $operator);
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::apply
-     */
     public function testApplyWillDivideAmountAndReturnNewObject(): void
     {
         $amount   = new Amount(100);

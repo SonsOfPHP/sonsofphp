@@ -6,6 +6,7 @@ namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler;
 
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\MessageEnricherHandlerInterface;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
@@ -27,14 +28,14 @@ class HttpRequestMessageEnricherHandler implements MessageEnricherHandlerInterfa
     public const METADATA_HTTP_REQUEST = '__http_request';
 
     public function __construct(
-        private RequestStack $requestStack
+        private readonly RequestStack $requestStack
     ) {}
 
     public function enrich(MessageInterface $message): MessageInterface
     {
         $request = $this->requestStack->getMainRequest();
 
-        if (null !== $request) {
+        if ($request instanceof Request) {
             return $message->withMetadata([
                 self::METADATA_HTTP_REQUEST => [
                     'http_user_agent'     => $request->server->get('HTTP_USER_AGENT'),

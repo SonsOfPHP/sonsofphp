@@ -17,7 +17,7 @@ use SonsOfPHP\Component\Filesystem\ContextInterface;
 final class NativeAdapter implements AdapterInterface, CopyAwareInterface, DirectoryAwareInterface, MoveAwareInterface
 {
     public function __construct(
-        private string $prefix,
+        private readonly string $prefix,
     ) {}
 
     public function add(string $path, mixed $contents, ?ContextInterface $context = null): void

@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Cache\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\Cache\CacheItem;
 use SonsOfPHP\Component\Cache\CacheItemFactory;
 use SonsOfPHP\Component\Cache\CacheItemFactoryInterface;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\Cache\CacheItemFactory
- *
- * @uses \SonsOfPHP\Component\Cache\CacheItem
- */
+#[CoversClass(CacheItemFactory::class)]
+#[UsesClass(CacheItem::class)]
 final class CacheItemFactoryTest extends TestCase
 {
     /**
@@ -25,9 +25,6 @@ final class CacheItemFactoryTest extends TestCase
         $this->assertInstanceOf(CacheItemFactoryInterface::class, $factory);
     }
 
-    /**
-     * @covers ::createCacheItem
-     */
     public function testCreateCacheItem(): void
     {
         $factory = new CacheItemFactory();

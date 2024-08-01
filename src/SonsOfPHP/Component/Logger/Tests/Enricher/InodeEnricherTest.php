@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Logger\Tests\Enricher;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Logger\Context;
 use SonsOfPHP\Component\Logger\Enricher\InodeEnricher;
@@ -11,12 +13,9 @@ use SonsOfPHP\Component\Logger\Level;
 use SonsOfPHP\Component\Logger\Record;
 use SonsOfPHP\Contract\Logger\EnricherInterface;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\Logger\Enricher\InodeEnricher
- *
- * @uses \SonsOfPHP\Component\Logger\Context
- * @uses \SonsOfPHP\Component\Logger\Record
- */
+#[CoversClass(InodeEnricher::class)]
+#[UsesClass(Context::class)]
+#[UsesClass(Record::class)]
 final class InodeEnricherTest extends TestCase
 {
     /**
@@ -29,9 +28,6 @@ final class InodeEnricherTest extends TestCase
         $this->assertInstanceOf(EnricherInterface::class, $enricher);
     }
 
-    /**
-     * @covers ::__invoke
-     */
     public function testInvoke(): void
     {
         $enricher = new InodeEnricher();

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Money\Formatter;
 
+use NumberFormatter;
 use SonsOfPHP\Contract\Money\MoneyFormatterInterface;
 use SonsOfPHP\Contract\Money\MoneyInterface;
 
@@ -16,7 +17,7 @@ use SonsOfPHP\Contract\Money\MoneyInterface;
 class IntlMoneyFormatter implements MoneyFormatterInterface
 {
     public function __construct(
-        private \NumberFormatter $formatter,
+        private readonly NumberFormatter $formatter,
     ) {}
 
     /**

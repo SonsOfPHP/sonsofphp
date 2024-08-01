@@ -46,11 +46,7 @@ final class JsonFile
             $this->load();
         }
 
-        if (isset($this->config[$section])) {
-            return $this->config[$section];
-        }
-
-        return null;
+        return $this->config[$section] ?? null;
     }
 
     /**

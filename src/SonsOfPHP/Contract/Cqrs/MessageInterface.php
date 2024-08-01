@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Contract\Cqrs;
 
+use InvalidArgumentException;
+use SonsOfPHP\Contract\Cqrs\Exception\CqrsExceptionInterface;
+
 /**
  * Both Command and Queries implement the MessageInterface
  *
@@ -37,7 +40,7 @@ interface MessageInterface
      *     string. If it's unable to be converted to string, an exception
      *     is thrown.
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      *   - If the given key or value is invalid
      *
      * Examples:
@@ -55,7 +58,7 @@ interface MessageInterface
      * If no key is passed in or if null is passed in, it will return
      * all the values
      *
-     * @throws \SonsOfPHP\Contract\Cqrs\Exception\CqrsExceptionInterface
+     * @throws CqrsExceptionInterface
      *   - If the given key is not part of this message
      *
      * Examples:

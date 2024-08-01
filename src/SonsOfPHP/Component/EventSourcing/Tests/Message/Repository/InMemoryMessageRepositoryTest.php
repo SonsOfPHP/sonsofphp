@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message\Repository;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Exception\AggregateNotFoundException;
@@ -12,13 +15,9 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\InMemoryMessageRepository;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterface;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\Repository\InMemoryMessageRepository
- *
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
- * @uses \SonsOfPHP\Component\EventSourcing\Message\Repository\InMemoryMessageRepository
- */
+#[CoversClass(InMemoryMessageRepository::class)]
+#[UsesClass(AbstractAggregateId::class)]
+#[UsesClass(AggregateVersion::class)]
 final class InMemoryMessageRepositoryTest extends TestCase
 {
     /**
@@ -30,10 +29,6 @@ final class InMemoryMessageRepositoryTest extends TestCase
         $this->assertInstanceOf(MessageRepositoryInterface::class, $repository);
     }
 
-    /**
-     * @covers ::find
-     * @covers ::persist
-     */
     public function testPersistAndFind(): void
     {
         $repository = new InMemoryMessageRepository();
@@ -48,9 +43,6 @@ final class InMemoryMessageRepositoryTest extends TestCase
         $this->assertSame($message, $result->current());
     }
 
-    /**
-     * @covers ::find
-     */
     public function testFindWhenAggregateIdIsNotFound(): void
     {
         $repository = new InMemoryMessageRepository();
@@ -59,9 +51,6 @@ final class InMemoryMessageRepositoryTest extends TestCase
         $repository->find(AggregateId::fromString('hit'))->current();
     }
 
-    /**
-     * @covers ::find
-     */
     public function testFindWithVersion(): void
     {
         $repository = new InMemoryMessageRepository();
@@ -80,9 +69,6 @@ final class InMemoryMessageRepositoryTest extends TestCase
         $this->assertSame($message2, $result->current());
     }
 
-    /**
-     * @covers ::find
-     */
     public function testFindWithStringAsId(): void
     {
         $repository = new InMemoryMessageRepository();
@@ -96,9 +82,6 @@ final class InMemoryMessageRepositoryTest extends TestCase
         $this->assertSame($message, $result->current());
     }
 
-    /**
-     * @covers ::find
-     */
     public function testFindWithIntegerAsVersion(): void
     {
         $repository = new InMemoryMessageRepository();

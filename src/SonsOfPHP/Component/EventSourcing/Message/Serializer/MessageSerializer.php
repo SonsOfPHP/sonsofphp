@@ -21,16 +21,14 @@ use SonsOfPHP\Component\EventSourcing\Metadata;
  */
 class MessageSerializer implements MessageSerializerInterface
 {
-    private MessageProviderInterface $messageProvider;
-    private MessageEnricherInterface $messageEnricher;
-    private MessageUpcasterInterface $messageUpcaster;
+    private readonly MessageEnricherInterface $messageEnricher;
+    private readonly MessageUpcasterInterface $messageUpcaster;
 
     public function __construct(
-        MessageProviderInterface $messageProvider,
+        private readonly MessageProviderInterface $messageProvider,
         MessageEnricherInterface $messageEnricher = null,
         MessageUpcasterInterface $messageUpcaster = null
     ) {
-        $this->messageProvider = $messageProvider;
         $this->messageEnricher = $messageEnricher ?? new MessageEnricher(new AllMessageEnricherProvider([new EventTypeMessageEnricherHandler($this->messageProvider)]));
         $this->messageUpcaster = $messageUpcaster ?? new MessageUpcaster(new NullMessageUpcasterProvider());
     }

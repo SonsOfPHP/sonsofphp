@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Aggregate;
 
+use ArrayObject;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -28,7 +29,7 @@ class AggregateIdNormalizer implements NormalizerInterface, DenormalizerInterfac
     /**
      * @return string
      */
-    public function normalize(mixed $object, ?string $format = null, array $context = []): \ArrayObject|array|string|int|float|bool|null
+    public function normalize(mixed $object, ?string $format = null, array $context = []): ArrayObject|array|string|int|float|bool|null
     {
         return (string) $object;
     }

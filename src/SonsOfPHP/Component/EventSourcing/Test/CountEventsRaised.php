@@ -18,7 +18,7 @@ final class CountEventsRaised extends Constraint
     /**
      * @codeCoverageIgnore
      */
-    public function __construct(private int $count) {}
+    public function __construct(private readonly int $count) {}
 
     protected function matches(mixed $other): bool
     {

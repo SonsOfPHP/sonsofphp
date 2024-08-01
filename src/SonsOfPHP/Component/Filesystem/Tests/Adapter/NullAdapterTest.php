@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem\Tests\Adapter;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\NullAdapter;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\Filesystem\Adapter\NullAdapter
- *
  * @internal
+ * @coversNothing
  */
+#[CoversClass(NullAdapter::class)]
 final class NullAdapterTest extends TestCase
 {
     /**
@@ -26,7 +27,6 @@ final class NullAdapterTest extends TestCase
     }
 
     /**
-     * @covers ::add
      * @doesNotPerformAssertions
      */
     public function testItCanAddFile(): void
@@ -36,7 +36,6 @@ final class NullAdapterTest extends TestCase
     }
 
     /**
-     * @covers ::remove
      * @doesNotPerformAssertions
      */
     public function testItCanRemoveFiles(): void
@@ -45,27 +44,18 @@ final class NullAdapterTest extends TestCase
         $adapter->remove('/path/to/file.txt');
     }
 
-    /**
-     * @covers ::get
-     */
     public function testItCanGetFileContents(): void
     {
         $adapter = new NullAdapter();
         $this->assertSame('', $adapter->get('/path/to/file.ext'));
     }
 
-    /**
-     * @covers ::has
-     */
     public function testItHasNoFiles(): void
     {
         $adapter = new NullAdapter();
         $this->assertFalse($adapter->has('/path/to/file.ext'));
     }
 
-    /**
-     * @covers ::isFile
-     */
     public function testItReturnsFalseForIsFile(): void
     {
         $adapter = new NullAdapter();

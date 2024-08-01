@@ -12,7 +12,7 @@ use SonsOfPHP\Contract\Money\MoneyQueryInterface;
  */
 class IsZeroMoneyQuery implements MoneyQueryInterface
 {
-    public function queryFrom(MoneyInterface $money)
+    public function queryFrom(MoneyInterface $money): bool
     {
         return $money->getAmount()->isZero();
     }

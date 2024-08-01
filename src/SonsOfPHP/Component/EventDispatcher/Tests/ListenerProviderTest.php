@@ -4,16 +4,19 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventDispatcher\Tests;
 
+use Generator;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\ListenerProviderInterface;
 use SonsOfPHP\Component\EventDispatcher\EventSubscriberInterface;
 use SonsOfPHP\Component\EventDispatcher\ListenerProvider;
+use stdClass;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\EventDispatcher\ListenerProvider
- *
  * @uses \SonsOfPHP\Component\EventDispatcher\ListenerProvider
+ * @coversNothing
  */
+#[CoversClass(ListenerProvider::class)]
 final class ListenerProviderTest extends TestCase
 {
     /**
@@ -25,38 +28,23 @@ final class ListenerProviderTest extends TestCase
         $this->assertInstanceOf(ListenerProviderInterface::class, $provider); // @phpstan-ignore-line
     }
 
-    /**
-     * @covers ::getListenersForEvent
-     * @covers ::getListenersForEventName
-     * @covers ::sortListeners
-     */
     public function testGetListenersForUnknownEventReturnsEmptyArray(): void
     {
         $provider  = new ListenerProvider();
-        $event     = new \stdClass();
+        $event     = new stdClass();
         $listeners = $provider->getListenersForEvent($event);
         $this->assertCount(0, $listeners);
     }
 
-    /**
-     * @covers ::add
-     * @covers ::getListenersForEvent
-     * @covers ::getListenersForEventName
-     * @covers ::sortListeners
-     */
     public function testGetListenersForEvent(): void
     {
         $provider = new ListenerProvider();
         $provider->add('stdClass', function (): void {});
 
-        $listeners = $provider->getListenersForEvent(new \stdClass());
+        $listeners = $provider->getListenersForEvent(new stdClass());
         $this->assertCount(1, $listeners);
     }
 
-    /**
-     * @covers ::add
-     * @covers ::sortListeners
-     */
     public function testItCanPrioritizeListeners(): void
     {
         $provider = new ListenerProvider();
@@ -71,13 +59,10 @@ final class ListenerProviderTest extends TestCase
         $this->assertSame('123', ob_get_clean());
     }
 
-    /**
-     * @covers ::addSubscriber
-     */
     public function testItCanAddSubscriber(): void
     {
         $subscriber = new class () implements EventSubscriberInterface {
-            public static function getSubscribedEvents()
+            public static function getSubscribedEvents(): Generator
             {
                 yield 'event.one' => 'handle';
                 yield 'event.two' => ['handle', 0];

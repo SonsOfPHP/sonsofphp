@@ -4,24 +4,17 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Message\MessagePayload;
 
 /**
- * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Message\MessagePayload
- *
  * @internal
+ * @coversNothing
  */
+#[CoversClass(MessagePayload::class)]
 final class MessagePayloadTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     * @covers ::count
-     * @covers ::get
-     * @covers ::getIterator
-     * @covers ::has
-     * @covers ::with
-     */
     public function testAllTheThings(): void
     {
         $payload = new MessagePayload([

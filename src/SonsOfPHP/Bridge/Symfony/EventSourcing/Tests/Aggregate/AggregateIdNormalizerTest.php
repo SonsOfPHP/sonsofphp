@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests\Aggregate;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Symfony\EventSourcing\Aggregate\AggregateIdNormalizer;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Bridge\Symfony\EventSourcing\Aggregate\AggregateIdNormalizer
- *
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
- */
+#[CoversClass(AggregateIdNormalizer::class)]
+#[UsesClass(AbstractAggregateId::class)]
 final class AggregateIdNormalizerTest extends TestCase
 {
     /**
@@ -29,10 +30,6 @@ final class AggregateIdNormalizerTest extends TestCase
         $this->assertInstanceOf(DenormalizerInterface::class, $normalizer); // @phpstan-ignore-line
     }
 
-    /**
-     * @covers ::normalize
-     * @covers ::supportsNormalization
-     */
     public function testItWillNormalize(): void
     {
         $normalizer = new AggregateIdNormalizer();
@@ -43,14 +40,11 @@ final class AggregateIdNormalizerTest extends TestCase
         $this->assertSame('aggregate-id', $normalizer->normalize($id));
     }
 
-    /**
-     * @dataProvider providerForSupportsDenormalization
-     *
-     * @covers ::supportsDenormalization
-     */
+
+    #[DataProvider('providerForSupportsDenormalization')]
     public function testSupportsDenormalize(
         bool $expected,
-        $data,
+        mixed $data,
         string $type,
         string $format = null
     ): void {
@@ -66,13 +60,10 @@ final class AggregateIdNormalizerTest extends TestCase
         yield [false, 'aggregate-id', 'stdClass'];
     }
 
-    /**
-     * @dataProvider providerForDenormalize
-     *
-     * @covers ::denormalize
-     */
+
+    #[DataProvider('providerForDenormalize')]
     public function testDenormalize(
-        $data,
+        mixed $data,
         string $type,
         string $format = null,
         array $context = []

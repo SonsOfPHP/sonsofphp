@@ -16,7 +16,7 @@ class JsonWriter
         $this->encoder = $encoder ?? new JsonEncoder();
     }
 
-    public function write(string $filename, $value, int $depth = null, int $flags = null)
+    public function write(string $filename, $value, int $depth = null, int $flags = null): int|false
     {
         $encoder = $this->encoder;
 

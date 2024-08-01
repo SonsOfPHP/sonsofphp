@@ -18,7 +18,7 @@ final class EventRaised extends Constraint
     /**
      * @codeCoverageIgnore
      */
-    public function __construct(private string $eventClass) {}
+    public function __construct(private readonly string $eventClass) {}
 
     /**
      * AggregateInterface $other

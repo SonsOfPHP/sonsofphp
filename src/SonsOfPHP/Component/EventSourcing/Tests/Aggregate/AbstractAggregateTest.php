@@ -4,24 +4,27 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Tests\Aggregate;
 
+use Generator;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
+use ReflectionMethod;
+use ReflectionObject;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregate;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use SonsOfPHP\Component\EventSourcing\Tests\FakeAggregate;
+use stdClass;
+use TypeError;
 
-/**
- * @coversDefaultClass \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregate
- *
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregate
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
- */
+#[CoversClass(AbstractAggregate::class)]
+#[UsesClass(AbstractAggregate::class)]
+#[UsesClass(AbstractAggregateId::class)]
+#[UsesClass(AggregateVersion::class)]
 final class AbstractAggregateTest extends TestCase
 {
-    /**
-     * @covers ::hasPendingEvents
-     */
     public function testItHasPendingEvents(): void
     {
         $aggregate = new FakeAggregate('id');
@@ -33,10 +36,6 @@ final class AbstractAggregateTest extends TestCase
         $this->assertTrue($aggregate->hasPendingEvents());
     }
 
-    /**
-     * @covers ::applyEvent
-     * @covers ::raiseEvent
-     */
     public function testRaiseEventWillApplyMetadata(): void
     {
         $message = $this->createMock(MessageInterface::class);
@@ -46,11 +45,6 @@ final class AbstractAggregateTest extends TestCase
         $aggregate->raiseThisEvent($message);
     }
 
-    /**
-     * @covers ::applyEvent
-     * @covers ::getPendingEvents
-     * @covers ::raiseEvent
-     */
     public function testRaiseEventWillAddEventToPendingEvents(): void
     {
         $message = $this->createMock(MessageInterface::class);
@@ -58,7 +52,7 @@ final class AbstractAggregateTest extends TestCase
         $aggregate = new FakeAggregate('id');
         $this->assertCount(0, $aggregate->getPendingEvents());
 
-        $refObj = new \ReflectionObject($aggregate);
+        $refObj = new ReflectionObject($aggregate);
         $refMet = $refObj->getMethod('raiseEvent');
         $refMet->setAccessible(true);
         $refMet->invoke($aggregate, $message);
@@ -66,14 +60,9 @@ final class AbstractAggregateTest extends TestCase
         $this->assertCount(1, $aggregate->getPendingEvents());
     }
 
-    /**
-     * @covers ::buildFromEvents
-     * @covers ::getAggregateId
-     * @covers ::getAggregateVersion
-     */
     public function testBuildFromEvents(): void
     {
-        $events = function () {
+        $events = function (): Generator {
             yield $this->createMock(MessageInterface::class);
         };
 
@@ -82,23 +71,17 @@ final class AbstractAggregateTest extends TestCase
         $this->assertSame(1, $aggregate->getAggregateVersion()->toInt());
     }
 
-    /**
-     * @covers ::__construct
-     */
     public function testItWillRaiseExceptionWithInvalidId(): void
     {
-        $this->expectException(\TypeError::class);
-        $this->getMockForAbstractClass(AbstractAggregate::class, [new \stdClass()]);
+        $this->expectException(TypeError::class);
+        $this->getMockForAbstractClass(AbstractAggregate::class, [new stdClass()]);
     }
 
-    /**
-     * @covers ::peekPendingEvents
-     */
     public function testPeekWillNotRemoveAnyPendingEvents(): void
     {
         $aggregate = new FakeAggregate('id');
         $this->assertCount(0, $aggregate->peekPendingEvents());
-        $method = new \ReflectionMethod($aggregate, 'raiseEvent');
+        $method = new ReflectionMethod($aggregate, 'raiseEvent');
 
         $message = $this->createMock(MessageInterface::class);
         $method->invoke($aggregate, $message);

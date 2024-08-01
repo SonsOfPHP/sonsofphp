@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Contract\Mailer;
 
+use InvalidArgumentException;
+
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
@@ -47,7 +49,7 @@ interface MessageInterface
      *
      * If the header does not already exist, this will add it
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      *   If name or value is invalid
      */
     public function addHeader(string $name, AddressInterface|string $value): self;

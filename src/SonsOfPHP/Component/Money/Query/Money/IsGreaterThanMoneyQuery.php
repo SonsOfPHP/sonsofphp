@@ -13,14 +13,9 @@ use SonsOfPHP\Contract\Money\MoneyQueryInterface;
  */
 class IsGreaterThanMoneyQuery implements MoneyQueryInterface
 {
-    private MoneyInterface $money;
+    public function __construct(private readonly MoneyInterface $money) {}
 
-    public function __construct(MoneyInterface $money)
-    {
-        $this->money = $money;
-    }
-
-    public function queryFrom(MoneyInterface $money)
+    public function queryFrom(MoneyInterface $money): bool
     {
         if (!$money->getCurrency()->isEqualTo($this->money->getCurrency())) {
             throw new MoneyException('Cannot use different currencies');
