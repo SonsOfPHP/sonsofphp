@@ -6,6 +6,7 @@ namespace SonsOfPHP\Component\Logger\Tests\Formatter;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Logger\Context;
 use SonsOfPHP\Component\Logger\Formatter\SimpleFormatter;
@@ -13,15 +14,10 @@ use SonsOfPHP\Component\Logger\Level;
 use SonsOfPHP\Component\Logger\Record;
 use SonsOfPHP\Contract\Logger\FormatterInterface;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Logger\Formatter\SimpleFormatter
- * @uses \SonsOfPHP\Component\Logger\Context
- * @uses \SonsOfPHP\Component\Logger\Record
- * @uses \SonsOfPHP\Component\Logger\Level
- * @coversNothing
- */
 #[CoversClass(SimpleFormatter::class)]
+#[UsesClass(Context::class)]
+#[UsesClass(Level::class)]
+#[UsesClass(Record::class)]
 final class SimpleFormatterTest extends TestCase
 {
     /**

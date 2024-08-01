@@ -5,29 +5,28 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Money\Tests\CurrencyProvider;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\CurrencyProvider\AbstractCurrencyProvider;
 use SonsOfPHP\Component\Money\CurrencyProvider\ChainCurrencyProvider;
 use SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProvider;
 use SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider;
+use SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery;
+use SonsOfPHP\Component\Money\Query\CurrencyProvider\GetCurrencyQuery;
+use SonsOfPHP\Component\Money\Query\CurrencyProvider\HasCurrencyQuery;
 use SonsOfPHP\Contract\Money\CurrencyInterface;
 use SonsOfPHP\Contract\Money\CurrencyProviderInterface;
 use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Money\Currency
- * @uses \SonsOfPHP\Component\Money\CurrencyProvider\ChainCurrencyProvider
- * @uses \SonsOfPHP\Component\Money\CurrencyProvider\CurrencyProvider
- * @uses \SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider
- * @uses \SonsOfPHP\Component\Money\Query\CurrencyProvider\GetCurrencyQuery
- * @uses \SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery
- * @uses \SonsOfPHP\Component\Money\Query\CurrencyProvider\HasCurrencyQuery
- * @coversNothing
- */
 #[CoversClass(ChainCurrencyProvider::class)]
-#[CoversClass(AbstractCurrencyProvider::class)]
+#[UsesClass(AbstractCurrencyProvider::class)]
+#[UsesClass(Currency::class)]
+#[UsesClass(CurrencyProvider::class)]
+#[UsesClass(XCurrencyProvider::class)]
+#[UsesClass(GetCurrencyQuery::class)]
+#[UsesClass(IsEqualToCurrencyQuery::class)]
+#[UsesClass(HasCurrencyQuery::class)]
 final class ChainCurrencyProviderTest extends TestCase
 {
     public function testItHasTheCorrectInterface(): void

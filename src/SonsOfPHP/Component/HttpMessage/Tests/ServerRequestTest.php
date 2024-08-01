@@ -5,17 +5,14 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpMessage\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
+use SonsOfPHP\Component\HttpMessage\Request;
 use SonsOfPHP\Component\HttpMessage\ServerRequest;
 
-/**
- *
- * @uses \SonsOfPHP\Component\HttpMessage\Request
- * @uses \SonsOfPHP\Component\HttpMessage\ServerRequest
- * @coversNothing
- */
 #[CoversClass(ServerRequest::class)]
+#[UsesClass(Request::class)]
 final class ServerRequestTest extends TestCase
 {
     /**

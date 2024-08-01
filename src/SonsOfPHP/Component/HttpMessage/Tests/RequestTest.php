@@ -5,19 +5,15 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpMessage\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
 use SonsOfPHP\Component\HttpMessage\Request;
 use SonsOfPHP\Component\HttpMessage\Uri;
 
-/**
- *
- * @uses \SonsOfPHP\Component\HttpMessage\Request
- * @uses \SonsOfPHP\Component\HttpMessage\Uri
- * @coversNothing
- */
 #[CoversClass(Request::class)]
+#[UsesClass(Uri::class)]
 final class RequestTest extends TestCase
 {
     /**

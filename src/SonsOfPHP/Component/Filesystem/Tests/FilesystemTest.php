@@ -5,18 +5,14 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Filesystem\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter;
 use SonsOfPHP\Component\Filesystem\Filesystem;
 use SonsOfPHP\Component\Filesystem\FilesystemInterface;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter
- * @uses \SonsOfPHP\Component\Filesystem\Filesystem
- * @coversNothing
- */
 #[CoversClass(Filesystem::class)]
+#[UsesClass(InMemoryAdapter::class)]
 final class FilesystemTest extends TestCase
 {
     private InMemoryAdapter $adapter;

@@ -5,16 +5,15 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Money\Tests\CurrencyProvider;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\CurrencyProvider\XCurrencyProvider;
 use SonsOfPHP\Contract\Money\CurrencyInterface;
 use SonsOfPHP\Contract\Money\CurrencyProviderInterface;
 
-/**
- * @uses \SonsOfPHP\Component\Money\Currency
- * @coversNothing
- */
 #[CoversClass(XCurrencyProvider::class)]
+#[UsesClass(Currency::class)]
 final class XCurrencyProviderTest extends TestCase
 {
     /**

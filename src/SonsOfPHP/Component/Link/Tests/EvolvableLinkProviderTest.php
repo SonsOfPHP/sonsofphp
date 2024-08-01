@@ -5,19 +5,16 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Link\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Link\EvolvableLinkProviderInterface;
 use SonsOfPHP\Component\Link\EvolvableLinkProvider;
 use SonsOfPHP\Component\Link\Link;
+use SonsOfPHP\Component\Link\LinkProvider;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Link\Link
- * @uses \SonsOfPHP\Component\Link\EvolvableLinkProvider
- * @uses \SonsOfPHP\Component\Link\LinkProvider
- * @coversNothing
- */
 #[CoversClass(EvolvableLinkProvider::class)]
+#[UsesClass(Link::class)]
+#[UsesClass(LinkProvider::class)]
 final class EvolvableLinkProviderTest extends TestCase
 {
     /**

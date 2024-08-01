@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventDispatcher\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use RuntimeException;
@@ -12,16 +13,12 @@ use SonsOfPHP\Component\EventDispatcher\AbstractStoppableEvent;
 use SonsOfPHP\Component\EventDispatcher\EventDispatcher;
 use SonsOfPHP\Component\EventDispatcher\EventSubscriberInterface;
 use SonsOfPHP\Component\EventDispatcher\ListenerProvider;
+use SonsOfPHP\Component\EventDispatcher\StoppableEventTrait;
 use stdClass;
 
-/**
- *
- * @uses \SonsOfPHP\Component\EventDispatcher\EventDispatcher
- * @uses \SonsOfPHP\Component\EventDispatcher\ListenerProvider
- * @uses \SonsOfPHP\Component\EventDispatcher\StoppableEventTrait
- * @coversNothing
- */
 #[CoversClass(EventDispatcher::class)]
+#[UsesClass(ListenerProvider::class)]
+#[UsesClass(StoppableEventTrait::class)]
 final class EventDispatcherTest extends TestCase
 {
     public function testItHasTheCorrectInterface(): void

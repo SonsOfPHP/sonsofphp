@@ -5,21 +5,18 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Cache\Tests\Adapter;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RequiresPhpExtension;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use SonsOfPHP\Component\Cache\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Cache\Adapter\ApcuAdapter;
+use SonsOfPHP\Component\Cache\CacheItem;
 
-/**
- * @requires extension apcu
- *
- *
- * @uses \SonsOfPHP\Component\Cache\CacheItem
- * @uses \SonsOfPHP\Component\Cache\Adapter\ApcuAdapter
- * @coversNothing
- */
+#[RequiresPhpExtension('apcu')]
 #[CoversClass(ApcuAdapter::class)]
+#[UsesClass(CacheItem::class)]
 final class ApcuAdapterTest extends TestCase
 {
     public function setUp(): void

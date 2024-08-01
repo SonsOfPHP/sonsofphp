@@ -6,16 +6,15 @@ namespace SonsOfPHP\Component\HttpFactory\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use SonsOfPHP\Component\HttpFactory\ResponseFactory;
+use SonsOfPHP\Component\HttpMessage\Response;
 
-/**
- * @uses \SonsOfPHP\Component\HttpMessage\Response
- * @coversNothing
- */
 #[CoversClass(ResponseFactory::class)]
+#[UsesClass(Response::class)]
 final class ResponseFactoryTest extends TestCase
 {
     /**

@@ -5,22 +5,20 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Twig\Money\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Twig\Money\MoneyExtension;
+use SonsOfPHP\Component\Money\Amount;
+use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\Money;
 use SonsOfPHP\Contract\Money\MoneyFormatterInterface;
 use Twig\Extension\ExtensionInterface;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Money\Amount
- * @uses \SonsOfPHP\Component\Money\Currency
- * @uses \SonsOfPHP\Component\Money\Money
- * @uses \SonsOfPHP\Bridge\Twig\Money\MoneyExtension
- * @coversNothing
- */
 #[CoversClass(MoneyExtension::class)]
+#[UsesClass(Amount::class)]
+#[UsesClass(Currency::class)]
+#[UsesClass(Money::class)]
 final class MoneyExtensionTest extends TestCase
 {
     private MockObject $formatter;

@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Logger\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use ReflectionProperty;
 use SonsOfPHP\Component\Logger\Context;
 use SonsOfPHP\Component\Logger\Enricher\NullEnricher;
+use SonsOfPHP\Component\Logger\Handler\AbstractHandler;
 use SonsOfPHP\Component\Logger\Handler\NullHandler;
 use SonsOfPHP\Component\Logger\Level;
 use SonsOfPHP\Component\Logger\Logger;
@@ -18,16 +20,11 @@ use SonsOfPHP\Component\Logger\Record;
 use SonsOfPHP\Contract\Logger\EnricherInterface;
 use SonsOfPHP\Contract\Logger\HandlerInterface;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Logger\Logger
- * @uses \SonsOfPHP\Component\Logger\Context
- * @uses \SonsOfPHP\Component\Logger\Record
- * @uses \SonsOfPHP\Component\Logger\Level
- * @uses \SonsOfPHP\Component\Logger\Handler\AbstractHandler
- * @coversNothing
- */
 #[CoversClass(Logger::class)]
+#[UsesClass(Context::class)]
+#[UsesClass(Level::class)]
+#[UsesClass(Record::class)]
+#[UsesClass(AbstractHandler::class)]
 final class LoggerTest extends TestCase
 {
     private MockObject $enricher;

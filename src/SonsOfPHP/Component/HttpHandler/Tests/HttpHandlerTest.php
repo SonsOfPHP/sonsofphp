@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpHandler\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
@@ -15,13 +16,8 @@ use SonsOfPHP\Component\HttpHandler\HttpHandler;
 use SonsOfPHP\Component\HttpHandler\MiddlewareStack;
 use SonsOfPHP\Component\HttpMessage\Response;
 
-/**
- *
- * @uses \SonsOfPHP\Component\HttpHandler\HttpHandler
- * @uses \SonsOfPHP\Component\HttpHandler\MiddlewareStack
- * @coversNothing
- */
 #[CoversClass(HttpHandler::class)]
+#[UsesClass(MiddlewareStack::class)]
 final class HttpHandlerTest extends TestCase
 {
     private MockObject $request;

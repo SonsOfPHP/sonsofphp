@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\FeatureToggle\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\FeatureToggle\Context;
@@ -12,11 +13,8 @@ use SonsOfPHP\Component\FeatureToggle\Feature;
 use SonsOfPHP\Contract\FeatureToggle\FeatureInterface;
 use SonsOfPHP\Contract\FeatureToggle\ToggleInterface;
 
-/**
- * @uses \SonsOfPHP\Component\FeatureToggle\Context
- * @coversNothing
- */
 #[CoversClass(Feature::class)]
+#[UsesClass(Context::class)]
 final class FeatureTest extends TestCase
 {
     private MockObject $toggle;

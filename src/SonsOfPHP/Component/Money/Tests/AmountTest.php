@@ -5,28 +5,37 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Money\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Amount;
+use SonsOfPHP\Component\Money\Operator\Amount\AddAmountOperator;
+use SonsOfPHP\Component\Money\Operator\Amount\DivideAmountOperator;
+use SonsOfPHP\Component\Money\Operator\Amount\MultiplyAmountOperator;
+use SonsOfPHP\Component\Money\Operator\Amount\SubtractAmountOperator;
+use SonsOfPHP\Component\Money\Query\Amount\IsEqualToAmountQuery;
+use SonsOfPHP\Component\Money\Query\Amount\IsGreaterThanAmountQuery;
+use SonsOfPHP\Component\Money\Query\Amount\IsGreaterThanOrEqualToAmountQuery;
+use SonsOfPHP\Component\Money\Query\Amount\IsLessThanAmountQuery;
+use SonsOfPHP\Component\Money\Query\Amount\IsLessThanOrEqualToAmountQuery;
+use SonsOfPHP\Component\Money\Query\Amount\IsNegativeAmountQuery;
+use SonsOfPHP\Component\Money\Query\Amount\IsPositiveAmountQuery;
+use SonsOfPHP\Component\Money\Query\Amount\IsZeroAmountQuery;
 use SonsOfPHP\Contract\Money\AmountInterface;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Money\Amount
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsZeroAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsPositiveAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsNegativeAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsLessThanOrEqualToAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsLessThanAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsGreaterThanOrEqualToAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsGreaterThanAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsEqualToAmountQuery
- * @uses \SonsOfPHP\Component\Money\Operator\Amount\MultiplyAmountOperator
- * @uses \SonsOfPHP\Component\Money\Operator\Amount\AddAmountOperator
- * @uses \SonsOfPHP\Component\Money\Operator\Amount\DivideAmountOperator
- * @uses \SonsOfPHP\Component\Money\Operator\Amount\SubtractAmountOperator
- * @coversNothing
- */
 #[CoversClass(Amount::class)]
+#[UsesClass(AddAmountOperator::class)]
+#[UsesClass(IsPositiveAmountQuery::class)]
+#[UsesClass(IsLessThanOrEqualToAmountQuery::class)]
+#[UsesClass(IsGreaterThanOrEqualToAmountQuery::class)]
+#[UsesClass(MultiplyAmountOperator::class)]
+#[UsesClass(IsPositiveAmountQuery::class)]
+#[UsesClass(SubtractAmountOperator::class)]
+#[UsesClass(IsEqualToAmountQuery::class)]
+#[UsesClass(IsZeroAmountQuery::class)]
+#[UsesClass(IsNegativeAmountQuery::class)]
+#[UsesClass(IsLessThanAmountQuery::class)]
+#[UsesClass(IsGreaterThanAmountQuery::class)]
+#[UsesClass(DivideAmountOperator::class)]
 final class AmountTest extends TestCase
 {
     public static function validAmountProvider(): iterable
