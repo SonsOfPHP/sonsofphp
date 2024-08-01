@@ -16,11 +16,10 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 final class InitCommand extends AbstractCommand
 {
-    protected static $defaultName = 'init';
-
     protected function configure(): void
     {
         $this
+            ->setName('init')
             ->setDescription('Creates the initial bard.json file')
         ;
     }

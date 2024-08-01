@@ -13,9 +13,9 @@ use SonsOfPHP\Bard\Worker\WorkerInterface;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class UpdateRequireSection implements WorkerInterface
+final readonly class UpdateRequireSection implements WorkerInterface
 {
-    public function __construct(private readonly JsonFile $pkgComposerJsonFile) {}
+    public function __construct(private JsonFile $pkgComposerJsonFile) {}
 
     public function apply(JsonFile $rootComposerJsonFile): JsonFile
     {

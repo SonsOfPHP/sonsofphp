@@ -10,10 +10,10 @@ use SonsOfPHP\Contract\Logger\RecordInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class MockFilter implements FilterInterface
+final readonly class MockFilter implements FilterInterface
 {
     public function __construct(
-        private readonly bool $isLoggable = true,
+        private bool $isLoggable = true,
     ) {}
 
     public function isLoggable(RecordInterface $record): bool

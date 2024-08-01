@@ -16,11 +16,10 @@ use Symfony\Component\Process\Process;
  */
 final class PullCommand extends AbstractCommand
 {
-    protected static $defaultName = 'pull';
-
     protected function configure(): void
     {
         $this
+            ->setName('pull')
             ->setDescription('Pull changes from package repos')
             ->addOption('branch', null, InputOption::VALUE_REQUIRED, 'What branch we working with?', 'main')
         ;

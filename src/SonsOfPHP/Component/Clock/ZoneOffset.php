@@ -9,10 +9,10 @@ use Stringable;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class ZoneOffset implements ZoneOffsetInterface, Stringable
+final readonly class ZoneOffset implements ZoneOffsetInterface, Stringable
 {
     public function __construct(
-        private readonly int $seconds,
+        private int $seconds,
     ) {}
     public function __toString(): string
     {

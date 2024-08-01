@@ -17,11 +17,10 @@ use Symfony\Component\Process\Process;
  */
 final class AddCommand extends AbstractCommand
 {
-    protected static $defaultName = 'add';
-
     protected function configure(): void
     {
         $this
+            ->setName('add')
             ->setDescription('Add new repo')
             ->addOption('branch', null, InputOption::VALUE_REQUIRED, 'What branch we working with?', 'main')
             ->addOption('dry-run', null, InputOption::VALUE_NONE, 'Dry Run (Do not make any changes)')

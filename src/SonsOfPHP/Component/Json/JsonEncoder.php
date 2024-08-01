@@ -27,7 +27,7 @@ class JsonEncoder extends AbstractEncoderDecoder
      * used. Especially useful when the recipient of the output is expecting an
      * object and the array is empty.
      */
-    public function forceObject()
+    public function forceObject(): static
     {
         return $this->withFlags(\JSON_FORCE_OBJECT);
     }
@@ -35,7 +35,7 @@ class JsonEncoder extends AbstractEncoderDecoder
     /**
      * All " are converted to \u0022.
      */
-    public function hexQuot()
+    public function hexQuot(): static
     {
         return $this->withFlags(\JSON_HEX_QUOT);
     }
@@ -43,7 +43,7 @@ class JsonEncoder extends AbstractEncoderDecoder
     /**
      * All < and > are converted to \u003C and \u003E.
      */
-    public function hexTag()
+    public function hexTag(): static
     {
         return $this->withFlags(\JSON_HEX_TAG);
     }
@@ -51,7 +51,7 @@ class JsonEncoder extends AbstractEncoderDecoder
     /**
      * All & are converted to \u0026.
      */
-    public function hexAmp()
+    public function hexAmp(): static
     {
         return $this->withFlags(\JSON_HEX_AMP);
     }
@@ -59,7 +59,7 @@ class JsonEncoder extends AbstractEncoderDecoder
     /**
      * All ' are converted to \u0027.
      */
-    public function hexApos()
+    public function hexApos(): static
     {
         return $this->withFlags(\JSON_HEX_APOS);
     }
@@ -67,7 +67,7 @@ class JsonEncoder extends AbstractEncoderDecoder
     /**
      * Encodes numeric strings as numbers.
      */
-    public function numericCheck()
+    public function numericCheck(): static
     {
         return $this->withFlags(\JSON_NUMERIC_CHECK);
     }
@@ -75,7 +75,7 @@ class JsonEncoder extends AbstractEncoderDecoder
     /**
      * Substitute some unencodable values instead of failing.
      */
-    public function partialOutputOnError()
+    public function partialOutputOnError(): static
     {
         return $this->withFlags(\JSON_PARTIAL_OUTPUT_ON_ERROR);
     }
@@ -83,7 +83,7 @@ class JsonEncoder extends AbstractEncoderDecoder
     /**
      * Ensures that float values are always encoded as a float value.
      */
-    public function preserveZeroFraction()
+    public function preserveZeroFraction(): static
     {
         return $this->withFlags(\JSON_PRESERVE_ZERO_FRACTION);
     }
@@ -91,7 +91,7 @@ class JsonEncoder extends AbstractEncoderDecoder
     /**
      * Use whitespace in returned data to format it.
      */
-    public function prettyPrint()
+    public function prettyPrint(): static
     {
         return $this->withFlags(\JSON_PRETTY_PRINT);
     }
@@ -101,7 +101,7 @@ class JsonEncoder extends AbstractEncoderDecoder
      * supplied. It uses the same behaviour as it was before PHP 7.1 without
      * this constant. Available as of PHP 7.1.0.
      */
-    public function unescapedLineTerminators()
+    public function unescapedLineTerminators(): static
     {
         return $this->withFlags(\JSON_UNESCAPED_LINE_TERMINATORS);
     }
@@ -109,7 +109,7 @@ class JsonEncoder extends AbstractEncoderDecoder
     /**
      * Don't escape /.
      */
-    public function unescapedSlashes()
+    public function unescapedSlashes(): static
     {
         return $this->withFlags(\JSON_UNESCAPED_SLASHES);
     }
@@ -117,7 +117,7 @@ class JsonEncoder extends AbstractEncoderDecoder
     /**
      * Encode multibyte Unicode characters literally (default is to escape as \uXXXX).
      */
-    public function unescapedUnicode()
+    public function unescapedUnicode(): static
     {
         return $this->withFlags(\JSON_UNESCAPED_UNICODE);
     }

@@ -13,11 +13,11 @@ use SonsOfPHP\Contract\Mailer\TransportInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class Mailer implements MailerInterface
+final readonly class Mailer implements MailerInterface
 {
     public function __construct(
-        private readonly TransportInterface $transport,
-        private readonly MiddlewareHandlerInterface $handler = new MiddlewareHandler(),
+        private TransportInterface $transport,
+        private MiddlewareHandlerInterface $handler = new MiddlewareHandler(),
     ) {}
 
     public function addMiddleware(MiddlewareInterface $middleware): void

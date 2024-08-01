@@ -9,9 +9,9 @@ use Stringable;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class Date implements DateInterface, Stringable
+final readonly class Date implements DateInterface, Stringable
 {
-    public function __construct(private readonly int $year, private readonly int $month, private readonly int $day) {}
+    public function __construct(private int $year, private int $month, private int $day) {}
     /**
      * @see self::toString()
      */

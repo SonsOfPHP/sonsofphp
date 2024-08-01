@@ -10,9 +10,9 @@ use SonsOfPHP\Bard\Worker\WorkerInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class Support implements WorkerInterface
+final readonly class Support implements WorkerInterface
 {
-    public function __construct(private readonly JsonFile $rootComposerJsonFile) {}
+    public function __construct(private JsonFile $rootComposerJsonFile) {}
 
     public function apply(JsonFile $pkgComposerJsonFile): JsonFile
     {

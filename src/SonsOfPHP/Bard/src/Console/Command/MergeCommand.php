@@ -31,7 +31,6 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 final class MergeCommand extends AbstractCommand
 {
-    protected static $defaultName = 'merge';
     private readonly Json $json;
     private array $bardConfig;
     private string $mainComposerFile;
@@ -47,6 +46,7 @@ final class MergeCommand extends AbstractCommand
     protected function configure(): void
     {
         $this
+            ->setName('merge')
             ->setDescription('Merges package composer.json files into main composer.json file')
             ->addOption('dry-run', null, InputOption::VALUE_NONE, 'Dry Run (Do not make any changes)')
             ->addArgument('package', InputArgument::OPTIONAL, 'Which package?')

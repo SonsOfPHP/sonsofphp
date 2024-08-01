@@ -10,9 +10,9 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class MessageEnricher implements MessageEnricherInterface
+final readonly class MessageEnricher implements MessageEnricherInterface
 {
-    public function __construct(private readonly MessageEnricherProviderInterface $provider) {}
+    public function __construct(private MessageEnricherProviderInterface $provider) {}
 
     public function enrich(MessageInterface $message): MessageInterface
     {

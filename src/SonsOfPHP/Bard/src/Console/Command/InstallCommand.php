@@ -14,16 +14,10 @@ use Symfony\Component\Process\Process;
  */
 final class InstallCommand extends AbstractCommand
 {
-    protected static $defaultName = 'install';
-
-    // public function __construct()
-    // {
-    //    parent::__construct();
-    // }
-
     protected function configure(): void
     {
         $this
+            ->setName('install')
             ->setDescription('Runs composer install for all packages')
         ;
     }

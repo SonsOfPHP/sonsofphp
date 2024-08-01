@@ -9,9 +9,9 @@ use SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\MessageUpcasterP
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class MessageUpcaster implements MessageUpcasterInterface
+final readonly class MessageUpcaster implements MessageUpcasterInterface
 {
-    public function __construct(private readonly MessageUpcasterProviderInterface $provider) {}
+    public function __construct(private MessageUpcasterProviderInterface $provider) {}
 
     public function upcast(array $data): array
     {

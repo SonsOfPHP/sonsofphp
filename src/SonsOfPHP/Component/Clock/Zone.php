@@ -9,11 +9,11 @@ use Stringable;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class Zone implements ZoneInterface, Stringable
+final readonly class Zone implements ZoneInterface, Stringable
 {
     public function __construct(
-        private readonly string $name,
-        private readonly ZoneOffsetInterface $offset,
+        private string $name,
+        private ZoneOffsetInterface $offset,
     ) {}
     public function __toString(): string
     {
