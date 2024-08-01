@@ -5,17 +5,14 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Money\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
+use SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery;
 use SonsOfPHP\Contract\Money\CurrencyInterface;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Money\Currency
- * @uses \SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery
- * @coversNothing
- */
 #[CoversClass(Currency::class)]
+#[UsesClass(IsEqualToCurrencyQuery::class)]
 final class CurrencyTest extends TestCase
 {
     public function testContructWillValidateCurrencyCode(): void

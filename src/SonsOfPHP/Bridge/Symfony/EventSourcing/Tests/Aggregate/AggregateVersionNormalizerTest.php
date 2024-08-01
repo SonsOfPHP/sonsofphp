@@ -6,6 +6,7 @@ namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests\Aggregate;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Symfony\EventSourcing\Aggregate\AggregateVersionNormalizer;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
@@ -13,11 +14,8 @@ use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-/**
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
- * @coversNothing
- */
 #[CoversClass(AggregateVersionNormalizer::class)]
+#[UsesClass(AggregateVersion::class)]
 final class AggregateVersionNormalizerTest extends TestCase
 {
     /**

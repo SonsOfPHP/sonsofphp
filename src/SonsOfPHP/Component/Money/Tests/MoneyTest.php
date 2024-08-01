@@ -5,45 +5,67 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Money\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\Money\Amount;
 use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\Money;
+use SonsOfPHP\Component\Money\Operator\Amount\AddAmountOperator;
+use SonsOfPHP\Component\Money\Operator\Amount\DivideAmountOperator;
+use SonsOfPHP\Component\Money\Operator\Amount\MultiplyAmountOperator;
+use SonsOfPHP\Component\Money\Operator\Amount\SubtractAmountOperator;
+use SonsOfPHP\Component\Money\Operator\Money\AddMoneyOperator;
+use SonsOfPHP\Component\Money\Operator\Money\DivideMoneyOperator;
+use SonsOfPHP\Component\Money\Operator\Money\MultiplyMoneyOperator;
+use SonsOfPHP\Component\Money\Operator\Money\SubtractMoneyOperator;
+use SonsOfPHP\Component\Money\Query\Amount\IsEqualToAmountQuery;
+use SonsOfPHP\Component\Money\Query\Amount\IsGreaterThanAmountQuery;
+use SonsOfPHP\Component\Money\Query\Amount\IsGreaterThanOrEqualToAmountQuery;
+use SonsOfPHP\Component\Money\Query\Amount\IsLessThanAmountQuery;
+use SonsOfPHP\Component\Money\Query\Amount\IsLessThanOrEqualToAmountQuery;
+use SonsOfPHP\Component\Money\Query\Amount\IsNegativeAmountQuery;
+use SonsOfPHP\Component\Money\Query\Amount\IsPositiveAmountQuery;
+use SonsOfPHP\Component\Money\Query\Amount\IsZeroAmountQuery;
+use SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery;
+use SonsOfPHP\Component\Money\Query\Money\IsEqualToMoneyQuery;
+use SonsOfPHP\Component\Money\Query\Money\IsGreaterThanMoneyQuery;
+use SonsOfPHP\Component\Money\Query\Money\IsGreaterThanOrEqualToMoneyQuery;
+use SonsOfPHP\Component\Money\Query\Money\IsLessThanMoneyQuery;
+use SonsOfPHP\Component\Money\Query\Money\IsLessThanOrEqualToMoneyQuery;
+use SonsOfPHP\Component\Money\Query\Money\IsNegativeMoneyQuery;
+use SonsOfPHP\Component\Money\Query\Money\IsPositiveMoneyQuery;
+use SonsOfPHP\Component\Money\Query\Money\IsZeroMoneyQuery;
 use SonsOfPHP\Contract\Money\Exception\MoneyExceptionInterface;
 use SonsOfPHP\Contract\Money\MoneyInterface;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Money\Amount
- * @uses \SonsOfPHP\Component\Money\Currency
- * @uses \SonsOfPHP\Component\Money\Money
- * @uses \SonsOfPHP\Component\Money\Operator\Amount\DivideAmountOperator
- * @uses \SonsOfPHP\Component\Money\Operator\Money\DivideMoneyOperator
- * @uses \SonsOfPHP\Component\Money\Operator\Amount\MultiplyAmountOperator
- * @uses \SonsOfPHP\Component\Money\Operator\Money\MultiplyMoneyOperator
- * @uses \SonsOfPHP\Component\Money\Operator\Money\SubtractMoneyOperator
- * @uses \SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery
- * @uses \SonsOfPHP\Component\Money\Operator\Money\AddMoneyOperator
- * @uses \SonsOfPHP\Component\Money\Operator\Amount\SubtractAmountOperator
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsZeroAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Money\IsZeroMoneyQuery
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsNegativeAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Money\IsNegativeMoneyQuery
- * @uses \SonsOfPHP\Component\Money\Operator\Amount\AddAmountOperator
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsPositiveAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Money\IsPositiveMoneyQuery
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsLessThanOrEqualToAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Money\IsLessThanOrEqualToMoneyQuery
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsLessThanAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Money\IsLessThanMoneyQuery
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsGreaterThanOrEqualToAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Money\IsGreaterThanOrEqualToMoneyQuery
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsGreaterThanAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Money\IsGreaterThanMoneyQuery
- * @uses \SonsOfPHP\Component\Money\Query\Amount\IsEqualToAmountQuery
- * @uses \SonsOfPHP\Component\Money\Query\Money\IsEqualToMoneyQuery
- * @coversNothing
- */
 #[CoversClass(Money::class)]
+#[UsesClass(Amount::class)]
+#[UsesClass(Currency::class)]
+#[UsesClass(AddMoneyOperator::class)]
+#[UsesClass(IsEqualToCurrencyQuery::class)]
+#[UsesClass(IsGreaterThanOrEqualToAmountQuery::class)]
+#[UsesClass(IsGreaterThanOrEqualToMoneyQuery::class)]
+#[UsesClass(SubtractAmountOperator::class)]
+#[UsesClass(SubtractMoneyOperator::class)]
+#[UsesClass(IsNegativeAmountQuery::class)]
+#[UsesClass(IsNegativeMoneyQuery::class)]
+#[UsesClass(IsLessThanAmountQuery::class)]
+#[UsesClass(IsLessThanMoneyQuery::class)]
+#[UsesClass(IsEqualToAmountQuery::class)]
+#[UsesClass(IsEqualToMoneyQuery::class)]
+#[UsesClass(IsZeroAmountQuery::class)]
+#[UsesClass(IsZeroMoneyQuery::class)]
+#[UsesClass(DivideAmountOperator::class)]
+#[UsesClass(DivideMoneyOperator::class)]
+#[UsesClass(IsGreaterThanMoneyQuery::class)]
+#[UsesClass(MultiplyAmountOperator::class)]
+#[UsesClass(MultiplyMoneyOperator::class)]
+#[UsesClass(IsGreaterThanAmountQuery::class)]
+#[UsesClass(IsLessThanOrEqualToMoneyQuery::class)]
+#[UsesClass(AddAmountOperator::class)]
+#[UsesClass(IsLessThanOrEqualToAmountQuery::class)]
+#[UsesClass(IsPositiveAmountQuery::class)]
+#[UsesClass(IsPositiveMoneyQuery::class)]
 final class MoneyTest extends TestCase
 {
     public static function validMoneyConstructorArgumentsProvider(): iterable

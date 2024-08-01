@@ -10,31 +10,30 @@ use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\DBAL\Result;
 use Doctrine\DBAL\Types\Type;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Doctrine\EventSourcing\DoctrineDbalMessageRepository;
 use SonsOfPHP\Bridge\Doctrine\EventSourcing\TableSchemaInterface;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Exception\AggregateNotFoundException;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
+use SonsOfPHP\Component\EventSourcing\Message\AbstractMessage;
+use SonsOfPHP\Component\EventSourcing\Message\MessageMetadata;
+use SonsOfPHP\Component\EventSourcing\Message\MessagePayload;
 use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterface;
 use SonsOfPHP\Component\EventSourcing\Message\SerializableMessageInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Serializer\MessageSerializerInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;
 
-/**
- *
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
- * @uses \SonsOfPHP\Bridge\Doctrine\EventSourcing\DoctrineDbalMessageRepository
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId
- * @uses \SonsOfPHP\Component\EventSourcing\Message\AbstractMessage
- * @uses \SonsOfPHP\Component\EventSourcing\Message\MessageMetadata
- * @uses \SonsOfPHP\Component\EventSourcing\Message\MessagePayload
- * @coversNothing
- */
 #[CoversClass(DoctrineDbalMessageRepository::class)]
+#[UsesClass(AbstractAggregateId::class)]
+#[UsesClass(AggregateVersion::class)]
+#[UsesClass(AbstractMessage::class)]
+#[UsesClass(MessageMetadata::class)]
+#[UsesClass(MessagePayload::class)]
 final class DoctrineDbalMessageRepositoryTest extends TestCase
 {
     private Connection $connection;

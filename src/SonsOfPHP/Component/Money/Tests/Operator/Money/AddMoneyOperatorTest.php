@@ -5,24 +5,23 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Money\Tests\Operator\Money;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\Money\Amount;
 use SonsOfPHP\Component\Money\Currency;
 use SonsOfPHP\Component\Money\Exception\MoneyException;
 use SonsOfPHP\Component\Money\Money;
+use SonsOfPHP\Component\Money\Operator\Amount\AddAmountOperator;
 use SonsOfPHP\Component\Money\Operator\Money\AddMoneyOperator;
+use SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery;
 use SonsOfPHP\Contract\Money\MoneyOperatorInterface;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Money\Amount
- * @uses \SonsOfPHP\Component\Money\Currency
- * @uses \SonsOfPHP\Component\Money\Money
- * @uses \SonsOfPHP\Component\Money\Operator\Amount\AddAmountOperator
- * @uses \SonsOfPHP\Component\Money\Query\Currency\IsEqualToCurrencyQuery
- * @uses \SonsOfPHP\Component\Money\Operator\Money\AddMoneyOperator
- * @coversNothing
- */
 #[CoversClass(AddMoneyOperator::class)]
+#[UsesClass(Amount::class)]
+#[UsesClass(Currency::class)]
+#[UsesClass(Money::class)]
+#[UsesClass(IsEqualToCurrencyQuery::class)]
+#[UsesClass(AddAmountOperator::class)]
 final class AddMoneyOperatorTest extends TestCase
 {
     /**

@@ -5,18 +5,17 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bard\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bard\JsonFile;
+use SonsOfPHP\Component\Json\AbstractEncoderDecoder;
+use SonsOfPHP\Component\Json\Json;
+use SonsOfPHP\Component\Json\JsonDecoder;
 
-/**
- *
- * @uses \SonsOfPHP\Bard\JsonFile
- * @uses \SonsOfPHP\Component\Json\AbstractEncoderDecoder
- * @uses \SonsOfPHP\Component\Json\Json
- * @uses \SonsOfPHP\Component\Json\JsonDecoder
- * @coversNothing
- */
 #[CoversClass(JsonFile::class)]
+#[UsesClass(AbstractEncoderDecoder::class)]
+#[UsesClass(Json::class)]
+#[UsesClass(JsonDecoder::class)]
 final class JsonFileTest extends TestCase
 {
     public function testGetFilename(): void
