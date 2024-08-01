@@ -9,13 +9,13 @@ use Stringable;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class Time implements TimeInterface, Stringable
+final readonly class Time implements TimeInterface, Stringable
 {
     public function __construct(
-        private readonly int $hour,
-        private readonly int $minute,
-        private readonly int $second,
-        private readonly int $millisecond
+        private int $hour,
+        private int $minute,
+        private int $second,
+        private int $millisecond
     ) {}
     public function __toString(): string
     {

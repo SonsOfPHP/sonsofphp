@@ -16,10 +16,10 @@ use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class ReadOnlyAdapter implements AdapterInterface, CopyAwareInterface, DirectoryAwareInterface, MoveAwareInterface
+final readonly class ReadOnlyAdapter implements AdapterInterface, CopyAwareInterface, DirectoryAwareInterface, MoveAwareInterface
 {
     public function __construct(
-        private readonly AdapterInterface $adapter,
+        private AdapterInterface $adapter,
     ) {}
 
     public function add(string $path, mixed $contents, ?ContextInterface $context = null): void

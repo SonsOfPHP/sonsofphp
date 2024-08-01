@@ -9,9 +9,9 @@ use Stringable;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class DateTime implements DateTimeInterface, Stringable
+final readonly class DateTime implements DateTimeInterface, Stringable
 {
-    public function __construct(private readonly DateInterface $date, private readonly TimeInterface $time, private readonly ZoneInterface $zone) {}
+    public function __construct(private DateInterface $date, private TimeInterface $time, private ZoneInterface $zone) {}
     /**
      * @see self::toString()
      */

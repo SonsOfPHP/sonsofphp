@@ -10,9 +10,9 @@ use SonsOfPHP\Bard\Worker\WorkerInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class UpdateReplaceSection implements WorkerInterface
+final readonly class UpdateReplaceSection implements WorkerInterface
 {
-    public function __construct(private readonly JsonFile $pkgComposerJsonFile) {}
+    public function __construct(private JsonFile $pkgComposerJsonFile) {}
 
     public function apply(JsonFile $rootComposerJsonFile): JsonFile
     {

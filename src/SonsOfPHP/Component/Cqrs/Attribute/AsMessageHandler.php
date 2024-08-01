@@ -14,9 +14,9 @@ use Attribute;
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
 #[Attribute(Attribute::TARGET_PROPERTY)]
-final class AsMessageHandler
+final readonly class AsMessageHandler
 {
     public function __construct(
-        public readonly string $messageClass,
+        public string $messageClass,
     ) {}
 }

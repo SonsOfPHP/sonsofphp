@@ -14,13 +14,13 @@ use Traversable;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class SimpleCache implements CacheInterface
+final readonly class SimpleCache implements CacheInterface
 {
     /**
      * @codeCoverageIgnore
      */
     public function __construct(
-        private readonly CacheItemPoolInterface $pool,
+        private CacheItemPoolInterface $pool,
     ) {}
 
     /**

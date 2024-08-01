@@ -11,9 +11,9 @@ use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class AggregateVersion implements AggregateVersionInterface
+final readonly class AggregateVersion implements AggregateVersionInterface
 {
-    public function __construct(private readonly int $version = 0)
+    public function __construct(private int $version = 0)
     {
         if (!$this->isValid()) {
             throw new EventSourcingException(sprintf('Version "%s" is invalid.', $this->version));

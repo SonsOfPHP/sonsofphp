@@ -14,10 +14,10 @@ use SonsOfPHP\Component\Filesystem\ContextInterface;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class NativeAdapter implements AdapterInterface, CopyAwareInterface, DirectoryAwareInterface, MoveAwareInterface
+final readonly class NativeAdapter implements AdapterInterface, CopyAwareInterface, DirectoryAwareInterface, MoveAwareInterface
 {
     public function __construct(
-        private readonly string $prefix,
+        private string $prefix,
     ) {}
 
     public function add(string $path, mixed $contents, ?ContextInterface $context = null): void

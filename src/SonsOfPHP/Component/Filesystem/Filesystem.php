@@ -12,10 +12,10 @@ use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class Filesystem implements FilesystemInterface
+final readonly class Filesystem implements FilesystemInterface
 {
     public function __construct(
-        private readonly AdapterInterface $adapter,
+        private AdapterInterface $adapter,
     ) {}
 
     public function write(string $path, mixed $contents, ?ContextInterface $context = null): void
