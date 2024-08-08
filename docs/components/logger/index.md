@@ -21,7 +21,7 @@ Simple Usage Example
 use SonsOfPHP\Component\Logger\Logger;
 
 // Logger is PSR-3 Logger
-$logger = new Logger('app');
+$logger = new Logger();
 $logger->debug('Debug Log Message');
 ```
 

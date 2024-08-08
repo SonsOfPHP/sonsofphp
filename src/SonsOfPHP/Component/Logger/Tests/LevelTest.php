@@ -34,6 +34,13 @@ final class LevelTest extends TestCase
 
     public function testFromName(): void
     {
+        $this->assertSame(Level::Emergency, Level::fromName('emergency'));
+        $this->assertSame(Level::Alert, Level::fromName('alert'));
+        $this->assertSame(Level::Critical, Level::fromName('critical'));
+        $this->assertSame(Level::Error, Level::fromName('error'));
+        $this->assertSame(Level::Warning, Level::fromName('warning'));
+        $this->assertSame(Level::Notice, Level::fromName('notice'));
+        $this->assertSame(Level::Info, Level::fromName('info'));
         $this->assertSame(Level::Debug, Level::fromName('debug'));
     }
 

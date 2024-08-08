@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Logger\Handler;
 
-use SonsOfPHP\Contract\Logger\HandlerInterface;
 use SonsOfPHP\Contract\Logger\RecordInterface;
 
 /**
@@ -12,7 +11,7 @@ use SonsOfPHP\Contract\Logger\RecordInterface;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class NullHandler extends AbstractHandler implements HandlerInterface
+class NullHandler extends AbstractHandler
 {
-    public function handle(RecordInterface $record): void {}
+    public function doHandle(RecordInterface $record, string $message): void {}
 }

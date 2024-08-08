@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Logger\Handler;
 
+use SonsOfPHP\Component\Logger\Formatter\SimpleFormatter;
 use SonsOfPHP\Contract\Logger\FilterInterface;
 use SonsOfPHP\Contract\Logger\FormatterInterface;
 use SonsOfPHP\Contract\Logger\HandlerInterface;
@@ -20,7 +21,7 @@ abstract class AbstractHandler implements HandlerInterface
         protected ?FormatterInterface $formatter = null,
     ) {}
 
-    //abstract public function doHandle(RecordInterface $record, string $message): void;
+    abstract public function doHandle(RecordInterface $record, string $message): void;
 
     public function getFilter(): ?FilterInterface
     {
@@ -34,7 +35,7 @@ abstract class AbstractHandler implements HandlerInterface
 
     public function getFormatter(): ?FormatterInterface
     {
-        return $this->formatter ?? null;
+        return $this->formatter ?? new SimpleFormatter();
     }
 
     public function setFormatter(FormatterInterface $formatter): void
@@ -50,7 +51,7 @@ abstract class AbstractHandler implements HandlerInterface
 
         $message = $record->getMessage();
         if ($this->getFormatter() instanceof FormatterInterface) {
-            $message = $record->withMessage($this->formatter->formatMessage($record));
+            $message = $this->getFormatter()->formatMessage($record);
         }
 
         $this->doHandle($record, $message);

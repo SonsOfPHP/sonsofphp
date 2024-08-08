@@ -9,6 +9,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Logger\Context;
+use SonsOfPHP\Component\Logger\Formatter\SimpleFormatter;
 use SonsOfPHP\Component\Logger\Handler\AbstractHandler;
 use SonsOfPHP\Component\Logger\Handler\StreamHandler;
 use SonsOfPHP\Component\Logger\Level;
@@ -19,6 +20,8 @@ use SonsOfPHP\Contract\Logger\HandlerInterface;
 #[UsesClass(Context::class)]
 #[UsesClass(AbstractHandler::class)]
 #[UsesClass(Record::class)]
+#[UsesClass(SimpleFormatter::class)]
+#[UsesClass(Level::class)]
 final class StreamHandlerTest extends TestCase
 {
     public function setUp(): void

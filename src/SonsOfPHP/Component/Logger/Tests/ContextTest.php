@@ -8,11 +8,8 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Logger\Context;
 use SonsOfPHP\Contract\Logger\ContextInterface;
+use stdClass;
 
-/**
- * @uses \SonsOfPHP\Component\Logger\Context
- * @coversNothing
- */
 #[CoversClass(Context::class)]
 final class ContextTest extends TestCase
 {
@@ -87,5 +84,45 @@ final class ContextTest extends TestCase
         $context['key'] = 'value';
         $this->assertTrue(isset($context['key']));
         $this->assertNotEmpty($context['key']);
+    }
+
+    public function testItWillThrowExceptionDuringOffsetExistsWithInvalidOffset(): void
+    {
+        $context = new Context();
+
+        $this->expectException('InvalidArgumentException');
+        isset($context[new stdClass()]);
+    }
+
+    public function testItWillThrowExceptionDuringOffsetGetWithInvalidOffset(): void
+    {
+        $context = new Context();
+
+        $this->expectException('InvalidArgumentException');
+        $context[new stdClass()];
+    }
+
+    public function testItWillThrowExceptionDuringOffsetSetWithInvalidOffset(): void
+    {
+        $context = new Context();
+
+        $this->expectException('InvalidArgumentException');
+        $context[new stdClass()] = 'test';
+    }
+
+    public function testItWillThrowExceptionDuringOffsetSetWithInvalidOffsetValue(): void
+    {
+        $context = new Context();
+
+        $this->expectException('InvalidArgumentException');
+        $context['test'] = new stdClass();
+    }
+
+    public function testItWillThrowExceptionDuringOffsetUnsetWithInvalidOffset(): void
+    {
+        $context = new Context();
+
+        $this->expectException('InvalidArgumentException');
+        unset($context[new stdClass()]);
     }
 }
