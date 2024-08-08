@@ -111,4 +111,11 @@ final class LoggerTest extends TestCase
         $logger->addHandler(new NullHandler());
         $this->assertCount(2, $handlers->getValue($logger));
     }
+
+    public function testLogWillThrowExceptionWhenLevelIsInvalid(): void
+    {
+        $logger = new Logger();
+        $this->expectException('InvalidArgumentException');
+        $logger->log('test level', 'message');
+    }
 }

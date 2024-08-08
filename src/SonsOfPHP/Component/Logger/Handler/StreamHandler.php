@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Logger\Handler;
 
 use RuntimeException;
-use SonsOfPHP\Contract\Logger\HandlerInterface;
 use SonsOfPHP\Contract\Logger\RecordInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class StreamHandler extends AbstractHandler implements HandlerInterface
+class StreamHandler extends AbstractHandler
 {
     private bool $isOpen = false;
 

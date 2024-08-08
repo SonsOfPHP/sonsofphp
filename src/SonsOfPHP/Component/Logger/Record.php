@@ -102,8 +102,12 @@ final class Record implements RecordInterface
 
     public function withDatetime(DateTimeImmutable $datetime): static
     {
+        if ($this->datetime === $datetime) {
+            return $this;
+        }
+
         $that = clone $this;
-        $that->datatime = $datatime;
+        $that->datetime = $datetime;
 
         return $that;
     }

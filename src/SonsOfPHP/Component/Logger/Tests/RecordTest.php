@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Logger\Tests;
 
+use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
@@ -99,5 +100,21 @@ final class RecordTest extends TestCase
 
         $this->assertArrayHasKey('key', $record->getContext());
         $this->assertSame('value', $record->getContext()['key']);
+    }
+
+    public function testDatetime(): void
+    {
+        $ts = new DateTimeImmutable();
+        $record = new Record(
+            channel: 'app',
+            level: Level::Debug,
+            message: 'testing',
+            context: new Context(),
+            datetime: $ts,
+        );
+
+        $this->assertSame($ts, $record->getDatetime());
+        $this->assertSame($record, $record->withDatetime($ts));
+        $this->assertNotSame($record, $record->withDatetime(new DateTimeImmutable()));
     }
 }
