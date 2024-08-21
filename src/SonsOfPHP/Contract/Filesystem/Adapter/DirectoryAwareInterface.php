@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Contract\Filesystem\Adapter;
 
-use SonsOfPHP\Contract\Filesystem\Exception\FilesystemExceptionInterface;
 use SonsOfPHP\Contract\Filesystem\ContextInterface;
+use SonsOfPHP\Contract\Filesystem\Exception\FilesystemExceptionInterface;
 
 /**
  * If an adapter is able to manage directories, it should implement this

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Contract\Filesystem\Adapter;
 
+use SonsOfPHP\Contract\Filesystem\ContextInterface;
 use SonsOfPHP\Contract\Filesystem\Exception\FileNotFoundExceptionInterface;
 use SonsOfPHP\Contract\Filesystem\Exception\FilesystemExceptionInterface;
-use SonsOfPHP\Contract\Filesystem\ContextInterface;
 
 /**
  * Base Adapter Interface that all adapters implement.

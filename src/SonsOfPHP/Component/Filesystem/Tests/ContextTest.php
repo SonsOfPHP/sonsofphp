@@ -7,8 +7,8 @@ namespace SonsOfPHP\Component\Filesystem\Tests;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Filesystem\Context;
-use SonsOfPHP\Contract\Filesystem\Exception\FilesystemExceptionInterface;
 use SonsOfPHP\Contract\Filesystem\ContextInterface;
+use SonsOfPHP\Contract\Filesystem\Exception\FilesystemExceptionInterface;
 use stdClass;
 
 /**

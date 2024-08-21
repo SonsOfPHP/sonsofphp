@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Contract\Filesystem\Adapter;
 
+use SonsOfPHP\Contract\Filesystem\ContextInterface;
 use SonsOfPHP\Contract\Filesystem\Exception\FileNotFoundExceptionInterface;
 use SonsOfPHP\Contract\Filesystem\Exception\FilesystemExceptionInterface;
-use SonsOfPHP\Contract\Filesystem\ContextInterface;
 
 /**
  * If an adapter supports the ability to copy a file from one place to another

@@ -9,11 +9,11 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Filesystem\Adapter\ChainAdapter;
 use SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter;
-use SonsOfPHP\Contract\Filesystem\Exception\FileNotFoundExceptionInterface;
 use SonsOfPHP\Contract\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Contract\Filesystem\Adapter\CopyAwareInterface;
 use SonsOfPHP\Contract\Filesystem\Adapter\DirectoryAwareInterface;
 use SonsOfPHP\Contract\Filesystem\Adapter\MoveAwareInterface;
+use SonsOfPHP\Contract\Filesystem\Exception\FileNotFoundExceptionInterface;
 
 #[CoversClass(ChainAdapter::class)]
 #[UsesClass(InMemoryAdapter::class)]
