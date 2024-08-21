@@ -6,11 +6,11 @@ namespace SonsOfPHP\Component\Filesystem\Tests\Adapter;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
-use SonsOfPHP\Component\Filesystem\Adapter\CopyAwareInterface;
-use SonsOfPHP\Component\Filesystem\Adapter\DirectoryAwareInterface;
-use SonsOfPHP\Component\Filesystem\Adapter\MoveAwareInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\NativeAdapter;
+use SonsOfPHP\Contract\Filesystem\Adapter\AdapterInterface;
+use SonsOfPHP\Contract\Filesystem\Adapter\CopyAwareInterface;
+use SonsOfPHP\Contract\Filesystem\Adapter\DirectoryAwareInterface;
+use SonsOfPHP\Contract\Filesystem\Adapter\MoveAwareInterface;
 
 /**
  * @internal

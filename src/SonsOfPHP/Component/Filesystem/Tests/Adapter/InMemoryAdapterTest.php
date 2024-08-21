@@ -6,9 +6,9 @@ namespace SonsOfPHP\Component\Filesystem\Tests\Adapter;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter;
 use SonsOfPHP\Component\Filesystem\Exception\UnableToReadFileException;
+use SonsOfPHP\Contract\Filesystem\Adapter\AdapterInterface;
 
 /**
  * @uses \SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter

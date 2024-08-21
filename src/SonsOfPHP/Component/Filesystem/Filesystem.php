@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem;
 
-use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
-use SonsOfPHP\Component\Filesystem\Adapter\CopyAwareInterface;
-use SonsOfPHP\Component\Filesystem\Adapter\MoveAwareInterface;
 use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
+use SonsOfPHP\Contract\Filesystem\Adapter\AdapterInterface;
+use SonsOfPHP\Contract\Filesystem\Adapter\CopyAwareInterface;
+use SonsOfPHP\Contract\Filesystem\Adapter\MoveAwareInterface;
+use SonsOfPHP\Contract\Filesystem\ContextInterface;
+use SonsOfPHP\Contract\Filesystem\FilesystemInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>

@@ -7,8 +7,8 @@ namespace SonsOfPHP\Component\Filesystem\Tests;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Filesystem\Context;
-use SonsOfPHP\Component\Filesystem\ContextInterface;
-use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
+use SonsOfPHP\Contract\Filesystem\Exception\FilesystemExceptionInterface;
+use SonsOfPHP\Contract\Filesystem\ContextInterface;
 use stdClass;
 
 /**
@@ -98,7 +98,7 @@ final class ContextTest extends TestCase
     {
         $context = new Context();
 
-        $this->expectException(FilesystemException::class);
+        $this->expectException(FilesystemExceptionInterface::class);
         $context->offsetSet(new stdClass(), 'test');
     }
 
@@ -106,7 +106,7 @@ final class ContextTest extends TestCase
     {
         $context = new Context();
 
-        $this->expectException(FilesystemException::class);
+        $this->expectException(FilesystemExceptionInterface::class);
         $context->offsetExists(new stdClass());
     }
 
@@ -114,7 +114,7 @@ final class ContextTest extends TestCase
     {
         $context = new Context();
 
-        $this->expectException(FilesystemException::class);
+        $this->expectException(FilesystemExceptionInterface::class);
         $context->offsetUnset(new stdClass());
     }
 
@@ -122,7 +122,7 @@ final class ContextTest extends TestCase
     {
         $context = new Context();
 
-        $this->expectException(FilesystemException::class);
+        $this->expectException(FilesystemExceptionInterface::class);
         $context->offsetGet(new stdClass());
     }
 }

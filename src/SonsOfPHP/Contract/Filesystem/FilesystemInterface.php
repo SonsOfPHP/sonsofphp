@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\Filesystem;
+namespace SonsOfPHP\Contract\Filesystem;
 
-use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
+use SonsOfPHP\Contract\Filesystem\Exception\FilesystemExceptionInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -14,7 +14,7 @@ interface FilesystemInterface
     /**
      * @param string|resource $content
      *
-     * @throws FilesystemException
+     * @throws FilesystemExceptionInterface
      */
     public function write(string $path, mixed $content, ?ContextInterface $context = null): void;
     // or put, putContents
@@ -23,13 +23,13 @@ interface FilesystemInterface
     //public function append(string $filename, mixed $content): void;
 
     /**
-     * @throws FilesystemException
+     * @throws FilesystemExceptionInterface
      */
     public function read(string $path, ?ContextInterface $context = null): string;
     // or get, getContents
 
     /**
-     * @throws FilesystemException
+     * @throws FilesystemExceptionInterface
      */
     public function delete(string $path, ?ContextInterface $context = null): void;
     // or remove, rm, rmdir
@@ -37,20 +37,20 @@ interface FilesystemInterface
     /**
      * Checks to see if a file or directory exists
      *
-     * @throws FilesystemException Generic Failure Exception
+     * @throws FilesystemExceptionInterface Generic Failure Exception
      */
     public function exists(string $path, ?ContextInterface $context = null): bool;
 
     //public function isFile(string $path, ?ContextInterface $context = null): bool;
 
     /**
-     * @throws FilesystemException
+     * @throws FilesystemExceptionInterface
      */
     public function copy(string $source, string $destination, ?ContextInterface $context = null): void;
     // or cp
 
     /**
-     * @throws FilesystemException
+     * @throws FilesystemExceptionInterface
      */
     public function move(string $source, string $destination, ?ContextInterface $context = null): void;
     // or mv

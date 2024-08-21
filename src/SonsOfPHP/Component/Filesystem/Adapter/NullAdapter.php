@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem\Adapter;
 
-use SonsOfPHP\Component\Filesystem\ContextInterface;
+use SonsOfPHP\Contract\Filesystem\Adapter\AdapterInterface;
+use SonsOfPHP\Contract\Filesystem\ContextInterface;
 
 /**
  * Null Adapter does absolutly nothing, it's good for testing and that's pretty
