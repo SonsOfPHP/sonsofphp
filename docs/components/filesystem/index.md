@@ -24,6 +24,24 @@ use SonsOfPHP\Component\Filesystem\Adapter\NativeAdapter;
 use SonsOfPHP\Component\Filesystem\Filesystem;
 
 $filesystem = new Filesystem(new NativeAdapter('/tmp'));
+
+// Write File
+$filesystem->write('example.txt', 'Contents to write');
+
+// Read File contents
+$content = $filesystem->read('example.txt');
+
+// Delete File
+$filesystem->delete('example.txt');
+
+// Check if file exists
+$doesExist = $filesystem->exists('example.txt');
+
+// Copy file
+$filesystem->copy('source.txt', 'destination.txt');
+
+// Move file
+$filesystem->move('source.txt', 'destination.txt');
 ```
 
 ## Need Help?
