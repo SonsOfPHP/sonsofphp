@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\Filesystem\Adapter;
+namespace SonsOfPHP\Contract\Filesystem\Adapter;
 
-use SonsOfPHP\Component\Filesystem\ContextInterface;
-use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
+use SonsOfPHP\Contract\Filesystem\ContextInterface;
+use SonsOfPHP\Contract\Filesystem\Exception\FilesystemExceptionInterface;
 
 /**
  * If an adapter is able to manage directories, it should implement this
@@ -16,7 +16,7 @@ use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 interface DirectoryAwareInterface
 {
     /**
-     * @throws FilesystemException Generic Failure Exception
+     * @throws FilesystemExceptionInterface Generic Failure Exception
      */
     public function isDirectory(string $path, ?ContextInterface $context = null): bool;
 }

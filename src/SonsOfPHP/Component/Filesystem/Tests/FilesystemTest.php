@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter;
 use SonsOfPHP\Component\Filesystem\Filesystem;
-use SonsOfPHP\Component\Filesystem\FilesystemInterface;
+use SonsOfPHP\Contract\Filesystem\FilesystemInterface;
 
 #[CoversClass(Filesystem::class)]
 #[UsesClass(InMemoryAdapter::class)]

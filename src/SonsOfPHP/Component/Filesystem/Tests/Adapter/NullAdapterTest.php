@@ -6,8 +6,8 @@ namespace SonsOfPHP\Component\Filesystem\Tests\Adapter;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\NullAdapter;
+use SonsOfPHP\Contract\Filesystem\Adapter\AdapterInterface;
 
 /**
  * @internal

@@ -8,13 +8,13 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject;
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
-use SonsOfPHP\Component\Filesystem\Adapter\CopyAwareInterface;
-use SonsOfPHP\Component\Filesystem\Adapter\DirectoryAwareInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter;
-use SonsOfPHP\Component\Filesystem\Adapter\MoveAwareInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\ReadOnlyAdapter;
-use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
+use SonsOfPHP\Contract\Filesystem\Adapter\AdapterInterface;
+use SonsOfPHP\Contract\Filesystem\Adapter\CopyAwareInterface;
+use SonsOfPHP\Contract\Filesystem\Adapter\DirectoryAwareInterface;
+use SonsOfPHP\Contract\Filesystem\Adapter\MoveAwareInterface;
+use SonsOfPHP\Contract\Filesystem\Exception\FilesystemExceptionInterface;
 
 #[CoversClass(ReadOnlyAdapter::class)]
 #[UsesClass(InMemoryAdapter::class)]
@@ -40,28 +40,28 @@ final class ReadOnlyAdapterTest extends TestCase
     public function testItWillThrowExceptionWhenAddingFile(): void
     {
         $adapter = new ReadOnlyAdapter($this->adapter);
-        $this->expectException(FilesystemException::class);
+        $this->expectException(FilesystemExceptionInterface::class);
         $adapter->add('/path/to/file.ext', 'contents');
     }
 
     public function testItWillThrowExceptionWhenRemovingFile(): void
     {
         $adapter = new ReadOnlyAdapter($this->adapter);
-        $this->expectException(FilesystemException::class);
+        $this->expectException(FilesystemExceptionInterface::class);
         $adapter->remove('/path/to/file.ext');
     }
 
     public function testItWillThrowExceptionWhenCopyingFile(): void
     {
         $adapter = new ReadOnlyAdapter($this->adapter);
-        $this->expectException(FilesystemException::class);
+        $this->expectException(FilesystemExceptionInterface::class);
         $adapter->copy('/path/to/file.ext', '/path/to/dest.ext');
     }
 
     public function testItWillThrowExceptionWhenMovingFile(): void
     {
         $adapter = new ReadOnlyAdapter($this->adapter);
-        $this->expectException(FilesystemException::class);
+        $this->expectException(FilesystemExceptionInterface::class);
         $adapter->move('/path/to/file.ext', '/path/to/dest.ext');
     }
 

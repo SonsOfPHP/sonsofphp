@@ -7,13 +7,13 @@ namespace SonsOfPHP\Component\Filesystem\Tests\Adapter;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\ChainAdapter;
-use SonsOfPHP\Component\Filesystem\Adapter\CopyAwareInterface;
-use SonsOfPHP\Component\Filesystem\Adapter\DirectoryAwareInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter;
-use SonsOfPHP\Component\Filesystem\Adapter\MoveAwareInterface;
-use SonsOfPHP\Component\Filesystem\Exception\FileNotFoundException;
+use SonsOfPHP\Contract\Filesystem\Adapter\AdapterInterface;
+use SonsOfPHP\Contract\Filesystem\Adapter\CopyAwareInterface;
+use SonsOfPHP\Contract\Filesystem\Adapter\DirectoryAwareInterface;
+use SonsOfPHP\Contract\Filesystem\Adapter\MoveAwareInterface;
+use SonsOfPHP\Contract\Filesystem\Exception\FileNotFoundExceptionInterface;
 
 #[CoversClass(ChainAdapter::class)]
 #[UsesClass(InMemoryAdapter::class)]
@@ -64,7 +64,7 @@ final class ChainAdapterTest extends TestCase
         $this->adapters[] = $adp;
 
         $adapter = new ChainAdapter($this->adapters);
-        $this->expectException(FileNotFoundException::class);
+        $this->expectException(FileNotFoundExceptionInterface::class);
         $adapter->get('/path/to/file.txt');
     }
 

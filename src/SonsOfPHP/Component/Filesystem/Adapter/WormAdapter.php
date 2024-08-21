@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem\Adapter;
 
-use SonsOfPHP\Component\Filesystem\ContextInterface;
 use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
+use SonsOfPHP\Contract\Filesystem\Adapter\AdapterInterface;
+use SonsOfPHP\Contract\Filesystem\Adapter\CopyAwareInterface;
+use SonsOfPHP\Contract\Filesystem\Adapter\DirectoryAwareInterface;
+use SonsOfPHP\Contract\Filesystem\Adapter\MoveAwareInterface;
+use SonsOfPHP\Contract\Filesystem\ContextInterface;
 
 /**
  * WORM = Write Once, Read Many. Using this adapter allows you to create new

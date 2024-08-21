@@ -7,13 +7,13 @@ namespace SonsOfPHP\Component\Filesystem\Tests\Adapter;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
-use SonsOfPHP\Component\Filesystem\Adapter\AdapterInterface;
-use SonsOfPHP\Component\Filesystem\Adapter\CopyAwareInterface;
-use SonsOfPHP\Component\Filesystem\Adapter\DirectoryAwareInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\InMemoryAdapter;
-use SonsOfPHP\Component\Filesystem\Adapter\MoveAwareInterface;
 use SonsOfPHP\Component\Filesystem\Adapter\WormAdapter;
-use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
+use SonsOfPHP\Contract\Filesystem\Adapter\AdapterInterface;
+use SonsOfPHP\Contract\Filesystem\Adapter\CopyAwareInterface;
+use SonsOfPHP\Contract\Filesystem\Adapter\DirectoryAwareInterface;
+use SonsOfPHP\Contract\Filesystem\Adapter\MoveAwareInterface;
+use SonsOfPHP\Contract\Filesystem\Exception\FilesystemExceptionInterface;
 
 #[CoversClass(WormAdapter::class)]
 #[UsesClass(InMemoryAdapter::class)]
@@ -41,7 +41,7 @@ final class WormAdapterTest extends TestCase
         $adapter = new WormAdapter($this->adapter);
 
         $adapter->add('/path/to/file.ext', 'contents');
-        $this->expectException(FilesystemException::class);
+        $this->expectException(FilesystemExceptionInterface::class);
         $adapter->add('/path/to/file.ext', 'contents');
     }
 
@@ -49,7 +49,7 @@ final class WormAdapterTest extends TestCase
     {
         $adapter = new WormAdapter($this->adapter);
 
-        $this->expectException(FilesystemException::class);
+        $this->expectException(FilesystemExceptionInterface::class);
         $adapter->remove('/path/to/file.ext');
     }
 
@@ -57,7 +57,7 @@ final class WormAdapterTest extends TestCase
     {
         $adapter = new WormAdapter($this->adapter);
 
-        $this->expectException(FilesystemException::class);
+        $this->expectException(FilesystemExceptionInterface::class);
         $adapter->move('/path/to/file.ext', '/path/to/dest.ext');
     }
 
@@ -104,7 +104,7 @@ final class WormAdapterTest extends TestCase
         $adapter->copy('/path/to/source.ext', '/path/to/destination.txt');
 
         $adapter->add('/path/to/another.ext', 'contents');
-        $this->expectException(FilesystemException::class);
+        $this->expectException(FilesystemExceptionInterface::class);
         $adapter->copy('/path/to/source.ext', '/path/to/another.ext');
     }
 }

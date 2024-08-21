@@ -6,6 +6,7 @@ namespace SonsOfPHP\Component\Filesystem;
 
 use ArrayIterator;
 use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
+use SonsOfPHP\Contract\Filesystem\ContextInterface;
 use Traversable;
 
 /**

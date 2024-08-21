@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Component\Filesystem;
+namespace SonsOfPHP\Contract\Filesystem;
 
 use ArrayAccess;
 use IteratorAggregate;
