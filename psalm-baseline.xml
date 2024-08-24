@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.22.0@fe2c67ec89f358940f90db05efd2d663388b45a6">
+<files psalm-version="5.25.0@01a8eb06b9e9cc6cfb6a320bf9fb14331919d505">
   <file src="src/SonsOfPHP/Bard/Tests/JsonFileTest.php">
     <UnusedClass>
       <code><![CDATA[JsonFileTest]]></code>
@@ -642,9 +642,6 @@
     <MissingTemplateParam>
       <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
-    <PossiblyUnusedMethod>
-      <code><![CDATA[jsonSerialize]]></code>
-    </PossiblyUnusedMethod>
   </file>
   <file src="src/SonsOfPHP/Component/Cqrs/AbstractQueryMessage.php">
     <UnusedClass>
@@ -1147,12 +1144,6 @@
       <code><![CDATA[MockToggle]]></code>
     </UnusedClass>
   </file>
-  <file src="src/SonsOfPHP/Component/Filesystem/Adapter/AdapterInterface.php">
-    <UndefinedDocblockClass>
-      <code><![CDATA[FileNotFouneException]]></code>
-      <code><![CDATA[string|resouce]]></code>
-    </UndefinedDocblockClass>
-  </file>
   <file src="src/SonsOfPHP/Component/Filesystem/Adapter/ChainAdapter.php">
     <UnusedClass>
       <code><![CDATA[ChainAdapter]]></code>
@@ -1167,13 +1158,12 @@
     </UnusedForeachValue>
   </file>
   <file src="src/SonsOfPHP/Component/Filesystem/Adapter/NativeAdapter.php">
-    <UndefinedVariable>
-      <code><![CDATA[$filename]]></code>
-      <code><![CDATA[$filename]]></code>
-    </UndefinedVariable>
     <UnusedClass>
       <code><![CDATA[NativeAdapter]]></code>
     </UnusedClass>
+    <UnusedParam>
+      <code><![CDATA[$context]]></code>
+    </UnusedParam>
   </file>
   <file src="src/SonsOfPHP/Component/Filesystem/Adapter/NullAdapter.php">
     <UnusedClass>
@@ -1195,35 +1185,9 @@
       <code><![CDATA[Context]]></code>
     </UnusedClass>
   </file>
-  <file src="src/SonsOfPHP/Component/Filesystem/ContextInterface.php">
-    <MissingTemplateParam>
-      <code><![CDATA[ArrayAccess]]></code>
-      <code><![CDATA[IteratorAggregate]]></code>
-    </MissingTemplateParam>
-  </file>
-  <file src="src/SonsOfPHP/Component/Filesystem/Exception/UnableToCopyFileException.php">
-    <UnusedClass>
-      <code><![CDATA[UnableToCopyFileException]]></code>
-    </UnusedClass>
-  </file>
   <file src="src/SonsOfPHP/Component/Filesystem/Exception/UnableToDeleteDirectoryException.php">
     <UnusedClass>
       <code><![CDATA[UnableToDeleteDirectoryException]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/Filesystem/Exception/UnableToDeleteFileException.php">
-    <UnusedClass>
-      <code><![CDATA[UnableToDeleteFileException]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/Filesystem/Exception/UnableToMoveFileException.php">
-    <UnusedClass>
-      <code><![CDATA[UnableToMoveFileException]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/Filesystem/Exception/UnableToWriteFileException.php">
-    <UnusedClass>
-      <code><![CDATA[UnableToWriteFileException]]></code>
     </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Component/Filesystem/Filesystem.php">
@@ -1242,13 +1206,6 @@
     <UnusedClass>
       <code><![CDATA[Filesystem]]></code>
     </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/Filesystem/FilesystemInterface.php">
-    <PossiblyUnusedMethod>
-      <code><![CDATA[exists]]></code>
-      <code><![CDATA[move]]></code>
-      <code><![CDATA[read]]></code>
-    </PossiblyUnusedMethod>
   </file>
   <file src="src/SonsOfPHP/Component/Filesystem/Tests/Adapter/ChainAdapterTest.php">
     <UnusedClass>
@@ -1576,6 +1533,11 @@
       <code><![CDATA[GroupIdEnricher]]></code>
     </UnusedClass>
   </file>
+  <file src="src/SonsOfPHP/Component/Logger/Enricher/HostnameEnricher.php">
+    <UnusedClass>
+      <code><![CDATA[HostnameEnricher]]></code>
+    </UnusedClass>
+  </file>
   <file src="src/SonsOfPHP/Component/Logger/Enricher/InodeEnricher.php">
     <UnusedClass>
       <code><![CDATA[InodeEnricher]]></code>
@@ -1627,23 +1589,7 @@
       <code><![CDATA[MockFilter]]></code>
     </UnusedClass>
   </file>
-  <file src="src/SonsOfPHP/Component/Logger/Formatter/SimpleFormatter.php">
-    <UnusedClass>
-      <code><![CDATA[SimpleFormatter]]></code>
-    </UnusedClass>
-    <UnusedVariable>
-      <code><![CDATA[$message]]></code>
-    </UnusedVariable>
-  </file>
-  <file src="src/SonsOfPHP/Component/Logger/Handler/AbstractHandler.php">
-    <UndefinedMethod>
-      <code><![CDATA[doHandle]]></code>
-    </UndefinedMethod>
-  </file>
   <file src="src/SonsOfPHP/Component/Logger/Handler/FileHandler.php">
-    <PossiblyUnusedParam>
-      <code><![CDATA[$record]]></code>
-    </PossiblyUnusedParam>
     <UnusedClass>
       <code><![CDATA[FileHandler]]></code>
     </UnusedClass>
@@ -1654,9 +1600,6 @@
     </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Component/Logger/Handler/StreamHandler.php">
-    <PossiblyUnusedParam>
-      <code><![CDATA[$record]]></code>
-    </PossiblyUnusedParam>
     <UnusedClass>
       <code><![CDATA[StreamHandler]]></code>
     </UnusedClass>
@@ -1671,14 +1614,6 @@
       <code><![CDATA[Logger]]></code>
     </UnusedClass>
   </file>
-  <file src="src/SonsOfPHP/Component/Logger/Record.php">
-    <UndefinedPropertyAssignment>
-      <code><![CDATA[$that->datatime]]></code>
-    </UndefinedPropertyAssignment>
-    <UndefinedVariable>
-      <code><![CDATA[$datatime]]></code>
-    </UndefinedVariable>
-  </file>
   <file src="src/SonsOfPHP/Component/Logger/Tests/ContextTest.php">
     <UnusedClass>
       <code><![CDATA[ContextTest]]></code>
@@ -1687,6 +1622,11 @@
   <file src="src/SonsOfPHP/Component/Logger/Tests/Enricher/GroupIdEnricherTest.php">
     <UnusedClass>
       <code><![CDATA[GroupIdEnricherTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/Logger/Tests/Enricher/HostnameEnricherTest.php">
+    <UnusedClass>
+      <code><![CDATA[HostnameEnricherTest]]></code>
     </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Component/Logger/Tests/Enricher/InodeEnricherTest.php">
@@ -1829,9 +1769,6 @@
     <UnusedClass>
       <code><![CDATA[NativeMailTransport]]></code>
     </UnusedClass>
-    <UnusedFunctionCall>
-      <code><![CDATA[mail]]></code>
-    </UnusedFunctionCall>
   </file>
   <file src="src/SonsOfPHP/Component/Mailer/Transport/NullTransport.php">
     <UnusedClass>
@@ -1841,6 +1778,11 @@
   <file src="src/SonsOfPHP/Component/Money/Amount.php">
     <PossiblyUnusedMethod>
       <code><![CDATA[toFloat]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/SonsOfPHP/Component/Money/Currency.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__callStatic]]></code>
     </PossiblyUnusedMethod>
   </file>
   <file src="src/SonsOfPHP/Component/Money/CurrencyProvider/ChainCurrencyProvider.php">
@@ -1889,7 +1831,6 @@
     <PossiblyUnusedMethod>
       <code><![CDATA[__callStatic]]></code>
       <code><![CDATA[compare]]></code>
-      <code><![CDATA[jsonSerialize]]></code>
     </PossiblyUnusedMethod>
   </file>
   <file src="src/SonsOfPHP/Component/Money/Operator/Amount/AddAmountOperator.php">
@@ -2233,6 +2174,56 @@
       <code><![CDATA[getFeatureToggleByKey]]></code>
     </PossiblyUnusedMethod>
   </file>
+  <file src="src/SonsOfPHP/Contract/Filesystem/Adapter/AdapterInterface.php">
+    <InvalidThrow>
+      <code><![CDATA[FilesystemExceptionInterface]]></code>
+      <code><![CDATA[FilesystemExceptionInterface]]></code>
+      <code><![CDATA[FilesystemExceptionInterface]]></code>
+      <code><![CDATA[FilesystemExceptionInterface]]></code>
+    </InvalidThrow>
+    <UndefinedDocblockClass>
+      <code><![CDATA[FileNotFouneExceptionInterface]]></code>
+      <code><![CDATA[string|resouce]]></code>
+    </UndefinedDocblockClass>
+  </file>
+  <file src="src/SonsOfPHP/Contract/Filesystem/Adapter/CopyAwareInterface.php">
+    <InvalidThrow>
+      <code><![CDATA[FileNotFoundExceptionInterface]]></code>
+      <code><![CDATA[FilesystemExceptionInterface]]></code>
+    </InvalidThrow>
+  </file>
+  <file src="src/SonsOfPHP/Contract/Filesystem/Adapter/DirectoryAwareInterface.php">
+    <InvalidThrow>
+      <code><![CDATA[FilesystemExceptionInterface]]></code>
+    </InvalidThrow>
+  </file>
+  <file src="src/SonsOfPHP/Contract/Filesystem/Adapter/MoveAwareInterface.php">
+    <InvalidThrow>
+      <code><![CDATA[FileNotFoundExceptionInterface]]></code>
+      <code><![CDATA[FilesystemExceptionInterface]]></code>
+    </InvalidThrow>
+  </file>
+  <file src="src/SonsOfPHP/Contract/Filesystem/ContextInterface.php">
+    <MissingTemplateParam>
+      <code><![CDATA[ArrayAccess]]></code>
+      <code><![CDATA[IteratorAggregate]]></code>
+    </MissingTemplateParam>
+  </file>
+  <file src="src/SonsOfPHP/Contract/Filesystem/FilesystemInterface.php">
+    <InvalidThrow>
+      <code><![CDATA[FilesystemExceptionInterface]]></code>
+      <code><![CDATA[FilesystemExceptionInterface]]></code>
+      <code><![CDATA[FilesystemExceptionInterface]]></code>
+      <code><![CDATA[FilesystemExceptionInterface]]></code>
+      <code><![CDATA[FilesystemExceptionInterface]]></code>
+      <code><![CDATA[FilesystemExceptionInterface]]></code>
+    </InvalidThrow>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[exists]]></code>
+      <code><![CDATA[move]]></code>
+      <code><![CDATA[read]]></code>
+    </PossiblyUnusedMethod>
+  </file>
   <file src="src/SonsOfPHP/Contract/HttpHandler/MiddlewareStackInterface.php">
     <InvalidThrow>
       <code><![CDATA[HttpHandlerExceptionInterface]]></code>
@@ -2264,6 +2255,7 @@
       <code><![CDATA[withChannel]]></code>
       <code><![CDATA[withDatetime]]></code>
       <code><![CDATA[withLevel]]></code>
+      <code><![CDATA[withMessage]]></code>
     </PossiblyUnusedMethod>
   </file>
   <file src="src/SonsOfPHP/Contract/Mailer/AddressInterface.php">

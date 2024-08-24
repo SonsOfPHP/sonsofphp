@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem\Adapter;
 
+use SonsOfPHP\Component\Filesystem\Exception\FileNotFoundException;
+use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
+use SonsOfPHP\Component\Filesystem\Exception\UnableToCopyFileException;
+use SonsOfPHP\Component\Filesystem\Exception\UnableToDeleteFileException;
+use SonsOfPHP\Component\Filesystem\Exception\UnableToMoveFileException;
+use SonsOfPHP\Component\Filesystem\Exception\UnableToWriteFileException;
 use SonsOfPHP\Contract\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Contract\Filesystem\Adapter\CopyAwareInterface;
 use SonsOfPHP\Contract\Filesystem\Adapter\DirectoryAwareInterface;
 use SonsOfPHP\Contract\Filesystem\Adapter\MoveAwareInterface;
 use SonsOfPHP\Contract\Filesystem\ContextInterface;
-use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
-use SonsOfPHP\Component\Filesystem\Exception\FileNotFoundException;
-use SonsOfPHP\Component\Filesystem\Exception\UnableToCopyFileException;
-use SonsOfPHP\Component\Filesystem\Exception\UnableToDeleteFileException;
-use SonsOfPHP\Component\Filesystem\Exception\UnableToMoveFileException;
-use SonsOfPHP\Component\Filesystem\Exception\UnableToReadFileException;
-use SonsOfPHP\Component\Filesystem\Exception\UnableToWriteFileException;
 
 /**
  * The native adapter will use the underlying filesystem to store files.
@@ -29,7 +28,7 @@ final class NativeAdapter implements AdapterInterface, CopyAwareInterface, Direc
 {
     public function __construct(
         private string $prefix,
-        private int $defaultPermissions = 0777,
+        private readonly int $defaultPermissions = 0o777,
     ) {
         $this->prefix = rtrim($prefix, '/');
     }
@@ -103,10 +102,8 @@ final class NativeAdapter implements AdapterInterface, CopyAwareInterface, Direc
 
     public function makeDirectory(string $path, ?ContextInterface $context = null): void
     {
-        if (!$this->isDirectory($path)) {
-            if (false === mkdir($this->prefix . '/' . ltrim($path, '/'), $this->defaultPermissions, true)) {
-                throw new FilesystemException('Unable to create directory "' . $path . '"');
-            }
+        if (!$this->isDirectory($path) && false === mkdir($this->prefix . '/' . ltrim($path, '/'), $this->defaultPermissions, true)) {
+            throw new FilesystemException('Unable to create directory "' . $path . '"');
         }
     }
 

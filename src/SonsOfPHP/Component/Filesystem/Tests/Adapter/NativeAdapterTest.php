@@ -11,13 +11,8 @@ use SonsOfPHP\Contract\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Contract\Filesystem\Adapter\CopyAwareInterface;
 use SonsOfPHP\Contract\Filesystem\Adapter\DirectoryAwareInterface;
 use SonsOfPHP\Contract\Filesystem\Adapter\MoveAwareInterface;
-use SonsOfPHP\Contract\Filesystem\Exception\FilesystemExceptionInterface;
 use SonsOfPHP\Contract\Filesystem\Exception\FileNotFoundExceptionInterface;
-use SonsOfPHP\Contract\Filesystem\Exception\UnableToCopyFileExceptionInterface;
-use SonsOfPHP\Contract\Filesystem\Exception\UnableToDeleteFileExceptionInterface;
-use SonsOfPHP\Contract\Filesystem\Exception\UnableToMoveFileExceptionInterface;
-use SonsOfPHP\Contract\Filesystem\Exception\UnableToReadFileExceptionInterface;
-use SonsOfPHP\Contract\Filesystem\Exception\UnableToWriteFileExceptionInterface;
+use SonsOfPHP\Contract\Filesystem\Exception\FilesystemExceptionInterface;
 
 #[CoversClass(NativeAdapter::class)]
 final class NativeAdapterTest extends TestCase
