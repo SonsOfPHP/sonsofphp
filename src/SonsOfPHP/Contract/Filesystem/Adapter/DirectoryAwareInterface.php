@@ -23,10 +23,10 @@ interface DirectoryAwareInterface
     /**
      * @throws FilesystemExceptionInterface Generic Failure Exception
      */
-    //public function makeDirectory(string $path, ?ContextInterface $context = null): void;
+    public function makeDirectory(string $path, ?ContextInterface $context = null): void;
 
     /**
      * @throws FilesystemExceptionInterface Generic Failure Exception
      */
-    //public function removeDirectory(string $path, ?ContextInterface $context = null): void;
+    public function removeDirectory(string $path, ?ContextInterface $context = null): void;
 }

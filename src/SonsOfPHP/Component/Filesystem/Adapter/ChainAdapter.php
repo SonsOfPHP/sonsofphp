@@ -10,6 +10,7 @@ use SonsOfPHP\Contract\Filesystem\Adapter\CopyAwareInterface;
 use SonsOfPHP\Contract\Filesystem\Adapter\DirectoryAwareInterface;
 use SonsOfPHP\Contract\Filesystem\Adapter\MoveAwareInterface;
 use SonsOfPHP\Contract\Filesystem\ContextInterface;
+use SonsOfPHP\Contract\Filesystem\Exception\FilesystemExceptionInterface;
 
 /**
  * Chain adapter allows you to use multiple adapters together.
@@ -105,6 +106,30 @@ final readonly class ChainAdapter implements AdapterInterface, CopyAwareInterfac
 
             $adapter->add($destination, $adapter->get($source, $context), $context);
             $adapter->remove($source, $context);
+        }
+    }
+
+    public function mimeType(string $path, ?ContextInterface $context = null): string
+    {
+        foreach ($this->adapters as $adapter) {
+            try {
+                return $adapter->mimeType($path, $context);
+            } catch (FilesystemExceptionInterface) {
+            }
+        }
+    }
+
+    public function makeDirectory(string $path, ?ContextInterface $context = null): void
+    {
+        foreach ($this->adapters as $adapter) {
+            $adapter->makeDirectory($path, $context);
+        }
+    }
+
+    public function removeDirectory(string $path, ?ContextInterface $context = null): void
+    {
+        foreach ($this->adapters as $adapter) {
+            $adapter->removeDirectory($path, $context);
         }
     }
 }

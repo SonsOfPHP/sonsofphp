@@ -37,6 +37,9 @@ $filesystem->delete('example.txt');
 // Check if file exists
 $doesExist = $filesystem->exists('example.txt');
 
+// Get MIME Type of file
+$mimeType = $filesystem->mimeType('example.txt');
+
 // Copy file
 $filesystem->copy('source.txt', 'destination.txt');
 

@@ -7,6 +7,7 @@ namespace SonsOfPHP\Component\Filesystem\Adapter;
 use SonsOfPHP\Component\Filesystem\Exception\FileNotFoundException;
 use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 use SonsOfPHP\Component\Filesystem\Exception\UnableToCopyFileException;
+use SonsOfPHP\Component\Filesystem\Exception\UnableToDeleteDirectoryException;
 use SonsOfPHP\Component\Filesystem\Exception\UnableToDeleteFileException;
 use SonsOfPHP\Component\Filesystem\Exception\UnableToMoveFileException;
 use SonsOfPHP\Component\Filesystem\Exception\UnableToWriteFileException;
@@ -40,6 +41,10 @@ final class NativeAdapter implements AdapterInterface, CopyAwareInterface, Direc
         }
 
         $this->makeDirectory(dirname($path), $context);
+
+        if (is_resource($contents)) {
+            $contents = stream_get_contents($contents, null, 0);
+        }
 
         if (false === file_put_contents($this->prefix . '/' . ltrim($path, '/'), $contents)) {
             throw new UnableToWriteFileException('Unable to write file "' . $path . '"');
@@ -107,10 +112,27 @@ final class NativeAdapter implements AdapterInterface, CopyAwareInterface, Direc
         }
     }
 
+    public function removeDirectory(string $path, ?ContextInterface $context = null): void
+    {
+        if ($this->isDirectory($path, $context) && false === rmdir($this->prefix . '/' . ltrim($path, '/'))) {
+            throw new UnableToDeleteDirectoryException('Unable to delete directory "' . $path . '"');
+        }
+    }
+
     public function move(string $source, string $destination, ?ContextInterface $context = null): void
     {
         if (false === rename($this->prefix . '/' . ltrim($source, '/'), $this->prefix . '/' . ltrim($destination, '/'))) {
             throw new UnableToMoveFileException('Unable to move file "' . $source . '" to "' . $destination . '"');
         }
+    }
+
+    public function mimeType(string $path, ?ContextInterface $context = null): string
+    {
+        $mimeType = mime_content_type($this->prefix . '/' . ltrim($path, '/'));
+        if (false === $mimeType) {
+            throw new FilesystemException('Unable to guess MIME Type for "' . $path . '"');
+        }
+
+        return $mimeType;
     }
 }

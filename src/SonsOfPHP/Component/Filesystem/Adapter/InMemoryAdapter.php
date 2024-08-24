@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem\Adapter;
 
+use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 use SonsOfPHP\Component\Filesystem\Exception\UnableToReadFileException;
 use SonsOfPHP\Contract\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Contract\Filesystem\Adapter\CopyAwareInterface;
@@ -93,6 +94,15 @@ final class InMemoryAdapter implements AdapterInterface, CopyAwareInterface, Mov
 
         return false;
     }
+
+    public function mimeType(string $path, ?ContextInterface $context = null): string
+    {
+        throw new FilesystemException('Not Supported');
+    }
+
+    public function makeDirectory(string $path, ?ContextInterface $context = null): void {}
+
+    public function removeDirectory(string $path, ?ContextInterface $context = null): void {}
 
     private function normalizePath(string $path): string
     {

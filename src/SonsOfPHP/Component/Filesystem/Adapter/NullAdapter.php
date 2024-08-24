@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Filesystem\Adapter;
 
+use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
 use SonsOfPHP\Contract\Filesystem\Adapter\AdapterInterface;
 use SonsOfPHP\Contract\Filesystem\ContextInterface;
 
@@ -35,5 +36,10 @@ final class NullAdapter implements AdapterInterface
     public function isFile(string $path, ?ContextInterface $context = null): bool
     {
         return false;
+    }
+
+    public function mimeType(string $path, ?ContextInterface $context = null): string
+    {
+        throw new FilesystemException('Not Supported');
     }
 }

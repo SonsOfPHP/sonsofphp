@@ -57,4 +57,9 @@ interface AdapterInterface
      * @throws FilesystemExceptionInterface Generic Failure Exception
      */
     public function isFile(string $path, ?ContextInterface $context = null): bool;
+
+    /**
+     * @throws FilesystemExceptionInterface Generic Failure Exception
+     */
+    public function mimeType(string $path, ?ContextInterface $context = null): string;
 }
