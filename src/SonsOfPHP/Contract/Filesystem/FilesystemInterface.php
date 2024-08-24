@@ -63,4 +63,9 @@ interface FilesystemInterface
     //public function isReadable(string $filename): bool;
 
     //public function isWritable(string $filename): bool;
+
+    /**
+     * @throws FilesystemExceptionInterface Generic Failure Exception
+     */
+    public function mimeType(string $path, ?ContextInterface $context = null): string;
 }

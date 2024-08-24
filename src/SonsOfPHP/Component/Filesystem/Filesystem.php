@@ -64,4 +64,9 @@ final readonly class Filesystem implements FilesystemInterface
         $this->copy($source, $destination, $context);
         $this->delete($source, $context);
     }
+
+    public function mimeType(string $path, ?ContextInterface $context = null): string
+    {
+        return $this->adapter->mimeType($path, $context);
+    }
 }

@@ -83,4 +83,19 @@ final readonly class WormAdapter implements AdapterInterface, CopyAwareInterface
     {
         throw new FilesystemException();
     }
+
+    public function mimeType(string $path, ?ContextInterface $context = null): string
+    {
+        return $this->adapter->mimeType($path, $context);
+    }
+
+    public function makeDirectory(string $path, ?ContextInterface $context = null): void
+    {
+        throw new FilesystemException();
+    }
+
+    public function removeDirectory(string $path, ?ContextInterface $context = null): void
+    {
+        throw new FilesystemException();
+    }
 }
