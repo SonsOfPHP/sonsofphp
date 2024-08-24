@@ -9,6 +9,13 @@ use SonsOfPHP\Contract\Filesystem\Adapter\CopyAwareInterface;
 use SonsOfPHP\Contract\Filesystem\Adapter\DirectoryAwareInterface;
 use SonsOfPHP\Contract\Filesystem\Adapter\MoveAwareInterface;
 use SonsOfPHP\Contract\Filesystem\ContextInterface;
+use SonsOfPHP\Component\Filesystem\Exception\FilesystemException;
+use SonsOfPHP\Component\Filesystem\Exception\FileNotFoundException;
+use SonsOfPHP\Component\Filesystem\Exception\UnableToCopyFileException;
+use SonsOfPHP\Component\Filesystem\Exception\UnableToDeleteFileException;
+use SonsOfPHP\Component\Filesystem\Exception\UnableToMoveFileException;
+use SonsOfPHP\Component\Filesystem\Exception\UnableToReadFileException;
+use SonsOfPHP\Component\Filesystem\Exception\UnableToWriteFileException;
 
 /**
  * The native adapter will use the underlying filesystem to store files.
@@ -18,25 +25,50 @@ use SonsOfPHP\Contract\Filesystem\ContextInterface;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final readonly class NativeAdapter implements AdapterInterface, CopyAwareInterface, DirectoryAwareInterface, MoveAwareInterface
+final class NativeAdapter implements AdapterInterface, CopyAwareInterface, DirectoryAwareInterface, MoveAwareInterface
 {
     public function __construct(
         private string $prefix,
-    ) {}
+        private int $defaultPermissions = 0777,
+    ) {
+        $this->prefix = rtrim($prefix, '/');
+    }
 
     public function add(string $path, mixed $contents, ?ContextInterface $context = null): void
     {
-        file_put_contents($this->prefix . $path, $contents);
+        if ($this->isFile($path, $context)) {
+            throw new FilesystemException(sprintf('File "%s" already exists', $path));
+        }
+
+        $this->makeDirectory(dirname($path), $context);
+
+        if (false === file_put_contents($this->prefix . '/' . ltrim($path, '/'), $contents)) {
+            throw new UnableToWriteFileException('Unable to write file "' . $path . '"');
+        }
+
+        if (false === chmod($this->prefix . '/' . ltrim($path, '/'), $this->defaultPermissions)) {
+            throw new FilesystemException('Unable to set permissions on file "' . $path . '"');
+        }
     }
 
     public function get(string $path, ?ContextInterface $context = null): mixed
     {
-        return file_get_contents($this->prefix . $path);
+        if (!$this->isFile($path, $context)) {
+            throw new FileNotFoundException('File "' . $path . '" not found');
+        }
+
+        return file_get_contents($this->prefix . '/' . ltrim($path, '/'));
     }
 
     public function remove(string $path, ?ContextInterface $context = null): void
     {
-        unlink($this->prefix . $path);
+        if (!$this->isFile($path, $context)) {
+            throw new FileNotFoundException('File "' . $path . '" not found');
+        }
+
+        if (false === unlink($this->prefix . '/' . ltrim($path, '/'))) {
+            throw new UnableToDeleteFileException('Unable to remove file "' . $path . '"');
+        }
     }
 
     public function has(string $path, ?ContextInterface $context = null): bool
@@ -46,21 +78,42 @@ final readonly class NativeAdapter implements AdapterInterface, CopyAwareInterfa
 
     public function isFile(string $path, ?ContextInterface $context = null): bool
     {
-        return is_file($filename);
+        return is_file($this->prefix . '/' . ltrim($path, '/'));
     }
 
     public function copy(string $source, string $destination, ?ContextInterface $context = null): void
     {
-        copy($this->prefix . $source, $this->prefix . $destination);
+        if (!$this->isFile($source)) {
+            throw new FilesystemException('Source file "' . $source . '" does not exist');
+        }
+
+        if ($this->isFile($destination)) {
+            throw new FilesystemException('Destination file "' . $destination . '" already exists');
+        }
+
+        if (false === copy($this->prefix . '/' . ltrim($source, '/'), $this->prefix . '/' . ltrim($destination, '/'))) {
+            throw new UnableToCopyFileException('Unable to file "' . $source . '" to "' . $destination . '"');
+        }
     }
 
     public function isDirectory(string $path, ?ContextInterface $context = null): bool
     {
-        return is_dir($filename);
+        return is_dir($this->prefix . '/' . ltrim($path, '/'));
+    }
+
+    public function makeDirectory(string $path, ?ContextInterface $context = null): void
+    {
+        if (!$this->isDirectory($path)) {
+            if (false === mkdir($this->prefix . '/' . ltrim($path, '/'), $this->defaultPermissions, true)) {
+                throw new FilesystemException('Unable to create directory "' . $path . '"');
+            }
+        }
     }
 
     public function move(string $source, string $destination, ?ContextInterface $context = null): void
     {
-        rename($this->prefix . $source, $this->prefix . $destination);
+        if (false === rename($this->prefix . '/' . ltrim($source, '/'), $this->prefix . '/' . ltrim($destination, '/'))) {
+            throw new UnableToMoveFileException('Unable to move file "' . $source . '" to "' . $destination . '"');
+        }
     }
 }
