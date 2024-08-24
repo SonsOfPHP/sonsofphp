@@ -16,7 +16,7 @@ interface FilesystemInterface
      *
      * @throws FilesystemExceptionInterface
      */
-    public function write(string $path, mixed $content, ?ContextInterface $context = null): void;
+    public function write(string $path, mixed $content, ContextInterface|array $context = null): void;
     // or put, putContents
 
     // could write not do this by default? Maybe option to overwrite if exists?
@@ -25,13 +25,13 @@ interface FilesystemInterface
     /**
      * @throws FilesystemExceptionInterface
      */
-    public function read(string $path, ?ContextInterface $context = null): string;
+    public function read(string $path, ContextInterface|array $context = null): string;
     // or get, getContents
 
     /**
      * @throws FilesystemExceptionInterface
      */
-    public function delete(string $path, ?ContextInterface $context = null): void;
+    public function delete(string $path, ContextInterface|array $context = null): void;
     // or remove, rm, rmdir
 
     /**
@@ -39,20 +39,20 @@ interface FilesystemInterface
      *
      * @throws FilesystemExceptionInterface Generic Failure Exception
      */
-    public function exists(string $path, ?ContextInterface $context = null): bool;
+    public function exists(string $path, ContextInterface|array $context = null): bool;
 
     //public function isFile(string $path, ?ContextInterface $context = null): bool;
 
     /**
      * @throws FilesystemExceptionInterface
      */
-    public function copy(string $source, string $destination, ?ContextInterface $context = null): void;
+    public function copy(string $source, string $destination, ContextInterface|array $context = null): void;
     // or cp
 
     /**
      * @throws FilesystemExceptionInterface
      */
-    public function move(string $source, string $destination, ?ContextInterface $context = null): void;
+    public function move(string $source, string $destination, ContextInterface|array $context = null): void;
     // or mv
 
     //public function createDirectory(string|iterable $dirs): bool;
@@ -67,5 +67,5 @@ interface FilesystemInterface
     /**
      * @throws FilesystemExceptionInterface Generic Failure Exception
      */
-    public function mimeType(string $path, ?ContextInterface $context = null): string;
+    public function mimeType(string $path, ContextInterface|array $context = null): string;
 }
