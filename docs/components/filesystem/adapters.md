@@ -100,3 +100,19 @@ use SonsOfPHP\Component\Filesystem\Adapter\NativeAdapter;
 
 $adapter = new WormAdapter(new NativeAdater('/tmp'));
 ```
+
+## Additional Adapters
+
+### AWS S3
+
+```shell
+composer require sonsofphp/filesystem-aws
+```
+
+```php
+<?php
+
+use SonsOfPHP\Bridge\Aws\Filesystem\Adapter\S3Adapter;
+
+$adapter = new S3Adapter($s3Client, 'bucket-name');
+```

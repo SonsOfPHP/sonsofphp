@@ -9,6 +9,9 @@ use Liip\ImagineBundle\Exception\Imagine\Cache\Resolver\NotResolvableException;
 use Liip\ImagineBundle\Imagine\Cache\Resolver\ResolverInterface;
 use SonsOfPHP\Contract\Filesystem\FilesystemInterface;
 
+/**
+ * @author Joshua Estes <joshua@sonsofphp.com>
+ */
 class SonsOfPHPFilesystemResolver implements ResolverInterface
 {
     public function __construct(

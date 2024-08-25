@@ -11,6 +11,9 @@ use SonsOfPHP\Contract\Filesystem\Exception\FilesystemExceptionInterface;
 use SonsOfPHP\Contract\Filesystem\FilesystemInterface;
 use Symfony\Component\Mime\MimeTypesInterface;
 
+/**
+ * @author Joshua Estes <joshua@sonsofphp.com>
+ */
 class SonsOfPHPFilesystemLoader implements LoaderInterface
 {
     public function __construct(
