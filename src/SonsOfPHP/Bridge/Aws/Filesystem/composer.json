@@ -1,0 +1,54 @@
+{
+    "name": "sonsofphp/filesystem-aws",
+    "type": "library",
+    "description": "Additional adapters for Sons of PHP Filesystem Component",
+    "keywords": [
+        "sonsofphp",
+        "aws",
+        "filesystem"
+    ],
+    "homepage": "https://github.com/SonsOfPHP/filesystem-aws",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joshua Estes",
+            "email": "joshua@sonsofphp.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/SonsOfPHP/sonsofphp/issues",
+        "forum": "https://github.com/orgs/SonsOfPHP/discussions",
+        "docs": "https://docs.sonsofphp.com"
+    },
+    "autoload": {
+        "psr-4": {
+            "SonsOfPHP\\Bridge\\Aws\\Filesystem\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.2",
+        "sonsofphp/filesystem": "^0.3.x-dev",
+        "aws/aws-sdk-php": "^3.0"
+    },
+    "extra": {
+        "sort-packages": true,
+        "branch-alias": {
+            "dev-main": "0.3.x-dev"
+        }
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/JoshuaEstes"
+        },
+        {
+            "type": "tidelift",
+            "url": "https://tidelift.com/subscription/pkg/packagist-sonsofphp-sonsofphp"
+        }
+    ]
+}

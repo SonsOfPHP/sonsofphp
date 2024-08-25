@@ -1,0 +1,57 @@
+{
+    "name": "sonsofphp/filesystem-liip-imagine",
+    "type": "library",
+    "description": "Provides support for Sons of PHP Filesystem component",
+    "keywords": [
+        "sonsofphp",
+        "liip",
+        "imagine",
+        "liip-imagine",
+        "liip-imagine-bundle",
+        "filesystem"
+    ],
+    "homepage": "https://github.com/SonsOfPHP/filesystem-liip-imagine",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joshua Estes",
+            "email": "joshua@sonsofphp.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/SonsOfPHP/sonsofphp/issues",
+        "forum": "https://github.com/orgs/SonsOfPHP/discussions",
+        "docs": "https://docs.sonsofphp.com"
+    },
+    "autoload": {
+        "psr-4": {
+            "SonsOfPHP\\Bridge\\LiipImagine\\Filesystem\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.2",
+        "sonsofphp/filesystem": "^0.3.x-dev",
+        "liip/imagine-bundle": "^2.0"
+    },
+    "extra": {
+        "sort-packages": true,
+        "branch-alias": {
+            "dev-main": "0.3.x-dev"
+        }
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/JoshuaEstes"
+        },
+        {
+            "type": "tidelift",
+            "url": "https://tidelift.com/subscription/pkg/packagist-sonsofphp-sonsofphp"
+        }
+    ]
+}
