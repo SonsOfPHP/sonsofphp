@@ -88,7 +88,7 @@ final class NativeAdapter implements AdapterInterface, CopyAwareInterface, Direc
     public function copy(string $source, string $destination, ?ContextInterface $context = null): void
     {
         if (!$this->isFile($source)) {
-            throw new FilesystemException('Source file "' . $source . '" does not exist');
+            throw new FileNotFoundException('File "' . $source . '" not found');
         }
 
         if ($this->isFile($destination)) {
@@ -128,6 +128,10 @@ final class NativeAdapter implements AdapterInterface, CopyAwareInterface, Direc
 
     public function mimeType(string $path, ?ContextInterface $context = null): string
     {
+        if (!$this->isFile($path, $context)) {
+            throw new FileNotFoundException('File "' . $path . '" not found');
+        }
+
         $mimeType = mime_content_type($this->prefix . '/' . ltrim($path, '/'));
         if (false === $mimeType) {
             throw new FilesystemException('Unable to guess MIME Type for "' . $path . '"');
