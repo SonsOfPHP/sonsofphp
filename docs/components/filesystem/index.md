@@ -47,6 +47,37 @@ $filesystem->copy('source.txt', 'destination.txt');
 $filesystem->move('source.txt', 'destination.txt');
 ```
 
+## Support for LiipImagineBundle
+
+```shell
+composer require sonsofphp/filesystem-liip-imagine
+```
+
+```yaml
+# config/services.yaml
+services:
+    SonsOfPHP\Contract\Filesystem\Adapter\AdapterInterface:
+        class: SonsOfPHP\Component\Filesystem\Adapter\NativeAdapter
+        arguments: ['%kernel.project_dir%/var/data/%kernel.id%']
+    SonsOfPHP\Contract\Filesystem\FilesystemInterface:
+        class: SonsOfPHP\Component\Filesystem\Filesystem
+        arguments: ['@SonsOfPHP\Contract\Filesystem\Adapter\AdapterInterface']
+    imagine.cache.resolver.sonsofphp:
+      class: SonsOfPHP\Bridge\LiipImagine\Filesystem\Imagine\Cache\Resolver\SonsOfPHPFilesystemResolver
+      arguments:
+        - '@SonsOfPHP\Contract\Filesystem\FilesystemInterface'
+        - 'https://images.example.com'
+      tags:
+        - { name: "liip_imagine.cache.resolver", resolver: sonsofphp }
+```
+
+```yaml
+# config/packages/liip_imagine.yaml
+liip_imagine:
+    data_loader: SonsOfPHP\Bridge\LiipImagine\Filesystem\Binary\Loader\SonsOfPHPFilesystemLoader
+    cache: sonsofphp
+```
+
 ## Need Help?
 
 Check out [Sons of PHP's Organization Discussions][discussions].

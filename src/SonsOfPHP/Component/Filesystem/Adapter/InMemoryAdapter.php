@@ -50,7 +50,11 @@ final class InMemoryAdapter implements AdapterInterface, CopyAwareInterface, Mov
     {
         $path = $this->normalizePath($path);
 
-        unset($this->files[$path]);
+        foreach ($this->files as $key => $value) {
+            if ($path === $key || str_starts_with($key, $path)) {
+                unset($this->files[$key]);
+            }
+        }
     }
 
     public function copy(string $source, string $destination, ?ContextInterface $context = null): void
@@ -87,7 +91,7 @@ final class InMemoryAdapter implements AdapterInterface, CopyAwareInterface, Mov
             $parts = explode('/', $key);
             array_pop($parts);
 
-            if (implode('/', $parts) === $path) {
+            if (str_starts_with($key, $path)) {
                 return true;
             }
         }
@@ -100,9 +104,24 @@ final class InMemoryAdapter implements AdapterInterface, CopyAwareInterface, Mov
         throw new FilesystemException('Not Supported');
     }
 
-    public function makeDirectory(string $path, ?ContextInterface $context = null): void {}
+    public function makeDirectory(string $path, ?ContextInterface $context = null): void
+    {
+        $path = $this->normalizePath($path);
 
-    public function removeDirectory(string $path, ?ContextInterface $context = null): void {}
+        $this->files[$path] = null;
+    }
+
+    public function removeDirectory(string $path, ?ContextInterface $context = null): void
+    {
+        $path = $this->normalizePath($path);
+
+        foreach ($this->files as $key => $value) {
+            if (str_starts_with($key, $path)) {
+                unset($this->files[$key]);
+                return;
+            }
+        }
+    }
 
     private function normalizePath(string $path): string
     {

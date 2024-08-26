@@ -66,8 +66,20 @@
             "repository": "git@github.com:SonsOfPHP/feature-toggle.git"
         },
         {
+            "path": "src/SonsOfPHP/Contract/Filesystem",
+            "repository": "git@github.com:SonsOfPHP/filesystem-contract.git"
+        },
+        {
             "path": "src/SonsOfPHP/Component/Filesystem",
             "repository": "git@github.com:SonsOfPHP/filesystem.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Bridge/Aws/Filesystem",
+            "repository": "git@github.com:SonsOfPHP/filesystem-aws.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Bridge/LiipImagine/Filesystem",
+            "repository": "git@github.com:SonsOfPHP/filesystem-liip-imagine.git"
         },
         {
             "path": "src/SonsOfPHP/Component/HttpFactory",
@@ -140,10 +152,6 @@
         {
             "path": "src/SonsOfPHP/Contract/FeatureToggle",
             "repository": "git@github.com:SonsOfPHP/feature-toggle-contract.git"
-        },
-        {
-            "path": "src/SonsOfPHP/Contract/Filesystem",
-            "repository": "git@github.com:SonsOfPHP/filesystem-contract.git"
         },
         {
             "path": "src/SonsOfPHP/Contract/Logger",

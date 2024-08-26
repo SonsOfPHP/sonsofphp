@@ -76,7 +76,7 @@
         "psr/http-factory": "^1.0",
         "psr/cache": "^2.0 || ^3.0",
         "psr/simple-cache": "^3.0",
-        "psr/log": "^1.0 || ^2.0 || ^3.0",
+        "psr/log": "^2.0 || ^3.0",
         "psr/link": "^1.0 || ^2.0",
         "twig/twig": "^3.0",
         "ext-intl": "*",
@@ -84,7 +84,9 @@
         "doctrine/orm": "^2 || ^3",
         "psr/container": "^1.0 || ^2.0",
         "psr/http-server-handler": "^1.0",
-        "psr/http-server-middleware": "^1.0"
+        "psr/http-server-middleware": "^1.0",
+        "aws/aws-sdk-php": "^3.0",
+        "liip/imagine-bundle": "^2.0"
     },
     "replace": {
         "sonsofphp/bard": "self.version",
@@ -127,7 +129,9 @@
         "sonsofphp/http-handler": "self.version",
         "sonsofphp/http-handler-contract": "self.version",
         "sonsofphp/mailer-contract": "self.version",
-        "sonsofphp/mailer": "self.version"
+        "sonsofphp/mailer": "self.version",
+        "sonsofphp/filesystem-aws": "self.version",
+        "sonsofphp/filesystem-liip-imagine": "self.version"
     },
     "autoload": {
         "psr-4": {
@@ -147,7 +151,10 @@
             "SonsOfPHP\\Component\\EventSourcing\\": "src/SonsOfPHP/Component/EventSourcing",
             "SonsOfPHP\\Bridge\\Doctrine\\EventSourcing\\": "src/SonsOfPHP/Bridge/Doctrine/EventSourcing",
             "SonsOfPHP\\Component\\FeatureToggle\\": "src/SonsOfPHP/Component/FeatureToggle",
+            "SonsOfPHP\\Contract\\Filesystem\\": "src/SonsOfPHP/Contract/Filesystem",
             "SonsOfPHP\\Component\\Filesystem\\": "src/SonsOfPHP/Component/Filesystem",
+            "SonsOfPHP\\Bridge\\Aws\\Filesystem\\": "src/SonsOfPHP/Bridge/Aws/Filesystem",
+            "SonsOfPHP\\Bridge\\LiipImagine\\Filesystem\\": "src/SonsOfPHP/Bridge/LiipImagine/Filesystem",
             "SonsOfPHP\\Component\\HttpFactory\\": "src/SonsOfPHP/Component/HttpFactory",
             "SonsOfPHP\\Component\\HttpHandler\\": "src/SonsOfPHP/Component/HttpHandler",
             "SonsOfPHP\\Contract\\HttpHandler\\": "src/SonsOfPHP/Contract/HttpHandler",
@@ -166,7 +173,6 @@
             "SonsOfPHP\\Contract\\Cqrs\\": "src/SonsOfPHP/Contract/Cqrs",
             "SonsOfPHP\\Contract\\EventSourcing\\": "src/SonsOfPHP/Contract/EventSourcing",
             "SonsOfPHP\\Contract\\FeatureToggle\\": "src/SonsOfPHP/Contract/FeatureToggle",
-            "SonsOfPHP\\Contract\\Filesystem\\": "src/SonsOfPHP/Contract/Filesystem",
             "SonsOfPHP\\Contract\\Logger\\": "src/SonsOfPHP/Contract/Logger",
             "SonsOfPHP\\Contract\\Money\\": "src/SonsOfPHP/Contract/Money",
             "SonsOfPHP\\Contract\\Pager\\": "src/SonsOfPHP/Contract/Pager",
@@ -189,6 +195,8 @@
             "src/SonsOfPHP/Bridge/Doctrine/EventSourcing/Tests",
             "src/SonsOfPHP/Component/FeatureToggle/Tests",
             "src/SonsOfPHP/Component/Filesystem/Tests",
+            "src/SonsOfPHP/Bridge/Aws/Filesystem/Tests",
+            "src/SonsOfPHP/Bridge/LiipImagine/Filesystem/Tests",
             "src/SonsOfPHP/Component/HttpFactory/Tests",
             "src/SonsOfPHP/Component/HttpHandler/Tests",
             "src/SonsOfPHP/Component/HttpMessage/Tests",

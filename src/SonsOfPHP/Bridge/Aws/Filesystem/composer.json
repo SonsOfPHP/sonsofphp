@@ -1,13 +1,13 @@
 {
-    "name": "sonsofphp/logger",
+    "name": "sonsofphp/filesystem-aws",
     "type": "library",
-    "description": "",
+    "description": "Additional adapters for Sons of PHP Filesystem Component",
     "keywords": [
-        "psr",
-        "psr-3",
-        "logger"
+        "sonsofphp",
+        "aws",
+        "filesystem"
     ],
-    "homepage": "https://github.com/SonsOfPHP/logger",
+    "homepage": "https://github.com/SonsOfPHP/filesystem-aws",
     "license": "MIT",
     "authors": [
         {
@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SonsOfPHP\\Component\\Logger\\": ""
+            "SonsOfPHP\\Bridge\\Aws\\Filesystem\\": ""
         },
         "exclude-from-classmap": [
             "/Tests/"
@@ -32,12 +32,8 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.2",
-        "psr/log": "^2.0 || ^3.0",
-        "sonsofphp/logger-contract": "0.3.x-dev"
-    },
-    "provide": {
-        "psr/log-implementation": "^1.0 || ^2.0 || ^3.0",
-        "sonsofphp/logger-implementation": "0.3.x-dev"
+        "sonsofphp/filesystem": "^0.3.x-dev",
+        "aws/aws-sdk-php": "^3.0"
     },
     "extra": {
         "sort-packages": true,
