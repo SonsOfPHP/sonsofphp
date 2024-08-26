@@ -54,6 +54,8 @@
 
     <testsuite name="feature-toggle">
       <directory>src/SonsOfPHP/Component/FeatureToggle/Tests</directory>
+      <directory>src/SonsOfPHP/Bridge/Aws/Filesystem/Tests</directory>
+      <directory>src/SonsOfPHP/Bridge/LiipImagine/Filesystem/Tests</directory>
     </testsuite>
 
     <testsuite name="filesystem">

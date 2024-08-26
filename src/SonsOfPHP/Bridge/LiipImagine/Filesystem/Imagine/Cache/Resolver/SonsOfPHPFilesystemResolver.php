@@ -31,7 +31,7 @@ class SonsOfPHPFilesystemResolver implements ResolverInterface
      *
      * @return bool
      */
-    public function isStored($path, string $filter): bool
+    public function isStored($path, $filter): bool
     {
         return $this->filesystem->exists($this->getFilePath($path, $filter));
     }
@@ -46,7 +46,7 @@ class SonsOfPHPFilesystemResolver implements ResolverInterface
      *
      * @return string The absolute URL of the cached image
      */
-    public function resolve($path, string $filter): string
+    public function resolve($path, $filter): string
     {
         return sprintf(
             '%s/%s',
@@ -62,7 +62,7 @@ class SonsOfPHPFilesystemResolver implements ResolverInterface
      * @param string          $path   The path where the original file is expected to be
      * @param string          $filter The name of the imagine filter in effect
      */
-    public function store(BinaryInterface $binary, $path, string $filter): void
+    public function store(BinaryInterface $binary, $path, $filter): void
     {
         $this->filesystem->write(
             $this->getFilePath($path, $filter),

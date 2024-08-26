@@ -21,7 +21,7 @@ class SonsOfPHPFilesystemLoader implements LoaderInterface
         private readonly MimeTypesInterface $extensionGuesser,
     ) {}
 
-    public function find(string $path)
+    public function find($path)
     {
         try {
             $mimeType = $this->filesystem->mimeType($path);

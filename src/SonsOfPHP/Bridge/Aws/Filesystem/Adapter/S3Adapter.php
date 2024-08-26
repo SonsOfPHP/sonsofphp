@@ -91,6 +91,7 @@ final readonly class S3Adapter implements AdapterInterface, CopyAwareInterface, 
         if ($this->isFile($path, $context)) {
             return true;
         }
+
         return $this->isDirectory($path, $context);
     }
 
@@ -141,7 +142,7 @@ final readonly class S3Adapter implements AdapterInterface, CopyAwareInterface, 
 
     public function makeDirectory(string $path, ?ContextInterface $context = null): void
     {
-        $this->write($path, '', $context);
+        $this->add($path, '', $context);
     }
 
     public function removeDirectory(string $path, ?ContextInterface $context = null): void
@@ -157,7 +158,7 @@ final readonly class S3Adapter implements AdapterInterface, CopyAwareInterface, 
     {
         try {
             $this->copy($source, $destination, $context);
-            $this->delete($source);
+            $this->remove($source);
         } catch (Throwable) {
             throw new UnableToMoveFile();
         }
@@ -177,6 +178,6 @@ final readonly class S3Adapter implements AdapterInterface, CopyAwareInterface, 
             throw new FilesystemException();
         }
 
-        return $result['ContentType'];
+        return $result->get('ContentType');
     }
 }
