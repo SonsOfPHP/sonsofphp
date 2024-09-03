@@ -78,6 +78,10 @@ Pager:
   - docs/components/pager/*
   - src/SonsOfPHP/**/Pager/*
 
+StateMachine:
+  - docs/components/state-machine/*
+  - src/SonsOfPHP/**/StateMachine/*
+
 Version:
   - docs/components/version/*
   - src/SonsOfPHP/**/Version/*

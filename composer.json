@@ -54,7 +54,8 @@
         "psr/http-server-handler-implementation": "^1.0",
         "psr/http-server-middleware-implementation": "^1.0",
         "sonsofphp/http-handler-implementation": "0.3.x-dev",
-        "sonsofphp/mailer-implementation": "0.3.x-dev"
+        "sonsofphp/mailer-implementation": "0.3.x-dev",
+        "sonsofphp/state-machine-implementation": "0.3.x-dev"
     },
     "require": {
         "php": ">=8.2",
@@ -86,7 +87,8 @@
         "psr/http-server-handler": "^1.0",
         "psr/http-server-middleware": "^1.0",
         "aws/aws-sdk-php": "^3.0",
-        "liip/imagine-bundle": "^2.0"
+        "liip/imagine-bundle": "^2.0",
+        "sonsofphp/state-machine-contract": "0.3.x-dev"
     },
     "replace": {
         "sonsofphp/bard": "self.version",
@@ -131,11 +133,15 @@
         "sonsofphp/mailer-contract": "self.version",
         "sonsofphp/mailer": "self.version",
         "sonsofphp/filesystem-aws": "self.version",
-        "sonsofphp/filesystem-liip-imagine": "self.version"
+        "sonsofphp/filesystem-liip-imagine": "self.version",
+        "sonsofphp/state-machine": "self.version",
+        "sonsofphp/state-machine-contract": "self.version"
     },
     "autoload": {
         "psr-4": {
             "SonsOfPHP\\Bard\\": "src/SonsOfPHP/Bard/src",
+            "SonsOfPHP\\Component\\StateMachine\\": "src/SonsOfPHP/Component/StateMachine",
+            "SonsOfPHP\\Contract\\StateMachine\\": "src/SonsOfPHP/Contract/StateMachine",
             "SonsOfPHP\\Contract\\Mailer\\": "src/SonsOfPHP/Contract/Mailer",
             "SonsOfPHP\\Component\\Mailer\\": "src/SonsOfPHP/Component/Mailer",
             "SonsOfPHP\\Component\\Cache\\": "src/SonsOfPHP/Component/Cache",
@@ -180,6 +186,7 @@
         },
         "exclude-from-classmap": [
             "src/SonsOfPHP/Bard/Tests",
+            "src/SonsOfPHP/Component/StateMachine/Tests",
             "src/SonsOfPHP/Component/Mailer/Tests",
             "src/SonsOfPHP/Component/Cache/Tests",
             "src/SonsOfPHP/Component/Clock/Tests",

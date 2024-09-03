@@ -95,7 +95,6 @@ phpunit:
 	-dapc.enable_cli=1 \
 	$(PHPUNIT) \
 	--cache-result \
-	--order-by=defects \
 	--testsuite=$(PHPUNIT_TESTSUITE) \
 	$(PHPUNIT_OPTIONS)
 

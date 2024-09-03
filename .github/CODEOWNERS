@@ -26,4 +26,5 @@ docs/ @JoshuaEstes
 /src/SonsOfPHP/**/Mailer @JoshuaEstes
 /src/SonsOfPHP/**/Money @JoshuaEstes
 /src/SonsOfPHP/**/Pager @JoshuaEstes
+/src/SonsOfPHP/**/StateMachine @JoshuaEstes
 /src/SonsOfPHP/**/Version @JoshuaEstes
