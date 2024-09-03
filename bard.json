@@ -6,6 +6,14 @@
             "repository": "git@github.com:SonsOfPHP/bard.git"
         },
         {
+            "path": "src/SonsOfPHP/Component/StateMachine",
+            "repository": "git@github.com:SonsOfPHP/state-machine.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Contract/StateMachine",
+            "repository": "git@github.com:SonsOfPHP/state-machine-contract.git"
+        },
+        {
             "path": "src/SonsOfPHP/Contract/Mailer",
             "repository": "git@github.com:SonsOfPHP/mailer-contract.git"
         },

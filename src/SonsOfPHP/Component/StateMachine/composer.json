@@ -1,0 +1,56 @@
+{
+    "name": "sonsofphp/state-machine",
+    "type": "library",
+    "description": "Basic, yet powerful, state machine",
+    "keywords": [
+        "state-machine",
+        "state machine"
+    ],
+    "homepage": "https://github.com/SonsOfPHP/state-machine",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joshua Estes",
+            "email": "joshua@sonsofphp.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/SonsOfPHP/sonsofphp/issues",
+        "forum": "https://github.com/orgs/SonsOfPHP/discussions",
+        "docs": "https://docs.sonsofphp.com"
+    },
+    "autoload": {
+        "psr-4": {
+            "SonsOfPHP\\Component\\StateMachine\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.2",
+        "sonsofphp/event-dispatcher": "0.3.x-dev",
+        "sonsofphp/state-machine-contract": "0.3.x-dev"
+    },
+    "provide": {
+        "sonsofphp/state-machine-implementation": "0.3.x-dev"
+    },
+    "extra": {
+        "sort-packages": true,
+        "branch-alias": {
+            "dev-main": "0.3.x-dev"
+        }
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/JoshuaEstes"
+        },
+        {
+            "type": "tidelift",
+            "url": "https://tidelift.com/subscription/pkg/packagist-sonsofphp-sonsofphp"
+        }
+    ]
+}
