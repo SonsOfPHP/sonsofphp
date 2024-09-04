@@ -62,7 +62,7 @@ class Assert
         );
     }
 
-    public static function integer(mixed $value, ?string $message = null): bool
+    public static function int(mixed $value, ?string $message = null): bool
     {
         if (is_int($value)) {
             return true;
@@ -98,7 +98,7 @@ class Assert
         );
     }
 
-    public static function boolean(mixed $value, ?string $message = null): bool
+    public static function bool(mixed $value, ?string $message = null): bool
     {
         if (is_bool($value)) {
             return true;
@@ -146,77 +146,87 @@ class Assert
 
     public static function array(mixed $value, ?string $message = null): bool
     {
-        if (!is_array($value)) {
-            static::throwException(static::generateMessage($message ?? 'Expected "array" got "%s"', $value), self::INVALID_ARRAY);
-            return false;
+        if (is_array($value)) {
+            return true;
         }
 
-        return true;
+        return static::throwException(
+            static::generateMessage($message ?? 'Expected "array" got "%s"', $value),
+            self::INVALID_ARRAY
+        );
     }
 
     public static function resource(mixed $value, ?string $message = null): bool
     {
-        if (!is_resource($value)) {
-            static::throwException(static::generateMessage($message ?? 'Expected "resource" got "%s"', $value), self::INVALID_ARRAY);
-            return false;
+        if (is_resource($value)) {
+            return true;
         }
 
-        return true;
+        return static::throwException(
+            static::generateMessage($message ?? 'Expected "resource" got "%s"', $value),
+            self::INVALID_ARRAY
+        );
     }
 
     public static function empty(mixed $value, ?string $message = null): bool
     {
-        if (!empty($value)) {
-            static::throwException($message);
-            return false;
+        if (empty($value)) {
+            return true;
         }
 
-        return true;
+        return static::throwException($message);
     }
 
     public static function null(mixed $value, ?string $message = null): bool
     {
-        if (null !== $value) {
-            static::throwException(static::generateMessage($message ?? 'Expected "null" got "%s"', $value), self::INVALID_BOOLEAN);
-            return false;
+        if (null === $value) {
+            return true;
         }
 
-        return true;
+        return static::throwException(
+            static::generateMessage($message ?? 'Expected "null" got "%s"', $value),
+            self::INVALID_BOOLEAN
+        );
     }
 
     public static function true(mixed $value, ?string $message = null): bool
     {
-        if (true !== $value) {
-            static::throwException(static::generateMessage($message ?? 'Expected "true" got "%s"', $value), self::INVALID_BOOLEAN);
+        if (true === $value) {
             return false;
         }
 
-        return true;
+        return static::throwException(
+            static::generateMessage($message ?? 'Expected "true" got "%s"', $value),
+            self::INVALID_BOOLEAN
+        );
     }
 
     public static function false(mixed $value, ?string $message = null): bool
     {
-        if (false !== $value) {
-            static::throwException(static::generateMessage($message ?? 'Expected "false" got "%s"', $value), self::INVALID_BOOLEAN);
-            return false;
+        if (false === $value) {
+            return true;
         }
 
-        return true;
+        return static::throwException(
+            static::generateMessage($message ?? 'Expected "false" got "%s"', $value),
+            self::INVALID_BOOLEAN
+        );
     }
 
     public static function eq(mixed $value, mixed $value2, ?string $message = null): bool
     {
-        if ($value != $value2) {
-            static::throwException(static::generateMessage($message ?? 'Expected "%s" == "%s"', $value, $value2));
-            return false;
+        if ($value == $value2) {
+            return true;
         }
 
-        return true;
+        return static::throwException(
+            static::generateMessage($message ?? 'Expected "%s" == "%s"', $value, $value2)
+        );
     }
 
     public static function same(mixed $value, mixed $value2, ?string $message = null): bool
     {
-        if ($value !== $value2) {
+        if ($value === $value2) {
             static::throwException(static::generateMessage($message ?? 'Expected "%s" == "%s"', $value, $value2));
             return false;
         }
