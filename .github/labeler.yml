@@ -2,6 +2,10 @@ Bard:
   - docs/bard/*
   - src/SonsOfPHP/Bard/*
 
+Assert:
+  - docs/components/assert/*
+  - src/SonsOfPHP/**/Assert/*
+
 Cache:
   - docs/components/cache/*
   - src/SonsOfPHP/**/Cache/*
