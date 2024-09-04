@@ -25,15 +25,29 @@ final class AssertTest extends TestCase
     }
 
     #[DataProvider('validStringProvider')]
-    public function testItCanIdentifyAString(string $value): void
+    public function testItCanIdentifyAString(mixed $value): void
     {
         $this->assertTrue(Assert::string($value));
     }
 
     #[DataProvider('invalidStringProvider')]
-    public function testItWillThrowExceptionForInvalidString(int $value): void
+    public function testItCanIdentifyANotString(mixed $value): void
+    {
+        $this->assertTrue(Assert::notString($value));
+    }
+
+    #[DataProvider('invalidStringProvider')]
+    public function testItWillThrowExceptionForStringWithInvalidString(mixed $value): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->assertTrue(Assert::string($value));
+        $this->expectExceptionCode(Assert::INVALID_STRING);
+        Assert::string($value);
+    }
+
+    #[DataProvider('validStringProvider')]
+    public function testItWillThrowExceptionForNotStringWithValidString(mixed $value): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        Assert::notString($value);
     }
 }
