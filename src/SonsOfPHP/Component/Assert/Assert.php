@@ -180,19 +180,19 @@ class Assert
         return true;
     }
 
-    public static function __callStatic($method, $args)
+    public static function __callStatic(string $method, array $args)
     {
-        if (str_starts_with((string) $method, 'nullOr')) {
+        if (str_starts_with($method, 'nullOr')) {
             if (null !== $args[0]) {
-                $method = lcfirst(substr((string) $method, 6));
+                $method = lcfirst(substr($method, 6));
                 call_user_func_array([static::class, $method], $args);
             }
 
             return true;
         }
 
-        if (str_starts_with((string) $method, 'all')) {
-            $method = lcfirst(substr((string) $method, 3));
+        if (str_starts_with($method, 'all')) {
+            $method = lcfirst(substr($method, 3));
             $values = array_shift($args);
             foreach ($values as $value) {
                 call_user_func_array([static::class, $method], array_merge([$value], $args));
@@ -201,8 +201,8 @@ class Assert
             return true;
         }
 
-        if (str_starts_with((string) $method, 'not')) {
-            $method = lcfirst(substr((string) $method, 3));
+        if (str_starts_with($method, 'not')) {
+            $method = lcfirst(substr($method, 3));
 
             try {
                 $ret = call_user_func_array([static::class, $method], $args);
