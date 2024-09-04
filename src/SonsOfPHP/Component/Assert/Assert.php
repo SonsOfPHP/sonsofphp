@@ -50,77 +50,91 @@ class Assert
         static::$throwException = true;
     }
 
-    public static function string($value, ?string $message = null): bool
+    public static function string(mixed $value, ?string $message = null): bool
     {
-        if (!is_string($value)) {
-            static::throwException(static::generateMessage($message ?? 'Expected "string" got "%s"', $value), self::INVALID_STRING);
-            return false;
+        if (is_string($value)) {
+            return true;
         }
 
-        return true;
+        return static::throwException(
+            static::generateMessage($message ?? 'Expected "string" got "%s"', $value),
+            self::INVALID_STRING
+        );
     }
 
-    public static function integer($value, ?string $message = null): bool
+    public static function integer(mixed $value, ?string $message = null): bool
     {
-        if (!is_int($value)) {
-            static::throwException(static::generateMessage($message ?? 'Expected "int" got "%s"', $value), self::INVALID_INTEGER);
-            return false;
+        if (is_int($value)) {
+            return true;
         }
 
-        return true;
+        return static::throwException(
+            static::generateMessage($message ?? 'Expected "int" got "%s"', $value),
+            self::INVALID_INTEGER
+        );
     }
 
-    public static function float($value, ?string $message = null): bool
+    public static function float(mixed $value, ?string $message = null): bool
     {
-        if (!is_float($value)) {
-            static::throwException(static::generateMessage($message ?? 'Expected "float" got "%s"', $value), self::INVALID_FLOAT);
-            return false;
+        if (is_float($value)) {
+            return true;
         }
 
-        return true;
+        return static::throwException(
+            static::generateMessage($message ?? 'Expected "float" got "%s"', $value),
+            self::INVALID_FLOAT
+        );
     }
 
-    public static function numeric($value, ?string $message = null): bool
+    public static function numeric(mixed $value, ?string $message = null): bool
     {
-        if (!is_numeric($value)) {
-            static::throwException(static::generateMessage($message ?? 'Expected "numeric" got "%s"', $value), self::INVALID_NUMERIC);
-            return false;
+        if (is_numeric($value)) {
+            return true;
         }
 
-        return true;
+        return static::throwException(
+            static::generateMessage($message ?? 'Expected "numeric" got "%s"', $value),
+            self::INVALID_NUMERIC
+        );
     }
 
-    public static function boolean($value, ?string $message = null): bool
+    public static function boolean(mixed $value, ?string $message = null): bool
     {
-        if (!is_bool($value)) {
-            static::throwException(static::generateMessage($message ?? 'Expected "boolean" got "%s"', $value), self::INVALID_BOOLEAN);
-            return false;
+        if (is_bool($value)) {
+            return true;
         }
 
-        return true;
+        return static::throwException(
+            static::generateMessage($message ?? 'Expected "boolean" got "%s"', $value),
+            self::INVALID_BOOLEAN
+        );
     }
 
-    public static function scalar($value, ?string $message = null): bool
+    public static function scalar(mixed $value, ?string $message = null): bool
     {
-        if (!is_scalar($value)) {
-            static::throwException(static::generateMessage($message ?? 'Expected "scalar" got "%s"', $value), self::INVALID_SCALAR);
-            return false;
+        if (is_scalar($value)) {
+            return true;
         }
 
-        return true;
+        return static::throwException(
+            static::generateMessage($message ?? 'Expected "scalar" got "%s"', $value),
+            self::INVALID_SCALAR
+        );
     }
 
-    public static function object($value, ?string $message = null): bool
+    public static function object(mixed $value, ?string $message = null): bool
     {
-        if (!is_object($value)) {
-            static::throwException(static::generateMessage($message ?? 'Expected "object" got "%s"', $value), self::INVALID_OBJECT);
-            return false;
+        if (is_object($value)) {
+            return true;
         }
 
-        return true;
+        return static::throwException(
+            static::generateMessage($message ?? 'Expected "object" got "%s"', $value),
+            self::INVALID_OBJECT
+        );
     }
 
-    public static function callable($value, ?string $message = null): bool
+    public static function callable(mixed $value, ?string $message = null): bool
     {
         if (!is_callable($value)) {
             static::throwException(static::generateMessage($message ?? 'Expected "callable" got "%s"', $value), self::INVALID_CALLABLE);
@@ -130,7 +144,7 @@ class Assert
         return true;
     }
 
-    public static function array($value, ?string $message = null): bool
+    public static function array(mixed $value, ?string $message = null): bool
     {
         if (!is_array($value)) {
             static::throwException(static::generateMessage($message ?? 'Expected "array" got "%s"', $value), self::INVALID_ARRAY);
@@ -140,7 +154,17 @@ class Assert
         return true;
     }
 
-    public static function empty($value, ?string $message = null): bool
+    public static function resource(mixed $value, ?string $message = null): bool
+    {
+        if (!is_resource($value)) {
+            static::throwException(static::generateMessage($message ?? 'Expected "resource" got "%s"', $value), self::INVALID_ARRAY);
+            return false;
+        }
+
+        return true;
+    }
+
+    public static function empty(mixed $value, ?string $message = null): bool
     {
         if (!empty($value)) {
             static::throwException($message);
@@ -150,7 +174,7 @@ class Assert
         return true;
     }
 
-    public static function null($value, ?string $message = null): bool
+    public static function null(mixed $value, ?string $message = null): bool
     {
         if (null !== $value) {
             static::throwException(static::generateMessage($message ?? 'Expected "null" got "%s"', $value), self::INVALID_BOOLEAN);
@@ -160,7 +184,7 @@ class Assert
         return true;
     }
 
-    public static function true($value, ?string $message = null): bool
+    public static function true(mixed $value, ?string $message = null): bool
     {
         if (true !== $value) {
             static::throwException(static::generateMessage($message ?? 'Expected "true" got "%s"', $value), self::INVALID_BOOLEAN);
@@ -170,7 +194,7 @@ class Assert
         return true;
     }
 
-    public static function false($value, ?string $message = null): bool
+    public static function false(mixed $value, ?string $message = null): bool
     {
         if (false !== $value) {
             static::throwException(static::generateMessage($message ?? 'Expected "false" got "%s"', $value), self::INVALID_BOOLEAN);
@@ -178,6 +202,67 @@ class Assert
         }
 
         return true;
+    }
+
+    public static function eq(mixed $value, mixed $value2, ?string $message = null): bool
+    {
+        if ($value != $value2) {
+            static::throwException(static::generateMessage($message ?? 'Expected "%s" == "%s"', $value, $value2));
+            return false;
+        }
+
+        return true;
+    }
+
+    public static function same(mixed $value, mixed $value2, ?string $message = null): bool
+    {
+        if ($value !== $value2) {
+            static::throwException(static::generateMessage($message ?? 'Expected "%s" == "%s"', $value, $value2));
+            return false;
+        }
+
+        return true;
+    }
+
+    protected static function createException(?string $message = null, int $code = 0): Exception
+    {
+        $class = static::$exceptionClass;
+
+        return new $class($message ?? '', $code);
+    }
+
+    protected static function throwException(?string $message = null, int $code = 0): false
+    {
+        if (static::$throwException) {
+            throw static::createException($message ?? '', $code);
+        }
+
+        return false;
+    }
+
+    protected static function valueToString(mixed $value): string
+    {
+        $type = gettype($value);
+        $debugType = get_debug_type($value);
+        return match($type) {
+            'NULL' => 'null',
+            'bool' => $value ? 'true' : 'false',
+            'object' => match($debugType) {
+                'DateTimeImmutable',
+                'DateTime' => sprintf('%s: %s', $value::class, $value->format('c')),
+                default => method_exists($value, '__toString') ? (string) $value : $debugType,
+            },
+            default => $debugType,
+        };
+    }
+
+    protected static function generateMessage(string $message, ...$values): string
+    {
+        foreach ($values as $key => $value) {
+            $values[$key] = static::valueToString($value);
+        }
+
+        return sprintf($message, ...$values);
     }
 
     public static function __callStatic(string $method, array $args)
@@ -218,40 +303,6 @@ class Assert
         }
 
         throw new BadMethodCallException(sprintf('Unknown method "%s"', $method));
-    }
-
-    protected static function createException(?string $message = null, int $code = 0): Exception
-    {
-        $class = static::$exceptionClass;
-
-        return new $class($message ?? '', $code);
-    }
-
-    protected static function throwException(?string $message = null, int $code = 0): void
-    {
-        if (static::$throwException) {
-            throw static::createException($message ?? '', $code);
-        }
-    }
-
-    protected static function valueToString(mixed $value): string
-    {
-        $debugType = get_debug_type($value);
-        return match($debugType) {
-            'bool' => $value ? 'true' : 'false',
-            'DateTimeImmutable',
-            'DateTime' => sprintf('%s: %s', $value::class, $value->format('c')),
-            default => $debugType,
-        };
-    }
-
-    protected static function generateMessage(string $message, ...$values): string
-    {
-        foreach ($values as $key => $value) {
-            $values[$key] = static::valueToString($value);
-        }
-
-        return sprintf($message, ...$values);
     }
 
     private function __construct() {}
