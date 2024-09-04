@@ -6,6 +6,7 @@ namespace SonsOfPHP\Component\Assert;
 
 use BadMethodCallException;
 use Exception;
+use Stringable;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -136,12 +137,14 @@ class Assert
 
     public static function callable(mixed $value, ?string $message = null): bool
     {
-        if (!is_callable($value)) {
-            static::throwException(static::generateMessage($message ?? 'Expected "callable" got "%s"', $value), self::INVALID_CALLABLE);
-            return false;
+        if (is_callable($value)) {
+            return true;
         }
 
-        return true;
+        return static::throwException(
+            static::generateMessage($message ?? 'Expected "callable" got "%s"', $value),
+            self::INVALID_CALLABLE
+        );
     }
 
     public static function array(mixed $value, ?string $message = null): bool
@@ -174,7 +177,9 @@ class Assert
             return true;
         }
 
-        return static::throwException($message);
+        return static::throwException(
+            static::generateMessage($message ?? 'Expected "empty" got "%s"', $value)
+        );
     }
 
     public static function null(mixed $value, ?string $message = null): bool
@@ -185,7 +190,7 @@ class Assert
 
         return static::throwException(
             static::generateMessage($message ?? 'Expected "null" got "%s"', $value),
-            self::INVALID_BOOLEAN
+            self::INVALID_NULL
         );
     }
 
@@ -252,15 +257,16 @@ class Assert
 
     protected static function valueToString(mixed $value): string
     {
-        $type = gettype($value);
+        $type      = gettype($value);
         $debugType = get_debug_type($value);
+
         return match($type) {
             'NULL' => 'null',
-            'bool' => $value ? 'true' : 'false',
+            'boolean' => $value ? 'true' : 'false',
             'object' => match($debugType) {
                 'DateTimeImmutable',
                 'DateTime' => sprintf('%s: %s', $value::class, $value->format('c')),
-                default => method_exists($value, '__toString') ? (string) $value : $debugType,
+                default => $value instanceof Stringable ? (string) $value : $debugType,
             },
             default => $debugType,
         };
@@ -275,6 +281,12 @@ class Assert
         return sprintf($message, ...$values);
     }
 
+    /**
+     * Usage:
+     *   nullOr{method}(mixed $value, string $message)
+     *   all{method}(array $values, string $message)
+     *   not{method}(mixed $value, string $message)
+     */
     public static function __callStatic(string $method, array $args)
     {
         if (str_starts_with($method, 'nullOr')) {
