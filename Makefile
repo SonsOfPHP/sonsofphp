@@ -35,8 +35,8 @@ install: composer-install tools-install ## Install Dependencies
 upgrade: tools-upgrade
 
 composer-install: composer.json # Install Dependencies via Composer
-	XDEBUG_MODE=off $(COMPOSER) install --no-interaction --prefer-dist --optimize-autoloader -vvv
-	XDEBUG_MODE=off $(COMPOSER) install --working-dir=src/SonsOfPHP/Bard --no-interaction --prefer-dist --optimize-autoloader -vvv
+	XDEBUG_MODE=off $(COMPOSER) install --no-interaction --prefer-dist --optimize-autoloader
+	XDEBUG_MODE=off $(COMPOSER) install --working-dir=src/SonsOfPHP/Bard --no-interaction --prefer-dist --optimize-autoloader
 
 purge: # Purge vendor and lock files
 	rm -rf vendor/ composer.lock
