@@ -10,6 +10,7 @@ To get the diff between two versions, go to https://github.com/SonsOfPHP/sonsofp
 
 ## [Unreleased]
 
+* [PR #222](https://github.com/SonsOfPHP/sonsofphp/pull/222) [Assert] New Component
 * [PR #221](https://github.com/SonsOfPHP/sonsofphp/pull/221) [StateMachine] New Contract and Component
 * [PR #220](https://github.com/SonsOfPHP/sonsofphp/pull/220) [Filesystem] Adds bridges for AWS and LiipImagineBundle
 * [PR #214](https://github.com/SonsOfPHP/sonsofphp/pull/214) [Logger] Bug fixes and updates

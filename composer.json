@@ -87,8 +87,7 @@
         "psr/http-server-handler": "^1.0",
         "psr/http-server-middleware": "^1.0",
         "aws/aws-sdk-php": "^3.0",
-        "liip/imagine-bundle": "^2.0",
-        "sonsofphp/state-machine-contract": "0.3.x-dev"
+        "liip/imagine-bundle": "^2.0"
     },
     "replace": {
         "sonsofphp/bard": "self.version",
@@ -135,11 +134,13 @@
         "sonsofphp/filesystem-aws": "self.version",
         "sonsofphp/filesystem-liip-imagine": "self.version",
         "sonsofphp/state-machine": "self.version",
-        "sonsofphp/state-machine-contract": "self.version"
+        "sonsofphp/state-machine-contract": "self.version",
+        "sonsofphp/assert": "self.version"
     },
     "autoload": {
         "psr-4": {
             "SonsOfPHP\\Bard\\": "src/SonsOfPHP/Bard/src",
+            "SonsOfPHP\\Component\\Assert\\": "src/SonsOfPHP/Component/Assert",
             "SonsOfPHP\\Component\\StateMachine\\": "src/SonsOfPHP/Component/StateMachine",
             "SonsOfPHP\\Contract\\StateMachine\\": "src/SonsOfPHP/Contract/StateMachine",
             "SonsOfPHP\\Contract\\Mailer\\": "src/SonsOfPHP/Contract/Mailer",
@@ -186,6 +187,7 @@
         },
         "exclude-from-classmap": [
             "src/SonsOfPHP/Bard/Tests",
+            "src/SonsOfPHP/Component/Assert/Tests",
             "src/SonsOfPHP/Component/StateMachine/Tests",
             "src/SonsOfPHP/Component/Mailer/Tests",
             "src/SonsOfPHP/Component/Cache/Tests",
