@@ -279,7 +279,7 @@ class Assert
                 'DateTime' => sprintf('%s: %s', $value::class, $value->format('c')),
                 default    => $value instanceof Stringable ? (string) $value : $debugType,
             },
-            default => $type,
+            default => $debugType,
         };
     }
 

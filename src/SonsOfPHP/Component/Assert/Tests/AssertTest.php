@@ -47,6 +47,7 @@ final class AssertTest extends TestCase
                 return 'Sons of PHP';
             }
         }];
+        yield ['resource (stream)', fopen('php://memory', 'w')];
     }
 
     public static function validStringProvider(): Generator
@@ -110,6 +111,11 @@ final class AssertTest extends TestCase
         yield [''];
     }
 
+    public static function validResourceProvider(): Generator
+    {
+        yield [fopen('php://memory', 'w')];
+    }
+
     public static function validNullProvider(): Generator
     {
         yield [null];
@@ -160,6 +166,13 @@ final class AssertTest extends TestCase
     {
         Assert::setExceptionClass('Exception');
         $this->assertSame(Exception::class, Assert::getExceptionClass());
+    }
+
+    #[DataProvider('valueToStringProvider')]
+    public function testItCanConvertValueToString(mixed $expected, mixed $value): void
+    {
+        $method = new ReflectionMethod(Assert::class, 'valueToString');
+        $this->assertSame($expected, $method->invoke(null, $value));
     }
 
     #[DataProvider('validIntProvider')]
@@ -425,10 +438,16 @@ final class AssertTest extends TestCase
         Assert::same($value, $value2);
     }
 
-    #[DataProvider('valueToStringProvider')]
-    public function testItCanConvertValueToString(mixed $expected, mixed $value): void
+    #[DataProvider('validResourceProvider')]
+    public function testItCanIdentifyResource(mixed $value): void
     {
-        $method = new ReflectionMethod(Assert::class, 'valueToString');
-        $this->assertSame($expected, $method->invoke(null, $value));
+        $this->assertTrue(Assert::resource($value));
+    }
+
+    #[DataProvider('validStringProvider')]
+    public function testItWillThrowExceptionForResourceWithResource(mixed $value): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        Assert::resource($value);
     }
 }
