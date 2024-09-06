@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Assert\Tests;
 
+use BadMethodCallException;
+use Exception;
 use Generator;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -15,6 +17,13 @@ use stdClass;
 #[CoversClass(Assert::class)]
 final class AssertTest extends TestCase
 {
+    protected function tearDown(): void
+    {
+        // Reset the class to the defaults after each test
+        Assert::setExceptionClass(InvalidArgumentException::class);
+        Assert::enable();
+    }
+
     public static function validStringProvider(): Generator
     {
         yield ['test'];
@@ -70,15 +79,62 @@ final class AssertTest extends TestCase
         yield [[]];
     }
 
+    public static function validEmptyProvider(): Generator
+    {
+        yield from self::validNullProvider();
+        yield [''];
+    }
+
     public static function validNullProvider(): Generator
     {
         yield [null];
+    }
+
+    public static function validTrueProvider(): Generator
+    {
+        yield [true];
+    }
+
+    public static function validFalseProvider(): Generator
+    {
+        yield [false];
+    }
+
+    public static function validEqProvider(): Generator
+    {
+        yield ['value', 'value'];
+    }
+
+    public static function invalidEqProvider(): Generator
+    {
+        yield ['value', ''];
+    }
+
+    public static function validSameProvider(): Generator
+    {
+        yield ['value', 'value'];
+    }
+
+    public static function invalidSameProvider(): Generator
+    {
+        yield ['value', ''];
     }
 
     #[DataProvider('validStringProvider')]
     public function testItCanIdentifyString(mixed $value): void
     {
         $this->assertTrue(Assert::string($value));
+    }
+
+    public function testItHasTheCorrectDefaultExceptionClass(): void
+    {
+        $this->assertSame(InvalidArgumentException::class, Assert::getExceptionClass());
+    }
+
+    public function testItsExceptionClassIsMutable(): void
+    {
+        Assert::setExceptionClass('Exception');
+        $this->assertSame(Exception::class, Assert::getExceptionClass());
     }
 
     #[DataProvider('validIntProvider')]
@@ -88,15 +144,55 @@ final class AssertTest extends TestCase
         $this->assertTrue(Assert::notString($value));
     }
 
+    public function testItWillThrowExceptionForNotStringWhenStringPassedIn(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        Assert::notString('Sons of PHP');
+    }
+
     public function testItCanIdentifyNullOrString(): void
     {
         $this->assertTrue(Assert::nullOrString(null));
         $this->assertTrue(Assert::nullOrString('Sons of PHP'));
     }
 
+    public function testItWillThrowExceptionForNullOrStringWhenNotNullOrString(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        Assert::nullOrString(42);
+    }
+
     public function testItCanIdentifyAllString(): void
     {
         $this->assertTrue(Assert::allString(['Sons', 'of', 'PHP']));
+    }
+
+    public function testItWillThrowExceptionForAllStringWhenNotAllStrings(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        Assert::allString(['duck', 'duck', 'goose', 42]);
+    }
+
+    public function testItWillThrowBadMethodCallExceptionWhenStaticMethodIsInvalid(): void
+    {
+        $this->expectException(BadMethodCallException::class);
+        Assert::badMethod();
+    }
+
+    public function testItWillThrowBadMethodCallExceptionWhenStaticMethodIsInvalidButStartsWithKeyword(): void
+    {
+        $this->expectException(BadMethodCallException::class);
+        Assert::notAMethod();
+    }
+
+    public function testItWillNotThrowExceptionWhenDisabled(): void
+    {
+        Assert::disable();
+        $this->assertFalse(Assert::string(42));
+
+        Assert::enable();
+        $this->expectException(InvalidArgumentException::class);
+        Assert::string(42);
     }
 
     #[DataProvider('validIntProvider')]
@@ -224,5 +320,83 @@ final class AssertTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionCode(Assert::INVALID_ARRAY);
         Assert::array($value);
+    }
+
+    #[DataProvider('validEmptyProvider')]
+    public function testItCanIdentifyEmpty(mixed $value): void
+    {
+        $this->assertTrue(Assert::empty($value));
+    }
+
+    #[DataProvider('validStringProvider')]
+    public function testItWillThrowExceptionForEmptyWithEmpty(mixed $value): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        Assert::empty($value);
+    }
+
+    #[DataProvider('validNullProvider')]
+    public function testItCanIdentifyNull(mixed $value): void
+    {
+        $this->assertTrue(Assert::null($value));
+    }
+
+    #[DataProvider('validStringProvider')]
+    public function testItWillThrowExceptionForNullWithNull(mixed $value): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        Assert::null($value);
+    }
+
+    #[DataProvider('validTrueProvider')]
+    public function testItCanIdentifyTrue(mixed $value): void
+    {
+        $this->assertTrue(Assert::true($value));
+    }
+
+    #[DataProvider('validStringProvider')]
+    public function testItWillThrowExceptionForTrueWithTrue(mixed $value): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        Assert::true($value);
+    }
+
+    #[DataProvider('validFalseProvider')]
+    public function testItCanIdentifyFalse(mixed $value): void
+    {
+        $this->assertTrue(Assert::false($value));
+    }
+
+    #[DataProvider('validStringProvider')]
+    public function testItWillThrowExceptionForFalseWithFalse(mixed $value): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        Assert::false($value);
+    }
+
+    #[DataProvider('validEqProvider')]
+    public function testItCanIdentifyEq(mixed $value, mixed $value2): void
+    {
+        $this->assertTrue(Assert::eq($value, $value2));
+    }
+
+    #[DataProvider('invalidEqProvider')]
+    public function testItWillThrowExceptionForEqWithEq(mixed $value, mixed $value2): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        Assert::eq($value, $value2);
+    }
+
+    #[DataProvider('validSameProvider')]
+    public function testItCanIdentifySame(mixed $value, mixed $value2): void
+    {
+        $this->assertTrue(Assert::same($value, $value2));
+    }
+
+    #[DataProvider('invalidEqProvider')]
+    public function testItWillThrowExceptionForSameWithSame(mixed $value, mixed $value2): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        Assert::same($value, $value2);
     }
 }

@@ -29,7 +29,7 @@ class Assert
     public const INVALID_STRING    = 14;
 
     protected static string $exceptionClass = InvalidArgumentException::class;
-    protected static bool $throwException = true;
+    protected static bool $throwException   = true;
 
     public static function getExceptionClass(): string
     {
@@ -41,11 +41,17 @@ class Assert
         static::$exceptionClass = $class;
     }
 
+    /**
+     * Disable throwing exceptions
+     */
     public static function disable(): void
     {
         static::$throwException = false;
     }
 
+    /**
+     * Enable throwing exceptions
+     */
     public static function enable(): void
     {
         static::$throwException = true;
@@ -197,7 +203,7 @@ class Assert
     public static function true(mixed $value, ?string $message = null): bool
     {
         if (true === $value) {
-            return false;
+            return true;
         }
 
         return static::throwException(
@@ -232,11 +238,12 @@ class Assert
     public static function same(mixed $value, mixed $value2, ?string $message = null): bool
     {
         if ($value === $value2) {
-            static::throwException(static::generateMessage($message ?? 'Expected "%s" == "%s"', $value, $value2));
-            return false;
+            return true;
         }
 
-        return true;
+        return static::throwException(
+            static::generateMessage($message ?? 'Expected "%s" == "%s"', $value, $value2)
+        );
     }
 
     protected static function createException(?string $message = null, int $code = 0): Exception
@@ -260,10 +267,10 @@ class Assert
         $type      = gettype($value);
         $debugType = get_debug_type($value);
 
-        return match($type) {
+        return match ($type) {
             'NULL' => 'null',
             'boolean' => $value ? 'true' : 'false',
-            'object' => match($debugType) {
+            'object' => match ($debugType) {
                 'DateTimeImmutable',
                 'DateTime' => sprintf('%s: %s', $value::class, $value->format('c')),
                 default => $value instanceof Stringable ? (string) $value : $debugType,
@@ -317,16 +324,17 @@ class Assert
                 return true;
             }
 
-            if (true === $ret) {
-                static::throwException(static::generateMessage('not "%s" got "%s"', $method, ...$args));
-            }
-
-            return false;
+            return static::throwException(
+                static::generateMessage('not "%s" got "%s"', $method, ...$args)
+            );
         }
 
         throw new BadMethodCallException(sprintf('Unknown method "%s"', $method));
     }
 
+    /** @codeCoverageIgnore */
     private function __construct() {}
+
+    /** @codeCoverageIgnore */
     private function __clone() {}
 }
