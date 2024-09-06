@@ -399,4 +399,9 @@ final class AssertTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         Assert::same($value, $value2);
     }
+
+    public function testItCanConvertNullValueToString(): never
+    {
+        $this->markTestSkipped();
+    }
 }
