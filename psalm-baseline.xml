@@ -131,6 +131,22 @@
       <code><![CDATA[apply]]></code>
     </PossiblyUnusedMethod>
   </file>
+  <file src="src/SonsOfPHP/Bridge/Aws/Filesystem/Adapter/S3Adapter.php">
+    <NullableReturnStatement>
+      <code><![CDATA[$result->get('ContentType')]]></code>
+    </NullableReturnStatement>
+    <UndefinedClass>
+      <code><![CDATA[UnableToMoveFile]]></code>
+    </UndefinedClass>
+    <UnusedClass>
+      <code><![CDATA[S3Adapter]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Bridge/Aws/Filesystem/Tests/Adapter/S3AdapterTest.php">
+    <UnusedClass>
+      <code><![CDATA[S3AdapterTest]]></code>
+    </UnusedClass>
+  </file>
   <file src="src/SonsOfPHP/Bridge/Doctrine/Collections/Pager/ArrayCollectionAdapter.php">
     <UnusedClass>
       <code><![CDATA[ArrayCollectionAdapter]]></code>
@@ -184,6 +200,40 @@
   <file src="src/SonsOfPHP/Bridge/Doctrine/ORM/Pager/Tests/QueryBuilderAdapterTest.php">
     <UnusedClass>
       <code><![CDATA[QueryBuilderAdapterTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Bridge/LiipImagine/Filesystem/Binary/Loader/SonsOfPHPFilesystemLoader.php">
+    <InvalidCatch>
+      <code><![CDATA[try {
+            $mimeType = $this->filesystem->mimeType($path);
+            $extension = $this->extensionGuesser->getExtensions($mimeType)[0] ?? null;
+
+            return new Binary(
+                $this->filesystem->read($path),
+                $mimeType,
+                $extension,
+            );
+        } catch(FilesystemExceptionInterface $exception) {
+            throw new NotLoadableException(sprintf('Source image "%s" not found.', $path), 0, $exception);
+        }]]></code>
+    </InvalidCatch>
+    <UnusedClass>
+      <code><![CDATA[SonsOfPHPFilesystemLoader]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Bridge/LiipImagine/Filesystem/Imagine/Cache/Resolver/SonsOfPHPFilesystemResolver.php">
+    <UnusedClass>
+      <code><![CDATA[SonsOfPHPFilesystemResolver]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Bridge/LiipImagine/Filesystem/Tests/Binary/Loader/SonsOfPHPFilesystemLoaderTest.php">
+    <UnusedClass>
+      <code><![CDATA[SonsOfPHPFilesystemLoaderTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Bridge/LiipImagine/Filesystem/Tests/Imagine/Cache/Resolver/SonsOfPHPFilesystemResolverTest.php">
+    <UnusedClass>
+      <code><![CDATA[SonsOfPHPFilesystemResolverTest]]></code>
     </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Bridge/Symfony/Cqrs/Command/AbstractOptionsResolverCommandMessage.php">
@@ -378,6 +428,37 @@
     <UnusedVariable>
       <code><![CDATA[$config]]></code>
     </UnusedVariable>
+  </file>
+  <file src="src/SonsOfPHP/Component/Assert/Assert.php">
+    <UnusedClass>
+      <code><![CDATA[Assert]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/Assert/Tests/AssertTest.php">
+    <UnusedClass>
+      <code><![CDATA[AssertTest]]></code>
+    </UnusedClass>
+    <UnusedParam>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+    </UnusedParam>
   </file>
   <file src="src/SonsOfPHP/Component/Cache/Adapter/ApcuAdapter.php">
     <UnusedClass>
@@ -710,11 +791,6 @@
       <code><![CDATA[QueryBusTest]]></code>
     </UnusedClass>
   </file>
-  <file src="src/SonsOfPHP/Component/EventDispatcher/AbstractStoppableEvent.php">
-    <UnusedClass>
-      <code><![CDATA[AbstractStoppableEvent]]></code>
-    </UnusedClass>
-  </file>
   <file src="src/SonsOfPHP/Component/EventDispatcher/EventDispatcher.php">
     <UndefinedInterfaceMethod>
       <code><![CDATA[add]]></code>
@@ -731,6 +807,11 @@
     </NullableReturnStatement>
     <PossiblyUnusedMethod>
       <code><![CDATA[addSubscriber]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/SonsOfPHP/Component/EventDispatcher/StoppableEventTrait.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[stopPropagation]]></code>
     </PossiblyUnusedMethod>
   </file>
   <file src="src/SonsOfPHP/Component/EventDispatcher/Tests/AbstractStoppableEventTest.php">
@@ -1145,6 +1226,15 @@
     </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Component/Filesystem/Adapter/ChainAdapter.php">
+    <InvalidCatch>
+      <code><![CDATA[try {
+                return $adapter->mimeType($path, $context);
+            } catch (FilesystemExceptionInterface) {
+            }]]></code>
+    </InvalidCatch>
+    <InvalidReturnType>
+      <code><![CDATA[string]]></code>
+    </InvalidReturnType>
     <UnusedClass>
       <code><![CDATA[ChainAdapter]]></code>
     </UnusedClass>
@@ -1155,15 +1245,14 @@
     </UnusedClass>
     <UnusedForeachValue>
       <code><![CDATA[$contents]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
     </UnusedForeachValue>
   </file>
   <file src="src/SonsOfPHP/Component/Filesystem/Adapter/NativeAdapter.php">
     <UnusedClass>
       <code><![CDATA[NativeAdapter]]></code>
     </UnusedClass>
-    <UnusedParam>
-      <code><![CDATA[$context]]></code>
-    </UnusedParam>
   </file>
   <file src="src/SonsOfPHP/Component/Filesystem/Adapter/NullAdapter.php">
     <UnusedClass>
@@ -1178,16 +1267,6 @@
   <file src="src/SonsOfPHP/Component/Filesystem/Adapter/WormAdapter.php">
     <UnusedClass>
       <code><![CDATA[WormAdapter]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/Filesystem/Context.php">
-    <UnusedClass>
-      <code><![CDATA[Context]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/Filesystem/Exception/UnableToDeleteDirectoryException.php">
-    <UnusedClass>
-      <code><![CDATA[UnableToDeleteDirectoryException]]></code>
     </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Component/Filesystem/Filesystem.php">
@@ -2048,6 +2127,81 @@
       <code><![CDATA[PagerTest]]></code>
     </UnusedClass>
   </file>
+  <file src="src/SonsOfPHP/Component/StateMachine/Event/GuardEvent.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[getContext]]></code>
+      <code><![CDATA[getStateMachine]]></code>
+      <code><![CDATA[getSubject]]></code>
+      <code><![CDATA[getTransition]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/SonsOfPHP/Component/StateMachine/Event/PostTransitionEvent.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[getContext]]></code>
+      <code><![CDATA[getStateMachine]]></code>
+      <code><![CDATA[getSubject]]></code>
+      <code><![CDATA[getTransition]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/SonsOfPHP/Component/StateMachine/Event/PreTransitionEvent.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[getContext]]></code>
+      <code><![CDATA[getStateMachine]]></code>
+      <code><![CDATA[getSubject]]></code>
+      <code><![CDATA[getTransition]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/SonsOfPHP/Component/StateMachine/Exception/InvalidArgumentException.php">
+    <UndefinedClass>
+      <code><![CDATA[StateMachineExceptionInterface]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/StateMachine/Exception/StateMachineException.php">
+    <UndefinedClass>
+      <code><![CDATA[StateMachineExceptionInterface]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/StateMachine/Exception/UndefinedTransitionException.php">
+    <MissingDependency>
+      <code><![CDATA[StateMachineException]]></code>
+    </MissingDependency>
+    <UndefinedClass>
+      <code><![CDATA[UndefinedTransitionExceptionInterface]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/StateMachine/Exception/UnsupportedSubjectException.php">
+    <MissingDependency>
+      <code><![CDATA[StateMachineException]]></code>
+    </MissingDependency>
+    <UndefinedClass>
+      <code><![CDATA[UnsupportedSubjectExceptionInterface]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/StateMachine/StateMachine.php">
+    <MissingDependency>
+      <code><![CDATA[InvalidArgumentException]]></code>
+      <code><![CDATA[InvalidArgumentException]]></code>
+      <code><![CDATA[StateMachineException]]></code>
+      <code><![CDATA[UndefinedTransitionException]]></code>
+      <code><![CDATA[UnsupportedSubjectException]]></code>
+      <code><![CDATA[UnsupportedSubjectException]]></code>
+      <code><![CDATA[UnsupportedSubjectException]]></code>
+    </MissingDependency>
+    <UnusedClass>
+      <code><![CDATA[StateMachine]]></code>
+    </UnusedClass>
+    <UnusedVariable>
+      <code><![CDATA[$currentState]]></code>
+      <code><![CDATA[$name]]></code>
+      <code><![CDATA[$name]]></code>
+      <code><![CDATA[$name]]></code>
+    </UnusedVariable>
+  </file>
+  <file src="src/SonsOfPHP/Component/StateMachine/Tests/StateMachineTest.php">
+    <UnusedClass>
+      <code><![CDATA[StateMachineTest]]></code>
+    </UnusedClass>
+  </file>
   <file src="src/SonsOfPHP/Component/Version/Tests/VersionTest.php">
     <UnusedClass>
       <code><![CDATA[VersionTest]]></code>
@@ -2180,6 +2334,7 @@
       <code><![CDATA[FilesystemExceptionInterface]]></code>
       <code><![CDATA[FilesystemExceptionInterface]]></code>
       <code><![CDATA[FilesystemExceptionInterface]]></code>
+      <code><![CDATA[FilesystemExceptionInterface]]></code>
     </InvalidThrow>
     <UndefinedDocblockClass>
       <code><![CDATA[FileNotFouneExceptionInterface]]></code>
@@ -2195,7 +2350,12 @@
   <file src="src/SonsOfPHP/Contract/Filesystem/Adapter/DirectoryAwareInterface.php">
     <InvalidThrow>
       <code><![CDATA[FilesystemExceptionInterface]]></code>
+      <code><![CDATA[FilesystemExceptionInterface]]></code>
+      <code><![CDATA[FilesystemExceptionInterface]]></code>
     </InvalidThrow>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[removeDirectory]]></code>
+    </PossiblyUnusedMethod>
   </file>
   <file src="src/SonsOfPHP/Contract/Filesystem/Adapter/MoveAwareInterface.php">
     <InvalidThrow>
@@ -2217,11 +2377,10 @@
       <code><![CDATA[FilesystemExceptionInterface]]></code>
       <code><![CDATA[FilesystemExceptionInterface]]></code>
       <code><![CDATA[FilesystemExceptionInterface]]></code>
+      <code><![CDATA[FilesystemExceptionInterface]]></code>
     </InvalidThrow>
     <PossiblyUnusedMethod>
-      <code><![CDATA[exists]]></code>
       <code><![CDATA[move]]></code>
-      <code><![CDATA[read]]></code>
     </PossiblyUnusedMethod>
   </file>
   <file src="src/SonsOfPHP/Contract/HttpHandler/MiddlewareStackInterface.php">
@@ -2376,6 +2535,27 @@
       <code><![CDATA[getNextPage]]></code>
       <code><![CDATA[getPreviousPage]]></code>
       <code><![CDATA[haveToPaginate]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/SonsOfPHP/Contract/StateMachine/Exception/UndefinedTransitionExceptionInterface.php">
+    <UnusedClass>
+      <code><![CDATA[UndefinedTransitionExceptionInterface]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Contract/StateMachine/Exception/UnsupportedSubjectExceptionInterface.php">
+    <UnusedClass>
+      <code><![CDATA[UnsupportedSubjectExceptionInterface]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Contract/StateMachine/StateMachineInterface.php">
+    <InvalidThrow>
+      <code><![CDATA[StateMachineExceptionInterface]]></code>
+      <code><![CDATA[StateMachineExceptionInterface]]></code>
+      <code><![CDATA[StateMachineExceptionInterface]]></code>
+    </InvalidThrow>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[apply]]></code>
+      <code><![CDATA[getGraphName]]></code>
     </PossiblyUnusedMethod>
   </file>
 </files>
