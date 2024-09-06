@@ -268,14 +268,18 @@ class Assert
         $debugType = get_debug_type($value);
 
         return match ($type) {
-            'NULL' => 'null',
-            'boolean' => $value ? 'true' : 'false',
-            'object' => match ($debugType) {
+            'boolean'  => $value ? 'true' : 'false',
+            'integer'  => sprintf('%d', $value),
+            'double'   => sprintf('%f', $value),
+            'string'   => $value,
+            'NULL'     => 'null',
+            'resource' => $debugType,
+            'object'   => match ($debugType) {
                 'DateTimeImmutable',
                 'DateTime' => sprintf('%s: %s', $value::class, $value->format('c')),
-                default => $value instanceof Stringable ? (string) $value : $debugType,
+                default    => $value instanceof Stringable ? (string) $value : $debugType,
             },
-            default => $debugType,
+            default => $type,
         };
     }
 

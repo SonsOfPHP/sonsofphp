@@ -5,14 +5,18 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Assert\Tests;
 
 use BadMethodCallException;
+use DateTime;
+use DateTimeImmutable;
 use Exception;
 use Generator;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
+use ReflectionMethod;
 use SonsOfPHP\Component\Assert\Assert;
 use SonsOfPHP\Component\Assert\InvalidArgumentException;
 use stdClass;
+use Stringable;
 
 #[CoversClass(Assert::class)]
 final class AssertTest extends TestCase
@@ -22,6 +26,27 @@ final class AssertTest extends TestCase
         // Reset the class to the defaults after each test
         Assert::setExceptionClass(InvalidArgumentException::class);
         Assert::enable();
+    }
+
+    public static function valueToStringProvider(): Generator
+    {
+        // expected, value
+        yield ['null', null];
+        yield ['array', []];
+        yield ['testing', 'testing'];
+        yield ['false', false];
+        yield ['true', true];
+        yield ['0', 0];
+        yield ['0.000000', 0.0];
+        yield ['stdClass', new stdClass()];
+        yield ['DateTime: 2024-01-01T00:00:00+00:00', new DateTime('2024-01-01 00:00:00')];
+        yield ['DateTimeImmutable: 2024-01-01T00:00:00+00:00', new DateTimeImmutable('2024-01-01 00:00:00')];
+        yield ['Sons of PHP', new class implements Stringable {
+            public function __toString(): string
+            {
+                return 'Sons of PHP';
+            }
+        }];
     }
 
     public static function validStringProvider(): Generator
@@ -400,8 +425,10 @@ final class AssertTest extends TestCase
         Assert::same($value, $value2);
     }
 
-    public function testItCanConvertNullValueToString(): never
+    #[DataProvider('valueToStringProvider')]
+    public function testItCanConvertValueToString(mixed $expected, mixed $value): void
     {
-        $this->markTestSkipped();
+        $method = new ReflectionMethod(Assert::class, 'valueToString');
+        $this->assertSame($expected, $method->invoke(null, $value));
     }
 }
