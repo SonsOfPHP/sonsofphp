@@ -72,6 +72,8 @@ final class MessageMetadata implements IteratorAggregate, Countable
         if ($this->has($key)) {
             return $this->metadata[$key];
         }
+
+        return null;
     }
 
     public function getEventId(): string

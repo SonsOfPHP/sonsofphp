@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider;
 
-use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\MessageEnricherHandlerInterface;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 
 /**

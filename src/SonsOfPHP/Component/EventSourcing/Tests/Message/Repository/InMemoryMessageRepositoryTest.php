@@ -34,8 +34,8 @@ final class InMemoryMessageRepositoryTest extends TestCase
         $repository = new InMemoryMessageRepository();
 
         $message = $this->createMock(MessageInterface::class);
-        $message->expects($this->any())->method('getAggregateId')->willReturn(AggregateId::fromString('unique-id'));
-        $message->expects($this->any())->method('getAggregateVersion')->willReturn(AggregateVersion::zero());
+        $message->method('getAggregateId')->willReturn(AggregateId::fromString('unique-id'));
+        $message->method('getAggregateVersion')->willReturn(AggregateVersion::zero());
 
         $repository->persist($message);
 
@@ -56,13 +56,13 @@ final class InMemoryMessageRepositoryTest extends TestCase
         $repository = new InMemoryMessageRepository();
 
         $message1 = $this->createMock(MessageInterface::class);
-        $message1->expects($this->any())->method('getAggregateId')->willReturn(AggregateId::fromString('unique-id'));
-        $message1->expects($this->any())->method('getAggregateVersion')->willReturn(AggregateVersion::fromInt(1));
+        $message1->method('getAggregateId')->willReturn(AggregateId::fromString('unique-id'));
+        $message1->method('getAggregateVersion')->willReturn(AggregateVersion::fromInt(1));
         $repository->persist($message1);
 
         $message2 = $this->createMock(MessageInterface::class);
-        $message2->expects($this->any())->method('getAggregateId')->willReturn(AggregateId::fromString('unique-id'));
-        $message2->expects($this->any())->method('getAggregateVersion')->willReturn(AggregateVersion::fromInt(2));
+        $message2->method('getAggregateId')->willReturn(AggregateId::fromString('unique-id'));
+        $message2->method('getAggregateVersion')->willReturn(AggregateVersion::fromInt(2));
         $repository->persist($message2);
 
         $result = $repository->find(AggregateId::fromString('unique-id'), AggregateVersion::fromInt(1));

@@ -32,8 +32,8 @@ class SonsOfPHPFilesystemLoader implements LoaderInterface
                 $mimeType,
                 $extension,
             );
-        } catch(FilesystemExceptionInterface $exception) {
-            throw new NotLoadableException(sprintf('Source image "%s" not found.', $path), 0, $exception);
+        } catch (FilesystemExceptionInterface $filesystemException) {
+            throw new NotLoadableException(sprintf('Source image "%s" not found.', $path), 0, $filesystemException);
         }
     }
 }

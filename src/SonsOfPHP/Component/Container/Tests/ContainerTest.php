@@ -51,6 +51,7 @@ final class ContainerTest extends TestCase
     {
         $container = new Container();
         $container->set('service.id', fn(): stdClass => new stdClass());
+
         $service = $container->get('service.id');
         $this->assertSame($service, $container->get('service.id'));
     }
@@ -61,7 +62,7 @@ final class ContainerTest extends TestCase
         $cached    = new ReflectionProperty($container, 'cachedServices');
 
         $container->set('service.id', fn(): stdClass => new stdClass());
-        $service = $container->get('service.id');
+        $container->get('service.id');
         $this->assertCount(1, $cached->getValue($container));
     }
 

@@ -29,7 +29,7 @@ final class LogLevelFilterTest extends TestCase
     public function testConstructWillThrowInvalidArgumentException(): void
     {
         $this->expectException('InvalidArgumentException');
-        $filter = new LogLevelFilter('app');
+        new LogLevelFilter('app');
     }
 
     public function testIsLoggableIsTrueWhenLevelIsEqual(): void

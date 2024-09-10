@@ -52,11 +52,11 @@ final class ContextTest extends TestCase
     {
         $context = new Context();
 
-        $this->assertFalse(isset($context['test']));
+        $this->assertArrayNotHasKey('test', $context);
         $this->assertEmpty($context['test']);
 
         $context['test'] = 'testing';
-        $this->assertTrue(isset($context['test']));
+        $this->assertArrayHasKey('test', $context);
         $this->assertNotEmpty($context['test']);
     }
 
@@ -65,11 +65,11 @@ final class ContextTest extends TestCase
         $context = new Context();
 
         $context['key'] = 'value';
-        $this->assertTrue(isset($context['key']));
+        $this->assertArrayHasKey('key', $context);
         $this->assertNotEmpty($context['key']);
 
         unset($context['key']);
-        $this->assertFalse(isset($context['key']));
+        $this->assertArrayNotHasKey('key', $context);
         $this->assertEmpty($context['key']);
     }
 
@@ -78,11 +78,11 @@ final class ContextTest extends TestCase
         $context = new Context();
 
         $context['test'] = 'unit test';
-        $this->assertTrue(isset($context['test']));
+        $this->assertArrayHasKey('test', $context);
         $this->assertNotEmpty($context['test']);
 
         $context['key'] = 'value';
-        $this->assertTrue(isset($context['key']));
+        $this->assertArrayHasKey('key', $context);
         $this->assertNotEmpty($context['key']);
     }
 
@@ -91,7 +91,7 @@ final class ContextTest extends TestCase
         $context = new Context();
 
         $this->expectException('InvalidArgumentException');
-        isset($context[new stdClass()]);
+        $context[new stdClass()];
     }
 
     public function testItWillThrowExceptionDuringOffsetGetWithInvalidOffset(): void

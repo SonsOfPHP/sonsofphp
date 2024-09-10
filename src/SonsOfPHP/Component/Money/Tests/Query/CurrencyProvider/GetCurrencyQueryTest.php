@@ -54,7 +54,7 @@ final class GetCurrencyQueryTest extends TestCase
     public function testConstructWithInvalidValue(): void
     {
         $this->expectException(MoneyExceptionInterface::class);
-        $query = new GetCurrencyQuery('1234');
+        new GetCurrencyQuery('1234');
     }
 
     public function testQueryFromWillThrowExceptionWhenCurrencyNotFound(): void
@@ -62,6 +62,6 @@ final class GetCurrencyQueryTest extends TestCase
         $query = new GetCurrencyQuery('usd');
 
         $this->expectException(MoneyExceptionInterface::class);
-        $output = $query->queryFrom(new XCurrencyProvider());
+        $query->queryFrom(new XCurrencyProvider());
     }
 }

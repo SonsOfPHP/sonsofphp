@@ -15,9 +15,13 @@ use Psr\Http\Message\UriInterface;
 class ServerRequest extends Request implements ServerRequestInterface
 {
     private array $cookieParams  = [];
+
     private array $queryParams   = [];
+
     private array $uploadedFiles = [];
+
     private array $attributes    = [];
+
     private null|array|object $data = null;
 
     public function __construct(

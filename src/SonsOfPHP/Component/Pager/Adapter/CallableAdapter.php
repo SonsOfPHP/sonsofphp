@@ -12,6 +12,7 @@ use SonsOfPHP\Contract\Pager\AdapterInterface;
 class CallableAdapter implements AdapterInterface
 {
     private $count;
+
     private $slice;
 
     public function __construct(callable $count, callable $slice)

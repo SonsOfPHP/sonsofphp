@@ -21,7 +21,7 @@ final class SimpleCacheTest extends TestCase
 {
     private MockObject $adapter;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->adapter = $this->createMock(AdapterInterface::class);
     }

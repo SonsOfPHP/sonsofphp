@@ -23,7 +23,7 @@ final class MoneyExtensionTest extends TestCase
 {
     private MockObject $formatter;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->formatter = $this->createMock(MoneyFormatterInterface::class);
     }

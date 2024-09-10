@@ -20,7 +20,7 @@ final class CommandBusTest extends TestCase
 {
     private MockObject $provider;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->provider = $this->createMock(MessageHandlerProvider::class);
     }

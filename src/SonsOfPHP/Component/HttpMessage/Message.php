@@ -18,8 +18,11 @@ class Message implements MessageInterface
     public const DEFAULT_PROTOCOL_VERSION = '1.1';
 
     private string $protocolVersion = self::DEFAULT_PROTOCOL_VERSION;
+
     private array $headers = [];
+
     private array $normalizedHeaders = [];
+
     private StreamInterface $body;
 
     /**
@@ -87,7 +90,7 @@ class Message implements MessageInterface
      */
     public function withHeader(string $name, $value): MessageInterface
     {
-        if (!preg_match('/^[a-zA-Z0-9\'`#$%&*+.^_|~!-]+$/D', $name)) {
+        if (preg_match('/^[a-zA-Z0-9\'`#$%&*+.^_|~!-]+$/D', $name) === 0 || preg_match('/^[a-zA-Z0-9\'`#$%&*+.^_|~!-]+$/D', $name) === false) {
             throw new InvalidArgumentException(sprintf('"%s" is not valid header name.', $name));
         }
 
@@ -96,12 +99,11 @@ class Message implements MessageInterface
         if (!is_array($value)) {
             $value = [$value];
         }
+
         $that->normalizedHeaders[$name] = $value;
 
         array_walk($value, function (&$val, $key): void {
-            if (is_string($val)) {
-                $val = strtolower($val);
-            }
+            $val = strtolower($val);
         });
         $that->headers[strtolower($name)] = $value;
 
@@ -113,7 +115,7 @@ class Message implements MessageInterface
      */
     public function withAddedHeader(string $name, $value): MessageInterface
     {
-        if (!preg_match('/^[a-zA-Z0-9\'`#$%&*+.^_|~!-]+$/D', $name)) {
+        if (preg_match('/^[a-zA-Z0-9\'`#$%&*+.^_|~!-]+$/D', $name) === 0 || preg_match('/^[a-zA-Z0-9\'`#$%&*+.^_|~!-]+$/D', $name) === false) {
             throw new InvalidArgumentException(sprintf('"%s" is not valid header name.', $name));
         }
 
@@ -147,7 +149,7 @@ class Message implements MessageInterface
         }
 
         $that = clone $this;
-        foreach ($this->headers as $header => $values) {
+        foreach (array_keys($this->headers) as $header) {
             if (0 === strcasecmp($header, $name)) {
                 unset(
                     $that->headers[$header],

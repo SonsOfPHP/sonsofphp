@@ -22,7 +22,7 @@ final class ReadOnlyAdapterTest extends TestCase
 {
     private AdapterInterface|MockObject $adapter;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->adapter = $this->createMock(AdapterInterface::class);
     }

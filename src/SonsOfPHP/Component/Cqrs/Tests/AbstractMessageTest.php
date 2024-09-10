@@ -39,7 +39,7 @@ final class AbstractMessageTest extends TestCase
     public function testWithWhenKeyIsAnArrayThatContainsAStringableValue(): void
     {
         $msg = $this->getMockForAbstractClass(AbstractMessage::class)->with([
-            'key' => new class () implements Stringable {
+            'key' => new class implements Stringable {
                 public function __toString(): string
                 {
                     return 'value';
@@ -53,7 +53,7 @@ final class AbstractMessageTest extends TestCase
     public function testWithWhenKeyIsAnArrayThatContainsAnInvalidValue(): void
     {
         $this->expectException('InvalidArgumentException');
-        $msg = $this->getMockForAbstractClass(AbstractMessage::class)->with([
+        $this->getMockForAbstractClass(AbstractMessage::class)->with([
             'key' => new stdClass(),
         ]);
     }
@@ -61,7 +61,7 @@ final class AbstractMessageTest extends TestCase
     public function testWithWhenKeyIsAnArrayAndValueIsNotNull(): void
     {
         $this->expectException('InvalidArgumentException');
-        $msg = $this->getMockForAbstractClass(AbstractMessage::class)->with([
+        $this->getMockForAbstractClass(AbstractMessage::class)->with([
             'key' => 'value',
         ], 'value');
     }
@@ -97,7 +97,7 @@ final class AbstractMessageTest extends TestCase
     {
         $msg = $this->getMockForAbstractClass(AbstractMessage::class);
 
-        $value = new class () implements Stringable {
+        $value = new class implements Stringable {
             public function __toString(): string
             {
                 return 'value';

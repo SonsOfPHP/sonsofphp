@@ -37,7 +37,9 @@ use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;
 final class DoctrineDbalMessageRepositoryTest extends TestCase
 {
     private Connection $connection;
+
     private MessageSerializerInterface $messageSerializer;
+
     private TableSchemaInterface $tableSchema;
 
     protected function setUp(): void

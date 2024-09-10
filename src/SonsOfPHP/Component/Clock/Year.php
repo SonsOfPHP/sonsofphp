@@ -12,6 +12,7 @@ use Stringable;
 final class Year implements YearInterface, Stringable
 {
     private readonly int $year;
+
     /**
      * @param string|int $year
      */
@@ -19,14 +20,17 @@ final class Year implements YearInterface, Stringable
     {
         $this->year = (int) $year;
     }
+
     public function __toString(): string
     {
         return $this->toString();
     }
+
     public function toString(): string
     {
         return sprintf('%d', $this->year);
     }
+
     public function toInt(): int
     {
         return $this->year;

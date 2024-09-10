@@ -21,9 +21,9 @@ use stdClass;
 #[UsesClass(CacheItem::class)]
 final class ChainAdapterTest extends TestCase
 {
-    private $adapters = [];
+    private array $adapters = [];
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->adapters[] = $this->createMock(AdapterInterface::class);
         $this->adapters[] = new ArrayAdapter();
@@ -42,7 +42,7 @@ final class ChainAdapterTest extends TestCase
         $this->adapters[] = new stdClass();
 
         $this->expectException(CacheException::class);
-        $adapter = new ChainAdapter($this->adapters);
+        new ChainAdapter($this->adapters);
     }
 
     public function testGetItem(): void
@@ -58,6 +58,7 @@ final class ChainAdapterTest extends TestCase
         $adapter = new ChainAdapter($this->adapters);
         $item = $adapter->getItem('unit.test');
         $item->set('item.value');
+
         $adapter->save($item);
 
         $this->assertTrue($adapter->getItem('unit.test')->isHit());

@@ -32,8 +32,11 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 final class MergeCommand extends AbstractCommand
 {
     private readonly Json $json;
+
     private array $bardConfig;
+
     private string $mainComposerFile;
+
     private ?HelperInterface $formatter = null;
 
     public function __construct()

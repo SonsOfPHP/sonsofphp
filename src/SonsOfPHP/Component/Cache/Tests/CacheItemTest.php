@@ -59,6 +59,7 @@ final class CacheItemTest extends TestCase
     {
         $item = new CacheItem('testing');
         $item->expiresAfter(3600);
+
         $itemAsArray = (array) $item;
         $this->assertNotNull($itemAsArray["\0*\0expiry"]);
 
@@ -71,19 +72,19 @@ final class CacheItemTest extends TestCase
     {
         $item = new CacheItem('testing');
         $itemAsArray = (array) $item;
-        $this->assertFalse(isset($itemAsArray["\0*\0expiry"]));
+        $this->assertArrayNotHasKey('\0*\0expiry', $itemAsArray);
 
         $item->expiresAt(new DateTimeImmutable('2020-04-20 04:20:00'));
         $itemAsArray = (array) $item;
         $this->assertNotNull($itemAsArray["\0*\0expiry"]);
-        $this->assertSame(1587356400.0, $itemAsArray["\0*\0expiry"]);
+        $this->assertEqualsWithDelta(1587356400.0, $itemAsArray["\0*\0expiry"], PHP_FLOAT_EPSILON);
     }
 
     public function testExpiresAfterWorksAsExpectedWithIntegers(): void
     {
         $item = new CacheItem('testing');
         $itemAsArray = (array) $item;
-        $this->assertFalse(isset($itemAsArray["\0*\0expiry"]));
+        $this->assertArrayNotHasKey('\0*\0expiry', $itemAsArray);
 
         $item->expiresAfter(3600);
         $itemAsArray = (array) $item;
@@ -94,7 +95,7 @@ final class CacheItemTest extends TestCase
     {
         $item = new CacheItem('testing');
         $itemAsArray = (array) $item;
-        $this->assertFalse(isset($itemAsArray["\0*\0expiry"]));
+        $this->assertArrayNotHasKey('\0*\0expiry', $itemAsArray);
 
         $item->expiresAfter(new DateInterval('PT60S'));
         $itemAsArray = (array) $item;
@@ -105,7 +106,7 @@ final class CacheItemTest extends TestCase
     {
         $item = new CacheItem('testing');
         $itemAsArray = (array) $item;
-        $this->assertFalse(isset($itemAsArray["\0*\0expiry"]));
+        $this->assertArrayNotHasKey('\0*\0expiry', $itemAsArray);
 
         $item->expiresAfter(null);
         $itemAsArray = (array) $item;
@@ -117,7 +118,7 @@ final class CacheItemTest extends TestCase
     public function testValidateKeyWithInvalidValues(string $key): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $item = new CacheItem($key);
+        new CacheItem($key);
     }
 
     public static function invalidKeysProvider(): iterable

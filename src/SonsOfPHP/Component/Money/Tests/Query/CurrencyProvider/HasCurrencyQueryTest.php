@@ -53,7 +53,7 @@ final class HasCurrencyQueryTest extends TestCase
     public function testConstructWithInvalidValue(): void
     {
         $this->expectException(MoneyExceptionInterface::class);
-        $query = new HasCurrencyQuery('1234');
+        new HasCurrencyQuery('1234');
     }
 
     public function testQueryFromWhenProviderDoesNotContainCurrency(): void

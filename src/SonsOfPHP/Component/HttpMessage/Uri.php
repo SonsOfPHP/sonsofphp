@@ -15,17 +15,23 @@ use Stringable;
 class Uri implements UriInterface, Stringable
 {
     private string $scheme;
+
     private string $host;
+
     private ?string $path = null;
+
     private ?int $port = null;
+
     private ?string $user = null;
+
     private ?string $password = null;
-    private ?string $query = null;
+
     private ?string $fragment = null;
+
     private array $queryParams = [];
 
     public function __construct(
-        private string $uri = '',
+        string $uri = '',
     ) {
         if ('' !== $uri) {
             $parts = parse_url($uri);
@@ -36,10 +42,9 @@ class Uri implements UriInterface, Stringable
             $this->host     = isset($parts['host']) ? strtolower($parts['host']) : '';
             $this->port     = $parts['port'] ?? null;
             $this->path     = $parts['path'] ?? null;
-            $this->query    = $parts['query'] ?? null;
             $this->fragment = $parts['fragment'] ?? null;
 
-            if (!empty($parts['query'])) {
+            if (isset($parts['query']) && ($parts['query'] !== '' && $parts['query'] !== '0')) {
                 parse_str($parts['query'], $this->queryParams);
             }
         }
@@ -64,7 +69,7 @@ class Uri implements UriInterface, Stringable
         }
 
         if (null !== $this->port) {
-            $authority = $authority . ':' . $this->port;
+            return $authority . ':' . $this->port;
         }
 
         return $authority;
@@ -99,7 +104,7 @@ class Uri implements UriInterface, Stringable
             return $this->port;
         }
 
-        return match($this->getScheme()) {
+        return match ($this->getScheme()) {
             'http' => 80,
             'https' => 443,
             default => null,
@@ -130,6 +135,7 @@ class Uri implements UriInterface, Stringable
                         $query .= '=' . rawurlencode((string) $v);
                     }
                 }
+
                 continue;
             }
 
@@ -141,6 +147,7 @@ class Uri implements UriInterface, Stringable
                 continue;
             }
         }
+
         return ltrim($query, '&');
     }
 
@@ -281,7 +288,7 @@ class Uri implements UriInterface, Stringable
         return ($this->scheme !== '' && $this->scheme !== '0' ? $this->scheme . '://' : '') .
             ($this->getUserInfo() !== '' && $this->getUserInfo() !== '0' ? $this->getUserInfo() . '@' : '') .
             ($this->getHost()) .
-            ($this->port ? ':' . $this->port : '') .
+            ($this->port !== null && $this->port !== 0 ? ':' . $this->port : '') .
             ($this->getPath() ?? '') .
             ($this->getQuery() !== '' && $this->getQuery() !== '0' ? '?' . $this->getQuery() : '') .
             ($this->getFragment() !== '' && $this->getFragment() !== '0' ? '#' . $this->getFragment() : '')

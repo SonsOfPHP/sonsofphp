@@ -30,6 +30,7 @@ use Stringable;
 final class Money implements MoneyInterface, JsonSerializable, Stringable
 {
     private readonly AmountInterface $amount;
+
     public function __construct($amount, private readonly CurrencyInterface $currency)
     {
         if (!$amount instanceof AmountInterface) {
@@ -38,17 +39,20 @@ final class Money implements MoneyInterface, JsonSerializable, Stringable
 
         $this->amount   = $amount;
     }
+
     public function __toString(): string
     {
         return $this->amount->toString();
     }
+
     /**
      * Example: Money::USD(100);.
      */
     public static function __callStatic(string $method, array $args)
     {
-        return new static($args[0], new Currency($method));
+        return new self($args[0], new Currency($method));
     }
+
     /**
      * @return int
      *             -1 = this less than that
@@ -67,70 +71,87 @@ final class Money implements MoneyInterface, JsonSerializable, Stringable
 
         return 0;
     }
+
     public function with(MoneyOperatorInterface $operator): MoneyInterface
     {
         return $operator->apply($this);
     }
+
     public function query(MoneyQueryInterface $query)
     {
         return $query->queryFrom($this);
     }
+
     public function getAmount(): AmountInterface
     {
         return $this->amount;
     }
+
     public function getCurrency(): CurrencyInterface
     {
         return $this->currency;
     }
+
     public function isEqualTo(MoneyInterface $money): bool
     {
         return $this->query(new IsEqualToMoneyQuery($money));
     }
+
     public function isGreaterThan(MoneyInterface $money): bool
     {
         return $this->query(new IsGreaterThanMoneyQuery($money));
     }
+
     public function isGreaterThanOrEqualTo(MoneyInterface $money): bool
     {
         return $this->query(new IsGreaterThanOrEqualToMoneyQuery($money));
     }
+
     public function isLessThan(MoneyInterface $money): bool
     {
         return $this->query(new IsLessThanMoneyQuery($money));
     }
+
     public function isLessThanOrEqualTo(MoneyInterface $money): bool
     {
         return $this->query(new IsLessThanOrEqualToMoneyQuery($money));
     }
+
     public function isNegative(): bool
     {
         return $this->query(new IsNegativeMoneyQuery());
     }
+
     public function isPositive(): bool
     {
         return $this->query(new IsPositiveMoneyQuery());
     }
+
     public function isZero(): bool
     {
         return $this->query(new IsZeroMoneyQuery());
     }
+
     public function add(MoneyInterface $money): MoneyInterface
     {
         return $this->with(new AddMoneyOperator($money));
     }
+
     public function subtract(MoneyInterface $money): MoneyInterface
     {
         return $this->with(new SubtractMoneyOperator($money));
     }
+
     public function multiply($multiplier): MoneyInterface
     {
         return $this->with(new MultiplyMoneyOperator($multiplier));
     }
+
     public function divide($divisor): MoneyInterface
     {
         return $this->with(new DivideMoneyOperator($divisor));
     }
+
     public function jsonSerialize(): array
     {
         return [

@@ -15,6 +15,7 @@ use Psr\Http\Message\ResponseInterface;
 class Response extends Message implements ResponseInterface
 {
     private int $statusCode;
+
     private string $reasonPhrase = '';
 
     /**

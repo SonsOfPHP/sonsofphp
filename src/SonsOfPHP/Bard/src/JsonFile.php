@@ -14,6 +14,7 @@ use SonsOfPHP\Component\Json\Json;
 final class JsonFile
 {
     private array $config = [];
+
     private Json $json;
 
     public function __construct(

@@ -71,7 +71,7 @@ final class StreamTest extends TestCase
     public function testConstructWorksAsExpectedWhenInvalidStreamIsPassed(): void
     {
         $this->expectException('InvalidArgumentException');
-        $stream = new Stream(new stdClass());
+        new Stream(new stdClass());
     }
 
     public function testStringableWorksAsExpected(): void
@@ -129,7 +129,7 @@ final class StreamTest extends TestCase
         $stream = new Stream();
         $this->assertFalse($stream->eof());
 
-        $contents = $stream->getContents();
+        $stream->getContents();
         $this->assertTrue($stream->eof());
     }
 

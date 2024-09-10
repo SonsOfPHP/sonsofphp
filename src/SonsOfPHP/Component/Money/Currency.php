@@ -21,6 +21,7 @@ final class Currency implements CurrencyInterface, Stringable
     ) {
         $this->currencyCode = strtoupper($currencyCode);
     }
+
     /**
      * @see self::getCurrencyCode()
      */
@@ -28,6 +29,7 @@ final class Currency implements CurrencyInterface, Stringable
     {
         return $this->getCurrencyCode();
     }
+
     /**
      * Makes it easy to create new currencies.
      *
@@ -40,8 +42,9 @@ final class Currency implements CurrencyInterface, Stringable
         $numericCode = $args[0] ?? null;
         $minorUnit   = $args[1] ?? null;
 
-        return new static($currencyCode, $numericCode, $minorUnit);
+        return new self($currencyCode, $numericCode, $minorUnit);
     }
+
     /**
      * {@inheritdoc}
      */
@@ -49,6 +52,7 @@ final class Currency implements CurrencyInterface, Stringable
     {
         return $query->queryFrom($this);
     }
+
     /**
      * {@inheritdoc}
      */
@@ -56,6 +60,7 @@ final class Currency implements CurrencyInterface, Stringable
     {
         return $this->currencyCode;
     }
+
     /**
      * {@inheritdoc}
      */
@@ -63,6 +68,7 @@ final class Currency implements CurrencyInterface, Stringable
     {
         return $this->numericCode;
     }
+
     /**
      * {@inheritdoc}
      */
@@ -70,6 +76,7 @@ final class Currency implements CurrencyInterface, Stringable
     {
         return $this->minorUnit;
     }
+
     /**
      * {@inheritdoc}
      */

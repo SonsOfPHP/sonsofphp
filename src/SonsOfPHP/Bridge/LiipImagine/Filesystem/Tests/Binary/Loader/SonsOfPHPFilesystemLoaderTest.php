@@ -18,7 +18,9 @@ use Symfony\Component\Mime\MimeTypesInterface;
 final class SonsOfPHPFilesystemLoaderTest extends TestCase
 {
     private FilesystemInterface $filesystem;
+
     private MimeTypesInterface $mimeTypes;
+
     private LoaderInterface $loader;
 
     protected function setUp(): void
@@ -48,7 +50,7 @@ final class SonsOfPHPFilesystemLoaderTest extends TestCase
 
     public function testItWillThrowCorrectExceptionWhenFileNotFound(): void
     {
-        $this->filesystem->method('read')->will($this->throwException(new FileNotFoundException()));
+        $this->filesystem->method('read')->willThrowException(new FileNotFoundException());
         ;
 
         $this->expectException(NotLoadableException::class);

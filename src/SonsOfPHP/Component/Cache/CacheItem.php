@@ -16,13 +16,14 @@ use SonsOfPHP\Component\Cache\Exception\InvalidArgumentException;
 final class CacheItem implements CacheItemInterface
 {
     protected mixed $value;
+
     protected int|float|null $expiry = null;
 
     public function __construct(
         protected string $key,
         protected bool $isHit = false,
     ) {
-        static::validateKey($key);
+        self::validateKey($key);
     }
 
     public static function validateKey(string $key): void

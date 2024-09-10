@@ -21,9 +21,10 @@ use SonsOfPHP\Contract\Mailer\TransportInterface;
 final class MailerTest extends TestCase
 {
     private MockObject $transport;
+
     private MockObject $message;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->transport = $this->createMock(TransportInterface::class);
         $this->message = $this->createMock(MessageInterface::class);

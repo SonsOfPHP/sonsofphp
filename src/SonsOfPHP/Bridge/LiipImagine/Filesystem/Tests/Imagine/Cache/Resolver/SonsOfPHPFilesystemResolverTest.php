@@ -23,7 +23,9 @@ use SonsOfPHP\Contract\Filesystem\FilesystemInterface;
 final class SonsOfPHPFilesystemResolverTest extends TestCase
 {
     private ResolverInterface $resolver;
+
     private FilesystemInterface $filesystem;
+
     private string $webRoot = 'https://images.internal';
 
     protected function setUp(): void
@@ -78,6 +80,7 @@ final class SonsOfPHPFilesystemResolverTest extends TestCase
     {
         $this->filesystem->write('/media/cache/cache/path/to/file.ext', 'contents');
         $this->filesystem->write('/media/cache/cache/path/to/another.ext', 'contents');
+
         $this->resolver->remove(['/path/to/file.ext'], ['cache']);
         $this->assertFalse($this->filesystem->exists('/media/cache/cache/path/to/file.ext'));
         $this->assertTrue($this->filesystem->exists('/media/cache/cache/path/to/another.ext'));

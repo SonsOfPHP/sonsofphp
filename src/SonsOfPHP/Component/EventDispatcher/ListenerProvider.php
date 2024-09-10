@@ -17,6 +17,7 @@ use Psr\EventDispatcher\ListenerProviderInterface;
 class ListenerProvider implements ListenerProviderInterface
 {
     private array $listeners = [];
+
     private array $sorted    = [];
 
     /**

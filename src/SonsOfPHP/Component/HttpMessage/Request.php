@@ -16,6 +16,7 @@ use Psr\Http\Message\UriInterface;
 class Request extends Message implements RequestInterface
 {
     private ?string $requestTarget = null;
+
     private UriInterface $uri;
 
     public function __construct(
@@ -72,7 +73,7 @@ class Request extends Message implements RequestInterface
      */
     public function withMethod(string $method): RequestInterface
     {
-        if (null !== $method && !Method::tryFrom(strtoupper($method)) instanceof Method) {
+        if (!Method::tryFrom(strtoupper($method)) instanceof Method) {
             throw new InvalidArgumentException(sprintf('The value of "%s" for $method is invalid', strtoupper($method)));
         }
 
@@ -107,8 +108,8 @@ class Request extends Message implements RequestInterface
         $that = clone $this;
         $that->uri = $uri;
 
-        if (true === $preserveHost && $this->hasHeader('host')) {
-            $that = $that->withHeader('host', $this->getHeader('host'));
+        if ($preserveHost && $this->hasHeader('host')) {
+            return $that->withHeader('host', $this->getHeader('host'));
         }
 
         return $that;

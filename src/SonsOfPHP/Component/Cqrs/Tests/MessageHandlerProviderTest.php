@@ -32,7 +32,7 @@ final class MessageHandlerProviderTest extends TestCase
     public function testAddWithHandlerClass(): void
     {
         $provider = new MessageHandlerProvider();
-        $provider->add(new stdClass(), new class () {
+        $provider->add(new stdClass(), new class {
             public function __invoke(): void {}
         });
 
@@ -67,7 +67,7 @@ final class MessageHandlerProviderTest extends TestCase
     public function testGetHandlerForMessageWhenClassIsInvokable(): void
     {
         $provider = new MessageHandlerProvider();
-        $provider->add(new stdClass(), new class () {
+        $provider->add(new stdClass(), new class {
             public function __invoke(): void {}
         });
 

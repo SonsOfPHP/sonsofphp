@@ -20,7 +20,7 @@ final class QueryBuilderAdapterTest extends TestCase
 {
     private MockObject $builder;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->builder = $this->createMock(QueryBuilder::class);
     }

@@ -62,6 +62,6 @@ final class AbstractOptionsResolverCommandMessageTest extends TestCase
             'id' => 'unique-id',
         ]);
 
-        $this->assertTrue(isset($command->id));
+        $this->assertTrue($command->__isset('id'));
     }
 }

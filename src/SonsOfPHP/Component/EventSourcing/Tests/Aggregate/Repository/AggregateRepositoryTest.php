@@ -38,7 +38,9 @@ use TypeError;
 final class AggregateRepositoryTest extends TestCase
 {
     private string $aggregateClass;
+
     private EventDispatcherInterface $eventDispatcher;
+
     private MessageRepositoryInterface $messageRepository;
 
     protected function setUp(): void
@@ -69,7 +71,7 @@ final class AggregateRepositoryTest extends TestCase
 
         $aggregate = new FakeAggregate('unique-id');
 
-        $message = new class () extends AbstractMessage {};
+        $message = new class extends AbstractMessage {};
         $aggregate->raiseThisEvent($message);
 
         $repository->persist($aggregate);
@@ -85,7 +87,7 @@ final class AggregateRepositoryTest extends TestCase
 
         $aggregate = new FakeAggregate('unique-id');
 
-        $message = new class () extends AbstractMessage {};
+        $message = new class extends AbstractMessage {};
         $aggregate->raiseThisEvent($message);
 
         $repository->persist($aggregate);
@@ -104,7 +106,7 @@ final class AggregateRepositoryTest extends TestCase
 
         $aggregate = new FakeAggregate('unique-id');
 
-        $message = new class () extends AbstractMessage {};
+        $message = new class extends AbstractMessage {};
         $aggregate->raiseThisEvent($message);
 
         $repository->persist($aggregate);
@@ -122,7 +124,7 @@ final class AggregateRepositoryTest extends TestCase
         );
 
         $this->expectException(TypeError::class);
-        $result = $repository->find(123);
+        $repository->find(123);
     }
 
     public function testItReturnsNullWhenAggregateNotFound(): void

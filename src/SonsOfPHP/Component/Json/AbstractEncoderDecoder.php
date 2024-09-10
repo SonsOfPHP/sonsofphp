@@ -13,6 +13,7 @@ namespace SonsOfPHP\Component\Json;
 abstract class AbstractEncoderDecoder
 {
     protected int $flags = 0;
+
     protected int $depth = 512;
 
     public function __construct(int $flags = null, int $depth = null)

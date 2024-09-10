@@ -18,6 +18,7 @@ use SonsOfPHP\Component\Container\Exception\NotFoundException;
 class Container implements ContainerInterface
 {
     private array $services = [];
+
     private array $cachedServices = [];
 
     /**

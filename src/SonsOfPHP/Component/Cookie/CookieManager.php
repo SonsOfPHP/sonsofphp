@@ -20,7 +20,7 @@ final class CookieManager implements CookieManagerInterface
         $cookie = new Cookie($name);
 
         if ($this->has($name)) {
-            $cookie = $cookie->withValue($_COOKIE[$name]);
+            return $cookie->withValue($_COOKIE[$name]);
         }
 
         return $cookie;

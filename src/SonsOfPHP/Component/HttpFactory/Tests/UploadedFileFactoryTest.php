@@ -21,7 +21,7 @@ final class UploadedFileFactoryTest extends TestCase
 {
     private MockObject $stream;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->stream = $this->createMock(StreamInterface::class);
         $this->stream->method('isReadable')->willReturn(true);

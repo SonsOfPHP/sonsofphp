@@ -28,6 +28,7 @@ final readonly class UpdateAutoloadSection implements WorkerInterface
                 if (!isset($rootAutoloadSection['psr-4'])) {
                     $rootAutoloadSection['psr-4'] = [];
                 }
+
                 foreach ($config as $namespace => $pkgPath) {
                     $rootAutoloadSection['psr-4'][$namespace] = trim($path . '/' . trim((string) $pkgPath, '/'), '/');
                 }
@@ -37,6 +38,7 @@ final readonly class UpdateAutoloadSection implements WorkerInterface
                 if (!isset($rootAutoloadSection['exclude-from-classmap'])) {
                     $rootAutoloadSection['exclude-from-classmap'] = [];
                 }
+
                 foreach ($config as $pkgPath) {
                     $rootAutoloadSection['exclude-from-classmap'][] = trim($path . '/' . trim((string) $pkgPath, '/'), '/');
                 }

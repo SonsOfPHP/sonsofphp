@@ -17,6 +17,7 @@ use SonsOfPHP\Contract\HttpHandler\MiddlewareStackInterface;
 class MiddlewareStack implements MiddlewareStackInterface
 {
     private array $middlewares = [];
+
     //private $resolver;
 
     //public function __construct($resolver)
@@ -41,14 +42,12 @@ class MiddlewareStack implements MiddlewareStackInterface
     {
         $priorityStack = array_shift($this->middlewares);
         $middleware = array_shift($priorityStack);
-        if (0 !== count($priorityStack)) {
+        if ([] !== $priorityStack) {
             array_unshift($this->middlewares, $priorityStack);
         }
 
         if ($middleware instanceof Closure) {
             return new class ($middleware) implements MiddlewareInterface {
-                public function __construct(private readonly Closure $closure) {}
-
                 public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
                 {
                     return $this->closure($request, $handler);

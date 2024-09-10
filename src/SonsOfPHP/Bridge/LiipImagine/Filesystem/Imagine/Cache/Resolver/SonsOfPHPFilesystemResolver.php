@@ -28,8 +28,6 @@ class SonsOfPHPFilesystemResolver implements ResolverInterface
      *
      * @param string $path
      * @param string $filter
-     *
-     * @return bool
      */
     public function isStored($path, $filter): bool
     {
@@ -51,7 +49,7 @@ class SonsOfPHPFilesystemResolver implements ResolverInterface
         return sprintf(
             '%s/%s',
             rtrim($this->webRoot, '/'),
-            ltrim((string) $this->getFileUrl($path, $filter), '/'),
+            ltrim($this->getFileUrl($path, $filter), '/'),
         );
     }
 

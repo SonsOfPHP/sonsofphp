@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Doctrine\EventSourcing;
 
 use Doctrine\DBAL\Connection;
-use Generator;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateIdInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
@@ -26,12 +25,8 @@ class DoctrineDbalMessageRepository implements MessageRepositoryInterface
 
     public function persist(MessageInterface $message): void
     {
-        $id      = $message->getAggregateId();
-        $version = $message->getAggregateVersion();
-
-        if (!$id instanceof AggregateIdInterface || !$version instanceof AggregateVersionInterface) {
-            throw new EventSourcingException('No ID or Verion');
-        }
+        $message->getAggregateId();
+        $message->getAggregateVersion();
 
         $data = $this->serializer->serialize($message);
 
@@ -44,7 +39,7 @@ class DoctrineDbalMessageRepository implements MessageRepositoryInterface
             Metadata::TIMESTAMP_FORMAT,
         ];
 
-        if (\count($requiredMetadata) != \count(array_intersect_key(array_flip($requiredMetadata), $data['metadata']))) {
+        if (\count($requiredMetadata) !== \count(array_intersect_key(array_flip($requiredMetadata), $data['metadata']))) {
             throw new EventSourcingException('metadata is missing one or more required values');
         }
 

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Rector\Php82\Rector\FuncCall\Utf8DecodeEncodeToMbConvertEncodingRector;
 use Rector\CodeQuality\Rector\Assign\CombinedAssignRector;
 use Rector\CodeQuality\Rector\For_\ForRepeatedCountToOwnVariableRector;
 use Rector\CodeQuality\Rector\FuncCall\ArrayMergeOfNonArraysToSimpleArrayRector;
@@ -36,9 +37,25 @@ return RectorConfig::configure()
         __DIR__ . '/src/SonsOfPHP/*/*/*/*/vendor/*',
     ])
     // This should be the same version that is found in composer.json file
-    ->withPhpSets()
-    ->withPreparedSets(typeDeclarations: true)
-    ->withImportNames()
+    ->withPhpSets(
+        php82: true,
+    )
+    ->withPreparedSets(
+        deadCode: true,
+        codeQuality: true,
+        codingStyle: true,
+        typeDeclarations: true,
+        //privatization: true,
+        //naming: true,
+        instanceOf: true,
+        earlyReturn: true,
+        strictBooleans: true,
+        phpunitCodeQuality: true,
+    )
+    ->withImportNames(
+        importShortClasses: false,
+        removeUnusedImports: true,
+    )
     ->withRules([
         // Generic
         AddVoidReturnTypeWhereNoReturnRector::class,
@@ -51,6 +68,7 @@ return RectorConfig::configure()
         ExplicitBoolCompareRector::class,
         FlipTypeControlToUseExclusiveTypeRector::class,
         ForRepeatedCountToOwnVariableRector::class,
+        Utf8DecodeEncodeToMbConvertEncodingRector::class,
         // PHPUnit Rules
         AnnotationWithValueToAttributeRector::class,
         AssertCompareToSpecificMethodRector::class,

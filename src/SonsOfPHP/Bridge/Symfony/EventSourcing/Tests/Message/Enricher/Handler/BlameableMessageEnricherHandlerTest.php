@@ -64,6 +64,6 @@ final class BlameableMessageEnricherHandlerTest extends TestCase
             }))
         ;
 
-        $output = $handler->enrich($message);
+        $handler->enrich($message);
     }
 }

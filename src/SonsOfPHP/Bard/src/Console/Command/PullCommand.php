@@ -28,7 +28,7 @@ final class PullCommand extends AbstractCommand
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $bardConfig = new JsonFile($input->getOption('working-dir') . '/bard.json');
-        $formatter  = $this->getHelper('formatter');
+        $this->getHelper('formatter');
         $io         = new SymfonyStyle($input, $output);
 
         foreach ($bardConfig->getSection('packages') as $pkg) {

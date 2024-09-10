@@ -85,12 +85,12 @@ final class AggregateVersionTest extends TestCase
     {
         $this->expectException(EventSourcingException::class);
 
-        $version = AggregateVersion::fromInt(-1);
+        AggregateVersion::fromInt(-1);
     }
 
     public function testInvalidVersionUsingConstructor(): void
     {
         $this->expectException(EventSourcingException::class);
-        $version = new AggregateVersion(-1);
+        new AggregateVersion(-1);
     }
 }

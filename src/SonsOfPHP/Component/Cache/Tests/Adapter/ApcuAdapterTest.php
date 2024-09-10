@@ -19,7 +19,7 @@ use SonsOfPHP\Component\Cache\CacheItem;
 #[UsesClass(CacheItem::class)]
 final class ApcuAdapterTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         apcu_clear_cache();
     }
@@ -50,6 +50,7 @@ final class ApcuAdapterTest extends TestCase
         $adapter = new ApcuAdapter();
         $item = $adapter->getItem('unit.test');
         $item->set('item.value');
+
         $adapter->save($item);
 
         $this->assertTrue($adapter->getItem('unit.test')->isHit());
@@ -90,6 +91,7 @@ final class ApcuAdapterTest extends TestCase
         $adapter = new ApcuAdapter();
         $item = $adapter->getItem('unit.test');
         $item->set('item.value');
+
         $adapter->save($item);
 
         $this->assertTrue($adapter->deleteItems(['unit.test']));
@@ -114,6 +116,7 @@ final class ApcuAdapterTest extends TestCase
         $adapter = new ApcuAdapter();
         $item = $adapter->getItem('unit.test');
         $item->set('item.value');
+
         $adapter->saveDeferred($item);
 
         $this->assertFalse($adapter->hasItem('unit.test'));
@@ -134,6 +137,7 @@ final class ApcuAdapterTest extends TestCase
         $item = $adapter->getItem('unit.test');
 
         $item->set('item.value');
+
         $adapter->save($item);
 
         $this->assertSame('item.value', $adapter->getItem('unit.test')->get());

@@ -20,9 +20,10 @@ use SonsOfPHP\Contract\Mailer\MiddlewareStackInterface;
 final class MiddlewareHandlerTest extends TestCase
 {
     private MockObject $message;
+
     private MiddlewareStackInterface $stack;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->message = $this->createMock(MessageInterface::class);
         $this->stack = new MiddlewareStack();
@@ -53,7 +54,7 @@ final class MiddlewareHandlerTest extends TestCase
 
     public function testHandle(): void
     {
-        $middleware = new class () implements MiddlewareInterface {
+        $middleware = new class implements MiddlewareInterface {
             public function __invoke(MessageInterface $message, MiddlewareHandlerInterface $handler): MessageInterface
             {
                 return $message;

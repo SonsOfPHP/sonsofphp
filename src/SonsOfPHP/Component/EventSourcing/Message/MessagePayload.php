@@ -53,5 +53,7 @@ final class MessagePayload implements IteratorAggregate, Countable
         if ($this->has($key)) {
             return $this->payload[$key];
         }
+
+        return null;
     }
 }

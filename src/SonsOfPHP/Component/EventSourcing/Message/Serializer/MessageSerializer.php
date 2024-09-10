@@ -22,6 +22,7 @@ use SonsOfPHP\Component\EventSourcing\Metadata;
 class MessageSerializer implements MessageSerializerInterface
 {
     private readonly MessageEnricherInterface $messageEnricher;
+
     private readonly MessageUpcasterInterface $messageUpcaster;
 
     public function __construct(
@@ -71,11 +72,12 @@ class MessageSerializer implements MessageSerializerInterface
             Metadata::TIMESTAMP_FORMAT,
         ];
 
-        if (\count($requiredMetadata) != \count(array_intersect_key(array_flip($requiredMetadata), $metadata))) {
+        if (\count($requiredMetadata) !== \count(array_intersect_key(array_flip($requiredMetadata), $metadata))) {
             $values = [];
             foreach ($metadata as $k => $v) {
                 $values[] = $k . ' => ' . $v;
             }
+
             throw new EventSourcingException('Message Metadata is missing one or more required values. Current metadata: ' . implode(',', $values));
         }
     }

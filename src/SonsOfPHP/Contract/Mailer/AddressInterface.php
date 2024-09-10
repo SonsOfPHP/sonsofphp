@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Contract\Mailer;
 
+use InvalidArgumentException;
 use Stringable;
 
 /**
@@ -29,7 +30,7 @@ interface AddressInterface extends Stringable
      * Returns a new instance of the class if $email is different, if $email is
      * the same, this MUST return the same instance.
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function withEmail(string $email): static;
 
@@ -41,7 +42,7 @@ interface AddressInterface extends Stringable
     public function getName(): ?string;
 
     /**
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function withName(?string $name): static;
 }

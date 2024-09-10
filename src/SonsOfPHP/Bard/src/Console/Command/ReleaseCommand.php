@@ -8,7 +8,6 @@ use RuntimeException;
 use SonsOfPHP\Bard\JsonFile;
 use SonsOfPHP\Bard\Worker\File\Bard\UpdateVersion;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateReplaceSection;
-use SonsOfPHP\Component\Json\Json;
 use SonsOfPHP\Component\Version\Version;
 use SonsOfPHP\Component\Version\VersionInterface;
 use Symfony\Component\Console\Input\InputArgument;
@@ -26,7 +25,9 @@ use Symfony\Component\Process\Process;
 final class ReleaseCommand extends AbstractCommand
 {
     private JsonFile $bardConfig;
+
     private VersionInterface|Version|null $releaseVersion = null;
+
     private bool $isDryRun = true;
 
     protected function configure(): void
@@ -91,6 +92,7 @@ final class ReleaseCommand extends AbstractCommand
         if ($this->isDryRun) {
             $io->note('dry-run enabled no changes will be made');
         }
+
         $io->text([
             sprintf('Bumping release from <info>%s</> to <info>%s</>', $this->bardConfig->getSection('version'), $this->releaseVersion->toString()),
         ]);
@@ -114,12 +116,14 @@ final class ReleaseCommand extends AbstractCommand
             ]);
             $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateReplaceSection($pkgComposerJsonFile));
         }
+
         $output->writeln([
             'saving root composer.json',
         ]);
         if (!$this->isDryRun) {
             file_put_contents($rootComposerJsonFile->getFilename(), $rootComposerJsonFile->toJson());
         }
+
         $output->writeln([
             'root composer.json file saved',
         ]);
@@ -134,6 +138,7 @@ final class ReleaseCommand extends AbstractCommand
         // 3. Tag Release and push
         $io->newLine();
         $io->section(sprintf('updating mother repo for release %s', $this->releaseVersion->toString()));
+
         $processCommands = [
             ['git', 'add', '.'],
             ['git', 'commit', '--allow-empty', '-m', sprintf('"Preparing for Release v%s"', $this->releaseVersion->toString())],
@@ -148,6 +153,7 @@ final class ReleaseCommand extends AbstractCommand
                 $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
             }
         }
+
         $io->success('Mother Repository Released');
 
         // 4. Subtree Split for each package
@@ -175,8 +181,10 @@ final class ReleaseCommand extends AbstractCommand
                     $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
                 }
             }
+
             $io->newLine();
         }
+
         $io->text('All Packages have been Released');
         // $io->success('All Packages have been Released');
 
@@ -186,10 +194,12 @@ final class ReleaseCommand extends AbstractCommand
 
         // 6. Update bard.json with current version
         $io->section('Updating version in bard.json');
+
         $this->bardConfig = $this->bardConfig->with(new UpdateVersion($this->releaseVersion));
         if (!$this->isDryRun) {
             file_put_contents($this->bardConfig->getFilename(), $this->bardConfig->toJson());
         }
+
         $io->text('bard.json updated with new version');
 
         // 7. Commit and push updates

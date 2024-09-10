@@ -36,7 +36,7 @@ class QueryMessageBus
     /**
      * Handle the Query and return the results.
      */
-    public function handle(object $query)
+    public function handle(object $query): mixed
     {
         return $this->handleQuery($query);
     }

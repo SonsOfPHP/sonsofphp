@@ -205,6 +205,6 @@ final class AmountTest extends TestCase
     public function testToFloat(): void
     {
         $amount = new Amount(100);
-        $this->assertSame(100.0, $amount->toFloat());
+        $this->assertEqualsWithDelta(100.0, $amount->toFloat(), PHP_FLOAT_EPSILON);
     }
 }
