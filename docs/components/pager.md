@@ -72,7 +72,7 @@ if ($pager->hasNextPage()) {
 
 Creating Custom Adapters is easy. You can take a look at the available adapters to see how easy it is.
 
-Please see the [Pager Contract](../contracts/pager/index.md) to learn more.
+Please see the [Pager Contract](../contracts/pager.md) to learn more.
 
 ### Available Adapters
 

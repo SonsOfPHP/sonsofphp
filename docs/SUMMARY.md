@@ -50,20 +50,13 @@
 ## Contracts
 
 * [Contracts Overview](contracts/index.md)
-* [common](contracts/common/README.md)
-  * [Common Contracts](contracts/common/index.md)
-* [cookie](contracts/cookie/README.md)
-  * [Installation](contracts/cookie/index.md)
-* [cqrs](contracts/cqrs/README.md)
-  * [Cqrs Contract](contracts/cqrs/index.md)
-* [filesystem](contracts/filesystem/README.md)
-  * [Installation](contracts/filesystem/index.md)
-* [mailer](contracts/mailer/README.md)
-  * [Mailer Contract](contracts/mailer/index.md)
-* [pager](contracts/pager/README.md)
-  * [Pager Contract](contracts/pager/index.md)
-* [state-machine](contracts/state-machine/README.md)
-  * [Installation](contracts/state-machine/index.md)
+* [Common](contracts/common.md)
+* [Cookie](contracts/cookie.md)
+* [CQRS](contracts/cqrs.md)
+* [Filesystem](contracts/filesystem.md)
+* [Mailer](contracts/mailer.md)
+* [Pager](contracts/pager.md)
+* [State Machine](contracts/state-machine.md)
 
 ## Contributing
 
