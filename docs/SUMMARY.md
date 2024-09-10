@@ -26,7 +26,7 @@
   * [Event Messages](components/event-sourcing/event-messages/README.md)
     * [Using the Serializable Event Message](components/event-sourcing/event-messages/using-the-serializable-event-message.md)
     * [Message Enrichers](components/event-sourcing/event-messages/message-enrichers.md)
-    * [Message Serializers](components/event-sourcing/event-messages/index.md)
+    * [Message Serializers](components/event-sourcing/event-messages/message-serializers.md)
     * [Message Repository](components/event-sourcing/event-messages/message-repository.md)
     * [Message Upcasters](components/event-sourcing/event-messages/message-upcasters.md)
 * [Feature Toggle](components/feature-toggle.md)
