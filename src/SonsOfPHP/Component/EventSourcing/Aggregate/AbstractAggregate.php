@@ -36,9 +36,8 @@ abstract class AbstractAggregate implements AggregateInterface
     final public static function new($id)
     {
         @trigger_error(sprintf('"%s::new()" is deprecated, use "new %s()" instead.', static::class, static::class), \E_USER_DEPRECATED);
-        $static = new static($id);
 
-        return $static;
+        return new static($id);
     }
 
     final public function getAggregateId(): AggregateIdInterface

@@ -72,7 +72,7 @@ class Request extends Message implements RequestInterface
      */
     public function withMethod(string $method): RequestInterface
     {
-        if (null !== $method && !Method::tryFrom(strtoupper($method)) instanceof Method) {
+        if (!Method::tryFrom(strtoupper($method)) instanceof Method) {
             throw new InvalidArgumentException(sprintf('The value of "%s" for $method is invalid', strtoupper($method)));
         }
 

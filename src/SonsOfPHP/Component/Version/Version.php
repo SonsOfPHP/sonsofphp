@@ -33,11 +33,11 @@ final class Version implements VersionInterface, Stringable
         $this->patch = (int) $matches['patch'];
 
         if (isset($matches['prerelease'])) {
-            $this->preRelease = (string) $matches['prerelease'];
+            $this->preRelease = $matches['prerelease'];
         }
 
         if (isset($matches['buildmetadata'])) {
-            $this->build = (string) $matches['buildmetadata'];
+            $this->build = $matches['buildmetadata'];
         }
     }
     /**

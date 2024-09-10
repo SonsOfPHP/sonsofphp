@@ -117,7 +117,7 @@ final class CacheItemTest extends TestCase
     public function testValidateKeyWithInvalidValues(string $key): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $item = new CacheItem($key);
+        new CacheItem($key);
     }
 
     public static function invalidKeysProvider(): iterable

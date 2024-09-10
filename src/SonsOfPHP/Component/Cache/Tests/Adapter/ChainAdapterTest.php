@@ -42,7 +42,7 @@ final class ChainAdapterTest extends TestCase
         $this->adapters[] = new stdClass();
 
         $this->expectException(CacheException::class);
-        $adapter = new ChainAdapter($this->adapters);
+        new ChainAdapter($this->adapters);
     }
 
     public function testGetItem(): void

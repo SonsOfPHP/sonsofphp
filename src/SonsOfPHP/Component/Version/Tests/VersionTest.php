@@ -51,7 +51,7 @@ final class VersionTest extends TestCase
     public function testItThrowsExceptionForInvalidVersions(string $ver): void
     {
         $this->expectException(VersionException::class);
-        $version = new Version($ver);
+        new Version($ver);
     }
 
 

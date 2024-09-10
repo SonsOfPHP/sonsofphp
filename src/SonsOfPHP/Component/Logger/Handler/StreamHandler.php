@@ -12,8 +12,6 @@ use SonsOfPHP\Contract\Logger\RecordInterface;
  */
 class StreamHandler extends AbstractHandler
 {
-    private bool $isOpen = false;
-
     public function __construct(private $stream) {}
 
     public function doHandle(RecordInterface $record, string $message): void

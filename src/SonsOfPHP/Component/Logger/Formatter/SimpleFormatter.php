@@ -28,8 +28,7 @@ class SimpleFormatter implements FormatterInterface
         $output = str_replace('%channel%', $record->getChannel(), $output);
         $output = str_replace('%level_name%', $record->getLevel()->getName(), $output);
         $output = str_replace('%message%', $message, $output);
-        $output = str_replace('%context%', json_encode($record->getContext()->all()), $output);
 
-        return $output;
+        return str_replace('%context%', json_encode($record->getContext()->all()), $output);
     }
 }

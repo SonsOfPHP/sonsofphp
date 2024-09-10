@@ -20,12 +20,11 @@ class Uri implements UriInterface, Stringable
     private ?int $port = null;
     private ?string $user = null;
     private ?string $password = null;
-    private ?string $query = null;
     private ?string $fragment = null;
     private array $queryParams = [];
 
     public function __construct(
-        private string $uri = '',
+        string $uri = '',
     ) {
         if ('' !== $uri) {
             $parts = parse_url($uri);
@@ -36,7 +35,6 @@ class Uri implements UriInterface, Stringable
             $this->host     = isset($parts['host']) ? strtolower($parts['host']) : '';
             $this->port     = $parts['port'] ?? null;
             $this->path     = $parts['path'] ?? null;
-            $this->query    = $parts['query'] ?? null;
             $this->fragment = $parts['fragment'] ?? null;
 
             if (!empty($parts['query'])) {

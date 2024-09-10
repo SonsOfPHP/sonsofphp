@@ -25,13 +25,8 @@ class DoctrineDbalMessageRepository implements MessageRepositoryInterface
 
     public function persist(MessageInterface $message): void
     {
-        $id      = $message->getAggregateId();
-        $version = $message->getAggregateVersion();
-
-        if (!$id instanceof AggregateIdInterface || !$version instanceof AggregateVersionInterface) {
-            throw new EventSourcingException('No ID or Verion');
-        }
-
+        $message->getAggregateId();
+        $message->getAggregateVersion();
         $data = $this->serializer->serialize($message);
 
         $requiredMetadata = [

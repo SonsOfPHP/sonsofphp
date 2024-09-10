@@ -78,7 +78,7 @@ class StateMachine implements StateMachineInterface
         }
 
         if (array_key_exists('callbacks', $transitionConfig) && array_key_exists('guard', $transitionConfig['callbacks'])) {
-            foreach ($transitionConfig['callbacks']['guard'] as $name => $callbackConfig) {
+            foreach ($transitionConfig['callbacks']['guard'] as $callbackConfig) {
                 if (array_key_exists('do', $callbackConfig) && false === call_user_func($callbackConfig['do'], $subject, $transition, $context, $this)) {
                     return false;
                 }
@@ -102,12 +102,12 @@ class StateMachine implements StateMachineInterface
             throw new StateMachineException('Cannot transition subject to new state');
         }
 
-        $currentState     = $this->getState($subject);
+        $this->getState($subject);
         $newState         = $this->getTransition($transition)['to'];
         $transitionConfig = $this->getTransition($transition);
 
         if (array_key_exists('callbacks', $transitionConfig) && array_key_exists('pre', $transitionConfig['callbacks'])) {
-            foreach ($transitionConfig['callbacks']['pre'] as $name => $callbackConfig) {
+            foreach ($transitionConfig['callbacks']['pre'] as $callbackConfig) {
                 if (array_key_exists('do', $callbackConfig)) {
                     call_user_func($callbackConfig['do'], $subject, $transition, $context, $this);
                 }
@@ -121,7 +121,7 @@ class StateMachine implements StateMachineInterface
         $this->setState($subject, $newState);
 
         if (array_key_exists('callbacks', $transitionConfig) && array_key_exists('post', $transitionConfig['callbacks'])) {
-            foreach ($transitionConfig['callbacks']['post'] as $name => $callbackConfig) {
+            foreach ($transitionConfig['callbacks']['post'] as $callbackConfig) {
                 if (array_key_exists('do', $callbackConfig)) {
                     call_user_func($callbackConfig['do'], $subject, $transition, $context, $this);
                 }

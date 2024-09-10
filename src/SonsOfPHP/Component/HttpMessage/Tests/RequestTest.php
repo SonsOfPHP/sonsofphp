@@ -85,7 +85,7 @@ final class RequestTest extends TestCase
     public function testItWillThrowExceptionWhenInvalidMethod(): void
     {
         $this->expectException('InvalidArgumentException');
-        $request = new Request('not valid');
+        new Request('not valid');
     }
 
     public function testItCanBeCreatedWithStringAsUri(): void

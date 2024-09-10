@@ -26,7 +26,6 @@ interface CurrencyProviderInterface
      * Pass in a currency object or a currency code (ie USD) and it
      * will return true is the currency exists in this provider.
      *
-     * @param CurrencyInterface|string $currency
      *
      * @throw MoneyException
      * @throw UnknownCurrencyException
@@ -37,7 +36,6 @@ interface CurrencyProviderInterface
      * Returns the currency or thows MoneyException is currency does not
      * exist in this provider.
      *
-     * @param CurrencyInterface|string $currency
      *
      * @throw MoneyException
      * @throw UnknownCurrencyException

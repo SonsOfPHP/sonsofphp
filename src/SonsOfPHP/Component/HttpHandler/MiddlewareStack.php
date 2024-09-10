@@ -47,8 +47,6 @@ class MiddlewareStack implements MiddlewareStackInterface
 
         if ($middleware instanceof Closure) {
             return new class ($middleware) implements MiddlewareInterface {
-                public function __construct(private readonly Closure $closure) {}
-
                 public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
                 {
                     return $this->closure($request, $handler);

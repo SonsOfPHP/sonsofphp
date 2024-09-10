@@ -26,7 +26,7 @@ final class LinkTest extends TestCase
     public function testItWillThrowInvalidArgumentException(): void
     {
         $this->expectException('InvalidArgumentException');
-        $link = new Link();
+        new Link();
     }
 
     public function testConstructWithRelsArray(): void

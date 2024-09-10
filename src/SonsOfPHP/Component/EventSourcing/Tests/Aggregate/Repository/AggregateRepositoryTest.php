@@ -122,7 +122,7 @@ final class AggregateRepositoryTest extends TestCase
         );
 
         $this->expectException(TypeError::class);
-        $result = $repository->find(123);
+        $repository->find(123);
     }
 
     public function testItReturnsNullWhenAggregateNotFound(): void

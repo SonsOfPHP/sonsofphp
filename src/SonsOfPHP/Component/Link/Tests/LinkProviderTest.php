@@ -25,7 +25,7 @@ final class LinkProviderTest extends TestCase
     public function testConstructWilThrowException(): void
     {
         $this->expectException('InvalidArgumentException');
-        $provider = new LinkProvider([
+        new LinkProvider([
             'nope',
         ]);
     }

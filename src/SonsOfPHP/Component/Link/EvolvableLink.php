@@ -26,8 +26,6 @@ class EvolvableLink extends Link implements EvolvableLinkInterface
      *
      * An implementing library SHOULD evaluate a passed object to a string
      * immediately rather than waiting for it to be returned later.
-     *
-     * @return static
      */
     public function withHref(string|Stringable $href): static
     {
@@ -49,7 +47,6 @@ class EvolvableLink extends Link implements EvolvableLinkInterface
      *
      * @param string $rel
      *   The relationship value to add.
-     * @return static
      */
     public function withRel(string $rel): static
     {
@@ -71,7 +68,6 @@ class EvolvableLink extends Link implements EvolvableLinkInterface
      *
      * @param string $rel
      *   The relationship value to exclude.
-     * @return static
      */
     public function withoutRel(string $rel): static
     {
@@ -95,7 +91,6 @@ class EvolvableLink extends Link implements EvolvableLinkInterface
      *   The attribute to include.
      * @param string|Stringable|int|float|bool|array $value
      *   The value of the attribute to set.
-     * @return static
      */
     public function withAttribute(string $attribute, string|Stringable|int|float|bool|array $value): static
     {
@@ -113,7 +108,6 @@ class EvolvableLink extends Link implements EvolvableLinkInterface
      *
      * @param string $attribute
      *   The attribute to remove.
-     * @return static
      */
     public function withoutAttribute(string $attribute): static
     {

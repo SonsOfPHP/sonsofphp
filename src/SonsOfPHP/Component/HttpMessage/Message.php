@@ -99,9 +99,7 @@ class Message implements MessageInterface
         $that->normalizedHeaders[$name] = $value;
 
         array_walk($value, function (&$val, $key): void {
-            if (is_string($val)) {
-                $val = strtolower($val);
-            }
+            $val = strtolower($val);
         });
         $that->headers[strtolower($name)] = $value;
 

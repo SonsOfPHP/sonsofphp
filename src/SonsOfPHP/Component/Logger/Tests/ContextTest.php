@@ -91,7 +91,7 @@ final class ContextTest extends TestCase
         $context = new Context();
 
         $this->expectException('InvalidArgumentException');
-        isset($context[new stdClass()]);
+        $context[new stdClass()];
     }
 
     public function testItWillThrowExceptionDuringOffsetGetWithInvalidOffset(): void

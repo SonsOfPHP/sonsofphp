@@ -21,13 +21,11 @@ use SonsOfPHP\Component\HttpMessage\Response;
 final class HttpHandlerTest extends TestCase
 {
     private MockObject $request;
-    private MockObject $response;
     private MiddlewareStack $stack;
 
     protected function setUp(): void
     {
         $this->request = $this->createMock(ServerRequestInterface::class);
-        $this->response = $this->createMock(ResponseInterface::class);
         $this->stack = new MiddlewareStack();
     }
 
