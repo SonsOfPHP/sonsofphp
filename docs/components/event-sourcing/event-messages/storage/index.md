@@ -4,10 +4,7 @@ title: Message Storage
 
 # Message Repository
 
-The message repository will store the event messages where and how you want them
-to be stored. This is usually a database but could be anywhere. The [Aggregate
-Repository](../../aggregates/storage/index.md) uses the Message Repository to save the event messages that were
-raised.
+The message repository will store the event messages where and how you want them to be stored. This is usually a database but could be anywhere. The [Aggregate Repository](../../index/index.md) uses the Message Repository to save the event messages that were raised.
 
 ## Usage
 
@@ -34,8 +31,7 @@ $eventMessages = $messageRepository->find($aggregateId, $aggregateVersion);
 
 ## InMemoryMessageRepository
 
-This repository is mainly used for testing, however to keep the examples easy we
-will start with this message repository.
+This repository is mainly used for testing, however to keep the examples easy we will start with this message repository.
 
 ```php
 <?php
@@ -47,12 +43,9 @@ $messageRepository = new InMemoryRepository();
 
 ## DoctrineDbalMessageRepository
 
-!!! attention
-    The `DoctrineDbalMessageRepository` requires the
-    `sonsofphp/event-sourcing-doctrine` package.
+!!! attention The `DoctrineDbalMessageRepository` requires the `sonsofphp/event-sourcing-doctrine` package.
 
-The `DoctrineDbalMessageRepository` allows you to persist event messages in the
-database.
+The `DoctrineDbalMessageRepository` allows you to persist event messages in the database.
 
 ```php
 <?php
@@ -69,5 +62,4 @@ $messageRepository = new DoctrineDbalMessageRepository(
 );
 ```
 
-The `TableSchemaInterface` defines what table to use along with the columns and
-mapping information. They are easy to work with and create custom schemas.
+The `TableSchemaInterface` defines what table to use along with the columns and mapping information. They are easy to work with and create custom schemas.
