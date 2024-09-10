@@ -41,10 +41,14 @@ return RectorConfig::configure()
         php82: true,
     )
     ->withPreparedSets(
-        typeDeclarations: true,
         deadCode: true,
         codeQuality: true,
         codingStyle: true,
+        typeDeclarations: true,
+        //privatization: true,
+        //naming: true,
+        instanceOf: true,
+        earlyReturn: true,
     )
     ->withImportNames(
         importShortClasses: false,

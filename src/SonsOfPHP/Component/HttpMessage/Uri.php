@@ -69,7 +69,7 @@ class Uri implements UriInterface, Stringable
         }
 
         if (null !== $this->port) {
-            $authority = $authority . ':' . $this->port;
+            return $authority . ':' . $this->port;
         }
 
         return $authority;

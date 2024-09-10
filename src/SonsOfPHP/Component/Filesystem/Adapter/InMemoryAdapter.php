@@ -73,7 +73,10 @@ final class InMemoryAdapter implements AdapterInterface, CopyAwareInterface, Mov
 
     public function has(string $path, ?ContextInterface $context = null): bool
     {
-        return $this->isFile($path) || $this->isDirectory($path);
+        if ($this->isFile($path)) {
+            return true;
+        }
+        return $this->isDirectory($path);
     }
 
     public function isFile(string $path, ?ContextInterface $context = null): bool

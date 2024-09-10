@@ -77,7 +77,10 @@ final class NativeAdapter implements AdapterInterface, CopyAwareInterface, Direc
 
     public function has(string $path, ?ContextInterface $context = null): bool
     {
-        return $this->isFile($path, $context) || $this->isDirectory($path, $context);
+        if ($this->isFile($path, $context)) {
+            return true;
+        }
+        return $this->isDirectory($path, $context);
     }
 
     public function isFile(string $path, ?ContextInterface $context = null): bool

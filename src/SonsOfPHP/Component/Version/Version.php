@@ -69,7 +69,7 @@ final class Version implements VersionInterface, Stringable
         }
 
         if ('' !== $this->getBuild()) {
-            $version = $version . '+' . $this->getBuild();
+            return $version . '+' . $this->getBuild();
         }
 
         return $version;

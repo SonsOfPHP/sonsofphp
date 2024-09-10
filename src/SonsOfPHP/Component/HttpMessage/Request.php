@@ -109,7 +109,7 @@ class Request extends Message implements RequestInterface
         $that->uri = $uri;
 
         if ($preserveHost && $this->hasHeader('host')) {
-            $that = $that->withHeader('host', $this->getHeader('host'));
+            return $that->withHeader('host', $this->getHeader('host'));
         }
 
         return $that;
