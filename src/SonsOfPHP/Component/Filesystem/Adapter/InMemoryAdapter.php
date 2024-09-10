@@ -76,6 +76,7 @@ final class InMemoryAdapter implements AdapterInterface, CopyAwareInterface, Mov
         if ($this->isFile($path)) {
             return true;
         }
+
         return $this->isDirectory($path);
     }
 

@@ -90,7 +90,7 @@ class Message implements MessageInterface
      */
     public function withHeader(string $name, $value): MessageInterface
     {
-        if (!preg_match('/^[a-zA-Z0-9\'`#$%&*+.^_|~!-]+$/D', $name)) {
+        if (preg_match('/^[a-zA-Z0-9\'`#$%&*+.^_|~!-]+$/D', $name) === 0 || preg_match('/^[a-zA-Z0-9\'`#$%&*+.^_|~!-]+$/D', $name) === false) {
             throw new InvalidArgumentException(sprintf('"%s" is not valid header name.', $name));
         }
 
@@ -115,7 +115,7 @@ class Message implements MessageInterface
      */
     public function withAddedHeader(string $name, $value): MessageInterface
     {
-        if (!preg_match('/^[a-zA-Z0-9\'`#$%&*+.^_|~!-]+$/D', $name)) {
+        if (preg_match('/^[a-zA-Z0-9\'`#$%&*+.^_|~!-]+$/D', $name) === 0 || preg_match('/^[a-zA-Z0-9\'`#$%&*+.^_|~!-]+$/D', $name) === false) {
             throw new InvalidArgumentException(sprintf('"%s" is not valid header name.', $name));
         }
 

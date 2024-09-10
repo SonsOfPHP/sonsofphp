@@ -80,6 +80,7 @@ final class NativeAdapter implements AdapterInterface, CopyAwareInterface, Direc
         if ($this->isFile($path, $context)) {
             return true;
         }
+
         return $this->isDirectory($path, $context);
     }
 

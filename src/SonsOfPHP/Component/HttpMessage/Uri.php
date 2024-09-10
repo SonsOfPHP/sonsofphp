@@ -288,7 +288,7 @@ class Uri implements UriInterface, Stringable
         return ($this->scheme !== '' && $this->scheme !== '0' ? $this->scheme . '://' : '') .
             ($this->getUserInfo() !== '' && $this->getUserInfo() !== '0' ? $this->getUserInfo() . '@' : '') .
             ($this->getHost()) .
-            ($this->port ? ':' . $this->port : '') .
+            ($this->port !== null && $this->port !== 0 ? ':' . $this->port : '') .
             ($this->getPath() ?? '') .
             ($this->getQuery() !== '' && $this->getQuery() !== '0' ? '?' . $this->getQuery() : '') .
             ($this->getFragment() !== '' && $this->getFragment() !== '0' ? '#' . $this->getFragment() : '')
