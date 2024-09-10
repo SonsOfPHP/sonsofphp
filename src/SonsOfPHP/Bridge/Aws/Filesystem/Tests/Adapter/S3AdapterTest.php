@@ -62,14 +62,14 @@ final class S3AdapterTest extends TestCase
     public function testItCanGetFileContents(): void
     {
         $this->stream->method('getContents')->willReturn('file contents');
-        $this->result->method('get')->with($this->equalTo('Body'))->willReturn($this->stream);
+        $this->result->method('get')->with('Body')->willReturn($this->stream);
 
         $this->assertSame('file contents', $this->adapter->get('/path/to/file.ext'));
     }
 
     public function testItCanRemoveFile(): void
     {
-        $this->client->expects($this->once())->method('getCommand')->with($this->equalTo('DeleteObject'))->willReturn($this->command);
+        $this->client->expects($this->once())->method('getCommand')->with('DeleteObject')->willReturn($this->command);
 
         $this->adapter->remove('/path/to/file.ext');
     }
@@ -127,7 +127,7 @@ final class S3AdapterTest extends TestCase
     public function testItCanMoveFile(): void
     {
         $this->client->expects($this->once())->method('copy');
-        $this->client->expects($this->once())->method('getCommand')->with($this->equalTo('DeleteObject'))->willReturn($this->command);
+        $this->client->expects($this->once())->method('getCommand')->with('DeleteObject')->willReturn($this->command);
 
         $this->adapter->move('/path/to/source.ext', '/path/to/destination.ext');
     }
@@ -136,7 +136,7 @@ final class S3AdapterTest extends TestCase
     {
         $this->result
              ->method('get')
-             ->with($this->equalTo('ContentType'))
+             ->with('ContentType')
              ->willReturn('text/plain');
 
         $this->assertSame('text/plain', $this->adapter->mimeType('/path/to/source.ext'));

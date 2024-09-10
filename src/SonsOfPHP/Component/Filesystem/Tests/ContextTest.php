@@ -41,10 +41,10 @@ final class ContextTest extends TestCase
     {
         $context = new Context();
 
-        $this->assertFalse(isset($context['testing']));
+        $this->assertArrayNotHasKey('testing', $context);
 
         $context['testing'] = true;
-        $this->assertTrue(isset($context['testing']));
+        $this->assertArrayHasKey('testing', $context);
         $this->assertTrue($context['testing']);
     }
 
@@ -52,26 +52,26 @@ final class ContextTest extends TestCase
     {
         $context = new Context();
 
-        $this->assertFalse(isset($context['testing']));
+        $this->assertArrayNotHasKey('testing', $context);
         $context['testing'] = true;
-        $this->assertTrue(isset($context['testing']));
+        $this->assertArrayHasKey('testing', $context);
 
         unset($context['testing']);
-        $this->assertFalse(isset($context['testing']));
+        $this->assertArrayNotHasKey('testing', $context);
     }
 
     public function testItCanUnsetKeys(): void
     {
         $context = new Context();
 
-        $this->assertFalse(isset($context['testing']));
+        $this->assertArrayNotHasKey('testing', $context);
         unset($context['testing']);
-        $this->assertFalse(isset($context['testing']));
+        $this->assertArrayNotHasKey('testing', $context);
 
         $context['test'] = true;
-        $this->assertTrue(isset($context['test']));
+        $this->assertArrayHasKey('test', $context);
         unset($context['test']);
-        $this->assertFalse(isset($context['test']));
+        $this->assertArrayNotHasKey('test', $context);
     }
 
     public function testItCanGetValues(): void

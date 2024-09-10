@@ -50,7 +50,7 @@ final class SonsOfPHPFilesystemLoaderTest extends TestCase
 
     public function testItWillThrowCorrectExceptionWhenFileNotFound(): void
     {
-        $this->filesystem->method('read')->will($this->throwException(new FileNotFoundException()));
+        $this->filesystem->method('read')->willThrowException(new FileNotFoundException());
         ;
 
         $this->expectException(NotLoadableException::class);

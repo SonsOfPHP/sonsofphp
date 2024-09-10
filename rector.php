@@ -50,6 +50,8 @@ return RectorConfig::configure()
         instanceOf: true,
         earlyReturn: true,
         strictBooleans: true,
+        //phpunit: true,
+        phpunitCodeQuality: true,
     )
     ->withImportNames(
         importShortClasses: false,
