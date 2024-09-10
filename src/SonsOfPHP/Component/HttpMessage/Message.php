@@ -145,7 +145,7 @@ class Message implements MessageInterface
         }
 
         $that = clone $this;
-        foreach ($this->headers as $header => $values) {
+        foreach (array_keys($this->headers) as $header) {
             if (0 === strcasecmp($header, $name)) {
                 unset(
                     $that->headers[$header],

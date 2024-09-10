@@ -41,7 +41,7 @@ class MiddlewareStack implements MiddlewareStackInterface
     {
         $priorityStack = array_shift($this->middlewares);
         $middleware = array_shift($priorityStack);
-        if (0 !== count($priorityStack)) {
+        if ([] !== $priorityStack) {
             array_unshift($this->middlewares, $priorityStack);
         }
 

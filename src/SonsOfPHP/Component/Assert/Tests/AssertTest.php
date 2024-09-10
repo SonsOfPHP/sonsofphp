@@ -71,8 +71,8 @@ final class AssertTest extends TestCase
 
     public static function validNumericProvider(): Generator
     {
-        yield from static::validFloatProvider();
-        yield from static::validIntProvider();
+        yield from self::validFloatProvider();
+        yield from self::validIntProvider();
         yield ['42'];
     }
 
@@ -84,10 +84,10 @@ final class AssertTest extends TestCase
 
     public static function validScalarProvider(): Generator
     {
-        yield from static::validStringProvider();
-        yield from static::validBoolProvider();
-        yield from static::validFloatProvider();
-        yield from static::validIntProvider();
+        yield from self::validStringProvider();
+        yield from self::validBoolProvider();
+        yield from self::validFloatProvider();
+        yield from self::validIntProvider();
     }
 
     public static function validObjectProvider(): Generator

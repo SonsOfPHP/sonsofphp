@@ -107,7 +107,7 @@ class Request extends Message implements RequestInterface
         $that = clone $this;
         $that->uri = $uri;
 
-        if (true === $preserveHost && $this->hasHeader('host')) {
+        if ($preserveHost && $this->hasHeader('host')) {
             $that = $that->withHeader('host', $this->getHeader('host'));
         }
 

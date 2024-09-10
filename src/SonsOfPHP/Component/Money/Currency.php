@@ -40,7 +40,7 @@ final class Currency implements CurrencyInterface, Stringable
         $numericCode = $args[0] ?? null;
         $minorUnit   = $args[1] ?? null;
 
-        return new static($currencyCode, $numericCode, $minorUnit);
+        return new self($currencyCode, $numericCode, $minorUnit);
     }
     /**
      * {@inheritdoc}

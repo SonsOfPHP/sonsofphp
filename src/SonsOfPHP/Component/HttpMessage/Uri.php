@@ -37,7 +37,7 @@ class Uri implements UriInterface, Stringable
             $this->path     = $parts['path'] ?? null;
             $this->fragment = $parts['fragment'] ?? null;
 
-            if (!empty($parts['query'])) {
+            if (isset($parts['query']) && ($parts['query'] !== '' && $parts['query'] !== '0')) {
                 parse_str($parts['query'], $this->queryParams);
             }
         }

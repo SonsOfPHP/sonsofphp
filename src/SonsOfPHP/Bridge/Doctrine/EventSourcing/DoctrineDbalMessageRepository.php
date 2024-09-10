@@ -38,7 +38,7 @@ class DoctrineDbalMessageRepository implements MessageRepositoryInterface
             Metadata::TIMESTAMP_FORMAT,
         ];
 
-        if (\count($requiredMetadata) != \count(array_intersect_key(array_flip($requiredMetadata), $data['metadata']))) {
+        if (\count($requiredMetadata) !== \count(array_intersect_key(array_flip($requiredMetadata), $data['metadata']))) {
             throw new EventSourcingException('metadata is missing one or more required values');
         }
 

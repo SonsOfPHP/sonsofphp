@@ -22,22 +22,22 @@ final readonly class AggregateVersion implements AggregateVersionInterface
 
     public static function fromInt(int $version): AggregateVersionInterface
     {
-        return new static($version);
+        return new self($version);
     }
 
     public static function zero(): AggregateVersionInterface
     {
-        return new static(0);
+        return new self(0);
     }
 
     public function next(): AggregateVersionInterface
     {
-        return new static($this->version + 1);
+        return new self($this->version + 1);
     }
 
     public function prev(): AggregateVersionInterface
     {
-        return new static($this->version - 1);
+        return new self($this->version - 1);
     }
 
     public function equals(AggregateVersionInterface $version): bool

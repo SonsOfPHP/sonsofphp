@@ -22,7 +22,7 @@ class StreamHandler extends AbstractHandler
     private function write(string $message): void
     {
         if (false === fwrite($this->stream, $message)) {
-            throw new RuntimeException(sprintf('stream could not be written to'));
+            throw new RuntimeException('stream could not be written to');
         }
     }
 }

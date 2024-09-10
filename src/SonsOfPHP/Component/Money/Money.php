@@ -47,7 +47,7 @@ final class Money implements MoneyInterface, JsonSerializable, Stringable
      */
     public static function __callStatic(string $method, array $args)
     {
-        return new static($args[0], new Currency($method));
+        return new self($args[0], new Currency($method));
     }
     /**
      * @return int

@@ -32,7 +32,7 @@ final class Cookie implements CookieInterface
         $cookie = $this->name . '=' . $this->value;
 
         foreach ($this->attributes as $key => $val) {
-            if (is_bool($val) && true === $val) {
+            if (is_bool($val) && $val) {
                 $cookie .= '; ' . $key;
             }
 

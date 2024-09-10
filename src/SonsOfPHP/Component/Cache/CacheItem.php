@@ -22,7 +22,7 @@ final class CacheItem implements CacheItemInterface
         protected string $key,
         protected bool $isHit = false,
     ) {
-        static::validateKey($key);
+        self::validateKey($key);
     }
 
     public static function validateKey(string $key): void

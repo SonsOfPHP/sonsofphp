@@ -49,7 +49,7 @@ final class Version implements VersionInterface, Stringable
     }
     public static function from(string $version): VersionInterface
     {
-        return new static($version);
+        return new self($version);
     }
     public function toString(): string
     {

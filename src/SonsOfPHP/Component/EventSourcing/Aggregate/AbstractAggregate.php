@@ -57,7 +57,7 @@ abstract class AbstractAggregate implements AggregateInterface
      */
     final public function hasPendingEvents(): bool
     {
-        return \count($this->pendingEvents) > 0;
+        return $this->pendingEvents !== [];
     }
 
     final public function getPendingEvents(): iterable

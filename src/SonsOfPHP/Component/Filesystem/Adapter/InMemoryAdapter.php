@@ -50,7 +50,7 @@ final class InMemoryAdapter implements AdapterInterface, CopyAwareInterface, Mov
     {
         $path = $this->normalizePath($path);
 
-        foreach ($this->files as $key => $value) {
+        foreach (array_keys($this->files) as $key) {
             if ($path === $key || str_starts_with($key, $path)) {
                 unset($this->files[$key]);
             }
@@ -87,7 +87,7 @@ final class InMemoryAdapter implements AdapterInterface, CopyAwareInterface, Mov
     {
         $path = $this->normalizePath($path);
 
-        foreach ($this->files as $key => $contents) {
+        foreach (array_keys($this->files) as $key) {
             $parts = explode('/', $key);
             array_pop($parts);
 
@@ -115,7 +115,7 @@ final class InMemoryAdapter implements AdapterInterface, CopyAwareInterface, Mov
     {
         $path = $this->normalizePath($path);
 
-        foreach ($this->files as $key => $value) {
+        foreach (array_keys($this->files) as $key) {
             if (str_starts_with($key, $path)) {
                 unset($this->files[$key]);
                 return;

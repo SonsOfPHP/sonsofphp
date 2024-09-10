@@ -84,12 +84,7 @@ class StateMachine implements StateMachineInterface
                 }
             }
         }
-
-        if ($this->dispatcher instanceof EventDispatcherInterface && !$this->dispatcher->dispatch(new GuardEvent($subject, $transition, $context, $this))->allows()) {
-            return false;
-        }
-
-        return true;
+        return !($this->dispatcher instanceof EventDispatcherInterface && !$this->dispatcher->dispatch(new GuardEvent($subject, $transition, $context, $this))->allows());
     }
 
     public function apply(object $subject, BackedEnum|string $transition, array $context = []): void
@@ -153,7 +148,7 @@ class StateMachine implements StateMachineInterface
     private function supports(object $subject): bool
     {
         foreach ($this->config['supports'] as $class) {
-            if (is_a($subject, $class, true)) {
+            if ($subject instanceof $class) {
                 return true;
             }
         }
