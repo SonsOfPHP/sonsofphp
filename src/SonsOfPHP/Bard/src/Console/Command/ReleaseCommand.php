@@ -8,7 +8,6 @@ use RuntimeException;
 use SonsOfPHP\Bard\JsonFile;
 use SonsOfPHP\Bard\Worker\File\Bard\UpdateVersion;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateReplaceSection;
-use SonsOfPHP\Component\Json\Json;
 use SonsOfPHP\Component\Version\Version;
 use SonsOfPHP\Component\Version\VersionInterface;
 use Symfony\Component\Console\Input\InputArgument;

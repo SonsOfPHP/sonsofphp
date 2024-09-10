@@ -53,7 +53,7 @@ final class MiddlewareHandlerTest extends TestCase
 
     public function testHandle(): void
     {
-        $middleware = new class () implements MiddlewareInterface {
+        $middleware = new class implements MiddlewareInterface {
             public function __invoke(MessageInterface $message, MiddlewareHandlerInterface $handler): MessageInterface
             {
                 return $message;

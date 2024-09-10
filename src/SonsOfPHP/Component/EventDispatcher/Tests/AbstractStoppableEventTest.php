@@ -21,14 +21,14 @@ final class AbstractStoppableEventTest extends TestCase
      */
     public function testItHasTheCorrectInterface(): void
     {
-        $event = new class () extends AbstractStoppableEvent {};
+        $event = new class extends AbstractStoppableEvent {};
 
         $this->assertInstanceOf(StoppableEventInterface::class, $event);
     }
 
     public function testItCanStopPropagation(): void
     {
-        $event = new class () extends AbstractStoppableEvent {};
+        $event = new class extends AbstractStoppableEvent {};
         $this->assertFalse($event->isPropagationStopped());
 
         $event->stopPropagation();

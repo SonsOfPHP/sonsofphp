@@ -40,7 +40,7 @@ final class HttpHandlerTest extends TestCase
 
     public function testHandle(): void
     {
-        $this->stack->add(new class () implements MiddlewareInterface {
+        $this->stack->add(new class implements MiddlewareInterface {
             public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
             {
                 return new Response();

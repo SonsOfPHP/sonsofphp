@@ -168,7 +168,7 @@ class Stream implements StreamInterface, Stringable
      */
     public function isWritable(): bool
     {
-        return match($this->getMetadata('mode')) {
+        return match ($this->getMetadata('mode')) {
             'w+b', 'a+b',
             'a', 'w', 'r+', 'rb+', 'rw', 'x', 'c' => true,
             default => false,
@@ -200,7 +200,7 @@ class Stream implements StreamInterface, Stringable
      */
     public function isReadable(): bool
     {
-        return match($this->getMetadata('mode')) {
+        return match ($this->getMetadata('mode')) {
             'rb', 'w+b', 'a+b',
             'r', 'a+', 'ab+', 'w+', 'wb+', 'x+', 'xb+', 'c+', 'cb+' => true,
             default => false,

@@ -84,19 +84,19 @@ final class MiddlewareStackTest extends TestCase
     {
         $stack = new MiddlewareStack();
 
-        $one = new class () implements MiddlewareInterface {
+        $one = new class implements MiddlewareInterface {
             public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
             {
                 return $handler->handle($request);
             }
         };
-        $two = new class () implements MiddlewareInterface {
+        $two = new class implements MiddlewareInterface {
             public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
             {
                 return $handler->handle($request);
             }
         };
-        $three = new class () implements MiddlewareInterface {
+        $three = new class implements MiddlewareInterface {
             public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
             {
                 return $handler->handle($request);
@@ -117,19 +117,19 @@ final class MiddlewareStackTest extends TestCase
     {
         $stack = new MiddlewareStack();
 
-        $one = new class () implements MiddlewareInterface {
+        $one = new class implements MiddlewareInterface {
             public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
             {
                 return $handler->handle($request);
             }
         };
-        $two = new class () implements MiddlewareInterface {
+        $two = new class implements MiddlewareInterface {
             public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
             {
                 return $handler->handle($request);
             }
         };
-        $three = new class () implements MiddlewareInterface {
+        $three = new class implements MiddlewareInterface {
             public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
             {
                 return $handler->handle($request);

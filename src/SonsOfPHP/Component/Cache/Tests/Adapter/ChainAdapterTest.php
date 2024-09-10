@@ -21,7 +21,7 @@ use stdClass;
 #[UsesClass(CacheItem::class)]
 final class ChainAdapterTest extends TestCase
 {
-    private $adapters = [];
+    private array $adapters = [];
 
     public function setUp(): void
     {

@@ -39,7 +39,7 @@ final class EventDispatcherTest extends TestCase
 
     public function testDispatchWithStoppedEvent(): void
     {
-        $event = new class () extends AbstractStoppableEvent {};
+        $event = new class extends AbstractStoppableEvent {};
 
         $dispatcher = new EventDispatcher();
         $dispatcher->addListener($event, function ($event): never {

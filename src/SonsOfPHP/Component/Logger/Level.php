@@ -53,7 +53,7 @@ enum Level: int implements LevelInterface
 
     public function getName(): string
     {
-        return match($this) {
+        return match ($this) {
             self::Emergency => 'EMERGENCY',
             self::Alert     => 'ALERT',
             self::Critical  => 'CRITICAL',
@@ -87,7 +87,7 @@ enum Level: int implements LevelInterface
 
     public function toPsrLogLevel(): string
     {
-        return match($this) {
+        return match ($this) {
             self::Emergency => LogLevel::EMERGENCY,
             self::Alert     => LogLevel::ALERT,
             self::Critical  => LogLevel::CRITICAL,

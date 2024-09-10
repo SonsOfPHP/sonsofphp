@@ -32,7 +32,7 @@ final class MiddlewareStackTest extends TestCase
 
     public function testAdd(): void
     {
-        $middleware = new class () implements MiddlewareInterface {
+        $middleware = new class implements MiddlewareInterface {
             public function __invoke(MessageInterface $message, MiddlewareHandlerInterface $handler): MessageInterface
             {
                 return $message;
@@ -49,7 +49,7 @@ final class MiddlewareStackTest extends TestCase
 
     public function testNext(): void
     {
-        $middleware = new class () implements MiddlewareInterface {
+        $middleware = new class implements MiddlewareInterface {
             public function __invoke(MessageInterface $message, MiddlewareHandlerInterface $handler): MessageInterface
             {
                 return $message;
@@ -63,7 +63,7 @@ final class MiddlewareStackTest extends TestCase
 
     public function testCount(): void
     {
-        $middleware = new class () implements MiddlewareInterface {
+        $middleware = new class implements MiddlewareInterface {
             public function __invoke(MessageInterface $message, MiddlewareHandlerInterface $handler): MessageInterface
             {
                 return $message;

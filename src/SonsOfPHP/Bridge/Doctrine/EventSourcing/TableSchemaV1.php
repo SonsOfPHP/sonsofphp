@@ -5,9 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Doctrine\EventSourcing;
 
 use DateTimeImmutable;
-use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Schema\Schema;
-use Doctrine\DBAL\Schema\Table;
 use Doctrine\DBAL\Types\Type;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 

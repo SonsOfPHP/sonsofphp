@@ -25,7 +25,7 @@ final class EvolvableLinkTest extends TestCase
 
     public function testWithHrefWhenStringable(): void
     {
-        $href = new class () implements Stringable {
+        $href = new class implements Stringable {
             public function __toString(): string
             {
                 return 'https://docs.sonsofphp.com';

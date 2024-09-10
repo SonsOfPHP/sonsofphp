@@ -61,7 +61,7 @@ final class ListenerProviderTest extends TestCase
 
     public function testItCanAddSubscriber(): void
     {
-        $subscriber = new class () implements EventSubscriberInterface {
+        $subscriber = new class implements EventSubscriberInterface {
             public static function getSubscribedEvents(): Generator
             {
                 yield 'event.one' => 'handle';

@@ -99,7 +99,7 @@ class Uri implements UriInterface, Stringable
             return $this->port;
         }
 
-        return match($this->getScheme()) {
+        return match ($this->getScheme()) {
             'http' => 80,
             'https' => 443,
             default => null,

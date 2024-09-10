@@ -205,7 +205,7 @@ final class PagerTest extends TestCase
     {
         $pager = new Pager(new CallableAdapter(
             count: fn(): int => 1,
-            slice: fn(): IteratorAggregate => new class () implements IteratorAggregate {
+            slice: fn(): IteratorAggregate => new class implements IteratorAggregate {
                 public function getIterator(): Traversable
                 {
                     return new ArrayIterator([]);
