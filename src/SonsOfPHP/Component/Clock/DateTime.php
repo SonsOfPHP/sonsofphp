@@ -12,6 +12,7 @@ use Stringable;
 final readonly class DateTime implements DateTimeInterface, Stringable
 {
     public function __construct(private DateInterface $date, private TimeInterface $time, private ZoneInterface $zone) {}
+
     /**
      * @see self::toString()
      */
@@ -19,6 +20,7 @@ final readonly class DateTime implements DateTimeInterface, Stringable
     {
         return $this->toString();
     }
+
     public function toString(): string
     {
         return sprintf(
@@ -28,14 +30,17 @@ final readonly class DateTime implements DateTimeInterface, Stringable
             $this->getZone()->getOffset()
         );
     }
+
     public function getDate(): DateInterface
     {
         return $this->date;
     }
+
     public function getTime(): TimeInterface
     {
         return $this->time;
     }
+
     public function getZone(): ZoneInterface
     {
         return $this->zone;

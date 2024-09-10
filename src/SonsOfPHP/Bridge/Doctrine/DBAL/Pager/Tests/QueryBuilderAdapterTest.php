@@ -20,9 +20,10 @@ use SonsOfPHP\Contract\Pager\AdapterInterface;
 final class QueryBuilderAdapterTest extends TestCase
 {
     private MockObject $builder;
+
     private MockObject $result;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->builder = $this->createMock(QueryBuilder::class);
         $this->result = $this->createMock(Result::class);

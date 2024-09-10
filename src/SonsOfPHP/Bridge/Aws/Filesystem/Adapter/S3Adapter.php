@@ -41,6 +41,7 @@ final readonly class S3Adapter implements AdapterInterface, CopyAwareInterface, 
         if (isset($context['mimeType'])) {
             $options['params']['ContentType'] = $context['mimeType'];
         }
+
         try {
             $this->client->upload(
                 $this->bucket,
@@ -49,8 +50,8 @@ final readonly class S3Adapter implements AdapterInterface, CopyAwareInterface, 
                 $context['acl'] ?? $this->acl,
                 $options,
             );
-        } catch (Throwable $exception) {
-            throw new UnableToWriteFileException($exception->getMessage());
+        } catch (Throwable $throwable) {
+            throw new UnableToWriteFileException($throwable->getMessage());
         }
     }
 
@@ -81,8 +82,8 @@ final readonly class S3Adapter implements AdapterInterface, CopyAwareInterface, 
 
         try {
             $this->client->execute($command);
-        } catch (Throwable $exception) {
-            throw new UnableToDeleteFileException($exception->getMessage());
+        } catch (Throwable $throwable) {
+            throw new UnableToDeleteFileException($throwable->getMessage());
         }
     }
 
@@ -134,6 +135,7 @@ final readonly class S3Adapter implements AdapterInterface, CopyAwareInterface, 
             if ($result->hasKey('Contents')) {
                 return true;
             }
+
             return $result->hasKey('CommonPrefixes');
         } catch (Throwable) {
             throw new FilesystemException('Could not figure out if directory exists');

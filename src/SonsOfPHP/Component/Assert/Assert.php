@@ -14,21 +14,35 @@ use Stringable;
 class Assert
 {
     public const INVALID_ARRAY     = 1;
+
     public const INVALID_BOOLEAN   = 2;
+
     public const INVALID_CALLABLE  = 3;
+
     public const INVALID_COUNTABLE = 4;
+
     public const INVALID_DOUBLE    = 5;
+
     public const INVALID_FLOAT     = 6;
+
     public const INVALID_INTEGER   = 7;
+
     public const INVALID_ITERABLE  = 8;
+
     public const INVALID_NULL      = 9;
+
     public const INVALID_NUMERIC   = 10;
+
     public const INVALID_OBJECT    = 11;
+
     public const INVALID_RESOURCE  = 12;
+
     public const INVALID_SCALAR    = 13;
+
     public const INVALID_STRING    = 14;
 
     protected static string $exceptionClass = InvalidArgumentException::class;
+
     protected static bool $throwException   = true;
 
     public static function getExceptionClass(): string

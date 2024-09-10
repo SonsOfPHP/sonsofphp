@@ -27,6 +27,7 @@ class DoctrineDbalMessageRepository implements MessageRepositoryInterface
     {
         $message->getAggregateId();
         $message->getAggregateVersion();
+
         $data = $this->serializer->serialize($message);
 
         $requiredMetadata = [

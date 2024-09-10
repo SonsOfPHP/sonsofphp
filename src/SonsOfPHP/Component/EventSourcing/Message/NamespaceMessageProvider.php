@@ -22,6 +22,7 @@ class NamespaceMessageProvider implements MessageProviderInterface
             if (!$message instanceof MessageInterface) {
                 throw new EventSourcingException(sprintf('Message "%s" does not implement "%s"', $class, MessageInterface::class));
             }
+
             $message = $class;
         }
 

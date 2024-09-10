@@ -21,7 +21,7 @@ final class WormAdapterTest extends TestCase
 {
     private AdapterInterface $adapter;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->adapter = new InMemoryAdapter();
     }

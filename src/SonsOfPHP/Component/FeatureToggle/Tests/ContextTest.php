@@ -58,6 +58,7 @@ final class ContextTest extends TestCase
     {
         $context = new Context();
         $context->set('key', 'value');
+
         $parameters = $context->get();
         $this->assertIsArray($parameters);
         $this->assertArrayHasKey('key', $parameters);

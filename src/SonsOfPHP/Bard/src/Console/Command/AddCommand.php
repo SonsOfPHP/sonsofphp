@@ -51,6 +51,7 @@ final class AddCommand extends AbstractCommand
         if (null === $packages = $bardConfig->getSection('packages')) {
             $packages = [];
         }
+
         foreach ($packages as $pkg) {
             if ($pkg['path'] === $input->getArgument('path')) {
                 $io->error([
@@ -60,6 +61,7 @@ final class AddCommand extends AbstractCommand
                 return self::FAILURE;
             }
         }
+
         $packages[] = [
             'path'       => $input->getArgument('path'),
             'repository' => $input->getArgument('repository'),

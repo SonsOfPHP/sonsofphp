@@ -18,6 +18,7 @@ use SonsOfPHP\Contract\Filesystem\Exception\FilesystemExceptionInterface;
 final class NativeAdapterTest extends TestCase
 {
     private AdapterInterface $adapter;
+
     private string $prefix;
 
     protected function setUp(): void

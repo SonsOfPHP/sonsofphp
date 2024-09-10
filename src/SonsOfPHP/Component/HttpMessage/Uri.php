@@ -15,12 +15,19 @@ use Stringable;
 class Uri implements UriInterface, Stringable
 {
     private string $scheme;
+
     private string $host;
+
     private ?string $path = null;
+
     private ?int $port = null;
+
     private ?string $user = null;
+
     private ?string $password = null;
+
     private ?string $fragment = null;
+
     private array $queryParams = [];
 
     public function __construct(
@@ -128,6 +135,7 @@ class Uri implements UriInterface, Stringable
                         $query .= '=' . rawurlencode((string) $v);
                     }
                 }
+
                 continue;
             }
 
@@ -139,6 +147,7 @@ class Uri implements UriInterface, Stringable
                 continue;
             }
         }
+
         return ltrim($query, '&');
     }
 

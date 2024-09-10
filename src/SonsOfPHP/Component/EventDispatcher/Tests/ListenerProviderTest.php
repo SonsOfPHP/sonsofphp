@@ -56,6 +56,7 @@ final class ListenerProviderTest extends TestCase
         foreach ($provider->getListenersForEventName('event.name') as $listener) {
             $listener();
         }
+
         $this->assertSame('123', ob_get_clean());
     }
 

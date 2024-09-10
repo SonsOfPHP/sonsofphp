@@ -16,6 +16,7 @@ use Psr\Http\Message\UriInterface;
 class Request extends Message implements RequestInterface
 {
     private ?string $requestTarget = null;
+
     private UriInterface $uri;
 
     public function __construct(

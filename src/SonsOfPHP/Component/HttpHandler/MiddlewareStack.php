@@ -17,6 +17,7 @@ use SonsOfPHP\Contract\HttpHandler\MiddlewareStackInterface;
 class MiddlewareStack implements MiddlewareStackInterface
 {
     private array $middlewares = [];
+
     //private $resolver;
 
     //public function __construct($resolver)

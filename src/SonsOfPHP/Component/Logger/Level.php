@@ -36,8 +36,8 @@ enum Level: int implements LevelInterface
                 'info'      => self::Info,
                 'debug'     => self::Debug,
             };
-        } catch (UnhandledMatchError $e) {
-            throw new ValueError(sprintf('"%s" is invalid', $name), $e->getCode(), $e);
+        } catch (UnhandledMatchError $unhandledMatchError) {
+            throw new ValueError(sprintf('"%s" is invalid', $name), $unhandledMatchError->getCode(), $unhandledMatchError);
         }
     }
 

@@ -13,11 +13,17 @@ use Stringable;
 final class Version implements VersionInterface, Stringable
 {
     private const REGEX = '/^(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)(?:-(?P<prerelease>(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+(?P<buildmetadata>[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/';
+
     private int $major;
+
     private int $minor;
+
     private int $patch;
+
     private string $preRelease = '';
+
     private string $build      = '';
+
     public function __construct(string $version)
     {
         if (0 === preg_match(self::REGEX, $version, $matches)) {
@@ -40,6 +46,7 @@ final class Version implements VersionInterface, Stringable
             $this->build = $matches['buildmetadata'];
         }
     }
+
     /**
      * @see self::toString()
      */
@@ -47,10 +54,12 @@ final class Version implements VersionInterface, Stringable
     {
         return $this->toString();
     }
+
     public static function from(string $version): VersionInterface
     {
         return new self($version);
     }
+
     public function toString(): string
     {
         $version = sprintf('%d.%d.%d', $this->getMajor(), $this->getMinor(), $this->getPatch());
@@ -65,26 +74,32 @@ final class Version implements VersionInterface, Stringable
 
         return $version;
     }
+
     public function getMajor(): int
     {
         return $this->major;
     }
+
     public function getMinor(): int
     {
         return $this->minor;
     }
+
     public function getPatch(): int
     {
         return $this->patch;
     }
+
     public function getPreRelease(): ?string
     {
         return $this->preRelease;
     }
+
     public function getBuild(): ?string
     {
         return $this->build;
     }
+
     public function compare(VersionInterface $version): int
     {
         if ($this->getMajor() > $version->getMajor()) {
@@ -113,18 +128,22 @@ final class Version implements VersionInterface, Stringable
 
         return 0;
     }
+
     public function isGreaterThan(VersionInterface $version): bool
     {
         return 1 === $this->compare($version);
     }
+
     public function isLessThan(VersionInterface $version): bool
     {
         return -1 === $this->compare($version);
     }
+
     public function isEqualTo(VersionInterface $version): bool
     {
         return 0 === $this->compare($version);
     }
+
     /**
      * Bumps the patch version by one.
      *
@@ -137,6 +156,7 @@ final class Version implements VersionInterface, Stringable
 
         return $ver;
     }
+
     /**
      * Bumps the minor version by one.
      *
@@ -150,6 +170,7 @@ final class Version implements VersionInterface, Stringable
 
         return $ver;
     }
+
     /**
      * Bumps the major version by one.
      *

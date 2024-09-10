@@ -21,6 +21,7 @@ use SonsOfPHP\Component\HttpMessage\Response;
 final class HttpHandlerTest extends TestCase
 {
     private MockObject $request;
+
     private MiddlewareStack $stack;
 
     protected function setUp(): void

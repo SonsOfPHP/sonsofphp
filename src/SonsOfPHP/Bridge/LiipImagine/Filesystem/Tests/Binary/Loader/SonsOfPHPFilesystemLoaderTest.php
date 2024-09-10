@@ -18,7 +18,9 @@ use Symfony\Component\Mime\MimeTypesInterface;
 final class SonsOfPHPFilesystemLoaderTest extends TestCase
 {
     private FilesystemInterface $filesystem;
+
     private MimeTypesInterface $mimeTypes;
+
     private LoaderInterface $loader;
 
     protected function setUp(): void

@@ -15,6 +15,7 @@ use SonsOfPHP\Contract\Logger\RecordInterface;
 class FileHandler extends AbstractHandler
 {
     private bool $isOpen = false;
+
     private $handle;
 
     public function __construct(
@@ -44,6 +45,7 @@ class FileHandler extends AbstractHandler
         if (false === $this->handle = fopen($this->filename, 'a')) {
             throw new RuntimeException(sprintf('"%s" could not be opened', $this->filename));
         }
+
         $this->isOpen = true;
     }
 

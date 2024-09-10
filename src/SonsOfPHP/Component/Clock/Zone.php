@@ -15,18 +15,22 @@ final readonly class Zone implements ZoneInterface, Stringable
         private string $name,
         private ZoneOffsetInterface $offset,
     ) {}
+
     public function __toString(): string
     {
         return $this->toString();
     }
+
     public function toString(): string
     {
         return $this->name;
     }
+
     public function getName(): string
     {
         return $this->name;
     }
+
     public function getOffset(): ZoneOffsetInterface
     {
         return $this->offset;

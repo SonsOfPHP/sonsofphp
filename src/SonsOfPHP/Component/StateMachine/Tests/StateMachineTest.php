@@ -13,17 +13,21 @@ use SonsOfPHP\Contract\StateMachine\StateMachineInterface;
 final class StateMachineTest extends TestCase
 {
     protected $stateMachine;
+
     protected $subject;
 
     protected function setUp(): void
     {
         $this->subject = new class {
             public string $state = 'draft';
+
             public $data;
+
             public function getState(): string
             {
                 return $this->state;
             }
+
             public function setState(string $state): void
             {
                 $this->state = $state;

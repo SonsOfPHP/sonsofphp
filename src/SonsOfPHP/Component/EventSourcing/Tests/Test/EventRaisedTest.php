@@ -21,7 +21,7 @@ final class EventRaisedTest extends TestCase
 {
     private MockObject $aggregate;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->aggregate = $this->createMock(AggregateInterface::class);
     }

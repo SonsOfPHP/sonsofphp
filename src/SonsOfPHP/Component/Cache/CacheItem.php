@@ -16,6 +16,7 @@ use SonsOfPHP\Component\Cache\Exception\InvalidArgumentException;
 final class CacheItem implements CacheItemInterface
 {
     protected mixed $value;
+
     protected int|float|null $expiry = null;
 
     public function __construct(

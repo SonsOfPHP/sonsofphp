@@ -46,6 +46,7 @@ class StateMachine implements StateMachineInterface
         if (empty($config['supports'])) {
             throw new InvalidArgumentException('"supports" is required');
         }
+
         if (is_string($config['supports'])) {
             $this->config['supports'] = [$config['supports']];
         }
@@ -84,6 +85,7 @@ class StateMachine implements StateMachineInterface
                 }
             }
         }
+
         return !($this->dispatcher instanceof EventDispatcherInterface && !$this->dispatcher->dispatch(new GuardEvent($subject, $transition, $context, $this))->allows());
     }
 

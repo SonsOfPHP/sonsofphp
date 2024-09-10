@@ -115,6 +115,7 @@ class ApcuAdapter implements AdapterInterface
         foreach ($this->deferred as $key => $item) {
             apcu_store($key, $item->get(), 0);
         }
+
         $this->deferred = [];
 
         return true;

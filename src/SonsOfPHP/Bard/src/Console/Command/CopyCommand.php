@@ -51,6 +51,7 @@ final class CopyCommand extends AbstractCommand
         if (!is_file($sourceFile)) {
             throw new RuntimeException(sprintf('The file "%s" is an invalid file.', $sourceFile));
         }
+
         // ---
 
         // ---
@@ -70,6 +71,7 @@ final class CopyCommand extends AbstractCommand
                 $this->getHelper('process')->run($output, $process);
             }
         }
+
         // ---
 
         $io->success(sprintf('File "%s" has been copied to all managed repos.', $sourceFile));

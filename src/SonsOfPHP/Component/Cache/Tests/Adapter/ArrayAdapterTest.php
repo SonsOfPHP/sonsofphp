@@ -41,6 +41,7 @@ final class ArrayAdapterTest extends TestCase
         $adapter = new ArrayAdapter();
         $item = $adapter->getItem('unit.test');
         $item->set('item.value');
+
         $adapter->save($item);
 
         $this->assertTrue($adapter->getItem('unit.test')->isHit());

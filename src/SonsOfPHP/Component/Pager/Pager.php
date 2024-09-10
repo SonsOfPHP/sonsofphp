@@ -18,8 +18,11 @@ use Traversable;
 class Pager implements PagerInterface
 {
     private ?int $count = null;
+
     private int $currentPage = 1;
+
     private ?int $maxPerPage = 10;
+
     private ?iterable $results = null;
 
     /**

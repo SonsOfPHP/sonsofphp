@@ -17,10 +17,12 @@ final readonly class Time implements TimeInterface, Stringable
         private int $second,
         private int $millisecond
     ) {}
+
     public function __toString(): string
     {
         return $this->toString();
     }
+
     public function toString(): string
     {
         return sprintf(
@@ -31,18 +33,22 @@ final readonly class Time implements TimeInterface, Stringable
             $this->getMillisecond()
         );
     }
+
     public function getHour(): int
     {
         return $this->hour;
     }
+
     public function getMinute(): int
     {
         return $this->minute;
     }
+
     public function getSecond(): int
     {
         return $this->second;
     }
+
     public function getMillisecond(): int
     {
         return $this->millisecond;

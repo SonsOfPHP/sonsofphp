@@ -22,23 +22,28 @@ use Stringable;
 final class FixedClock implements ClockInterface, Stringable
 {
     private DateTimeInterface $time;
+
     public function __construct(
         private readonly DateTimeZone $zone = new DateTimeZone('UTC'),
     ) {
         $this->tick();
     }
+
     public function __toString(): string
     {
         return 'FixedClock[' . $this->zone->getName() . ']';
     }
+
     public function now(): DateTimeImmutable
     {
         return $this->time;
     }
+
     public function getZone(): DateTimeZone
     {
         return $this->zone;
     }
+
     /**
      * Updates the current clock time to be when the tick happened.
      */
@@ -46,6 +51,7 @@ final class FixedClock implements ClockInterface, Stringable
     {
         $this->time = new DateTimeImmutable('now', $this->zone);
     }
+
     /**
      * Updates the clock to a specific date and time that can be in the past or
      * in the future.

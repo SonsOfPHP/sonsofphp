@@ -59,6 +59,7 @@ final class CacheItemTest extends TestCase
     {
         $item = new CacheItem('testing');
         $item->expiresAfter(3600);
+
         $itemAsArray = (array) $item;
         $this->assertNotNull($itemAsArray["\0*\0expiry"]);
 

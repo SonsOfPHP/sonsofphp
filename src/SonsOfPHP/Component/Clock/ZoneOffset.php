@@ -14,10 +14,12 @@ final readonly class ZoneOffset implements ZoneOffsetInterface, Stringable
     public function __construct(
         private int $seconds,
     ) {}
+
     public function __toString(): string
     {
         return $this->toString();
     }
+
     public function toString(): string
     {
         $lead    = '+';
@@ -35,10 +37,12 @@ final readonly class ZoneOffset implements ZoneOffsetInterface, Stringable
             $minutes
         );
     }
+
     public function getSeconds(): int
     {
         return $this->seconds;
     }
+
     public function getHours(): int
     {
         return (int) ($this->getSeconds() / 60 / 60);

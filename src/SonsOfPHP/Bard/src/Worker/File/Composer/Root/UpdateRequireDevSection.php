@@ -34,6 +34,7 @@ final readonly class UpdateRequireDevSection implements WorkerInterface
                 if (array_key_exists($package, $rootRequireDev)) {
                     unset($rootRequireDev[$package]);
                 }
+
                 continue;
             }
 
@@ -45,6 +46,7 @@ final readonly class UpdateRequireDevSection implements WorkerInterface
                 if (array_key_exists($package, $rootRequire)) {
                     unset($rootRequire[$package]);
                 }
+
                 continue;
             }
 

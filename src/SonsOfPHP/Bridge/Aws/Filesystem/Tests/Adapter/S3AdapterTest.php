@@ -20,9 +20,13 @@ use SonsOfPHP\Contract\Filesystem\Adapter\MoveAwareInterface;
 final class S3AdapterTest extends TestCase
 {
     private StreamInterface $stream;
+
     private ResultInterface $result;
+
     private CommandInterface $command;
+
     private S3ClientInterface $client;
+
     private AdapterInterface $adapter;
 
     protected function setUp(): void

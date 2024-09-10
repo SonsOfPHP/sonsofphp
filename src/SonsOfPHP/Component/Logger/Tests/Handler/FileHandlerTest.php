@@ -24,7 +24,7 @@ use SonsOfPHP\Contract\Logger\HandlerInterface;
 #[UsesClass(Level::class)]
 final class FileHandlerTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (file_exists('/tmp/testing.log')) {
             unlink('/tmp/testing.log');

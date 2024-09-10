@@ -15,7 +15,9 @@ use SonsOfPHP\Component\EventSourcing\Metadata;
 abstract class AbstractAggregate implements AggregateInterface
 {
     private readonly AggregateIdInterface $id;
+
     private AggregateVersionInterface $version;
+
     private array $pendingEvents = [];
 
     final public function __construct(AggregateIdInterface|string $id)

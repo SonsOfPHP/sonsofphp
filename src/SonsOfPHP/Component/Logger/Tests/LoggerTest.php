@@ -28,9 +28,10 @@ use SonsOfPHP\Contract\Logger\HandlerInterface;
 final class LoggerTest extends TestCase
 {
     private MockObject $enricher;
+
     private MockObject $handler;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->enricher = $this->createMock(EnricherInterface::class);
         $this->handler = $this->createMock(HandlerInterface::class);

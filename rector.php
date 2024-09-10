@@ -44,6 +44,7 @@ return RectorConfig::configure()
         typeDeclarations: true,
         deadCode: true,
         codeQuality: true,
+        codingStyle: true,
     )
     ->withImportNames(
         importShortClasses: false,

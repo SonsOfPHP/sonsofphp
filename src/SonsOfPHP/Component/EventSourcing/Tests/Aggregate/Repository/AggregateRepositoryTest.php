@@ -38,7 +38,9 @@ use TypeError;
 final class AggregateRepositoryTest extends TestCase
 {
     private string $aggregateClass;
+
     private EventDispatcherInterface $eventDispatcher;
+
     private MessageRepositoryInterface $messageRepository;
 
     protected function setUp(): void

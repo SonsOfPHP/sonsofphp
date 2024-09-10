@@ -18,8 +18,11 @@ class Message implements MessageInterface
     public const DEFAULT_PROTOCOL_VERSION = '1.1';
 
     private string $protocolVersion = self::DEFAULT_PROTOCOL_VERSION;
+
     private array $headers = [];
+
     private array $normalizedHeaders = [];
+
     private StreamInterface $body;
 
     /**
@@ -96,6 +99,7 @@ class Message implements MessageInterface
         if (!is_array($value)) {
             $value = [$value];
         }
+
         $that->normalizedHeaders[$name] = $value;
 
         array_walk($value, function (&$val, $key): void {

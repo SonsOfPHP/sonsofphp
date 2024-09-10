@@ -13,6 +13,7 @@ use SonsOfPHP\Contract\Mailer\MessageInterface;
 class Message implements MessageInterface
 {
     private array $headers = [];
+
     private string $body;
 
     public function setSubject(string $subject): self

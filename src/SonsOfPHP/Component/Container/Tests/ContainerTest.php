@@ -51,6 +51,7 @@ final class ContainerTest extends TestCase
     {
         $container = new Container();
         $container->set('service.id', fn(): stdClass => new stdClass());
+
         $service = $container->get('service.id');
         $this->assertSame($service, $container->get('service.id'));
     }

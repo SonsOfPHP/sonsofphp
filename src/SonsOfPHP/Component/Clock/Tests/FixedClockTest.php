@@ -80,6 +80,7 @@ final class FixedClockTest extends TestCase
     {
         $clock = new FixedClock();
         $clock->tickTo('2020-01-01 00:00:00');
+
         $tick = $clock->now();
         $this->assertSame('2020-01-01 00:00:00', $tick->format('Y-m-d H:i:s'));
     }
