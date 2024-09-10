@@ -4,7 +4,7 @@ title: Message Storage
 
 # Message Repository
 
-The message repository will store the event messages where and how you want them to be stored. This is usually a database but could be anywhere. The [Aggregate Repository](../../index/index.md) uses the Message Repository to save the event messages that were raised.
+The message repository will store the event messages where and how you want them to be stored. This is usually a database but could be anywhere. The [Aggregate Repository](../aggregates/aggregate-repository.md) uses the Message Repository to save the event messages that were raised.
 
 ## Usage
 

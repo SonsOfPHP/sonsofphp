@@ -3,15 +3,17 @@ title: Pager
 description: PHP Pager
 ---
 
+# Pager
+
 Simple yet powerful pagination
 
-## Installation
+### Installation
 
 ```shell
 composer require sonsofphp/pager
 ```
 
-## Usage
+### Usage
 
 Basic Usage
 
@@ -66,16 +68,15 @@ if ($pager->hasNextPage()) {
 }
 ```
 
-## Custom Adapters
+### Custom Adapters
 
-Creating Custom Adapters is easy. You can take a look at the available adapters
-to see how easy it is.
+Creating Custom Adapters is easy. You can take a look at the available adapters to see how easy it is.
 
-Please see the [Pager Contract](../../contracts/pager/index.md) to learn more.
+Please see the [Pager Contract](../contracts/pager/index.md) to learn more.
 
-## Available Adapters
+### Available Adapters
 
-### ArrayAdapter
+#### ArrayAdapter
 
 ```php
 <?php
@@ -85,7 +86,7 @@ use SonsOfPHP\Component\Pager\Adapter\ArrayAdapter;
 $adapter = new ArrayAdapter($results);
 ```
 
-### CallableAdabter
+#### CallableAdabter
 
 Will take any `callable` arguments.
 
@@ -104,12 +105,9 @@ $adapter = new CallableAdapter(
 );
 ```
 
-### ArrayCollectionAdapter (doctrine/collections)
+#### ArrayCollectionAdapter (doctrine/collections)
 
-!!! warning "Requires `sonsofphp/pager-doctrine-collections`"
-    ```shell
-    composer require sonsofphp/pager-doctrine-collections
-    ```
+!!! warning "Requires `sonsofphp/pager-doctrine-collections`" `shell composer require sonsofphp/pager-doctrine-collections`
 
 ```php
 <?php
@@ -122,12 +120,9 @@ $collection = new ArrayCollection();
 $adapter = new ArrayCollectionAdapter($collection);
 ```
 
-### QueryBuilderAdapter (doctrine/dbal)
+#### QueryBuilderAdapter (doctrine/dbal)
 
-!!! warning "Requires `sonsofphp/pager-doctrine-dbal`"
-    ```shell
-    composer require sonsofphp/pager-doctrine-dbal
-    ```
+!!! warning "Requires `sonsofphp/pager-doctrine-dbal`" `shell composer require sonsofphp/pager-doctrine-dbal`
 
 ```php
 <?php
@@ -142,12 +137,9 @@ $adapter = new QueryBuilderAdapter($builder, function (QueryBuilder $builder): v
 });
 ```
 
-### QueryBuilderAdapter (doctrine/orm)
+#### QueryBuilderAdapter (doctrine/orm)
 
-!!! warning "Requires `sonsofphp/pager-doctrine-orm`"
-    ```shell
-    composer require sonsofphp/pager-doctrine-orm
-    ```
+!!! warning "Requires `sonsofphp/pager-doctrine-orm`" `shell composer require sonsofphp/pager-doctrine-orm`
 
 ```php
 <?php
