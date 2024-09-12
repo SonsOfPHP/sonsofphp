@@ -55,7 +55,8 @@
         "psr/http-server-middleware-implementation": "^1.0",
         "sonsofphp/http-handler-implementation": "0.3.x-dev",
         "sonsofphp/mailer-implementation": "0.3.x-dev",
-        "sonsofphp/state-machine-implementation": "0.3.x-dev"
+        "sonsofphp/state-machine-implementation": "0.3.x-dev",
+        "sonsofphp/registry-implementation": "0.3.x-dev"
     },
     "require": {
         "php": ">=8.2",
@@ -87,7 +88,8 @@
         "psr/http-server-handler": "^1.0",
         "psr/http-server-middleware": "^1.0",
         "aws/aws-sdk-php": "^3.0",
-        "liip/imagine-bundle": "^2.0"
+        "liip/imagine-bundle": "^2.0",
+        "sonsofphp/registry-contract": "0.3.x-dev"
     },
     "replace": {
         "sonsofphp/bard": "self.version",
@@ -135,7 +137,9 @@
         "sonsofphp/filesystem-liip-imagine": "self.version",
         "sonsofphp/state-machine": "self.version",
         "sonsofphp/state-machine-contract": "self.version",
-        "sonsofphp/assert": "self.version"
+        "sonsofphp/assert": "self.version",
+        "sonsofphp/registry": "self.version",
+        "sonsofphp/registry-contract": "self.version"
     },
     "autoload": {
         "psr-4": {
@@ -183,6 +187,8 @@
             "SonsOfPHP\\Contract\\Logger\\": "src/SonsOfPHP/Contract/Logger",
             "SonsOfPHP\\Contract\\Money\\": "src/SonsOfPHP/Contract/Money",
             "SonsOfPHP\\Contract\\Pager\\": "src/SonsOfPHP/Contract/Pager",
+            "SonsOfPHP\\Component\\Registry\\": "src/SonsOfPHP/Component/Registry",
+            "SonsOfPHP\\Contract\\Registry\\": "src/SonsOfPHP/Contract/Registry",
             "SonsOfPHP\\Contract\\Version\\": "src/SonsOfPHP/Contract/Version"
         },
         "exclude-from-classmap": [
@@ -217,7 +223,8 @@
             "src/SonsOfPHP/Bridge/Doctrine/Collections/Pager/Tests",
             "src/SonsOfPHP/Bridge/Doctrine/DBAL/Pager/Tests",
             "src/SonsOfPHP/Bridge/Doctrine/ORM/Pager/Tests",
-            "src/SonsOfPHP/Component/Version/Tests"
+            "src/SonsOfPHP/Component/Version/Tests",
+            "src/SonsOfPHP/Component/Registry/Tests"
         ]
     },
     "extra": {

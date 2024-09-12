@@ -178,6 +178,14 @@
             "repository": "git@github.com:SonsOfPHP/pager-contract.git"
         },
         {
+            "path": "src/SonsOfPHP/Component/Registry",
+            "repository": "git@github.com:SonsOfPHP/registry.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Contract/Registry",
+            "repository": "git@github.com:SonsOfPHP/registry-contract.git"
+        },
+        {
             "path": "src/SonsOfPHP/Contract/Version",
             "repository": "git@github.com:SonsOfPHP/version-contract.git"
         }
