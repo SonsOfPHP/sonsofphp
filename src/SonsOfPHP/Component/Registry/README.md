@@ -1,41 +1,5 @@
-Sons of PHP - State Machine
-===========================
-
-```php
-<?php
-
-use SonsOfPHP\Component\StateMachine\StateMachine;
-
-$sm = new StateMachine([
-    'graph' => 'order',
-    'supports' => [
-        OrderInterface::class,
-    ],
-    'transitions' => [
-        'create' => [
-            'from' => 'draft',
-            'to' => 'new',
-        ],
-        'fulfill' => [
-            'from' => 'new',
-            'to' => 'fulfilled',
-        ],
-        'cancel' => [
-            'from' => ['draft', 'new', 'fulfilled'],
-            'to' => 'fulfilled',
-        ],
-    ],
-]);
-
-// Check if state can change
-$sm->can($order, 'create');
-
-// Apply transition
-$sm->apply($order, 'fulfil');
-
-// Get Current State
-$sm->getState($order);
-```
+Sons of PHP - Registry
+======================
 
 ## Learn More
 
@@ -47,6 +11,6 @@ $sm->getState($order);
 [discussions]: https://github.com/orgs/SonsOfPHP/discussions
 [mother-repo]: https://github.com/SonsOfPHP/sonsofphp
 [contributing]: https://docs.sonsofphp.com/contributing/
-[docs]: https://docs.sonsofphp.com/components/state-machine/
-[issues]: https://github.com/SonsOfPHP/sonsofphp/issues?q=is%3Aopen+is%3Aissue+label%3AStateMachine
-[pull-requests]: https://github.com/SonsOfPHP/sonsofphp/pulls?q=is%3Aopen+is%3Apr+label%3AStateMachine
+[docs]: https://docs.sonsofphp.com/components/registry/
+[issues]: https://github.com/SonsOfPHP/sonsofphp/issues?q=is%3Aopen+is%3Aissue+label%3ARegistry
+[pull-requests]: https://github.com/SonsOfPHP/sonsofphp/pulls?q=is%3Aopen+is%3Apr+label%3ARegistry
