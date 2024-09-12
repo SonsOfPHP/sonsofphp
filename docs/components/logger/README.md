@@ -1,18 +1,19 @@
 ---
 title: Logger (PSR-3 Compatible)
+description: PSR-3 Logger
 ---
 
 # Logger
 
 Simple yet powerful PSR-3 Logger.
 
-### Installation
+## Installation
 
 ```shell
 composer require sonsofphp/logger
 ```
 
-### Usage
+## Usage
 
 Simple Usage Example
 
@@ -54,20 +55,20 @@ $handler->setFilter(new LogLevelFilter(Level::Alert));
 $logger->addHandler($handler);
 ```
 
-#### Handlers
+## Handlers
 
 Handlers are responsible for "handling" the log message. The handler will send the log message where it's been configured to. Out of the box, it supports a few different handlers.
 
-#### Enrichers
+## Enrichers
 
 Enrichers will add extra context to the log message. This could be the git hash or memory usage, or anything else you want.
 
 Enrichers are also used to modify context values in case someone adds sensitive values in there.
 
-#### Filters
+## Filters
 
 Filters can be used to determine it the log message should be handled. Custom filters could be specific to an HTTP Request so that ONLY requests matching a specific path would be handled. You could also make a custom filter to log only authenticated users
 
-#### Formatters
+## Formatters
 
 Formatters are used by Handlers to format the message that needs to be logged.

@@ -1,16 +1,17 @@
 ---
 title: Container
+description: PSR-11 Container
 ---
 
-This is a very simple lightweight PSR-11 Container implementation.
+# Container
 
-## Installation
+### Installation
 
 ```shell
 composer require sonsofphp/container
 ```
 
-## Usage
+### Usage
 
 ```php
 <?php

@@ -1,20 +1,21 @@
 # Table of contents
 
-* [Home](README.md)
+* [🏠 Home](README.md)
 * [Contributor Covenant Code of Conduct](code-of-conduct.md)
 * [Getting Help](getting-help.md)
 * [Reporting Issues](reporting-issues.md)
 * [Security Policy](security.md)
 
-## Bard
+## 🪈 Bard
 
-* [Bard Overview](bard/bard-overview.md)
+* [Overview](bard/overview.md)
+* [Commands](bard/commands.md)
 
-## Components
+## 📦 Components
 
-* [Components Overview](components/index.md)
 * [Assert](components/assert.md)
-* [Cache](components/cache.md)
+* [Cache](components/cache/README.md)
+  * [Adapters](components/cache/adapters.md)
 * [Clock](components/clock.md)
 * [Container](components/container.md)
 * [Cookie](components/cookie.md)
@@ -37,13 +38,19 @@
 * [Http Message](components/http-message.md)
 * [JSON](components/json.md)
 * [Link](components/link.md)
-* [Logger](components/logger.md)
-* [Mailer](components/mailer.md)
+* [Logger](components/logger/README.md)
+  * [Handlers](components/logger/handlers.md)
+  * [Enrichers](components/logger/enrichers.md)
+  * [Filters](components/logger/filters.md)
+  * [Formatters](components/logger/formatters.md)
+* [Mailer](components/mailer/README.md)
+  * [Transports](components/mailer/transports.md)
 * [Money](components/money/README.md)
   * [Currency Providers](components/money/currency-providers.md)
   * [Operators](components/money/operators.md)
   * [Queries](components/money/queries.md)
-* [Pager](components/pager.md)
+* [Pager](components/pager/README.md)
+  * [Adapters](components/pager/adapters.md)
 * [State Machine](components/state-machine.md)
 * [Version](components/version.md)
 
@@ -58,7 +65,7 @@
 * [Pager](contracts/pager.md)
 * [State Machine](contracts/state-machine.md)
 
-## Contributing
+## 💁 Contributing
 
 * [Contributing Overview](contributing/index.md)
 * [Contributing Code](contributing/code.md)

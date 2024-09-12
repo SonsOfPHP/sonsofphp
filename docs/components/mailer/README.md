@@ -2,15 +2,17 @@
 title: Mailer
 ---
 
+# Mailer
+
 Simple PHP Mailer
 
-## Installation
+### Installation
 
 ```shell
 composer require sonsofphp/mailer
 ```
 
-## Usage
+### Usage
 
 ```php
 <?php
@@ -22,8 +24,8 @@ use SonsOfPHP\Component\Mailer\Transport\NullTransport;
 $message = new Message();
 $message
     ->setTo('joshua@sonsofphp.com')
-    ->setFrom('From', 'joshua@sonsofphp.com')
-    ->setSubject('Subject', 'Test Subject')
+    ->setFrom('joshua@sonsofphp.com')
+    ->setSubject('Test Subject')
     ->setBody($body)
 ;
 
@@ -31,7 +33,7 @@ $mailer = new Mailer(new NullTransport());
 $mailer->send($message);
 ```
 
-### Middleware
+#### Middleware
 
 The `Mailer` class supports various middleware as well.
 

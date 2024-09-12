@@ -2,7 +2,7 @@
 title: Cache - Overview
 ---
 
-Used for cache stuff
+# Cache
 
 ## Installation
 
@@ -59,8 +59,6 @@ $pool = new ChainAdapter([
 ]);
 ```
 
-The `ChainAdapter` will read from all pools and return the first result it
-finds. So in the above example, if the cache item is not found in
-`ArrayAdapter`, it will look for it in the `ApcuAdapter` pool.
+The `ChainAdapter` will read from all pools and return the first result it finds. So in the above example, if the cache item is not found in `ArrayAdapter`, it will look for it in the `ApcuAdapter` pool.
 
 The `ChainAdapter` will also write to and delete from all pools.

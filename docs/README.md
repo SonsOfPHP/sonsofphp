@@ -1,41 +1,36 @@
 ---
 title: Home
+description: Sons of PHP has many libraries and projects for developers.
+cover: .gitbook/assets/top-rocker.png
+coverY: 0
+layout:
+  cover:
+    visible: true
+    size: full
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
 ---
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/SonsOfPHP/.github/main/assets/top-rocker.png" />
-</div>
-<hr>
+# 🏠 Home
 
-# Welcome to the Sons of PHP
+## Welcome to the Sons of PHP
 
-## Reporting Issues
+### Reporting Issues
 
-Please use the main [Sons of PHP Repository][mother-repo] to report any [issues][issues] that
-you find.
+Please use the main [Sons of PHP Repository](https://github.com/SonsOfPHP/sonsofphp) to report any [issues](https://github.com/SonsOfPHP/sonsofphp/issues) that you find.
 
-If you find any issues with the documentation, please submit issues in the
-dedicated [Documentation Repository][docs-repo].
+### Contributing
 
-## Contributing
+Please submit [Pull Requests](https://github.com/SonsOfPHP/sonsofphp/pulls) to the main [Sons of PHP Repository](https://github.com/SonsOfPHP/sonsofphp).
 
-Please submit [Pull Requests][pull-requests] to the main [Sons of PHP Repository][mother-repo].
+### Getting Help
 
-If you would like to help with documentation, please use the dedicated
-[Documentation Repository][docs-repo] to submit pull requests.
-
-## Getting Help
-
-Please visit the [Sons of PHP Organization Discussions][discussions] section to
-ask questions and get more help.
-
-## Hanging Out
-
-Drop by the [Discord Server][discord].
-
-[discussions]: https://github.com/orgs/SonsOfPHP/discussions
-[mother-repo]: https://github.com/SonsOfPHP/sonsofphp
-[pull-requests]: https://github.com/SonsOfPHP/sonsofphp/pulls
-[issues]: https://github.com/SonsOfPHP/sonsofphp/issues
-[docs-repo]: https://github.com/SonsOfPHP/sonsofphp
-[discord]: https://discord.gg/sdVxNhFqND
+Please visit the [Sons of PHP Organization Discussions](https://github.com/orgs/SonsOfPHP/discussions) section to ask questions and get more help.
