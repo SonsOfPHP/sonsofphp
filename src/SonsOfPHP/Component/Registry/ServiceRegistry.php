@@ -33,11 +33,15 @@ class ServiceRegistry implements ServiceRegistryInterface
     public function register(string $identifier, object $service): void
     {
         if ($this->has($identifier)) {
-            throw new ExistingServiceException();
+            throw new ExistingServiceException(sprintf('Service "%s" already exists', $identifier));
         }
 
         if (!$service instanceof $this->interface) {
-            throw new \InvalidArgumentException();
+            throw new \InvalidArgumentException(sprintf(
+                'Wrong Service Type. Expected "%s" got "%s"',
+                $this->interface,
+                $service::class
+            ));
         }
 
         $this->services[$identifier] = $service;
@@ -49,7 +53,7 @@ class ServiceRegistry implements ServiceRegistryInterface
     public function unregister(string $identifier): void
     {
         if (!$this->has($identifier)) {
-            throw new NonExistingServiceException();
+            throw new NonExistingServiceException(sprintf('Service "%s" does not exist', $identifier));
         }
 
         unset($this->services[$identifier]);
@@ -69,7 +73,7 @@ class ServiceRegistry implements ServiceRegistryInterface
     public function get(string $identifier): object
     {
         if (!$this->has($identifier)) {
-            throw new NonExistingServiceException();
+            throw new NonExistingServiceException(sprintf('Service "%s" does not exist', $identifier));
         }
 
         return $this->services[$identifier];
