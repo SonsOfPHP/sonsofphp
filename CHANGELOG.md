@@ -10,6 +10,7 @@ To get the diff between two versions, go to https://github.com/SonsOfPHP/sonsofp
 
 ## [Unreleased]
 
+* [PR #226](https://github.com/SonsOfPHP/sonsofphp/pull/226) [Registry] New Component and Contract
 * [PR #225](https://github.com/SonsOfPHP/sonsofphp/pull/225) Maintenance
 * [PR #222](https://github.com/SonsOfPHP/sonsofphp/pull/222) [Assert] New Component
 * [PR #221](https://github.com/SonsOfPHP/sonsofphp/pull/221) [StateMachine] New Contract and Component

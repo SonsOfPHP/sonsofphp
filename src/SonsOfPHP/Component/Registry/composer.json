@@ -1,18 +1,12 @@
 {
-    "name": "sonsofphp/registry-contract",
+    "name": "sonsofphp/registry",
     "type": "library",
-    "description": "Registry Contracts",
+    "description": "",
     "keywords": [
-        "abstractions",
-        "contracts",
-        "decoupling",
-        "interfaces",
-        "interoperability",
-        "standards",
         "service-registry",
         "registry"
     ],
-    "homepage": "https://github.com/SonsOfPHP/registry-contract",
+    "homepage": "https://github.com/SonsOfPHP/registry",
     "license": "MIT",
     "authors": [
         {
@@ -27,13 +21,20 @@
     },
     "autoload": {
         "psr-4": {
-            "SonsOfPHP\\Contract\\Registry\\": ""
-        }
+            "SonsOfPHP\\Component\\Registry\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.2"
+        "php": ">=8.2",
+        "sonsofphp/registry-contract": "0.3.x-dev"
+    },
+    "provide": {
+        "sonsofphp/registry-implementation": "0.3.x-dev"
     },
     "extra": {
         "sort-packages": true,
