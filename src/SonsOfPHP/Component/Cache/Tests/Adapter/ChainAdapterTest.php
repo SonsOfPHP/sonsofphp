@@ -15,10 +15,12 @@ use SonsOfPHP\Component\Cache\Adapter\ChainAdapter;
 use SonsOfPHP\Component\Cache\CacheItem;
 use SonsOfPHP\Component\Cache\Exception\CacheException;
 use stdClass;
+use SonsOfPHP\Component\Cache\Adapter\AbstractAdapter;
 
 #[CoversClass(ChainAdapter::class)]
 #[UsesClass(ArrayAdapter::class)]
 #[UsesClass(CacheItem::class)]
+#[UsesClass(AbstractAdapter::class)]
 final class ChainAdapterTest extends TestCase
 {
     private array $adapters = [];

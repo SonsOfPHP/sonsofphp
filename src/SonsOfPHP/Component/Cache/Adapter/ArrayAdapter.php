@@ -10,7 +10,7 @@ use SonsOfPHP\Component\Cache\CacheItem;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class ArrayAdapter implements AdapterInterface
+final class ArrayAdapter extends AbstractAdapter
 {
     private array $values = [];
 
@@ -24,16 +24,6 @@ class ArrayAdapter implements AdapterInterface
         }
 
         return new CacheItem($key, false);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getItems(array $keys = []): iterable
-    {
-        foreach ($keys as $key) {
-            yield $key => $this->getItem($key);
-        }
     }
 
     /**
@@ -71,38 +61,10 @@ class ArrayAdapter implements AdapterInterface
     /**
      * {@inheritdoc}
      */
-    public function deleteItems(array $keys): bool
-    {
-        foreach ($keys as $key) {
-            $this->deleteItem($key);
-        }
-
-        return true;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function save(CacheItemInterface $item): bool
     {
         $this->values[$item->getKey()] = $item->get();
 
-        return true;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function saveDeferred(CacheItemInterface $item): bool
-    {
-        return $this->save($item);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function commit(): bool
-    {
         return true;
     }
 }

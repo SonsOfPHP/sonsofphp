@@ -12,9 +12,11 @@ use Psr\Cache\CacheItemPoolInterface;
 use SonsOfPHP\Component\Cache\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Cache\Adapter\ArrayAdapter;
 use SonsOfPHP\Component\Cache\CacheItem;
+use SonsOfPHP\Component\Cache\Adapter\AbstractAdapter;
 
 #[CoversClass(ArrayAdapter::class)]
 #[UsesClass(CacheItem::class)]
+#[UsesClass(AbstractAdapter::class)]
 final class ArrayAdapterTest extends TestCase
 {
     /**
