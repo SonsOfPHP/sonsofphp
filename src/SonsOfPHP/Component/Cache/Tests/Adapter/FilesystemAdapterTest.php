@@ -63,4 +63,9 @@ final class FilesystemAdapterTest extends TestCase
         $this->assertTrue($this->adapter->deleteItem('test'));
         $this->assertFalse($this->adapter->hasItem('test'));
     }
+
+    public function testItWillReturnFalseWhenDeletingKeyThatDoesNotExist(): void
+    {
+        $this->assertFalse($this->adapter->deleteItem('test'));
+    }
 }

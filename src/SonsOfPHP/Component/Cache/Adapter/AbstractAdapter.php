@@ -51,6 +51,7 @@ abstract class AbstractAdapter implements AdapterInterface, LoggerAwareInterface
         $isOk = true;
         foreach ($keys as $key) {
             if (!$this->deleteItem($key)) {
+                $this->logger?->debug(sprintf('Unable to delete key "%s".', $key));
                 $isOk = false;
             }
         }
@@ -77,6 +78,7 @@ abstract class AbstractAdapter implements AdapterInterface, LoggerAwareInterface
 
         foreach ($this->deferred as $item) {
             if (!$this->save($item)) {
+                $this->logger?->debug(sprintf('Unable to save key "%s".', $item->getKey()));
                 $isOk = false;
             }
         }

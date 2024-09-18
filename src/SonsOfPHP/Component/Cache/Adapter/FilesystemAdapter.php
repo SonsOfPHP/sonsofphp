@@ -70,22 +70,18 @@ final class FilesystemAdapter extends AbstractAdapter
      */
     public function clear(): bool
     {
-        if (is_dir($this->directory)) {
-            // Prune all files and directories
-            $it = new \RecursiveDirectoryIterator($this->directory, \RecursiveDirectoryIterator::SKIP_DOTS);
-            $files = new \RecursiveIteratorIterator($it, \RecursiveIteratorIterator::CHILD_FIRST);
-            foreach ($files as $file) {
-                if ($file->isDir()) {
-                    rmdir($file->getPathname());
-                } else {
-                    unlink($file->getPathname());
-                }
-            }
+        $it    = new \RecursiveDirectoryIterator($this->directory, \RecursiveDirectoryIterator::SKIP_DOTS);
+        $files = new \RecursiveIteratorIterator($it, \RecursiveIteratorIterator::CHILD_FIRST);
 
-            return rmdir($this->directory);
+        foreach ($files as $file) {
+            if ($file->isDir()) {
+                rmdir($file->getPathname());
+            } else {
+                unlink($file->getPathname());
+            }
         }
 
-        return true;
+        return rmdir($this->directory);
     }
 
     /**
@@ -95,11 +91,14 @@ final class FilesystemAdapter extends AbstractAdapter
     {
         CacheItem::validateKey($key);
 
-        if (file_exists($this->getFile($key))) {
-            return unlink($this->getFile($key));
+        $filename = $this->getFile($key);
+
+        if (!file_exists($filename)) {
+            $this->logger?->debug(sprintf('Cache file "%s" does not exist', $filename));
+            return false;
         }
 
-        return true;
+        return unlink($filename);
     }
 
     /**
@@ -107,15 +106,15 @@ final class FilesystemAdapter extends AbstractAdapter
      */
     public function save(CacheItemInterface $item): bool
     {
-        if (!is_dir($this->directory)) {
-            @mkdir($this->directory, $this->defaultPermission, true);
-        }
+        $filename = $this->getFile($item->getKey());
 
-        if (false === file_put_contents($this->getFile($item->getKey()), $this->marshaller->marshall($item->get()))) {
+        if (false === file_put_contents($filename, $this->marshaller->marshall($item->get()))) {
+            $this->logger?->debug(sprintf('Could not write "%s"', $filename));
             return false;
         }
 
-        if (false === chmod($this->getFile($item->getKey()), $this->defaultPermission)) {
+        if (false === chmod($filename, $this->defaultPermission)) {
+            $this->logger?->debug(sprintf('Could not chmod "%s"', $filename));
             return false;
         }
 
@@ -124,7 +123,8 @@ final class FilesystemAdapter extends AbstractAdapter
         }
 
         $mtime = (int) round($item->expiry());
-        return touch($this->getFile($item->getKey()), $mtime);
+
+        return touch($filename, $mtime);
     }
 
     /**
