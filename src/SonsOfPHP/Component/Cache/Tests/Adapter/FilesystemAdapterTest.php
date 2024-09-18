@@ -5,15 +5,13 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Cache\Tests\Adapter;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
-use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
+use SonsOfPHP\Component\Cache\Adapter\AbstractAdapter;
 use SonsOfPHP\Component\Cache\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Cache\Adapter\FilesystemAdapter;
 use SonsOfPHP\Component\Cache\CacheItem;
-use SonsOfPHP\Component\Cache\Adapter\AbstractAdapter;
 use SonsOfPHP\Component\Cache\Marshaller\SerializableMarshaller;
 
 #[CoversClass(FilesystemAdapter::class)]

@@ -10,6 +10,7 @@ To get the diff between two versions, go to https://github.com/SonsOfPHP/sonsofp
 
 ## [Unreleased]
 
+* [PR #227](https://github.com/SonsOfPHP/sonsofphp/pull/227) [Cache] FilesystemAdapter, Marshallers, and other updates
 * [PR #226](https://github.com/SonsOfPHP/sonsofphp/pull/226) [Registry] New Component and Contract
 * [PR #225](https://github.com/SonsOfPHP/sonsofphp/pull/225) Maintenance
 * [PR #222](https://github.com/SonsOfPHP/sonsofphp/pull/222) [Assert] New Component

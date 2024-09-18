@@ -17,8 +17,7 @@ final class ApcuAdapter extends AbstractAdapter
     public function __construct(
         int $defaultTTL = 0,
         ?MarshallerInterface $marshaller = null,
-    )
-    {
+    ) {
         if (!extension_loaded('apcu') || !filter_var(ini_get('apc.enabled'), FILTER_VALIDATE_BOOL) || false === apcu_enabled()) {
             throw new CacheException('APCu extension is required.');
         }

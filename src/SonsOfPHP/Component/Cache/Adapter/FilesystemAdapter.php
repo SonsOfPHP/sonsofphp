@@ -6,7 +6,6 @@ namespace SonsOfPHP\Component\Cache\Adapter;
 
 use Psr\Cache\CacheItemInterface;
 use SonsOfPHP\Component\Cache\CacheItem;
-use SonsOfPHP\Component\Cache\Exception\CacheException;
 use SonsOfPHP\Component\Cache\Marshaller\MarshallerInterface;
 
 /**
@@ -16,11 +15,10 @@ final class FilesystemAdapter extends AbstractAdapter
 {
     public function __construct(
         private ?string $directory = null,
-        private int $defaultPermission = 0777,
+        private readonly int $defaultPermission = 0o777,
         int $defaultTTL = 0,
         ?MarshallerInterface $marshaller = null,
-    )
-    {
+    ) {
         parent::__construct(
             defaultTTL: $defaultTTL,
             marshaller: $marshaller,
@@ -31,7 +29,7 @@ final class FilesystemAdapter extends AbstractAdapter
         }
 
         if (null === $this->directory) {
-            $this->directory = sys_get_temp_dir().\DIRECTORY_SEPARATOR.'sonsofphp-cache';
+            $this->directory = sys_get_temp_dir() . \DIRECTORY_SEPARATOR . 'sonsofphp-cache';
         }
 
         if (!is_dir($this->directory)) {
@@ -83,6 +81,7 @@ final class FilesystemAdapter extends AbstractAdapter
                     unlink($file->getPathname());
                 }
             }
+
             return rmdir($this->directory);
         }
 
@@ -123,6 +122,7 @@ final class FilesystemAdapter extends AbstractAdapter
         if (null === $item->expiry()) {
             $item->expiresAfter($this->defaultTTL);
         }
+
         $mtime = (int) round($item->expiry());
         return touch($this->getFile($item->getKey()), $mtime);
     }
@@ -132,10 +132,10 @@ final class FilesystemAdapter extends AbstractAdapter
      */
     private function getFile(string $key): string
     {
-        $hash = str_replace('/', '-', base64_encode(hash('xxh128', static::class.$key, true)));
-        $dir = $this->directory.strtoupper($hash[0].\DIRECTORY_SEPARATOR.$hash[1].\DIRECTORY_SEPARATOR);
+        $hash = str_replace('/', '-', base64_encode(hash('xxh128', self::class . $key, true)));
+        $dir = $this->directory . strtoupper($hash[0] . \DIRECTORY_SEPARATOR . $hash[1] . \DIRECTORY_SEPARATOR);
         @mkdir($dir, $this->defaultPermission, true);
 
-        return $dir.substr($hash, 2, 20);
+        return $dir . substr($hash, 2, 20);
     }
 }

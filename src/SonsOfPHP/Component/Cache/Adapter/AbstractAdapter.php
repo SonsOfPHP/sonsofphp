@@ -7,8 +7,6 @@ namespace SonsOfPHP\Component\Cache\Adapter;
 use Psr\Cache\CacheItemInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
-use SonsOfPHP\Component\Cache\CacheItem;
-use SonsOfPHP\Component\Cache\Exception\CacheException;
 use SonsOfPHP\Component\Cache\Marshaller\MarshallerInterface;
 use SonsOfPHP\Component\Cache\Marshaller\SerializableMarshaller;
 
@@ -25,7 +23,7 @@ abstract class AbstractAdapter implements AdapterInterface, LoggerAwareInterface
         protected int $defaultTTL = 0,
         protected ?MarshallerInterface $marshaller = null,
     ) {
-        if (null === $this->marshaller) {
+        if (!$this->marshaller instanceof MarshallerInterface) {
             $this->marshaller = new SerializableMarshaller();
         }
     }
@@ -77,7 +75,7 @@ abstract class AbstractAdapter implements AdapterInterface, LoggerAwareInterface
     {
         $isOk = true;
 
-        foreach ($this->deferred as $key => $item) {
+        foreach ($this->deferred as $item) {
             if (!$this->save($item)) {
                 $isOk = false;
             }

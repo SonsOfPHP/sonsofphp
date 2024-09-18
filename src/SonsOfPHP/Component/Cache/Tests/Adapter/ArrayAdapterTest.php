@@ -9,10 +9,10 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
+use SonsOfPHP\Component\Cache\Adapter\AbstractAdapter;
 use SonsOfPHP\Component\Cache\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Cache\Adapter\ArrayAdapter;
 use SonsOfPHP\Component\Cache\CacheItem;
-use SonsOfPHP\Component\Cache\Adapter\AbstractAdapter;
 
 #[CoversClass(ArrayAdapter::class)]
 #[UsesClass(CacheItem::class)]
