@@ -23,10 +23,10 @@ use SonsOfPHP\Component\Cache\Exception\CacheException;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-class ChainAdapter implements AdapterInterface
+final readonly class ChainAdapter implements AdapterInterface
 {
     public function __construct(
-        private readonly array $adapters,
+        private array $adapters,
     ) {
         foreach ($this->adapters as $adapter) {
             if (!$adapter instanceof AdapterInterface) {

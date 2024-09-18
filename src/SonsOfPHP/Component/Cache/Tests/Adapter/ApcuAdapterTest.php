@@ -10,13 +10,17 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
+use SonsOfPHP\Component\Cache\Adapter\AbstractAdapter;
 use SonsOfPHP\Component\Cache\Adapter\AdapterInterface;
 use SonsOfPHP\Component\Cache\Adapter\ApcuAdapter;
 use SonsOfPHP\Component\Cache\CacheItem;
+use SonsOfPHP\Component\Cache\Marshaller\SerializableMarshaller;
 
 #[RequiresPhpExtension('apcu')]
 #[CoversClass(ApcuAdapter::class)]
 #[UsesClass(CacheItem::class)]
+#[UsesClass(AbstractAdapter::class)]
+#[UsesClass(SerializableMarshaller::class)]
 final class ApcuAdapterTest extends TestCase
 {
     protected function setUp(): void

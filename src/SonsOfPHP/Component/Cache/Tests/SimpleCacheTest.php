@@ -145,4 +145,18 @@ final class SimpleCacheTest extends TestCase
         $this->assertSame('default.value', $items['item.key']);
         $this->assertSame('item2.value', $items['item2']);
     }
+
+    public function testItWillSaveWhenTTLIsSet(): void
+    {
+        $item = $this->createMock(CacheItemInterface::class);
+        $item->expects($this->once())->method('set');
+        $item->expects($this->once())->method('expiresAfter');
+
+        $this->adapter->expects($this->once())->method('getItem')->willReturn($item);
+        $this->adapter->expects($this->once())->method('save')->willReturn(true);
+
+        $cache = new SimpleCache($this->adapter);
+
+        $this->assertTrue($cache->set('item.key', 'item.value', 60));
+    }
 }

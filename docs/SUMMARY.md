@@ -16,6 +16,7 @@
 * [Assert](components/assert.md)
 * [Cache](components/cache/README.md)
   * [Adapters](components/cache/adapters.md)
+  * [Marshallers](components/cache/marshallers.md)
 * [Clock](components/clock.md)
 * [Container](components/container.md)
 * [Cookie](components/cookie.md)

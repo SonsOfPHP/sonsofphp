@@ -100,4 +100,9 @@ final class CacheItem implements CacheItemInterface
 
         return $this;
     }
+
+    public function expiry(): int|float|null
+    {
+        return $this->expiry;
+    }
 }
