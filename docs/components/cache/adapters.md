@@ -17,6 +17,9 @@ Requires the APCu extension is loaded and enabled.
 use SonsOfPHP\Componenet\Cache\Adapter\ApcuAdapter;
 
 $cache = new ApcuAdapter();
+
+// You can set a default TTL in seconds and Marshaller as well.
+$cache = new ApcuAdapter(60, new CustomMarshaller());
 ```
 
 ## ArrayAdapter
@@ -47,6 +50,22 @@ $cache = new ChainAdapter([
     new ArrayAdapter(),
     new ApcuAdapter(),
 ]);
+```
+
+## FilesystemAdapter
+
+Stores cache files on disk
+
+```php
+<?php
+
+use SonsOfPHP\Componenet\Cache\Adapter\FilesystemAdapter;
+
+$cache = new FilesystemAdapter();
+
+// You can configure the directory, default permissions, default ttl, and
+// marshaller
+$cache = new FilesystemAdapter('/path/to/cache', 0777, 60, new CustomMarshaller());
 ```
 
 ## NullAdapter

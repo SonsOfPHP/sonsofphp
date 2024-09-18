@@ -129,4 +129,12 @@ final class CacheItemTest extends TestCase
 
         yield 'reserved' => ['contains@reserved}characters'];
     }
+
+    public function testItCanReturnExpiry(): void
+    {
+        $item = new CacheItem('testing');
+        $this->assertNull($item->expiry());
+        $item->expiresAfter(3600);
+        $this->assertNotNull($item->expiry());
+    }
 }

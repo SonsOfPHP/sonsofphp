@@ -31,3 +31,8 @@ use SonsOfPHP\Componenet\Cache\Marshaller\JsonMarshaller;
 
 $marshaller = new JsonMarshaller();
 ```
+
+# Custom Marshaller
+
+You can create a custom marshaller. For example, you could create one the
+encrypts/decrypts the values.
