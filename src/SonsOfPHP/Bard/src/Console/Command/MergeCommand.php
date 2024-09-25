@@ -10,13 +10,13 @@ use SonsOfPHP\Bard\Worker\File\Composer\Package\Authors;
 use SonsOfPHP\Bard\Worker\File\Composer\Package\BranchAlias;
 use SonsOfPHP\Bard\Worker\File\Composer\Package\Funding;
 use SonsOfPHP\Bard\Worker\File\Composer\Package\Support;
+use SonsOfPHP\Bard\Worker\File\Composer\Root\ClearSection;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateAutoloadDevSection;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateAutoloadSection;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateProvideSection;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateReplaceSection;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateRequireDevSection;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateRequireSection;
-use SonsOfPHP\Component\Json\Json;
 use Symfony\Component\Console\Helper\HelperInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -31,20 +31,11 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 final class MergeCommand extends AbstractCommand
 {
-    private readonly Json $json;
-
-    private array $bardConfig;
+    private JsonFile $bardConfig;
 
     private string $mainComposerFile;
 
     private ?HelperInterface $formatter = null;
-
-    public function __construct()
-    {
-        $this->json = new Json();
-
-        parent::__construct();
-    }
 
     protected function configure(): void
     {
@@ -63,9 +54,7 @@ final class MergeCommand extends AbstractCommand
             throw new RuntimeException(sprintf('"%s" file does not exist', $bardConfigFile));
         }
 
-        $this->bardConfig = $this->json->getDecoder()
-            ->objectAsArray()
-            ->decode(file_get_contents($bardConfigFile));
+        $this->bardConfig = new JsonFile($bardConfigFile);
 
         $this->mainComposerFile = $input->getOption('working-dir') . '/composer.json';
         if (!file_exists($this->mainComposerFile)) {
@@ -83,10 +72,14 @@ final class MergeCommand extends AbstractCommand
         $rootComposerJsonFile = new JsonFile($input->getOption('working-dir') . '/composer.json');
 
         // Clean out a few of the sections in root composer.json file
-        $rootComposerJsonFile = $rootComposerJsonFile->setSection('autoload', []);
-        $rootComposerJsonFile = $rootComposerJsonFile->setSection('autoload-dev', []);
+        $rootComposerJsonFile = $rootComposerJsonFile->with(new ClearSection('autoload'));
+        $rootComposerJsonFile = $rootComposerJsonFile->with(new ClearSection('autoload-dev'));
+        $rootComposerJsonFile = $rootComposerJsonFile->with(new ClearSection('require'));
+        $rootComposerJsonFile = $rootComposerJsonFile->with(new ClearSection('require-dev'));
+        $rootComposerJsonFile = $rootComposerJsonFile->with(new ClearSection('replace'));
+        $rootComposerJsonFile = $rootComposerJsonFile->with(new ClearSection('provide'));
 
-        foreach ($this->bardConfig['packages'] as $pkg) {
+        foreach ($this->bardConfig->getSection('packages') as $pkg) {
             $pkgComposerFile = realpath($input->getOption('working-dir') . '/' . $pkg['path'] . '/composer.json');
             if (!file_exists($pkgComposerFile)) {
                 $output->writeln(sprintf('No "%s" found, skipping', $packageComposerFile));

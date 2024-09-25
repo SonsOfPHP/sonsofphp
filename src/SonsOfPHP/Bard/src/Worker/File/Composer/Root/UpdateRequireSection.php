@@ -35,6 +35,8 @@ final readonly class UpdateRequireSection implements WorkerInterface
             $rootRequire[$package] = $version;
         }
 
+        ksort($rootRequire);
+
         return $rootComposerJsonFile->setSection('require', $rootRequire);
     }
 }

@@ -27,6 +27,8 @@ final readonly class UpdateProvideSection implements WorkerInterface
             $rootProvideSection[$pkg] = $version;
         }
 
+        ksort($rootProvideSection);
+
         return $rootComposerJsonFile->setSection('provide', $rootProvideSection);
     }
 }

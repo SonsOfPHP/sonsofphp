@@ -17,6 +17,11 @@ final readonly class Support implements WorkerInterface
     public function apply(JsonFile $pkgComposerJsonFile): JsonFile
     {
         $rootSupportSection = $this->rootComposerJsonFile->getSection('support');
+        $pkgSupportSection  = $pkgComposerJsonFile->getSection('support');
+
+        // Docs may be different for package so we do not want to overwrite
+        // that value
+        $rootSupportSection['docs'] = $pkgSupportSection['docs'];
 
         return $pkgComposerJsonFile->setSection('support', $rootSupportSection);
     }

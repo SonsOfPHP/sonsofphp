@@ -53,6 +53,8 @@ final readonly class UpdateRequireDevSection implements WorkerInterface
             $rootRequireDev[$package] = $version;
         }
 
+        ksort($rootRequireDev);
+
         return $rootComposerJsonFile->setSection('require-dev', $rootRequireDev);
     }
 }
