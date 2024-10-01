@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bard;
 
-use SonsOfPHP\Component\Json\Json;
-
 /**
  * Used to manage bard.json and composer.json files
  *
@@ -15,20 +13,15 @@ final class JsonFile
 {
     private array $config = [];
 
-    private Json $json;
-
     public function __construct(
         private string $filename,
     ) {
-        $this->json     = new Json();
         $this->load();
     }
 
     private function load(): void
     {
-        $this->config = $this->json->getDecoder()
-            ->objectAsArray()
-            ->decode(file_get_contents($this->filename));
+        $this->config = json_decode(file_get_contents($this->filename), true);
     }
 
     public function getFilename(): string
@@ -43,7 +36,7 @@ final class JsonFile
      */
     public function getSection(string $section): mixed
     {
-        if (!isset($this->config)) {
+        if ([] === $this->config) {
             $this->load();
         }
 
@@ -54,7 +47,7 @@ final class JsonFile
      */
     public function setSection(string $section, $value): self
     {
-        if (!isset($this->config)) {
+        if ([] === $this->config) {
             $this->load();
         }
 
@@ -64,23 +57,21 @@ final class JsonFile
         return $clone;
     }
 
-    /**
-     */
     public function toJson(): string
     {
-        return $this->json->getEncoder()
-            ->prettyPrint()
-            ->unescapedUnicode()
-            ->unescapedSlashes()
-            ->encode($this->config);
+        return json_encode($this->config, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 
     /**
-     * $operator = new Operator();
      * $jsonFile->with(new ExampleOperator());
      */
     public function with($operator): self
     {
         return $operator->apply($this);
+    }
+
+    public function save(): void
+    {
+        file_put_contents($this->filename, $this->toJson());
     }
 }

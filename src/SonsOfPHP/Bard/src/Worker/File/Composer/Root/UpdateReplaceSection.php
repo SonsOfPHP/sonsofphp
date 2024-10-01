@@ -20,6 +20,7 @@ final readonly class UpdateReplaceSection implements WorkerInterface
         $pkgName     = $this->pkgComposerJsonFile->getSection('name');
 
         $rootReplace[$pkgName] = 'self.version';
+        ksort($rootReplace);
 
         return $rootComposerJsonFile->setSection('replace', $rootReplace);
     }
