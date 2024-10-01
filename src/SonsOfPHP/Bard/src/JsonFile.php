@@ -15,7 +15,9 @@ final class JsonFile
 
     public function __construct(
         private string $filename,
-    ) {}
+    ) {
+        $this->load();
+    }
 
     private function load(): void
     {
@@ -66,5 +68,10 @@ final class JsonFile
     public function with($operator): self
     {
         return $operator->apply($this);
+    }
+
+    public function save(): void
+    {
+        file_put_contents($this->filename, $this->toJson());
     }
 }

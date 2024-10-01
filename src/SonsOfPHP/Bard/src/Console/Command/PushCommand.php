@@ -50,7 +50,7 @@ final class PushCommand extends AbstractCommand
                 ['git', 'subtree', 'push', '-P', $pkg['path'], $pkg['repository'], $input->getOption('branch')],
             ];
 
-            $io->text(sprintf('Pushing <info>%s</>', $pkgName));
+            $output->writeln($this->getHelper('formatter')->formatSection($pkgName, 'Pushing...'));
             foreach ($commands as $cmd) {
                 $process = new Process($cmd);
                 $io->text($process->getCommandLine());
@@ -60,6 +60,9 @@ final class PushCommand extends AbstractCommand
                         ->wait();
                 }
             }
+
+            $output->writeln($this->getHelper('formatter')->formatSection($pkgName, '...Done'));
+            $io->newLine();
         }
 
         $io->success('All Packages have been published.');

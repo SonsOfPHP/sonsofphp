@@ -7,9 +7,11 @@ namespace SonsOfPHP\Bard\Console\Command;
 use RuntimeException;
 use SonsOfPHP\Bard\JsonFile;
 use SonsOfPHP\Bard\Worker\File\Bard\UpdateVersion;
+use SonsOfPHP\Bard\Worker\File\Composer\Package\BranchAlias;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateReplaceSection;
 use SonsOfPHP\Component\Version\Version;
 use SonsOfPHP\Component\Version\VersionInterface;
+use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -26,9 +28,13 @@ final class ReleaseCommand extends AbstractCommand
 {
     private JsonFile $bardConfig;
 
-    private VersionInterface|Version|null $releaseVersion = null;
+    private VersionInterface|null $releaseVersion = null;
 
     private bool $isDryRun = true;
+
+    private JsonFile $rootComposerJsonFile;
+
+    private SymfonyStyle $io;
 
     protected function configure(): void
     {
@@ -40,14 +46,14 @@ final class ReleaseCommand extends AbstractCommand
             ->addArgument('release', InputArgument::REQUIRED, 'Next Release you want to start? Use format <major>.<minor>.<patch>-<PreRelease>+<BuildMetadata> or "major", "minor", "patch"')
             ->setHelp(
                 <<<'EOT'
-                    This command allows you to create a new release and will update the various
-                    repos that have been configured. The current version can be found in the
-                    `bard.json` file. This will will update the version based on the type of release
-                    that you are doing.
+                                        This command allows you to create a new release and will update the various
+                                        repos that have been configured. The current version can be found in the
+                                        `bard.json` file. This will will update the version based on the type of release
+                                        that you are doing.
 
-                        <comment>%command.full_name%</comment>
+                                            <comment>%command.full_name%</comment>
 
-                    Read more at https://docs.SonsOfPHP.com
+                                        Read more at https://docs.SonsOfPHP.com
                     EOT
             );
     }
@@ -83,52 +89,25 @@ final class ReleaseCommand extends AbstractCommand
         }
 
         $this->isDryRun = $input->getOption('dry-run');
+        $this->io       = new SymfonyStyle($input, $output);
+
+        $this->rootComposerJsonFile = new JsonFile($input->getOption('working-dir') . '/composer.json');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $formatter = $this->getHelper('formatter');
-        $io        = new SymfonyStyle($input, $output);
         if ($this->isDryRun) {
-            $io->note('dry-run enabled no changes will be made');
+            $this->io->note('dry-run enabled no changes will be made');
         }
 
-        $io->text([
-            sprintf('Bumping release from <info>%s</> to <info>%s</>', $this->bardConfig->getSection('version'), $this->releaseVersion->toString()),
-        ]);
+        $this->io->text(sprintf('Bumping release from <info>%s</> to <info>%s</>', $this->bardConfig->getSection('version'), $this->releaseVersion->toString()));
 
-        // Make sure we have the latest changes
-        $process = new Process(['git', 'pull', 'origin', $input->getOption('branch')]);
-        $io->text($process->getCommandLine());
-        if (!$this->isDryRun) {
-            $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
-        }
-
-        $rootComposerJsonFile = new JsonFile($input->getOption('working-dir') . '/composer.json');
+        // 0. Make sure we have the latest changes
+        $this->pullLatestChanges($input, $output);
 
         // 1. Update "replace" in main composer.json with the Package Names
         // "package/name": "self.version"
-        $io->section('updating root composer.json "replace" section with package information');
-        foreach ($this->bardConfig->getSection('packages') as $pkg) {
-            $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir') . '/' . $pkg['path'] . '/composer.json'));
-            $output->writeln([
-                $formatter->formatSection($pkgComposerJsonFile->getSection('name'), 'Updating root <info>composer.json</info>'),
-            ]);
-            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateReplaceSection($pkgComposerJsonFile));
-        }
-
-        $output->writeln([
-            'saving root composer.json',
-        ]);
-        if (!$this->isDryRun) {
-            file_put_contents($rootComposerJsonFile->getFilename(), $rootComposerJsonFile->toJson());
-        }
-
-        $output->writeln([
-            'root composer.json file saved',
-        ]);
-        $io->newLine();
-        $io->success('root "composer.json" update complete');
+        $this->updateReplace($input, $output);
 
         // @todo
         // 2. Update Changelog
@@ -136,9 +115,61 @@ final class ReleaseCommand extends AbstractCommand
         // Adds new headline at top for unreleased features
 
         // 3. Tag Release and push
-        $io->newLine();
-        $io->section(sprintf('updating mother repo for release %s', $this->releaseVersion->toString()));
+        $this->tagReleaseAndPushMonorepo($input, $output);
 
+        // 4. Subtree Split for each package
+        $this->tagReleaseAndPushPackages($input, $output);
+
+        // 5. Update branch alias in all composer.json files
+        $this->updateBranchAliasForPackages($input, $output);
+
+        // 6. Update bard.json with current version
+        $this->updateBardConfigVersion();
+
+        // 7. Commit and push updates
+        $this->commitAndPushNewChanges($input, $output);
+
+        $this->io->success('Congrations on your new release');
+        if ($this->isDryRun) {
+            $this->io->note([
+                'dry-run was enabled so no files were changed and no code was pushed',
+            ]);
+        }
+
+        return self::SUCCESS;
+    }
+
+    private function pullLatestChanges(InputInterface $input, OutputInterface $output): void
+    {
+        $this->io->section('Making sure branch is up to date with latest changes');
+        $process = new Process(['git', 'pull', 'origin', $input->getOption('branch')]);
+        $this->io->text($process->getCommandLine());
+        if (!$this->isDryRun) {
+            $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+        }
+
+        $this->io->success('Done');
+    }
+
+    private function updateReplace(InputInterface $input, OutputInterface $output): void
+    {
+        $this->io->section('updating root composer.json "replace" section with package information');
+        foreach ($this->bardConfig->getSection('packages') as $pkg) {
+            $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir') . '/' . $pkg['path'] . '/composer.json'));
+            $output->writeln($this->getHelper('formatter')->formatSection($pkgComposerJsonFile->getSection('name'), 'Updating root <info>composer.json</info>'));
+            $this->rootComposerJsonFile = $this->rootComposerJsonFile->with(new UpdateReplaceSection($pkgComposerJsonFile));
+        }
+
+        if (!$this->isDryRun) {
+            $this->rootComposerJsonFile->save();
+        }
+
+        $this->io->success('Done');
+    }
+
+    private function tagReleaseAndPushMonorepo(InputInterface $input, OutputInterface $output): void
+    {
+        $this->io->section(sprintf('updating mother repo for release %s', $this->releaseVersion->toString()));
         $processCommands = [
             ['git', 'add', '.'],
             ['git', 'commit', '--allow-empty', '-m', sprintf('"Preparing for Release v%s"', $this->releaseVersion->toString())],
@@ -148,22 +179,22 @@ final class ReleaseCommand extends AbstractCommand
         ];
         foreach ($processCommands as $cmd) {
             $process = new Process($cmd);
-            $io->text($process->getCommandLine());
+            $this->io->text($process->getCommandLine());
             if (!$this->isDryRun) {
                 $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
             }
         }
 
-        $io->success('Mother Repository Released');
+        $this->io->success('Mother Repository Released');
+    }
 
-        // 4. Subtree Split for each package
-        // @todo run split command
-        $io->newLine();
-        $io->title(sprintf('updating package repos with release %s', $this->releaseVersion->toString()));
+    private function tagReleaseAndPushPackages(InputInterface $input, OutputInterface $output): void
+    {
+        $this->io->section(sprintf('updating package repos with release %s', $this->releaseVersion->toString()));
         foreach ($this->bardConfig->getSection('packages') as $pkg) {
             $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir') . '/' . $pkg['path'] . '/composer.json'));
             $pkgName             = $pkgComposerJsonFile->getSection('name');
-            $io->text(sprintf('Package <info>%s</> is being released', $pkgName));
+            $output->writeln($this->getHelper('formatter')->formatSection($pkgName, 'Releasing...'));
             $processCommands = [
                 ['git', 'subtree', 'split', '-P', $pkg['path'], '-b', $pkgName],
                 ['git', 'checkout', $pkgName],
@@ -176,56 +207,83 @@ final class ReleaseCommand extends AbstractCommand
             ];
             foreach ($processCommands as $cmd) {
                 $process = new Process($cmd);
-                $io->text($process->getCommandLine());
+                $this->io->text($process->getCommandLine());
                 if (!$this->isDryRun) {
                     $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
                 }
             }
 
-            $io->newLine();
+            $output->writeln($this->getHelper('formatter')->formatSection($pkgName, '...Done'));
+            $this->io->newLine();
         }
 
-        $io->text('All Packages have been Released');
-        // $io->success('All Packages have been Released');
+        $this->io->success('All Packages have been Released');
+    }
 
-        // 5. Update branch alias in all composer.json files
-        // - Only if update is major or minor
-        // $io->section('Updating Branch Alias in root and packages');
+    /**
+     * Foreach package, this will update the extra.branch-alias to the same
+     * value as the root composer.json value
+     */
+    private function updateBranchAliasForPackages(InputInterface $input, OutputInterface $output): void
+    {
+        $this->io->section('Updating the Branch Alias for root and packages');
+        $extra = $this->rootComposerJsonFile->getSection('extra');
+        $branchAlias = explode('.', $this->releaseVersion->toString());
+        $branchAlias[2] = 'x-dev';
+        $branchAlias = implode('.', $branchAlias);
+        $extra['branch-alias'] = $branchAlias;
+        $this->rootComposerJsonFile->setSection('extra', $extra);
+        $this->io->text('root composer.json updated to ' . $branchAlias);
+        if (!$this->isDryRun) {
+            $this->rootComposerJsonFile->save();
+        }
 
-        // 6. Update bard.json with current version
-        $io->section('Updating version in bard.json');
+        foreach ($this->bardConfig->getSection('packages') as $pkg) {
+            $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir') . '/' . $pkg['path'] . '/composer.json'));
+            $pkgComposerJsonFile = $pkgComposerJsonFile->with(new BranchAlias($this->rootComposerJsonFile));
+            $output->writeln($this->getHelper('formatter')->formatSection($pkgComposerJsonFile->getSection('name'), 'Updated branch alias to "' . $branchAlias . '"'));
+            if (!$this->isDryRun) {
+                $pkgComposerJsonFile->save();
+            }
+        }
 
+        $this->io->success('Done');
+    }
+
+    private function updateBardConfigVersion(): void
+    {
+        $this->io->section('Updating version in bard.json');
         $this->bardConfig = $this->bardConfig->with(new UpdateVersion($this->releaseVersion));
         if (!$this->isDryRun) {
-            file_put_contents($this->bardConfig->getFilename(), $this->bardConfig->toJson());
+            $this->bardConfig->save();
         }
 
-        $io->text('bard.json updated with new version');
+        $this->io->success('bard.json updated with new version');
+    }
 
-        // 7. Commit and push updates
-        // $io->section('Updating mother repo');
-        // $processCommands = [
-        //    ['git', 'add', '.'],
-        //    ['git', 'commit', '-m', '"starting release"'],
-        //    ['git', 'push', 'origin', $input->getOption('branch')],
-        // ];
-        // foreach ($processCommands as $cmd) {
-        //    $process = new Process($cmd);
-        //    $io->text($process->getCommandLine());
-        //    if (!$this->isDryRun) {
-        //        $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
-        //    }
-        // }
-        // $io->text('done');
-
-        $io->newLine();
-        $io->success('Congrations on your new release');
-        if ($this->isDryRun) {
-            $io->note([
-                'dry-run was enabled so no files were changed and no code was pushed',
-            ]);
+    private function commitAndPushNewChanges(InputInterface $input, OutputInterface $output): void
+    {
+        $this->io->section('Commiting and new Pushing Changes');
+        $processCommands = [
+            ['git', 'add', '.'],
+            ['git', 'commit', '-m', '"starting next release"'],
+            ['git', 'push', 'origin', $input->getOption('branch')],
+        ];
+        foreach ($processCommands as $cmd) {
+            $process = new Process($cmd);
+            $this->io->text($process->getCommandLine());
+            if (!$this->isDryRun) {
+                $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+            }
         }
 
-        return self::SUCCESS;
+        $cmdInput = new ArrayInput([
+            'command'     => 'push',
+            '--dry-run'   => $this->isDryRun,
+            '--branch'    => $input->getOption('branch'),
+        ]);
+        $this->getApplication()->doRun($cmdInput, $output);
+
+        $this->io->success('Done');
     }
 }
