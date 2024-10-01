@@ -10,6 +10,8 @@ To get the diff between two versions, go to https://github.com/SonsOfPHP/sonsofp
 
 ## [Unreleased]
 
+## [0.3.9]
+
 * [PR #228](https://github.com/SonsOfPHP/sonsofphp/pull/228) [Bard] Various updates
 * [PR #227](https://github.com/SonsOfPHP/sonsofphp/pull/227) [Cache] FilesystemAdapter, Marshallers, and other updates
 * [PR #226](https://github.com/SonsOfPHP/sonsofphp/pull/226) [Registry] New Component and Contract
@@ -54,7 +56,8 @@ Forgot to add stuff ;p
 * [EventSourcing] Deprecated classes in Symfony Bridge to better organize the library
 * [CQRS] Adding Symfony Bundle
 
-[Unreleased]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.8...HEAD
+[Unreleased]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.10...HEAD
+[0.3.9]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.9...v0.3.10
 [0.3.8]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.8...v0.3.9
 [0.3.7]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.7...v0.3.8
 [0.3.6]: https://github.com/SonsOfPHP/sonsofphp/compare/v0.3.6...v0.3.7
