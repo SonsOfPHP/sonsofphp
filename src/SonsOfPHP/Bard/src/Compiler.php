@@ -44,6 +44,10 @@ final class Compiler
         $finder = new Finder();
         $finder->files()
             ->ignoreVCS(true)
+            ->notPath('composer.json')
+            ->notPath('composer.lock')
+            ->notPath('phpunit.xml.dist')
+            ->notPath('*.md')
             ->notPath('docs')
             ->notPath('Tests')
             ->notPath('tests')
@@ -64,8 +68,34 @@ final class Compiler
     private function addFile(\Phar $phar, \SplFileInfo $file): void
     {
         $contents = file_get_contents((string) $file);
+        $contents = $this->stripeWhitespace($contents);
+        if ('LICENSE' === $file->getFilename()) {
+            $contents = "\n" . $contents . "\n";
+        }
 
         $phar->addFromString($this->getLocalName($file), $contents);
+    }
+
+    private function stripeWhitespace(string $contents): string
+    {
+        $output = '';
+        foreach (token_get_all($contents) as $token) {
+            if (is_string($token)) {
+                $output .= $token;
+            } elseif (in_array($token[0], [T_COMMENT, T_DOC_COMMENT])) {
+                $output .= '';
+            } elseif (T_WHITESPACE === $token[0]) {
+                $whitespace = preg_replace('{[ \t]+}', ' ', $token[1]);
+                $whitespace = preg_replace('{(?:\r\n|\r|\n)}', "\n", $whitespace);
+                $whitespace = preg_replace('{\n +}', "\n", $whitespace);
+                $whitespace = preg_replace('{\n}', '', $whitespace);
+                $output .= $whitespace;
+            } else {
+                $output .= $token[1];
+            }
+        }
+
+        return $output;
     }
 
     private function getLocalName(\SplFileInfo $file): string
