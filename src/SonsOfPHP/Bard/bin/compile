@@ -1,0 +1,11 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__.'/../vendor/autoload.php';
+
+use SonsOfPHP\Bard\Compiler;
+
+//$dist = realpath(__DIR__ . '/../dist') . '/bard.phar';
+
+$compiler = new Compiler();
+$compiler->compile();
