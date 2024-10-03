@@ -5,7 +5,8 @@ require __DIR__.'/../vendor/autoload.php';
 
 use SonsOfPHP\Bard\Compiler;
 
-//$dist = realpath(__DIR__ . '/../dist') . '/bard.phar';
+error_reporting(-1);
+ini_set('display_errors', '1');
 
 $compiler = new Compiler();
 $compiler->compile();
