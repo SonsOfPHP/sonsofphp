@@ -52,6 +52,7 @@
   * [Queries](components/money/queries.md)
 * [Pager](components/pager/README.md)
   * [Adapters](components/pager/adapters.md)
+* [Pay](components/pay.md)
 * [Registry](components/registry.md)
 * [State Machine](components/state-machine.md)
 * [Version](components/version.md)
@@ -65,6 +66,7 @@
 * [Filesystem](contracts/filesystem.md)
 * [Mailer](contracts/mailer.md)
 * [Pager](contracts/pager.md)
+* [Pay](contracts/pay.md)
 * [Registry](contracts/registry.md)
 * [State Machine](contracts/state-machine.md)
 
