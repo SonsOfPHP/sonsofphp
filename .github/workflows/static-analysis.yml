@@ -55,14 +55,14 @@ jobs:
                   **.php
             - name: Psalm on modified PHP files only
               if: steps.changed-php-files.outputs.any_changed == 'true' && github.ref != 'refs/heads/main'
-              run: php -dxdebug.mode=off $(PSALM) --long-progress --monochrome --output-format=github $(CHANGED_FILES)
+              run: php -dxdebug.mode=off $(PSALM) --ignore-baseline --long-progress --monochrome --output-format=github $(CHANGED_FILES)
               env:
                 XDEBUG_MODE: off
                 PSALM: tools/psalm/vendor/bin/psalm
                 CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
             - name: Psalm on mainline for all files
               if: github.ref == 'refs/heads/main'
-              run: php -dxdebug.mode=off $(PSALM) --long-progress --monochrome --output-format=github --report=results.sarif
+              run: php -dxdebug.mode=off $(PSALM) --ignore-baseline --long-progress --monochrome --output-format=github --report=results.sarif
               env:
                 XDEBUG_MODE: off
                 PSALM: tools/psalm/vendor/bin/psalm
