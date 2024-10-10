@@ -14,6 +14,16 @@ PSALM        = tools/psalm/vendor/bin/psalm
 RECTOR       = tools/rector/vendor/bin/rector
 # end: Tools
 
+# start: Config Files
+PHP_CS_FIXER_CONFIG=.php-cs-fixer.dist.php
+RECTOR_CONFIG=rector.php
+# end: Config Files
+
+# start: Config Options
+COMPOSER_INSTALL_OPTIONS=--no-interaction --prefer-dist --optimize-autoloader
+COMPOSER_UPDATE_OPTIONS=--no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
+# end: Config Options
+
 PSALM_BASELINE_FILE = build/psalm-baseline.xml
 COVERAGE_DIR = docs/coverage
 
@@ -43,14 +53,14 @@ install: vendor $(BARD) $(CHURN) $(INFECTION) $(PHP_CS_FIXER) $(PHPUNIT) $(PSALM
 	mkdir -p build/{cache,logs}
 
 .PHONY: update
-update: ## Update all the dependencies
-	XDEBUG_MODE=off $(COMPOSER) update --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
-	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/churn --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
-	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/infection --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
-	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/php-cs-fixer --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
-	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/phpunit --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
-	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/psalm --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
-	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/rector --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
+update: ## Update all the dependencies (root, tools, and packages)
+	XDEBUG_MODE=off $(COMPOSER) update $(COMPOSER_UPDATE_OPTIONS)
+	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/churn $(COMPOSER_UPDATE_OPTIONS)
+	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/infection $(COMPOSER_UPDATE_OPTIONS)
+	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/php-cs-fixer $(COMPOSER_UPDATE_OPTIONS)
+	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/phpunit $(COMPOSER_UPDATE_OPTIONS)
+	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/psalm $(COMPOSER_UPDATE_OPTIONS)
+	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/rector $(COMPOSER_UPDATE_OPTIONS)
 	@$(MAKE) pkg-update
 
 .PHONY: clean
@@ -63,6 +73,13 @@ clean: ## Remove all vendor folders, composer.lock files, and removes build arti
 	rm -rf src/SonsOfPHP/Component/*/vendor/ src/SonsOfPHP/Component/*/composer.lock
 	rm -rf src/SonsOfPHP/Contract/*/vendor/ src/SonsOfPHP/Contract/*/composer.lock
 	rm -rf src/tools/*/vendor/ src/tools/*/composer.lock
+
+# This will upgrade the code to whatever the standards are
+# NOTE: This may make changes to the source code
+.PHONY: upgrade-code
+upgrade-code: $(RECTOR) $(PHP_CS_FIXER)
+	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHP_CS_FIXER) fix -vv --diff --allow-risky=yes --config=$(PHP_CS_FIXER_CONFIG)
+	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(RECTOR) --config=$(RECTOR_CONFIG)
 
 ##---- Testing ------------------------------------------------------------------------
 .PHONY: test
@@ -87,8 +104,8 @@ lint: ## Lint PHP files
 	find src -name "*.php" -not -path "src/**/vendor/*" | xargs -I{} $(PHP) -l '{}'
 
 .PHONY: php-cs-fixer
-php-cs-fixer: $(PHP_CS_FIXER) ## Run php-cs-fixer
-	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHP_CS_FIXER) fix -vv --diff --allow-risky=yes --config=.php-cs-fixer.dist.php
+php-cs-fixer: $(PHP_CS_FIXER) ## Run php-cs-fixer (dry-run)
+	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHP_CS_FIXER) fix -vv --diff --allow-risky=yes --config=$(PHP_CS_FIXER_CONFIG) --dry-run
 
 .PHONY: psalm
 psalm: $(PSALM) ## Run Psalm
@@ -115,8 +132,8 @@ churn: $(CHURN) ## Run Churn PHP
 	$(CHURN)
 
 .PHONY: rector
-rector: $(RECTOR) ## Run Rector in dry-run mode
-	$(RECTOR) --dry-run
+rector: $(RECTOR) ## Run Rector (dry-run)
+	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(RECTOR) --dry-run --config=$(RECTOR_CONFIG)
 
 ##---- Package Management -------------------------------------------------------------
 .PHONY: pkg-install
@@ -124,8 +141,8 @@ pkg-install: $(BARD) ## Runs `composer install` on each package
 	$(BARD) install -n -vvv
 
 .PHONY: pkg-update
-pkg-update: $(BARD) ## Runs `composer install` on each package
-	$(BARD) install -n -vvv
+pkg-update: $(BARD) ## Runs `composer update` on each package
+	$(BARD) update -n -vvv
 
 .PHONY: pkg-merge
 pkg-merge: $(BARD) ## Merges each package's composer.json into the root composer.json
@@ -139,28 +156,28 @@ pkg-release-patch: $(BARD) ## Release patch (0.0.x)
 $(BARD): src/SonsOfPHP/Bard/composer.lock
 
 src/SonsOfPHP/Bard/composer.lock:
-	XDEBUG_MODE=off $(COMPOSER) install --working-dir=src/SonsOfPHP/Bard --no-interaction --prefer-dist --optimize-autoloader
+	XDEBUG_MODE=off $(COMPOSER) install --working-dir=src/SonsOfPHP/Bard $(COMPOSER_INSTALL_OPTIONS)
 
 $(CHURN):
-	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/churn --no-interaction --prefer-dist --optimize-autoloader
+	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/churn $(COMPOSER_INSTALL_OPTIONS)
 
 $(INFECTION):
-	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/infection --no-interaction --prefer-dist --optimize-autoloader
+	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/infection $(COMPOSER_INSTALL_OPTIONS)
 
 $(PHP_CS_FIXER):
-	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/php-cs-fixer --no-interaction --prefer-dist --optimize-autoloader
+	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/php-cs-fixer $(COMPOSER_INSTALL_OPTIONS)
 
 $(PHPUNIT):
-	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/phpunit --no-interaction --prefer-dist --optimize-autoloader
+	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/phpunit $(COMPOSER_INSTALL_OPTIONS)
 
 $(PSALM):
-	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/psalm --no-interaction --prefer-dist --optimize-autoloader
+	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/psalm $(COMPOSER_INSTALL_OPTIONS)
 
 $(RECTOR):
-	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/rector --no-interaction --prefer-dist --optimize-autoloader
+	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/rector $(COMPOSER_INSTALL_OPTIONS)
 
 composer.lock:
-	XDEBUG_MODE=off $(COMPOSER) install --no-interaction --prefer-dist --optimize-autoloader
+	XDEBUG_MODE=off $(COMPOSER) install $(COMPOSER_INSTALL_OPTIONS)
 
 vendor: composer.json composer.lock
-	XDEBUG_MODE=off $(COMPOSER) install --no-interaction --prefer-dist --optimize-autoloader
+	XDEBUG_MODE=off $(COMPOSER) install $(COMPOSER_INSTALL_OPTIONS)

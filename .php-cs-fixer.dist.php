@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
+use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
 
 $finder = Finder::create()
     ->in(__DIR__)
@@ -15,6 +16,7 @@ $finder = Finder::create()
 return (new Config())
     ->setUsingCache(true)
     ->setCacheFile(__DIR__ . '/build/cache/php-cs-fixer/php-cs-fixer.cache')
+    ->setParallelConfig(ParallelConfigFactory::detect())
     ->setRules([
         // Rule sets
         '@PER-CS' => true,
