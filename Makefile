@@ -69,6 +69,8 @@ clean: ## Remove all vendor folders, composer.lock files, and removes build arti
 	rm -rf vendor/ composer.lock
 	rm -rf src/SonsOfPHP/Bard/vendor/ src/SonsOfPHP/Bard/composer.lock
 	rm -rf src/SonsOfPHP/Bridge/*/vendor/ src/SonsOfPHP/Bridge/*/composer.lock
+	rm -rf src/SonsOfPHP/Bridge/*/*/vendor/ src/SonsOfPHP/Bridge/*/*/composer.lock
+	rm -rf src/SonsOfPHP/Bridge/*/*/*/vendor/ src/SonsOfPHP/Bridge/*/*/*/composer.lock
 	rm -rf src/SonsOfPHP/Bundle/*/vendor/ src/SonsOfPHP/Bundle/*/composer.lock
 	rm -rf src/SonsOfPHP/Component/*/vendor/ src/SonsOfPHP/Component/*/composer.lock
 	rm -rf src/SonsOfPHP/Contract/*/vendor/ src/SonsOfPHP/Contract/*/composer.lock
