@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\FeatureToggle\Tests\Provider;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -24,9 +25,7 @@ final class InMemoryFeatureToggleProviderTest extends TestCase
         $this->toggle = $this->createMock(ToggleInterface::class);
     }
 
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $provider = new InMemoryFeatureToggleProvider();

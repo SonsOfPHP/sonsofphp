@@ -56,4 +56,4 @@ vcs: git
 # The path of the cache file. It doesn't need to exist before running churn.
 # Disabled if null.
 # Default: null
-cachePath: .churn.cache
+cachePath: build/cache/churn/churn.cache

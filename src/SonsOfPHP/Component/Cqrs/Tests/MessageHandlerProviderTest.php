@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Cqrs\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionProperty;
 use SonsOfPHP\Component\Cqrs\MessageHandlerProvider;
@@ -12,16 +14,11 @@ use SonsOfPHP\Contract\Cqrs\Exception\NoHandlerFoundExceptionInterface;
 use SonsOfPHP\Contract\Cqrs\MessageHandlerProviderInterface;
 use stdClass;
 
-/**
- * @uses \SonsOfPHP\Component\Cqrs\MessageHandlerProvider
- * @coversNothing
- */
 #[CoversClass(MessageHandlerProvider::class)]
+#[UsesClass(MessageHandlerProvider::class)]
 final class MessageHandlerProviderTest extends TestCase
 {
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $provider = new MessageHandlerProvider();

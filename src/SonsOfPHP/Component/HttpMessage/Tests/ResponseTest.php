@@ -5,20 +5,19 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpMessage\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use SonsOfPHP\Component\HttpMessage\Response;
 
 /**
  * @internal
- * @coversNothing
  */
 #[CoversClass(Response::class)]
+#[CoversNothing]
 final class ResponseTest extends TestCase
 {
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItImplementsCorrectInterface(): void
     {
         $this->assertInstanceOf(ResponseInterface::class, new Response());

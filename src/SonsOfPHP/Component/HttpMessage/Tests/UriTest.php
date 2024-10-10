@@ -5,20 +5,18 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpMessage\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\UriInterface;
 use SonsOfPHP\Component\HttpMessage\Uri;
 
-/**
- * @uses \SonsOfPHP\Component\HttpMessage\Uri
- * @coversNothing
- */
 #[CoversClass(Uri::class)]
+#[UsesClass(Uri::class)]
+#[CoversNothing]
 final class UriTest extends TestCase
 {
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItImplementsCorrectInterface(): void
     {
         $this->assertInstanceOf(UriInterface::class, new Uri());

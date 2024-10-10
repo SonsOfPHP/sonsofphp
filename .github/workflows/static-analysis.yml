@@ -32,16 +32,42 @@ jobs:
             matrix:
                 php-version: ['8.2']
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
             - uses: shivammathur/setup-php@v2
               with:
                   php-version: '${{ matrix.php-version }}'
                   coverage: none
-            - run: make composer-install phpunit-install psalm-install
-            - run: php src/SonsOfPHP/Bard/bin/bard install -n -vvv
-            - run: make psalm-github
+            - name: Cache Composer Packages
+              id: composer-cache
+              uses: actions/cache@v4
+              with:
+                  path: vendor
+                  key: ${{ runner.os }}-php-${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-php-${{ matrix.php-version }}-
+            - run: make composer.lock pkg-install tools/psalm/vendor/bin/psalm tools/phpunit/vendor/bin/phpunit
+            - name: Get changed PHP files
+              if: github.ref != 'refs/heads/main'
+              id: changed-php-files
+              uses: tj-actions/changed-files@v45
+              with:
+                files: |
+                  **.php
+            - name: Psalm on modified PHP files only
+              if: steps.changed-php-files.outputs.any_changed == 'true' && github.ref != 'refs/heads/main'
+              run: php -dxdebug.mode=off ${PSALM} --ignore-baseline --long-progress --monochrome --output-format=github ${CHANGED_FILES}
+              env:
+                XDEBUG_MODE: off
+                PSALM: tools/psalm/vendor/bin/psalm
+                CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
+            - name: Psalm on mainline for all files
+              if: github.ref == 'refs/heads/main'
+              run: php -dxdebug.mode=off $(PSALM) --ignore-baseline --long-progress --monochrome --output-format=github --report=results.sarif
+              env:
+                XDEBUG_MODE: off
+                PSALM: tools/psalm/vendor/bin/psalm
             - name: Upload Security Analysis to Github
               if: github.ref == 'refs/heads/main'
-              uses: github/codeql-action/upload-sarif@v2
+              uses: github/codeql-action/upload-sarif@v3
               with:
                   sarif_file: results.sarif

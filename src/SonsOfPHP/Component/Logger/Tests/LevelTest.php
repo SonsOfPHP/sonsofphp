@@ -5,20 +5,18 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Logger\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Logger\Level;
 use SonsOfPHP\Contract\Logger\LevelInterface;
 
-/**
- * @uses \SonsOfPHP\Component\Logger\Level
- * @coversNothing
- */
 #[CoversClass(Level::class)]
+#[UsesClass(Level::class)]
+#[CoversNothing]
 final class LevelTest extends TestCase
 {
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $level = Level::Debug;

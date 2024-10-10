@@ -7,20 +7,19 @@ namespace SonsOfPHP\Component\Clock\Tests;
 use DateTimeImmutable;
 use DateTimeZone;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 use Psr\Clock\ClockInterface;
 use SonsOfPHP\Component\Clock\SystemClock;
 
 /**
  * @internal
- * @coversNothing
  */
 #[CoversClass(SystemClock::class)]
+#[CoversNothing]
 final class SystemClockTest extends TestCase
 {
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $clock = new SystemClock();

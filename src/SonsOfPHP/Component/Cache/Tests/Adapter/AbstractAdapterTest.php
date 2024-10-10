@@ -15,7 +15,6 @@ use SonsOfPHP\Component\Cache\CacheItem;
 
 #[CoversClass(AbstractAdapter::class)]
 #[UsesClass(CacheItem::class)]
-//#[UsesClass(SerializableMarshaller::class)]
 final class AbstractAdapterTest extends TestCase
 {
     private AbstractAdapter $adapter;

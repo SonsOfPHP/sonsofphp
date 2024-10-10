@@ -6,16 +6,14 @@ namespace SonsOfPHP\Component\Cookie\Tests;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Cookie\Cookie;
 use SonsOfPHP\Contract\Cookie\CookieExceptionInterface;
 use SonsOfPHP\Contract\Cookie\CookieInterface;
 
-/**
- * @uses \SonsOfPHP\Component\Cookie\Cookie
- * @coversNothing
- */
 #[CoversClass(Cookie::class)]
+#[UsesClass(Cookie::class)]
 final class CookieTest extends TestCase
 {
     public function testItHasTheCorrectInterface(): void

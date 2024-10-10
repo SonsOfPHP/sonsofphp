@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.25.0@01a8eb06b9e9cc6cfb6a320bf9fb14331919d505">
+<files psalm-version="5.26.1@d747f6500b38ac4f7dfc5edbcae6e4b637d7add0">
   <file src="src/SonsOfPHP/Bard/Tests/JsonFileTest.php">
     <UnusedClass>
       <code><![CDATA[JsonFileTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Bard/src/Compiler.php">
+    <UnnecessaryVarAnnotation>
+      <code><![CDATA[\Symfony\Component\Finder\SplFileInfo]]></code>
+      <code><![CDATA[\Symfony\Component\Finder\SplFileInfo]]></code>
+    </UnnecessaryVarAnnotation>
+    <UnusedClass>
+      <code><![CDATA[Compiler]]></code>
     </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Bard/src/Console/Application.php">
@@ -37,18 +46,21 @@
     <UndefinedInterfaceMethod>
       <code><![CDATA[mustRun]]></code>
     </UndefinedInterfaceMethod>
-    <UnusedVariable>
-      <code><![CDATA[$formatter]]></code>
-    </UnusedVariable>
   </file>
   <file src="src/SonsOfPHP/Bard/src/Console/Command/PushCommand.php">
     <UndefinedInterfaceMethod>
+      <code><![CDATA[formatSection]]></code>
+      <code><![CDATA[formatSection]]></code>
       <code><![CDATA[mustRun]]></code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="src/SonsOfPHP/Bard/src/Console/Command/ReleaseCommand.php">
     <UndefinedInterfaceMethod>
       <code><![CDATA[formatSection]]></code>
+      <code><![CDATA[formatSection]]></code>
+      <code><![CDATA[formatSection]]></code>
+      <code><![CDATA[formatSection]]></code>
+      <code><![CDATA[mustRun]]></code>
       <code><![CDATA[mustRun]]></code>
       <code><![CDATA[mustRun]]></code>
       <code><![CDATA[mustRun]]></code>
@@ -85,6 +97,11 @@
     </PossiblyUnusedMethod>
   </file>
   <file src="src/SonsOfPHP/Bard/src/Worker/File/Composer/Package/Support.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[apply]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/SonsOfPHP/Bard/src/Worker/File/Composer/Root/ClearSection.php">
     <PossiblyUnusedMethod>
       <code><![CDATA[apply]]></code>
     </PossiblyUnusedMethod>
@@ -213,8 +230,8 @@
                 $mimeType,
                 $extension,
             );
-        } catch(FilesystemExceptionInterface $exception) {
-            throw new NotLoadableException(sprintf('Source image "%s" not found.', $path), 0, $exception);
+        } catch (FilesystemExceptionInterface $filesystemException) {
+            throw new NotLoadableException(sprintf('Source image "%s" not found.', $path), 0, $filesystemException);
         }]]></code>
     </InvalidCatch>
     <UnusedClass>
@@ -424,21 +441,20 @@
       <code><![CDATA[children]]></code>
     </UndefinedMethod>
   </file>
-  <file src="src/SonsOfPHP/Bundle/Cqrs/DependencyInjection/CqrsExtension.php">
-    <UnusedVariable>
-      <code><![CDATA[$config]]></code>
-    </UnusedVariable>
-  </file>
   <file src="src/SonsOfPHP/Component/Assert/Assert.php">
     <UnusedClass>
       <code><![CDATA[Assert]]></code>
     </UnusedClass>
+    <UnusedVariable>
+      <code><![CDATA[$ret]]></code>
+    </UnusedVariable>
   </file>
   <file src="src/SonsOfPHP/Component/Assert/Tests/AssertTest.php">
     <UnusedClass>
       <code><![CDATA[AssertTest]]></code>
     </UnusedClass>
     <UnusedParam>
+      <code><![CDATA[$expected]]></code>
       <code><![CDATA[$value]]></code>
       <code><![CDATA[$value]]></code>
       <code><![CDATA[$value]]></code>
@@ -458,7 +474,31 @@
       <code><![CDATA[$value]]></code>
       <code><![CDATA[$value]]></code>
       <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value2]]></code>
+      <code><![CDATA[$value2]]></code>
+      <code><![CDATA[$value2]]></code>
+      <code><![CDATA[$value2]]></code>
     </UnusedParam>
+  </file>
+  <file src="src/SonsOfPHP/Component/Cache/Adapter/AbstractAdapter.php">
+    <PossiblyUnusedReturnValue>
+      <code><![CDATA[bool]]></code>
+    </PossiblyUnusedReturnValue>
   </file>
   <file src="src/SonsOfPHP/Component/Cache/Adapter/ApcuAdapter.php">
     <UnusedClass>
@@ -475,6 +515,15 @@
       <code><![CDATA[ChainAdapter]]></code>
     </UnusedClass>
   </file>
+  <file src="src/SonsOfPHP/Component/Cache/Adapter/FilesystemAdapter.php">
+    <UndefinedInterfaceMethod>
+      <code><![CDATA[expiry]]></code>
+      <code><![CDATA[expiry]]></code>
+    </UndefinedInterfaceMethod>
+    <UnusedClass>
+      <code><![CDATA[FilesystemAdapter]]></code>
+    </UnusedClass>
+  </file>
   <file src="src/SonsOfPHP/Component/Cache/Adapter/NullAdapter.php">
     <UnusedClass>
       <code><![CDATA[NullAdapter]]></code>
@@ -486,9 +535,9 @@
     </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Component/Cache/CacheItem.php">
-    <PossiblyUnusedProperty>
-      <code><![CDATA[$expiry]]></code>
-    </PossiblyUnusedProperty>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[expiry]]></code>
+    </PossiblyUnusedMethod>
   </file>
   <file src="src/SonsOfPHP/Component/Cache/CacheItemFactory.php">
     <UnusedClass>
@@ -499,6 +548,11 @@
     <PossiblyUnusedMethod>
       <code><![CDATA[createCacheItem]]></code>
     </PossiblyUnusedMethod>
+  </file>
+  <file src="src/SonsOfPHP/Component/Cache/Marshaller/JsonMarshaller.php">
+    <UnusedClass>
+      <code><![CDATA[JsonMarshaller]]></code>
+    </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Component/Cache/SimpleCache.php">
     <InvalidArgument>
@@ -514,6 +568,11 @@
       <code><![CDATA[tags]]></code>
     </PossiblyUnusedMethod>
   </file>
+  <file src="src/SonsOfPHP/Component/Cache/Tests/Adapter/AbstractAdapterTest.php">
+    <UnusedClass>
+      <code><![CDATA[AbstractAdapterTest]]></code>
+    </UnusedClass>
+  </file>
   <file src="src/SonsOfPHP/Component/Cache/Tests/Adapter/ApcuAdapterTest.php">
     <UnusedClass>
       <code><![CDATA[ApcuAdapterTest]]></code>
@@ -527,6 +586,11 @@
   <file src="src/SonsOfPHP/Component/Cache/Tests/Adapter/ChainAdapterTest.php">
     <UnusedClass>
       <code><![CDATA[ChainAdapterTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/Cache/Tests/Adapter/FilesystemAdapterTest.php">
+    <UnusedClass>
+      <code><![CDATA[FilesystemAdapterTest]]></code>
     </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Component/Cache/Tests/Adapter/NullAdapterTest.php">
@@ -546,6 +610,16 @@
     <UnusedParam>
       <code><![CDATA[$key]]></code>
     </UnusedParam>
+  </file>
+  <file src="src/SonsOfPHP/Component/Cache/Tests/Marshaller/JsonMarshallerTest.php">
+    <UnusedClass>
+      <code><![CDATA[JsonMarshallerTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/Cache/Tests/Marshaller/SerializableMarshallerTest.php">
+    <UnusedClass>
+      <code><![CDATA[SerializableMarshallerTest]]></code>
+    </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Component/Cache/Tests/SimpleCacheTest.php">
     <UnusedClass>
@@ -1243,11 +1317,6 @@
     <UnusedClass>
       <code><![CDATA[InMemoryAdapter]]></code>
     </UnusedClass>
-    <UnusedForeachValue>
-      <code><![CDATA[$contents]]></code>
-      <code><![CDATA[$value]]></code>
-      <code><![CDATA[$value]]></code>
-    </UnusedForeachValue>
   </file>
   <file src="src/SonsOfPHP/Component/Filesystem/Adapter/NativeAdapter.php">
     <UnusedClass>
@@ -1433,9 +1502,6 @@
       <code><![CDATA[$key]]></code>
       <code><![CDATA[$key]]></code>
     </UnusedClosureParam>
-    <UnusedForeachValue>
-      <code><![CDATA[$values]]></code>
-    </UnusedForeachValue>
   </file>
   <file src="src/SonsOfPHP/Component/HttpMessage/MessageHeader.php">
     <UnusedClass>
@@ -1503,10 +1569,6 @@
       <code><![CDATA[withQueryParam]]></code>
       <code><![CDATA[withQueryParams]]></code>
     </PossiblyUnusedMethod>
-    <UnusedProperty>
-      <code><![CDATA[$query]]></code>
-      <code><![CDATA[$uri]]></code>
-    </UnusedProperty>
   </file>
   <file src="src/SonsOfPHP/Component/Json/AbstractEncoderDecoder.php">
     <PossiblyUnusedMethod>
@@ -1517,10 +1579,9 @@
     </PossiblyUnusedMethod>
   </file>
   <file src="src/SonsOfPHP/Component/Json/Json.php">
-    <PossiblyUnusedMethod>
-      <code><![CDATA[decode]]></code>
-      <code><![CDATA[encode]]></code>
-    </PossiblyUnusedMethod>
+    <UnusedClass>
+      <code><![CDATA[Json]]></code>
+    </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Component/Json/JsonDecoder.php">
     <PossiblyUnusedMethod>
@@ -1538,7 +1599,10 @@
       <code><![CDATA[numericCheck]]></code>
       <code><![CDATA[partialOutputOnError]]></code>
       <code><![CDATA[preserveZeroFraction]]></code>
+      <code><![CDATA[prettyPrint]]></code>
       <code><![CDATA[unescapedLineTerminators]]></code>
+      <code><![CDATA[unescapedSlashes]]></code>
+      <code><![CDATA[unescapedUnicode]]></code>
     </PossiblyUnusedMethod>
   </file>
   <file src="src/SonsOfPHP/Component/Json/JsonReader.php">
@@ -1564,11 +1628,6 @@
   <file src="src/SonsOfPHP/Component/Json/Tests/JsonTest.php">
     <UnusedClass>
       <code><![CDATA[JsonTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/SonsOfPHP/Component/Link/EvolvableLinkProvider.php">
-    <UnusedClass>
-      <code><![CDATA[EvolvableLinkProvider]]></code>
     </UnusedClass>
   </file>
   <file src="src/SonsOfPHP/Component/Link/Link.php">
@@ -2127,6 +2186,16 @@
       <code><![CDATA[PagerTest]]></code>
     </UnusedClass>
   </file>
+  <file src="src/SonsOfPHP/Component/Registry/ServiceRegistry.php">
+    <UnusedClass>
+      <code><![CDATA[ServiceRegistry]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Component/Registry/Tests/ServiceRegistryTest.php">
+    <UnusedClass>
+      <code><![CDATA[ServiceRegistryTest]]></code>
+    </UnusedClass>
+  </file>
   <file src="src/SonsOfPHP/Component/StateMachine/Event/GuardEvent.php">
     <PossiblyUnusedMethod>
       <code><![CDATA[getContext]]></code>
@@ -2190,12 +2259,6 @@
     <UnusedClass>
       <code><![CDATA[StateMachine]]></code>
     </UnusedClass>
-    <UnusedVariable>
-      <code><![CDATA[$currentState]]></code>
-      <code><![CDATA[$name]]></code>
-      <code><![CDATA[$name]]></code>
-      <code><![CDATA[$name]]></code>
-    </UnusedVariable>
   </file>
   <file src="src/SonsOfPHP/Component/StateMachine/Tests/StateMachineTest.php">
     <UnusedClass>
@@ -2425,9 +2488,6 @@
       <code><![CDATA[withEmail]]></code>
       <code><![CDATA[withName]]></code>
     </PossiblyUnusedMethod>
-    <UndefinedDocblockClass>
-      <code><![CDATA[InvalidArgumentException]]></code>
-    </UndefinedDocblockClass>
   </file>
   <file src="src/SonsOfPHP/Contract/Mailer/MailerInterface.php">
     <PossiblyUnusedMethod>
@@ -2535,6 +2595,19 @@
       <code><![CDATA[getNextPage]]></code>
       <code><![CDATA[getPreviousPage]]></code>
       <code><![CDATA[haveToPaginate]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/SonsOfPHP/Contract/Registry/PrioritizedServiceRegistryInterface.php">
+    <UnusedClass>
+      <code><![CDATA[PrioritizedServiceRegistryInterface]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/SonsOfPHP/Contract/Registry/ServiceRegistryInterface.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[all]]></code>
+      <code><![CDATA[get]]></code>
+      <code><![CDATA[register]]></code>
+      <code><![CDATA[unregister]]></code>
     </PossiblyUnusedMethod>
   </file>
   <file src="src/SonsOfPHP/Contract/StateMachine/Exception/UndefinedTransitionExceptionInterface.php">

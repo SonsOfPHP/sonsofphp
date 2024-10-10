@@ -6,20 +6,19 @@ namespace SonsOfPHP\Component\Clock\Tests;
 
 use DateTimeZone;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Clock\ClockInterface;
 use SonsOfPHP\Component\Clock\Exception\ClockException;
 use SonsOfPHP\Component\Clock\FixedClock;
 
-/**
- * @coversNothing
- */
 #[CoversClass(FixedClock::class)]
+#[UsesClass(FixedClock::class)]
+#[UsesClass(ClockException::class)]
 final class FixedClockTest extends TestCase
 {
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $clock = new FixedClock();
@@ -27,29 +26,18 @@ final class FixedClockTest extends TestCase
         $this->assertInstanceOf(ClockInterface::class, $clock);
     }
 
-    /**
-     *
-     * @uses \SonsOfPHP\Component\Clock\FixedClock
-     */
     public function testTheDefaultTimezoneIsUTC(): void
     {
         $clock = new FixedClock();
         $this->assertSame('UTC', $clock->getZone()->getName());
     }
 
-    /**
-     *
-     * @uses \SonsOfPHP\Component\Clock\FixedClock
-     */
     public function testSettingTheTimezoneInTheConstructorWorks(): void
     {
         $clock = new FixedClock(new DateTimeZone('America/New_York'));
         $this->assertSame('America/New_York', $clock->getZone()->getName());
     }
 
-    /**
-     * @uses \SonsOfPHP\Component\Clock\FixedClock
-     */
     public function testNowRemainsTheSame(): void
     {
         $clock   = new FixedClock();
@@ -58,10 +46,6 @@ final class FixedClockTest extends TestCase
         $this->assertSame($tickOne, $tickTwo);
     }
 
-    /**
-     *
-     * @uses \SonsOfPHP\Component\Clock\FixedClock
-     */
     public function testTickChangesTime(): void
     {
         $clock   = new FixedClock();
@@ -72,10 +56,6 @@ final class FixedClockTest extends TestCase
         $this->assertLessThan($tickTwo, $tickOne);
     }
 
-    /**
-     *
-     * @uses \SonsOfPHP\Component\Clock\FixedClock
-     */
     public function testSetTimeWithTickTo(): void
     {
         $clock = new FixedClock();
@@ -85,11 +65,6 @@ final class FixedClockTest extends TestCase
         $this->assertSame('2020-01-01 00:00:00', $tick->format('Y-m-d H:i:s'));
     }
 
-    /**
-     *
-     * @uses \SonsOfPHP\Component\Clock\Exception\ClockException
-     * @uses \SonsOfPHP\Component\Clock\FixedClock
-     */
     public function testTickToThrowsExceptionWithInvalidInput(): void
     {
         $clock = new FixedClock();
@@ -98,9 +73,6 @@ final class FixedClockTest extends TestCase
         $clock->tickTo('20');
     }
 
-    /**
-     * @uses \SonsOfPHP\Component\Clock\FixedClock
-     */
     public function testToStringMagicMethod(): void
     {
         $clock = new FixedClock();

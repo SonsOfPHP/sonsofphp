@@ -78,24 +78,6 @@
         "psr/link": "^1.0 || ^2.0",
         "psr/log": "^2.0 || ^3.0",
         "psr/simple-cache": "^2.0 || ^3.0",
-        "sonsofphp/cookie-contract": "0.3.x-dev",
-        "sonsofphp/cqrs-contract": "0.3.x-dev",
-        "sonsofphp/event-dispatcher": "0.3.x-dev",
-        "sonsofphp/event-sourcing": "^0.3.x-dev",
-        "sonsofphp/event-sourcing-contract": "^0.3.x-dev",
-        "sonsofphp/feature-toggle-contract": "0.3.x-dev",
-        "sonsofphp/http-handler-contract": "0.3.x-dev",
-        "sonsofphp/http-message": "^0.3.x-dev",
-        "sonsofphp/json": "^0.3.x-dev",
-        "sonsofphp/logger": "^0.3.x-dev",
-        "sonsofphp/logger-contract": "0.3.x-dev",
-        "sonsofphp/money": "^0.3.x-dev",
-        "sonsofphp/money-contract": "0.3.x-dev",
-        "sonsofphp/pager-contract": "0.3.x-dev",
-        "sonsofphp/registry-contract": "0.3.x-dev",
-        "sonsofphp/state-machine-contract": "0.3.x-dev",
-        "sonsofphp/version": "^0.3.x-dev",
-        "sonsofphp/version-contract": "0.3.x-dev",
         "symfony/console": "^4 || ^5 || ^6 || ^7",
         "symfony/dependency-injection": "^5 || ^6 || ^7",
         "symfony/dotenv": "^5 || ^6 || ^7",
@@ -251,7 +233,6 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^10.4",
-        "sonsofphp/filesystem": "0.3.x-dev",
         "symfony/http-foundation": "^5 || ^6 || ^7",
         "symfony/serializer": "^5 || ^6 || ^7"
     },
@@ -261,5 +242,10 @@
             "SonsOfPHP\\Bridge\\Symfony\\Cqrs\\Tests\\": "src/SonsOfPHP/Bridge/Symfony/Cqrs/Tests",
             "SonsOfPHP\\Bundle\\Cqrs\\Tests\\": "src/SonsOfPHP/Bundle/Cqrs/Tests"
         }
+    },
+    "scripts": {
+        "githooks": [
+            "@php -r \"if(file_exists('./.git')&&file_exists('./build/hooks/pre-commit')){copy('./build/hooks/pre-commit','./.git/hooks/pre-commit');chmod('./.git/hooks/pre-commit',0755);}\""
+        ]
     }
 }

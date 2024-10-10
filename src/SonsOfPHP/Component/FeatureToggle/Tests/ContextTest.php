@@ -5,20 +5,17 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\FeatureToggle\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\FeatureToggle\Context;
 use SonsOfPHP\Contract\FeatureToggle\ContextInterface;
 
-/**
- * @uses \SonsOfPHP\Component\FeatureToggle\Context
- * @coversNothing
- */
 #[CoversClass(Context::class)]
+#[UsesClass(Context::class)]
 final class ContextTest extends TestCase
 {
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $context = new Context();

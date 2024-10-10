@@ -28,8 +28,8 @@ class MaskContextValueEnricher implements EnricherInterface
      * The mask value can be changed as well.
      */
     public function __construct(
-        private array|string $key,
-        private string $maskValue = '****',
+        private readonly array|string $key,
+        private readonly string $maskValue = '****',
     ) {}
 
     public function __invoke(RecordInterface $record): RecordInterface

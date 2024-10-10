@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpHandler\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -14,16 +16,12 @@ use ReflectionProperty;
 use SonsOfPHP\Component\HttpHandler\MiddlewareStack;
 use SonsOfPHP\Contract\HttpHandler\MiddlewareStackInterface;
 
-/**
- * @uses \SonsOfPHP\Component\HttpHandler\MiddlewareStack
- * @coversNothing
- */
 #[CoversClass(MiddlewareStack::class)]
+#[UsesClass(MiddlewareStack::class)]
+#[CoversNothing]
 final class MiddlewareStackTest extends TestCase
 {
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $stack = new MiddlewareStack();

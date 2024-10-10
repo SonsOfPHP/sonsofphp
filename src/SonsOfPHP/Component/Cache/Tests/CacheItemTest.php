@@ -8,16 +8,14 @@ use DateInterval;
 use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemInterface;
 use SonsOfPHP\Component\Cache\CacheItem;
 use SonsOfPHP\Component\Cache\Exception\InvalidArgumentException;
 
-/**
- * @uses \SonsOfPHP\Component\Cache\CacheItem
- * @coversNothing
- */
 #[CoversClass(CacheItem::class)]
+#[UsesClass(CacheItem::class)]
 final class CacheItemTest extends TestCase
 {
     public function testItHasTheCorrectInterface(): void

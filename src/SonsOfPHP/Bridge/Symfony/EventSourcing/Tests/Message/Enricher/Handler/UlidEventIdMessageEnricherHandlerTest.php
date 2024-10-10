@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests\Message\Enricher\Handler;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\UlidEventIdMessageEnricherHandler;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\MessageEnricherHandlerInterface;
@@ -14,14 +15,12 @@ use Symfony\Component\Uid\Ulid;
 
 /**
  * @internal
- * @coversNothing
  */
 #[CoversClass(UlidEventIdMessageEnricherHandler::class)]
+#[CoversNothing]
 final class UlidEventIdMessageEnricherHandlerTest extends TestCase
 {
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItHasTheRightInterface(): void
     {
         $handler = new UlidEventIdMessageEnricherHandler();

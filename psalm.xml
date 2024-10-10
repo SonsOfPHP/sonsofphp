@@ -5,9 +5,10 @@
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
     errorLevel="5"
     resolveFromConfigFile="true"
-    cacheDirectory=".psalm-cache"
+    cacheDirectory="build/cache/psalm"
     allowStringToStandInForClass="true"
-    errorBaseline="psalm-baseline.xml"
+    errorBaseline="build/psalm-baseline.xml"
+    findUnusedVariablesAndParams="true"
     findUnusedBaselineEntry="false"
     findUnusedCode="true"
     autoloader="vendor/autoload.php"
@@ -29,4 +30,8 @@
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
     </plugins>
+    <issueHandlers>
+        <!--<PossiblyUnusedMethod errorLevel="info" />-->
+        <!--<UnusedClass errorLevel="info" />-->
+    </issueHandlers>
 </psalm>

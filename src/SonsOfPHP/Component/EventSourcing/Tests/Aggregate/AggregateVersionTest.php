@@ -5,16 +5,14 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Tests\Aggregate;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersionInterface;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 
-/**
- * @uses \SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion
- * @coversNothing
- */
 #[CoversClass(AggregateVersion::class)]
+#[UsesClass(AggregateVersion::class)]
 final class AggregateVersionTest extends TestCase
 {
     public function testItHasTheRightInterface(): void

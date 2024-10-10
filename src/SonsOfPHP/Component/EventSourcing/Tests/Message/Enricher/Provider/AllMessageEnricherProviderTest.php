@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message\Enricher\Provider;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\MessageEnricherHandlerInterface;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\AllMessageEnricherProvider;
@@ -13,9 +14,9 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 
 /**
  * @internal
- * @coversNothing
  */
 #[CoversClass(AllMessageEnricherProvider::class)]
+#[CoversNothing]
 final class AllMessageEnricherProviderTest extends TestCase
 {
     public function testItHasTheRightInterface(): void

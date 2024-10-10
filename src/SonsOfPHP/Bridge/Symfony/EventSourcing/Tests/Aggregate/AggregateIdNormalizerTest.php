@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests\Aggregate;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
@@ -19,9 +20,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 #[UsesClass(AbstractAggregateId::class)]
 final class AggregateIdNormalizerTest extends TestCase
 {
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItHasTheRightInterface(): void
     {
         $normalizer = new AggregateIdNormalizer();

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Money\Tests\Operator\Amount;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Amount;
@@ -15,9 +16,7 @@ use SonsOfPHP\Contract\Money\AmountOperatorInterface;
 #[UsesClass(Amount::class)]
 final class SubtractAmountOperatorTest extends TestCase
 {
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $amount   = new Amount(100);

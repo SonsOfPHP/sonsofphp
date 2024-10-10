@@ -5,20 +5,17 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventDispatcher\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\StoppableEventInterface;
 use SonsOfPHP\Component\EventDispatcher\AbstractStoppableEvent;
 
-/**
- * @uses \SonsOfPHP\Component\EventDispatcher\AbstractStoppableEvent
- * @coversNothing
- */
 #[CoversClass(AbstractStoppableEvent::class)]
+#[UsesClass(AbstractStoppableEvent::class)]
 final class AbstractStoppableEventTest extends TestCase
 {
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $event = new class extends AbstractStoppableEvent {};

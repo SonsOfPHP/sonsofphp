@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Container\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
@@ -13,16 +15,11 @@ use ReflectionProperty;
 use SonsOfPHP\Component\Container\Container;
 use stdClass;
 
-/**
- * @uses \SonsOfPHP\Component\Container\Container
- * @coversNothing
- */
 #[CoversClass(Container::class)]
+#[UsesClass(Container::class)]
 final class ContainerTest extends TestCase
 {
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $container = new Container();

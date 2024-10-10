@@ -1,0 +1,100 @@
+#!/usr/bin/env bash
+
+##########
+# Colors #
+##########
+color_bold_black='\033[1;30m'
+color_bold_white='\033[1;37m'
+
+color_background_red='\033[41m'
+color_background_green='\033[42m'
+color_background_blue='\033[44m'
+
+color_reset='\033[0m'
+##########
+
+#############
+# Functions #
+#############
+
+function __fail() {
+    printf "${color_bold_white}${color_background_red} 😫 $1 ${color_reset}\n" >&2
+    exit 1
+}
+
+function __success() {
+    printf "${color_bold_black}${color_background_green} 🍻 $1 ${color_reset}\n" >&2
+}
+
+function __info() {
+    printf "${color_bold_black}${color_background_blue} ℹ️ $1 ${color_reset}\n" >&2
+}
+
+ROOT=$(git rev-parse --show-toplevel)
+
+CHANGED_FILES=$(git diff --cached --name-only --diff-filter=d -- '*.php')
+# Don't need to display this
+#__info "Changed Files: ${CHANGED_FILES}"
+
+# xargs is there to trim whitespace
+CHANGED_FILE_COUNT=$(wc -w <<< $CHANGED_FILES | xargs)
+__info "Changed File Count: ${CHANGED_FILE_COUNT}"
+
+# >>> PHP CS Fixer
+PHP_CS_FIXER="tools/php-cs-fixer/vendor/bin/php-cs-fixer"
+if [[ -x $PHP_CS_FIXER && $CHANGED_FILE_COUNT -gt 0 ]]; then
+    __info "Running php-cs-fixer"
+    php -dxdebug.mode=off $PHP_CS_FIXER fix --config=$ROOT/.php-cs-fixer.dist.php --allow-risky=yes -vvv --using-cache=no $CHANGED_FILES
+
+    __info "Adding any updated files"
+    git add $(git diff --cached --name-only)
+
+    __success "php-cs-fixer completed"
+else
+    __info "Skipping php-cs-fixer"
+fi
+# <<<
+
+# >>> Rector
+RECTOR="tools/rector/vendor/bin/rector"
+if [[ -x $RECTOR && $CHANGED_FILE_COUNT -gt 0 ]]; then
+    __info "Running rector"
+    XDEBUG_MODE=off php -dxdebug.mode=off $RECTOR process $CHANGED_FILES
+
+    __info "Adding any updated files"
+    git add $(git diff --cached --name-only)
+
+    __success "rector completed"
+else
+    __info "Skipping rector"
+fi
+# <<<
+
+# >>> psalm
+PSALM="tools/psalm/vendor/bin/psalm"
+if [[ -x $PSALM && $CHANGED_FILE_COUNT -gt 0 ]]; then
+    __info "Running psalm"
+    XDBUG_MODE=off php -dxdebug.mode=off $PSALM $(git diff --cached --name-only --diff-filter=d -- '*.php' | grep -v '.php-cs-fixer.dist.php')
+    if [ $? -ne 0 ]; then
+        __fail "Psalm tests failed, fix your shit. Can also use --no-verify to skip checks"
+    fi
+    __success "psalm completed"
+else
+    __info "Skipping psalm"
+fi
+# <<< psalm
+
+# >>> PHPUnit
+PHPUNIT="bin/phpunit"
+if [ -x $PHPUNIT ]; then
+    __info "Running phpunit"
+    XDEBUG_MODE=off php -dxdebug.mode=off $PHPUNIT --testsuite unit
+    if [ $? -ne 0 ]; then
+        __fail "Unit Tests failed, fix your shit. Can also use --no-verify to skip checks"
+    fi
+    __success "phpunit completed"
+fi
+# <<< PHPUnit
+
+__success "Everything passed"
+exit 0

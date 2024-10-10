@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Symfony\Cqrs\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Symfony\Cqrs\CommandMessageBus;
 use stdClass;
@@ -14,9 +15,9 @@ use Symfony\Component\Messenger\Stamp\StampInterface;
 
 /**
  * @internal
- * @coversNothing
  */
 #[CoversClass(CommandMessageBus::class)]
+#[CoversNothing]
 final class CommandMessageBusTest extends TestCase
 {
     public function testWithStampsIsImmutable(): void

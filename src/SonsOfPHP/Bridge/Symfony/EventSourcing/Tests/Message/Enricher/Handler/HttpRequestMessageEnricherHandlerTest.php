@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests\Message\Enricher\Handler;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\HttpRequestMessageEnricherHandler;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\MessageEnricherHandlerInterface;
@@ -12,11 +13,8 @@ use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-/**
- * @uses \SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\HttpRequestMessageEnricherHandler
- * @coversNothing
- */
 #[CoversClass(HttpRequestMessageEnricherHandler::class)]
+#[UsesClass(HttpRequestMessageEnricherHandler::class)]
 final class HttpRequestMessageEnricherHandlerTest extends TestCase
 {
     public function testItHasTheRightInterface(): void
