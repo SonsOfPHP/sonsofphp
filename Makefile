@@ -51,6 +51,7 @@ help:
 .PHONY: install
 install: vendor $(BARD) $(CHURN) $(INFECTION) $(PHP_CS_FIXER) $(PHPUNIT) $(PSALM) $(RECTOR) ## Install Dependencies
 	mkdir -p build/{cache,logs}
+	$(COMPOSER) githooks
 
 .PHONY: update
 update: ## Update all the dependencies (root, tools, and packages)
@@ -62,6 +63,7 @@ update: ## Update all the dependencies (root, tools, and packages)
 	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/psalm $(COMPOSER_UPDATE_OPTIONS)
 	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/rector $(COMPOSER_UPDATE_OPTIONS)
 	@$(MAKE) pkg-update
+	$(COMPOSER) githooks
 
 .PHONY: clean
 clean: ## Remove all vendor folders, composer.lock files, and removes build artifacts

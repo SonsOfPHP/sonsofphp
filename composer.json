@@ -246,9 +246,6 @@
     "scripts": {
         "githooks": [
             "@php -r \"if(file_exists('./.git')&&file_exists('./build/hooks/pre-commit')){copy('./build/hooks/pre-commit','./.git/hooks/pre-commit');chmod('./.git/hooks/pre-commit',0755);}\""
-        ],
-        "post-update-cmd": [
-            "@githooks"
         ]
     }
 }
