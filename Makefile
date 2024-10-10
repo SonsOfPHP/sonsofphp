@@ -83,6 +83,11 @@ upgrade-code: $(RECTOR) $(PHP_CS_FIXER)
 	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHP_CS_FIXER) fix -vv --diff --allow-risky=yes --config=$(PHP_CS_FIXER_CONFIG)
 	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(RECTOR) --config=$(RECTOR_CONFIG)
 
+# NOTE: This may make changes to the source code
+.PHONY: fix-code
+fix-code: upgrade-code
+	XDEBUG_MODE=off $(PHP) $(PSALM) --alter --issues=all --dry-run
+
 ##---- Testing ------------------------------------------------------------------------
 .PHONY: test
 test: $(PHPUNIT) ## Run PHPUnit Tests
@@ -114,11 +119,11 @@ psalm: $(PSALM) ## Run Psalm
 	XDEBUG_MODE=off $(PHP) $(PSALM)
 
 .PHONY: psalm-baseline
-psalm-baseline: # Updates the baseline file
+psalm-baseline: $(PSALM) # Updates the baseline file
 	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PSALM) --update-baseline --set-baseline=$(PSALM_BASELINE_FILE)
 
 .PHONY: psalm-github
-psalm-github: # used with GitHub
+psalm-github: $(PSALM) # used with GitHub
 	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PSALM) --long-progress --monochrome --output-format=github --report=results.sarif
 
 .PHONY: infection
