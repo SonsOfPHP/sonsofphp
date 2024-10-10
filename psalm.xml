@@ -8,7 +8,8 @@
     cacheDirectory="build/cache/psalm"
     allowStringToStandInForClass="true"
     errorBaseline="build/psalm-baseline.xml"
-    findUnusedBaselineEntry="false"
+    findUnusedVariablesAndParams="true"
+    findUnusedBaselineEntry="true"
     findUnusedCode="true"
     autoloader="vendor/autoload.php"
 >
