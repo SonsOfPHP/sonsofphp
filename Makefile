@@ -105,7 +105,7 @@ test: $(PHPUNIT) ## Run PHPUnit Tests
 .PHONY: coverage
 coverage: XDEBUG_MODE=coverage
 coverage: PHPUNIT_OPTIONS=--coverage-html $(COVERAGE_DIR)
-coverage: phpunit ## Build Code Coverage Report
+coverage: test ## Build Code Coverage Report
 
 ##---- Code Quality -------------------------------------------------------------------
 .PHONY: lint
