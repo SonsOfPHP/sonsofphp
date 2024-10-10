@@ -14,7 +14,7 @@ PSALM        = tools/psalm/vendor/bin/psalm
 RECTOR       = tools/rector/vendor/bin/rector
 # end: Tools
 
-PSALM_BASELINE_FILE = psalm-baseline.xml
+PSALM_BASELINE_FILE = build/psalm-baseline.xml
 COVERAGE_DIR = docs/coverage
 
 XDEBUG_MODE ?= off
@@ -40,6 +40,7 @@ help:
 
 .PHONY: install
 install: vendor $(BARD) $(CHURN) $(INFECTION) $(PHP_CS_FIXER) $(PHPUNIT) $(PSALM) $(RECTOR) ## Install Dependencies
+	mkdir -p build/{cache,logs}
 
 .PHONY: update
 update: ## Update all the dependencies
@@ -53,7 +54,8 @@ update: ## Update all the dependencies
 	@$(MAKE) pkg-update
 
 .PHONY: clean
-clean: ## Remove all vendor folders and composer.lock files
+clean: ## Remove all vendor folders, composer.lock files, and removes build artifacts
+	rm -rf build/{cache,logs}/*
 	rm -rf vendor/ composer.lock
 	rm -rf src/SonsOfPHP/Bard/vendor/ src/SonsOfPHP/Bard/composer.lock
 	rm -rf src/SonsOfPHP/Bridge/*/vendor/ src/SonsOfPHP/Bridge/*/composer.lock
@@ -106,7 +108,7 @@ infection: $(INFECTION) ## Run Infection
 	$(PHP) \
 	-dxdebug.mode=develop \
 	-dapc.enable_cli=1 \
-	tools/infection/vendor/bin/infection --debug -vvv --show-mutations
+	$(INFECTION) --debug -vvv --show-mutations
 
 .PHONY: churn
 churn: $(CHURN) ## Run Churn PHP

@@ -5,7 +5,7 @@
     backupGlobals="false"
     colors="true"
     bootstrap="vendor/autoload.php"
-    cacheDirectory=".phpunit.cache"
+    cacheDirectory="build/cache/phpunit"
     requireCoverageMetadata="true"
     beStrictAboutCoverageMetadata="true">
 
