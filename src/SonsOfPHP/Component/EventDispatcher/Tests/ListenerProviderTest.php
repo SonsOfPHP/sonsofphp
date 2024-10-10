@@ -6,22 +6,20 @@ namespace SonsOfPHP\Component\EventDispatcher\Tests;
 
 use Generator;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\ListenerProviderInterface;
 use SonsOfPHP\Component\EventDispatcher\EventSubscriberInterface;
 use SonsOfPHP\Component\EventDispatcher\ListenerProvider;
 use stdClass;
 
-/**
- * @uses \SonsOfPHP\Component\EventDispatcher\ListenerProvider
- * @coversNothing
- */
 #[CoversClass(ListenerProvider::class)]
+#[UsesClass(ListenerProvider::class)]
+#[CoversNothing]
 final class ListenerProviderTest extends TestCase
 {
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $provider = new ListenerProvider();

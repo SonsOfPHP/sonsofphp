@@ -9,7 +9,7 @@
     allowStringToStandInForClass="true"
     errorBaseline="build/psalm-baseline.xml"
     findUnusedVariablesAndParams="true"
-    findUnusedBaselineEntry="true"
+    findUnusedBaselineEntry="false"
     findUnusedCode="true"
     autoloader="vendor/autoload.php"
 >

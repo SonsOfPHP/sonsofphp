@@ -5,20 +5,19 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Json\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionObject;
 use SonsOfPHP\Component\Json\AbstractEncoderDecoder;
 use SonsOfPHP\Component\Json\JsonDecoder;
 use SonsOfPHP\Component\Json\JsonException;
 
-/**
- *
- * @uses \SonsOfPHP\Component\Json\AbstractEncoderDecoder
- * @uses \SonsOfPHP\Component\Json\JsonDecoder
- * @coversNothing
- */
 #[CoversClass(JsonDecoder::class)]
 #[CoversClass(AbstractEncoderDecoder::class)]
+#[UsesClass(AbstractEncoderDecoder::class)]
+#[UsesClass(JsonDecoder::class)]
+#[CoversNothing]
 final class JsonDecoderTest extends TestCase
 {
     public function testConstructCanReturnArray(): void

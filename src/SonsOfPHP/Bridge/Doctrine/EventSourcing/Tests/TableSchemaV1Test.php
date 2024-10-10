@@ -6,15 +6,16 @@ namespace SonsOfPHP\Bridge\Doctrine\EventSourcing\Tests;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Doctrine\EventSourcing\TableSchemaV1;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 
 /**
  * @internal
- * @coversNothing
  */
 #[CoversClass(TableSchemaV1::class)]
+#[CoversNothing]
 final class TableSchemaV1Test extends TestCase
 {
     public function testGetTableName(): void

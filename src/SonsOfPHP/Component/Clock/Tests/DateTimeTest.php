@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Clock\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Clock\Date;
 use SonsOfPHP\Component\Clock\DateTime;
@@ -15,14 +17,12 @@ use SonsOfPHP\Component\Clock\ZoneOffset;
 
 /**
  * @internal
- * @coversNothing
  */
 #[CoversClass(DateTime::class)]
+#[CoversNothing]
 final class DateTimeTest extends TestCase
 {
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $date = new Date(2022, 4, 20);
@@ -34,13 +34,11 @@ final class DateTimeTest extends TestCase
         $this->assertInstanceOf(DateTimeInterface::class, $dateTime);
     }
 
-    /**
-     *
-     * @uses \SonsOfPHP\Component\Clock\Date
-     * @uses \SonsOfPHP\Component\Clock\Time
-     * @uses \SonsOfPHP\Component\Clock\Zone
-     * @uses \SonsOfPHP\Component\Clock\ZoneOffset
-     */
+
+    #[UsesClass(Date::class)]
+    #[UsesClass(Time::class)]
+    #[UsesClass(Zone::class)]
+    #[UsesClass(ZoneOffset::class)]
     public function testToString(): void
     {
         $date = new Date(2022, 4, 20);

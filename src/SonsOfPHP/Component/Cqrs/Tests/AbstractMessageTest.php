@@ -6,18 +6,18 @@ namespace SonsOfPHP\Component\Cqrs\Tests;
 
 use ArrayIterator;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Cqrs\AbstractMessage;
 use SonsOfPHP\Contract\Cqrs\MessageInterface;
 use stdClass;
 use Stringable;
 
-/**
- * @uses \SonsOfPHP\Component\Cqrs\AbstractMessage
- * @coversNothing
- */
 #[CoversClass(AbstractMessage::class)]
+#[UsesClass(AbstractMessage::class)]
+#[CoversNothing]
 final class AbstractMessageTest extends TestCase
 {
     public static function invalidValueProvider(): iterable
@@ -26,9 +26,7 @@ final class AbstractMessageTest extends TestCase
         yield [new ArrayIterator()];
     }
 
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $msg = $this->getMockForAbstractClass(AbstractMessage::class);

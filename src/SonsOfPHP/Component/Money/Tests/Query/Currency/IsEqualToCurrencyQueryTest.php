@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Money\Tests\Query\Currency;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Currency;
@@ -15,9 +16,7 @@ use SonsOfPHP\Contract\Money\CurrencyQueryInterface;
 #[UsesClass(Currency::class)]
 final class IsEqualToCurrencyQueryTest extends TestCase
 {
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $currency = new Currency('usd');

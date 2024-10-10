@@ -5,20 +5,20 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Filesystem\Tests\Adapter;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Filesystem\Adapter\NullAdapter;
 use SonsOfPHP\Contract\Filesystem\Adapter\AdapterInterface;
 
 /**
  * @internal
- * @coversNothing
  */
 #[CoversClass(NullAdapter::class)]
+#[CoversNothing]
 final class NullAdapterTest extends TestCase
 {
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $adapter = new NullAdapter();
@@ -26,18 +26,14 @@ final class NullAdapterTest extends TestCase
         $this->assertInstanceOf(AdapterInterface::class, $adapter);
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testItCanAddFile(): void
     {
         $adapter = new NullAdapter();
         $adapter->add('/path/to/file.txt', 'contents');
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testItCanRemoveFiles(): void
     {
         $adapter = new NullAdapter();

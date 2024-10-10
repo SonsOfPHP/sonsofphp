@@ -5,18 +5,18 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Json\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionObject;
 use SonsOfPHP\Component\Json\AbstractEncoderDecoder;
 use SonsOfPHP\Component\Json\JsonEncoder;
 use SonsOfPHP\Component\Json\JsonException;
 
-/**
- * @uses \SonsOfPHP\Component\Json\AbstractEncoderDecoder
- * @coversNothing
- */
 #[CoversClass(JsonEncoder::class)]
 #[CoversClass(AbstractEncoderDecoder::class)]
+#[UsesClass(AbstractEncoderDecoder::class)]
+#[CoversNothing]
 final class JsonEncoderTest extends TestCase
 {
     public function testWithFlagsReturnsNewObject(): void

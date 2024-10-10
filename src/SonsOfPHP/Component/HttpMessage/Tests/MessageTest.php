@@ -5,21 +5,19 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpMessage\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\StreamInterface;
 use SonsOfPHP\Component\HttpMessage\Message;
 
-/**
- * @uses \SonsOfPHP\Component\HttpMessage\Message
- * @coversNothing
- */
 #[CoversClass(Message::class)]
+#[UsesClass(Message::class)]
+#[CoversNothing]
 final class MessageTest extends TestCase
 {
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItImplementsCorrectInterface(): void
     {
         $this->assertInstanceOf(MessageInterface::class, new Message());

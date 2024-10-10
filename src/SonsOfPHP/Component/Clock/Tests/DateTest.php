@@ -5,20 +5,19 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Clock\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Clock\Date;
 use SonsOfPHP\Component\Clock\DateInterface;
 
 /**
  * @internal
- * @coversNothing
  */
 #[CoversClass(Date::class)]
+#[CoversNothing]
 final class DateTest extends TestCase
 {
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $date = new Date(2022, 4, 20);

@@ -6,15 +6,15 @@ namespace SonsOfPHP\Bridge\Doctrine\Collections\Pager\Tests;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Doctrine\Collections\Pager\ArrayCollectionAdapter;
 use SonsOfPHP\Contract\Pager\AdapterInterface;
 
-/**
- * @uses \SonsOfPHP\Bridge\Doctrine\Collections\Pager\ArrayCollectionAdapter
- * @coversNothing
- */
 #[CoversClass(ArrayCollectionAdapter::class)]
+#[UsesClass(ArrayCollectionAdapter::class)]
+#[CoversNothing]
 final class ArrayCollectionAdapterTest extends TestCase
 {
     public function testItHasTheRightInterface(): void

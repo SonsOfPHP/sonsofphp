@@ -5,31 +5,32 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpFactory\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestFactoryInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use SonsOfPHP\Component\HttpFactory\ServerRequestFactory;
+use SonsOfPHP\Component\HttpMessage\Request;
+use SonsOfPHP\Component\HttpMessage\ServerRequest;
+use SonsOfPHP\Component\HttpMessage\Uri;
 
 /**
  * @internal
- * @coversNothing
  */
 #[CoversClass(ServerRequestFactory::class)]
+#[CoversNothing]
 final class ServerRequestFactoryTest extends TestCase
 {
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItImplementsCorrectInterface(): void
     {
         $this->assertInstanceOf(ServerRequestFactoryInterface::class, new ServerRequestFactory());
     }
 
-    /**
-     * @uses \SonsOfPHP\Component\HttpMessage\Request
-     * @uses \SonsOfPHP\Component\HttpMessage\ServerRequest
-     * @uses \SonsOfPHP\Component\HttpMessage\Uri
-     */
+    #[UsesClass(Request::class)]
+    #[UsesClass(ServerRequest::class)]
+    #[UsesClass(Uri::class)]
     public function testCreateServerRequestWorksAsExpected(): void
     {
         $factory = new ServerRequestFactory();

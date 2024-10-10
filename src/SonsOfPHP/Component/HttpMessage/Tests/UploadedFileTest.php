@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpMessage\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
@@ -12,11 +14,9 @@ use Psr\Http\Message\UploadedFileInterface;
 use SonsOfPHP\Component\HttpMessage\UploadedFile;
 use SonsOfPHP\Component\HttpMessage\UploadedFileError;
 
-/**
- * @uses \SonsOfPHP\Component\HttpMessage\UploadedFile
- * @coversNothing
- */
 #[CoversClass(UploadedFile::class)]
+#[UsesClass(UploadedFile::class)]
+#[CoversNothing]
 final class UploadedFileTest extends TestCase
 {
     private MockObject $stream;
@@ -27,9 +27,7 @@ final class UploadedFileTest extends TestCase
         $this->stream->method('isReadable')->willReturn(true);
     }
 
-    /**
-     * @coversNothing
-     */
+    #[CoversNothing]
     public function testItImplementsCorrectInterface(): void
     {
         $this->assertInstanceOf(UploadedFileInterface::class, new UploadedFile($this->stream));

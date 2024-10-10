@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Symfony\Cqrs\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Symfony\Cqrs\QueryMessageBus;
 use stdClass;
@@ -14,9 +15,9 @@ use Symfony\Component\Messenger\Stamp\HandledStamp;
 
 /**
  * @internal
- * @coversNothing
  */
 #[CoversClass(QueryMessageBus::class)]
+#[CoversNothing]
 final class QueryMessageBusTest extends TestCase
 {
     public function testItWillUseMessageBusToDispatchQuery(): void

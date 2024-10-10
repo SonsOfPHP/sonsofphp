@@ -6,17 +6,17 @@ namespace SonsOfPHP\Component\FeatureToggle\Tests\Toggle;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
+use SonsOfPHP\Component\FeatureToggle\Context;
 use SonsOfPHP\Component\FeatureToggle\Toggle\DateRangeToggle;
 use SonsOfPHP\Contract\FeatureToggle\ToggleInterface;
 
-/**
- *
- * @uses \SonsOfPHP\Component\FeatureToggle\Toggle\DateRangeToggle
- * @uses \SonsOfPHP\Component\FeatureToggle\Context
- * @coversNothing
- */
 #[CoversClass(DateRangeToggle::class)]
+#[UsesClass(DateRangeToggle::class)]
+#[UsesClass(Context::class)]
+#[CoversNothing]
 final class DateRangeToggleTest extends TestCase
 {
     public function testItHasTheCorrectInterface(): void
