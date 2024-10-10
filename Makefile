@@ -1,14 +1,20 @@
-COMPOSER            = composer
-MKDOCS              = mkdocs
-PHP                 = php
-PHP_CS_FIXER        = tools/php-cs-fixer/vendor/bin/php-cs-fixer
-PHPUNIT             = tools/phpunit/vendor/bin/phpunit
-PSALM               = tools/psalm/vendor/bin/psalm
-CHURN               = tools/churn/vendor/bin/churn
-RECTOR              = tools/rector/vendor/bin/rector
-PSALM_BASELINE_FILE = psalm-baseline.xml
-BARD                = src/SonsOfPHP/Bard/bin/bard
+# start: Executables
+COMPOSER = composer
+PHP      = php
+# end: Executables
 
+# start: Tools
+BARD         = src/SonsOfPHP/Bard/bin/bard
+BARD_COMPILE = src/SonsOfPHP/Bard/bin/compile
+CHURN        = tools/churn/vendor/bin/churn
+INFECTION    = tools/infection/vendor/bin/infection
+PHP_CS_FIXER = tools/php-cs-fixer/vendor/bin/php-cs-fixer
+PHPUNIT      = tools/phpunit/vendor/bin/phpunit
+PSALM        = tools/psalm/vendor/bin/psalm
+RECTOR       = tools/rector/vendor/bin/rector
+# end: Tools
+
+PSALM_BASELINE_FILE = psalm-baseline.xml
 COVERAGE_DIR = docs/coverage
 
 XDEBUG_MODE ?= off
@@ -16,7 +22,6 @@ PHPUNIT_TESTSUITE ?= all
 PHPUNIT_OPTIONS ?=
 
 .DEFAULT_GOAL = help
-.PHONY        = help
 
 ##
 ## ███████╗ ██████╗ ███╗   ██╗███████╗     ██████╗ ███████╗    ██████╗ ██╗  ██╗██████╗
@@ -26,19 +31,29 @@ PHPUNIT_OPTIONS ?=
 ## ███████║╚██████╔╝██║ ╚████║███████║    ╚██████╔╝██║         ██║     ██║  ██║██║
 ## ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝     ╚═════╝ ╚═╝         ╚═╝     ╚═╝  ╚═╝╚═╝
 ##
+##=====================================================================================
+##
 
+.PHONY: help
 help:
 	@grep -E '(^[a-zA-Z0-9_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}{printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
 
-install: composer-install tools-install ## Install Dependencies
+.PHONY: install
+install: vendor $(BARD) $(CHURN) $(INFECTION) $(PHP_CS_FIXER) $(PHPUNIT) $(PSALM) $(RECTOR) ## Install Dependencies
 
-upgrade: tools-upgrade
+.PHONY: update
+update: ## Update all the dependencies
+	XDEBUG_MODE=off $(COMPOSER) update --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
+	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/churn --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
+	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/infection --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
+	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/php-cs-fixer --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
+	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/phpunit --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
+	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/psalm --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
+	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/rector --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
+	@$(MAKE) pkg-update
 
-composer-install: composer.json # Install Dependencies via Composer
-	XDEBUG_MODE=off $(COMPOSER) install --no-interaction --prefer-dist --optimize-autoloader
-	XDEBUG_MODE=off $(COMPOSER) install --working-dir=src/SonsOfPHP/Bard --no-interaction --prefer-dist --optimize-autoloader
-
-purge: # Purge vendor and lock files
+.PHONY: clean
+clean: ## Remove all vendor folders and composer.lock files
 	rm -rf vendor/ composer.lock
 	rm -rf src/SonsOfPHP/Bard/vendor/ src/SonsOfPHP/Bard/composer.lock
 	rm -rf src/SonsOfPHP/Bridge/*/vendor/ src/SonsOfPHP/Bridge/*/composer.lock
@@ -47,48 +62,9 @@ purge: # Purge vendor and lock files
 	rm -rf src/SonsOfPHP/Contract/*/vendor/ src/SonsOfPHP/Contract/*/composer.lock
 	rm -rf src/tools/*/vendor/ src/tools/*/composer.lock
 
-test: phpunit ## Run PHPUnit Tests
-
-test-cache: PHPUNIT_TESTSUITE=cache
-test-cache: phpunit
-
-test-clock: PHPUNIT_TESTSUITE=clock
-test-clock: phpunit
-
-test-container: PHPUNIT_TESTSUITE=container
-test-container: phpunit
-
-test-cookie: PHPUNIT_TESTSUITE=cookie
-test-cookie: phpunit
-
-test-cqrs: PHPUNIT_TESTSUITE=cqrs
-test-cqrs: phpunit
-
-test-event-dispatcher: PHPUNIT_TESTSUITE=event-dispatcher
-test-event-dispatcher: phpunit
-
-test-http-factory: PHPUNIT_TESTSUITE=http-factory
-test-http-factory: phpunit
-
-test-http-handler: PHPUNIT_TESTSUITE=http-handler
-test-http-handler: phpunit
-
-test-link: PHPUNIT_TESTSUITE=link
-test-link: phpunit
-
-test-logger: PHPUNIT_TESTSUITE=logger
-test-logger: phpunit
-
-test-mailer: PHPUNIT_TESTSUITE=mailer
-test-mailer: phpunit
-
-test-money: PHPUNIT_TESTSUITE=money
-test-money: phpunit
-
-test-pager: PHPUNIT_TESTSUITE=pager
-test-pager: phpunit
-
-phpunit:
+##---- Testing ------------------------------------------------------------------------
+.PHONY: test
+test: $(PHPUNIT) ## Run PHPUnit Tests
 	XDEBUG_MODE=$(XDEBUG_MODE) \
 	$(PHP) \
 	-dxdebug.mode=$(XDEBUG_MODE) \
@@ -98,160 +74,91 @@ phpunit:
 	--testsuite=$(PHPUNIT_TESTSUITE) \
 	$(PHPUNIT_OPTIONS)
 
-phpunit-install:
-	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/phpunit --no-interaction --prefer-dist --optimize-autoloader
-
-phpunit-upgrade:
-	XDEBUG_MODE=off $(COMPOSER) upgrade --working-dir=tools/phpunit --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
-
-lint: lint-php ## Lint files
-
-lint-php: # lint php files
-	find src -name "*.php" -not -path "src/**/vendor/*" | xargs -I{} $(PHP) -l '{}'
-
+.PHONY: coverage
 coverage: XDEBUG_MODE=coverage
 coverage: PHPUNIT_OPTIONS=--coverage-html $(COVERAGE_DIR)
 coverage: phpunit ## Build Code Coverage Report
 
-coverage-cache: PHPUNIT_TESTSUITE=cache
-coverage-cache: coverage
+##---- Code Quality -------------------------------------------------------------------
+.PHONY: lint
+lint: ## Lint PHP files
+	find src -name "*.php" -not -path "src/**/vendor/*" | xargs -I{} $(PHP) -l '{}'
 
-coverage-clock: PHPUNIT_TESTSUITE=clock
-coverage-clock: coverage
+.PHONY: php-cs-fixer
+php-cs-fixer: $(PHP_CS_FIXER) ## Run php-cs-fixer
+	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHP_CS_FIXER) fix -vv --diff --allow-risky=yes --config=.php-cs-fixer.dist.php
 
-coverage-container: PHPUNIT_TESTSUITE=container
-coverage-container: coverage
-
-coverage-cookie: PHPUNIT_TESTSUITE=cookie
-coverage-cookie: coverage
-
-coverage-cqrs: PHPUNIT_TESTSUITE=cqrs
-coverage-cqrs: coverage
-
-coverage-event-dispatcher: PHPUNIT_TESTSUITE=event-dispatcher
-coverage-event-dispatcher: coverage
-
-coverage-event-sourcing:
-	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite event-sourcing --coverage-html $(COVERAGE_DIR)
-
-coverage-feature-toggle:
-	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite feature-toggle --coverage-html $(COVERAGE_DIR)
-
-coverage-filesystem:
-	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite filesystem --coverage-html $(COVERAGE_DIR)
-
-coverage-http-factory:
-	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite http-factory --coverage-html $(COVERAGE_DIR)
-
-coverage-http-handler: PHPUNIT_TESTSUITE=http-handler
-coverage-http-handler: coverage
-
-coverage-http-message:
-	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite http-message --coverage-html $(COVERAGE_DIR)
-
-coverage-json:
-	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite json --coverage-html $(COVERAGE_DIR)
-
-coverage-link: PHPUNIT_TESTSUITE=link
-coverage-link: coverage
-
-coverage-logger: PHPUNIT_TESTSUITE=logger
-coverage-logger: coverage
-
-coverage-mailer: PHPUNIT_TESTSUITE=mailer
-coverage-mailer: coverage
-
-coverage-money: PHPUNIT_TESTSUITE=money
-coverage-money: coverage
-
-coverage-pager: PHPUNIT_TESTSUITE=pager
-coverage-pager: coverage
-
-coverage-version:
-	XDEBUG_MODE=coverage $(PHP) -dxdebug.mode=coverage $(PHPUNIT) --testsuite version --coverage-html $(COVERAGE_DIR)
-
-psalm: ## Run psalm
+.PHONY: psalm
+psalm: $(PSALM) ## Run Psalm
 	XDEBUG_MODE=off $(PHP) $(PSALM)
 
+.PHONY: psalm-baseline
 psalm-baseline: # Updates the baseline file
 	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PSALM) --update-baseline --set-baseline=$(PSALM_BASELINE_FILE)
 
+.PHONY: psalm-github
 psalm-github: # used with GitHub
 	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PSALM) --long-progress --monochrome --output-format=github --report=results.sarif
 
-psalm-install:
-	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/psalm --no-interaction --prefer-dist --optimize-autoloader
-
-psalm-upgrade:
-	XDEBUG_MODE=off $(COMPOSER) upgrade --working-dir=tools/psalm --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
-
-php-cs-fixer: ## run php-cs-fixer
-	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHP_CS_FIXER) fix -vv --diff --allow-risky=yes --config=.php-cs-fixer.dist.php
-
-php-cs-fixer-install:
-	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/php-cs-fixer --no-interaction --prefer-dist --optimize-autoloader
-
-php-cs-fixer-upgrade:
-	XDEBUG_MODE=off $(COMPOSER) upgrade --working-dir=tools/php-cs-fixer --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
-
-testdox: ## Run tests and output testdox
-	XDEBUG_MODE=off $(PHP) -dxdebug.mode=off $(PHPUNIT) --testdox
-
-infection:
+.PHONY: infection
+infection: $(INFECTION) ## Run Infection
 	XDEBUG_MODE=develop \
 	$(PHP) \
 	-dxdebug.mode=develop \
 	-dapc.enable_cli=1 \
 	tools/infection/vendor/bin/infection --debug -vvv --show-mutations
 
-churn: ## Run Churn PHP
+.PHONY: churn
+churn: $(CHURN) ## Run Churn PHP
 	$(CHURN)
 
-churn-install:
-	$(COMPOSER) install --working-dir=tools/churn --no-interaction --prefer-dist --optimize-autoloader
-
-churn-upgrade:
-	$(COMPOSER) upgrade --working-dir=tools/churn --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
-
-rector:
+.PHONY: rector
+rector: $(RECTOR) ## Run Rector in dry-run mode
 	$(RECTOR) --dry-run
 
-rector-install:
-	$(COMPOSER) install --working-dir=tools/rector --no-interaction --prefer-dist --optimize-autoloader
-
-rector-upgrade:
-	$(COMPOSER) upgrade --working-dir=tools/rector --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
-
-tools-install: psalm-install php-cs-fixer-install phpunit-install churn-install rector-install
-
-tools-upgrade: psalm-upgrade php-cs-fixer-upgrade phpunit-upgrade churn-upgrade rector-upgrade
-
-## Documentation
-docs-install: ## Install deps for building docs
-	pip install mkdocs
-	pip install mkdocs-material
-
-docs-upgrade: ## upgrade mkdocs
-	pip install --upgrade mkdocs-material
-
-docs-watch: ## Preview documentation locally
-	$(MKDOCS) serve
-
-docs-build: ## Build Site
-	$(MKDOCS) build
-
-## Package Management
-packages-install: ## Runs `composer install` on each package
+##---- Package Management -------------------------------------------------------------
+.PHONY: pkg-install
+pkg-install: $(BARD) ## Runs `composer install` on each package
 	$(BARD) install -n -vvv
 
-packages-update: ## Runs `composer update` on each package
-	$(BARD) update -n -vvv
+.PHONY: pkg-update
+pkg-update: $(BARD) ## Runs `composer install` on each package
+	$(BARD) install -n -vvv
 
-packages-merge: ## Merges each package's composer.json into the root composer.json
+.PHONY: pkg-merge
+pkg-merge: $(BARD) ## Merges each package's composer.json into the root composer.json
 	$(BARD) merge -n -vvv
 
-packages-publish: ## Packages are published to their read-only repository
-	$(BARD) publish -n -vvv
-
-packages-release-patch: ## Release patch (0.0.x)
+.PHONY: pkg-release-patch
+pkg-release-patch: $(BARD) ## Release patch (0.0.x)
 	$(BARD) release -n -vvv patch
+
+#===============================================================================
+$(BARD): src/SonsOfPHP/Bard/composer.lock
+
+src/SonsOfPHP/Bard/composer.lock:
+	XDEBUG_MODE=off $(COMPOSER) install --working-dir=src/SonsOfPHP/Bard --no-interaction --prefer-dist --optimize-autoloader
+
+$(CHURN):
+	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/churn --no-interaction --prefer-dist --optimize-autoloader
+
+$(INFECTION):
+	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/infection --no-interaction --prefer-dist --optimize-autoloader
+
+$(PHP_CS_FIXER):
+	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/php-cs-fixer --no-interaction --prefer-dist --optimize-autoloader
+
+$(PHPUNIT):
+	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/phpunit --no-interaction --prefer-dist --optimize-autoloader
+
+$(PSALM):
+	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/psalm --no-interaction --prefer-dist --optimize-autoloader
+
+$(RECTOR):
+	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/rector --no-interaction --prefer-dist --optimize-autoloader
+
+composer.lock:
+	XDEBUG_MODE=off $(COMPOSER) install --no-interaction --prefer-dist --optimize-autoloader
+
+vendor: composer.json composer.lock
+	XDEBUG_MODE=off $(COMPOSER) install --no-interaction --prefer-dist --optimize-autoloader
