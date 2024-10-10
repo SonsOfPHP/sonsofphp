@@ -31,7 +31,7 @@
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
     </plugins>
     <issueHandlers>
-        <PossiblyUnusedMethod errorLevel="info" />
-        <UnusedClass errorLevel="info" />
+        <!--<PossiblyUnusedMethod errorLevel="info" />-->
+        <!--<UnusedClass errorLevel="info" />-->
     </issueHandlers>
 </psalm>
