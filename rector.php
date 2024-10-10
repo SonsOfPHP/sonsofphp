@@ -1,9 +1,12 @@
 <?php
 
 declare(strict_types=1);
+
 use Rector\Config\RectorConfig;
 
 return RectorConfig::configure()
+    //->withParallel()
+    ->withCache(__DIR__ . '/build/cache/rector')
     ->withPaths([
         __DIR__ . '/src',
     ])
@@ -17,6 +20,9 @@ return RectorConfig::configure()
     ->withPhpSets(
         php82: true,
     )
+    //->withAttributesSets(
+    //    phpunit: true,
+    //)
     ->withPreparedSets(
         deadCode: true,
         codeQuality: true,
@@ -28,34 +34,10 @@ return RectorConfig::configure()
         earlyReturn: true,
         strictBooleans: true,
         phpunitCodeQuality: true,
+        phpunit: true,
     )
     ->withImportNames(
         importShortClasses: false,
         removeUnusedImports: true,
     )
-    ->withRules([
-        // Generic
-        //AddVoidReturnTypeWhereNoReturnRector::class,
-        //ArrayKeyExistsTernaryThenValueToCoalescingRector::class,
-        //ArrayMergeOfNonArraysToSimpleArrayRector::class,
-        //BooleanNotIdenticalToNotIdenticalRector::class,
-        //CleanupUnneededNullsafeOperatorRector::class,
-        //CombineIfRector::class,
-        //CombinedAssignRector::class,
-        //ExplicitBoolCompareRector::class,
-        //FlipTypeControlToUseExclusiveTypeRector::class,
-        //ForRepeatedCountToOwnVariableRector::class,
-        //Utf8DecodeEncodeToMbConvertEncodingRector::class,
-        // PHPUnit Rules
-        //AnnotationWithValueToAttributeRector::class,
-        //AssertCompareToSpecificMethodRector::class,
-        //AssertComparisonToSpecificMethodRector::class,
-        //AssertEqualsToSameRector::class,
-        //CoversAnnotationWithValueToAttributeRector::class,
-        //DataProviderAnnotationToAttributeRector::class,
-        //GetMockRector::class,
-        //PublicDataProviderClassMethodRector::class,
-        //StaticDataProviderClassMethodRector::class,
-        //TicketAnnotationToAttributeRector::class,
-        //YieldDataProviderRector::class,
-    ]);
+;
