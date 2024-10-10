@@ -20,8 +20,8 @@ RECTOR_CONFIG=rector.php
 # end: Config Files
 
 # start: Config Options
-COMPOSER_INSTALL_OPTIONS=--no-interaction --prefer-dist --optimize-autoloader
-COMPOSER_UPDATE_OPTIONS=--no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
+COMPOSER_INSTALL_OPTIONS ?= --no-interaction --prefer-dist --optimize-autoloader
+COMPOSER_UPDATE_OPTIONS  ?= --no-interaction --prefer-dist --optimize-autoloader --with-all-dependencies
 # end: Config Options
 
 PSALM_BASELINE_FILE = build/psalm-baseline.xml
