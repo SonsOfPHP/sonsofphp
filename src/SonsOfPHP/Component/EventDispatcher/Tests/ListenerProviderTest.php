@@ -16,7 +16,6 @@ use stdClass;
 
 #[CoversClass(ListenerProvider::class)]
 #[UsesClass(ListenerProvider::class)]
-#[CoversNothing]
 final class ListenerProviderTest extends TestCase
 {
     #[CoversNothing]

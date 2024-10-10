@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Symfony\Cqrs\Tests\Command;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Symfony\Cqrs\Command\AbstractOptionsResolverCommandMessage;
@@ -14,10 +13,8 @@ use SonsOfPHP\Contract\Cqrs\CommandMessageInterface;
 
 #[CoversClass(AbstractOptionsResolverCommandMessage::class)]
 #[UsesClass(AbstractOptionsResolverCommandMessage::class)]
-#[CoversNothing]
 final class AbstractOptionsResolverCommandMessageTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $command = $this->getMockForAbstractClass(AbstractOptionsResolverCommandMessage::class);

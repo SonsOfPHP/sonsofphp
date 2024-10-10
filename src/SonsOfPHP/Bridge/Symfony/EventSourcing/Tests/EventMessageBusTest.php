@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
@@ -16,7 +15,6 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 #[CoversClass(EventMessageBus::class)]
 #[UsesClass(EventMessageBus::class)]
-#[CoversNothing]
 final class EventMessageBusTest extends TestCase
 {
     private MessageBusInterface $messageBus;

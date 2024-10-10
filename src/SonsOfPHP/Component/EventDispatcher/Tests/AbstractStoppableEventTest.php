@@ -13,7 +13,6 @@ use SonsOfPHP\Component\EventDispatcher\AbstractStoppableEvent;
 
 #[CoversClass(AbstractStoppableEvent::class)]
 #[UsesClass(AbstractStoppableEvent::class)]
-#[CoversNothing]
 final class AbstractStoppableEventTest extends TestCase
 {
     #[CoversNothing]

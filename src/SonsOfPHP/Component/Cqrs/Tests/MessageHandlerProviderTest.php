@@ -16,7 +16,6 @@ use stdClass;
 
 #[CoversClass(MessageHandlerProvider::class)]
 #[UsesClass(MessageHandlerProvider::class)]
-#[CoversNothing]
 final class MessageHandlerProviderTest extends TestCase
 {
     #[CoversNothing]

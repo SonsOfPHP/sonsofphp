@@ -17,7 +17,6 @@ use Stringable;
 
 #[CoversClass(AbstractMessage::class)]
 #[UsesClass(AbstractMessage::class)]
-#[CoversNothing]
 final class AbstractMessageTest extends TestCase
 {
     public static function invalidValueProvider(): iterable

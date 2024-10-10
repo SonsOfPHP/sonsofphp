@@ -15,11 +15,11 @@ use SonsOfPHP\Component\Clock\Time;
 use SonsOfPHP\Component\Clock\Zone;
 use SonsOfPHP\Component\Clock\ZoneOffset;
 
-/**
- * @internal
- */
 #[CoversClass(DateTime::class)]
-#[CoversNothing]
+#[UsesClass(Date::class)]
+#[UsesClass(Time::class)]
+#[UsesClass(Zone::class)]
+#[UsesClass(ZoneOffset::class)]
 final class DateTimeTest extends TestCase
 {
     #[CoversNothing]
@@ -34,11 +34,6 @@ final class DateTimeTest extends TestCase
         $this->assertInstanceOf(DateTimeInterface::class, $dateTime);
     }
 
-
-    #[UsesClass(Date::class)]
-    #[UsesClass(Time::class)]
-    #[UsesClass(Zone::class)]
-    #[UsesClass(ZoneOffset::class)]
     public function testToString(): void
     {
         $date = new Date(2022, 4, 20);

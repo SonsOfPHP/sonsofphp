@@ -15,11 +15,10 @@ use SonsOfPHP\Component\HttpMessage\Request;
 use SonsOfPHP\Component\HttpMessage\ServerRequest;
 use SonsOfPHP\Component\HttpMessage\Uri;
 
-/**
- * @internal
- */
 #[CoversClass(ServerRequestFactory::class)]
-#[CoversNothing]
+#[UsesClass(Request::class)]
+#[UsesClass(ServerRequest::class)]
+#[UsesClass(Uri::class)]
 final class ServerRequestFactoryTest extends TestCase
 {
     #[CoversNothing]
@@ -28,9 +27,6 @@ final class ServerRequestFactoryTest extends TestCase
         $this->assertInstanceOf(ServerRequestFactoryInterface::class, new ServerRequestFactory());
     }
 
-    #[UsesClass(Request::class)]
-    #[UsesClass(ServerRequest::class)]
-    #[UsesClass(Uri::class)]
     public function testCreateServerRequestWorksAsExpected(): void
     {
         $factory = new ServerRequestFactory();

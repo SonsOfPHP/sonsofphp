@@ -17,7 +17,6 @@ use stdClass;
 
 #[CoversClass(Container::class)]
 #[UsesClass(Container::class)]
-#[CoversNothing]
 final class ContainerTest extends TestCase
 {
     #[CoversNothing]

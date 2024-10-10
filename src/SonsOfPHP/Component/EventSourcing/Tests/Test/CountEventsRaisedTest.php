@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Tests\Test;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -16,7 +15,6 @@ use stdClass;
 
 #[CoversClass(CountEventsRaised::class)]
 #[UsesClass(CountEventsRaised::class)]
-#[CoversNothing]
 final class CountEventsRaisedTest extends TestCase
 {
     private MockObject $aggregate;

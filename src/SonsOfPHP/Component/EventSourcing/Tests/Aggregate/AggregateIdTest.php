@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Tests\Aggregate;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId;
@@ -15,11 +14,9 @@ use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 
 /**
  * @todo Make this the AbstractAggregateIdTest class
- *
  */
 #[CoversClass(AbstractAggregateId::class)]
 #[UsesClass(AbstractAggregateId::class)]
-#[CoversNothing]
 final class AggregateIdTest extends TestCase
 {
     public function testItHasTheRightInterface(): void

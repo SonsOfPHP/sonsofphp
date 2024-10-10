@@ -7,7 +7,6 @@ namespace SonsOfPHP\Bridge\Doctrine\DBAL\Pager\Tests;
 use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\DBAL\Result;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -16,7 +15,6 @@ use SonsOfPHP\Contract\Pager\AdapterInterface;
 
 #[CoversClass(QueryBuilderAdapter::class)]
 #[UsesClass(QueryBuilderAdapter::class)]
-#[CoversNothing]
 final class QueryBuilderAdapterTest extends TestCase
 {
     private MockObject $builder;

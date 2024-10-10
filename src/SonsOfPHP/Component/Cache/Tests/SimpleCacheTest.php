@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Cache\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -16,7 +15,6 @@ use SonsOfPHP\Component\Cache\SimpleCache;
 
 #[CoversClass(SimpleCache::class)]
 #[UsesClass(SimpleCache::class)]
-#[CoversNothing]
 final class SimpleCacheTest extends TestCase
 {
     private MockObject $adapter;

@@ -13,11 +13,8 @@ use Psr\Http\Message\StreamInterface;
 use SonsOfPHP\Component\HttpFactory\StreamFactory;
 use SonsOfPHP\Component\HttpMessage\Stream;
 
-/**
- * @internal
- */
 #[CoversClass(StreamFactory::class)]
-#[CoversNothing]
+#[UsesClass(Stream::class)]
 final class StreamFactoryTest extends TestCase
 {
     #[CoversNothing]
@@ -26,7 +23,6 @@ final class StreamFactoryTest extends TestCase
         $this->assertInstanceOf(StreamFactoryInterface::class, new StreamFactory());
     }
 
-    #[UsesClass(Stream::class)]
     public function testCreateStreamWorksAsExpected(): void
     {
         $factory = new StreamFactory();
@@ -34,7 +30,6 @@ final class StreamFactoryTest extends TestCase
         $this->assertInstanceOf(StreamInterface::class, $factory->createStream('just a test'));
     }
 
-    #[UsesClass(Stream::class)]
     public function testCreateStreamFromResourceWorksAsExpected(): void
     {
         $factory = new StreamFactory();
@@ -42,7 +37,6 @@ final class StreamFactoryTest extends TestCase
         $this->assertInstanceOf(StreamInterface::class, $factory->createStreamFromResource(fopen('php://memory', 'r')));
     }
 
-    #[UsesClass(Stream::class)]
     public function testCreateStreamFromResourceWillThrowExceptionWhenNotResource(): void
     {
         $factory = new StreamFactory();

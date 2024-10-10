@@ -13,7 +13,6 @@ use SonsOfPHP\Contract\FeatureToggle\ContextInterface;
 
 #[CoversClass(Context::class)]
 #[UsesClass(Context::class)]
-#[CoversNothing]
 final class ContextTest extends TestCase
 {
     #[CoversNothing]

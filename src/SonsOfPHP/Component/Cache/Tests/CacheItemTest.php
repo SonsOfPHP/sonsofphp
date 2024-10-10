@@ -7,7 +7,6 @@ namespace SonsOfPHP\Component\Cache\Tests;
 use DateInterval;
 use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
@@ -17,7 +16,6 @@ use SonsOfPHP\Component\Cache\Exception\InvalidArgumentException;
 
 #[CoversClass(CacheItem::class)]
 #[UsesClass(CacheItem::class)]
-#[CoversNothing]
 final class CacheItemTest extends TestCase
 {
     public function testItHasTheCorrectInterface(): void

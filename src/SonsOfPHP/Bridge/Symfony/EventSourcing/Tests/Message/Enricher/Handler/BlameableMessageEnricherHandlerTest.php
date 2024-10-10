@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests\Message\Enricher\Handler;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Symfony\EventSourcing\Message\Enricher\Handler\BlameableMessageEnricherHandler;
@@ -16,7 +15,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[CoversClass(BlameableMessageEnricherHandler::class)]
 #[UsesClass(BlameableMessageEnricherHandler::class)]
-#[CoversNothing]
 final class BlameableMessageEnricherHandlerTest extends TestCase
 {
     private Security $security;
