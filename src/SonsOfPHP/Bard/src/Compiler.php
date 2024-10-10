@@ -86,9 +86,9 @@ final class Compiler
                 $output .= '';
             } elseif (T_WHITESPACE === $token[0]) {
                 $whitespace = preg_replace('{[ \t]+}', ' ', $token[1]);
-                $whitespace = preg_replace('{(?:\r\n|\r|\n)}', "\n", $whitespace);
-                $whitespace = preg_replace('{\n +}', "\n", $whitespace);
-                $whitespace = preg_replace('{\n}', '', $whitespace);
+                $whitespace = preg_replace('{(?:\r\n|\r|\n)}', "\n", (string) $whitespace);
+                $whitespace = preg_replace('{\n +}', "\n", (string) $whitespace);
+                $whitespace = preg_replace('{\n}', '', (string) $whitespace);
                 $output .= $whitespace;
             } else {
                 $output .= $token[1];

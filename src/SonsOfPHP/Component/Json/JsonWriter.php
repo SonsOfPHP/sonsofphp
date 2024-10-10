@@ -9,7 +9,7 @@ namespace SonsOfPHP\Component\Json;
  */
 class JsonWriter
 {
-    private JsonEncoder $encoder;
+    private readonly JsonEncoder $encoder;
 
     public function __construct(JsonEncoder $encoder = null)
     {

@@ -5,12 +5,11 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Registry\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Registry\ServiceRegistry;
-use SonsOfPHP\Contract\Registry\ServiceRegistryInterface;
 use SonsOfPHP\Contract\Registry\ExistingServiceExceptionInterface;
 use SonsOfPHP\Contract\Registry\NonExistingServiceExceptionInterface;
+use SonsOfPHP\Contract\Registry\ServiceRegistryInterface;
 
 #[CoversClass(ServiceRegistry::class)]
 final class ServiceRegistryTest extends TestCase

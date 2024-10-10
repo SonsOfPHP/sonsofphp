@@ -11,7 +11,7 @@ namespace SonsOfPHP\Component\Json;
  */
 class JsonReader
 {
-    private JsonDecoder $decoder;
+    private readonly JsonDecoder $decoder;
 
     public function __construct(JsonDecoder $decoder = null)
     {

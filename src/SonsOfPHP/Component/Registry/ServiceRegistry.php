@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Registry;
 
-use SonsOfPHP\Contract\Registry\ServiceRegistryInterface;
 use SonsOfPHP\Component\Registry\Exception\ExistingServiceException;
 use SonsOfPHP\Component\Registry\Exception\NonExistingServiceException;
+use SonsOfPHP\Contract\Registry\ServiceRegistryInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
@@ -16,7 +16,7 @@ class ServiceRegistry implements ServiceRegistryInterface
     private array $services = [];
 
     public function __construct(
-        private string $interface,
+        private readonly string $interface,
     ) {}
 
     /**
