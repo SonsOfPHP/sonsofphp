@@ -10,7 +10,7 @@
     errorBaseline="build/psalm-baseline.xml"
     findUnusedVariablesAndParams="true"
     findUnusedBaselineEntry="false"
-    findUnusedCode="false"
+    findUnusedCode="true"
     autoloader="vendor/autoload.php"
 >
     <projectFiles>
