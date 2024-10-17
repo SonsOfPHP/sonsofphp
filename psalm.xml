@@ -7,7 +7,7 @@
     resolveFromConfigFile="true"
     cacheDirectory="build/cache/psalm"
     allowStringToStandInForClass="true"
-    errorBaseline="build/psalm-baseline.xml"
+    errorBaseline="build/config/psalm/psalm-baseline.xml"
     findUnusedVariablesAndParams="true"
     findUnusedBaselineEntry="false"
     findUnusedCode="true"
