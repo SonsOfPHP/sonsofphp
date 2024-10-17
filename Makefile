@@ -9,14 +9,19 @@ BARD_COMPILE = src/SonsOfPHP/Bard/bin/compile
 CHURN        = tools/churn/vendor/bin/churn
 INFECTION    = tools/infection/vendor/bin/infection
 PHP_CS_FIXER = tools/php-cs-fixer/vendor/bin/php-cs-fixer
+PHPACTOR     = tools/phpactor/vendor/bin/phpactor
 PHPUNIT      = tools/phpunit/vendor/bin/phpunit
 PSALM        = tools/psalm/vendor/bin/psalm
 RECTOR       = tools/rector/vendor/bin/rector
 # end: Tools
 
 # start: Config Files
-PHP_CS_FIXER_CONFIG=.php-cs-fixer.dist.php
-RECTOR_CONFIG=rector.php
+CHURN_CONFIG        = churn.yml
+INFECTION_CONFIG    = infection.json5
+PHP_CS_FIXER_CONFIG = .php-cs-fixer.dist.php
+PHPUNIT_CONFIG      = phpunit.xml.dist
+PSALM_CONFIG        = psalm.xml
+RECTOR_CONFIG       = rector.php
 # end: Config Files
 
 # start: Config Options
@@ -49,21 +54,23 @@ help:
 	@grep -E '(^[a-zA-Z0-9_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}{printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
 
 .PHONY: install
-install: vendor $(BARD) $(CHURN) $(INFECTION) $(PHP_CS_FIXER) $(PHPUNIT) $(PSALM) $(RECTOR) ## Install Dependencies
-	mkdir -p build/{cache,logs}
-	$(COMPOSER) githooks
+install: composer.lock $(BARD) $(CHURN) $(INFECTION) $(PHP_CS_FIXER) $(PHPACTOR) $(PHPUNIT) $(PSALM) $(RECTOR) ## Install Dependencies
+	@mkdir -p build/{cache,logs,config}
+	@$(COMPOSER) githooks
 
 .PHONY: update
 update: ## Update all the dependencies (root, tools, and packages)
+	$(info COMPOSER_UPDATE_OPTIONS : $(COMPOSER_UPDATE_OPTIONS))
 	XDEBUG_MODE=off $(COMPOSER) update $(COMPOSER_UPDATE_OPTIONS)
 	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/churn $(COMPOSER_UPDATE_OPTIONS)
 	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/infection $(COMPOSER_UPDATE_OPTIONS)
 	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/php-cs-fixer $(COMPOSER_UPDATE_OPTIONS)
+	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/phpactor $(COMPOSER_UPDATE_OPTIONS)
 	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/phpunit $(COMPOSER_UPDATE_OPTIONS)
 	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/psalm $(COMPOSER_UPDATE_OPTIONS)
 	XDEBUG_MODE=off $(COMPOSER) update --working-dir=tools/rector $(COMPOSER_UPDATE_OPTIONS)
 	@$(MAKE) pkg-update
-	$(COMPOSER) githooks
+	@$(COMPOSER) githooks
 
 .PHONY: clean
 clean: ## Remove all vendor folders, composer.lock files, and removes build artifacts
@@ -87,8 +94,9 @@ upgrade-code: $(RECTOR) $(PHP_CS_FIXER)
 
 # NOTE: This may make changes to the source code
 .PHONY: fix-code
-fix-code: upgrade-code
-	XDEBUG_MODE=off $(PHP) $(PSALM) --alter --issues=all --dry-run
+fix-code: PSALM_ISSUES=all
+fix-code: upgrade-code $(PSALM)
+	XDEBUG_MODE=off $(PHP) $(PSALM) --alter --issues=$(PSALM_ISSUES) --dry-run
 
 ##---- Testing ------------------------------------------------------------------------
 .PHONY: test
@@ -118,7 +126,7 @@ php-cs-fixer: $(PHP_CS_FIXER) ## Run php-cs-fixer (dry-run)
 
 .PHONY: psalm
 psalm: $(PSALM) ## Run Psalm
-	XDEBUG_MODE=off $(PHP) $(PSALM)
+	XDEBUG_MODE=off $(PHP) $(PSALM) --show-info=true --config=$(PSALM_CONFIG)
 
 .PHONY: psalm-baseline
 psalm-baseline: $(PSALM) # Updates the baseline file
@@ -151,6 +159,7 @@ pkg-install: $(BARD) ## Runs `composer install` on each package
 
 .PHONY: pkg-update
 pkg-update: $(BARD) ## Runs `composer update` on each package
+	$(info Bard: composer update)
 	$(BARD) update -n -vvv
 
 .PHONY: pkg-merge
@@ -167,26 +176,40 @@ $(BARD): src/SonsOfPHP/Bard/composer.lock
 src/SonsOfPHP/Bard/composer.lock:
 	XDEBUG_MODE=off $(COMPOSER) install --working-dir=src/SonsOfPHP/Bard $(COMPOSER_INSTALL_OPTIONS)
 
-$(CHURN):
+$(CHURN): tools/churn/composer.lock
+
+tools/churn/composer.lock:
 	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/churn $(COMPOSER_INSTALL_OPTIONS)
 
-$(INFECTION):
+$(INFECTION): tools/infection/composer.lock
+
+tools/infection/composer.lock:
 	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/infection $(COMPOSER_INSTALL_OPTIONS)
 
-$(PHP_CS_FIXER):
+$(PHP_CS_FIXER): tools/php-cs-fixer/composer.lock
+
+tools/php-cs-fixer/composer.lock:
 	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/php-cs-fixer $(COMPOSER_INSTALL_OPTIONS)
 
-$(PHPUNIT):
+$(PHPACTOR): tools/phpactor/composer.lock
+
+tools/phpactor/composer.lock:
+	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/phpactor $(COMPOSER_INSTALL_OPTIONS)
+
+$(PHPUNIT): tools/phpunit/composer.lock
+
+tools/phpunit/composer.lock:
 	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/phpunit $(COMPOSER_INSTALL_OPTIONS)
 
-$(PSALM):
+$(PSALM): tools/psalm/composer.lock
+
+tools/psalm/composer.lock:
 	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/psalm $(COMPOSER_INSTALL_OPTIONS)
 
-$(RECTOR):
+$(RECTOR): tools/rector/composer.lock
+
+tools/rector/composer.lock:
 	XDEBUG_MODE=off $(COMPOSER) install --working-dir=tools/rector $(COMPOSER_INSTALL_OPTIONS)
 
 composer.lock:
-	XDEBUG_MODE=off $(COMPOSER) install $(COMPOSER_INSTALL_OPTIONS)
-
-vendor: composer.json composer.lock
 	XDEBUG_MODE=off $(COMPOSER) install $(COMPOSER_INSTALL_OPTIONS)

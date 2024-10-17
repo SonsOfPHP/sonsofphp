@@ -30,6 +30,15 @@ function __info() {
     printf "${color_bold_black}${color_background_blue} ℹ️ $1 ${color_reset}\n" >&2
 }
 
+function __add_modified_files() {
+    FILES_TO_ADD=$(git diff --name-only --diff-filter=dM)
+    FILES_TO_ADD_COUNT=$(wc -w <<< $FILES_TO_ADD | xargs)
+    if [[ FILES_TO_ADD_COUNT -gt 0 ]]; then
+        __info "Adding ${FILES_TO_ADD_COUNT} modified files"
+        git add --verbose $FILES_TO_ADD
+    fi
+}
+
 ROOT=$(git rev-parse --show-toplevel)
 
 CHANGED_FILES=$(git diff --cached --name-only --diff-filter=d -- '*.php')
@@ -44,11 +53,8 @@ __info "Changed File Count: ${CHANGED_FILE_COUNT}"
 PHP_CS_FIXER="tools/php-cs-fixer/vendor/bin/php-cs-fixer"
 if [[ -x $PHP_CS_FIXER && $CHANGED_FILE_COUNT -gt 0 ]]; then
     __info "Running php-cs-fixer"
-    php -dxdebug.mode=off $PHP_CS_FIXER fix --config=$ROOT/.php-cs-fixer.dist.php --allow-risky=yes -vvv --using-cache=no $CHANGED_FILES
-
-    __info "Adding any updated files"
-    git add $(git diff --cached --name-only)
-
+    php -dxdebug.mode=off $PHP_CS_FIXER fix --diff --config=$ROOT/.php-cs-fixer.dist.php --allow-risky=yes -vvv --using-cache=no $CHANGED_FILES
+    __add_modified_files
     __success "php-cs-fixer completed"
 else
     __info "Skipping php-cs-fixer"
@@ -60,10 +66,7 @@ RECTOR="tools/rector/vendor/bin/rector"
 if [[ -x $RECTOR && $CHANGED_FILE_COUNT -gt 0 ]]; then
     __info "Running rector"
     XDEBUG_MODE=off php -dxdebug.mode=off $RECTOR process $CHANGED_FILES
-
-    __info "Adding any updated files"
-    git add $(git diff --cached --name-only)
-
+    __add_modified_files
     __success "rector completed"
 else
     __info "Skipping rector"

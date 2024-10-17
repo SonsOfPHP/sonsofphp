@@ -5,6 +5,7 @@
             "."
         ],
         "excludes": [
+            "build",
             "docs",
             "tools",
             "vendor",

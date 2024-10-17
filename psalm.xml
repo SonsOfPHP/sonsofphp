@@ -7,7 +7,7 @@
     resolveFromConfigFile="true"
     cacheDirectory="build/cache/psalm"
     allowStringToStandInForClass="true"
-    errorBaseline="build/psalm-baseline.xml"
+    errorBaseline="build/config/psalm/psalm-baseline.xml"
     findUnusedVariablesAndParams="true"
     findUnusedBaselineEntry="false"
     findUnusedCode="true"
@@ -21,7 +21,8 @@
             <directory name="src/SonsOfPHP/Bridge/*/*/*/vendor/*"/>
             <directory name="src/SonsOfPHP/Bundle/*/vendor/*"/>
             <directory name="src/SonsOfPHP/Component/*/vendor/*"/>
-            <directory name="src/SonsOfPHP/Contract/*/vendor/*"/>
+            <directory name="src/SonsOfPHP/Contract/*/vendor/**"/>
+            <directory name="vendor/**"/>
         </ignoreFiles>
     </projectFiles>
     <extraFiles>
