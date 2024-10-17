@@ -94,8 +94,9 @@ upgrade-code: $(RECTOR) $(PHP_CS_FIXER)
 
 # NOTE: This may make changes to the source code
 .PHONY: fix-code
-fix-code: upgrade-code
-	XDEBUG_MODE=off $(PHP) $(PSALM) --alter --issues=all --dry-run
+fix-code: PSALM_ISSUES=all
+fix-code: upgrade-code $(PSALM)
+	XDEBUG_MODE=off $(PHP) $(PSALM) --alter --issues=$(PSALM_ISSUES) --dry-run
 
 ##---- Testing ------------------------------------------------------------------------
 .PHONY: test
@@ -125,7 +126,7 @@ php-cs-fixer: $(PHP_CS_FIXER) ## Run php-cs-fixer (dry-run)
 
 .PHONY: psalm
 psalm: $(PSALM) ## Run Psalm
-	XDEBUG_MODE=off $(PHP) $(PSALM)
+	XDEBUG_MODE=off $(PHP) $(PSALM) --show-info=true --config=$(PSALM_CONFIG)
 
 .PHONY: psalm-baseline
 psalm-baseline: $(PSALM) # Updates the baseline file
