@@ -1,7 +1,7 @@
 {
     "name": "sonsofphp/feature-toggle-contract",
     "type": "library",
-    "description": "",
+    "description": "Feature Toggle Interfaces",
     "keywords": [
         "abstractions",
         "contracts",

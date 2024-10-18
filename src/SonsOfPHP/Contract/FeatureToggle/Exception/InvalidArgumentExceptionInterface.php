@@ -7,4 +7,4 @@ namespace SonsOfPHP\Contract\FeatureToggle\Exception;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface FeatureToggleExceptionInterface extends \Throwable {}
+interface InvalidArgumentExceptionInterface extends FeatureToggleExceptionInterface {}
