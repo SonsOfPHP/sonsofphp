@@ -19,7 +19,7 @@ use SonsOfPHP\Contract\FeatureToggle\ToggleInterface;
 #[UsesClass(Context::class)]
 final class FeatureTest extends TestCase
 {
-    private MockObject $toggle;
+    private ToggleInterface&MockObject $toggle;
 
     protected function setUp(): void
     {
