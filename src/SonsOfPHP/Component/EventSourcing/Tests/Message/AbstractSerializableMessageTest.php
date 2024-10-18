@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId;
@@ -28,7 +27,6 @@ use SonsOfPHP\Component\EventSourcing\Tests\FakeSerializableMessage;
 #[UsesClass(MessagePayload::class)]
 final class AbstractSerializableMessageTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheRightInterfaces(): void
     {
         $message = FakeSerializableMessage::new();

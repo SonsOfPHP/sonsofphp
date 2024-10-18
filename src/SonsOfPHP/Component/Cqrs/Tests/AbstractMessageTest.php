@@ -6,7 +6,6 @@ namespace SonsOfPHP\Component\Cqrs\Tests;
 
 use ArrayIterator;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
@@ -25,7 +24,6 @@ final class AbstractMessageTest extends TestCase
         yield [new ArrayIterator()];
     }
 
-    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $msg = $this->getMockForAbstractClass(AbstractMessage::class);

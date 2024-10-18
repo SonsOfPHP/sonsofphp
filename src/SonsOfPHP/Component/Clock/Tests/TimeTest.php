@@ -5,16 +5,13 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Clock\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Clock\Time;
 use SonsOfPHP\Component\Clock\TimeInterface;
 
 #[CoversClass(Time::class)]
-#[CoversNothing]
 final class TimeTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $time = new Time(4, 20, 0, 0);

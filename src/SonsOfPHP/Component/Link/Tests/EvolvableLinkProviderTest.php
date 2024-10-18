@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Link\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Link\EvolvableLinkProviderInterface;
@@ -18,7 +17,6 @@ use SonsOfPHP\Component\Link\LinkProvider;
 #[UsesClass(LinkProvider::class)]
 final class EvolvableLinkProviderTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $provider = new EvolvableLinkProvider();

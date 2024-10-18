@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message\Upcaster\Provider;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Exception\EventSourcingException;
 use SonsOfPHP\Component\EventSourcing\Message\Upcaster\Handler\NullUpcasterHandler;
@@ -13,14 +12,9 @@ use SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\EventTypeMessage
 use SonsOfPHP\Component\EventSourcing\Message\Upcaster\Provider\MessageUpcasterProviderInterface;
 use SonsOfPHP\Component\EventSourcing\Metadata;
 
-/**
- * @internal
- */
 #[CoversClass(EventTypeMessageUpcasterProvider::class)]
-#[CoversNothing]
 final class EventTypeMessageUpcasterProviderTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheRightInterface(): void
     {
         $provider = new EventTypeMessageUpcasterProvider();

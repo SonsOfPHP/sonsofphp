@@ -5,18 +5,13 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message\Enricher\Provider;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Handler\NullMessageEnricherHandler;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\ChainMessageEnricherProvider;
 use SonsOfPHP\Component\EventSourcing\Message\Enricher\Provider\MessageEnricherProviderInterface;
 use SonsOfPHP\Component\EventSourcing\Message\MessageInterface;
 
-/**
- * @internal
- */
 #[CoversClass(ChainMessageEnricherProvider::class)]
-#[CoversNothing]
 final class ChainMessageEnricherProviderTest extends TestCase
 {
     public function testItHasTheRightInterface(): void

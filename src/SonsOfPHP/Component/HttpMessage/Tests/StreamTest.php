@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpMessage\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
@@ -16,10 +15,8 @@ use Stringable;
 
 #[CoversClass(Stream::class)]
 #[UsesClass(Stream::class)]
-#[CoversNothing]
 final class StreamTest extends TestCase
 {
-    #[CoversNothing]
     public function testItImplementsCorrectInterface(): void
     {
         $stream = new Stream();

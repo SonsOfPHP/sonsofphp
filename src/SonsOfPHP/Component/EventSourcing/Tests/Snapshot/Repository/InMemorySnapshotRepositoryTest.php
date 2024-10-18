@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Tests\Snapshot\Repository;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId;
@@ -21,7 +20,6 @@ use SonsOfPHP\Component\EventSourcing\Snapshot\Snapshot;
 #[UsesClass(Snapshot::class)]
 final class InMemorySnapshotRepositoryTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheRightInterface(): void
     {
         $repository = new InMemorySnapshotRepository();

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Tests\Snapshot;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId;
@@ -19,7 +18,6 @@ use SonsOfPHP\Component\EventSourcing\Snapshot\SnapshotInterface;
 #[UsesClass(AggregateVersion::class)]
 final class SnapshotTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheRightInterface(): void
     {
         $snapshot = new Snapshot(AggregateId::fromString('id'), AggregateVersion::fromInt(10), '');

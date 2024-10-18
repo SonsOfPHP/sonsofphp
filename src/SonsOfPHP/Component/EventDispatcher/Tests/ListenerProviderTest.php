@@ -6,7 +6,6 @@ namespace SonsOfPHP\Component\EventDispatcher\Tests;
 
 use Generator;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\ListenerProviderInterface;
@@ -18,7 +17,6 @@ use stdClass;
 #[UsesClass(ListenerProvider::class)]
 final class ListenerProviderTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $provider = new ListenerProvider();

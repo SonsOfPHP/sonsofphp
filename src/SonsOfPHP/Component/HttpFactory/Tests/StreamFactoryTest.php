@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpFactory\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamFactoryInterface;
@@ -17,7 +16,6 @@ use SonsOfPHP\Component\HttpMessage\Stream;
 #[UsesClass(Stream::class)]
 final class StreamFactoryTest extends TestCase
 {
-    #[CoversNothing]
     public function testItImplementsCorrectInterface(): void
     {
         $this->assertInstanceOf(StreamFactoryInterface::class, new StreamFactory());

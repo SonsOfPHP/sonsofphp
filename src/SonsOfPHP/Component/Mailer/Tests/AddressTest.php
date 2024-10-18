@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Mailer\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Mailer\Address;
@@ -13,7 +12,6 @@ use SonsOfPHP\Contract\Mailer\AddressInterface;
 
 #[CoversClass(Address::class)]
 #[UsesClass(Address::class)]
-#[CoversNothing]
 final class AddressTest extends TestCase
 {
     public function testItHasTheCorrectInterface(): void

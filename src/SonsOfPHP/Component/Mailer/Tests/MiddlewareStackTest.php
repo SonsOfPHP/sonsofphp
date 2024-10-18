@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Mailer\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionProperty;
@@ -17,10 +16,8 @@ use SonsOfPHP\Contract\Mailer\MiddlewareStackInterface;
 
 #[CoversClass(MiddlewareStack::class)]
 #[UsesClass(MiddlewareStack::class)]
-#[CoversNothing]
 final class MiddlewareStackTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $stack = new MiddlewareStack();

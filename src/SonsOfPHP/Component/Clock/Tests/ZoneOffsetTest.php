@@ -5,16 +5,13 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Clock\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Clock\ZoneOffset;
 use SonsOfPHP\Component\Clock\ZoneOffsetInterface;
 
 #[CoversClass(ZoneOffset::class)]
-#[CoversNothing]
 final class ZoneOffsetTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $zoneOffset = new ZoneOffset(-18000);

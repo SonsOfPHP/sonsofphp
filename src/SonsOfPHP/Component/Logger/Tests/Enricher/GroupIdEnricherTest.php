@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Logger\Tests\Enricher;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Logger\Context;
@@ -19,7 +18,6 @@ use SonsOfPHP\Contract\Logger\EnricherInterface;
 #[UsesClass(Record::class)]
 final class GroupIdEnricherTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $enricher = new GroupIdEnricher();

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Filesystem\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Filesystem\Context;
@@ -15,10 +14,8 @@ use stdClass;
 
 #[CoversClass(Context::class)]
 #[UsesClass(Context::class)]
-#[CoversNothing]
 final class ContextTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $context = new Context();

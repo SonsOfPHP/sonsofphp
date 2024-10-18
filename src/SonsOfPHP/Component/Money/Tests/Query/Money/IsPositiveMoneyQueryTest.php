@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Money\Tests\Query\Money;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Amount;
@@ -22,7 +21,6 @@ use SonsOfPHP\Contract\Money\MoneyQueryInterface;
 #[UsesClass(IsPositiveAmountQuery::class)]
 final class IsPositiveMoneyQueryTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $query = new IsPositiveMoneyQuery();

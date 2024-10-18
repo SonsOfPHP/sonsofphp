@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Version\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
@@ -15,7 +14,6 @@ use SonsOfPHP\Component\Version\VersionInterface;
 
 #[CoversClass(Version::class)]
 #[UsesClass(Version::class)]
-#[CoversNothing]
 final class VersionTest extends TestCase
 {
     public function testItHasTheCorrectInterface(): void

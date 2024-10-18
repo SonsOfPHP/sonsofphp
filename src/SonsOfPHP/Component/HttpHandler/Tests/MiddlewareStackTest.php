@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpHandler\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
@@ -18,10 +17,8 @@ use SonsOfPHP\Contract\HttpHandler\MiddlewareStackInterface;
 
 #[CoversClass(MiddlewareStack::class)]
 #[UsesClass(MiddlewareStack::class)]
-#[CoversNothing]
 final class MiddlewareStackTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $stack = new MiddlewareStack();
