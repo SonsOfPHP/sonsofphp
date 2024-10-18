@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\FeatureToggle\Tests\Toggle;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\FeatureToggle\Toggle\ChainToggle;
 use SonsOfPHP\Component\FeatureToggle\Toggle\MockToggle;
 use SonsOfPHP\Contract\FeatureToggle\ToggleInterface;
 
+#[Group('feature-toggle')]
 #[CoversClass(ChainToggle::class)]
 #[UsesClass(MockToggle::class)]
 final class ChainToggleTest extends TestCase

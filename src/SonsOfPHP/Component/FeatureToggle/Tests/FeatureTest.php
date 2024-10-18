@@ -11,6 +11,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\FeatureToggle\Context;
 use SonsOfPHP\Component\FeatureToggle\Feature;
+use SonsOfPHP\Contract\FeatureToggle\Exception\InvalidArgumentExceptionInterface;
 use SonsOfPHP\Contract\FeatureToggle\FeatureInterface;
 use SonsOfPHP\Contract\FeatureToggle\ToggleInterface;
 
@@ -19,33 +20,37 @@ use SonsOfPHP\Contract\FeatureToggle\ToggleInterface;
 #[UsesClass(Context::class)]
 final class FeatureTest extends TestCase
 {
+    private Feature $feature;
+
     private ToggleInterface&MockObject $toggle;
 
     protected function setUp(): void
     {
         $this->toggle = $this->createMock(ToggleInterface::class);
+
+        $this->feature = new Feature('key', $this->toggle);
     }
 
     public function testItHasTheCorrectInterface(): void
     {
-        $feature = new Feature('example', $this->toggle);
-
-        $this->assertInstanceOf(FeatureInterface::class, $feature);
+        $this->assertInstanceOf(FeatureInterface::class, $this->feature);
     }
 
-    public function testItReturnsTheCorrectKey(): void
+    public function testItsKeyIsInmutable(): void
     {
-        $feature = new Feature('example', $this->toggle);
-
-        $this->assertSame('example', $feature->getKey());
+        $this->assertSame('key', $this->feature->getKey());
     }
 
-    public function testIsEnabled(): void
+    public function testItsIsEnabledReturnsTrue(): void
     {
         $this->toggle->expects($this->once())->method('isEnabled')->willReturn(true);
 
-        $feature = new Feature('example', $this->toggle);
+        $this->assertTrue($this->feature->isEnabled(new Context()));
+    }
 
-        $this->assertTrue($feature->isEnabled(new Context()));
+    public function testItWillThrowExceptionForInvalidKey(): void
+    {
+        $this->expectException(InvalidArgumentExceptionInterface::class);
+        new Feature('test-key', $this->toggle);
     }
 }
