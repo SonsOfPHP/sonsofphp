@@ -15,8 +15,6 @@ use SonsOfPHP\Contract\FeatureToggle\FeatureToggleProviderInterface;
  */
 final class InMemoryFeatureToggleProvider implements FeatureToggleProviderInterface
 {
-    public $feature;
-
     private array $features = [];
 
     /**
@@ -32,7 +30,7 @@ final class InMemoryFeatureToggleProvider implements FeatureToggleProviderInterf
     public function get(string $key): FeatureInterface
     {
         if ($this->has($key)) {
-            return $this->feature[$key];
+            return $this->features[$key];
         }
 
         throw new FeatureNotFoundException(sprintf('Feature "%s" not found', $key));

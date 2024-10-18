@@ -6,12 +6,14 @@ namespace SonsOfPHP\Component\FeatureToggle\Tests\Toggle;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\FeatureToggle\Context;
 use SonsOfPHP\Component\FeatureToggle\Toggle\DateRangeToggle;
 use SonsOfPHP\Contract\FeatureToggle\ToggleInterface;
 
+#[Group('feature-toggle')]
 #[CoversClass(DateRangeToggle::class)]
 #[UsesClass(DateRangeToggle::class)]
 #[UsesClass(Context::class)]
