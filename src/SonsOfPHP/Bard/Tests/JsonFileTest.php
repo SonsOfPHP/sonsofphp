@@ -5,30 +5,66 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bard\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bard\JsonFile;
-use SonsOfPHP\Component\Json\AbstractEncoderDecoder;
-use SonsOfPHP\Component\Json\Json;
-use SonsOfPHP\Component\Json\JsonDecoder;
 
+#[Group('bard')]
 #[CoversClass(JsonFile::class)]
-#[UsesClass(AbstractEncoderDecoder::class)]
-#[UsesClass(Json::class)]
-#[UsesClass(JsonDecoder::class)]
 final class JsonFileTest extends TestCase
 {
-    public function testGetFilename(): void
+    private function getDefaultConfig(): array
     {
-        $json = new JsonFile(__DIR__ . '/fixtures/test.json');
-
-        $this->assertIsString($json->getFilename());
+        return [
+            'version' => '1.2.3',
+            'packages' => [
+                [
+                    'path'       => 'path/to/Repo',
+                    'repository' => 'git@github.com:SonsOfPHP/read-only-repo.git',
+                ],
+            ],
+        ];
     }
 
-    public function testGetSection(): void
-    {
-        $json = new JsonFile(__DIR__ . '/fixtures/test.json');
+    //protected function setUp(): void
+    //{
+    //}
 
-        $this->assertSame('1.2.3', $json->getSection('version'));
+    protected function tearDown(): void
+    {
+        $file = new JsonFile(__DIR__ . '/fixtures/test.json');
+        $file->setConfig($this->getDefaultConfig());
+        $file->save();
+    }
+
+    public function testItLoadsDefaultConfig(): void
+    {
+        $file = new JsonFile(__DIR__ . '/fixtures/test.json');
+        $this->assertSame($this->getDefaultConfig(), $file->getConfig());
+    }
+
+    public function testItsAbleToReturnCorrectSection(): void
+    {
+        $file = new JsonFile(__DIR__ . '/fixtures/test.json');
+
+        $this->assertSame('1.2.3', $file->getSection('version'));
+    }
+
+    public function testItCanUpdateExistingSection(): void
+    {
+        $file = new JsonFile(__DIR__ . '/fixtures/test.json');
+        $file = $file->setSection('version', '1.2.4');
+        $this->assertSame('1.2.4', $file->getSection('version'));
+    }
+
+    public function testItCanConvertUpdatedConfigToJson(): void
+    {
+        $file = new JsonFile(__DIR__ . '/fixtures/test.json');
+        $file = $file->setSection('version', '1.2.4');
+
+        $json = json_decode($file->toJson(), true);
+
+        $this->assertArrayHasKey('version', $json);
+        $this->assertSame('1.2.4', $json['version']);
     }
 }
