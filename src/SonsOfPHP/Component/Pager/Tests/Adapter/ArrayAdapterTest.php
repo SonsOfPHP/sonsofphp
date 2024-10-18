@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Pager\Tests\Adapter;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Pager\Adapter\ArrayAdapter;
@@ -13,7 +12,6 @@ use SonsOfPHP\Contract\Pager\AdapterInterface;
 
 #[CoversClass(ArrayAdapter::class)]
 #[UsesClass(ArrayAdapter::class)]
-#[CoversNothing]
 final class ArrayAdapterTest extends TestCase
 {
     public function testItHasTheCorrectInterface(): void

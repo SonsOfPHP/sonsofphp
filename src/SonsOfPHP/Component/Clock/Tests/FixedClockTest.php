@@ -6,7 +6,6 @@ namespace SonsOfPHP\Component\Clock\Tests;
 
 use DateTimeZone;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Clock\ClockInterface;
@@ -18,7 +17,6 @@ use SonsOfPHP\Component\Clock\FixedClock;
 #[UsesClass(ClockException::class)]
 final class FixedClockTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $clock = new FixedClock();

@@ -8,6 +8,7 @@ use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
 
 $finder = Finder::create()
     ->in(__DIR__)
+    ->exclude('build')
     ->exclude('docs')
     ->exclude('tools')
     ->exclude('vendor')

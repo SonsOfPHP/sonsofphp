@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Cache\Tests\Adapter;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemInterface;
@@ -18,7 +17,6 @@ use SonsOfPHP\Component\Cache\CacheItem;
 #[UsesClass(CacheItem::class)]
 final class NullAdapterTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $adapter = new NullAdapter();

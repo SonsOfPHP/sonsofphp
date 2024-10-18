@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\FeatureToggle\Tests\Toggle;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\FeatureToggle\Context;
@@ -16,7 +15,6 @@ use SonsOfPHP\Contract\FeatureToggle\ToggleInterface;
 #[UsesClass(Context::class)]
 final class AlwaysEnabledToggleTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $toggle = new AlwaysEnabledToggle();

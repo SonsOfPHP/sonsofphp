@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bridge\Symfony\EventSourcing\Tests\Message;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bridge\Symfony\EventSourcing\Message\MessageNormalizer;
@@ -21,7 +20,6 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 #[UsesClass(MessagePayload::class)]
 final class MessageNormalizerTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheRightInterface(): void
     {
         $normalizer = new MessageNormalizer();

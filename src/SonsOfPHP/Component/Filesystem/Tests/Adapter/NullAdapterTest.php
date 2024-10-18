@@ -5,20 +5,14 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Filesystem\Tests\Adapter;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Filesystem\Adapter\NullAdapter;
 use SonsOfPHP\Contract\Filesystem\Adapter\AdapterInterface;
 
-/**
- * @internal
- */
 #[CoversClass(NullAdapter::class)]
-#[CoversNothing]
 final class NullAdapterTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $adapter = new NullAdapter();

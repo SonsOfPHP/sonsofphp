@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Money\Tests\Operator\Money;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Money\Amount;
@@ -22,7 +21,6 @@ use SonsOfPHP\Contract\Money\MoneyOperatorInterface;
 #[UsesClass(DivideAmountOperator::class)]
 final class DivideMoneyOperatorTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $operator = new DivideMoneyOperator(5);

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message\Repository;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId;
@@ -21,7 +20,6 @@ use SonsOfPHP\Component\EventSourcing\Message\Repository\MessageRepositoryInterf
 #[UsesClass(AggregateVersion::class)]
 final class InMemoryMessageRepositoryTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheRightInterface(): void
     {
         $repository = new InMemoryMessageRepository();

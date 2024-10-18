@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpMessage\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\MessageInterface;
@@ -14,10 +13,8 @@ use SonsOfPHP\Component\HttpMessage\Message;
 
 #[CoversClass(Message::class)]
 #[UsesClass(Message::class)]
-#[CoversNothing]
 final class MessageTest extends TestCase
 {
-    #[CoversNothing]
     public function testItImplementsCorrectInterface(): void
     {
         $this->assertInstanceOf(MessageInterface::class, new Message());

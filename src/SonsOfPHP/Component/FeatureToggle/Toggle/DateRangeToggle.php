@@ -18,6 +18,7 @@ class DateRangeToggle implements ToggleInterface
     public function __construct(
         private readonly DateTimeImmutable $start,
         private readonly DateTimeImmutable $stop,
+        // @todo private ClockInterface $clock,
     ) {}
 
     public function isEnabled(?ContextInterface $context = null): bool

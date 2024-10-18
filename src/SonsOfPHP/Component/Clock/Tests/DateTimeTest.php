@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Clock\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Clock\Date;
@@ -22,7 +21,6 @@ use SonsOfPHP\Component\Clock\ZoneOffset;
 #[UsesClass(ZoneOffset::class)]
 final class DateTimeTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $date = new Date(2022, 4, 20);

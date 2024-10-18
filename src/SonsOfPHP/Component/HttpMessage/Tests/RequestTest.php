@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpMessage\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
@@ -17,7 +16,6 @@ use SonsOfPHP\Component\HttpMessage\Uri;
 #[UsesClass(Uri::class)]
 final class RequestTest extends TestCase
 {
-    #[CoversNothing]
     public function testItImplementsCorrectInterface(): void
     {
         $this->assertInstanceOf(RequestInterface::class, new Request());

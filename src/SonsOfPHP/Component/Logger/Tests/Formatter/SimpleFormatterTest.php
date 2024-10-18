@@ -6,7 +6,6 @@ namespace SonsOfPHP\Component\Logger\Tests\Formatter;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Logger\Context;
@@ -21,7 +20,6 @@ use SonsOfPHP\Contract\Logger\FormatterInterface;
 #[UsesClass(Record::class)]
 final class SimpleFormatterTest extends TestCase
 {
-    #[CoversNothing]
     public function testItHasTheCorrectInterface(): void
     {
         $formatter = new SimpleFormatter();

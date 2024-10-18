@@ -5,15 +5,10 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\EventSourcing\Tests\Message;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\EventSourcing\Message\MessagePayload;
 
-/**
- * @internal
- */
 #[CoversClass(MessagePayload::class)]
-#[CoversNothing]
 final class MessagePayloadTest extends TestCase
 {
     public function testAllTheThings(): void

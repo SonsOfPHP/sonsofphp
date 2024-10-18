@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\Pager\Tests\Adapter;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Component\Pager\Adapter\CallableAdapter;
@@ -13,7 +12,6 @@ use SonsOfPHP\Contract\Pager\AdapterInterface;
 
 #[CoversClass(CallableAdapter::class)]
 #[UsesClass(CallableAdapter::class)]
-#[CoversNothing]
 final class CallableAdapterTest extends TestCase
 {
     public function testItHasTheCorrectInterface(): void

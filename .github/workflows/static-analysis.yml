@@ -59,7 +59,7 @@ jobs:
               env:
                 XDEBUG_MODE: off
                 PSALM: tools/psalm/vendor/bin/psalm
-                CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
+                CHANGED_FILES: ${{ steps.changed-php-files.outputs.all_changed_files }}
             - name: Psalm on mainline for all files
               if: github.ref == 'refs/heads/main'
               run: php -dxdebug.mode=off $(PSALM) --ignore-baseline --long-progress --monochrome --output-format=github --report=results.sarif

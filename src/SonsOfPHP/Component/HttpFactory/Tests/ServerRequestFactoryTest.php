@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SonsOfPHP\Component\HttpFactory\Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestFactoryInterface;
@@ -21,7 +20,6 @@ use SonsOfPHP\Component\HttpMessage\Uri;
 #[UsesClass(Uri::class)]
 final class ServerRequestFactoryTest extends TestCase
 {
-    #[CoversNothing]
     public function testItImplementsCorrectInterface(): void
     {
         $this->assertInstanceOf(ServerRequestFactoryInterface::class, new ServerRequestFactory());
