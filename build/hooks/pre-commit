@@ -91,7 +91,7 @@ fi
 PHPUNIT="tools/phpunit/vendor/bin/phpunit"
 if [ -x $PHPUNIT ]; then
     __info "Running phpunit"
-    XDEBUG_MODE=off php -dxdebug.mode=off -dapc.enable_cli=1 $PHPUNIT
+    XDEBUG_MODE=off php -dxdebug.mode=off -dapc.enable_cli=1 $PHPUNIT --testsuite=all
     if [ $? -ne 0 ]; then
         __fail "Unit Tests failed, fix your shit. Can also use --no-verify to skip checks"
     fi
