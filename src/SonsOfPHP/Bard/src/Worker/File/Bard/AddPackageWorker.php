@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bard\Worker\File\Bard;
 
-use SonsOfPHP\Bard\JsonFile;
+use SonsOfPHP\Bard\JsonFileInterface;
 use SonsOfPHP\Bard\Worker\WorkerInterface;
 
 /**
@@ -16,7 +16,7 @@ final readonly class AddPackageWorker implements WorkerInterface
         private array $config,
     ) {}
 
-    public function apply(JsonFile $bardConfig): JsonFile
+    public function apply(JsonFileInterface $bardConfig): JsonFileInterface
     {
         if (null === $packages = $bardConfig->getSection('packages')) {
             $packages = [];

@@ -9,7 +9,7 @@ namespace SonsOfPHP\Bard;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class JsonFile extends \SplFileInfo
+final class JsonFile extends \SplFileInfo implements JsonFileInterface
 {
     private array $config = [];
 
