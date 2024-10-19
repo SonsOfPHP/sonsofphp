@@ -22,12 +22,13 @@ return (new Config())
         // Rule sets
         '@PER-CS' => true,
         '@PHP80Migration:risky' => true,
-        '@PHP81Migration' => true,
+        '@PHP82Migration' => true,
         '@PHPUnit100Migration:risky' => true,
 
         // Rules
         'no_unused_imports' => true,
         'ordered_imports' => true,
+        'heredoc_indentation' => false,
         //'php_unit_test_class_requires_covers' => true,
     ])
     ->setFinder($finder)

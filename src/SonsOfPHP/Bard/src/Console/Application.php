@@ -23,7 +23,7 @@ use Symfony\Component\Console\Input\InputOption;
  */
 final class Application extends BaseApplication
 {
-    public const VERSION = '0.1.x';
+    public const VERSION = '%bard.version%';
 
     public function __construct()
     {
@@ -51,6 +51,7 @@ final class Application extends BaseApplication
         $definition = parent::getDefaultInputDefinition();
         $definition->addOption(new InputOption('working-dir', 'd', InputOption::VALUE_REQUIRED, 'Working Directory', getcwd()));
         // $definition->addOption(new InputOption('branch', 'b', InputOption::VALUE_REQUIRED, 'Mainline Branch', 'main'));
+        $definition->addOption(new InputOption('config', null, InputOption::VALUE_REQUIRED, 'Path to bard.json', 'bard.json'));
 
         return $definition;
     }

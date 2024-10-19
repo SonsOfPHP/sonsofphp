@@ -17,7 +17,6 @@ use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateProvideSection;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateReplaceSection;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateRequireDevSection;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateRequireSection;
-use Symfony\Component\Console\Helper\HelperInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -31,11 +30,9 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 final class MergeCommand extends AbstractCommand
 {
-    private JsonFile $bardConfig;
+    protected JsonFile $bardConfig;
 
     private string $mainComposerFile;
-
-    private ?HelperInterface $formatter = null;
 
     protected function configure(): void
     {
@@ -67,8 +64,6 @@ final class MergeCommand extends AbstractCommand
         $io       = new SymfonyStyle($input, $output);
         $isDryRun = $input->getOption('dry-run');
 
-        $this->formatter = $this->getHelper('formatter');
-
         $rootComposerJsonFile = new JsonFile($input->getOption('working-dir') . '/composer.json');
 
         // Clean out a few of the sections in root composer.json file
@@ -82,7 +77,7 @@ final class MergeCommand extends AbstractCommand
         foreach ($this->bardConfig->getSection('packages') as $pkg) {
             $pkgComposerFile = realpath($input->getOption('working-dir') . '/' . $pkg['path'] . '/composer.json');
             if (!file_exists($pkgComposerFile)) {
-                $output->writeln(sprintf('No "%s" found, skipping', $packageComposerFile));
+                $output->writeln(sprintf('No "%s" found, skipping', $pkgComposerFile));
                 continue;
             }
 
@@ -92,7 +87,7 @@ final class MergeCommand extends AbstractCommand
                 continue;
             }
 
-            $output->writeln($this->formatter->formatSection('bard', sprintf('Merging "%s" into root composer.json', $pkgComposerJsonFile->getSection('name'))));
+            $output->writeln($this->getFormatterHelper()->formatSection('bard', sprintf('Merging "%s" into root composer.json', $pkgComposerJsonFile->getSection('name'))));
 
             // Update root composer.json
             $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateReplaceSection($pkgComposerJsonFile));
