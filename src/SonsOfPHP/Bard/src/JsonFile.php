@@ -9,24 +9,39 @@ namespace SonsOfPHP\Bard;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final class JsonFile
+final class JsonFile extends \SplFileInfo implements JsonFileInterface
 {
     private array $config = [];
 
-    public function __construct(
-        private string $filename,
-    ) {
-        $this->load();
-    }
+    private bool $loaded = false;
 
+    /**
+     * Loads the json file so it can be processed.
+     */
     private function load(): void
     {
-        $this->config = json_decode(file_get_contents($this->filename), true);
+        if ($this->loaded) {
+            return;
+        }
+
+        // @todo Check file exists and is readable
+
+        $this->config = json_decode(file_get_contents($this->getRealPath()), true);
+        $this->loaded = true;
     }
 
-    public function getFilename(): string
+    public function getConfig(): array
     {
-        return $this->filename;
+        $this->load();
+
+        return $this->config;
+    }
+
+    public function setConfig(array $config): void
+    {
+        $this->load();
+
+        $this->config = $config;
     }
 
     /**
@@ -36,20 +51,17 @@ final class JsonFile
      */
     public function getSection(string $section): mixed
     {
-        if ([] === $this->config) {
-            $this->load();
-        }
+        $this->load();
 
         return $this->config[$section] ?? null;
     }
 
     /**
+     * @param array|int|string|null $value
      */
     public function setSection(string $section, $value): self
     {
-        if ([] === $this->config) {
-            $this->load();
-        }
+        $this->load();
 
         $clone                   = clone $this;
         $clone->config[$section] = $value;
@@ -59,6 +71,8 @@ final class JsonFile
 
     public function toJson(): string
     {
+        $this->load();
+
         return json_encode($this->config, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 
@@ -72,6 +86,10 @@ final class JsonFile
 
     public function save(): void
     {
-        file_put_contents($this->filename, $this->toJson());
+        $this->load();
+
+        // @todo check file is writeable
+
+        file_put_contents($this->getRealPath(), $this->toJson());
     }
 }

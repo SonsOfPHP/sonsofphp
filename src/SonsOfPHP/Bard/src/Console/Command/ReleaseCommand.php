@@ -6,7 +6,7 @@ namespace SonsOfPHP\Bard\Console\Command;
 
 use RuntimeException;
 use SonsOfPHP\Bard\JsonFile;
-use SonsOfPHP\Bard\Worker\File\Bard\UpdateVersion;
+use SonsOfPHP\Bard\Worker\File\Bard\UpdateVersionWorker;
 use SonsOfPHP\Bard\Worker\File\Composer\Package\BranchAlias;
 use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateReplaceSection;
 use SonsOfPHP\Component\Version\Version;
@@ -26,7 +26,7 @@ use Symfony\Component\Process\Process;
  */
 final class ReleaseCommand extends AbstractCommand
 {
-    private JsonFile $bardConfig;
+    protected JsonFile $bardConfig;
 
     private VersionInterface|null $releaseVersion = null;
 
@@ -45,16 +45,16 @@ final class ReleaseCommand extends AbstractCommand
             ->addOption('branch', null, InputOption::VALUE_REQUIRED, 'What branch we working with?', 'main')
             ->addArgument('release', InputArgument::REQUIRED, 'Next Release you want to start? Use format <major>.<minor>.<patch>-<PreRelease>+<BuildMetadata> or "major", "minor", "patch"')
             ->setHelp(
-                <<<'EOT'
-                                        This command allows you to create a new release and will update the various
-                                        repos that have been configured. The current version can be found in the
-                                        `bard.json` file. This will will update the version based on the type of release
-                                        that you are doing.
+                <<<'HELP'
+This command allows you to create a new release and will update the various
+repos that have been configured. The current version can be found in the
+`bard.json` file. This will will update the version based on the type of release
+that you are doing.
 
-                                            <comment>%command.full_name%</comment>
+    <comment>%command.full_name%</comment>
 
-                                        Read more at https://docs.SonsOfPHP.com
-                    EOT
+Read more at https://docs.SonsOfPHP.com
+HELP
             );
     }
 
@@ -145,7 +145,7 @@ final class ReleaseCommand extends AbstractCommand
         $process = new Process(['git', 'pull', 'origin', $input->getOption('branch')]);
         $this->io->text($process->getCommandLine());
         if (!$this->isDryRun) {
-            $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+            $this->getProcessHelper()->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
         }
 
         $this->io->success('Done');
@@ -156,7 +156,7 @@ final class ReleaseCommand extends AbstractCommand
         $this->io->section('updating root composer.json "replace" section with package information');
         foreach ($this->bardConfig->getSection('packages') as $pkg) {
             $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir') . '/' . $pkg['path'] . '/composer.json'));
-            $output->writeln($this->getHelper('formatter')->formatSection($pkgComposerJsonFile->getSection('name'), 'Updating root <info>composer.json</info>'));
+            $output->writeln($this->getFormatterHelper()->formatSection($pkgComposerJsonFile->getSection('name'), 'Updating root <info>composer.json</info>'));
             $this->rootComposerJsonFile = $this->rootComposerJsonFile->with(new UpdateReplaceSection($pkgComposerJsonFile));
         }
 
@@ -181,7 +181,7 @@ final class ReleaseCommand extends AbstractCommand
             $process = new Process($cmd);
             $this->io->text($process->getCommandLine());
             if (!$this->isDryRun) {
-                $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+                $this->getProcessHelper()->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
             }
         }
 
@@ -194,7 +194,7 @@ final class ReleaseCommand extends AbstractCommand
         foreach ($this->bardConfig->getSection('packages') as $pkg) {
             $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir') . '/' . $pkg['path'] . '/composer.json'));
             $pkgName             = $pkgComposerJsonFile->getSection('name');
-            $output->writeln($this->getHelper('formatter')->formatSection($pkgName, 'Releasing...'));
+            $output->writeln($this->getFormatterHelper()->formatSection($pkgName, 'Releasing...'));
             $processCommands = [
                 ['git', 'subtree', 'split', '-P', $pkg['path'], '-b', $pkgName],
                 ['git', 'checkout', $pkgName],
@@ -209,11 +209,11 @@ final class ReleaseCommand extends AbstractCommand
                 $process = new Process($cmd);
                 $this->io->text($process->getCommandLine());
                 if (!$this->isDryRun) {
-                    $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+                    $this->getProcessHelper()->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
                 }
             }
 
-            $output->writeln($this->getHelper('formatter')->formatSection($pkgName, '...Done'));
+            $output->writeln($this->getFormatterHelper()->formatSection($pkgName, '...Done'));
             $this->io->newLine();
         }
 
@@ -241,7 +241,7 @@ final class ReleaseCommand extends AbstractCommand
         foreach ($this->bardConfig->getSection('packages') as $pkg) {
             $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir') . '/' . $pkg['path'] . '/composer.json'));
             $pkgComposerJsonFile = $pkgComposerJsonFile->with(new BranchAlias($this->rootComposerJsonFile));
-            $output->writeln($this->getHelper('formatter')->formatSection($pkgComposerJsonFile->getSection('name'), 'Updated branch alias to "' . $branchAlias . '"'));
+            $output->writeln($this->getFormatterHelper()->formatSection($pkgComposerJsonFile->getSection('name'), 'Updated branch alias to "' . $branchAlias . '"'));
             if (!$this->isDryRun) {
                 $pkgComposerJsonFile->save();
             }
@@ -253,7 +253,7 @@ final class ReleaseCommand extends AbstractCommand
     private function updateBardConfigVersion(): void
     {
         $this->io->section('Updating version in bard.json');
-        $this->bardConfig = $this->bardConfig->with(new UpdateVersion($this->releaseVersion));
+        $this->bardConfig = $this->bardConfig->with(new UpdateVersionWorker($this->releaseVersion));
         if (!$this->isDryRun) {
             $this->bardConfig->save();
         }
@@ -273,7 +273,7 @@ final class ReleaseCommand extends AbstractCommand
             $process = new Process($cmd);
             $this->io->text($process->getCommandLine());
             if (!$this->isDryRun) {
-                $this->getHelper('process')->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
+                $this->getProcessHelper()->mustRun($output, $process, sprintf('There was and error running command: %s', $process->getCommandLine()));
             }
         }
 

@@ -22,8 +22,6 @@ final class InstallCommand extends AbstractCommand
         ;
     }
 
-    protected function initialize(InputInterface $input, OutputInterface $output): void {}
-
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $bardJsonFile = new JsonFile($input->getOption('working-dir') . '/bard.json');
@@ -38,7 +36,7 @@ final class InstallCommand extends AbstractCommand
                 '--working-dir',
                 $pkg['path'],
             ]);
-            $this->getHelper('process')->run($output, $process);
+            $this->getProcessHelper()->run($output, $process);
         }
 
         return self::SUCCESS;
