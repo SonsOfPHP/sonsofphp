@@ -88,7 +88,7 @@ fi
 # <<< psalm
 
 # >>> PHPUnit
-PHPUNIT="bin/phpunit"
+PHPUNIT="tools/phpunit/vendor/bin/phpunit"
 if [ -x $PHPUNIT ]; then
     __info "Running phpunit"
     XDEBUG_MODE=off php -dxdebug.mode=off $PHPUNIT --testsuite unit
