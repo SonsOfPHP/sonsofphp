@@ -21,45 +21,63 @@ use SonsOfPHP\Bard\Console\Command\ReleaseCommand;
 use SonsOfPHP\Bard\Console\Command\SplitCommand;
 use SonsOfPHP\Bard\Console\Command\UpdateCommand;
 use SonsOfPHP\Bard\JsonFile;
-use SonsOfPHP\Bard\Worker\File\Bard\AddPackageWorker;
+use SonsOfPHP\Bard\Worker\File\Composer\Package\Authors;
+use SonsOfPHP\Bard\Worker\File\Composer\Package\BranchAlias;
+use SonsOfPHP\Bard\Worker\File\Composer\Package\Funding;
+use SonsOfPHP\Bard\Worker\File\Composer\Package\Support;
+use SonsOfPHP\Bard\Worker\File\Composer\Root\ClearSection;
+use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateAutoloadDevSection;
+use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateAutoloadSection;
+use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateProvideSection;
+use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateReplaceSection;
+use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateRequireDevSection;
+use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateRequireSection;
 use Symfony\Component\Console\Tester\CommandTester;
 
 #[Group('bard')]
-#[CoversClass(AddCommand::class)]
+#[CoversClass(MergeCommand::class)]
 #[UsesClass(Application::class)]
 #[UsesClass(AbstractCommand::class)]
+#[UsesClass(AddCommand::class)]
 #[UsesClass(CopyCommand::class)]
 #[UsesClass(InitCommand::class)]
 #[UsesClass(InstallCommand::class)]
-#[UsesClass(MergeCommand::class)]
 #[UsesClass(PullCommand::class)]
 #[UsesClass(PushCommand::class)]
 #[UsesClass(ReleaseCommand::class)]
 #[UsesClass(SplitCommand::class)]
 #[UsesClass(UpdateCommand::class)]
 #[UsesClass(JsonFile::class)]
-#[UsesClass(AddPackageWorker::class)]
-final class AddCommandTest extends TestCase
+#[UsesClass(Authors::class)]
+#[UsesClass(BranchAlias::class)]
+#[UsesClass(Funding::class)]
+#[UsesClass(Support::class)]
+#[UsesClass(ClearSection::class)]
+#[UsesClass(UpdateAutoloadDevSection::class)]
+#[UsesClass(UpdateAutoloadSection::class)]
+#[UsesClass(UpdateProvideSection::class)]
+#[UsesClass(UpdateReplaceSection::class)]
+#[UsesClass(UpdateRequireSection::class)]
+#[UsesClass(UpdateRequireDevSection::class)]
+final class MergeCommandTest extends TestCase
 {
     private Application $application;
 
-    private AddCommand $command;
+    private MergeCommand $command;
 
     protected function setUp(): void
     {
         $this->application = new Application();
-        $this->command     = $this->application->get('add');
+        $this->command     = $this->application->get('merge');
     }
 
-    public function testItsNameIsCorrect(): void
+    public function testItExecutesSuccessfully(): void
     {
         $commandTester = new CommandTester($this->command);
 
         $commandTester->execute([
-            'path'       => 'tmp/repo',
-            'repository' => 'git@repo:repo.git',
-            '--dry-run'  => true,
-            '-vvv'  => true,
+            '--dry-run' => true,
+            '-vvv'      => true,
         ]);
 
         $commandTester->assertCommandIsSuccessful();

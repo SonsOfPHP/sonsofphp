@@ -25,10 +25,10 @@ use SonsOfPHP\Bard\Worker\File\Bard\AddPackageWorker;
 use Symfony\Component\Console\Tester\CommandTester;
 
 #[Group('bard')]
-#[CoversClass(AddCommand::class)]
+#[CoversClass(CopyCommand::class)]
 #[UsesClass(Application::class)]
 #[UsesClass(AbstractCommand::class)]
-#[UsesClass(CopyCommand::class)]
+#[UsesClass(AddCommand::class)]
 #[UsesClass(InitCommand::class)]
 #[UsesClass(InstallCommand::class)]
 #[UsesClass(MergeCommand::class)]
@@ -39,27 +39,26 @@ use Symfony\Component\Console\Tester\CommandTester;
 #[UsesClass(UpdateCommand::class)]
 #[UsesClass(JsonFile::class)]
 #[UsesClass(AddPackageWorker::class)]
-final class AddCommandTest extends TestCase
+final class CopyCommandTest extends TestCase
 {
     private Application $application;
 
-    private AddCommand $command;
+    private CopyCommand $command;
 
     protected function setUp(): void
     {
         $this->application = new Application();
-        $this->command     = $this->application->get('add');
+        $this->command     = $this->application->get('copy');
     }
 
-    public function testItsNameIsCorrect(): void
+    public function testItExecutesSuccessfully(): void
     {
         $commandTester = new CommandTester($this->command);
 
         $commandTester->execute([
-            'path'       => 'tmp/repo',
-            'repository' => 'git@repo:repo.git',
-            '--dry-run'  => true,
-            '-vvv'  => true,
+            'source'    => 'LICENSE',
+            '--dry-run' => true,
+            '-vvv'      => true,
         ]);
 
         $commandTester->assertCommandIsSuccessful();
