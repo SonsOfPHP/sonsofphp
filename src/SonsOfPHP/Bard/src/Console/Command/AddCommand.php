@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bard\Console\Command;
 
-use SonsOfPHP\Bard\Worker\File\Bard\AddPackageWorker;
+use SonsOfPHP\Bard\Operation\Bard\AddPackageOperation;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -45,7 +45,7 @@ HELP
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->bardConfig = $this->bardConfig->with(new AddPackageWorker([
+        $this->bardConfig = $this->bardConfig->with(new AddPackageOperation([
             'path'       => $input->getArgument('path'),
             'repository' => $input->getArgument('repository'),
         ]));

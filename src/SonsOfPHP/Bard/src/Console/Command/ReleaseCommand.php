@@ -6,9 +6,9 @@ namespace SonsOfPHP\Bard\Console\Command;
 
 use RuntimeException;
 use SonsOfPHP\Bard\JsonFile;
-use SonsOfPHP\Bard\Worker\File\Bard\UpdateVersionWorker;
-use SonsOfPHP\Bard\Worker\File\Composer\Package\BranchAlias;
-use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateReplaceSection;
+use SonsOfPHP\Bard\Operation\Bard\UpdateVersionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Package\UpdateBranchAliasSectionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Root\UpdateReplaceSectionOperation;
 use SonsOfPHP\Component\Version\Version;
 use SonsOfPHP\Component\Version\VersionInterface;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -157,7 +157,7 @@ HELP
         foreach ($this->bardConfig->getSection('packages') as $pkg) {
             $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir') . '/' . $pkg['path'] . '/composer.json'));
             $output->writeln($this->getFormatterHelper()->formatSection($pkgComposerJsonFile->getSection('name'), 'Updating root <info>composer.json</info>'));
-            $this->rootComposerJsonFile = $this->rootComposerJsonFile->with(new UpdateReplaceSection($pkgComposerJsonFile));
+            $this->rootComposerJsonFile = $this->rootComposerJsonFile->with(new UpdateReplaceSectionOperation($pkgComposerJsonFile));
         }
 
         if (!$this->isDryRun) {
@@ -240,7 +240,7 @@ HELP
 
         foreach ($this->bardConfig->getSection('packages') as $pkg) {
             $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir') . '/' . $pkg['path'] . '/composer.json'));
-            $pkgComposerJsonFile = $pkgComposerJsonFile->with(new BranchAlias($this->rootComposerJsonFile));
+            $pkgComposerJsonFile = $pkgComposerJsonFile->with(new UpdateBranchAliasSectionOperation($this->rootComposerJsonFile));
             $output->writeln($this->getFormatterHelper()->formatSection($pkgComposerJsonFile->getSection('name'), 'Updated branch alias to "' . $branchAlias . '"'));
             if (!$this->isDryRun) {
                 $pkgComposerJsonFile->save();
@@ -253,7 +253,7 @@ HELP
     private function updateBardConfigVersion(): void
     {
         $this->io->section('Updating version in bard.json');
-        $this->bardConfig = $this->bardConfig->with(new UpdateVersionWorker($this->releaseVersion));
+        $this->bardConfig = $this->bardConfig->with(new UpdateVersionOperation($this->releaseVersion));
         if (!$this->isDryRun) {
             $this->bardConfig->save();
         }

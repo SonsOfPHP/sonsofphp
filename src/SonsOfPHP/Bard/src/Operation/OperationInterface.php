@@ -2,14 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Bard\Worker;
+namespace SonsOfPHP\Bard\Operation;
 
 /**
- * Use for various tasks.
- *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-interface WorkerInterface
+interface OperationInterface
 {
     // public function apply();
 }

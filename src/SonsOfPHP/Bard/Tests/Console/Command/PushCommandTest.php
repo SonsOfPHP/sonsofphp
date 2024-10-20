@@ -21,7 +21,7 @@ use SonsOfPHP\Bard\Console\Command\ReleaseCommand;
 use SonsOfPHP\Bard\Console\Command\SplitCommand;
 use SonsOfPHP\Bard\Console\Command\UpdateCommand;
 use SonsOfPHP\Bard\JsonFile;
-use SonsOfPHP\Bard\Worker\File\Bard\AddPackageWorker;
+use SonsOfPHP\Bard\Operation\Bard\AddPackageOperation;
 use Symfony\Component\Console\Tester\CommandTester;
 
 #[Group('bard')]
@@ -38,7 +38,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 #[UsesClass(SplitCommand::class)]
 #[UsesClass(UpdateCommand::class)]
 #[UsesClass(JsonFile::class)]
-#[UsesClass(AddPackageWorker::class)]
+#[UsesClass(AddPackageOperation::class)]
 final class PushCommandTest extends TestCase
 {
     private Application $application;

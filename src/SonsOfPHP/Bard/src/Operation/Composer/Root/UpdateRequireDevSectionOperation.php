@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Bard\Worker\File\Composer\Root;
+namespace SonsOfPHP\Bard\Operation\Composer\Root;
 
 use SonsOfPHP\Bard\JsonFile;
-use SonsOfPHP\Bard\Worker\WorkerInterface;
+use SonsOfPHP\Bard\Operation\OperationInterface;
 
 /**
  * Updates the "require-dev" section in the primary composer.json file base on the
@@ -13,16 +13,23 @@ use SonsOfPHP\Bard\Worker\WorkerInterface;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final readonly class UpdateRequireDevSection implements WorkerInterface
+final readonly class UpdateRequireDevSectionOperation implements OperationInterface
 {
     public function __construct(private JsonFile $pkgComposerJsonFile) {}
 
     public function apply(JsonFile $rootComposerJsonFile): JsonFile
     {
+        /** @var array<string, string> $rootRequireDev */
         $rootRequireDev = $rootComposerJsonFile->getSection('require-dev');
-        $pkgRequireDev  = $this->pkgComposerJsonFile->getSection('require-dev');
-        $rootRequire    = $rootComposerJsonFile->getSection('require');
-        $rootReplace    = $rootComposerJsonFile->getSection('replace');
+
+        /** @var array<string, string> $pkgRequireDev */
+        $pkgRequireDev = $this->pkgComposerJsonFile->getSection('require-dev');
+
+        /** @var array<string, string> $rootRequire */
+        $rootRequire = $rootComposerJsonFile->getSection('require');
+
+        /** @var array<string, string> $rootReplace */
+        $rootReplace = $rootComposerJsonFile->getSection('replace');
 
 
         if (null === $pkgRequireDev) {

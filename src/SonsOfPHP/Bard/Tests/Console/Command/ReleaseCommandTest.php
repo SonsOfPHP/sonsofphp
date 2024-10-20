@@ -21,9 +21,9 @@ use SonsOfPHP\Bard\Console\Command\ReleaseCommand;
 use SonsOfPHP\Bard\Console\Command\SplitCommand;
 use SonsOfPHP\Bard\Console\Command\UpdateCommand;
 use SonsOfPHP\Bard\JsonFile;
-use SonsOfPHP\Bard\Worker\File\Bard\UpdateVersionWorker;
-use SonsOfPHP\Bard\Worker\File\Composer\Package\BranchAlias;
-use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateReplaceSection;
+use SonsOfPHP\Bard\Operation\Bard\UpdateVersionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Package\UpdateBranchAliasSectionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Root\UpdateReplaceSectionOperation;
 use SonsOfPHP\Component\Version\Version;
 use Symfony\Component\Console\Tester\CommandTester;
 
@@ -41,9 +41,9 @@ use Symfony\Component\Console\Tester\CommandTester;
 #[UsesClass(SplitCommand::class)]
 #[UsesClass(UpdateCommand::class)]
 #[UsesClass(JsonFile::class)]
-#[UsesClass(UpdateVersionWorker::class)]
-#[UsesClass(BranchAlias::class)]
-#[UsesClass(UpdateReplaceSection::class)]
+#[UsesClass(UpdateVersionOperation::class)]
+#[UsesClass(UpdateBranchAliasSectionOperation::class)]
+#[UsesClass(UpdateReplaceSectionOperation::class)]
 #[UsesClass(Version::class)]
 final class ReleaseCommandTest extends TestCase
 {

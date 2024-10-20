@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Bard\Worker\File\Composer\Package;
+namespace SonsOfPHP\Bard\Operation\Composer\Package;
 
 use SonsOfPHP\Bard\JsonFile;
-use SonsOfPHP\Bard\Worker\WorkerInterface;
+use SonsOfPHP\Bard\Operation\OperationInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final readonly class Support implements WorkerInterface
+final readonly class UpdateSupportSectionOperation implements OperationInterface
 {
     public function __construct(private JsonFile $rootComposerJsonFile) {}
 
