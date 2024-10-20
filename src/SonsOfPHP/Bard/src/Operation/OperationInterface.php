@@ -9,5 +9,5 @@ namespace SonsOfPHP\Bard\Operation;
  */
 interface OperationInterface
 {
-    // public function apply();
+    //public function apply(JsonFileInterface $jsonFile);
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SonsOfPHP\Bard\Console\Command;
 
 use SonsOfPHP\Bard\JsonFile;
+use SonsOfPHP\Bard\JsonFileInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\FormatterHelper;
 use Symfony\Component\Console\Helper\ProcessHelper;
@@ -17,18 +18,33 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 abstract class AbstractCommand extends Command
 {
-    protected JsonFile $bardConfig;
+    protected JsonFileInterface $bardConfig;
 
     protected SymfonyStyle $bardStyle;
 
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
-        $this->bardConfig = new JsonFile($input->getOption('working-dir') . '/bard.json');
-        $config = $input->getOption('config');
+        $this->initializeBardStyle($input, $output);
+        $this->initializeBardConfig($input, $output);
+    }
+
+    private function initializeBardConfig(InputInterface $input, OutputInterface $output): void
+    {
+        $bardJson = $input->getOption('working-dir') . '/bard.json';
+        $config   = $input->getOption('config');
         if ('bard.json' !== $config) {
-            $this->bardConfig = new JsonFile($config);
+            $bardJson = $config;
         }
 
+        if ($output->isDebug()) {
+            $this->bardStyle->text(sprintf('Using configuration file "%s"', $bardJson));
+        }
+
+        $this->bardConfig = new JsonFile($bardJson);
+    }
+
+    private function initializeBardStyle(InputInterface $input, OutputInterface $output): void
+    {
         $this->bardStyle = new SymfonyStyle($input, $output);
     }
 

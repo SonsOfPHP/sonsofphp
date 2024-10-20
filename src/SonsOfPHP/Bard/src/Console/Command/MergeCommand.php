@@ -30,8 +30,6 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 final class MergeCommand extends AbstractCommand
 {
-    protected JsonFile $bardConfig;
-
     private string $mainComposerFile;
 
     protected function configure(): void
@@ -46,12 +44,7 @@ final class MergeCommand extends AbstractCommand
 
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
-        $bardConfigFile = $input->getOption('working-dir') . '/bard.json';
-        if (!file_exists($bardConfigFile)) {
-            throw new RuntimeException(sprintf('"%s" file does not exist', $bardConfigFile));
-        }
-
-        $this->bardConfig = new JsonFile($bardConfigFile);
+        parent::initialize($input, $output);
 
         $this->mainComposerFile = $input->getOption('working-dir') . '/composer.json';
         if (!file_exists($this->mainComposerFile)) {
@@ -67,12 +60,14 @@ final class MergeCommand extends AbstractCommand
         $rootComposerJsonFile = new JsonFile($input->getOption('working-dir') . '/composer.json');
 
         // Clean out a few of the sections in root composer.json file
-        $rootComposerJsonFile = $rootComposerJsonFile->with(new ClearSectionOperation('autoload'));
-        $rootComposerJsonFile = $rootComposerJsonFile->with(new ClearSectionOperation('autoload-dev'));
-        $rootComposerJsonFile = $rootComposerJsonFile->with(new ClearSectionOperation('require'));
-        $rootComposerJsonFile = $rootComposerJsonFile->with(new ClearSectionOperation('require-dev'));
-        $rootComposerJsonFile = $rootComposerJsonFile->with(new ClearSectionOperation('replace'));
-        $rootComposerJsonFile = $rootComposerJsonFile->with(new ClearSectionOperation('provide'));
+        $rootComposerJsonFile = $rootComposerJsonFile
+            ->with(new ClearSectionOperation('autoload'))
+            ->with(new ClearSectionOperation('autoload-dev'))
+            ->with(new ClearSectionOperation('require'))
+            ->with(new ClearSectionOperation('require-dev'))
+            ->with(new ClearSectionOperation('replace'))
+            ->with(new ClearSectionOperation('provide'))
+        ;
 
         foreach ($this->bardConfig->getSection('packages') as $pkg) {
             $pkgComposerFile = realpath($input->getOption('working-dir') . '/' . $pkg['path'] . '/composer.json');
@@ -87,7 +82,10 @@ final class MergeCommand extends AbstractCommand
                 continue;
             }
 
-            $output->writeln($this->getFormatterHelper()->formatSection('bard', sprintf('Merging "%s" into root composer.json', $pkgComposerJsonFile->getSection('name'))));
+            $this->bardStyle->text(sprintf(
+                'Merging "%s" into root composer.json',
+                $pkgComposerJsonFile->getSection('name'),
+            ));
 
             // Update root composer.json
             $rootComposerJsonFile = $rootComposerJsonFile

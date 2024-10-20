@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bard;
 
+use SonsOfPHP\Bard\Operation\OperationInterface;
+
 /**
  * Used to manage bard.json and composer.json files
  *
@@ -79,7 +81,7 @@ final class JsonFile extends \SplFileInfo implements JsonFileInterface
     /**
      * $jsonFile->with(new ExampleOperator());
      */
-    public function with($operator): self
+    public function with(OperationInterface $operator): self
     {
         return $operator->apply($this);
     }

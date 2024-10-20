@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bard;
 
+use SonsOfPHP\Bard\Operation\OperationInterface;
+
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
@@ -34,4 +36,14 @@ interface JsonFileInterface
      * @param array|int|string|null $value
      */
     public function setSection(string $section, $value): self;
+
+    /**
+     * Applies an operation to the json file
+     */
+    public function with(OperationInterface $operator): self;
+
+    /**
+     * Saves file to disk
+     */
+    public function save(): void;
 }
