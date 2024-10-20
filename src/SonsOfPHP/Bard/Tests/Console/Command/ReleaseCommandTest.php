@@ -22,8 +22,17 @@ use SonsOfPHP\Bard\Console\Command\SplitCommand;
 use SonsOfPHP\Bard\Console\Command\UpdateCommand;
 use SonsOfPHP\Bard\JsonFile;
 use SonsOfPHP\Bard\Operation\Bard\UpdateVersionOperation;
+use SonsOfPHP\Bard\Operation\ClearSectionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Package\CopyAuthorsSectionFromRootToPackageOperation;
 use SonsOfPHP\Bard\Operation\Composer\Package\CopyBranchAliasValueFromRootToPackageOperation;
+use SonsOfPHP\Bard\Operation\Composer\Package\CopyFundingSectionFromRootToPackageOperation;
+use SonsOfPHP\Bard\Operation\Composer\Package\CopySupportSectionFromRootToPackageOperation;
+use SonsOfPHP\Bard\Operation\Composer\Root\UpdateAutoloadDevSectionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Root\UpdateAutoloadSectionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Root\UpdateProvideSectionOperation;
 use SonsOfPHP\Bard\Operation\Composer\Root\UpdateReplaceSectionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Root\UpdateRequireDevSectionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Root\UpdateRequireSectionOperation;
 use SonsOfPHP\Component\Version\Version;
 use Symfony\Component\Console\Tester\CommandTester;
 
@@ -41,9 +50,18 @@ use Symfony\Component\Console\Tester\CommandTester;
 #[UsesClass(SplitCommand::class)]
 #[UsesClass(UpdateCommand::class)]
 #[UsesClass(JsonFile::class)]
-#[UsesClass(UpdateVersionOperation::class)]
+#[UsesClass(CopyAuthorsSectionFromRootToPackageOperation::class)]
 #[UsesClass(CopyBranchAliasValueFromRootToPackageOperation::class)]
+#[UsesClass(CopyFundingSectionFromRootToPackageOperation::class)]
+#[UsesClass(CopySupportSectionFromRootToPackageOperation::class)]
+#[UsesClass(ClearSectionOperation::class)]
+#[UsesClass(UpdateAutoloadDevSectionOperation::class)]
+#[UsesClass(UpdateAutoloadSectionOperation::class)]
+#[UsesClass(UpdateProvideSectionOperation::class)]
 #[UsesClass(UpdateReplaceSectionOperation::class)]
+#[UsesClass(UpdateRequireSectionOperation::class)]
+#[UsesClass(UpdateRequireDevSectionOperation::class)]
+#[UsesClass(UpdateVersionOperation::class)]
 #[UsesClass(Version::class)]
 final class ReleaseCommandTest extends TestCase
 {
