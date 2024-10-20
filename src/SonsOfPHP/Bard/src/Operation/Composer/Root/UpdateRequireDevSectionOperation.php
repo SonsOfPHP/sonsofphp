@@ -60,12 +60,11 @@ final readonly class UpdateRequireDevSectionOperation implements OperationInterf
             $rootRequireDev[$package] = $version;
         }
 
-        foreach ($rootRequireDev as $package => $version) {
+        foreach (array_keys($rootRequireDev) as $package) {
             if (array_key_exists($package, $rootReplace)) {
                 unset($rootRequireDev[$package]);
             }
         }
-
 
         ksort($rootRequireDev);
 

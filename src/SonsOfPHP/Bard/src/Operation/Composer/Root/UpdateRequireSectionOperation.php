@@ -41,7 +41,7 @@ final readonly class UpdateRequireSectionOperation implements OperationInterface
             $rootRequire[$package] = $version;
         }
 
-        foreach ($rootRequire as $package => $version) {
+        foreach (array_keys($rootRequire) as $package) {
             if (array_key_exists($package, $rootReplace)) {
                 unset($rootRequire[$package]);
             }
