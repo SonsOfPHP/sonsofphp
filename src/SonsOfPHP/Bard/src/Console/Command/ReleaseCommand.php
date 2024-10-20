@@ -7,7 +7,7 @@ namespace SonsOfPHP\Bard\Console\Command;
 use RuntimeException;
 use SonsOfPHP\Bard\JsonFile;
 use SonsOfPHP\Bard\Operation\Bard\UpdateVersionOperation;
-use SonsOfPHP\Bard\Operation\Composer\Package\UpdateBranchAliasSectionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Package\CopyBranchAliasValueFromRootToPackageOperation;
 use SonsOfPHP\Bard\Operation\Composer\Root\UpdateReplaceSectionOperation;
 use SonsOfPHP\Component\Version\Version;
 use SonsOfPHP\Component\Version\VersionInterface;
@@ -240,7 +240,7 @@ HELP
 
         foreach ($this->bardConfig->getSection('packages') as $pkg) {
             $pkgComposerJsonFile = new JsonFile(realpath($input->getOption('working-dir') . '/' . $pkg['path'] . '/composer.json'));
-            $pkgComposerJsonFile = $pkgComposerJsonFile->with(new UpdateBranchAliasSectionOperation($this->rootComposerJsonFile));
+            $pkgComposerJsonFile = $pkgComposerJsonFile->with(new CopyBranchAliasValueFromRootToPackageOperation($this->rootComposerJsonFile));
             $output->writeln($this->getFormatterHelper()->formatSection($pkgComposerJsonFile->getSection('name'), 'Updated branch alias to "' . $branchAlias . '"'));
             if (!$this->isDryRun) {
                 $pkgComposerJsonFile->save();

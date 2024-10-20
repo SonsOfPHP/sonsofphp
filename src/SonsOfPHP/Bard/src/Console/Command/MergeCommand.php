@@ -8,9 +8,9 @@ use RuntimeException;
 use SonsOfPHP\Bard\JsonFile;
 use SonsOfPHP\Bard\Operation\ClearSectionOperation;
 use SonsOfPHP\Bard\Operation\Composer\Package\CopyAuthorsSectionFromRootToPackageOperation;
-use SonsOfPHP\Bard\Operation\Composer\Package\UpdateBranchAliasSectionOperation;
-use SonsOfPHP\Bard\Operation\Composer\Package\UpdateFundingSectionOperation;
-use SonsOfPHP\Bard\Operation\Composer\Package\UpdateSupportSectionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Package\CopyBranchAliasValueFromRootToPackageOperation;
+use SonsOfPHP\Bard\Operation\Composer\Package\CopyFundingSectionFromRootToPackageOperation;
+use SonsOfPHP\Bard\Operation\Composer\Package\CopySupportSectionFromRootToPackageOperation;
 use SonsOfPHP\Bard\Operation\Composer\Root\UpdateAutoloadDevSectionOperation;
 use SonsOfPHP\Bard\Operation\Composer\Root\UpdateAutoloadSectionOperation;
 use SonsOfPHP\Bard\Operation\Composer\Root\UpdateProvideSectionOperation;
@@ -99,10 +99,10 @@ final class MergeCommand extends AbstractCommand
             // $rootComposerJsonFile = $rootComposerJsonFile->with(new Conflict($pkgComposerJsonFile));
 
             // Update package composer.json
-            $pkgComposerJsonFile = $pkgComposerJsonFile->with(new UpdateBranchAliasSectionOperation($rootComposerJsonFile));
-            $pkgComposerJsonFile = $pkgComposerJsonFile->with(new UpdateSupportSectionOperation($rootComposerJsonFile));
+            $pkgComposerJsonFile = $pkgComposerJsonFile->with(new CopyBranchAliasValueFromRootToPackageOperation($rootComposerJsonFile));
+            $pkgComposerJsonFile = $pkgComposerJsonFile->with(new CopySupportSectionFromRootToPackageOperation($rootComposerJsonFile));
             $pkgComposerJsonFile = $pkgComposerJsonFile->with(new CopyAuthorsSectionFromRootToPackageOperation($rootComposerJsonFile));
-            $pkgComposerJsonFile = $pkgComposerJsonFile->with(new UpdateFundingSectionOperation($rootComposerJsonFile));
+            $pkgComposerJsonFile = $pkgComposerJsonFile->with(new CopyFundingSectionFromRootToPackageOperation($rootComposerJsonFile));
 
             if (!$isDryRun) {
                 file_put_contents($pkgComposerJsonFile->getFilename(), $pkgComposerJsonFile->toJson());

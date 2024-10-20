@@ -23,9 +23,9 @@ use SonsOfPHP\Bard\Console\Command\UpdateCommand;
 use SonsOfPHP\Bard\JsonFile;
 use SonsOfPHP\Bard\Operation\ClearSectionOperation;
 use SonsOfPHP\Bard\Operation\Composer\Package\CopyAuthorsSectionFromRootToPackageOperation;
-use SonsOfPHP\Bard\Operation\Composer\Package\UpdateBranchAliasSectionOperation;
-use SonsOfPHP\Bard\Operation\Composer\Package\UpdateFundingSectionOperation;
-use SonsOfPHP\Bard\Operation\Composer\Package\UpdateSupportSectionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Package\CopyBranchAliasValueFromRootToPackageOperation;
+use SonsOfPHP\Bard\Operation\Composer\Package\CopyFundingSectionFromRootToPackageOperation;
+use SonsOfPHP\Bard\Operation\Composer\Package\CopySupportSectionFromRootToPackageOperation;
 use SonsOfPHP\Bard\Operation\Composer\Root\UpdateAutoloadDevSectionOperation;
 use SonsOfPHP\Bard\Operation\Composer\Root\UpdateAutoloadSectionOperation;
 use SonsOfPHP\Bard\Operation\Composer\Root\UpdateProvideSectionOperation;
@@ -49,9 +49,9 @@ use Symfony\Component\Console\Tester\CommandTester;
 #[UsesClass(UpdateCommand::class)]
 #[UsesClass(JsonFile::class)]
 #[UsesClass(CopyAuthorsSectionFromRootToPackageOperation::class)]
-#[UsesClass(UpdateBranchAliasSectionOperation::class)]
-#[UsesClass(UpdateFundingSectionOperation::class)]
-#[UsesClass(UpdateSupportSectionOperation::class)]
+#[UsesClass(CopyBranchAliasValueFromRootToPackageOperation::class)]
+#[UsesClass(CopyFundingSectionFromRootToPackageOperation::class)]
+#[UsesClass(CopySupportSectionFromRootToPackageOperation::class)]
 #[UsesClass(ClearSectionOperation::class)]
 #[UsesClass(UpdateAutoloadDevSectionOperation::class)]
 #[UsesClass(UpdateAutoloadSectionOperation::class)]

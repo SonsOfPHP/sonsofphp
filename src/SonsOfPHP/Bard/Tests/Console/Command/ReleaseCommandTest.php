@@ -22,7 +22,7 @@ use SonsOfPHP\Bard\Console\Command\SplitCommand;
 use SonsOfPHP\Bard\Console\Command\UpdateCommand;
 use SonsOfPHP\Bard\JsonFile;
 use SonsOfPHP\Bard\Operation\Bard\UpdateVersionOperation;
-use SonsOfPHP\Bard\Operation\Composer\Package\UpdateBranchAliasSectionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Package\CopyBranchAliasValueFromRootToPackageOperation;
 use SonsOfPHP\Bard\Operation\Composer\Root\UpdateReplaceSectionOperation;
 use SonsOfPHP\Component\Version\Version;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -42,7 +42,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 #[UsesClass(UpdateCommand::class)]
 #[UsesClass(JsonFile::class)]
 #[UsesClass(UpdateVersionOperation::class)]
-#[UsesClass(UpdateBranchAliasSectionOperation::class)]
+#[UsesClass(CopyBranchAliasValueFromRootToPackageOperation::class)]
 #[UsesClass(UpdateReplaceSectionOperation::class)]
 #[UsesClass(Version::class)]
 final class ReleaseCommandTest extends TestCase

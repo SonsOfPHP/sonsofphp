@@ -10,7 +10,7 @@ use SonsOfPHP\Bard\Operation\OperationInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final readonly class CopyAuthorsSectionFromRootToPackageOperation implements OperationInterface
+final readonly class CopyFundingSectionFromRootToPackageOperation implements OperationInterface
 {
     public function __construct(
         private JsonFileInterface $rootFile,
@@ -18,6 +18,6 @@ final readonly class CopyAuthorsSectionFromRootToPackageOperation implements Ope
 
     public function apply(JsonFileInterface $packageFile): JsonFileInterface
     {
-        return $packageFile->setSection('authors', $this->rootFile->getSection('authors'));
+        return $packageFile->setSection('funding', $this->rootFile->getSection('funding'));
     }
 }
