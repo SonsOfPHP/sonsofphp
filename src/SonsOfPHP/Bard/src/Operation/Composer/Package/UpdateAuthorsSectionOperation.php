@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bard\Operation\Composer\Package;
 
-use SonsOfPHP\Bard\JsonFile;
+use SonsOfPHP\Bard\JsonFileInterface;
 use SonsOfPHP\Bard\Operation\OperationInterface;
 
 /**
@@ -12,9 +12,9 @@ use SonsOfPHP\Bard\Operation\OperationInterface;
  */
 final readonly class UpdateAuthorsSectionOperation implements OperationInterface
 {
-    public function __construct(private JsonFile $rootComposerJsonFile) {}
+    public function __construct(private JsonFileInterface $rootComposerJsonFile) {}
 
-    public function apply(JsonFile $pkgComposerJsonFile): JsonFile
+    public function apply(JsonFileInterface $pkgComposerJsonFile): JsonFileInterface
     {
         $rootSection = $this->rootComposerJsonFile->getSection('authors');
 
