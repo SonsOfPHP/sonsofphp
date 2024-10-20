@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Bard\Worker\File\Bard;
+namespace SonsOfPHP\Bard\Operation\Bard;
 
-use SonsOfPHP\Bard\JsonFile;
-use SonsOfPHP\Bard\Worker\WorkerInterface;
+use SonsOfPHP\Bard\JsonFileInterface;
+use SonsOfPHP\Bard\Operation\OperationInterface;
 use SonsOfPHP\Component\Version\VersionInterface;
 
 /**
@@ -16,11 +16,11 @@ use SonsOfPHP\Component\Version\VersionInterface;
  *
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final readonly class UpdateVersionWorker implements WorkerInterface
+final readonly class UpdateVersionOperation implements OperationInterface
 {
     public function __construct(private VersionInterface $version) {}
 
-    public function apply(JsonFile $bardJsonFile): JsonFile
+    public function apply(JsonFileInterface $bardJsonFile): JsonFileInterface
     {
         return $bardJsonFile->setSection('version', $this->version->toString());
     }

@@ -21,17 +21,17 @@ use SonsOfPHP\Bard\Console\Command\ReleaseCommand;
 use SonsOfPHP\Bard\Console\Command\SplitCommand;
 use SonsOfPHP\Bard\Console\Command\UpdateCommand;
 use SonsOfPHP\Bard\JsonFile;
-use SonsOfPHP\Bard\Worker\File\Composer\Package\Authors;
-use SonsOfPHP\Bard\Worker\File\Composer\Package\BranchAlias;
-use SonsOfPHP\Bard\Worker\File\Composer\Package\Funding;
-use SonsOfPHP\Bard\Worker\File\Composer\Package\Support;
-use SonsOfPHP\Bard\Worker\File\Composer\Root\ClearSection;
-use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateAutoloadDevSection;
-use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateAutoloadSection;
-use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateProvideSection;
-use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateReplaceSection;
-use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateRequireDevSection;
-use SonsOfPHP\Bard\Worker\File\Composer\Root\UpdateRequireSection;
+use SonsOfPHP\Bard\Operation\ClearSectionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Package\CopyAuthorsSectionFromRootToPackageOperation;
+use SonsOfPHP\Bard\Operation\Composer\Package\CopyBranchAliasValueFromRootToPackageOperation;
+use SonsOfPHP\Bard\Operation\Composer\Package\CopyFundingSectionFromRootToPackageOperation;
+use SonsOfPHP\Bard\Operation\Composer\Package\CopySupportSectionFromRootToPackageOperation;
+use SonsOfPHP\Bard\Operation\Composer\Root\UpdateAutoloadDevSectionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Root\UpdateAutoloadSectionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Root\UpdateProvideSectionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Root\UpdateReplaceSectionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Root\UpdateRequireDevSectionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Root\UpdateRequireSectionOperation;
 use Symfony\Component\Console\Tester\CommandTester;
 
 #[Group('bard')]
@@ -48,17 +48,17 @@ use Symfony\Component\Console\Tester\CommandTester;
 #[UsesClass(SplitCommand::class)]
 #[UsesClass(UpdateCommand::class)]
 #[UsesClass(JsonFile::class)]
-#[UsesClass(Authors::class)]
-#[UsesClass(BranchAlias::class)]
-#[UsesClass(Funding::class)]
-#[UsesClass(Support::class)]
-#[UsesClass(ClearSection::class)]
-#[UsesClass(UpdateAutoloadDevSection::class)]
-#[UsesClass(UpdateAutoloadSection::class)]
-#[UsesClass(UpdateProvideSection::class)]
-#[UsesClass(UpdateReplaceSection::class)]
-#[UsesClass(UpdateRequireSection::class)]
-#[UsesClass(UpdateRequireDevSection::class)]
+#[UsesClass(CopyAuthorsSectionFromRootToPackageOperation::class)]
+#[UsesClass(CopyBranchAliasValueFromRootToPackageOperation::class)]
+#[UsesClass(CopyFundingSectionFromRootToPackageOperation::class)]
+#[UsesClass(CopySupportSectionFromRootToPackageOperation::class)]
+#[UsesClass(ClearSectionOperation::class)]
+#[UsesClass(UpdateAutoloadDevSectionOperation::class)]
+#[UsesClass(UpdateAutoloadSectionOperation::class)]
+#[UsesClass(UpdateProvideSectionOperation::class)]
+#[UsesClass(UpdateReplaceSectionOperation::class)]
+#[UsesClass(UpdateRequireSectionOperation::class)]
+#[UsesClass(UpdateRequireDevSectionOperation::class)]
 final class MergeCommandTest extends TestCase
 {
     private Application $application;

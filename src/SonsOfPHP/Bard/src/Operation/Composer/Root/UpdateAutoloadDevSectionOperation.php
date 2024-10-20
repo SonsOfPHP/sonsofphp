@@ -2,43 +2,39 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Bard\Worker\File\Composer\Root;
+namespace SonsOfPHP\Bard\Operation\Composer\Root;
 
-use SonsOfPHP\Bard\JsonFile;
-use SonsOfPHP\Bard\Worker\WorkerInterface;
+use SonsOfPHP\Bard\JsonFileInterface;
+use SonsOfPHP\Bard\Operation\OperationInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final readonly class UpdateAutoloadSection implements WorkerInterface
+final readonly class UpdateAutoloadDevSectionOperation implements OperationInterface
 {
-    public function __construct(private JsonFile $pkgComposerJsonFile) {}
+    public function __construct(private JsonFileInterface $pkgComposerJsonFile) {}
 
-    public function apply(JsonFile $rootComposerJsonFile): JsonFile
+    public function apply(JsonFileInterface $rootComposerJsonFile): JsonFileInterface
     {
-        $rootDir = pathinfo($rootComposerJsonFile->getFilename(), \PATHINFO_DIRNAME);
-        $pkgDir  = pathinfo($this->pkgComposerJsonFile->getFilename(), \PATHINFO_DIRNAME);
+        $rootDir = $rootComposerJsonFile->getPath();
+        $pkgDir  = $this->pkgComposerJsonFile->getPath();
         $path    = trim(str_replace($rootDir, '', $pkgDir), '/');
 
-        $rootAutoloadSection = $rootComposerJsonFile->getSection('autoload');
-        $pkgAutoloadSection  = $this->pkgComposerJsonFile->getSection('autoload');
+        $rootAutoloadSection = $rootComposerJsonFile->getSection('autoload-dev');
+        $pkgAutoloadSection  = $this->pkgComposerJsonFile->getSection('autoload-dev');
+
+        if (null === $pkgAutoloadSection) {
+            return $rootComposerJsonFile;
+        }
 
         foreach ($pkgAutoloadSection as $section => $config) {
             if ('psr-4' === $section) {
-                if (!isset($rootAutoloadSection['psr-4'])) {
-                    $rootAutoloadSection['psr-4'] = [];
-                }
-
                 foreach ($config as $namespace => $pkgPath) {
                     $rootAutoloadSection['psr-4'][$namespace] = trim($path . '/' . trim((string) $pkgPath, '/'), '/');
                 }
             }
 
             if ('exclude-from-classmap' === $section) {
-                if (!isset($rootAutoloadSection['exclude-from-classmap'])) {
-                    $rootAutoloadSection['exclude-from-classmap'] = [];
-                }
-
                 foreach ($config as $pkgPath) {
                     $rootAutoloadSection['exclude-from-classmap'][] = trim($path . '/' . trim((string) $pkgPath, '/'), '/');
                 }
@@ -57,6 +53,6 @@ final readonly class UpdateAutoloadSection implements WorkerInterface
 
         ksort($rootAutoloadSection);
 
-        return $rootComposerJsonFile->setSection('autoload', $rootAutoloadSection);
+        return $rootComposerJsonFile->setSection('autoload-dev', $rootAutoloadSection);
     }
 }

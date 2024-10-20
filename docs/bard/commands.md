@@ -1,4 +1,9 @@
-# Commands
+---
+title: Bard Commands
+---
+
+All commands have usage examples along with help documentation in the commands.
+To view more details, run `bard <command> -h`.
 
 ## init
 

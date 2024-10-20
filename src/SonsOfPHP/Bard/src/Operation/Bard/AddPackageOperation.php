@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Bard\Worker\File\Bard;
+namespace SonsOfPHP\Bard\Operation\Bard;
 
 use SonsOfPHP\Bard\JsonFileInterface;
-use SonsOfPHP\Bard\Worker\WorkerInterface;
+use SonsOfPHP\Bard\Operation\OperationInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final readonly class AddPackageWorker implements WorkerInterface
+final readonly class AddPackageOperation implements OperationInterface
 {
     public function __construct(
         private array $config,
@@ -28,7 +28,7 @@ final readonly class AddPackageWorker implements WorkerInterface
                 throw new \Exception(sprintf(
                     'Package already exists at path "%s" in "%s"',
                     $pkg['path'],
-                    $bardConfig->getFilename(),
+                    $bardConfig->getRealPath(),
                 ));
             }
         }

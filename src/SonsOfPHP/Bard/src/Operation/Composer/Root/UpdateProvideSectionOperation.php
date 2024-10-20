@@ -2,25 +2,26 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Bard\Worker\File\Composer\Root;
+namespace SonsOfPHP\Bard\Operation\Composer\Root;
 
-use SonsOfPHP\Bard\JsonFile;
-use SonsOfPHP\Bard\Worker\WorkerInterface;
+use SonsOfPHP\Bard\JsonFileInterface;
+use SonsOfPHP\Bard\Operation\OperationInterface;
 
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final readonly class UpdateProvideSection implements WorkerInterface
+final readonly class UpdateProvideSectionOperation implements OperationInterface
 {
-    public function __construct(private JsonFile $pkgComposerJsonFile) {}
+    public function __construct(private JsonFileInterface $pkgComposerJsonFile) {}
 
-    public function apply(JsonFile $rootComposerJsonFile): JsonFile
+    public function apply(JsonFileInterface $rootComposerJsonFile): JsonFileInterface
     {
         $pkgProvideSection = $this->pkgComposerJsonFile->getSection('provide');
         if (null === $pkgProvideSection) {
             return $rootComposerJsonFile;
         }
 
+        /** @var array<string, string> $rootProvideSection */
         $rootProvideSection = $rootComposerJsonFile->getSection('provide');
 
         foreach ($pkgProvideSection as $pkg => $version) {

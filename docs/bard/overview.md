@@ -2,9 +2,18 @@
 title: Bard
 ---
 
-# Bard
-
 Bard is used to manage monorepos.
+
+## Installing
+
+Bard is meant to be installed into a "tools" folder for use with your project.
+
+```shell
+mkdir tools/bard
+composer require --working-dir=tools/bard sonsofphp/bard
+echo "composer.lock\nvendor/" > tools/bard/.gitignore
+php tools/bard/vendor/bin/bard
+```
 
 ## Usage
 

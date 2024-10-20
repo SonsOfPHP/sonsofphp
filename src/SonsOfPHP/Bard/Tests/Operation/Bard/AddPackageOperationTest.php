@@ -2,27 +2,27 @@
 
 declare(strict_types=1);
 
-namespace SonsOfPHP\Bard\Tests\File\Bard;
+namespace SonsOfPHP\Bard\Tests\Operation\Bard;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bard\JsonFileInterface;
-use SonsOfPHP\Bard\Worker\File\Bard\AddPackageWorker;
-use SonsOfPHP\Bard\Worker\WorkerInterface;
+use SonsOfPHP\Bard\Operation\Bard\AddPackageOperation;
+use SonsOfPHP\Bard\Operation\OperationInterface;
 
 #[Group('bard')]
-#[CoversClass(AddPackageWorker::class)]
-final class AddPackageWorkerTest extends TestCase
+#[CoversClass(AddPackageOperation::class)]
+final class AddPackageOperationTest extends TestCase
 {
-    private AddPackageWorker $worker;
+    private AddPackageOperation $worker;
 
     private JsonFileInterface&MockObject $jsonFile;
 
     protected function setUp(): void
     {
-        $this->worker = new AddPackageWorker([
+        $this->worker = new AddPackageOperation([
             'path'       => 'src/test',
             'repository' => 'git@github.com:vendor/repo.git',
         ]);
@@ -32,7 +32,7 @@ final class AddPackageWorkerTest extends TestCase
 
     public function testItImplementsCorrectInterface(): void
     {
-        $this->assertInstanceOf(WorkerInterface::class, $this->worker);
+        $this->assertInstanceOf(OperationInterface::class, $this->worker);
     }
 
     public function testItWillThrowExceptionWhenPackageAtSamePathExists(): void
@@ -53,13 +53,10 @@ final class AddPackageWorkerTest extends TestCase
         $this->jsonFile->expects($this->once())->method('setSection')
             ->with(
                 'packages',
-                $this->callback(function ($packages): true {
-                    $this->assertSame([[
-                        'path'       => 'src/test',
-                        'repository' => 'git@github.com:vendor/repo.git',
-                    ]], $packages);
-                    return true;
-                })
+                $this->callback(fn($packages): true => [[
+                    'path'       => 'src/test',
+                    'repository' => 'git@github.com:vendor/repo.git',
+                ]] === $packages)
             )
         ;
 
