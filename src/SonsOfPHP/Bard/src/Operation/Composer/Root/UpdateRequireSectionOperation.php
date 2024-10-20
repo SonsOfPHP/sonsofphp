@@ -33,11 +33,18 @@ final readonly class UpdateRequireSectionOperation implements OperationInterface
         }
 
         foreach ($pkgRequire as $package => $version) {
-            if (\in_array($package, array_keys($rootReplace))) {
+            if (array_key_exists($package, $rootReplace)) {
+                unset($rootRequire[$package]);
                 continue;
             }
 
             $rootRequire[$package] = $version;
+        }
+
+        foreach ($rootRequire as $package => $version) {
+            if (array_key_exists($package, $rootReplace)) {
+                unset($rootRequire[$package]);
+            }
         }
 
         ksort($rootRequire);

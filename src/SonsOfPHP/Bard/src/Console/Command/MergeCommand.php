@@ -90,29 +90,32 @@ final class MergeCommand extends AbstractCommand
             $output->writeln($this->getFormatterHelper()->formatSection('bard', sprintf('Merging "%s" into root composer.json', $pkgComposerJsonFile->getSection('name'))));
 
             // Update root composer.json
-            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateReplaceSectionOperation($pkgComposerJsonFile));
-            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateRequireSectionOperation($pkgComposerJsonFile));
-            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateRequireDevSectionOperation($pkgComposerJsonFile));
-            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateAutoloadSectionOperation($pkgComposerJsonFile));
-            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateAutoloadDevSectionOperation($pkgComposerJsonFile));
-            $rootComposerJsonFile = $rootComposerJsonFile->with(new UpdateProvideSectionOperation($pkgComposerJsonFile));
-            // $rootComposerJsonFile = $rootComposerJsonFile->with(new Conflict($pkgComposerJsonFile));
+            $rootComposerJsonFile = $rootComposerJsonFile
+                ->with(new UpdateReplaceSectionOperation($pkgComposerJsonFile))
+                ->with(new UpdateRequireSectionOperation($pkgComposerJsonFile))
+                ->with(new UpdateRequireDevSectionOperation($pkgComposerJsonFile))
+                ->with(new UpdateAutoloadSectionOperation($pkgComposerJsonFile))
+                ->with(new UpdateAutoloadDevSectionOperation($pkgComposerJsonFile))
+                ->with(new UpdateProvideSectionOperation($pkgComposerJsonFile))
+            ;
 
             // Update package composer.json
-            $pkgComposerJsonFile = $pkgComposerJsonFile->with(new CopyBranchAliasValueFromRootToPackageOperation($rootComposerJsonFile));
-            $pkgComposerJsonFile = $pkgComposerJsonFile->with(new CopySupportSectionFromRootToPackageOperation($rootComposerJsonFile));
-            $pkgComposerJsonFile = $pkgComposerJsonFile->with(new CopyAuthorsSectionFromRootToPackageOperation($rootComposerJsonFile));
-            $pkgComposerJsonFile = $pkgComposerJsonFile->with(new CopyFundingSectionFromRootToPackageOperation($rootComposerJsonFile));
+            $pkgComposerJsonFile = $pkgComposerJsonFile
+                ->with(new CopyBranchAliasValueFromRootToPackageOperation($rootComposerJsonFile))
+                ->with(new CopySupportSectionFromRootToPackageOperation($rootComposerJsonFile))
+                ->with(new CopyAuthorsSectionFromRootToPackageOperation($rootComposerJsonFile))
+                ->with(new CopyFundingSectionFromRootToPackageOperation($rootComposerJsonFile))
+            ;
 
             if (!$isDryRun) {
-                file_put_contents($pkgComposerJsonFile->getFilename(), $pkgComposerJsonFile->toJson());
-                $io->text(sprintf('Updated "%s"', $pkgComposerJsonFile->getFilename()));
+                $pkgComposerJsonFile->save();
+                $io->text(sprintf('Updated "%s"', $pkgComposerJsonFile->getRealPath()));
             }
         }
 
         if (!$isDryRun) {
-            file_put_contents($rootComposerJsonFile->getFilename(), $rootComposerJsonFile->toJson());
-            $io->text(sprintf('Updated "%s"', $rootComposerJsonFile->getFilename()));
+            $rootComposerJsonFile->save();
+            $io->text(sprintf('Updated "%s"', $rootComposerJsonFile->getRealPath()));
         }
 
         $io->success('Merge Complete');

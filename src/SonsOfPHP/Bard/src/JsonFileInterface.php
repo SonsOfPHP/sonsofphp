@@ -10,9 +10,18 @@ namespace SonsOfPHP\Bard;
 interface JsonFileInterface
 {
     /**
+     * Returns the filename such as "composer.json" or "bard.json"
+     *
      * @return string
      */
     public function getFilename();
+
+    /**
+     * Returns absolute path to file. Example: "/path/to/bard.json"
+     *
+     * @return string|false
+     */
+    public function getRealPath();
 
     /**
      * Grabs and returns a section from the JSON file

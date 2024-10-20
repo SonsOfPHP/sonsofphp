@@ -60,6 +60,13 @@ final readonly class UpdateRequireDevSectionOperation implements OperationInterf
             $rootRequireDev[$package] = $version;
         }
 
+        foreach ($rootRequireDev as $package => $version) {
+            if (array_key_exists($package, $rootReplace)) {
+                unset($rootRequireDev[$package]);
+            }
+        }
+
+
         ksort($rootRequireDev);
 
         return $rootComposerJsonFile->setSection('require-dev', $rootRequireDev);

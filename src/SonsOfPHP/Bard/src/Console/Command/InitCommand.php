@@ -47,7 +47,7 @@ final class InitCommand extends AbstractCommand
 
         $io->text($bardJsonFile->toJson());
 
-        file_put_contents($bardJsonFile->getFilename(), $bardJsonFile->toJson());
+        $bardJsonFile->save();
 
         $output->writeln(sprintf('File written to "%s"', $filename));
 

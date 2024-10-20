@@ -16,8 +16,8 @@ final readonly class UpdateAutoloadDevSectionOperation implements OperationInter
 
     public function apply(JsonFile $rootComposerJsonFile): JsonFile
     {
-        $rootDir = pathinfo($rootComposerJsonFile->getFilename(), \PATHINFO_DIRNAME);
-        $pkgDir  = pathinfo($this->pkgComposerJsonFile->getFilename(), \PATHINFO_DIRNAME);
+        $rootDir = $rootComposerJsonFile->getPath();
+        $pkgDir  = $this->pkgComposerJsonFile->getPath();
         $path    = trim(str_replace($rootDir, '', $pkgDir), '/');
 
         $rootAutoloadSection = $rootComposerJsonFile->getSection('autoload-dev');

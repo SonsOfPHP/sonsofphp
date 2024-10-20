@@ -28,7 +28,7 @@ final readonly class AddPackageOperation implements OperationInterface
                 throw new \Exception(sprintf(
                     'Package already exists at path "%s" in "%s"',
                     $pkg['path'],
-                    $bardConfig->getFilename(),
+                    $bardConfig->getRealPath(),
                 ));
             }
         }
