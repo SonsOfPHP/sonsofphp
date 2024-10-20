@@ -7,7 +7,7 @@ namespace SonsOfPHP\Bard\Console\Command;
 use RuntimeException;
 use SonsOfPHP\Bard\JsonFile;
 use SonsOfPHP\Bard\Operation\ClearSectionOperation;
-use SonsOfPHP\Bard\Operation\Composer\Package\UpdateAuthorsSectionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Package\CopyAuthorsSectionFromRootToPackageOperation;
 use SonsOfPHP\Bard\Operation\Composer\Package\UpdateBranchAliasSectionOperation;
 use SonsOfPHP\Bard\Operation\Composer\Package\UpdateFundingSectionOperation;
 use SonsOfPHP\Bard\Operation\Composer\Package\UpdateSupportSectionOperation;
@@ -101,7 +101,7 @@ final class MergeCommand extends AbstractCommand
             // Update package composer.json
             $pkgComposerJsonFile = $pkgComposerJsonFile->with(new UpdateBranchAliasSectionOperation($rootComposerJsonFile));
             $pkgComposerJsonFile = $pkgComposerJsonFile->with(new UpdateSupportSectionOperation($rootComposerJsonFile));
-            $pkgComposerJsonFile = $pkgComposerJsonFile->with(new UpdateAuthorsSectionOperation($rootComposerJsonFile));
+            $pkgComposerJsonFile = $pkgComposerJsonFile->with(new CopyAuthorsSectionFromRootToPackageOperation($rootComposerJsonFile));
             $pkgComposerJsonFile = $pkgComposerJsonFile->with(new UpdateFundingSectionOperation($rootComposerJsonFile));
 
             if (!$isDryRun) {

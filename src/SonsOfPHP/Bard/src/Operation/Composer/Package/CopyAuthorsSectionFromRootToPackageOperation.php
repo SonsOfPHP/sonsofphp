@@ -10,7 +10,7 @@ use SonsOfPHP\Bard\Operation\OperationInterface;
 /**
  * @author Joshua Estes <joshua@sonsofphp.com>
  */
-final readonly class UpdateAuthorsSectionOperation implements OperationInterface
+final readonly class CopyAuthorsSectionFromRootToPackageOperation implements OperationInterface
 {
     public function __construct(private JsonFileInterface $rootComposerJsonFile) {}
 

@@ -9,14 +9,14 @@ use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bard\JsonFileInterface;
-use SonsOfPHP\Bard\Operation\Composer\Package\UpdateAuthorsSectionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Package\CopyAuthorsSectionFromRootToPackageOperation;
 use SonsOfPHP\Bard\Operation\OperationInterface;
 
 #[Group('bard')]
-#[CoversClass(UpdateAuthorsSectionOperation::class)]
-final class UpdateAuthorsSectionOperationTest extends TestCase
+#[CoversClass(CopyAuthorsSectionFromRootToPackageOperation::class)]
+final class CopyAuthorsSectionFromRootToPackageOperationTest extends TestCase
 {
-    private UpdateAuthorsSectionOperation $worker;
+    private CopyAuthorsSectionFromRootToPackageOperation $worker;
 
     private JsonFileInterface&MockObject $rootFile;
 
@@ -25,7 +25,7 @@ final class UpdateAuthorsSectionOperationTest extends TestCase
     protected function setUp(): void
     {
         $this->rootFile = $this->createMock(JsonFileInterface::class);
-        $this->worker = new UpdateAuthorsSectionOperation($this->rootFile);
+        $this->worker = new CopyAuthorsSectionFromRootToPackageOperation($this->rootFile);
         $this->packageFile = $this->createMock(JsonFileInterface::class);
     }
 

@@ -22,7 +22,7 @@ use SonsOfPHP\Bard\Console\Command\SplitCommand;
 use SonsOfPHP\Bard\Console\Command\UpdateCommand;
 use SonsOfPHP\Bard\JsonFile;
 use SonsOfPHP\Bard\Operation\ClearSectionOperation;
-use SonsOfPHP\Bard\Operation\Composer\Package\UpdateAuthorsSectionOperation;
+use SonsOfPHP\Bard\Operation\Composer\Package\CopyAuthorsSectionFromRootToPackageOperation;
 use SonsOfPHP\Bard\Operation\Composer\Package\UpdateBranchAliasSectionOperation;
 use SonsOfPHP\Bard\Operation\Composer\Package\UpdateFundingSectionOperation;
 use SonsOfPHP\Bard\Operation\Composer\Package\UpdateSupportSectionOperation;
@@ -48,7 +48,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 #[UsesClass(SplitCommand::class)]
 #[UsesClass(UpdateCommand::class)]
 #[UsesClass(JsonFile::class)]
-#[UsesClass(UpdateAuthorsSectionOperation::class)]
+#[UsesClass(CopyAuthorsSectionFromRootToPackageOperation::class)]
 #[UsesClass(UpdateBranchAliasSectionOperation::class)]
 #[UsesClass(UpdateFundingSectionOperation::class)]
 #[UsesClass(UpdateSupportSectionOperation::class)]
