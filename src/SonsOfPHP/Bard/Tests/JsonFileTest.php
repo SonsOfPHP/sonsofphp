@@ -8,6 +8,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SonsOfPHP\Bard\JsonFile;
+use SonsOfPHP\Bard\Operation\OperationInterface;
 
 #[Group('bard')]
 #[CoversClass(JsonFile::class)]
@@ -66,5 +67,14 @@ final class JsonFileTest extends TestCase
 
         $this->assertArrayHasKey('version', $json);
         $this->assertSame('1.2.4', $json['version']);
+    }
+
+    public function testItWillApplyOperation(): void
+    {
+        $file = new JsonFile(__DIR__ . '/fixtures/test.json');
+        $operation = $this->createMock(OperationInterface::class);
+        $operation->expects($this->once())->method('apply')->willReturn($file);
+
+        $file->with($operation);
     }
 }

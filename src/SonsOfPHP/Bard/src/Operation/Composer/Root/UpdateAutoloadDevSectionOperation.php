@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bard\Operation\Composer\Root;
 
-use SonsOfPHP\Bard\JsonFile;
+use SonsOfPHP\Bard\JsonFileInterface;
 use SonsOfPHP\Bard\Operation\OperationInterface;
 
 /**
@@ -12,9 +12,9 @@ use SonsOfPHP\Bard\Operation\OperationInterface;
  */
 final readonly class UpdateAutoloadDevSectionOperation implements OperationInterface
 {
-    public function __construct(private JsonFile $pkgComposerJsonFile) {}
+    public function __construct(private JsonFileInterface $pkgComposerJsonFile) {}
 
-    public function apply(JsonFile $rootComposerJsonFile): JsonFile
+    public function apply(JsonFileInterface $rootComposerJsonFile): JsonFileInterface
     {
         $rootDir = $rootComposerJsonFile->getPath();
         $pkgDir  = $this->pkgComposerJsonFile->getPath();
