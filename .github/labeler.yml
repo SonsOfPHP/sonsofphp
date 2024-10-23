@@ -1,98 +1,294 @@
-Bard:
-  - docs/bard/*
-  - src/SonsOfPHP/Bard/*
+# -=[ Contracts ]=-
+assert-contract:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/contract/assert**
+      - src/SonsOfPHP/Contract/Assert/**
 
-Assert:
-  - docs/components/assert/*
-  - src/SonsOfPHP/**/Assert/*
+common-contract:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/contract/common**
+      - src/SonsOfPHP/Contract/Common/**
 
-Cache:
-  - docs/components/cache/*
-  - src/SonsOfPHP/**/Cache/*
+cookie-contract:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/contract/cookie**
+      - src/SonsOfPHP/Contract/Cookie/**
 
-Clock:
-  - docs/components/clock/*
-  - src/SonsOfPHP/**/Clock/*
+cqrs-contract:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/contract/cqrs**
+      - src/SonsOfPHP/Contract/Cqrs/**
 
-Container:
-  - docs/components/container/*
-  - src/SonsOfPHP/**/Container/*
+event-sourcing-contract:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/contract/event-sourcing**
+      - src/SonsOfPHP/Contract/EventSourcing/**
 
-Cookie:
-  - docs/components/cookie/*
-  - src/SonsOfPHP/**/Cookie/*
+feature-toggle-contract:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/contract/feature-toggle**
+      - src/SonsOfPHP/Contract/FeatureToggle/**
 
-Common:
-  - docs/components/common/*
-  - src/SonsOfPHP/**/Common/*
+filesystem-contract:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/contract/filesystem**
+      - src/SonsOfPHP/Contract/Filesystem/**
 
-CQRS:
-  - docs/components/cqrs/*
-  - src/SonsOfPHP/**/Cqrs/*
+gateway-contract:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/contract/gateway**
+      - src/SonsOfPHP/Contract/Gateway/**
 
-EventDispatcher:
-  - docs/components/event-dispatcher/*
-  - src/SonsOfPHP/**/EventDispatcher/*
+http-handler-contract:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/contract/http-handler**
+      - src/SonsOfPHP/Contract/HttpHandler/**
 
-EventSourcing:
-  - docs/components/event-sourcing/*
-  - src/SonsOfPHP/**/EventSourcing/*
+logger-contract:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/contract/logger**
+      - src/SonsOfPHP/Contract/Logger/**
 
-FeatureToggle:
-  - docs/components/feature-toggle/*
-  - src/SonsOfPHP/**/FeatureToggle/*
+mailer-contract:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/contract/mailer**
+      - src/SonsOfPHP/Contract/Mailer/**
 
-Filesystem:
-  - docs/components/filesystem/*
-  - src/SonsOfPHP/**/Filesystem/*
+money-contract:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/contract/money**
+      - src/SonsOfPHP/Contract/Money/**
 
-HttpFactory:
-  - docs/components/http-factory/*
-  - src/SonsOfPHP/**/HttpFactory/*
+pager-contract:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/contract/pager**
+      - src/SonsOfPHP/Contract/Pager/**
 
-HttpHandler:
-  - docs/components/http-handler/*
-  - src/SonsOfPHP/**/HttpHandler/*
+registry-contract:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/contract/registry**
+      - src/SonsOfPHP/Contract/Registry/**
 
-HttpMessage:
-  - docs/components/http-message/*
-  - src/SonsOfPHP/**/HttpMessage/*
+state-machine-contract:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/contract/state-machine**
+      - src/SonsOfPHP/Contract/StateMachine/**
 
-JSON:
-  - docs/components/json/*
-  - src/SonsOfPHP/**/Json/*
+stdlib-contract:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/contract/stdlib**
+      - src/SonsOfPHP/Contract/Stdlib/**
 
-Link:
-  - docs/components/link/*
-  - src/SonsOfPHP/**/Link/*
+version-contract:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/contract/version**
+      - src/SonsOfPHP/Contract/Version/**
 
-Logger:
-  - docs/components/logger/*
-  - src/SonsOfPHP/**/Logger/*
+# -=[ Components ]=-
+assert:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/component/assert**
+      - src/SonsOfPHP/Component/Assert/**
 
-Mailer:
-  - docs/components/mailer/*
-  - src/SonsOfPHP/**/Mailer/*
+cache:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/component/cache**
+      - src/SonsOfPHP/Component/Cache/**
 
-Money:
-  - docs/components/money/*
-  - src/SonsOfPHP/**/Money/*
+clock:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/component/clock**
+      - src/SonsOfPHP/Component/Clock/**
 
-Pager:
-  - docs/components/pager/*
-  - src/SonsOfPHP/**/Pager/*
+container:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/component/container**
+      - src/SonsOfPHP/Component/Container/**
 
-StateMachine:
-  - docs/components/state-machine/*
-  - src/SonsOfPHP/**/StateMachine/*
+cookie:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/component/cookie**
+      - src/SonsOfPHP/Component/Cookie/**
 
-Version:
-  - docs/components/version/*
-  - src/SonsOfPHP/**/Version/*
+cqrs:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/component/cqrs**
+      - src/SonsOfPHP/Component/Cqrs/**
 
-Contracts:
-  - docs/contracts/**
-  - src/SonsOfPHP/Contract/**
+event-dispatcher:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/component/event-dispatcher**
+      - src/SonsOfPHP/Component/EventDispatcher/**
 
+event-sourcing:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/component/event-sourcing**
+      - src/SonsOfPHP/Component/EventSourcing/**
+
+feature-toggle:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/component/feature-toggle**
+      - src/SonsOfPHP/Component/FeatureToggle/**
+
+filesystem:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/component/filesystem**
+      - src/SonsOfPHP/Component/Filesystem/**
+
+http-factory:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/component/http-factory**
+      - src/SonsOfPHP/Component/HttpFactory/**
+
+http-handler:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/component/http-handler**
+      - src/SonsOfPHP/Component/HttpHandler/**
+
+http-message:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/component/http-message**
+      - src/SonsOfPHP/Component/HttpMessage/**
+
+json:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/component/json**
+      - src/SonsOfPHP/Component/Json/**
+
+logger:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/component/logger**
+      - src/SonsOfPHP/Component/Logger/**
+
+mailer:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/component/mailer**
+      - src/SonsOfPHP/Component/Mailer/**
+
+money:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/component/money**
+      - src/SonsOfPHP/Component/Money/**
+
+pager:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/component/pager**
+      - src/SonsOfPHP/Component/Pager/**
+
+registry:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/component/registry**
+      - src/SonsOfPHP/Component/Registry/**
+
+state-machine:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/component/state-machine**
+      - src/SonsOfPHP/Component/StateMachine/**
+
+version:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/component/version**
+      - src/SonsOfPHP/Component/Version/**
+
+# -=[ Bridges ]=-
+cqrs-symfony:
+  - changed-files:
+    - any-glob-to-any-file: src/SonsOfPHP/Bridge/Symfony/Cqrs/**
+
+event-sourcing-doctrine:
+  - changed-files:
+    - any-glob-to-any-file: src/SonsOfPHP/Bridge/Doctrine/EventSourcing/**
+
+event-sourcing-symfony:
+  - changed-files:
+    - any-glob-to-any-file: src/SonsOfPHP/Bridge/Symfony/EventSourcing/**
+
+filesystem-aws:
+  - changed-files:
+    - any-glob-to-any-file: src/SonsOfPHP/Bridge/Aws/Filesystem/**
+
+filesystem-liip-imagine:
+  - changed-files:
+    - any-glob-to-any-file: src/SonsOfPHP/Bridge/LiipImagine/Filesystem/**
+
+money-twig:
+  - changed-files:
+    - any-glob-to-any-file: src/SonsOfPHP/Bridge/Twig/Money/**
+
+pager-doctrine-collections:
+  - changed-files:
+    - any-glob-to-any-file: src/SonsOfPHP/Bridge/Doctrine/Collections/Pager/**
+
+pager-doctrine-dbal:
+  - changed-files:
+    - any-glob-to-any-file: src/SonsOfPHP/Bridge/Doctrine/Dbal/Pager/**
+
+pager-doctrine-orm:
+  - changed-files:
+    - any-glob-to-any-file: src/SonsOfPHP/Bridge/Doctrine/Orm/Pager/**
+
+# -=[ Projects ]=-
+bard:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/bard/**
+      - src/SonsOfPHP/Bard/**
+
+# -=[ Bundles ]=-
+feature-toggle-bundle:
+  - changed-files:
+    - any-glob-to-any-file: src/SonsOfPHP/Bundle/FeatureToggleBundle/**
+
+# -=[ Others ]=-
 documentation:
-  - docs/**
+  - changed-files:
+    - any-glob-to-any-file: docs/**
+
+tools:
+  - changed-files:
+    - any-glob-to-any-file:
+      - tools/**
+      - .php-cs-fixer.dist.php
+      - churn.yml
+      - infection.json5
+      - phpunit.xml.dist
+      - psalm.xml
+      - rector.php
