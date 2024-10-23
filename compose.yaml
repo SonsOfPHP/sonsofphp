@@ -1,0 +1,16 @@
+####
+# Various Services used for integration testing
+####
+services:
+  aws:
+    image: localstack/localstack
+    ports:
+      - 4566:4566
+  memcached:
+    image: memcached
+    ports:
+      - 11211:11211
+  redis:
+    image: redis
+    ports:
+      - 6379:6379

@@ -17,92 +17,6 @@
       <directory>src/SonsOfPHP/Bundle/*/Tests</directory>
       <directory>src/SonsOfPHP/Component/*/Tests</directory>
     </testsuite>
-
-    <testsuite name="bard">
-      <directory>src/SonsOfPHP/Bard/Tests</directory>
-    </testsuite>
-
-    <testsuite name="cache">
-      <directory>src/SonsOfPHP/Component/Clock/Tests</directory>
-    </testsuite>
-
-    <testsuite name="clock">
-      <directory>src/SonsOfPHP/Component/Clock/Tests</directory>
-    </testsuite>
-
-    <testsuite name="container">
-      <directory>src/SonsOfPHP/Component/Container/Tests</directory>
-    </testsuite>
-
-    <testsuite name="cookie">
-      <directory>src/SonsOfPHP/Component/Cookie/Tests</directory>
-    </testsuite>
-
-    <testsuite name="cqrs">
-      <directory>src/SonsOfPHP/Bridge/*/Cqrs/Tests</directory>
-      <!--<directory>src/SonsOfPHP/Component/Cqrs/Tests</directory>-->
-    </testsuite>
-
-    <testsuite name="event-dispatcher">
-      <directory>src/SonsOfPHP/Component/EventDispatcher/Tests</directory>
-    </testsuite>
-
-    <testsuite name="event-sourcing">
-      <directory>src/SonsOfPHP/Bridge/*/EventSourcing/Tests</directory>
-      <directory>src/SonsOfPHP/Component/EventSourcing/Tests</directory>
-    </testsuite>
-
-    <testsuite name="feature-toggle">
-      <directory>src/SonsOfPHP/Component/FeatureToggle/Tests</directory>
-      <directory>src/SonsOfPHP/Bridge/Aws/Filesystem/Tests</directory>
-      <directory>src/SonsOfPHP/Bridge/LiipImagine/Filesystem/Tests</directory>
-    </testsuite>
-
-    <testsuite name="filesystem">
-      <directory>src/SonsOfPHP/Component/Filesystem/Tests</directory>
-    </testsuite>
-
-    <testsuite name="http-factory">
-      <directory>src/SonsOfPHP/Component/HttpFactory/Tests</directory>
-    </testsuite>
-
-    <testsuite name="http-handler">
-      <directory>src/SonsOfPHP/Component/HttpHandler/Tests</directory>
-    </testsuite>
-
-    <testsuite name="http-message">
-      <directory>src/SonsOfPHP/Component/HttpMessage/Tests</directory>
-    </testsuite>
-
-    <testsuite name="json">
-      <directory>src/SonsOfPHP/Component/Json/Tests</directory>
-    </testsuite>
-
-    <testsuite name="link">
-      <directory>src/SonsOfPHP/Component/Link/Tests</directory>
-    </testsuite>
-
-    <testsuite name="logger">
-      <directory>src/SonsOfPHP/Component/Logger/Tests</directory>
-    </testsuite>
-
-    <testsuite name="mailer">
-      <directory>src/SonsOfPHP/Component/Mailer/Tests</directory>
-    </testsuite>
-
-    <testsuite name="money">
-      <directory>src/SonsOfPHP/Bridge/*/Money/Tests</directory>
-      <directory>src/SonsOfPHP/Component/Money/Tests</directory>
-    </testsuite>
-
-    <testsuite name="pager">
-      <directory>src/SonsOfPHP/Bridge/*/*/Pager/Tests</directory>
-      <directory>src/SonsOfPHP/Component/Pager/Tests</directory>
-    </testsuite>
-
-    <testsuite name="version">
-      <directory>src/SonsOfPHP/Component/Version/Tests</directory>
-    </testsuite>
   </testsuites>
 
   <coverage includeUncoveredFiles="true" pathCoverage="false" ignoreDeprecatedCodeUnits="true" disableCodeCoverageIgnore="false">
@@ -113,8 +27,8 @@
       <directory>src/*</directory>
     </include>
     <exclude>
-      <directory>src/SonsOfPHP/Bard/Tests</directory>
-      <directory>src/SonsOfPHP/Bard/vendor</directory>
+      <directory>src/SonsOfPHP/*/Tests</directory>
+      <directory>src/SonsOfPHP/*/vendor</directory>
       <directory>src/SonsOfPHP/Bridge/*/*/*/Tests</directory>
       <directory>src/SonsOfPHP/Bridge/*/*/*/vendor</directory>
       <directory>src/SonsOfPHP/Bridge/*/*/Tests</directory>
@@ -126,5 +40,4 @@
       <directory>src/SonsOfPHP/Contract/*/vendor</directory>
     </exclude>
   </source>
-
 </phpunit>

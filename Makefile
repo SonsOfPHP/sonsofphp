@@ -1,6 +1,7 @@
 # start: Executables
-COMPOSER = composer
-PHP      = php
+DOCKER_COMPOSE = docker compose
+COMPOSER       = composer
+PHP            = php
 # end: Executables
 
 # start: Tools
@@ -83,7 +84,7 @@ clean: ## Remove all vendor folders, composer.lock files, and removes build arti
 	rm -rf src/SonsOfPHP/Bundle/*/vendor/ src/SonsOfPHP/Bundle/*/composer.lock
 	rm -rf src/SonsOfPHP/Component/*/vendor/ src/SonsOfPHP/Component/*/composer.lock
 	rm -rf src/SonsOfPHP/Contract/*/vendor/ src/SonsOfPHP/Contract/*/composer.lock
-	rm -rf src/tools/*/vendor/ src/tools/*/composer.lock
+	@#rm -rf src/tools/*/vendor/ src/tools/*/composer.lock
 
 # This will upgrade the code to whatever the standards are
 # NOTE: This may make changes to the source code
@@ -114,6 +115,19 @@ test: $(PHPUNIT) ## Run PHPUnit Tests
 coverage: XDEBUG_MODE=coverage
 coverage: PHPUNIT_OPTIONS=--coverage-html $(COVERAGE_DIR)
 coverage: test ## Build Code Coverage Report
+
+##---- Docker -------------------------------------------------------------------------
+.PHONY: docker-up
+docker-up: ## Start containers
+	@$(DOCKER_COMPOSE) up --detach --remove-orphans
+
+.PHONY: docker-down
+docker-down: ## Shutdown containers
+	@$(DOCKER_COMPOSE) down --remove-orphans
+
+.PHONY: docker-logs
+docker-logs: ## Show live logs
+	@$(DOCKER_COMPOSE) logs --tail=0 --follow
 
 ##---- Code Quality -------------------------------------------------------------------
 .PHONY: lint
