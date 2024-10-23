@@ -11,6 +11,22 @@
 * [Overview](bard/overview.md)
 * [Commands](bard/commands.md)
 
+## Symfony Bundles
+
+* [Feature Toggle](symfony-bundles/feature-toggle.md)
+
+## Contracts
+
+* [Contracts Overview](contracts/index.md)
+* [Common](contracts/common.md)
+* [Cookie](contracts/cookie.md)
+* [CQRS](contracts/cqrs.md)
+* [Filesystem](contracts/filesystem.md)
+* [Mailer](contracts/mailer.md)
+* [Pager](contracts/pager.md)
+* [Registry](contracts/registry.md)
+* [State Machine](contracts/state-machine.md)
+
 ## 📦 Components
 
 * [Assert](components/assert.md)
@@ -55,18 +71,6 @@
 * [Registry](components/registry.md)
 * [State Machine](components/state-machine.md)
 * [Version](components/version.md)
-
-## Contracts
-
-* [Contracts Overview](contracts/index.md)
-* [Common](contracts/common.md)
-* [Cookie](contracts/cookie.md)
-* [CQRS](contracts/cqrs.md)
-* [Filesystem](contracts/filesystem.md)
-* [Mailer](contracts/mailer.md)
-* [Pager](contracts/pager.md)
-* [Registry](contracts/registry.md)
-* [State Machine](contracts/state-machine.md)
 
 ## 💁 Contributing
 

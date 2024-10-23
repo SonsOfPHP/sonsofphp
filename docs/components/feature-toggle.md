@@ -2,6 +2,8 @@
 title: Feature Toggle - Overview
 ---
 
+# Feature Toggle
+
 ## Installation
 
 ```shell
@@ -19,15 +21,15 @@ use SonsOfPHP\Component\FeatureToggle\Toggle\AlwaysEnabledToggle;
 
 // Using a feature toggle provider
 $provider = new InMemoryFeatureToggleProvider();
-$provider->addFeature(new Feature('feature.example', new AlwaysEnabledToggle()));
+$provider->add(new Feature('feature.example', new AlwaysEnabledToggle()));
 
-$feature = $provider->getFeatureToggleByKey('feature.example');
+$feature = $provider->get('feature.example');
 
 // Checking if the feature is enabled
 $isEnabled = $feature->isEnabled();
 ```
 
-## Advanced Usage
+### Advanced Usage
 
 ```php
 <?php
@@ -46,14 +48,11 @@ $context['user'] = $user;
 $isEnabled = $feature->isEnabled($context);
 ```
 
-When you create your own toggles, you may need to introduce additional context
-to the toggle to check if everything should be enabled or disabled. This is
-where this comes into play at.
+When you create your own toggles, you may need to introduce additional context to the toggle to check if everything should be enabled or disabled. This is where this comes into play at.
 
-### Chain Toggle
+#### Chain Toggle
 
-The chain toggle allows you to use many toggles together. If ANY toggle returns
-`true`, the feature is considered enabled.
+The chain toggle allows you to use many toggles together. If ANY toggle returns `true`, the feature is considered enabled.
 
 ```php
 <?php
@@ -71,10 +70,9 @@ $toggle = new ChainToggle([
 $isEnabled = $toggle->isEnabled();
 ```
 
-### Affirmative Toggle
+#### Affirmative Toggle
 
-Similar to the chain toggle, this will only return `true` when ALL toggles are
-`true`.
+Similar to the chain toggle, this will only return `true` when ALL toggles are `true`.
 
 ```php
 <?php
@@ -92,7 +90,7 @@ $toggle = new ChainToggle([
 $isEnabled = $toggle->isEnabled();
 ```
 
-### Date Range Toggle
+#### Date Range Toggle
 
 The date range toggle will return `true` if it's within a given time range.
 
@@ -101,7 +99,7 @@ The date range toggle will return `true` if it's within a given time range.
 
 use SonsOfPHP\Component\FeatureToggle\Toggle\DateRangeToggle;
 
-$toggle = new ChainToggle(
+$toggle = new DateRangeToggle(
     start: new \DateTimeImmutable('2024-01-01'),
     end: new \DateTimeImmutable('2024-12-31'),
 );
@@ -109,11 +107,9 @@ $toggle = new ChainToggle(
 // ...
 ```
 
-## Create your own Toggle
+### Create your own Toggle
 
-Take a look at how some of the other toggles are implemented. Creating your own
-toggles are very easy. You just need to make sure they implement the interface
-`ToggleInterface`.
+Take a look at how some of the other toggles are implemented. Creating your own toggles are very easy. You just need to make sure they implement the interface `ToggleInterface`.
 
 ```php
 <?php
@@ -130,5 +126,4 @@ class MyCustomToggle implements ToggleInterface
 }
 ```
 
-Once you make your custom toggle, you can use it just like all the rest of the
-toggles.
+Once you make your custom toggle, you can use it just like all the rest of the toggles.
