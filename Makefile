@@ -84,7 +84,7 @@ clean: ## Remove all vendor folders, composer.lock files, and removes build arti
 	rm -rf src/SonsOfPHP/Bundle/*/vendor/ src/SonsOfPHP/Bundle/*/composer.lock
 	rm -rf src/SonsOfPHP/Component/*/vendor/ src/SonsOfPHP/Component/*/composer.lock
 	rm -rf src/SonsOfPHP/Contract/*/vendor/ src/SonsOfPHP/Contract/*/composer.lock
-	rm -rf src/tools/*/vendor/ src/tools/*/composer.lock
+	@#rm -rf src/tools/*/vendor/ src/tools/*/composer.lock
 
 # This will upgrade the code to whatever the standards are
 # NOTE: This may make changes to the source code
