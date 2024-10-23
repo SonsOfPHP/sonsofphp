@@ -3,7 +3,10 @@
     "packages": [
         {
             "path": "src/SonsOfPHP/Bard",
-            "repository": "git@github.com:SonsOfPHP/bard.git"
+            "repository": "git@github.com:SonsOfPHP/bard.git",
+            "config": {
+                "merge": false
+            }
         },
         {
             "path": "src/SonsOfPHP/Component/Assert",
@@ -47,7 +50,10 @@
         },
         {
             "path": "src/SonsOfPHP/Bundle/Cqrs",
-            "repository": "git@github.com:SonsOfPHP/cqrs-bundle.git"
+            "repository": "git@github.com:SonsOfPHP/cqrs-bundle.git",
+            "config": {
+                "merge": false
+            }
         },
         {
             "path": "src/SonsOfPHP/Bridge/Symfony/Cqrs",
@@ -188,6 +194,13 @@
         {
             "path": "src/SonsOfPHP/Contract/Version",
             "repository": "git@github.com:SonsOfPHP/version-contract.git"
+        },
+        {
+            "path": "src/SonsOfPHP/Bundle/FeatureToggleBundle",
+            "repository": "git@github.com:SonsOfPHP/feature-toggle-bundle.git",
+            "config": {
+                "merge": false
+            }
         }
     ]
 }

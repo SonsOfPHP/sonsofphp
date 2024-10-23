@@ -1,0 +1,56 @@
+{
+    "name": "sonsofphp/feature-toggle-bundle",
+    "type": "symfony-bundle",
+    "description": "Sons of PHP | Feature Toggle Bundle",
+    "keywords": [
+        "sonsofphp",
+        "sons of php",
+        "feature",
+        "toggle",
+        "feature toggle",
+        "symfony"
+    ],
+    "homepage": "https://github.com/SonsOfPHP/feature-toggle-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joshua Estes",
+            "email": "joshua@sonsofphp.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/SonsOfPHP/sonsofphp/issues",
+        "forum": "https://github.com/orgs/SonsOfPHP/discussions",
+        "docs": "https://docs.sonsofphp.com/symfony-bundles/feature-toggle"
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/JoshuaEstes"
+        },
+        {
+            "type": "tidelift",
+            "url": "https://tidelift.com/subscription/pkg/packagist-sonsofphp-sonsofphp"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "sonsofphp/feature-toggle": "^0.3@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "SonsOfPHP\\Bundle\\FeatureToggleBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SonsOfPHP\\Bundle\\FeatureToggleBundle\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "sort-packages": true,
+        "branch-alias": {
+            "dev-main": "0.3.x-dev"
+        }
+    }
+}
