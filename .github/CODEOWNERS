@@ -14,120 +14,204 @@
 
 # assert
 /src/SonsOfPHP/*/Assert @JoshuaEstes
-/docs/*/assert
+/docs/*/assert @JoshuaEstes
+
+# autoloader
+/src/SonsOfPHP/*/Autoloader @JoshuaEstes
+/docs/*/autoloader @JoshuaEstes
+
+# barcode
+/src/SonsOfPHP/*/Barcode @JoshuaEstes
+/docs/*/barcode @JoshuaEstes
 
 # cache
 /src/SonsOfPHP/*/Cache @JoshuaEstes
-/docs/*/cache
+/docs/*/cache @JoshuaEstes
 
 # clock
 /src/SonsOfPHP/*/Clock @JoshuaEstes
-/docs/*/clock
+/docs/*/clock @JoshuaEstes
+
+# config
+/src/SonsOfPHP/*/Config @JoshuaEstes
+/docs/*/config @JoshuaEstes
 
 # container
 /src/SonsOfPHP/*/Container @JoshuaEstes
-/docs/*/container
+/docs/*/container @JoshuaEstes
 
 # cookie
 /src/SonsOfPHP/*/Cookie @JoshuaEstes
-/docs/*/cookie
+/docs/*/cookie @JoshuaEstes
 
 # cqrs
 /src/SonsOfPHP/*/Cqrs @JoshuaEstes
-/docs/*/cqrs
+/docs/*/cqrs @JoshuaEstes
+
+# crypt
+/src/SonsOfPHP/*/Crypt @JoshuaEstes
+/docs/*/crypt @JoshuaEstes
+
+# csv
+/src/SonsOfPHP/*/Csv @JoshuaEstes
+/docs/*/csv @JoshuaEstes
+
+# dotenv
+/src/SonsOfPHP/*/Dotenv @JoshuaEstes
+/docs/*/dotenv @JoshuaEstes
+
+# error-handler
+/src/SonsOfPHP/*/ErrorHandler @JoshuaEstes
+/docs/*/error-handler @JoshuaEstes
 
 # event-dispatcher
 /src/SonsOfPHP/*/EventDispatcher @JoshuaEstes
-/docs/*/event-dispatcher
+/docs/*/event-dispatcher @JoshuaEstes
 
 # event-sourcing
 /src/SonsOfPHP/*/EventSourcing @JoshuaEstes
 /src/SonsOfPHP/Bundle/EventSourcingBundle @JoshuaEstes
-/docs/*/event-sourcing
+/docs/*/event-sourcing @JoshuaEstes
 
 # feature-toggle
 /src/SonsOfPHP/*/FeatureToggle @JoshuaEstes
 /src/SonsOfPHP/Bundle/FeatureToggleBundle @JoshuaEstes
-/docs/*/feature-toggle
+/docs/*/feature-toggle @JoshuaEstes
+
+# file
+/src/SonsOfPHP/*/File @JoshuaEstes
+/docs/*/file @JoshuaEstes
 
 # filesystem
 /src/SonsOfPHP/*/Filesystem @JoshuaEstes
 /src/SonsOfPHP/Bridge/Aws/Filesystem @JoshuaEstes
 /src/SonsOfPHP/Bridge/LiipImagine/Filesystem @JoshuaEstes
 /src/SonsOfPHP/Bundle/FilesystemBundle @JoshuaEstes
-/docs/*/filesystem
+/docs/*/filesystem @JoshuaEstes
+
+# form
+/src/SonsOfPHP/*/Form @JoshuaEstes
+/docs/*/form @JoshuaEstes
 
 # http-client
 /src/SonsOfPHP/*/HttpClient @JoshuaEstes
-/docs/*/http-client
+/docs/*/http-client @JoshuaEstes
 
 # http-factory
 /src/SonsOfPHP/*/HttpFactory @JoshuaEstes
-/docs/*/http-factory
+/docs/*/http-factory @JoshuaEstes
 
 # http-handler
 /src/SonsOfPHP/*/HttpHandler @JoshuaEstes
-/docs/*/http-handler
+/docs/*/http-handler @JoshuaEstes
 
 # http-message
 /src/SonsOfPHP/*/HttpMessage @JoshuaEstes
-/docs/*/http-message
+/docs/*/http-message @JoshuaEstes
+
+# internationalization
+/src/SonsOfPHP/*/Internationalization @JoshuaEstes
+/docs/*/internationalization @JoshuaEstes
 
 # json
 /src/SonsOfPHP/*/Json @JoshuaEstes
-/docs/*/json
+/docs/*/json @JoshuaEstes
 
 # link
 /src/SonsOfPHP/*/Link @JoshuaEstes
-/docs/*/link
+/docs/*/link @JoshuaEstes
+
+# lock
+/src/SonsOfPHP/*/Lock @JoshuaEstes
+/docs/*/lock @JoshuaEstes
 
 # logger
 /src/SonsOfPHP/*/Logger @JoshuaEstes
 /src/SonsOfPHP/Bundle/LoggerBundle @JoshuaEstes
-/docs/*/logger
+/docs/*/logger @JoshuaEstes
 
 # mailer
 /src/SonsOfPHP/*/Mailer @JoshuaEstes
 /src/SonsOfPHP/Bundle/MailerBundle @JoshuaEstes
-/docs/*/mailer
+/docs/*/mailer @JoshuaEstes
+
+# math
+/src/SonsOfPHP/*/Math @JoshuaEstes
+/docs/*/math @JoshuaEstes
+
+# message-bus
+/src/SonsOfPHP/*/MessageBus @JoshuaEstes
+/docs/*/message-bus @JoshuaEstes
+
+# mime
+/src/SonsOfPHP/*/Mime @JoshuaEstes
+/docs/*/mime @JoshuaEstes
 
 # money
 /src/SonsOfPHP/*/Money @JoshuaEstes
 /src/SonsOfPHP/Bridge/Twig/Money @JoshuaEstes
 /src/SonsOfPHP/Bundle/MoneyBundle @JoshuaEstes
-/docs/*/money
+/docs/*/money @JoshuaEstes
+
+# navigation
+/src/SonsOfPHP/*/Navigation @JoshuaEstes
+/docs/*/navigation @JoshuaEstes
 
 # pager
 /src/SonsOfPHP/*/Pager @JoshuaEstes
 /src/SonsOfPHP/Bridge/Doctrine/*/Pager @JoshuaEstes
 /src/SonsOfPHP/Bundle/PagerBundle @JoshuaEstes
-/docs/*/pager
+/docs/*/pager @JoshuaEstes
 
 # pay
 /src/SonsOfPHP/*/Pay @JoshuaEstes
-/docs/*/pay
+/docs/*/pay @JoshuaEstes
+
+# pdf
+/src/SonsOfPHP/*/Pdf @JoshuaEstes
+/docs/*/pdf @JoshuaEstes
+
+# phar
+/src/SonsOfPHP/*/Phar @JoshuaEstes
+/docs/*/phar @JoshuaEstes
+
+# phone-number
+/src/SonsOfPHP/*/PhoneNumber @JoshuaEstes
+/docs/*/phone-number @JoshuaEstes
+
+# router
+/src/SonsOfPHP/*/Router @JoshuaEstes
+/docs/*/router @JoshuaEstes
 
 # search
 /src/SonsOfPHP/*/Search @JoshuaEstes
-/docs/*/search
+/docs/*/search @JoshuaEstes
+
+# serializer
+/src/SonsOfPHP/*/Serializer @JoshuaEstes
+/docs/*/serializer @JoshuaEstes
 
 # session
 /src/SonsOfPHP/*/Session @JoshuaEstes
-/docs/*/session
+/docs/*/session @JoshuaEstes
 
 # state-machine
 /src/SonsOfPHP/*/StateMachine @JoshuaEstes
 /src/SonsOfPHP/Bundle/StateMachineBundle @JoshuaEstes
-/docs/*/state-machine
+/docs/*/state-machine @JoshuaEstes
+
+# stdlib
+/src/SonsOfPHP/*/Stdlib @JoshuaEstes
+/docs/*/stdlib @JoshuaEstes
 
 # user-agent
 /src/SonsOfPHP/*/UserAgent @JoshuaEstes
-/docs/*/user-agent
+/docs/*/user-agent @JoshuaEstes
 
 # validator
 /src/SonsOfPHP/*/Validator @JoshuaEstes
-/docs/*/validator
+/docs/*/validator @JoshuaEstes
 
 # version
 /src/SonsOfPHP/*/Version @JoshuaEstes
-/docs/*/version
+/docs/*/version @JoshuaEstes
