@@ -70,6 +70,11 @@ final class MergeCommand extends AbstractCommand
         ;
 
         foreach ($this->bardConfig->getSection('packages') as $pkg) {
+            if (array_key_exists('config', $pkg) && array_key_exists('merge', $pkg['config']) && false === $pkg['config']['merge']) {
+                // Do not merge this package
+                continue;
+            }
+
             $pkgComposerFile = realpath($input->getOption('working-dir') . '/' . $pkg['path'] . '/composer.json');
             if (!file_exists($pkgComposerFile)) {
                 $output->writeln(sprintf('No "%s" found, skipping', $pkgComposerFile));
@@ -115,6 +120,8 @@ final class MergeCommand extends AbstractCommand
             $rootComposerJsonFile->save();
             $io->text(sprintf('Updated "%s"', $rootComposerJsonFile->getRealPath()));
         }
+
+        // @todo if not dry-run, run composer dump
 
         $io->success('Merge Complete');
 

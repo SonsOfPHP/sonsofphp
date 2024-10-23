@@ -12,6 +12,10 @@
     "license": "MIT",
     "authors": [
         {
+            "name": "Sons of PHP Community",
+            "homepage": "https://github.com/SonsOfPHP/sonsofphp/graphs/contributors"
+        },
+        {
             "name": "Joshua Estes",
             "email": "joshua@sonsofphp.com"
         }

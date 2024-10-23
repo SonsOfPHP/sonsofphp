@@ -13,6 +13,10 @@
     "license": "MIT",
     "authors": [
         {
+            "name": "Sons of PHP Community",
+            "homepage": "https://github.com/SonsOfPHP/sonsofphp/graphs/contributors"
+        },
+        {
             "name": "Joshua Estes",
             "email": "joshua@sonsofphp.com"
         }
@@ -79,11 +83,8 @@
         "psr/log": "^2.0 || ^3.0",
         "psr/simple-cache": "^2.0 || ^3.0",
         "symfony/console": "^4 || ^5 || ^6 || ^7",
-        "symfony/dependency-injection": "^5 || ^6 || ^7",
         "symfony/dotenv": "^5 || ^6 || ^7",
         "symfony/finder": "^5 || ^6 || ^7",
-        "symfony/http-kernel": "^5 || ^6 || ^7",
-        "symfony/messenger": "^5 || ^6 || ^7",
         "symfony/options-resolver": "^6 || ^7",
         "symfony/process": "^5 || ^6 || ^7",
         "symfony/security-bundle": "^6 || ^7",
@@ -100,7 +101,6 @@
         "sonsofphp/cookie": "self.version",
         "sonsofphp/cookie-contract": "self.version",
         "sonsofphp/cqrs": "self.version",
-        "sonsofphp/cqrs-bundle": "self.version",
         "sonsofphp/cqrs-contract": "self.version",
         "sonsofphp/cqrs-symfony": "self.version",
         "sonsofphp/event-dispatcher": "self.version",
@@ -150,7 +150,6 @@
             "src/SonsOfPHP/Component/Container/Tests",
             "src/SonsOfPHP/Component/Cookie/Tests",
             "src/SonsOfPHP/Component/Cqrs/Tests",
-            "src/SonsOfPHP/Bundle/Cqrs/Tests",
             "src/SonsOfPHP/Bridge/Symfony/Cqrs/Tests",
             "src/SonsOfPHP/Bridge/Symfony/EventSourcing/Tests",
             "src/SonsOfPHP/Bridge/Twig/Money/Tests",
@@ -186,7 +185,6 @@
             "SonsOfPHP\\Bridge\\Symfony\\Cqrs\\": "src/SonsOfPHP/Bridge/Symfony/Cqrs",
             "SonsOfPHP\\Bridge\\Symfony\\EventSourcing\\": "src/SonsOfPHP/Bridge/Symfony/EventSourcing",
             "SonsOfPHP\\Bridge\\Twig\\Money\\": "src/SonsOfPHP/Bridge/Twig/Money",
-            "SonsOfPHP\\Bundle\\Cqrs\\": "src/SonsOfPHP/Bundle/Cqrs",
             "SonsOfPHP\\Component\\Assert\\": "src/SonsOfPHP/Component/Assert",
             "SonsOfPHP\\Component\\Cache\\": "src/SonsOfPHP/Component/Cache",
             "SonsOfPHP\\Component\\Clock\\": "src/SonsOfPHP/Component/Clock",
@@ -234,13 +232,13 @@
     "require-dev": {
         "phpunit/phpunit": "^10.4",
         "symfony/http-foundation": "^5 || ^6 || ^7",
+        "symfony/messenger": "^5 || ^6 || ^7",
         "symfony/serializer": "^5 || ^6 || ^7"
     },
     "autoload-dev": {
         "psr-4": {
             "SonsOfPHP\\Bard\\Tests\\": "src/SonsOfPHP/Bard/Tests",
-            "SonsOfPHP\\Bridge\\Symfony\\Cqrs\\Tests\\": "src/SonsOfPHP/Bridge/Symfony/Cqrs/Tests",
-            "SonsOfPHP\\Bundle\\Cqrs\\Tests\\": "src/SonsOfPHP/Bundle/Cqrs/Tests"
+            "SonsOfPHP\\Bridge\\Symfony\\Cqrs\\Tests\\": "src/SonsOfPHP/Bridge/Symfony/Cqrs/Tests"
         }
     },
     "scripts": {
