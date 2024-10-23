@@ -1,0 +1,40 @@
+services:
+    SonsOfPHP\Bundle\FeatureToggleBundle\Command\DebugCommand:
+        arguments: ['@sons_of_php.feature_toggle.provider']
+        tags:
+          - { name: 'console.command' }
+
+    SonsOfPHP\Bundle\FeatureToggleBundle\Twig\Extension\FeatureToggleExtension:
+        tags:
+            - { name: 'twig.extension' }
+
+    SonsOfPHP\Bundle\FeatureToggleBundle\Twig\Runtime\FeatureToggleExtensionRuntime:
+        arguments: ['@sons_of_php.feature_toggle.provider']
+        tags:
+            - { name: 'twig.runtime' }
+
+    SonsOfPHP\Component\FeatureToggle\Toggle\AlwaysDisabledToggle:
+        tags:
+            - { name: 'sons_of_php.feature_toggle.toggle' }
+
+    sons_of_php.feature_toggle.toggle.disabled:
+        alias: SonsOfPHP\Component\FeatureToggle\Toggle\AlwaysDisabledToggle
+        public: true
+
+    SonsOfPHP\Component\FeatureToggle\Toggle\AlwaysEnabledToggle:
+        tags:
+            - { name: 'sons_of_php.feature_toggle.toggle' }
+
+    sons_of_php.feature_toggle.toggle.enabled:
+        alias: SonsOfPHP\Component\FeatureToggle\Toggle\AlwaysEnabledToggle
+        public: true
+
+    # The provider contains all the different features and their toggles Default
+    # provider should be a chain provider so that users can define additional
+    # providers
+    SonsOfPHP\Contract\FeatureToggle\FeatureToggleProviderInterface:
+        class: SonsOfPHP\Component\FeatureToggle\Provider\InMemoryFeatureToggleProvider
+
+    sons_of_php.feature_toggle.provider:
+        alias: SonsOfPHP\Contract\FeatureToggle\FeatureToggleProviderInterface
+        public: true

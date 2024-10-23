@@ -40,7 +40,6 @@ interface FeatureToggleProviderInterface
      *   When the $key is invalid. MUST support keys consisting of the
      *   characters A-Z, a-z, 0-9, _, and . in any order in UTF-8 encoding and
      *   a length of up to 64 characters
-     *
      */
     public function has(string $key): bool;
 
