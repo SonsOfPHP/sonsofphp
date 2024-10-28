@@ -7,12 +7,7 @@
     bootstrap="vendor/autoload.php"
     cacheDirectory="build/cache/phpunit"
     requireCoverageMetadata="true"
-    beStrictAboutCoverageMetadata="true"
->
-
-  <php>
-    <ini name="error_reporting" value="-1" />
-  </php>
+    beStrictAboutCoverageMetadata="true">
 
   <testsuites>
     <testsuite name="all">
