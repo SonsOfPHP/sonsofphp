@@ -14,7 +14,7 @@
   </php>
 
     <testsuites>
-        <testsuite name="filesystem-aws-bridge">
+        <testsuite name="filesystem-aws">
             <directory>./Tests/</directory>
         </testsuite>
     </testsuites>

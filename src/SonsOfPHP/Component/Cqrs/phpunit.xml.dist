@@ -5,39 +5,27 @@
     backupGlobals="false"
     colors="true"
     bootstrap="vendor/autoload.php"
-    cacheDirectory="build/cache/phpunit"
-    requireCoverageMetadata="true"
-    beStrictAboutCoverageMetadata="true">
+    failOnRisky="true"
+    failOnWarning="true"
+>
 
-  <testsuites>
-    <testsuite name="all">
-      <directory>src/SonsOfPHP/Bard/Tests</directory>
-      <directory>src/SonsOfPHP/Bridge/*/*/Tests</directory>
-      <directory>src/SonsOfPHP/Bridge/*/*/*/Tests</directory>
-      <directory>src/SonsOfPHP/Bundle/*/Tests</directory>
-      <directory>src/SonsOfPHP/Component/*/Tests</directory>
-    </testsuite>
-  </testsuites>
+  <php>
+    <ini name="error_reporting" value="-1" />
+  </php>
 
-  <coverage includeUncoveredFiles="true" pathCoverage="false" ignoreDeprecatedCodeUnits="true" disableCodeCoverageIgnore="false">
-  </coverage>
+    <testsuites>
+        <testsuite name="cqrs">
+            <directory>./Tests/</directory>
+        </testsuite>
+    </testsuites>
 
   <source>
-    <include>
-      <directory>src/*</directory>
-    </include>
-    <exclude>
-      <directory>src/SonsOfPHP/*/Tests</directory>
-      <directory>src/SonsOfPHP/*/vendor</directory>
-      <directory>src/SonsOfPHP/Bridge/*/*/*/Tests</directory>
-      <directory>src/SonsOfPHP/Bridge/*/*/*/vendor</directory>
-      <directory>src/SonsOfPHP/Bridge/*/*/Tests</directory>
-      <directory>src/SonsOfPHP/Bridge/*/*/vendor</directory>
-      <directory>src/SonsOfPHP/Bundle/*/Tests</directory>
-      <directory>src/SonsOfPHP/Bundle/*/vendor</directory>
-      <directory>src/SonsOfPHP/Component/*/Tests</directory>
-      <directory>src/SonsOfPHP/Component/*/vendor</directory>
-      <directory>src/SonsOfPHP/Contract/*/vendor</directory>
-    </exclude>
+      <include>
+          <directory>.</directory>
+      </include>
+      <exclude>
+          <directory>./Tests</directory>
+          <directory>./vendor</directory>
+      </exclude>
   </source>
 </phpunit>
