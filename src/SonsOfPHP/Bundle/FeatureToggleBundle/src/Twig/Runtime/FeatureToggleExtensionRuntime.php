@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Bundle\FeatureToggleBundle\Twig\Runtime;
 
+use SonsOfPHP\Component\FeatureToggle\Exception\FeatureNotFoundException;
 use SonsOfPHP\Contract\FeatureToggle\FeatureToggleProviderInterface;
 use Twig\Extension\RuntimeExtensionInterface;
 
@@ -15,6 +16,11 @@ final readonly class FeatureToggleExtensionRuntime implements RuntimeExtensionIn
 
     public function isEnabled(string $key): bool
     {
-        return $this->provider->get($key)->isEnabled();
+        try {
+            return $this->provider->get($key)->isEnabled();
+        } catch (FeatureNotFoundException) {
+        }
+
+        return false;
     }
 }
