@@ -23,7 +23,7 @@ class EventDispatcher implements EventDispatcherInterface
      * @param string|null $eventName
      *   Is the event name is null, is will use the event's classname as the Event Name
      */
-    public function dispatch(object $event, string $eventName = null): object
+    public function dispatch(object $event, ?string $eventName = null): object
     {
         $eventName ??= $event::class;
 
