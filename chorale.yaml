@@ -1,0 +1,19 @@
+version: 1
+repo_host: git@github.com
+repo_vendor: SonsOfPHP
+repo_name_template: '{name:kebab}.git'
+default_repo_template: '{repo_host}:{repo_vendor}/{repo_name_template}'
+default_branch: main
+splitter: splitsh
+tag_strategy: inherit-monorepo-tag
+rules:
+  keep_history: true
+  skip_if_unchanged: true
+  require_files:
+    - composer.json
+    - LICENSE
+patterns:
+  -
+    match: 'src/**'
+    include:
+      - '**'

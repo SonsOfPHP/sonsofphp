@@ -16,13 +16,12 @@ use Chorale\Discovery\PackageScannerInterface;
 use Chorale\Discovery\PatternMatcherInterface;
 use Chorale\IO\JsonReporterInterface;
 use Chorale\Repo\RepoResolverInterface;
-use Chorale\Rules\ConflictDetectorInterface;
 use Chorale\Rules\RequiredFilesCheckerInterface;
 use Chorale\Telemetry\RunSummaryInterface;
-use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
@@ -30,6 +29,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 final class SetupCommand extends Command
 {
     protected static $defaultName = 'setup';
+
     protected static $defaultDescription = 'Create or update chorale.yaml by scanning src/ and applying defaults.';
 
     public function __construct(
@@ -44,7 +44,6 @@ final class SetupCommand extends Command
         private readonly RepoResolverInterface $resolver,
         private readonly PackageIdentityInterface $identity,
         private readonly RequiredFilesCheckerInterface $requiredFiles,
-        private readonly ConflictDetectorInterface $conflicts,
         private readonly JsonReporterInterface $jsonReporter,
         private readonly RunSummaryInterface $summary,
         private readonly ComposerMetadataInterface $composerMeta,
@@ -70,14 +69,14 @@ final class SetupCommand extends Command
     // ─────────────────────────────────────────────────────────────────────────────
     // Orchestrator
     // ─────────────────────────────────────────────────────────────────────────────
-    protected function execute(InputInterface $input, \Symfony\Component\Console\Output\OutputInterface $output): int
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io   = $this->styleFactory->create($input, $output);
         $opts = $this->gatherOptions($input);
 
         [$config, $firstRun] = $this->loadOrSeedConfig($opts['root']);
 
-        if ($msgs = $this->validateSchema($config, $opts['strict'])) {
+        if (($msgs = $this->validateSchema($config)) !== []) {
             $this->printIssues($io, $msgs);
             if ($opts['strict']) {
                 $io->error('Strict mode: schema validation failed.');
@@ -101,6 +100,7 @@ final class SetupCommand extends Command
             $found = $this->scanner->scan($opts['root'], $r, $opts['paths']);
             $discPaths = array_merge($discPaths, $found);
         }
+
         $discPaths = array_values(array_unique($discPaths));
         sort($discPaths);
 
@@ -155,6 +155,7 @@ final class SetupCommand extends Command
                 $tot['issues'] ?? 0,
                 $tot['conflicts'] ?? 0
             ));
+            $io->note('You can run this command as many times as you want. Run this after you create a new package.');
             return 0;
         }
 
@@ -227,16 +228,10 @@ final class SetupCommand extends Command
     }
 
     /** @return list<string> */
-    private function validateSchema(array $config, bool $strict): array
+    private function validateSchema(array $config): array
     {
         // Keeping this simple (we already do type checks in SchemaValidator)
         return $this->schemaValidator->validate($config, 'tools/chorale/config/chorale.schema.yaml');
-    }
-
-    /** @return list<string> */
-    private function discoverPaths(string $root, array $paths): array
-    {
-        return $this->scanner->scan($root, $paths);
     }
 
     private function printIssues(SymfonyStyle $io, array $messages): void
@@ -251,6 +246,7 @@ final class SetupCommand extends Command
         if ($opts['write'] || $opts['acceptAll'] || $opts['nonInteractive']) {
             return true;
         }
+
         $helper = $this->getHelper('question');
         $confirm = new ConfirmationQuestion('Proceed? [Y/n] ', true);
 
@@ -260,20 +256,22 @@ final class SetupCommand extends Command
     /** @return list<string> e.g. ["src","packages"] */
     private function determineRoots(array $patterns, string $root): array
     {
-        if ($patterns) {
+        if ($patterns !== []) {
             $roots = [];
             foreach ($patterns as $p) {
                 $m = (string) ($p['match'] ?? '');
                 if ($m === '') {
                     continue;
                 }
+
                 // root is first segment before slash
                 $seg = explode('/', ltrim($m, '/'), 2)[0] ?? '';
                 if ($seg !== '' && !in_array($seg, $roots, true)) {
                     $roots[] = $seg;
                 }
             }
-            return $roots ?: ['src']; // safe fallback if patterns are odd
+
+            return $roots !== [] ? $roots : ['src']; // safe fallback if patterns are odd
         }
 
         // First run: probe both src and packages
@@ -284,6 +282,7 @@ final class SetupCommand extends Command
                 $roots[] = $cand;
             }
         }
+
         return $roots;
     }
 
@@ -297,6 +296,7 @@ final class SetupCommand extends Command
             $last = str_contains($name, '/') ? substr($name, strrpos($name, '/') + 1) : $name;
             return $last;
         }
+
         return basename($pkgPath);
     }
 
@@ -330,7 +330,7 @@ final class SetupCommand extends Command
         foreach ($byPath as $oldPath => $target) {
             if (!in_array($oldPath, $discovered, true)) {
                 // If target points to a path that no longer exists but a new path with same identity does, propose rename
-                $maybe = $this->findRenameTarget($root, $oldPath, $target, $defaults, $patterns, $discovered);
+                $maybe = $this->findRenameTarget($oldPath, $target, $defaults, $patterns, $discovered);
                 if ($maybe !== null) {
                     $groups['renamed'][] = $maybe;
                 }
@@ -370,11 +370,13 @@ final class SetupCommand extends Command
                 // Truly untracked: no pattern covers it
                 return ['group' => 'new', 'data' => ['path' => $pkgPath, 'repo' => $repo, 'package' => $pkgName, 'reason' => 'no-pattern']];
             }
+
             // Covered by pattern → OK
             $ok = ['path' => $pkgPath, 'repo' => $repo, 'covered_by_pattern' => true, 'package' => $pkgName];
-            if ($conflictData) {
+            if ($conflictData !== null && $conflictData !== []) {
                 $ok['conflict'] = $conflictData['patterns'];
             }
+
             return ['group' => 'ok', 'data' => $ok];
         }
 
@@ -399,9 +401,10 @@ final class SetupCommand extends Command
 
 
         $ok = ['path' => $pkgPath, 'repo' => $repo, 'package' => $pkgName];
-        if ($conflictData) {
+        if ($conflictData !== null && $conflictData !== []) {
             $ok['conflict'] = $conflictData['patterns'];
         }
+
         return ['group' => 'ok', 'data' => $ok];
     }
 
@@ -413,7 +416,7 @@ final class SetupCommand extends Command
      * @param list<string> $discovered
      * @return array<string,mixed>|null
      */
-    private function findRenameTarget(string $root, string $oldPath, array $target, array $defaults, array $patterns, array $discovered): ?array
+    private function findRenameTarget(string $oldPath, array $target, array $defaults, array $patterns, array $discovered): ?array
     {
         $oldRepo = $this->resolver->resolve($defaults, $this->firstPatternFor($patterns, $oldPath), $target, $oldPath, basename($oldPath));
         $oldId = $this->identity->identityFor($oldPath, $oldRepo);
@@ -430,6 +433,7 @@ final class SetupCommand extends Command
                 ];
             }
         }
+
         return null;
     }
 
@@ -464,7 +468,7 @@ final class SetupCommand extends Command
 
         foreach ($groups['new'] as $row) {
             // New only occurs when no pattern covers it → we must add a target (or new pattern, future)
-            $actions[] = ['type' => 'add-target', 'path' => $row['path'], 'name' => basename($row['path'])];
+            $actions[] = ['type' => 'add-target', 'path' => $row['path'], 'name' => basename((string) $row['path'])];
         }
 
         foreach ($groups['renamed'] as $row) {
@@ -512,6 +516,7 @@ final class SetupCommand extends Command
                         break;
                     }
                 }
+
                 unset($t);
             }
         }
@@ -533,18 +538,19 @@ final class SetupCommand extends Command
         $io->section('Auto-discovery (src/)');
 
         $this->printGroup($io, 'OK', $groups['ok'], function (array $r): string {
-            $suffix = !empty($r['covered_by_pattern']) ? ' (pattern)' : '';
+            $suffix = empty($r['covered_by_pattern']) ? '' : ' (pattern)';
             if (!empty($r['conflict'])) {
                 $suffix .= sprintf(' (conflict: patterns %s)', implode(',', (array) $r['conflict']));
             }
+
             return sprintf('%s%s', $r['package'], $suffix);
         });
 
-        $this->printGroup($io, 'NEW', $groups['new'], fn(array $r) => sprintf('%s → %s (no matching pattern)', $r['path'], $r['repo']));
-        $this->printGroup($io, 'RENAMED', $groups['renamed'], fn(array $r) => sprintf('%s → %s', $r['from'], $r['to']));
+        $this->printGroup($io, 'NEW', $groups['new'], fn(array $r): string => sprintf('%s → %s (no matching pattern)', $r['path'], $r['repo']));
+        $this->printGroup($io, 'RENAMED', $groups['renamed'], fn(array $r): string => sprintf('%s → %s', $r['from'], $r['to']));
         $this->printGroup($io, 'DRIFT', $groups['drift'], fn(array $r) => $r['path']);
-        $this->printGroup($io, 'ISSUES', $groups['issues'], fn(array $r) => sprintf('%s (missing: %s)', $r['path'], implode(', ', (array) ($r['missing'] ?? []))));
-        $this->printGroup($io, 'CONFLICTS', $groups['conflicts'], fn(array $r) => sprintf('%s (patterns: %s)', $r['path'], implode(', ', (array) ($r['patterns'] ?? []))));
+        $this->printGroup($io, 'ISSUES', $groups['issues'], fn(array $r): string => sprintf('%s (missing: %s)', $r['path'], implode(', ', (array) ($r['missing'] ?? []))));
+        $this->printGroup($io, 'CONFLICTS', $groups['conflicts'], fn(array $r): string => sprintf('%s (patterns: %s)', $r['path'], implode(', ', (array) ($r['patterns'] ?? []))));
     }
 
     private function printGroup(SymfonyStyle $io, string $title, array $rows, callable $fmt): void
@@ -552,10 +558,12 @@ final class SetupCommand extends Command
         if ($rows === []) {
             return;
         }
-        $io->writeln("<info>{$title}</info>");
+
+        $io->writeln(sprintf('<info>%s</info>', $title));
         foreach ($rows as $r) {
             $io->writeln('  • ' . $fmt($r));
         }
+
         $io->newLine();
     }
 }
