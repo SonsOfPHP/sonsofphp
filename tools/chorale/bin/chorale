@@ -1,0 +1,68 @@
+#!/usr/bin/env php
+<?php declare(strict_types=1);
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use Chorale\Console\Style\ConsoleStyleFactory;
+use Chorale\Console\SetupCommand;
+
+use Chorale\Repo\TemplateRenderer;
+use Chorale\Util\PathUtils;
+use Chorale\Util\Sorting;
+use Chorale\Discovery\PackageIdentity;
+use Chorale\Config\ConfigDefaults;
+use Chorale\Config\SchemaValidator;
+use Chorale\IO\BackupManager;
+use Chorale\IO\JsonReporter;
+use Chorale\Telemetry\RunSummary;
+
+use Chorale\Config\ConfigLoader;
+use Chorale\Config\ConfigWriter;
+use Chorale\Config\ConfigNormalizer;
+use Chorale\Discovery\ComposerMetadata;
+use Chorale\Discovery\PackageScanner;
+use Chorale\Discovery\PatternMatcher;
+use Chorale\Repo\RepoResolver;
+use Chorale\Rules\RequiredFilesChecker;
+use Chorale\Rules\ConflictDetector;
+
+$paths       = new PathUtils();
+$renderer    = new TemplateRenderer();
+$sorting     = new Sorting();
+$identity    = new PackageIdentity();
+$defaults    = new ConfigDefaults();
+$schema      = new SchemaValidator();
+$backup      = new BackupManager();
+$json        = new JsonReporter();
+$summary     = new RunSummary();
+
+$loader       = new ConfigLoader();
+$writer       = new ConfigWriter($backup);
+$normalizer   = new ConfigNormalizer($sorting, $defaults);
+$composerMeta = new ComposerMetadata();
+$scanner      = new PackageScanner($paths);
+$matcher      = new PatternMatcher($paths);
+$resolver     = new RepoResolver($renderer, $paths);
+$required     = new RequiredFilesChecker();
+$conflicts    = new ConflictDetector($matcher);
+
+$app = new Application('Chorale', '0.1.0');
+$app->add(new SetupCommand(
+    styleFactory: new ConsoleStyleFactory(),
+    configLoader: $loader,
+    configWriter: $writer,
+    configNormalizer: $normalizer,
+    schemaValidator: $schema,
+    defaults: $defaults,
+    scanner: $scanner,
+    matcher: $matcher,
+    resolver: $resolver,
+    identity: $identity,
+    requiredFiles: $required,
+    conflicts: $conflicts,
+    jsonReporter: $json,
+    summary: $summary,
+    composerMeta: $composerMeta,
+));
+$app->run();

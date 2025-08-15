@@ -16,3 +16,4 @@ packages.json
 results.sarif
 infection.log
 .churn.cache
+tools/chorale/composer.lock
