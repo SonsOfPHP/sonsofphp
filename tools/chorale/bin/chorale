@@ -64,7 +64,7 @@ $diffs          = new DiffUtil();
 
 $planner = new PlanBuilder(
     defaults: $defaults,
-    configLoader: $loader,
+    //configLoader: $loader,
     scanner: $scanner,
     matcher: $matcher,
     resolver: $resolver,
