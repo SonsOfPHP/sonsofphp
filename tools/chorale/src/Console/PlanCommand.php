@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Chorale\Console;
 
-use Symfony\Component\Console\Output\OutputInterface;
 use Chorale\Config\ConfigLoaderInterface;
 use Chorale\Console\Style\ConsoleStyleFactory;
 use Chorale\Plan\PlanBuilderInterface;
@@ -12,6 +11,7 @@ use Chorale\Plan\PlanStepInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
@@ -161,7 +161,7 @@ final class PlanCommand extends Command
                 '%s — %s%s',
                 $a['name'] ?? $a['path'] ?? '',
                 'mirror ' . implode(',', array_keys((array) ($a['apply'] ?? []))),
-                empty($a['overrides_used']) ? '' : ' [overrides: ' . implode(',', (array) $a['overrides_used']) . ']'
+                empty($a['overrides_used']) ? '' : ' [overrides: ' . implode(',', (array) $a['overrides_used']['values']) . ']'
             ),
             'composer-root-update'   => sprintf(
                 'update %s (version %s, require %d, replace %d)',

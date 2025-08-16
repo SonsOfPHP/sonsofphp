@@ -15,10 +15,6 @@ use Chorale\Split\SplitDeciderInterface;
 use Chorale\Util\DiffUtilInterface;
 use Chorale\Util\PathUtilsInterface;
 
-/**
- * Turns config + repo state into a minimal, actionable plan.
- * NOTE: This is a skeleton that wires the dependencies and outlines the flow.
- */
 final readonly class PlanBuilder implements PlanBuilderInterface
 {
     public function __construct(
@@ -113,23 +109,15 @@ final readonly class PlanBuilder implements PlanBuilderInterface
             }
 
             // 2) Metadata sync (compute desired vs current using rule engine)
+            $overrides = $this->collectOverrides($pattern, $target);
             $apply = $this->ruleEngine->computePackageEdits($pcJson, $rootComposer, $config, [
-                'path' => $pkgPath,
-                'name' => $pkgName,
+                'path'      => $pkgPath,
+                'name'      => $pkgName,
+                'overrides' => $overrides,
             ]);
             if ($apply !== []) {
-                $overrides = array_keys(
-                    array_filter(
-                        $apply,
-                        static fn($v): bool => (is_array($v) && isset($v['__override']) && $v['__override'] === true)
-                    )
-                );
-                // strip internal markers
-                foreach ($apply as $k => $v) {
-                    if (is_array($v) && array_key_exists('__override', $v)) {
-                        unset($apply[$k]['__override']);
-                    }
-                }
+                $overKeys = $this->extractOverrideKeys($apply);
+                $apply = $this->stripInternalMarkers($apply);
 
                 $steps[] = new PackageMetadataSyncStep($pkgPath, $pkgName, $apply, $overrides);
             } elseif ($opts['show_all']) {
@@ -143,6 +131,7 @@ final readonly class PlanBuilder implements PlanBuilderInterface
                 'repo' => $repo,
                 'branch' => (string) $def['default_branch'],
                 'tag_strategy' => (string) $def['tag_strategy'],
+                'ignore' => (array) ($config['split']['ignore'] ?? ['vendor/**','**/composer.lock','**/.DS_Store']),
             ]);
             if ($splitReasons !== []) {
                 $steps[] = new SplitStep(
@@ -197,6 +186,7 @@ final readonly class PlanBuilder implements PlanBuilderInterface
             'strategy_require' => (string) ($config['composer_sync']['merge_strategy']['require'] ?? 'union-caret'),
             'strategy_require_dev' => (string) ($config['composer_sync']['merge_strategy']['require-dev'] ?? 'union-caret'),
             'exclude_monorepo_packages' => true,
+            'monorepo_names' => array_values($packageNames),
         ]);
         if (!empty($merge['require']) || !empty($merge['require-dev']) || !empty($merge['conflicts'])) {
             // Compare with current
@@ -251,5 +241,40 @@ final readonly class PlanBuilder implements PlanBuilderInterface
         }
 
         return $roots;
+    }
+
+    /** @return array{values:array<string,mixed>,rules:array<string,string>} */
+    private function collectOverrides(array $pattern, array $target): array
+    {
+        $p = (array) ($pattern['composer_overrides'] ?? []);
+        $t = (array) ($target['composer_overrides'] ?? []);
+        $values = array_merge((array) ($p['values'] ?? []), (array) ($t['values'] ?? []));
+        $rules  = array_merge((array) ($p['rules'] ?? []), (array) ($t['rules'] ?? []));
+        return ['values' => $values, 'rules' => $rules];
+    }
+
+    /** @param array<string,mixed> $apply @return list<string> */
+    private function extractOverrideKeys(array $apply): array
+    {
+        $keys = [];
+        foreach ($apply as $k => $v) {
+            if (is_array($v) && array_key_exists('__override', $v) && $v['__override'] === true) {
+                $keys[] = (string) $k;
+            }
+        }
+
+        return $keys;
+    }
+
+    /** @param array<string,mixed> $apply @return array<string,mixed> */
+    private function stripInternalMarkers(array $apply): array
+    {
+        foreach ($apply as $k => $v) {
+            if (is_array($v) && array_key_exists('__override', $v)) {
+                unset($apply[$k]['__override']);
+            }
+        }
+
+        return $apply;
     }
 }

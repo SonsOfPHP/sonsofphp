@@ -34,18 +34,23 @@ use Chorale\Util\DiffUtil;
 use Chorale\Plan\PlanBuilder;
 use Chorale\Console\PlanCommand;
 
-$paths        = new PathUtils();
-$renderer     = new TemplateRenderer();
-$sorting      = new Sorting();
-$identity     = new PackageIdentity();
-$defaults     = new ConfigDefaults();
-$schema       = new SchemaValidator();
-$backup       = new BackupManager();
-$json         = new JsonReporter();
-$summary      = new RunSummary();
-$loader       = new ConfigLoader();
-$composerMeta = new ComposerMetadata();
+$paths          = new PathUtils();
+$renderer       = new TemplateRenderer();
+$sorting        = new Sorting();
+$identity       = new PackageIdentity();
+$defaults       = new ConfigDefaults();
+$schema         = new SchemaValidator();
+$backup         = new BackupManager();
+$json           = new JsonReporter();
+$summary        = new RunSummary();
+$loader         = new ConfigLoader();
+$composerMeta   = new ComposerMetadata();
+$composerReader = new ComposerJsonReader();
+$stateStore     = new FilesystemStateStore();
+$hasher         = new ContentHasher();
+$diffs          = new DiffUtil();
 
+$ruleEngine   = new RuleEngine($renderer);
 $writer       = new ConfigWriter($backup);
 $normalizer   = new ConfigNormalizer($sorting, $defaults);
 $scanner      = new PackageScanner($paths);
@@ -53,18 +58,11 @@ $matcher      = new PatternMatcher($paths);
 $resolver     = new RepoResolver($renderer, $paths);
 $required     = new RequiredFilesChecker();
 $conflicts    = new ConflictDetector($matcher);
-
-$composerReader = new ComposerJsonReader();
-$depMerger      = new DependencyMerger($composerReader);
-$ruleEngine     = new RuleEngine();
-$stateStore     = new FilesystemStateStore();
-$hasher         = new ContentHasher();
-$splitDecider   = new SplitDecider($stateStore, $hasher);
-$diffs          = new DiffUtil();
+$depMerger    = new DependencyMerger($composerReader);
+$splitDecider = new SplitDecider($stateStore, $hasher);
 
 $planner = new PlanBuilder(
     defaults: $defaults,
-    //configLoader: $loader,
     scanner: $scanner,
     matcher: $matcher,
     resolver: $resolver,

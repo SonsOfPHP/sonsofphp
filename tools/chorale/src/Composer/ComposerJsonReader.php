@@ -18,6 +18,7 @@ final class ComposerJsonReader implements ComposerJsonReaderInterface
         }
 
         $json = json_decode($raw, true);
+
         return is_array($json) ? $json : [];
     }
 }
