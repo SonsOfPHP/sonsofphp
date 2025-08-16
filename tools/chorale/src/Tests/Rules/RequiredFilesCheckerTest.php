@@ -25,6 +25,7 @@ final class RequiredFilesCheckerTest extends TestCase
             file_put_contents($pkg . '/composer.json', '{}');
             file_put_contents($pkg . '/LICENSE', '');
         }
+
         return [$root, 'src/Acme/Lib'];
     }
 
@@ -34,7 +35,7 @@ final class RequiredFilesCheckerTest extends TestCase
         [$root, $pkg] = $this->makePackage(true);
         $c = new RequiredFilesChecker();
         $miss = $c->missing($root, $pkg, ['composer.json','LICENSE']);
-        self::assertSame([], $miss);
+        $this->assertSame([], $miss);
     }
 
     #[Test]
@@ -43,6 +44,6 @@ final class RequiredFilesCheckerTest extends TestCase
         [$root, $pkg] = $this->makePackage(false);
         $c = new RequiredFilesChecker();
         $miss = $c->missing($root, $pkg, ['composer.json','LICENSE']);
-        self::assertSame(['composer.json','LICENSE'], $miss);
+        $this->assertSame(['composer.json','LICENSE'], $miss);
     }
 }

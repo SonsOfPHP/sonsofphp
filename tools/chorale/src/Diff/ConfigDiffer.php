@@ -11,6 +11,14 @@ use Chorale\Repo\RepoResolverInterface;
 use Chorale\Rules\RequiredFilesCheckerInterface;
 use Chorale\Util\PathUtilsInterface;
 
+/**
+ * Computes differences between discovered packages and the current config.
+ *
+ * Groups results into: new, renamed, drift, issues, conflicts, ok.
+ *
+ * Example:
+ * - diff($config, ['src/Acme/Foo'], []) may return ['new' => [['path'=>'src/Acme/Foo', 'repo'=>'git@...']]]
+ */
 final readonly class ConfigDiffer implements ConfigDifferInterface
 {
     public function __construct(
@@ -22,6 +30,12 @@ final readonly class ConfigDiffer implements ConfigDifferInterface
         private PathUtilsInterface $paths
     ) {}
 
+    /**
+     * @param array<string,mixed> $config     Full configuration array
+     * @param list<string>        $discovered Discovered package paths (relative)
+     * @param array<string,mixed> $context    Reserved for future extension
+     * @return array<string, array<int, array<string,mixed>>> Grouped diff results
+     */
     public function diff(array $config, array $discovered, array $context): array
     {
         $def = $this->defaults->resolve($config);

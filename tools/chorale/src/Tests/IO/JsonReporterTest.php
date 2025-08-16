@@ -20,7 +20,7 @@ final class JsonReporterTest extends TestCase
     {
         $jr = new JsonReporter();
         $json = $jr->build(['a' => 'b'], ['new' => []], [['action' => 'none']]);
-        self::assertStringEndsWith("\n", $json);
+        $this->assertStringEndsWith("\n", $json);
     }
 
     #[Test]
@@ -28,6 +28,6 @@ final class JsonReporterTest extends TestCase
     {
         $jr = new JsonReporter();
         $json = $jr->build(['a' => 'b'], ['new' => []], [['action' => 'none']]);
-        self::assertStringContainsString('"defaults"', $json);
+        $this->assertStringContainsString('"defaults"', $json);
     }
 }

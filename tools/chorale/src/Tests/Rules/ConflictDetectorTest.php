@@ -22,19 +22,23 @@ final class ConflictDetectorTest extends TestCase
     {
         return new class ($fn) implements PathUtilsInterface {
             public function __construct(private $fn) {}
+
             public function normalize(string $path): string
             {
                 return $path;
             }
+
             public function isUnder(string $path, string $root): bool
             {
                 return false;
             }
+
             public function match(string $pattern, string $path): bool
             {
                 $f = $this->fn;
                 return (bool) $f($pattern, $path);
             }
+
             public function leaf(string $path): string
             {
                 return $path;
@@ -45,22 +49,22 @@ final class ConflictDetectorTest extends TestCase
     #[Test]
     public function testDetectReportsConflictWhenMultiplePatternsMatch(): void
     {
-        $cd = new ConflictDetector(new PatternMatcher($this->stubPaths(fn($pat, $p) => in_array($pat, ['src/*/Cookie','src/SonsOfPHP/*'], true))));
+        $cd = new ConflictDetector(new PatternMatcher($this->stubPaths(fn($pat, $p): bool => in_array($pat, ['src/*/Cookie','src/SonsOfPHP/*'], true))));
         $res = $cd->detect([
             ['match' => 'src/*/Cookie'],
             ['match' => 'src/SonsOfPHP/*'],
         ], 'src/SonsOfPHP/Cookie');
-        self::assertTrue($res['conflict']);
+        $this->assertTrue($res['conflict']);
     }
 
     #[Test]
     public function testDetectReturnsMatchedIndexes(): void
     {
-        $cd = new ConflictDetector(new PatternMatcher($this->stubPaths(fn($pat, $p) => in_array($pat, ['src/*/Cookie','src/SonsOfPHP/*'], true))));
+        $cd = new ConflictDetector(new PatternMatcher($this->stubPaths(fn($pat, $p): bool => in_array($pat, ['src/*/Cookie','src/SonsOfPHP/*'], true))));
         $res = $cd->detect([
             ['match' => 'src/*/Cookie'],
             ['match' => 'src/SonsOfPHP/*'],
         ], 'src/SonsOfPHP/Cookie');
-        self::assertSame([0,1], $res['matches']);
+        $this->assertSame([0,1], $res['matches']);
     }
 }

@@ -22,7 +22,7 @@ final class ConfigLoaderTest extends TestCase
         $dir = sys_get_temp_dir() . '/chorale_' . uniqid();
         @mkdir($dir);
         $out = $loader->load($dir);
-        self::assertSame([], $out);
+        $this->assertSame([], $out);
     }
 
     #[Test]
@@ -33,6 +33,6 @@ final class ConfigLoaderTest extends TestCase
         @mkdir($dir);
         file_put_contents($dir . '/test.yaml', "repo_vendor: Acme\n");
         $out = $loader->load($dir);
-        self::assertSame('Acme', $out['repo_vendor']);
+        $this->assertSame('Acme', $out['repo_vendor']);
     }
 }

@@ -31,16 +31,16 @@ final class ConfigWriterTest extends TestCase
     {
         $dir = sys_get_temp_dir() . '/chorale_' . uniqid();
         @mkdir($dir);
-        $this->backup->expects(self::once())->method('backup')->with($dir . '/conf.yaml')->willReturn($dir . '/.chorale/backup/conf.yaml.bak');
+        $this->backup->expects($this->once())->method('backup')->with($dir . '/conf.yaml')->willReturn($dir . '/.chorale/backup/conf.yaml.bak');
         $w = new ConfigWriter($this->backup, 'conf.yaml');
         $w->write($dir, ['version' => 1]);
-        self::assertFileExists($dir . '/conf.yaml');
+        $this->assertFileExists($dir . '/conf.yaml');
     }
 
     #[Test]
     public function testWriteThrowsWhenTempFileCannotBeWritten(): void
     {
-        $this->backup->expects(self::once())->method('backup')->with($this->anything())->willReturn('/tmp/x');
+        $this->backup->expects($this->once())->method('backup')->with($this->anything())->willReturn('/tmp/x');
         $w = new ConfigWriter($this->backup, 'conf.yaml');
         $this->expectException(\RuntimeException::class);
         $w->write(sys_get_temp_dir() . uniqid(), ['a' => 'b']);

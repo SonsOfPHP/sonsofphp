@@ -21,6 +21,7 @@ final class ConfigNormalizerTest extends TestCase
 {
     /** @var SortingInterface&MockObject */
     private SortingInterface $sorting;
+
     /** @var ConfigDefaultsInterface&MockObject */
     private ConfigDefaultsInterface $defaults;
 
@@ -42,15 +43,15 @@ final class ConfigNormalizerTest extends TestCase
                 'require_files' => ['composer.json','LICENSE'],
             ],
         ]);
-        $this->sorting->method('sortPatterns')->willReturnCallback(fn(array $a) => $a);
-        $this->sorting->method('sortTargets')->willReturnCallback(fn(array $a) => $a);
+        $this->sorting->method('sortPatterns')->willReturnCallback(fn(array $a): array => $a);
+        $this->sorting->method('sortTargets')->willReturnCallback(fn(array $a): array => $a);
     }
 
     public function testRedundantPatternOverrideIsRemoved(): void
     {
         $n = new ConfigNormalizer($this->sorting, $this->defaults);
         $out = $n->normalize(['patterns' => [['match' => 'src/*', 'repo_host' => 'git@github.com']]]);
-        self::assertArrayNotHasKey('repo_host', $out['patterns'][0]);
+        $this->assertArrayNotHasKey('repo_host', $out['patterns'][0]);
     }
 
     #[Test]
@@ -58,7 +59,7 @@ final class ConfigNormalizerTest extends TestCase
     {
         $n = new ConfigNormalizer($this->sorting, $this->defaults);
         $out = $n->normalize(['targets' => [['path' => 'a/b', 'repo_vendor' => 'SonsOfPHP']]]);
-        self::assertArrayNotHasKey('repo_vendor', $out['targets'][0]);
+        $this->assertArrayNotHasKey('repo_vendor', $out['targets'][0]);
     }
 
     #[Test]
@@ -66,6 +67,6 @@ final class ConfigNormalizerTest extends TestCase
     {
         $n = new ConfigNormalizer($this->sorting, $this->defaults);
         $out = $n->normalize([]);
-        self::assertSame('git@github.com', $out['repo_host']);
+        $this->assertSame('git@github.com', $out['repo_host']);
     }
 }

@@ -4,6 +4,16 @@ declare(strict_types=1);
 
 namespace Chorale\Repo;
 
+/**
+ * Renders string templates with variables and filters.
+ *
+ * Placeholders: {name}, {repo_host}, {repo_vendor}, {repo_name_template}, {default_repo_template}, {path}, {tag}
+ * Filters: raw, lower, upper, kebab, snake, camel, pascal, dot
+ *
+ * Examples:
+ * - render('{repo_host}:{repo_vendor}/{name:kebab}.git', ['repo_host'=>'git@github.com','repo_vendor'=>'Acme','name'=>'My Lib'])
+ *   => 'git@github.com:Acme/my-lib.git'
+ */
 final class TemplateRenderer implements TemplateRendererInterface
 {
     /** @var array<string, true> */
@@ -50,23 +60,26 @@ final class TemplateRenderer implements TemplateRendererInterface
             }
 
             $next = preg_replace_callback(
-                '/\{([a-zA-Z_][a-zA-Z0-9_]*)(?::([a-zA-Z:]+))?\}/',
+                '/\{([a-zA-Z_]\w*)(?::([a-zA-Z:]+))?\}/',
                 function (array $m) use ($vars): string {
                     $var = $m[1];
-                    $filters = isset($m[2]) ? explode(':', $m[2]) : [];
+                    $filters = isset($m[2]) ? explode(':', (string) $m[2]) : [];
                     $value = (string) ($vars[$var] ?? '');
                     foreach ($filters as $f) {
                         if ($f === '') {
                             continue;
                         }
+
                         /** @var callable(string):string $fn */
                         $fn = $this->filters[$f] ?? null;
                         if ($fn === null) {
                             // validate() would have caught this; keep defensive anyway
-                            throw new \InvalidArgumentException("Unknown filter '{$f}'");
+                            throw new \InvalidArgumentException(sprintf("Unknown filter '%s'", $f));
                         }
+
                         $value = $fn($value);
                     }
+
                     return $value;
                 },
                 $out
@@ -75,12 +88,15 @@ final class TemplateRenderer implements TemplateRendererInterface
                 // regex error; fall back to current output
                 break;
             }
-            if ($next === $out || !preg_match('/\{[a-zA-Z_][a-zA-Z0-9_]*(?::[a-zA-Z:]+)?\}/', $next)) {
+
+            if ($next === $out || in_array(preg_match('/\{[a-zA-Z_]\w*(?::[a-zA-Z:]+)?\}/', $next), [0, false], true)) {
                 $out = $next;
                 break; // stabilized or no more placeholders
             }
+
             $out = $next;
         }
+
         return $out;
     }
 
@@ -91,7 +107,7 @@ final class TemplateRenderer implements TemplateRendererInterface
             return $issues;
         }
 
-        if (!preg_match_all('/\{([a-zA-Z_][a-zA-Z0-9_]*)(?::([a-zA-Z:]+))?\}/', $template, $matches, \PREG_SET_ORDER)) {
+        if (in_array(preg_match_all('/\{([a-zA-Z_]\w*)(?::([a-zA-Z:]+))?\}/', $template, $matches, \PREG_SET_ORDER), [0, false], true)) {
             return $issues;
         }
 
@@ -100,7 +116,7 @@ final class TemplateRenderer implements TemplateRendererInterface
             $filterStr = $match[2] ?? '';
 
             if (!isset($this->allowedVars[$var])) {
-                $issues[] = "Unknown placeholder '{$var}'";
+                $issues[] = sprintf("Unknown placeholder '%s'", $var);
             }
 
             if ($filterStr !== '') {
@@ -108,8 +124,9 @@ final class TemplateRenderer implements TemplateRendererInterface
                     if ($f === '') {
                         continue;
                     }
+
                     if (!isset($this->filters[$f])) {
-                        $issues[] = "Unknown filter '{$f}' for '{$var}'";
+                        $issues[] = sprintf("Unknown filter '%s' for '%s'", $f, $var);
                     }
                 }
             }
@@ -132,11 +149,13 @@ final class TemplateRenderer implements TemplateRendererInterface
     {
         $words = self::basicWords($s);
         $words = preg_split('/[ \-_\.]+/u', $words) ?: [];
+
         $out = '';
         foreach ($words as $i => $w) {
             $w = mb_strtolower($w);
             $out .= $i === 0 ? $w : mb_strtoupper(mb_substr($w, 0, 1)) . mb_substr($w, 1);
         }
+
         return $out;
     }
 

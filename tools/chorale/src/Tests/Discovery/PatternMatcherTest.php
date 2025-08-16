@@ -21,19 +21,23 @@ final class PatternMatcherTest extends TestCase
     {
         return new class ($fn) implements PathUtilsInterface {
             public function __construct(private $fn) {}
+
             public function normalize(string $path): string
             {
                 return $path;
             }
+
             public function isUnder(string $path, string $root): bool
             {
                 return false;
             }
+
             public function match(string $pattern, string $path): bool
             {
                 $f = $this->fn;
                 return (bool) $f($pattern, $path);
             }
+
             public function leaf(string $path): string
             {
                 return $path;
@@ -44,21 +48,21 @@ final class PatternMatcherTest extends TestCase
     #[Test]
     public function testFirstMatchReturnsIndex(): void
     {
-        $pm = new PatternMatcher($this->stubPaths(fn($pat, $p) => $pat === 'src/*/Cookie'));
+        $pm = new PatternMatcher($this->stubPaths(fn($pat, $p): bool => $pat === 'src/*/Cookie'));
         $idx = $pm->firstMatch([
             ['match' => 'src/*/Cookie'],
         ], 'src/SonsOfPHP/Cookie');
-        self::assertSame(0, $idx);
+        $this->assertSame(0, $idx);
     }
 
     #[Test]
     public function testAllMatchesReturnsAllIndexes(): void
     {
-        $pm = new PatternMatcher($this->stubPaths(fn($pat, $path) => in_array($pat, ['src/*/Cookie','src/SonsOfPHP/*'], true)));
+        $pm = new PatternMatcher($this->stubPaths(fn($pat, $path): bool => in_array($pat, ['src/*/Cookie','src/SonsOfPHP/*'], true)));
         $idx = $pm->allMatches([
             ['match' => 'src/*/Cookie'],
             ['match' => 'src/SonsOfPHP/*'],
         ], 'src/SonsOfPHP/Cookie');
-        self::assertSame([0,1], $idx);
+        $this->assertSame([0,1], $idx);
     }
 }

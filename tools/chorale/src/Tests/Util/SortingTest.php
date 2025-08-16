@@ -24,7 +24,7 @@ final class SortingTest extends TestCase
             ['match' => 'a/b/c'],
         ];
         $out = $s->sortPatterns($in);
-        self::assertSame('a/b/c', $out[0]['match']);
+        $this->assertSame('a/b/c', $out[0]['match']);
     }
 
     #[Test]
@@ -36,7 +36,7 @@ final class SortingTest extends TestCase
             ['match' => 'a/b'],
         ];
         $out = $s->sortPatterns($in);
-        self::assertSame('a/b', $out[0]['match']);
+        $this->assertSame('a/b', $out[0]['match']);
     }
 
     #[Test]
@@ -48,7 +48,7 @@ final class SortingTest extends TestCase
             ['path' => 'a', 'name' => 'z'],
         ];
         $out = $s->sortTargets($in);
-        self::assertSame('a', $out[0]['path']);
+        $this->assertSame('a', $out[0]['path']);
     }
 
     #[Test]
@@ -60,6 +60,6 @@ final class SortingTest extends TestCase
             ['path' => 'a', 'name' => 'a'],
         ];
         $out = $s->sortTargets($in);
-        self::assertSame('a', $out[0]['name']);
+        $this->assertSame('a', $out[0]['name']);
     }
 }

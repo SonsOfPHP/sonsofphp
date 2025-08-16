@@ -4,6 +4,13 @@ declare(strict_types=1);
 
 namespace Chorale\Util;
 
+/**
+ * Deterministic sort helpers for patterns and targets.
+ *
+ * Examples:
+ * - sortPatterns([{match: 'a/b'}, {match: 'a/b/c'}]) => 'a/b/c' first (more specific)
+ * - sortTargets([{path:'b',name:'x'},{path:'a',name:'z'}]) => path 'a' first; ties break by name
+ */
 final class Sorting implements SortingInterface
 {
     public function sortPatterns(array $patterns): array
@@ -16,6 +23,7 @@ final class Sorting implements SortingInterface
             if ($al === $bl) {
                 return $am <=> $bm;
             }
+
             // longer match first (more specific wins)
             return $bl <=> $al;
         });
@@ -33,6 +41,7 @@ final class Sorting implements SortingInterface
                 $bn = (string) ($b['name'] ?? '');
                 return $an <=> $bn;
             }
+
             return $ap <=> $bp;
         });
 

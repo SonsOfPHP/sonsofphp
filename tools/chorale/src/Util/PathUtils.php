@@ -4,6 +4,16 @@ declare(strict_types=1);
 
 namespace Chorale\Util;
 
+/**
+ * Path utilities for normalizing, matching, and extracting path segments.
+ *
+ * Examples:
+ * - normalize('src//Foo/./Bar/..') => 'src/Foo'
+ * - isUnder('src/Acme/Lib', 'src') => true
+ * - match('src/* /Lib', 'src/Acme/Lib') => true  (single-star within one segment)
+ * - match('src/** /Lib', 'src/a/b/c/Lib') => true  (double-star across directories)
+ * - leaf('src/Acme/Lib') => 'Lib'
+ */
 final class PathUtils implements PathUtilsInterface
 {
     public function normalize(string $path): string
@@ -15,18 +25,25 @@ final class PathUtils implements PathUtilsInterface
         if ($p !== '/' && str_ends_with($p, '/')) {
             $p = rtrim($p, '/');
         }
+
         // resolve "." and ".." cheaply (string-level, not FS)
         $parts = [];
         foreach (explode('/', $p) as $seg) {
-            if ($seg === '' || $seg === '.') {
+            if ($seg === '') {
                 continue;
             }
+            if ($seg === '.') {
+                continue;
+            }
+
             if ($seg === '..') {
                 array_pop($parts);
                 continue;
             }
+
             $parts[] = $seg;
         }
+
         $out = implode('/', $parts);
         return $out === '' ? '.' : $out;
     }

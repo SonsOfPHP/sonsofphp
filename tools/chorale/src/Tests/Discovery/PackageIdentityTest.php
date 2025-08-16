@@ -20,7 +20,7 @@ final class PackageIdentityTest extends TestCase
     {
         $pi = new PackageIdentity();
         $id = $pi->identityFor('unused', 'SSH://GitHub.com/SonsOfPHP/Cookie.git');
-        self::assertSame('github.com/sonsofphp/cookie.git', $id);
+        $this->assertSame('github.com/sonsofphp/cookie.git', $id);
     }
 
     #[Test]
@@ -28,6 +28,6 @@ final class PackageIdentityTest extends TestCase
     {
         $pi = new PackageIdentity();
         $id = $pi->identityFor('src/SonsOfPHP/Cookie');
-        self::assertSame('cookie', $id);
+        $this->assertSame('cookie', $id);
     }
 }

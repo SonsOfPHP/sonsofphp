@@ -20,7 +20,7 @@ final class RunSummaryTest extends TestCase
     {
         $rs = new RunSummary();
         $rs->inc('new');
-        self::assertSame(['new' => 1], $rs->all());
+        $this->assertSame(['new' => 1], $rs->all());
     }
 
     #[Test]
@@ -29,7 +29,8 @@ final class RunSummaryTest extends TestCase
         $rs = new RunSummary();
         $rs->inc('z');
         $rs->inc('a');
+
         $all = $rs->all();
-        self::assertSame(['a','z'], array_keys($all));
+        $this->assertSame(['a','z'], array_keys($all));
     }
 }

@@ -22,7 +22,7 @@ final class BackupManagerTest extends TestCase
         $dir = sys_get_temp_dir() . '/chorale_' . uniqid();
         @mkdir($dir);
         $dest = $bm->backup($dir . '/file.yaml');
-        self::assertFileExists($dest);
+        $this->assertFileExists($dest);
     }
 
     #[Test]
@@ -36,6 +36,6 @@ final class BackupManagerTest extends TestCase
         $backup = $bm->backup($srcFile);
         $target = $dir . '/restored.yaml';
         $bm->restore($backup, $target);
-        self::assertFileExists($target);
+        $this->assertFileExists($target);
     }
 }
