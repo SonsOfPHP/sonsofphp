@@ -8,20 +8,18 @@ use Chorale\Config\ConfigDefaultsInterface;
 use Chorale\Discovery\PackageIdentityInterface;
 use Chorale\Discovery\PatternMatcherInterface;
 use Chorale\Repo\RepoResolverInterface;
-use Chorale\Rules\ConflictDetectorInterface;
 use Chorale\Rules\RequiredFilesCheckerInterface;
 use Chorale\Util\PathUtilsInterface;
 
-final class ConfigDiffer implements ConfigDifferInterface
+final readonly class ConfigDiffer implements ConfigDifferInterface
 {
     public function __construct(
-        private readonly ConfigDefaultsInterface $defaults,
-        private readonly PatternMatcherInterface $matcher,
-        private readonly RepoResolverInterface $resolver,
-        private readonly PackageIdentityInterface $identity,
-        private readonly RequiredFilesCheckerInterface $requiredFiles,
-        private readonly ConflictDetectorInterface $conflicts,
-        private readonly PathUtilsInterface $paths
+        private ConfigDefaultsInterface $defaults,
+        private PatternMatcherInterface $matcher,
+        private RepoResolverInterface $resolver,
+        private PackageIdentityInterface $identity,
+        private RequiredFilesCheckerInterface $requiredFiles,
+        private PathUtilsInterface $paths
     ) {}
 
     public function diff(array $config, array $discovered, array $context): array
@@ -74,6 +72,7 @@ final class ConfigDiffer implements ConfigDifferInterface
                         break;
                     }
                 }
+
                 if ($renamedFrom !== null) {
                     $groups['renamed'][] = [
                         'from' => $renamedFrom,
@@ -105,8 +104,10 @@ final class ConfigDiffer implements ConfigDifferInterface
                         if ($curRepo !== $repo) {
                             $driftFields['repo'] = ['from' => $curRepo, 'to' => $repo];
                         }
+
                         continue;
                     }
+
                     if ($expected !== null && (string) $scope === (string) $expected) {
                         // redundant override; suggest removing by reporting drift
                         $driftFields[$k] = ['from' => $scope, 'to' => $expected];
@@ -116,9 +117,7 @@ final class ConfigDiffer implements ConfigDifferInterface
 
             // issues: required files
             $missing = $this->requiredFiles->missing(
-                dirname($pkgPath, 0) === '' ? '.' : '.', // projectRoot filled by caller in practice
-                // accurate compute: rely on caller to pass real root; here use relative
-                // We'll let SetupCommand pass real root; for now, accept relative usage.
+                '.',
                 getcwd() !== false ? getcwd() . '/' . $pkgPath : $pkgPath,
                 (array) $def['rules']['require_files']
             );

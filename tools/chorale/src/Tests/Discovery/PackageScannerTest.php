@@ -35,8 +35,8 @@ final class PackageScannerTest extends TestCase
     {
         $root = $this->makeProject();
         $ps = new PackageScanner(new PathUtils());
-        $paths = $ps->scan($root);
-        self::assertContains('src/SonsOfPHP/Cookie', $paths);
+        $paths = $ps->scan($root, 'src');
+        $this->assertContains('src/SonsOfPHP/Cookie', $paths);
     }
 
     #[Test]
@@ -44,7 +44,7 @@ final class PackageScannerTest extends TestCase
     {
         $root = $this->makeProject();
         $ps = new PackageScanner(new PathUtils());
-        $paths = $ps->scan($root, ['src/SonsOfPHP/Cookie']);
-        self::assertSame(['src/SonsOfPHP/Cookie'], $paths);
+        $paths = $ps->scan($root, 'src', ['src/SonsOfPHP/Cookie']);
+        $this->assertSame(['src/SonsOfPHP/Cookie'], $paths);
     }
 }
