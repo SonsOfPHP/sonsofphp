@@ -25,13 +25,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-//#[AsCommand(name: 'setup')]
 final class SetupCommand extends Command
 {
-    protected static $defaultName = 'setup';
-
-    protected static $defaultDescription = 'Create or update chorale.yaml by scanning src/ and applying defaults.';
-
     public function __construct(
         private readonly ConsoleStyleFactory $styleFactory,
         private readonly ConfigLoaderInterface $configLoader,

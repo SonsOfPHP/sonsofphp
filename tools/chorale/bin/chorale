@@ -6,7 +6,6 @@ require __DIR__ . '/../vendor/autoload.php';
 use Symfony\Component\Console\Application;
 use Chorale\Console\Style\ConsoleStyleFactory;
 use Chorale\Console\SetupCommand;
-
 use Chorale\Repo\TemplateRenderer;
 use Chorale\Util\PathUtils;
 use Chorale\Util\Sorting;
@@ -16,7 +15,6 @@ use Chorale\Config\SchemaValidator;
 use Chorale\IO\BackupManager;
 use Chorale\IO\JsonReporter;
 use Chorale\Telemetry\RunSummary;
-
 use Chorale\Config\ConfigLoader;
 use Chorale\Config\ConfigWriter;
 use Chorale\Config\ConfigNormalizer;
@@ -26,28 +24,63 @@ use Chorale\Discovery\PatternMatcher;
 use Chorale\Repo\RepoResolver;
 use Chorale\Rules\RequiredFilesChecker;
 use Chorale\Rules\ConflictDetector;
+use Chorale\Composer\ComposerJsonReader;
+use Chorale\Composer\DependencyMerger;
+use Chorale\Composer\RuleEngine;
+use Chorale\Split\ContentHasher;
+use Chorale\Split\SplitDecider;
+use Chorale\State\FilesystemStateStore;
+use Chorale\Util\DiffUtil;
+use Chorale\Plan\PlanBuilder;
+use Chorale\Console\PlanCommand;
 
-$paths       = new PathUtils();
-$renderer    = new TemplateRenderer();
-$sorting     = new Sorting();
-$identity    = new PackageIdentity();
-$defaults    = new ConfigDefaults();
-$schema      = new SchemaValidator();
-$backup      = new BackupManager();
-$json        = new JsonReporter();
-$summary     = new RunSummary();
-
+$paths        = new PathUtils();
+$renderer     = new TemplateRenderer();
+$sorting      = new Sorting();
+$identity     = new PackageIdentity();
+$defaults     = new ConfigDefaults();
+$schema       = new SchemaValidator();
+$backup       = new BackupManager();
+$json         = new JsonReporter();
+$summary      = new RunSummary();
 $loader       = new ConfigLoader();
+$composerMeta = new ComposerMetadata();
+
 $writer       = new ConfigWriter($backup);
 $normalizer   = new ConfigNormalizer($sorting, $defaults);
-$composerMeta = new ComposerMetadata();
 $scanner      = new PackageScanner($paths);
 $matcher      = new PatternMatcher($paths);
 $resolver     = new RepoResolver($renderer, $paths);
 $required     = new RequiredFilesChecker();
 $conflicts    = new ConflictDetector($matcher);
 
+$composerReader = new ComposerJsonReader();
+$depMerger      = new DependencyMerger($composerReader);
+$ruleEngine     = new RuleEngine();
+$stateStore     = new FilesystemStateStore();
+$hasher         = new ContentHasher();
+$splitDecider   = new SplitDecider($stateStore, $hasher);
+$diffs          = new DiffUtil();
+
+$planner = new PlanBuilder(
+    defaults: $defaults,
+    configLoader: $loader,
+    scanner: $scanner,
+    matcher: $matcher,
+    resolver: $resolver,
+    paths: $paths,
+    composerReader: $composerReader,
+    depMerger: $depMerger,
+    ruleEngine: $ruleEngine,
+    splitDecider: $splitDecider,
+    diffs: $diffs,
+);
+
+// -----------------------------------------------------------------------------
 $app = new Application('Chorale', '0.1.0');
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
 $app->add(new SetupCommand(
     styleFactory: new ConsoleStyleFactory(),
     configLoader: $loader,
@@ -60,9 +93,21 @@ $app->add(new SetupCommand(
     resolver: $resolver,
     identity: $identity,
     requiredFiles: $required,
-    conflicts: $conflicts,
+    //conflicts: $conflicts,
     jsonReporter: $json,
     summary: $summary,
     composerMeta: $composerMeta,
 ));
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+$app->add(new PlanCommand(
+    styleFactory: new ConsoleStyleFactory(),
+    configLoader: $loader,
+    planner: $planner,
+));
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
 $app->run();
+// -----------------------------------------------------------------------------
