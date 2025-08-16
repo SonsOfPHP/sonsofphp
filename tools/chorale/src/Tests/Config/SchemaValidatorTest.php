@@ -20,7 +20,7 @@ final class SchemaValidatorTest extends TestCase
     {
         $v = new SchemaValidator();
         $issues = $v->validate(['repo_host' => 123], '/unused');
-        self::assertContains("Key 'repo_host' must be a string.", $issues);
+        $this->assertContains("Key 'repo_host' must be a string.", $issues);
     }
 
     #[Test]
@@ -28,7 +28,7 @@ final class SchemaValidatorTest extends TestCase
     {
         $v = new SchemaValidator();
         $issues = $v->validate(['rules' => 'x'], '/unused');
-        self::assertContains("Key 'rules' must be an array.", $issues);
+        $this->assertContains("Key 'rules' must be an array.", $issues);
     }
 
     #[Test]
@@ -36,7 +36,7 @@ final class SchemaValidatorTest extends TestCase
     {
         $v = new SchemaValidator();
         $issues = $v->validate(['rules' => ['keep_history' => 'no']], '/unused');
-        self::assertContains('rules.keep_history must be a boolean.', $issues);
+        $this->assertContains('rules.keep_history must be a boolean.', $issues);
     }
 
     #[Test]
@@ -44,7 +44,7 @@ final class SchemaValidatorTest extends TestCase
     {
         $v = new SchemaValidator();
         $issues = $v->validate(['patterns' => 'x'], '/unused');
-        self::assertContains("Key 'patterns' must be a list.", $issues);
+        $this->assertContains("Key 'patterns' must be a list.", $issues);
     }
 
     #[Test]
@@ -52,7 +52,7 @@ final class SchemaValidatorTest extends TestCase
     {
         $v = new SchemaValidator();
         $issues = $v->validate(['patterns' => [[]]], '/unused');
-        self::assertContains('patterns[0].match must be a string.', $issues);
+        $this->assertContains('patterns[0].match must be a string.', $issues);
     }
 
     #[Test]
@@ -60,6 +60,14 @@ final class SchemaValidatorTest extends TestCase
     {
         $v = new SchemaValidator();
         $issues = $v->validate(['targets' => [['name' => 1]]], '/unused');
-        self::assertContains('targets[0].name must be a string.', $issues);
+        $this->assertContains('targets[0].name must be a string.', $issues);
+    }
+
+    #[Test]
+    public function testValidateRejectsHooksWhenNotList(): void
+    {
+        $v = new SchemaValidator();
+        $issues = $v->validate(['hooks' => 'not-a-list'], '/unused');
+        $this->assertContains("Key 'hooks' must be a list.", $issues);
     }
 }

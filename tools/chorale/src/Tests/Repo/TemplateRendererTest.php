@@ -20,7 +20,7 @@ final class TemplateRendererTest extends TestCase
     {
         $r = new TemplateRenderer();
         $issues = $r->validate('x/{unknown}');
-        self::assertContains("Unknown placeholder 'unknown'", $issues);
+        $this->assertContains("Unknown placeholder 'unknown'", $issues);
     }
 
     #[Test]
@@ -28,7 +28,7 @@ final class TemplateRendererTest extends TestCase
     {
         $r = new TemplateRenderer();
         $issues = $r->validate('x/{name:oops}');
-        self::assertContains("Unknown filter 'oops' for 'name'", $issues);
+        $this->assertContains("Unknown filter 'oops' for 'name'", $issues);
     }
 
     #[Test]
@@ -36,7 +36,7 @@ final class TemplateRendererTest extends TestCase
     {
         $r = new TemplateRenderer();
         $out = $r->render('{name:lower}', ['name' => 'Cookie']);
-        self::assertSame('cookie', $out);
+        $this->assertSame('cookie', $out);
     }
 
     #[Test]
@@ -44,7 +44,7 @@ final class TemplateRendererTest extends TestCase
     {
         $r = new TemplateRenderer();
         $out = $r->render('{name:upper}', ['name' => 'Cookie']);
-        self::assertSame('COOKIE', $out);
+        $this->assertSame('COOKIE', $out);
     }
 
     #[Test]
@@ -52,7 +52,7 @@ final class TemplateRendererTest extends TestCase
     {
         $r = new TemplateRenderer();
         $out = $r->render('{name:kebab}', ['name' => 'My Cookie_Package']);
-        self::assertSame('my-cookie-package', $out);
+        $this->assertSame('my-cookie-package', $out);
     }
 
     #[Test]
@@ -60,7 +60,7 @@ final class TemplateRendererTest extends TestCase
     {
         $r = new TemplateRenderer();
         $out = $r->render('{name:snake}', ['name' => 'My Cookie-Package']);
-        self::assertSame('my_cookie_package', $out);
+        $this->assertSame('my_cookie_package', $out);
     }
 
     #[Test]
@@ -68,7 +68,7 @@ final class TemplateRendererTest extends TestCase
     {
         $r = new TemplateRenderer();
         $out = $r->render('{name:camel}', ['name' => 'my-cookie package']);
-        self::assertSame('myCookiePackage', $out);
+        $this->assertSame('myCookiePackage', $out);
     }
 
     #[Test]
@@ -76,7 +76,7 @@ final class TemplateRendererTest extends TestCase
     {
         $r = new TemplateRenderer();
         $out = $r->render('{name:pascal}', ['name' => 'my-cookie package']);
-        self::assertSame('MyCookiePackage', $out);
+        $this->assertSame('MyCookiePackage', $out);
     }
 
     #[Test]
@@ -84,6 +84,22 @@ final class TemplateRendererTest extends TestCase
     {
         $r = new TemplateRenderer();
         $out = $r->render('{name:dot}', ['name' => 'my cookie-package']);
-        self::assertSame('my.cookie.package', $out);
+        $this->assertSame('my.cookie.package', $out);
+    }
+
+    #[Test]
+    public function testRenderSupportsChainedFilters(): void
+    {
+        $r = new TemplateRenderer();
+        $out = $r->render('{name:snake:upper}', ['name' => 'CamelCase']);
+        $this->assertSame('CAMEL_CASE', $out);
+    }
+
+    #[Test]
+    public function testRenderEmptyTemplateReturnsEmptyString(): void
+    {
+        $r = new TemplateRenderer();
+        $out = $r->render('', ['name' => 'Anything']);
+        $this->assertSame('', $out);
     }
 }

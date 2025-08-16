@@ -27,6 +27,9 @@ final class PackageScannerTest extends TestCase
         file_put_contents($root . '/src/SonsOfPHP/Cookie/composer.json', '{}');
         // non-candidate: only dirs, no file
         @mkdir($root . '/src/Empty/NoFiles', 0o777, true);
+        // vendor should be skipped
+        @mkdir($root . '/src/vendor/IgnoreMe', 0o777, true);
+        file_put_contents($root . '/src/vendor/IgnoreMe/composer.json', '{}');
         return $root;
     }
 
@@ -46,5 +49,14 @@ final class PackageScannerTest extends TestCase
         $ps = new PackageScanner(new PathUtils());
         $paths = $ps->scan($root, 'src', ['src/SonsOfPHP/Cookie']);
         $this->assertSame(['src/SonsOfPHP/Cookie'], $paths);
+    }
+
+    #[Test]
+    public function testScanSkipsVendorDirectories(): void
+    {
+        $root = $this->makeProject();
+        $ps = new PackageScanner(new PathUtils());
+        $paths = $ps->scan($root, 'src');
+        $this->assertNotContains('src/vendor/IgnoreMe', $paths);
     }
 }

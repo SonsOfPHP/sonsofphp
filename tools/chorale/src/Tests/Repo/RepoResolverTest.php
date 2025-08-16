@@ -29,7 +29,7 @@ final class RepoResolverTest extends TestCase
     {
         $r = new RepoResolver(new TemplateRenderer(), new PathUtils());
         $url = $r->resolve($this->defaults, [], ['repo' => 'git@gh:x/{name}'], 'src/Acme/Foo', 'Foo');
-        self::assertSame('git@gh:x/Foo', $url);
+        $this->assertSame('git@gh:x/Foo', $url);
     }
 
     #[Test]
@@ -37,7 +37,7 @@ final class RepoResolverTest extends TestCase
     {
         $r = new RepoResolver(new TemplateRenderer(), new PathUtils());
         $url = $r->resolve($this->defaults, ['repo' => '{repo_host}:{repo_vendor}/{name:snake}'], [], 'src/Acme/Foo', 'FooBar');
-        self::assertSame('git@github.com:Acme/foo_bar', $url);
+        $this->assertSame('git@github.com:Acme/foo_bar', $url);
     }
 
     #[Test]
@@ -45,6 +45,14 @@ final class RepoResolverTest extends TestCase
     {
         $r = new RepoResolver(new TemplateRenderer(), new PathUtils());
         $url = $r->resolve($this->defaults, [], [], 'src/Acme/Cookie', 'Cookie');
-        self::assertSame('git@github.com:Acme/cookie.git', $url);
+        $this->assertSame('git@github.com:Acme/cookie.git', $url);
+    }
+
+    #[Test]
+    public function testResolveDerivesNameFromLeafWhenNameNull(): void
+    {
+        $r = new RepoResolver(new TemplateRenderer(), new PathUtils());
+        $url = $r->resolve($this->defaults, [], [], 'src/Acme/CamelCase', null);
+        $this->assertSame('git@github.com:Acme/camel-case.git', $url);
     }
 }

@@ -106,4 +106,10 @@ final class PathUtilsTest extends TestCase
     {
         $this->assertSame('Cookie', $this->u->leaf('Cookie'));
     }
+
+    #[Test]
+    public function testMatchDoubleStarCrossesDirectories(): void
+    {
+        $this->assertTrue($this->u->match('src/**/Cookie', 'src/A/B/Cookie'));
+    }
 }

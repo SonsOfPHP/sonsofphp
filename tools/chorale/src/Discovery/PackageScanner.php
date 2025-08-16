@@ -6,17 +6,28 @@ namespace Chorale\Discovery;
 
 use Chorale\Util\PathUtilsInterface;
 
-final class PackageScanner implements PackageScannerInterface
+/**
+ * Scans the project for package directories under a base directory (e.g. src/).
+ * A directory is considered a package if it contains a composer.json file.
+ * Any directory named "vendor" is skipped entirely.
+ */
+final readonly class PackageScanner implements PackageScannerInterface
 {
     public function __construct(
-        private readonly PathUtilsInterface $paths
+        private PathUtilsInterface $paths
     ) {}
 
+    /**
+     * @param string        $projectRoot Absolute or working-directory path to the repository root
+     * @param string        $baseDir     Relative directory to scan (e.g., "src")
+     * @param list<string>  $paths       Optional relative paths to validate + return
+     * @return list<string> Normalized relative package paths
+     */
     public function scan(string $projectRoot, string $baseDir, array $paths = []): array
     {
         $root = rtrim($projectRoot, '/');
-        $base = $root . '/' . $this->paths->normalize($baseDir);
-        if (!is_dir($base)) {
+        $basePath = $root . '/' . $this->paths->normalize($baseDir);
+        if (!is_dir($basePath)) {
             return [];
         }
 
@@ -29,6 +40,7 @@ final class PackageScanner implements PackageScannerInterface
                     && $this->paths->normalize($rel) !== $this->paths->normalize($baseDir)) {
                     continue;
                 }
+
                 $full = $root . '/' . $rel;
 
                 // ignore any path that is (or is inside) vendor/
@@ -40,13 +52,14 @@ final class PackageScanner implements PackageScannerInterface
                     $out[] = $this->paths->normalize($rel);
                 }
             }
+
             $out = array_values(array_unique($out));
             sort($out);
             return $out;
         }
 
         // Default: recursively scan $base, but never descend into any vendor/ directory
-        $dirIter = new \RecursiveDirectoryIterator($base, \FilesystemIterator::SKIP_DOTS);
+        $dirIter = new \RecursiveDirectoryIterator($basePath, \FilesystemIterator::SKIP_DOTS);
         $filter  = new \RecursiveCallbackFilterIterator(
             $dirIter,
             function (\SplFileInfo $file, string $key, \RecursiveDirectoryIterator $iterator): bool {
@@ -54,6 +67,7 @@ final class PackageScanner implements PackageScannerInterface
                     // Do not descend into vendor directories anywhere under src/
                     return $file->getFilename() !== 'vendor';
                 }
+
                 // Files are irrelevant for traversal (we only care about dirs)
                 return false;
             }
@@ -65,8 +79,9 @@ final class PackageScanner implements PackageScannerInterface
             if (!$dir->isDir()) {
                 continue;
             }
+
             $path = $dir->getPathname();
-            $rel  = substr($path, strlen($root) + 1);
+            $rel  = substr((string) $path, strlen($root) + 1);
 
             // Quick guard against vendor/ in case a user passes a weird path
             if ($this->isInVendor($rel)) {

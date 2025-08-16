@@ -20,7 +20,7 @@ final class ConfigDefaultsTest extends TestCase
     {
         $d = new ConfigDefaults();
         $out = $d->resolve([]);
-        self::assertSame('git@github.com', $out['repo_host']);
+        $this->assertSame('git@github.com', $out['repo_host']);
     }
 
     #[Test]
@@ -28,7 +28,7 @@ final class ConfigDefaultsTest extends TestCase
     {
         $d = new ConfigDefaults();
         $out = $d->resolve(['rules' => ['keep_history' => false]]);
-        self::assertFalse($out['rules']['keep_history']);
+        $this->assertFalse($out['rules']['keep_history']);
     }
 
     #[Test]
@@ -36,7 +36,7 @@ final class ConfigDefaultsTest extends TestCase
     {
         $d = new ConfigDefaults();
         $out = $d->resolve(['repo_vendor' => 'Acme']);
-        self::assertSame('git@github.com:Acme/{name:kebab}.git', $out['default_repo_template']);
+        $this->assertSame('git@github.com:Acme/{name:kebab}.git', $out['default_repo_template']);
     }
 
     #[Test]
@@ -44,6 +44,14 @@ final class ConfigDefaultsTest extends TestCase
     {
         $d = new ConfigDefaults();
         $out = $d->resolve(['default_repo_template' => 'x:{y}/{z}']);
-        self::assertSame('x:{y}/{z}', $out['default_repo_template']);
+        $this->assertSame('x:{y}/{z}', $out['default_repo_template']);
+    }
+
+    #[Test]
+    public function testResolveOverridesRequireFilesList(): void
+    {
+        $d = new ConfigDefaults();
+        $out = $d->resolve(['rules' => ['require_files' => ['README.md']]]);
+        $this->assertSame(['README.md'], $out['rules']['require_files']);
     }
 }

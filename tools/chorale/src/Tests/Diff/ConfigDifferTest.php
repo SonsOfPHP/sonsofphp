@@ -72,10 +72,9 @@ final class ConfigDifferTest extends TestCase
         PatternMatcherInterface $matcher,
         RepoResolverInterface $resolver,
         PackageIdentityInterface $identity,
-        RequiredFilesCheckerInterface $required,
-        ConflictDetectorInterface $conflicts
+        RequiredFilesCheckerInterface $required
     ): ConfigDiffer {
-        return new ConfigDiffer($defaults, $matcher, $resolver, $identity, $required, $conflicts, $this->stubPaths());
+        return new ConfigDiffer($defaults, $matcher, $resolver, $identity, $required, $this->stubPaths());
     }
 
     #[Test]
@@ -93,9 +92,9 @@ final class ConfigDifferTest extends TestCase
         $identity = $this->createMock(PackageIdentityInterface::class);
         $required = $this->createMock(RequiredFilesCheckerInterface::class);
         $required->method('missing')->willReturn([]);
-        $conflicts = $this->createMock(ConflictDetectorInterface::class);
+        $this->createMock(ConflictDetectorInterface::class);
 
-        $differ = $this->newDiffer($defaults, $matcher, $resolver, $identity, $required, $conflicts);
+        $differ = $this->newDiffer($defaults, $matcher, $resolver, $identity, $required);
 
         $out = $differ->diff(['targets' => [], 'patterns' => []], ['src/Acme/Foo'], []);
         $this->assertSame('src/Acme/Foo', $out['new'][0]['path']);
@@ -123,7 +122,7 @@ final class ConfigDifferTest extends TestCase
 
         $required = $this->createMock(RequiredFilesCheckerInterface::class);
         $required->method('missing')->willReturn([]);
-        $conflicts = $this->createMock(ConflictDetectorInterface::class);
+        $this->createMock(ConflictDetectorInterface::class);
 
         $config = [
             'targets' => [
@@ -133,7 +132,7 @@ final class ConfigDifferTest extends TestCase
         ];
         $discovered = ['src/Acme/New'];
 
-        $differ = $this->newDiffer($defaults, $matcher, $resolver, $identity, $required, $conflicts);
+        $differ = $this->newDiffer($defaults, $matcher, $resolver, $identity, $required);
         $out = $differ->diff($config, $discovered, []);
 
         $this->assertSame('src/Acme/Old', $out['renamed'][0]['from']);
@@ -154,9 +153,9 @@ final class ConfigDifferTest extends TestCase
         $identity = $this->createMock(PackageIdentityInterface::class);
         $required = $this->createMock(RequiredFilesCheckerInterface::class);
         $required->method('missing')->willReturn(['composer.json']);
-        $conflicts = $this->createMock(ConflictDetectorInterface::class);
+        $this->createMock(ConflictDetectorInterface::class);
 
-        $differ = $this->newDiffer($defaults, $matcher, $resolver, $identity, $required, $conflicts);
+        $differ = $this->newDiffer($defaults, $matcher, $resolver, $identity, $required);
 
         $out = $differ->diff(['targets' => [['path' => 'src/Acme/Foo']], 'patterns' => []], ['src/Acme/Foo'], []);
         $this->assertSame(['composer.json'], $out['issues'][0]['missing']);
@@ -177,7 +176,7 @@ final class ConfigDifferTest extends TestCase
         $identity = $this->createMock(PackageIdentityInterface::class);
         $required = $this->createMock(RequiredFilesCheckerInterface::class);
         $required->method('missing')->willReturn([]);
-        $conflicts = $this->createMock(ConflictDetectorInterface::class);
+        $this->createMock(ConflictDetectorInterface::class);
 
         $config = [
             'targets' => [
@@ -187,9 +186,61 @@ final class ConfigDifferTest extends TestCase
         ];
         $discovered = ['src/Acme/Foo'];
 
-        $differ = $this->newDiffer($defaults, $matcher, $resolver, $identity, $required, $conflicts);
+        $differ = $this->newDiffer($defaults, $matcher, $resolver, $identity, $required);
         $out = $differ->diff($config, $discovered, []);
 
         $this->assertSame('src/Acme/Foo', $out['drift'][0]['path']);
+    }
+
+    #[Test]
+    public function testReportsConflictsWhenMultiplePatternsMatch(): void
+    {
+        $defaults = $this->createMock(ConfigDefaultsInterface::class);
+        $defaults->method('resolve')->willReturn($this->defaults());
+
+        $matcher = $this->createMock(PatternMatcherInterface::class);
+        $matcher->method('allMatches')->willReturn([0, 1]);
+
+        $resolver = $this->createMock(RepoResolverInterface::class);
+        $resolver->method('resolve')->willReturn('git@github.com:Acme/foo.git');
+
+        $identity = $this->createMock(PackageIdentityInterface::class);
+        $required = $this->createMock(RequiredFilesCheckerInterface::class);
+        $required->method('missing')->willReturn([]);
+        $this->createMock(ConflictDetectorInterface::class);
+
+        $config = [
+            'targets' => [['path' => 'src/Acme/Foo']],
+            'patterns' => [['match' => 'src/*'], ['match' => 'src/Acme/*']],
+        ];
+        $differ = $this->newDiffer($defaults, $matcher, $resolver, $identity, $required);
+        $out = $differ->diff($config, ['src/Acme/Foo'], []);
+        $this->assertSame([0, 1], $out['conflicts'][0]['patterns']);
+    }
+
+    #[Test]
+    public function testOkGroupWhenNoDriftOrIssues(): void
+    {
+        $defaults = $this->createMock(ConfigDefaultsInterface::class);
+        $defaults->method('resolve')->willReturn($this->defaults());
+
+        $matcher = $this->createMock(PatternMatcherInterface::class);
+        $matcher->method('allMatches')->willReturn([]);
+
+        $resolver = $this->createMock(RepoResolverInterface::class);
+        $resolver->method('resolve')->willReturn('git@github.com:Acme/foo.git');
+
+        $identity = $this->createMock(PackageIdentityInterface::class);
+        $required = $this->createMock(RequiredFilesCheckerInterface::class);
+        $required->method('missing')->willReturn([]);
+        $this->createMock(ConflictDetectorInterface::class);
+
+        $config = [
+            'targets' => [['path' => 'src/Acme/Foo']],
+            'patterns' => [],
+        ];
+        $differ = $this->newDiffer($defaults, $matcher, $resolver, $identity, $required);
+        $out = $differ->diff($config, ['src/Acme/Foo'], []);
+        $this->assertSame('src/Acme/Foo', $out['ok'][0]['path']);
     }
 }
