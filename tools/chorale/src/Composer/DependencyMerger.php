@@ -12,109 +12,106 @@ final readonly class DependencyMerger implements DependencyMergerInterface
 
     public function computeRootMerge(string $projectRoot, array $packagePaths, array $options = []): array
     {
-
-        $opts = [
-            'strategy_require' => (string) ($options['strategy_require'] ?? 'union-caret'),
-            'strategy_require_dev' => (string) ($options['strategy_require-dev'] ?? 'union-caret'),
+        $normalizedOptions = [
+            'strategy_require'        => (string) ($options['strategy_require'] ?? 'union-caret'),
+            'strategy_require_dev'    => (string) ($options['strategy_require-dev'] ?? 'union-caret'),
             'exclude_monorepo_packages' => (bool) ($options['exclude_monorepo_packages'] ?? true),
-            'monorepo_names' => (array) ($options['monorepo_names'] ?? []),
+            'monorepo_names'          => (array) ($options['monorepo_names'] ?? []),
         ];
 
-        $monorepo = array_map('strtolower', array_values($opts['monorepo_names']));
+        $monorepoNames = array_map('strtolower', array_values($normalizedOptions['monorepo_names']));
 
-        $reqs = [];
-        $devs = [];
-        $byDepConstraints = [
-            'require' => [],
+        $requiredDependencies = [];
+        $devDependencies      = [];
+        $constraintsByDependency = [
+            'require'     => [],
             'require-dev' => [],
         ];
 
-        foreach ($packagePaths as $relPath) {
-            $pc = $this->reader->read(rtrim($projectRoot, '/') . '/' . $relPath . '/composer.json');
-            if ($pc === []) {
+        foreach ($packagePaths as $relativePath) {
+            $composerJson = $this->reader->read(rtrim($projectRoot, '/') . '/' . $relativePath . '/composer.json');
+            if ($composerJson === []) {
                 continue;
             }
 
-            $name = strtolower((string) ($pc['name'] ?? $relPath));
-            foreach ((array) ($pc['require'] ?? []) as $dep => $ver) {
-                if (!is_string($dep)) {
+            $packageName = strtolower((string) ($composerJson['name'] ?? $relativePath));
+            foreach ((array) ($composerJson['require'] ?? []) as $dependency => $version) {
+                if (!is_string($dependency) || !is_string($version)) {
                     continue;
                 }
 
-                if (!is_string($ver)) {
+                if ($normalizedOptions['exclude_monorepo_packages'] && in_array(strtolower($dependency), $monorepoNames, true)) {
                     continue;
                 }
 
-                if ($opts['exclude_monorepo_packages'] && in_array(strtolower($dep), $monorepo, true)) {
-                    continue;
-                }
-
-                $byDepConstraints['require'][$dep][$name] = $ver;
+                $constraintsByDependency['require'][$dependency][$packageName] = $version;
             }
 
-            foreach ((array) ($pc['require-dev'] ?? []) as $dep => $ver) {
-                if (!is_string($dep)) {
+            foreach ((array) ($composerJson['require-dev'] ?? []) as $dependency => $version) {
+                if (!is_string($dependency) || !is_string($version)) {
                     continue;
                 }
 
-                if (!is_string($ver)) {
+                if ($normalizedOptions['exclude_monorepo_packages'] && in_array(strtolower($dependency), $monorepoNames, true)) {
                     continue;
                 }
 
-                if ($opts['exclude_monorepo_packages'] && in_array(strtolower($dep), $monorepo, true)) {
-                    continue;
-                }
-
-                $byDepConstraints['require-dev'][$dep][$name] = $ver;
+                $constraintsByDependency['require-dev'][$dependency][$packageName] = $version;
             }
         }
 
         $conflicts = [];
-        $reqs = $this->mergeMap($byDepConstraints['require'], $opts['strategy_require'], $conflicts);
-        $devs = $this->mergeMap($byDepConstraints['require-dev'], $opts['strategy_require_dev'], $conflicts);
+        $requiredDependencies = $this->mergeMap($constraintsByDependency['require'], $normalizedOptions['strategy_require'], $conflicts);
+        $devDependencies      = $this->mergeMap($constraintsByDependency['require-dev'], $normalizedOptions['strategy_require_dev'], $conflicts);
 
-        ksort($reqs);
-        ksort($devs);
+        ksort($requiredDependencies);
+        ksort($devDependencies);
 
         return [
-            'require'     => $reqs,
-            'require-dev' => $devs,
+            'require'     => $requiredDependencies,
+            'require-dev' => $devDependencies,
             'conflicts'   => array_values($conflicts),
         ];
     }
 
     /**
-     * @param array<string,array<string,string>> $constraintsPerDep
+     * @param array<string,array<string,string>> $constraintsPerDependency
      * @param array<string,array<string,mixed>> $conflictsOut
      * @return array<string,string>
      */
-    private function mergeMap(array $constraintsPerDep, string $strategy, array &$conflictsOut): array
+    private function mergeMap(array $constraintsPerDependency, string $strategy, array &$conflictsOut): array
     {
-        $out = [];
-        foreach ($constraintsPerDep as $dep => $byPkg) {
-            $constraint = $this->chooseConstraint(array_values($byPkg), $strategy, $dep, $byPkg, $conflictsOut);
+        $mergedConstraints = [];
+        foreach ($constraintsPerDependency as $dependency => $versionsByPackage) {
+            $constraint = $this->chooseConstraint(
+                array_values($versionsByPackage),
+                $strategy,
+                $dependency,
+                $versionsByPackage,
+                $conflictsOut
+            );
             if ($constraint !== null) {
-                $out[$dep] = $constraint;
+                $mergedConstraints[$dependency] = $constraint;
             }
         }
 
-        return $out;
+        return $mergedConstraints;
     }
 
     /**
      * @param list<string> $constraints
-     * @param array<string,string> $byPkg
+     * @param array<string,string> $versionsByPackage
      */
-    private function chooseConstraint(array $constraints, string $strategy, string $dep, array $byPkg, array &$conflictsOut): ?string
+    private function chooseConstraint(array $constraints, string $strategy, string $dependency, array $versionsByPackage, array &$conflictsOut): ?string
     {
         $strategy = strtolower($strategy);
-        $norm = array_map([$this,'normalizeConstraint'], array_filter($constraints, 'is_string'));
-        if ($norm === []) {
+        $normalized = array_map([$this,'normalizeConstraint'], array_filter($constraints, 'is_string'));
+        if ($normalized === []) {
             return null;
         }
 
         if ($strategy === 'union-caret') {
-            return $this->chooseUnionCaret($norm, $dep, $byPkg, $conflictsOut);
+            return $this->chooseUnionCaret($normalized, $dependency, $versionsByPackage, $conflictsOut);
         }
 
         if ($strategy === 'union-loose') {
@@ -122,37 +119,41 @@ final readonly class DependencyMerger implements DependencyMergerInterface
         }
 
         if ($strategy === 'max') {
-            return $this->maxLowerBound($norm);
+            return $this->maxLowerBound($normalized);
         }
 
         if ($strategy === 'intersect') {
             // naive: if all share same major series, pick max lower bound; else conflict
-            $majors = array_unique(array_map(static fn($c): int => $c['major'], $norm));
-            if (count($majors) > 1) {
-                $this->recordConflict($dep, $byPkg, $conflictsOut, 'intersect-empty');
+            $majorVersions = array_unique(array_map(static fn($c): int => $c['major'], $normalized));
+            if (count($majorVersions) > 1) {
+                $this->recordConflict($dependency, $versionsByPackage, $conflictsOut, 'intersect-empty');
                 return null;
             }
 
-            return $this->maxLowerBound($norm);
+            return $this->maxLowerBound($normalized);
         }
 
         // default fallback
-        return $this->chooseUnionCaret($norm, $dep, $byPkg, $conflictsOut);
+        return $this->chooseUnionCaret($normalized, $dependency, $versionsByPackage, $conflictsOut);
     }
 
     /** @param list<array{raw:string,major:int,minor:int,patch:int,type:string}> $norm */
-    private function chooseUnionCaret(array $norm, string $dep, array $byPkg, array &$conflictsOut): string
+    private function chooseUnionCaret(array $norm, string $dependency, array $versionsByPackage, array &$conflictsOut): string
     {
         // Prefer highest ^MAJOR.MINOR; if any non-caret constraints exist, record a conflict and still pick a sane default.
         $caret = array_values(array_filter($norm, static fn($c): bool => $c['type'] === 'caret'));
         if ($caret !== []) {
             usort($caret, [$this,'cmpSemver']);
             $best = end($caret);
+            if (count($caret) !== count($norm)) {
+                $this->recordConflict($dependency, $versionsByPackage, $conflictsOut, 'non-caret-mixed');
+            }
+
             return '^' . $best['major'] . '.' . $best['minor'];
         }
 
         // If exact pins or ranges exist, pick the "max lower bound" and record conflict
-        $this->recordConflict($dep, $byPkg, $conflictsOut, 'non-caret-mixed');
+        $this->recordConflict($dependency, $versionsByPackage, $conflictsOut, 'non-caret-mixed');
         return $this->maxLowerBound($norm);
     }
 
@@ -169,13 +170,13 @@ final readonly class DependencyMerger implements DependencyMergerInterface
         return $best['raw'];
     }
 
-    /** @param array<string,string> $byPkg */
-    private function recordConflict(string $dep, array $byPkg, array &$conflictsOut, string $reason): void
+    /** @param array<string,string> $versionsByPackage */
+    private function recordConflict(string $dependency, array $versionsByPackage, array &$conflictsOut, string $reason): void
     {
-        $conflictsOut[$dep] = [
-            'package'   => $dep,
-            'versions'  => array_values(array_unique(array_values($byPkg))),
-            'packages'  => array_keys($byPkg),
+        $conflictsOut[$dependency] = [
+            'package'   => $dependency,
+            'versions'  => array_values(array_unique(array_values($versionsByPackage))),
+            'packages'  => array_keys($versionsByPackage),
             'reason'    => $reason,
         ];
     }

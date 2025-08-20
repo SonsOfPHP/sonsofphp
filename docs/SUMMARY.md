@@ -11,6 +11,10 @@
 * [Overview](bard/overview.md)
 * [Commands](bard/commands.md)
 
+## 🔧 Tools
+
+* [Chorale](tools/chorale.md)
+
 ## Symfony Bundles
 
 * [Feature Toggle](symfony-bundles/feature-toggle.md)
