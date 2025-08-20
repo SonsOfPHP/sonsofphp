@@ -51,6 +51,7 @@ final class SetupCommand extends Command
         $this
             ->setName('setup')
             ->setDescription('Create or update chorale.yaml by scanning src/ and applying defaults.')
+            ->setHelp('Scans packages and writes a chorale.yaml configuration file.')
             ->addOption('non-interactive', null, InputOption::VALUE_NONE, 'Never prompt.')
             ->addOption('accept-all', null, InputOption::VALUE_NONE, 'Accept suggested adds/renames.')
             ->addOption('discover-only', null, InputOption::VALUE_NONE, 'Only scan & print; do not write.')
