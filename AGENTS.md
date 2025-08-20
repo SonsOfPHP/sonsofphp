@@ -55,6 +55,10 @@ This repository is a PHP monorepo containing many packages under `src/`. This gu
 
 - The project roadmap lives in `ROADMAP.md` at the repository root.
 - Remove completed items from the roadmap as part of the related change.
+- Each roadmap entry is an epic with a name and short description.
+- Every epic lists the tasks required to complete it.
+- Each task includes its own acceptance criteria and references the Global Definition of Ready and Definition of Done.
+- Remove tasks once complete and delete the epic when no tasks remain.
 
 ## Pull Request Checklist
 
