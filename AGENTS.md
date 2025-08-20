@@ -51,6 +51,11 @@ This repository is a PHP monorepo containing many packages under `src/`. This gu
 - Add or modify the most relevant page (e.g., `docs/components/*.md`, `docs/contracts/*.md`, or `docs/symfony-bundles/*.md`).
 - If adding a new page, ensure it’s listed in `docs/SUMMARY.md`.
 
+## Roadmap
+
+- The project roadmap lives in `ROADMAP.md` at the repository root.
+- Remove completed items from the roadmap as part of the related change.
+
 ## Pull Request Checklist
 
 - Build passes: `make test` (optionally with coverage).
