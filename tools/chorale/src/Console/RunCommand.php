@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Chorale\Console;
 
-use Chorale\Config\ConfigLoaderInterface;
 use Chorale\Console\Style\ConsoleStyleFactory;
-use Chorale\Plan\PlanBuilderInterface;
+use Chorale\Run\RunnerInterface;
 use Chorale\Plan\PlanStepInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,20 +13,14 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-/**
- * A true dry-run: prints only actionable steps by default.
- * Use --show-all to also show no-op summaries for debugging.
- */
-final class PlanCommand extends Command
+final class RunCommand extends Command
 {
-    protected static $defaultName = 'chorale plan';
-
-    protected static $defaultDescription = 'Build and print a dry-run plan of actionable steps.';
+    protected static $defaultName = 'run';
+    protected static $defaultDescription = 'Plan and apply steps.';
 
     public function __construct(
         private readonly ConsoleStyleFactory $styleFactory,
-        private readonly ConfigLoaderInterface $configLoader,
-        private readonly PlanBuilderInterface $planner,
+        private readonly RunnerInterface $runner,
     ) {
         parent::__construct();
     }
@@ -35,16 +28,22 @@ final class PlanCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setName('plan')
-            ->setDescription('Build and print a dry-run plan of actionable steps.')
-            ->setHelp('Generates a plan of changes without modifying files. Use --json to export for apply.')
+            ->setName('run')
+            ->setDescription('Plan and immediately apply steps.')
+            ->setHelp(<<<'HELP'
+Builds a plan for the repository and applies it in a single command.
+This is equivalent to running `chorale plan` followed by `chorale apply`.
+
+Examples:
+  chorale run
+  chorale run --paths packages/acme --strict
+HELP)
             ->addOption('project-root', null, InputOption::VALUE_REQUIRED, 'Project root (default: CWD).')
             ->addOption('paths', null, InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Limit to specific package paths', [])
-            ->addOption('json', null, InputOption::VALUE_NONE, 'Output as JSON instead of human-readable.')
-            ->addOption('show-all', null, InputOption::VALUE_NONE, 'Show no-op summaries (does not turn them into steps).')
             ->addOption('force-split', null, InputOption::VALUE_NONE, 'Force split steps even if unchanged.')
             ->addOption('verify-remote', null, InputOption::VALUE_NONE, 'Verify remote state if lockfile is missing/stale.')
-            ->addOption('strict', null, InputOption::VALUE_NONE, 'Fail on missing root version / unresolved conflicts / remote failures.');
+            ->addOption('strict', null, InputOption::VALUE_NONE, 'Fail on missing root version / unresolved conflicts / remote failures.')
+            ->addOption('show-all', null, InputOption::VALUE_NONE, 'Show no-op summaries.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -53,56 +52,33 @@ final class PlanCommand extends Command
         $root   = rtrim((string) ($input->getOption('project-root') ?: getcwd()), '/');
         /** @var list<string> $paths */
         $paths  = (array) $input->getOption('paths');
-        $json   = (bool) $input->getOption('json');
-        $showAll = (bool) $input->getOption('show-all');
         $force  = (bool) $input->getOption('force-split');
         $verify = (bool) $input->getOption('verify-remote');
         $strict = (bool) $input->getOption('strict');
+        $showAll = (bool) $input->getOption('show-all');
 
-        $config = $this->configLoader->load($root);
-        if ($config === []) {
-            $io->warning('No chorale.yaml found. Run "chorale setup" first.');
+        try {
+            $result = $this->runner->run($root, [
+                'paths' => $paths,
+                'force_split' => $force,
+                'verify_remote' => $verify,
+                'strict' => $strict,
+                'show_all' => $showAll,
+            ]);
+        } catch (\RuntimeException $e) {
+            $io->error($e->getMessage());
             return 2;
         }
 
-        $result = $this->planner->build($root, $config, [
-            'paths' => $paths,
-            'show_all' => $showAll,
-            'force_split' => $force,
-            'verify_remote' => $verify,
-            'strict' => $strict,
-        ]);
-
-        // Planner returns an associative array with 'steps' and optional 'noop'
-        $steps = $result['steps'] ?? [];
-        $noop  = $result['noop']  ?? [];
-
-        if ($json) {
-            $payload = [
-                'version' => 1,
-                'steps'   => array_map(static fn(PlanStepInterface $s): array => $s->toArray(), $steps),
-                'noop'    => $showAll ? $noop : [],
-            ];
-            $encoded = json_encode($payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-            if ($encoded === false) {
-                $io->error('Failed to encode plan.');
-                return 2;
-            }
-
-            $output->writeln($encoded);
-            // Non-zero exit in strict mode when planner flags issues
-            return (int) ($result['exit_code'] ?? 0);
-        }
-
-        $this->renderHuman($io, $steps, $showAll ? $noop : []);
+        $this->renderHuman($io, $result['steps'], $showAll ? ($result['noop'] ?? []) : []);
+        $io->success(sprintf('Applied %d step(s).', count($result['steps'])));
         return (int) ($result['exit_code'] ?? 0);
     }
 
     /** @param list<PlanStepInterface> $steps */
     private function renderHuman(SymfonyStyle $io, array $steps, array $noop): void
     {
-        $io->title('Chorale Plan');
-
+        $io->title('Chorale Run');
         $byType = [];
         foreach ($steps as $s) {
             $byType[$s->type()][] = $s;
@@ -142,8 +118,6 @@ final class PlanCommand extends Command
                 $io->writeln(sprintf('  - %s: ', $group) . count($rows));
             }
         }
-
-        $io->comment('Use "--json" to export this plan for apply.');
     }
 
     /** @param array<string,mixed> $a */
@@ -159,10 +133,9 @@ final class PlanCommand extends Command
             ),
             'package-version-update' => sprintf('%s — set version %s', $a['name'] ?? $a['path'] ?? '', $a['version'] ?? ''),
             'package-metadata-sync'  => sprintf(
-                '%s — %s%s',
+                '%s — mirror %s',
                 $a['name'] ?? $a['path'] ?? '',
-                'mirror ' . implode(',', array_keys((array) ($a['apply'] ?? []))),
-                empty($a['overrides_used']) ? '' : ' [overrides: ' . implode(',', (array) $a['overrides_used']['values']) . ']'
+                implode(',', array_keys((array) ($a['apply'] ?? [])))
             ),
             'composer-root-update'   => sprintf(
                 'update %s (version %s, require %d, replace %d)',

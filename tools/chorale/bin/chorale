@@ -33,6 +33,13 @@ use Chorale\State\FilesystemStateStore;
 use Chorale\Util\DiffUtil;
 use Chorale\Plan\PlanBuilder;
 use Chorale\Console\PlanCommand;
+use Chorale\Console\ApplyCommand;
+use Chorale\Console\RunCommand;
+use Chorale\Run\Runner;
+use Chorale\Run\StepExecutorRegistry;
+use Chorale\Run\PackageVersionUpdateExecutor;
+use Chorale\Run\RootDependencyMergeExecutor;
+use Chorale\Run\ComposerRootUpdateExecutor;
 
 $paths          = new PathUtils();
 $renderer       = new TemplateRenderer();
@@ -73,6 +80,17 @@ $planner = new PlanBuilder(
     splitDecider: $splitDecider,
     diffs: $diffs,
 );
+$executors = new StepExecutorRegistry([
+    new PackageVersionUpdateExecutor(),
+    new RootDependencyMergeExecutor(),
+    new ComposerRootUpdateExecutor(),
+]);
+$runner = new Runner(
+    configLoader: $loader,
+    planner: $planner,
+    executors: $executors,
+);
+
 
 // -----------------------------------------------------------------------------
 $app = new Application('Chorale', '0.1.0');
@@ -103,6 +121,16 @@ $app->add(new PlanCommand(
     styleFactory: new ConsoleStyleFactory(),
     configLoader: $loader,
     planner: $planner,
+));
+// -----------------------------------------------------------------------------
+$app->add(new ApplyCommand(
+    styleFactory: new ConsoleStyleFactory(),
+    runner: $runner,
+));
+// -----------------------------------------------------------------------------
+$app->add(new RunCommand(
+    styleFactory: new ConsoleStyleFactory(),
+    runner: $runner,
 ));
 // -----------------------------------------------------------------------------
 
