@@ -14,11 +14,11 @@
 ## 🔧 Tools
 
 * [Chorale](tools/chorale.md)
-  * [Plan Command](tools/chorale/plan.md)
   * [Concepts](tools/chorale/concepts.md)
   * [Configuration](tools/chorale/config.md)
   * [Mirroring & Overrides](tools/chorale/mirroring.md)
   * [Rule Matrix & Examples](tools/chorale/rules-matrix.md)
+  * [Plan Command](tools/chorale/plan.md)
 
 ## Symfony Bundles
 
