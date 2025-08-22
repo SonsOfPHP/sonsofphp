@@ -2,6 +2,11 @@
 
 This repository is a PHP monorepo containing many packages under `src/`. This guide provides consistent instructions for AI coding agents to work safely and effectively across the codebase.
 
+- Use clear variable names and keep code well documented.
+- Run tests relevant to the areas you change.
+- For changes under `tools/chorale`, run `composer install` and `./vendor/bin/phpunit` in that directory before committing.
+- Chorale is the monorepo management CLI using a plan/apply workflow; see `tools/chorale/AGENTS.md` for its roadmap and guidelines.
+
 ## Repo Layout
 
 - Root: build tooling (`Makefile`, composer), shared configs, CI inputs.
@@ -57,4 +62,3 @@ This repository is a PHP monorepo containing many packages under `src/`. This gu
 - Code quality passes: `make php-cs-fixer`, `make psalm`, and (if applicable) `make upgrade-code`.
 - Docs updated where needed.
 - No changes to `vendor/` or generated artifacts.
-
