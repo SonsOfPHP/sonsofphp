@@ -56,6 +56,8 @@ Verbosity controls detail:
 - -v: detailed blocks
 - -vv: detailed + include no-op summaries
 - -vvv: everything above plus full JSON plan at end
+Other options:
+- --composer-only: Only include composer-related steps; exclude split steps.
 
 Notes
 - Delta notation [+added/-removed/~changed] summarizes composer map changes.
@@ -67,8 +69,7 @@ HELP)
             ->addOption('project-root', null, InputOption::VALUE_REQUIRED, 'Project root (default: CWD).')
             ->addOption('paths', null, InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Limit to specific package paths', [])
             ->addOption('json', null, InputOption::VALUE_NONE, 'Output as JSON instead of human-readable.')
-            // --concise retained for compatibility; default output is concise
-            ->addOption('concise', null, InputOption::VALUE_NONE, 'Force one-line summaries only; omit detailed blocks.')
+            ->addOption('composer-only', null, InputOption::VALUE_NONE, 'Only include composer-related steps; exclude split steps.')
             ->addOption('show-all', null, InputOption::VALUE_NONE, 'Show no-op summaries (does not turn them into steps).')
             ->addOption('force-split', null, InputOption::VALUE_NONE, 'Force split steps even if unchanged.')
             ->addOption('verify-remote', null, InputOption::VALUE_NONE, 'Verify remote state if lockfile is missing/stale.')
@@ -83,10 +84,10 @@ HELP)
         /** @var list<string> $paths */
         $paths  = (array) $input->getOption('paths');
         $json   = (bool) $input->getOption('json');
+        $composerOnly = (bool) $input->getOption('composer-only');
         $verbosity = $output->getVerbosity();
-        $explicitConcise = (bool) $input->getOption('concise');
-        // Concise by default; -v or higher switches to detailed unless --concise is given
-        $concise = $explicitConcise || ($verbosity <= OutputInterface::VERBOSITY_NORMAL);
+        // Concise by default; increase detail with -v/-vv/-vvv
+        $concise = ($verbosity <= OutputInterface::VERBOSITY_NORMAL);
         // Show no-op summaries at -vv or when explicitly requested
         $showAll = (bool) $input->getOption('show-all') || ($verbosity >= OutputInterface::VERBOSITY_VERY_VERBOSE);
         $force  = (bool) $input->getOption('force-split');
@@ -111,6 +112,22 @@ HELP)
         // Planner returns an associative array with 'steps' and optional 'noop'
         $steps = $result['steps'] ?? [];
         $noop  = $result['noop']  ?? [];
+
+        if ($composerOnly) {
+            $composerTypes = [
+                'package-version-update',
+                'package-metadata-sync',
+                'composer-root-update',
+                'composer-root-merge',
+                'composer-root-rebuild',
+            ];
+            $steps = array_values(array_filter(
+                $steps,
+                static fn(PlanStepInterface $s): bool => in_array($s->type(), $composerTypes, true)
+            ));
+            // Suppress noop summary to avoid confusion with filtered output
+            $noop = [];
+        }
 
         if ($json) {
             $payload = [

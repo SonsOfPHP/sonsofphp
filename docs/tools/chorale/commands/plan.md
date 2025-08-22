@@ -26,6 +26,7 @@ chorale plan [<vendor/name>] [options]
   - `-v`: detailed blocks (per‑section details)
   - `-vv`: detailed blocks + no‑op summaries
   - `-vvv`: everything above plus full JSON plan printed at the end
+- `--composer-only`: Only include composer-related steps; exclude split steps
 - `--show-all`: Include no‑op summaries (same as `-vv` or higher)
 - `--json`: Output as JSON; ideal for `apply` or external tooling
 - `--project-root=PATH`: Explicit project root (defaults to current directory)
@@ -122,6 +123,5 @@ Example snippet (root update):
 
 ## Tips
 
-- Use `--concise` for quick scans, and omit it to see exact JSON diffs.
 - Combine the positional `<vendor/name>` with `--json` to isolate and export a single package’s plan.
 - For CI checks, run with `--strict` so the command exits non‑zero when action is required.
