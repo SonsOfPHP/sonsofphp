@@ -41,7 +41,7 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.3",
         "sonsofphp/cqrs": "^0.3.x-dev",
         "symfony/options-resolver": "^6 || ^7"
     },

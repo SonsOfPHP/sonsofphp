@@ -6,11 +6,11 @@ namespace Chorale\Config;
 
 use Chorale\Util\SortingInterface;
 
-final class ConfigNormalizer implements ConfigNormalizerInterface
+final readonly class ConfigNormalizer implements ConfigNormalizerInterface
 {
     public function __construct(
-        private readonly SortingInterface $sorting,
-        private readonly ConfigDefaultsInterface $defaults
+        private SortingInterface $sorting,
+        private ConfigDefaultsInterface $defaults
     ) {}
 
     public function normalize(array $config): array
@@ -27,6 +27,7 @@ final class ConfigNormalizer implements ConfigNormalizerInterface
                 }
             }
         }
+
         unset($p);
         $patterns = $this->sorting->sortPatterns($patterns);
 
@@ -40,6 +41,7 @@ final class ConfigNormalizer implements ConfigNormalizerInterface
                 }
             }
         }
+
         unset($t);
         $targets = $this->sorting->sortTargets($targets);
 
@@ -58,9 +60,11 @@ final class ConfigNormalizer implements ConfigNormalizerInterface
         if ($patterns !== []) {
             $out['patterns'] = $patterns;
         }
+
         if ($targets  !== []) {
             $out['targets']  = $targets;
         }
+
         if (!empty($config['hooks'])) {
             $out['hooks'] = array_values((array) $config['hooks']);
         }

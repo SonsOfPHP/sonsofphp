@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Chorale\Console;
 
 use Chorale\Console\Style\ConsoleStyleFactory;
-use Chorale\Run\RunnerInterface;
 use Chorale\Plan\PlanStepInterface;
+use Chorale\Run\RunnerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -16,6 +16,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 final class RunCommand extends Command
 {
     protected static $defaultName = 'run';
+
     protected static $defaultDescription = 'Plan and apply steps.';
 
     public function __construct(
@@ -65,8 +66,8 @@ HELP)
                 'strict' => $strict,
                 'show_all' => $showAll,
             ]);
-        } catch (\RuntimeException $e) {
-            $io->error($e->getMessage());
+        } catch (\RuntimeException $runtimeException) {
+            $io->error($runtimeException->getMessage());
             return 2;
         }
 

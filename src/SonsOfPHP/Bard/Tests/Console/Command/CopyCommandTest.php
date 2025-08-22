@@ -41,14 +41,12 @@ use Symfony\Component\Console\Tester\CommandTester;
 #[UsesClass(AddPackageOperation::class)]
 final class CopyCommandTest extends TestCase
 {
-    private Application $application;
-
     private CopyCommand $command;
 
     protected function setUp(): void
     {
-        $this->application = new Application();
-        $this->command     = $this->application->get('copy');
+        $application = new Application();
+        $this->command     = $application->get('copy');
     }
 
     public function testItExecutesSuccessfully(): void

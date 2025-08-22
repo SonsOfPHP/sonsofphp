@@ -65,7 +65,7 @@ final class ContainerTest extends TestCase
     {
         $container = new Container();
         $services = new ReflectionProperty($container, 'services');
-        $this->assertCount(0, $services->getValue($container));
+        $this->assertEmpty($services->getValue($container));
 
         $container->set('service.id', function (): void {});
         $this->assertCount(1, $services->getValue($container));

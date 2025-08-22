@@ -11,7 +11,7 @@ CHURN        = tools/churn/vendor/bin/churn
 INFECTION    = tools/infection/vendor/bin/infection
 PHP_CS_FIXER = tools/php-cs-fixer/vendor/bin/php-cs-fixer
 PHPACTOR     = tools/phpactor/vendor/bin/phpactor
-PHPUNIT      = tools/phpunit/vendor/bin/phpunit
+PHPUNIT      = tools/phpunit/bin/run
 PSALM        = tools/psalm/vendor/bin/psalm
 RECTOR       = tools/rector/vendor/bin/rector
 # end: Tools

@@ -23,7 +23,7 @@ final class ServerRequestTest extends TestCase
     public function testGetAttributesWorksAsExpected(): void
     {
         $req = new ServerRequest();
-        $this->assertCount(0, $req->getAttributes());
+        $this->assertEmpty($req->getAttributes());
     }
 
     public function testGetAttributeWorksAsExpected(): void
@@ -45,7 +45,7 @@ final class ServerRequestTest extends TestCase
         $req = $request->withAttribute('controller', __METHOD__);
 
         $this->assertNotSame($request, $req);
-        $this->assertCount(0, $request->getAttributes());
+        $this->assertEmpty($request->getAttributes());
         $this->assertCount(1, $req->getAttributes());
     }
 
@@ -57,7 +57,7 @@ final class ServerRequestTest extends TestCase
         $req = $request->withoutAttribute('controller');
         $this->assertNotSame($request, $req);
         $this->assertCount(1, $request->getAttributes());
-        $this->assertCount(0, $req->getAttributes());
+        $this->assertEmpty($req->getAttributes());
     }
 
     public function testGetServerParamsWorksAsExpected(): void
@@ -70,7 +70,7 @@ final class ServerRequestTest extends TestCase
     public function testGetCookieParamsWorksAsExpected(): void
     {
         $req = new ServerRequest();
-        $this->assertCount(0, $req->getCookieParams());
+        $this->assertEmpty($req->getCookieParams());
     }
 
     public function testWithCookieParamsWorksAsExpected(): void
@@ -79,14 +79,14 @@ final class ServerRequestTest extends TestCase
         $req = $request->withCookieParams(['name' => 'test']);
 
         $this->assertNotSame($request, $req);
-        $this->assertCount(0, $request->getCookieParams());
+        $this->assertEmpty($request->getCookieParams());
         $this->assertCount(1, $req->getCookieParams());
     }
 
     public function testGetQueryParamsWorksAsExpected(): void
     {
         $req = new ServerRequest();
-        $this->assertCount(0, $req->getQueryParams());
+        $this->assertEmpty($req->getQueryParams());
     }
 
     public function testWithQueryParamsWorksAsExpected(): void
@@ -95,14 +95,14 @@ final class ServerRequestTest extends TestCase
         $req = $request->withQueryParams(['name' => 'test']);
 
         $this->assertNotSame($request, $req);
-        $this->assertCount(0, $request->getQueryParams());
+        $this->assertEmpty($request->getQueryParams());
         $this->assertCount(1, $req->getQueryParams());
     }
 
     public function testGetUploadedFilesWorksAsExpected(): void
     {
         $req = new ServerRequest();
-        $this->assertCount(0, $req->getUploadedFiles());
+        $this->assertEmpty($req->getUploadedFiles());
     }
 
     public function testWithUploadedFilesWorksAsExpected(): void
@@ -111,7 +111,7 @@ final class ServerRequestTest extends TestCase
         $req = $request->withUploadedFiles(['name' => 'test']);
 
         $this->assertNotSame($request, $req);
-        $this->assertCount(0, $request->getUploadedFiles());
+        $this->assertEmpty($request->getUploadedFiles());
         $this->assertCount(1, $req->getUploadedFiles());
     }
 

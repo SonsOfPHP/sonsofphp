@@ -20,7 +20,7 @@ final class PackageVersionUpdateExecutorTest extends TestCase
     public function testExecuteUpdatesComposerJson(): void
     {
         $projectRoot = sys_get_temp_dir() . '/chorale-exec-test-' . uniqid();
-        mkdir($projectRoot . '/pkg', 0777, true);
+        mkdir($projectRoot . '/pkg', 0o777, true);
         file_put_contents($projectRoot . '/pkg/composer.json', json_encode(['name' => 'pkg/pkg'], JSON_PRETTY_PRINT));
 
         $executor = new PackageVersionUpdateExecutor();

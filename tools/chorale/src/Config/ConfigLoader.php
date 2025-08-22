@@ -6,10 +6,10 @@ namespace Chorale\Config;
 
 use Symfony\Component\Yaml\Yaml;
 
-final class ConfigLoader implements ConfigLoaderInterface
+final readonly class ConfigLoader implements ConfigLoaderInterface
 {
     public function __construct(
-        private readonly string $fileName = 'chorale.yaml'
+        private string $fileName = 'chorale.yaml'
     ) {}
 
     public function load(string $projectRoot): array
@@ -18,10 +18,12 @@ final class ConfigLoader implements ConfigLoaderInterface
         if (!is_file($path)) {
             return [];
         }
+
         $raw = file_get_contents($path);
         if ($raw === false) {
-            throw new \RuntimeException("Failed to read {$path}");
+            throw new \RuntimeException('Failed to read ' . $path);
         }
+
         $data = Yaml::parse($raw);
         return is_array($data) ? $data : [];
     }

@@ -38,7 +38,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.3",
         "sonsofphp/filesystem": "^0.3.x-dev",
         "liip/imagine-bundle": "^2.0"
     },

@@ -44,7 +44,7 @@ final class PagerTest extends TestCase
     {
         $pager = new Pager(new ArrayAdapter([]));
 
-        $this->assertCount(0, $pager->getCurrentPageResults());
+        $this->assertEmpty($pager->getCurrentPageResults());
     }
 
     public function testGetTotalResults(): void
@@ -184,8 +184,8 @@ final class PagerTest extends TestCase
     {
         $pager = new Pager(new ArrayAdapter([]));
 
-        $this->assertCount(0, $pager);
-        $this->assertCount(0, $pager);
+        $this->assertEmpty($pager);
+        $this->assertEmpty($pager);
     }
 
     public function testGetIteratorWhenGenerator(): void

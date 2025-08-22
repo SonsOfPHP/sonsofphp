@@ -28,7 +28,7 @@ final class ListenerProviderTest extends TestCase
         $provider  = new ListenerProvider();
         $event     = new stdClass();
         $listeners = $provider->getListenersForEvent($event);
-        $this->assertCount(0, $listeners);
+        $this->assertEmpty($listeners);
     }
 
     public function testGetListenersForEvent(): void
@@ -71,10 +71,10 @@ final class ListenerProviderTest extends TestCase
 
         $provider = new ListenerProvider();
 
-        $this->assertCount(0, $provider->getListenersForEventName('event.one'));
-        $this->assertCount(0, $provider->getListenersForEventName('event.two'));
-        $this->assertCount(0, $provider->getListenersForEventName('event.three'));
-        $this->assertCount(0, $provider->getListenersForEventName('event.four'));
+        $this->assertEmpty($provider->getListenersForEventName('event.one'));
+        $this->assertEmpty($provider->getListenersForEventName('event.two'));
+        $this->assertEmpty($provider->getListenersForEventName('event.three'));
+        $this->assertEmpty($provider->getListenersForEventName('event.four'));
         $provider->addSubscriber($subscriber);
         $this->assertCount(1, $provider->getListenersForEventName('event.one'));
         $this->assertCount(1, $provider->getListenersForEventName('event.two'));

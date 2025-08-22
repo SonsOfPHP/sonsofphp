@@ -41,14 +41,12 @@ use Symfony\Component\Console\Tester\CommandTester;
 #[UsesClass(AddPackageOperation::class)]
 final class PushCommandTest extends TestCase
 {
-    private Application $application;
-
     private PushCommand $command;
 
     protected function setUp(): void
     {
-        $this->application = new Application();
-        $this->command     = $this->application->get('push');
+        $application = new Application();
+        $this->command     = $application->get('push');
     }
 
     public function testItExecutesSuccessfully(): void

@@ -40,7 +40,7 @@ final class MessageTest extends TestCase
     public function testGetHeadersWhenEmpty(): void
     {
         $message = new Message();
-        $this->assertCount(0, $message->getHeaders());
+        $this->assertEmpty($message->getHeaders());
     }
 
     public function testGetHeader(): void

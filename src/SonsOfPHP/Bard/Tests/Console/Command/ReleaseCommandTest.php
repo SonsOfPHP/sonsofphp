@@ -65,14 +65,12 @@ use Symfony\Component\Console\Tester\CommandTester;
 #[UsesClass(Version::class)]
 final class ReleaseCommandTest extends TestCase
 {
-    private Application $application;
-
     private ReleaseCommand $command;
 
     protected function setUp(): void
     {
-        $this->application = new Application();
-        $this->command     = $this->application->get('release');
+        $application = new Application();
+        $this->command     = $application->get('release');
     }
 
     public function testItsNameIsCorrect(): void

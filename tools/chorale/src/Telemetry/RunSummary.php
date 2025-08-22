@@ -14,6 +14,7 @@ final class RunSummary implements RunSummaryInterface
         if ($bucket === '') {
             return;
         }
+
         $this->buckets[$bucket] = ($this->buckets[$bucket] ?? 0) + 1;
     }
 

@@ -22,7 +22,7 @@ class ServerRequest extends Request implements ServerRequestInterface
 
     private array $attributes    = [];
 
-    private null|array|object $data = null;
+    private array|object|null $data = null;
 
     public function __construct(
         ?string $method = null,
@@ -111,7 +111,7 @@ class ServerRequest extends Request implements ServerRequestInterface
     /**
      * {@inheritdoc}
      */
-    public function getParsedBody(): null|array|object
+    public function getParsedBody(): array|object|null
     {
         return $this->data ?? null;
     }

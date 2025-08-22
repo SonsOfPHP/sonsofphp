@@ -35,7 +35,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.3",
         "sonsofphp/http-handler-contract": "0.3.x-dev",
         "psr/http-server-handler": "^1.0",
         "psr/http-server-middleware": "^1.0"

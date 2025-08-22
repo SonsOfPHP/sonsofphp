@@ -30,7 +30,7 @@ final class MiddlewareStackTest extends TestCase
     {
         $stack = new MiddlewareStack();
         $middlewares = new ReflectionProperty($stack, 'middlewares');
-        $this->assertCount(0, $middlewares->getValue($stack));
+        $this->assertEmpty($middlewares->getValue($stack));
 
         $stack->add(function (): void {});
         $this->assertCount(1, $middlewares->getValue($stack));
@@ -39,7 +39,7 @@ final class MiddlewareStackTest extends TestCase
     public function testCount(): void
     {
         $stack = new MiddlewareStack();
-        $this->assertCount(0, $stack);
+        $this->assertEmpty($stack);
 
         $stack->add(function (): void {});
         $this->assertCount(1, $stack);
@@ -49,7 +49,7 @@ final class MiddlewareStackTest extends TestCase
     {
         $stack = new MiddlewareStack();
         $middlewares = new ReflectionProperty($stack, 'middlewares');
-        $this->assertCount(0, $middlewares->getValue($stack));
+        $this->assertEmpty($middlewares->getValue($stack));
 
         $one   = function (): void {};
         $two   = function (): void {};

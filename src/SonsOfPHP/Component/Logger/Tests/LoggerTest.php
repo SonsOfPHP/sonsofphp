@@ -90,7 +90,7 @@ final class LoggerTest extends TestCase
     {
         $logger = new Logger();
         $enrichers = new ReflectionProperty($logger, 'enrichers');
-        $this->assertCount(0, $enrichers->getValue($logger));
+        $this->assertEmpty($enrichers->getValue($logger));
 
         $logger->addEnricher(new NullEnricher());
         $this->assertCount(1, $enrichers->getValue($logger));
@@ -103,7 +103,7 @@ final class LoggerTest extends TestCase
     {
         $logger = new Logger();
         $handlers = new ReflectionProperty($logger, 'handlers');
-        $this->assertCount(0, $handlers->getValue($logger));
+        $this->assertEmpty($handlers->getValue($logger));
 
         $logger->addHandler(new NullHandler());
         $this->assertCount(1, $handlers->getValue($logger));

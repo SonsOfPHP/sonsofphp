@@ -32,7 +32,7 @@ final class EventTypeMessageUpcasterProviderTest extends TestCase
         ];
         $handlers = $provider->getUpcastersForEventData($eventData);
 
-        $this->assertCount(0, iterator_to_array($handlers));
+        $this->assertEmpty(iterator_to_array($handlers));
     }
 
     public function testGetUpcastersForEventDataWillThrowExceptionWhenCannotFindEventType(): void

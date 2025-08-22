@@ -17,7 +17,7 @@ final class SchemaValidator implements SchemaValidatorInterface
         $strKeys = ['repo_host','repo_vendor','repo_name_template','default_repo_template','default_branch','splitter','tag_strategy'];
         foreach ($strKeys as $k) {
             if (isset($config[$k]) && !is_string($config[$k])) {
-                $issues[] = "Key '{$k}' must be a string.";
+                $issues[] = sprintf("Key '%s' must be a string.", $k);
             }
         }
 
@@ -28,9 +28,11 @@ final class SchemaValidator implements SchemaValidatorInterface
             if (isset($rules['keep_history']) && !is_bool($rules['keep_history'])) {
                 $issues[] = "rules.keep_history must be a boolean.";
             }
+
             if (isset($rules['skip_if_unchanged']) && !is_bool($rules['skip_if_unchanged'])) {
                 $issues[] = "rules.skip_if_unchanged must be a boolean.";
             }
+
             if (isset($rules['require_files']) && !is_array($rules['require_files'])) {
                 $issues[] = "rules.require_files must be an array of strings.";
             }
@@ -38,27 +40,30 @@ final class SchemaValidator implements SchemaValidatorInterface
 
         foreach (['patterns', 'targets', 'hooks'] as $listKey) {
             if (isset($config[$listKey]) && !is_array($config[$listKey])) {
-                $issues[] = "Key '{$listKey}' must be a list.";
+                $issues[] = sprintf("Key '%s' must be a list.", $listKey);
             }
         }
 
         if (isset($config['patterns']) && is_array($config['patterns'])) {
             foreach ($config['patterns'] as $i => $p) {
                 if (!is_array($p)) {
-                    $issues[] = "patterns[$i] must be an object.";
+                    $issues[] = sprintf('patterns[%s] must be an object.', $i);
                     continue;
                 }
+
                 if (!isset($p['match']) || !is_string($p['match'])) {
-                    $issues[] = "patterns[$i].match must be a string.";
+                    $issues[] = sprintf('patterns[%s].match must be a string.', $i);
                 }
+
                 foreach (['repo_host','repo_vendor','repo_name_template','repo'] as $k) {
                     if (isset($p[$k]) && !is_string($p[$k])) {
-                        $issues[] = "patterns[$i].{$k} must be a string.";
+                        $issues[] = sprintf('patterns[%s].%s must be a string.', $i, $k);
                     }
                 }
+
                 foreach (['include','exclude'] as $k) {
                     if (isset($p[$k]) && !is_array($p[$k])) {
-                        $issues[] = "patterns[$i].{$k} must be a list of strings.";
+                        $issues[] = sprintf('patterns[%s].%s must be a list of strings.', $i, $k);
                     }
                 }
             }
@@ -67,17 +72,19 @@ final class SchemaValidator implements SchemaValidatorInterface
         if (isset($config['targets']) && is_array($config['targets'])) {
             foreach ($config['targets'] as $i => $t) {
                 if (!is_array($t)) {
-                    $issues[] = "targets[$i] must be an object.";
+                    $issues[] = sprintf('targets[%s] must be an object.', $i);
                     continue;
                 }
+
                 foreach (['name','path','repo_host','repo_vendor','repo_name_template','repo'] as $k) {
                     if (isset($t[$k]) && !is_string($t[$k])) {
-                        $issues[] = "targets[$i].{$k} must be a string.";
+                        $issues[] = sprintf('targets[%s].%s must be a string.', $i, $k);
                     }
                 }
+
                 foreach (['include','exclude'] as $k) {
                     if (isset($t[$k]) && !is_array($t[$k])) {
-                        $issues[] = "targets[$i].{$k} must be a list of strings.";
+                        $issues[] = sprintf('targets[%s].%s must be a list of strings.', $i, $k);
                     }
                 }
             }

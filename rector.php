@@ -9,16 +9,18 @@ return RectorConfig::configure()
     ->withCache(__DIR__ . '/build/cache/rector')
     ->withPaths([
         __DIR__ . '/src',
+        __DIR__ . '/tools/chorale',
     ])
     ->withSkip([
         __DIR__ . '/src/SonsOfPHP/*/vendor/*',
         __DIR__ . '/src/SonsOfPHP/*/*/vendor/*',
         __DIR__ . '/src/SonsOfPHP/*/*/*/vendor/*',
         __DIR__ . '/src/SonsOfPHP/*/*/*/*/vendor/*',
+        __DIR__ . '*/vendor/*',
     ])
     // This should be the same version that is found in composer.json file
     ->withPhpSets(
-        php82: true,
+        php83: true,
     )
     //->withAttributesSets(
     //    phpunit: true,

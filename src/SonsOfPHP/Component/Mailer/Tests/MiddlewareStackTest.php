@@ -37,7 +37,7 @@ final class MiddlewareStackTest extends TestCase
 
         $stack = new MiddlewareStack();
 
-        $this->assertCount(0, $property->getValue($stack));
+        $this->assertEmpty($property->getValue($stack));
         $stack->add($middleware);
         $this->assertCount(1, $property->getValue($stack));
     }

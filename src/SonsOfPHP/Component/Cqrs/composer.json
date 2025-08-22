@@ -37,7 +37,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.3",
         "sonsofphp/cqrs-contract": "0.3.x-dev"
     },
     "require-dev": {

@@ -18,6 +18,7 @@ final class PackageIdentity implements PackageIdentityInterface
         // Fallback: use leaf directory name (case-insensitive)
         $p = str_replace('\\', '/', $path);
         $p = rtrim($p, '/');
+
         $leaf = $p === '' ? '' : substr($p, (int) (strrpos($p, '/') ?: -1) + 1);
         return mb_strtolower($leaf);
     }

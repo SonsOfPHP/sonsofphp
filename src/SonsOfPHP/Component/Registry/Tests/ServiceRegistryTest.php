@@ -29,7 +29,7 @@ final class ServiceRegistryTest extends TestCase
     public function testItCanRegisterNewServices(): void
     {
         $identifier = 'exception';
-        $this->assertCount(0, $this->registry->all());
+        $this->assertEmpty($this->registry->all());
         $this->assertFalse($this->registry->has($identifier));
         $this->registry->register($identifier, new \Exception());
         $this->assertCount(1, $this->registry->all());

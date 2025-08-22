@@ -43,7 +43,7 @@ final class LinkProviderTest extends TestCase
     {
         $provider = new LinkProvider();
 
-        $this->assertCount(0, $provider->getLinks());
+        $this->assertEmpty($provider->getLinks());
     }
 
     public function testGetLinksByRel(): void

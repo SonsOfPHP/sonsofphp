@@ -50,7 +50,7 @@ final class AbstractAggregateTest extends TestCase
         $message = $this->createMock(MessageInterface::class);
 
         $aggregate = new FakeAggregate('id');
-        $this->assertCount(0, $aggregate->getPendingEvents());
+        $this->assertEmpty($aggregate->getPendingEvents());
 
         $refObj = new ReflectionObject($aggregate);
         $refMet = $refObj->getMethod('raiseEvent');
@@ -80,7 +80,7 @@ final class AbstractAggregateTest extends TestCase
     public function testPeekWillNotRemoveAnyPendingEvents(): void
     {
         $aggregate = new FakeAggregate('id');
-        $this->assertCount(0, $aggregate->peekPendingEvents());
+        $this->assertEmpty($aggregate->peekPendingEvents());
         $method = new ReflectionMethod($aggregate, 'raiseEvent');
 
         $message = $this->createMock(MessageInterface::class);

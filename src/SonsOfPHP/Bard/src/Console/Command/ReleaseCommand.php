@@ -24,9 +24,9 @@ use Symfony\Component\Process\Process;
  */
 final class ReleaseCommand extends AbstractCommand
 {
-    private VersionInterface|null $currentVersion = null;
+    private ?VersionInterface $currentVersion = null;
 
-    private VersionInterface|null $releaseVersion = null;
+    private ?VersionInterface $releaseVersion = null;
 
     private bool $isDryRun = true;
 
