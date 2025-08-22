@@ -21,8 +21,12 @@ chorale plan [<vendor/name>] [options]
 
 ## Options
 
-- `--concise`: One‑line summaries only; omit detailed blocks
-- `--show-all`: Include no‑op summaries for debugging decisions
+- Verbosity levels control detail:
+  - default: concise one‑line summaries
+  - `-v`: detailed blocks (per‑section details)
+  - `-vv`: detailed blocks + no‑op summaries
+  - `-vvv`: everything above plus full JSON plan printed at the end
+- `--show-all`: Include no‑op summaries (same as `-vv` or higher)
 - `--json`: Output as JSON; ideal for `apply` or external tooling
 - `--project-root=PATH`: Explicit project root (defaults to current directory)
 - `--paths=DIR ...`: Limit discovery to specific package path(s)
@@ -33,14 +37,17 @@ chorale plan [<vendor/name>] [options]
 ## Examples
 
 ```bash
-# All packages, detailed output
+# Concise one‑liners (default)
 chorale plan
 
-# Concise one‑liners
-chorale plan --concise
+# Detailed output
+chorale plan -v
 
-# Show no‑ops too
-chorale plan --show-all
+# Detailed + show no‑ops
+chorale plan -vv
+
+# Show full JSON at the end (also printed as human output first)
+chorale plan -vvv
 
 # JSON output for apply
 chorale plan --json > plan.json
@@ -48,8 +55,8 @@ chorale plan --json > plan.json
 # Focus on one package by composer name
 chorale plan sonsofphp/cache
 
-# Focused + concise
-chorale plan sonsofphp/cache --concise
+# Focused + detailed
+chorale plan sonsofphp/cache -v
 
 # Limit discovery to a folder (path)
 chorale plan --paths src/SonsOfPHP/Component/Cache

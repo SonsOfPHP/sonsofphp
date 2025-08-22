@@ -52,8 +52,12 @@ Positional arguments
   on a single package. Useful to inspect exact diffs in large monorepos.
 
 Common options
-- --concise: One-line summaries only (suppresses detailed blocks).
-- --show-all: Include no-op summaries for debugging plan decisions.
+- Verbosity controls detail:
+  - default: concise one-line summaries
+  - -v: detailed blocks
+  - -vv: detailed + include no-op summaries
+  - -vvv: everything above plus full JSON plan at end
+- --show-all: Include no-op summaries (same as -vv or higher).
 - --json: Output as JSON for apply or tooling (includes delta metadata).
 - --project-root=PATH: Project root (defaults to current directory).
 - --paths=DIR ...: Limit discovery to specific package paths (directories).
@@ -64,11 +68,11 @@ Common options
 
 Examples
   chorale plan
-  chorale plan --concise
-  chorale plan --show-all
+  chorale plan -v
+  chorale plan -vv
   chorale plan --json > plan.json
   chorale plan sonsofphp/cache
-  chorale plan sonsofphp/cache --concise
+  chorale plan sonsofphp/cache -v
   chorale plan --paths src/SonsOfPHP/Component/Cache
 
 Notes
@@ -81,7 +85,8 @@ HELP)
             ->addOption('project-root', null, InputOption::VALUE_REQUIRED, 'Project root (default: CWD).')
             ->addOption('paths', null, InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Limit to specific package paths', [])
             ->addOption('json', null, InputOption::VALUE_NONE, 'Output as JSON instead of human-readable.')
-            ->addOption('concise', null, InputOption::VALUE_NONE, 'One-line summaries only; omit detailed blocks.')
+            // --concise retained for compatibility; default output is concise
+            ->addOption('concise', null, InputOption::VALUE_NONE, 'Force one-line summaries only; omit detailed blocks.')
             ->addOption('show-all', null, InputOption::VALUE_NONE, 'Show no-op summaries (does not turn them into steps).')
             ->addOption('force-split', null, InputOption::VALUE_NONE, 'Force split steps even if unchanged.')
             ->addOption('verify-remote', null, InputOption::VALUE_NONE, 'Verify remote state if lockfile is missing/stale.')
@@ -96,8 +101,12 @@ HELP)
         /** @var list<string> $paths */
         $paths  = (array) $input->getOption('paths');
         $json   = (bool) $input->getOption('json');
-        $concise = (bool) $input->getOption('concise');
-        $showAll = (bool) $input->getOption('show-all');
+        $verbosity = $output->getVerbosity();
+        $explicitConcise = (bool) $input->getOption('concise');
+        // Concise by default; -v or higher switches to detailed unless --concise is given
+        $concise = $explicitConcise || ($verbosity <= OutputInterface::VERBOSITY_NORMAL);
+        // Show no-op summaries at -vv or when explicitly requested
+        $showAll = (bool) $input->getOption('show-all') || ($verbosity >= OutputInterface::VERBOSITY_VERY_VERBOSE);
         $force  = (bool) $input->getOption('force-split');
         $verify = (bool) $input->getOption('verify-remote');
         $strict = (bool) $input->getOption('strict');
@@ -139,6 +148,22 @@ HELP)
         }
 
         $this->renderHuman($io, $steps, $showAll ? $noop : [], $concise);
+
+        // At -vvv print the full JSON payload after human output
+        if ($verbosity >= OutputInterface::VERBOSITY_DEBUG) {
+            $io->newLine();
+            $io->section('Full JSON plan');
+            $payload = [
+                'version' => 1,
+                'steps'   => array_map(static fn(PlanStepInterface $s): array => $s->toArray(), $steps),
+                'noop'    => $showAll ? $noop : [],
+            ];
+            $encoded = json_encode($payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+            if ($encoded !== false) {
+                $output->writeln($encoded);
+            }
+        }
+
         return (int) ($result['exit_code'] ?? 0);
     }
 
