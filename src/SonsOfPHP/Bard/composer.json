@@ -12,7 +12,7 @@
         "bin/bard"
     ],
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.3",
         "sonsofphp/event-dispatcher": "^0.3.x-dev",
         "sonsofphp/json": "^0.3.x-dev",
         "sonsofphp/logger": "^0.3.x-dev",

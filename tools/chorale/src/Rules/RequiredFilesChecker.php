@@ -18,6 +18,7 @@ final class RequiredFilesChecker implements RequiredFilesCheckerInterface
                 $miss[] = $rel;
             }
         }
+
         return $miss;
     }
 }

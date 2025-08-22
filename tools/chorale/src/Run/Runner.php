@@ -9,12 +9,12 @@ use Chorale\Plan\PlanBuilderInterface;
 use Chorale\Plan\PlanStepInterface;
 use RuntimeException;
 
-final class Runner implements RunnerInterface
+final readonly class Runner implements RunnerInterface
 {
     public function __construct(
-        private readonly ConfigLoaderInterface $configLoader,
-        private readonly PlanBuilderInterface $planner,
-        private readonly StepExecutorRegistry $executors,
+        private ConfigLoaderInterface $configLoader,
+        private PlanBuilderInterface $planner,
+        private StepExecutorRegistry $executors,
     ) {}
 
     public function plan(string $projectRoot, array $options = []): array

@@ -6,11 +6,11 @@ namespace Chorale\Repo;
 
 use Chorale\Util\PathUtilsInterface;
 
-final class RepoResolver implements RepoResolverInterface
+final readonly class RepoResolver implements RepoResolverInterface
 {
     public function __construct(
-        private readonly TemplateRendererInterface $renderer,
-        private readonly PathUtilsInterface $paths,
+        private TemplateRendererInterface $renderer,
+        private PathUtilsInterface $paths,
     ) {}
 
     public function resolve(array $defaults, array $pattern, array $target, string $path, ?string $name = null): string

@@ -39,14 +39,12 @@ use Symfony\Component\Console\Tester\CommandTester;
 #[UsesClass(JsonFile::class)]
 final class SplitCommandTest extends TestCase
 {
-    private Application $application;
-
     private SplitCommand $command;
 
     protected function setUp(): void
     {
-        $this->application = new Application();
-        $this->command     = $this->application->get('split');
+        $application = new Application();
+        $this->command     = $application->get('split');
     }
 
     public function testItsNameIsCorrect(): void

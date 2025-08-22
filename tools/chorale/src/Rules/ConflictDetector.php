@@ -6,10 +6,10 @@ namespace Chorale\Rules;
 
 use Chorale\Discovery\PatternMatcherInterface;
 
-final class ConflictDetector implements ConflictDetectorInterface
+final readonly class ConflictDetector implements ConflictDetectorInterface
 {
     public function __construct(
-        private readonly PatternMatcherInterface $matcher
+        private PatternMatcherInterface $matcher
     ) {}
 
     public function detect(array $patterns, string $path): array

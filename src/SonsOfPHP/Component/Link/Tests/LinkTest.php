@@ -62,13 +62,13 @@ final class LinkTest extends TestCase
     {
         $link = new Link('https://docs.sonsofphp.com');
 
-        $this->assertCount(0, $link->getRels());
+        $this->assertEmpty($link->getRels());
     }
 
     public function testGetAttributes(): void
     {
         $link = new Link('https://docs.sonsofphp.com');
 
-        $this->assertCount(0, $link->getAttributes());
+        $this->assertEmpty($link->getAttributes());
     }
 }

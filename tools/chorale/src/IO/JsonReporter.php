@@ -18,6 +18,7 @@ final class JsonReporter implements JsonReporterInterface
         if ($json === false) {
             throw new \RuntimeException('Failed to encode JSON output.');
         }
+
         return $json . PHP_EOL;
     }
 }

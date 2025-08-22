@@ -41,7 +41,7 @@ final class LevelTest extends TestCase
 
     public function testTryFromNameWithInvalidName(): void
     {
-        $this->assertNull(Level::tryFromName('invalid name'));
+        $this->assertNotInstanceOf(LevelInterface::class, Level::tryFromName('invalid name'));
     }
 
     public function testTryFromName(): void

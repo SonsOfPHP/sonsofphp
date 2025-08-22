@@ -7,11 +7,11 @@ namespace Chorale\Config;
 use Chorale\IO\BackupManagerInterface;
 use Symfony\Component\Yaml\Yaml;
 
-final class ConfigWriter implements ConfigWriterInterface
+final readonly class ConfigWriter implements ConfigWriterInterface
 {
     public function __construct(
-        private readonly BackupManagerInterface $backup,
-        private readonly string $fileName = 'chorale.yaml'
+        private BackupManagerInterface $backup,
+        private string $fileName = 'chorale.yaml'
     ) {}
 
     public function write(string $projectRoot, array $config): void
@@ -25,11 +25,12 @@ final class ConfigWriter implements ConfigWriterInterface
         $tmp  = $path . '.tmp';
 
         if (@file_put_contents($tmp, $yaml) === false) {
-            throw new \RuntimeException("Failed to write temp file: {$tmp}");
+            throw new \RuntimeException('Failed to write temp file: ' . $tmp);
         }
+
         if (!@rename($tmp, $path)) {
             @unlink($tmp);
-            throw new \RuntimeException("Failed to replace {$path}");
+            throw new \RuntimeException('Failed to replace ' . $path);
         }
     }
 }

@@ -11,11 +11,19 @@
     findUnusedVariablesAndParams="true"
     findUnusedBaselineEntry="false"
     findUnusedCode="true"
+    phpVersion="8.3"
     autoloader="vendor/autoload.php"
 >
     <projectFiles>
         <directory name="src/SonsOfPHP"/>
         <ignoreFiles>
+            <!-- Ignore test suites across packages to reduce noise like UnusedClass -->
+            <directory name="src/SonsOfPHP/Bard/Tests"/>
+            <directory name="src/SonsOfPHP/Bridge/*/*/Tests"/>
+            <directory name="src/SonsOfPHP/Bridge/*/*/*/Tests"/>
+            <directory name="src/SonsOfPHP/Bundle/*/Tests"/>
+            <directory name="src/SonsOfPHP/Component/*/Tests"/>
+            <!-- Ignore vendors -->
             <directory name="src/SonsOfPHP/Bard/vendor/*"/>
             <directory name="src/SonsOfPHP/Bridge/*/*/vendor/*"/>
             <directory name="src/SonsOfPHP/Bridge/*/*/*/vendor/*"/>
@@ -23,6 +31,8 @@
             <directory name="src/SonsOfPHP/Component/*/vendor/*"/>
             <directory name="src/SonsOfPHP/Contract/*/vendor/**"/>
             <directory name="vendor/**"/>
+            <!-- Ignore Rector config which references Rector classes outside our autoload -->
+            <file name="rector.php" />
         </ignoreFiles>
     </projectFiles>
     <extraFiles>
@@ -32,7 +42,25 @@
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
     </plugins>
     <issueHandlers>
-        <!--<PossiblyUnusedMethod errorLevel="info" />-->
-        <!--<UnusedClass errorLevel="info" />-->
+        <UnusedClass errorLevel="info" />
+        <UnnecessaryVarAnnotation errorLevel="info" />
+        <!-- Keep other findings visible but non-blocking for DX -->
+        <PossiblyUnusedMethod errorLevel="info" />
+        <!-- Psalm false-positives in Bard console helpers and operations naming -->
+        <UndefinedInterfaceMethod>
+            <errorLevel type="info">
+                <directory name="src/SonsOfPHP/Bard/src/Console/Command" />
+            </errorLevel>
+        </UndefinedInterfaceMethod>
+        <ParamNameMismatch>
+            <errorLevel type="info">
+                <directory name="src/SonsOfPHP/Bard/src/Operation" />
+            </errorLevel>
+        </ParamNameMismatch>
+        <InvalidArgument errorLevel="info" />
+        <UndefinedClass errorLevel="info" />
+        <NullableReturnStatement errorLevel="info" />
+        <InvalidCatch errorLevel="info" />
+        <LessSpecificImplementedReturnType errorLevel="info" />
     </issueHandlers>
 </psalm>

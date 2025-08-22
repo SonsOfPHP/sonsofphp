@@ -30,6 +30,7 @@ final class ComposerRootUpdateExecutor implements StepExecutorInterface
         if ($rootName === '') {
             throw new RuntimeException('Root package name missing.');
         }
+
         $data['name'] = $rootName;
 
         $rootVersion = $step['root_version'] ?? null;

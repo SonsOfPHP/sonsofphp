@@ -33,7 +33,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.3",
         "sonsofphp/event-sourcing-contract": "^0.3.x-dev",
         "sonsofphp/event-dispatcher": "^0.3.x-dev"
     },

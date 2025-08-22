@@ -61,14 +61,12 @@ use Symfony\Component\Console\Tester\CommandTester;
 #[UsesClass(UpdateRequireDevSectionOperation::class)]
 final class MergeCommandTest extends TestCase
 {
-    private Application $application;
-
     private MergeCommand $command;
 
     protected function setUp(): void
     {
-        $this->application = new Application();
-        $this->command     = $this->application->get('merge');
+        $application = new Application();
+        $this->command     = $application->get('merge');
     }
 
     public function testItExecutesSuccessfully(): void

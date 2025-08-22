@@ -36,7 +36,7 @@ final readonly class SimpleCache implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function set(string $key, mixed $value, null|int|DateInterval $ttl = null): bool
+    public function set(string $key, mixed $value, int|DateInterval|null $ttl = null): bool
     {
         $item = $this->pool->getItem($key);
         $item->set($value);
@@ -78,7 +78,7 @@ final readonly class SimpleCache implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function setMultiple(iterable $values, null|int|DateInterval $ttl = null): bool
+    public function setMultiple(iterable $values, int|DateInterval|null $ttl = null): bool
     {
         foreach ($values as $key => $value) {
             $this->set($key, $value, $ttl);

@@ -8,6 +8,7 @@ use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
 
 $finder = Finder::create()
     ->in(__DIR__)
+    ->in(__DIR__ . '/tools/chorale/src/')
     ->exclude('build')
     ->exclude('docs')
     ->exclude('tools')
@@ -21,8 +22,8 @@ return (new Config())
     ->setRules([
         // Rule sets
         '@PER-CS' => true,
-        '@PHP80Migration:risky' => true,
-        '@PHP82Migration' => true,
+        '@PHP82Migration:risky' => true,
+        '@PHP83Migration' => true,
         '@PHPUnit100Migration:risky' => true,
 
         // Rules

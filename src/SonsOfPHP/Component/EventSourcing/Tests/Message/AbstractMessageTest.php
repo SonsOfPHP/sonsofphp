@@ -116,7 +116,7 @@ final class AbstractMessageTest extends TestCase
     {
         $message = $this->createMock(AbstractMessage::class)::new();
 
-        $this->assertCount(0, $message->getPayload());
+        $this->assertEmpty($message->getPayload());
     }
 
     public function testWithPayloadReturnsNewStatic(): void

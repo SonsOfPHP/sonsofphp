@@ -32,6 +32,7 @@ final class PathUtils implements PathUtilsInterface
             if ($seg === '') {
                 continue;
             }
+
             if ($seg === '.') {
                 continue;
             }

@@ -41,14 +41,12 @@ use Symfony\Component\Console\Tester\CommandTester;
 #[UsesClass(AddPackageOperation::class)]
 final class AddCommandTest extends TestCase
 {
-    private Application $application;
-
     private AddCommand $command;
 
     protected function setUp(): void
     {
-        $this->application = new Application();
-        $this->command     = $this->application->get('add');
+        $application = new Application();
+        $this->command     = $application->get('add');
     }
 
     public function testItsNameIsCorrect(): void

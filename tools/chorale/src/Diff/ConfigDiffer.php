@@ -59,7 +59,7 @@ final readonly class ConfigDiffer implements ConfigDifferInterface
 
         foreach ($discovered as $pkgPath) {
             $matchIdxs = $this->matcher->allMatches($patterns, $pkgPath);
-            $pattern = $matchIdxs ? (array) $patterns[$matchIdxs[0]] : [];
+            $pattern = $matchIdxs !== [] ? (array) $patterns[$matchIdxs[0]] : [];
             $target  = $targetsByPath[$pkgPath] ?? [];
 
             $name    = $this->paths->leaf($pkgPath);
@@ -173,6 +173,6 @@ final readonly class ConfigDiffer implements ConfigDifferInterface
     private function findPatternFor(array $patterns, string $path): array
     {
         $idxs = $this->matcher->allMatches($patterns, $path);
-        return $idxs ? (array) $patterns[$idxs[0]] : [];
+        return $idxs !== [] ? (array) $patterns[$idxs[0]] : [];
     }
 }
