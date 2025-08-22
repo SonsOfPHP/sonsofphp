@@ -1,0 +1,20 @@
+#!/usr/bin/env php
+<?php
+declare(strict_types=1);
+
+// Ensure we use the PHPUnit installed under tools/phpunit first
+require __DIR__ . '/../vendor/autoload.php';
+
+// Then load the project autoload so tests and source classes are available
+// This may also provide a root-level phpunit, but classes are already loaded.
+$projectAutoload = getcwd() . '/vendor/autoload.php';
+if (file_exists($projectAutoload)) {
+    require $projectAutoload;
+}
+
+// Forward all CLI args to PHPUnit's Application
+$argv = $_SERVER['argv'] ?? [];
+
+$app = new PHPUnit\TextUI\Application();
+exit($app->run($argv));
+

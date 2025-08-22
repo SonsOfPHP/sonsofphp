@@ -35,7 +35,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.3",
         "psr/container": "^1.0 || ^2.0"
     },
     "provide": {

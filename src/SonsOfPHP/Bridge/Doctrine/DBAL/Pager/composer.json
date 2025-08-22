@@ -33,7 +33,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.3",
         "doctrine/dbal": "^3",
         "sonsofphp/pager": "^0.3.x-dev"
     },

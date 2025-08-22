@@ -41,7 +41,7 @@ final class MessageTest extends TestCase
     {
         $msg = new Message();
 
-        $this->assertCount(0, $msg->getHeaders());
+        $this->assertEmpty($msg->getHeaders());
     }
 
     public function testWithHeaderWorksAsExpectedWithStringValue(): void
@@ -81,7 +81,7 @@ final class MessageTest extends TestCase
     public function testGetHeaderWorksAsExpected(): void
     {
         $msg = new Message();
-        $this->assertCount(0, $msg->getHeader('content-type'));
+        $this->assertEmpty($msg->getHeader('content-type'));
         $msg = $msg->withHeader('content-type', 'application/json');
         $this->assertCount(1, $msg->getHeader('content-type'));
         $this->assertSame('application/json', $msg->getHeader('content-type')[0]);
@@ -120,7 +120,7 @@ final class MessageTest extends TestCase
 
         $msg = $message->withoutHeader('content-type');
         $this->assertNotSame($message, $msg);
-        $this->assertCount(0, $msg->getHeader('content-type'));
+        $this->assertEmpty($msg->getHeader('content-type'));
     }
 
     public function testWithBodyWorksAsExpected(): void
@@ -141,7 +141,7 @@ final class MessageTest extends TestCase
     public function testWithAddedHeaderWhenHeaderDoesNotExist(): void
     {
         $message = new Message();
-        $this->assertCount(0, $message->getHeader('content-type'));
+        $this->assertEmpty($message->getHeader('content-type'));
 
         $msg = $message->withAddedHeader('content-type', 'text/html');
         $this->assertNotSame($message, $msg);
@@ -151,10 +151,10 @@ final class MessageTest extends TestCase
     public function testWithoutHeaderWorksAsExpectedWhenHeaderDoesNotExist(): void
     {
         $message = new Message();
-        $this->assertCount(0, $message->getHeader('content-type'));
+        $this->assertEmpty($message->getHeader('content-type'));
 
         $msg = $message->withoutHeader('content-type');
         $this->assertSame($message, $msg);
-        $this->assertCount(0, $msg->getHeader('content-type'));
+        $this->assertEmpty($msg->getHeader('content-type'));
     }
 }

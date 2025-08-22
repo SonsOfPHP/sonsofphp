@@ -63,7 +63,7 @@ final class TemplateRenderer implements TemplateRendererInterface
                 '/\{([a-zA-Z_]\w*)(?::([a-zA-Z:]+))?\}/',
                 function (array $m) use ($vars): string {
                     $var = $m[1];
-                    $filters = isset($m[2]) ? explode(':', (string) $m[2]) : [];
+                    $filters = isset($m[2]) ? explode(':', $m[2]) : [];
                     $value = (string) ($vars[$var] ?? '');
                     foreach ($filters as $f) {
                         if ($f === '') {

@@ -23,8 +23,16 @@ final class StepExecutorRegistryTest extends TestCase
     {
         $executor = new class implements StepExecutorInterface {
             public bool $called = false;
-            public function supports(array $step): bool { return $step['type'] === 'x'; }
-            public function execute(string $projectRoot, array $step): void { $this->called = true; }
+
+            public function supports(array $step): bool
+            {
+                return $step['type'] === 'x';
+            }
+
+            public function execute(string $projectRoot, array $step): void
+            {
+                $this->called = true;
+            }
         };
         $registry = new StepExecutorRegistry([$executor]);
         $registry->execute('/tmp', ['type' => 'x']);

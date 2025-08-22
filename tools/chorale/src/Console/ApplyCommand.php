@@ -14,6 +14,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class ApplyCommand extends Command
 {
     protected static $defaultName = 'apply';
+
     protected static $defaultDescription = 'Apply steps from a JSON plan.';
 
     public function __construct(

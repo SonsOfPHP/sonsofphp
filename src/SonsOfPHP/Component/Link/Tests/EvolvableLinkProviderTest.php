@@ -27,7 +27,7 @@ final class EvolvableLinkProviderTest extends TestCase
     public function testWithLink(): void
     {
         $provider = new EvolvableLinkProvider();
-        $this->assertCount(0, $provider->getLinks());
+        $this->assertEmpty($provider->getLinks());
 
         $provider = $provider->withLink(new Link('https://docs.sonsofphp.com'));
         $this->assertCount(1, $provider->getLinks());
@@ -39,6 +39,6 @@ final class EvolvableLinkProviderTest extends TestCase
             $link = new Link('https://docs.sonsofphp.com'),
         ]);
         $this->assertCount(1, $provider->getLinks());
-        $this->assertCount(0, $provider->withoutLink($link)->getLinks());
+        $this->assertEmpty($provider->withoutLink($link)->getLinks());
     }
 }

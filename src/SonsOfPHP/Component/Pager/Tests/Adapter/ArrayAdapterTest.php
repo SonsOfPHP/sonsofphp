@@ -24,7 +24,7 @@ final class ArrayAdapterTest extends TestCase
     {
         $adapter = new ArrayAdapter([]);
 
-        $this->assertCount(0, $adapter);
+        $this->assertEmpty($adapter);
     }
 
     public function testGetSlice(): void

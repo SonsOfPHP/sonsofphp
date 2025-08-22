@@ -12,10 +12,10 @@ final class ConsoleStyleFactory
 {
     public function create(InputInterface $input, OutputInterface $output): SymfonyStyle
     {
-        $io = new class ($input, $output) extends SymfonyStyle {
+        return new class ($input, $output) extends SymfonyStyle {
             public function __construct(
-                private InputInterface $input,
-                private OutputInterface $output,
+                private readonly InputInterface $input,
+                private readonly OutputInterface $output,
             ) {
                 parent::__construct($input, $output);
             }
@@ -30,7 +30,5 @@ final class ConsoleStyleFactory
                 return $this->output;
             }
         };
-
-        return $io;
     }
 }

@@ -36,7 +36,11 @@ final readonly class DependencyMerger implements DependencyMergerInterface
 
             $packageName = strtolower((string) ($composerJson['name'] ?? $relativePath));
             foreach ((array) ($composerJson['require'] ?? []) as $dependency => $version) {
-                if (!is_string($dependency) || !is_string($version)) {
+                if (!is_string($dependency)) {
+                    continue;
+                }
+
+                if (!is_string($version)) {
                     continue;
                 }
 
@@ -48,7 +52,11 @@ final readonly class DependencyMerger implements DependencyMergerInterface
             }
 
             foreach ((array) ($composerJson['require-dev'] ?? []) as $dependency => $version) {
-                if (!is_string($dependency) || !is_string($version)) {
+                if (!is_string($dependency)) {
+                    continue;
+                }
+
+                if (!is_string($version)) {
                     continue;
                 }
 

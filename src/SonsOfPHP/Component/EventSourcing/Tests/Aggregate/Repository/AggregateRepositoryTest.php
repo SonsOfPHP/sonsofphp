@@ -11,6 +11,7 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregate;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AbstractAggregateId;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateId;
+use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateInterface;
 use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Aggregate\Repository\AggregateRepository;
 use SonsOfPHP\Component\EventSourcing\Aggregate\Repository\AggregateRepositoryInterface;
@@ -135,6 +136,6 @@ final class AggregateRepositoryTest extends TestCase
             $this->messageRepository
         );
 
-        $this->assertNull($repository->find('unique-id'));
+        $this->assertNotInstanceOf(AggregateInterface::class, $repository->find('unique-id'));
     }
 }

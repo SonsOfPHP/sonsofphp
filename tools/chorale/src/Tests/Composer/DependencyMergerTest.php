@@ -67,4 +67,3 @@ final class DependencyMergerTest extends TestCase
         $this->assertSame('non-caret-mixed', $result['conflicts'][0]['reason']);
     }
 }
-

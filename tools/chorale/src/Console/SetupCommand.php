@@ -287,7 +287,7 @@ final class SetupCommand extends Command
         $abs = rtrim($projectRoot, '/') . '/' . ltrim($pkgPath, '/');
         $meta = $this->composerMeta->read($abs);
         if (!empty($meta['name'])) {
-            $name = (string) $meta['name'];
+            $name = $meta['name'];
             // choose style: last segment after "/" for brevity
             $last = str_contains($name, '/') ? substr($name, strrpos($name, '/') + 1) : $name;
             return $last;
@@ -348,7 +348,7 @@ final class SetupCommand extends Command
     private function classifyOne(string $root, string $pkgPath, array $defaults, array $patterns, array $targetsByPath): array
     {
         $matches = $this->matcher->allMatches($patterns, $pkgPath);
-        $pattern = $matches ? (array) $patterns[$matches[0]] : [];
+        $pattern = $matches !== [] ? (array) $patterns[$matches[0]] : [];
         $hasExplicitTarget = isset($targetsByPath[$pkgPath]);
 
         $name = basename($pkgPath);
@@ -437,7 +437,7 @@ final class SetupCommand extends Command
     private function firstPatternFor(array $patterns, string $path): array
     {
         $idxs = $this->matcher->allMatches($patterns, $path);
-        return $idxs ? (array) $patterns[$idxs[0]] : [];
+        return $idxs !== [] ? (array) $patterns[$idxs[0]] : [];
     }
 
     // ─────────────────────────────────────────────────────────────────────────────

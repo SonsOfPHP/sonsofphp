@@ -13,6 +13,7 @@ use SonsOfPHP\Component\EventSourcing\Aggregate\AggregateVersion;
 use SonsOfPHP\Component\EventSourcing\Snapshot\Repository\InMemorySnapshotRepository;
 use SonsOfPHP\Component\EventSourcing\Snapshot\Repository\SnapshotRepositoryInterface;
 use SonsOfPHP\Component\EventSourcing\Snapshot\Snapshot;
+use SonsOfPHP\Component\EventSourcing\Snapshot\SnapshotInterface;
 
 #[CoversClass(InMemorySnapshotRepository::class)]
 #[UsesClass(AbstractAggregateId::class)]
@@ -41,6 +42,6 @@ final class InMemorySnapshotRepositoryTest extends TestCase
     {
         $repository = new InMemorySnapshotRepository();
 
-        $this->assertNull($repository->find(AggregateId::fromString('id')));
+        $this->assertNotInstanceOf(SnapshotInterface::class, $repository->find(AggregateId::fromString('id')));
     }
 }
