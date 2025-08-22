@@ -18,6 +18,7 @@
   * [Concepts](tools/chorale/concepts.md)
   * [Configuration](tools/chorale/config.md)
   * [Mirroring & Overrides](tools/chorale/mirroring.md)
+  * [Rule Matrix & Examples](tools/chorale/rules-matrix.md)
 
 ## Symfony Bundles
 
