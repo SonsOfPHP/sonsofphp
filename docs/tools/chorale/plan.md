@@ -13,7 +13,7 @@ The `plan` command is an advanced dry‑run that inspects your monorepo and prin
 ## Usage
 
 ```bash
-php tools/chorale/bin/chorale plan [<vendor/name>] [options]
+chorale plan [<vendor/name>] [options]
 ```
 
 - `<vendor/name>`: Optional composer package name to focus on a single package
@@ -34,25 +34,25 @@ php tools/chorale/bin/chorale plan [<vendor/name>] [options]
 
 ```bash
 # All packages, detailed output
-php tools/chorale/bin/chorale plan
+chorale plan
 
 # Concise one‑liners
-php tools/chorale/bin/chorale plan --concise
+chorale plan --concise
 
 # Show no‑ops too
-php tools/chorale/bin/chorale plan --show-all
+chorale plan --show-all
 
 # JSON output for apply
-php tools/chorale/bin/chorale plan --json > plan.json
+chorale plan --json > plan.json
 
 # Focus on one package by composer name
-php tools/chorale/bin/chorale plan sonsofphp/cache
+chorale plan sonsofphp/cache
 
 # Focused + concise
-php tools/chorale/bin/chorale plan sonsofphp/cache --concise
+chorale plan sonsofphp/cache --concise
 
 # Limit discovery to a folder (path)
-php tools/chorale/bin/chorale plan --paths src/SonsOfPHP/Component/Cache
+chorale plan --paths src/SonsOfPHP/Component/Cache
 ```
 
 ## Output Breakdown
@@ -106,4 +106,3 @@ Example snippet (root update):
 - Use `--concise` for quick scans, and omit it to see exact JSON diffs.
 - Combine the positional `<vendor/name>` with `--json` to isolate and export a single package’s plan.
 - For CI checks, run with `--strict` so the command exits non‑zero when action is required.
-

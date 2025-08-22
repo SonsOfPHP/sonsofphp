@@ -1,5 +1,7 @@
 # Mirroring & Overrides
 
+See also: [Rule Matrix & Examples](rules-matrix.md) for side‑by‑side input→output transformations of each rule.
+
 Chorale can mirror and merge selected keys from the root `composer.json` into each package’s `composer.json`.
 This is fully opt‑in and controlled through `chorale.yaml` rules and per‑package overrides.
 
@@ -79,4 +81,3 @@ targets:
 
 - `plan --json` includes the exact `apply` object per package.
 - Root steps include `meta.delta_*` with counts for added/removed/changed.
-
