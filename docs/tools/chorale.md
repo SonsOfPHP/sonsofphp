@@ -37,7 +37,7 @@ Chorale automatically merges all package `composer.json` files into the root `co
 - `apply` – execute steps from a JSON plan file.
 
 See also:
-- Plan command reference: tools/chorale/plan.md
+- Commands: tools/chorale/commands/README.md
 - Core concepts: tools/chorale/concepts.md
 - Configuration and chorale.yaml: tools/chorale/config.md
 - Composer mirroring and overrides: tools/chorale/mirroring.md

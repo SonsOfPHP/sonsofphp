@@ -51,29 +51,11 @@ Positional arguments
 - package: Optional composer package name (e.g. vendor/name) to focus the plan
   on a single package. Useful to inspect exact diffs in large monorepos.
 
-Common options
-- Verbosity controls detail:
-  - default: concise one-line summaries
-  - -v: detailed blocks
-  - -vv: detailed + include no-op summaries
-  - -vvv: everything above plus full JSON plan at end
-- --show-all: Include no-op summaries (same as -vv or higher).
-- --json: Output as JSON for apply or tooling (includes delta metadata).
-- --project-root=PATH: Project root (defaults to current directory).
-- --paths=DIR ...: Limit discovery to specific package paths (directories).
-- --force-split: Plan split steps even when content appears unchanged.
-- --verify-remote: Verify remote state when local lockfiles are missing/stale.
-- --strict: Exit non-zero if issues are detected (e.g., missing root version,
-  unresolved conflicts).
-
-Examples
-  chorale plan
-  chorale plan -v
-  chorale plan -vv
-  chorale plan --json > plan.json
-  chorale plan sonsofphp/cache
-  chorale plan sonsofphp/cache -v
-  chorale plan --paths src/SonsOfPHP/Component/Cache
+Verbosity controls detail:
+- default: concise one-line summaries
+- -v: detailed blocks
+- -vv: detailed + include no-op summaries
+- -vvv: everything above plus full JSON plan at end
 
 Notes
 - Delta notation [+added/-removed/~changed] summarizes composer map changes.

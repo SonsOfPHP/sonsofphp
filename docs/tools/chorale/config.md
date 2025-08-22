@@ -72,9 +72,48 @@ split:
     - "**/.DS_Store"
 ```
 
+## Complete Example
+
+A cohesive `chorale.yaml` showing common settings together:
+
+```yaml
+patterns:
+  - match: "src/SonsOfPHP/*"
+  - match: "src/SonsOfPHP/Component/*"
+
+targets:
+  - path: "src/SonsOfPHP/Component/Cache"
+    repo_vendor: SonsOfPHP
+    composer_overrides:
+      values:
+        description: "{name} component for the Sons of PHP monorepo"
+      rules:
+        homepage: mirror
+  - path: "src/SonsOfPHP/Component/Clock"
+    composer_overrides:
+      values:
+        description: "Clock utilities for Sons of PHP"
+
+composer_sync:
+  rules:
+    authors: mirror
+    license: mirror
+    support: merge-object
+    funding: merge-object
+    extra: merge-object
+    keywords: append-unique
+    homepage: mirror-unless-overridden
+    description: ignore
+
+split:
+  ignore:
+    - "vendor/**"
+    - "**/composer.lock"
+    - "**/.DS_Store"
+```
+
 ## Notes
 
 - Overrides win over rules for specific packages (see Mirroring & Overrides).
 - Patterns determine discovery roots; paths let you limit plan scope quickly.
 - Use `plan --strict` in CI to require explicit action when needed.
-

@@ -26,7 +26,11 @@ Root excerpt
 
 ```json
 {
-  "authors": [{ "name": "Sons of PHP" }],
+  "authors": [
+    {
+      "name": "Sons of PHP"
+    }
+  ],
   "license": "MIT"
 }
 ```
@@ -35,7 +39,11 @@ Package before
 
 ```json
 {
-  "authors": [{ "name": "Someone Else" }],
+  "authors": [
+    {
+      "name": "Someone Else"
+    }
+  ],
   "license": "Proprietary"
 }
 ```
@@ -44,7 +52,11 @@ Package after (planned edits)
 
 ```json
 {
-  "authors": [{ "name": "Sons of PHP" }],
+  "authors": [
+    {
+      "name": "Sons of PHP"
+    }
+  ],
   "license": "MIT"
 }
 ```
@@ -67,19 +79,23 @@ Case A — package missing key (mirrors from root)
 Root excerpt
 
 ```json
-{ "homepage": "https://sonsofphp.com" }
+{
+  "homepage": "https://sonsofphp.com"
+}
 ```
 
 Package before
 
 ```json
-{ }
+{}
 ```
 
 Package after
 
 ```json
-{ "homepage": "https://sonsofphp.com" }
+{
+  "homepage": "https://sonsofphp.com"
+}
 ```
 
 Case B — package has key (no change)
@@ -87,13 +103,17 @@ Case B — package has key (no change)
 Package before
 
 ```json
-{ "homepage": "https://example.test/pkg" }
+{
+  "homepage": "https://example.test/pkg"
+}
 ```
 
 Package after
 
 ```json
-{ "homepage": "https://example.test/pkg" }
+{
+  "homepage": "https://example.test/pkg"
+}
 ```
 
 ## merge-object
@@ -118,10 +138,12 @@ Root excerpt
 {
   "support": {
     "issues": "https://github.com/sonsofphp/monorepo/issues",
-    "docs":   "https://docs.sonsofphp.com"
+    "docs": "https://docs.sonsofphp.com"
   },
   "extra": {
-    "branch-alias": { "dev-main": "1.x-dev" }
+    "branch-alias": {
+      "dev-main": "1.x-dev"
+    }
   }
 }
 ```
@@ -130,8 +152,15 @@ Package before
 
 ```json
 {
-  "support": { "issues": "https://tracker.example/pkg" },
-  "extra":   { "branch-alias": { "dev-main": "2.x-dev" }, "mark": true }
+  "support": {
+    "issues": "https://tracker.example/pkg"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-main": "2.x-dev"
+    },
+    "mark": true
+  }
 }
 ```
 
@@ -140,12 +169,14 @@ Package after
 ```json
 {
   "support": {
-    "issues": "https://tracker.example/pkg",   
-    "docs":   "https://docs.sonsofphp.com"     
+    "issues": "https://tracker.example/pkg",
+    "docs": "https://docs.sonsofphp.com"
   },
   "extra": {
-    "branch-alias": { "dev-main": "2.x-dev" }, 
-    "mark": true                                  
+    "branch-alias": {
+      "dev-main": "2.x-dev"
+    },
+    "mark": true
   }
 }
 ```
@@ -167,19 +198,38 @@ Input → Output
 Root excerpt
 
 ```json
-{ "keywords": ["php", "monorepo", "tooling"] }
+{
+  "keywords": [
+    "php",
+    "monorepo",
+    "tooling"
+  ]
+}
 ```
 
 Package before
 
 ```json
-{ "keywords": ["cache", "php", ""] }
+{
+  "keywords": [
+    "cache",
+    "php",
+    ""
+  ]
+}
 ```
 
 Package after (sorted unique)
 
 ```json
-{ "keywords": ["cache", "monorepo", "php", "tooling"] }
+{
+  "keywords": [
+    "cache",
+    "monorepo",
+    "php",
+    "tooling"
+  ]
+}
 ```
 
 ## ignore
@@ -199,19 +249,25 @@ Input → Output
 Root excerpt
 
 ```json
-{ "description": "Shared default description" }
+{
+  "description": "Shared default description"
+}
 ```
 
 Package before
 
 ```json
-{ "description": "Specific package description" }
+{
+  "description": "Specific package description"
+}
 ```
 
 Package after
 
 ```json
-{ "description": "Specific package description" }
+{
+  "description": "Specific package description"
+}
 ```
 
 ## Per‑package overrides (values and rules)
