@@ -11,8 +11,8 @@ use Chorale\Util\PathUtilsInterface;
  * Uses PathUtils::match to support '*', '?', and '**' semantics.
  *
  * Example:
- * - firstMatch([{match:'src/* /Lib'}], 'src/Acme/Lib') => 0
- * - allMatches([{match:'src/* /Lib'},{match:'src/Acme/*'}], 'src/Acme/Lib') => [0,1]
+ * - firstMatch([{match:'src/*\/Lib'}], 'src/Acme/Lib') => 0
+ * - allMatches([{match:'src/*\/Lib'},{match:'src/Acme/*'}], 'src/Acme/Lib') => [0,1]
  */
 final readonly class PatternMatcher implements PatternMatcherInterface
 {
@@ -22,10 +22,10 @@ final readonly class PatternMatcher implements PatternMatcherInterface
 
     public function firstMatch(array $patterns, string $path): ?int
     {
-        foreach ($patterns as $i => $p) {
-            $m = (string) ($p['match'] ?? '');
-            if ($m !== '' && $this->paths->match($m, $path)) {
-                return (int) $i;
+        foreach ($patterns as $index => $patternEntry) {
+            $patternString = (string) ($patternEntry['match'] ?? '');
+            if ($patternString !== '' && $this->paths->match($patternString, $path)) {
+                return (int) $index;
             }
         }
 
@@ -34,14 +34,14 @@ final readonly class PatternMatcher implements PatternMatcherInterface
 
     public function allMatches(array $patterns, string $path): array
     {
-        $hits = [];
-        foreach ($patterns as $i => $p) {
-            $pattern = (string) ($p['match'] ?? '');
-            if ($pattern !== '' && $this->paths->match($pattern, $path)) {
-                $hits[] = (int) $i;
+        $matchIndexes = [];
+        foreach ($patterns as $index => $patternEntry) {
+            $patternString = (string) ($patternEntry['match'] ?? '');
+            if ($patternString !== '' && $this->paths->match($patternString, $path)) {
+                $matchIndexes[] = (int) $index;
             }
         }
 
-        return $hits;
+        return $matchIndexes;
     }
 }

@@ -10,84 +10,84 @@ namespace Chorale\Util;
  * Examples:
  * - normalize('src//Foo/./Bar/..') => 'src/Foo'
  * - isUnder('src/Acme/Lib', 'src') => true
- * - match('src/* /Lib', 'src/Acme/Lib') => true  (single-star within one segment)
- * - match('src/** /Lib', 'src/a/b/c/Lib') => true  (double-star across directories)
+ * - match('src/*\/Lib', 'src/Acme/Lib') => true  (single-star within one segment)
+ * - match('src/**\/Lib', 'src/a/b/c/Lib') => true  (double-star across directories)
  * - leaf('src/Acme/Lib') => 'Lib'
  */
 final class PathUtils implements PathUtilsInterface
 {
     public function normalize(string $path): string
     {
-        $p = str_replace('\\', '/', $path);
+        $normalizedPath = str_replace('\\', '/', $path);
         // remove multiple slashes
-        $p = preg_replace('#/+#', '/', $p) ?? $p;
+        $normalizedPath = preg_replace('#/+#', '/', $normalizedPath) ?? $normalizedPath;
         // remove trailing slash (except root '/')
-        if ($p !== '/' && str_ends_with($p, '/')) {
-            $p = rtrim($p, '/');
+        if ($normalizedPath !== '/' && str_ends_with($normalizedPath, '/')) {
+            $normalizedPath = rtrim($normalizedPath, '/');
         }
 
         // resolve "." and ".." cheaply (string-level, not FS)
-        $parts = [];
-        foreach (explode('/', $p) as $seg) {
-            if ($seg === '') {
+        $resolvedSegments = [];
+        foreach (explode('/', $normalizedPath) as $segment) {
+            if ($segment === '') {
                 continue;
             }
 
-            if ($seg === '.') {
+            if ($segment === '.') {
                 continue;
             }
 
-            if ($seg === '..') {
-                array_pop($parts);
+            if ($segment === '..') {
+                array_pop($resolvedSegments);
                 continue;
             }
 
-            $parts[] = $seg;
+            $resolvedSegments[] = $segment;
         }
 
-        $out = implode('/', $parts);
+        $out = implode('/', $resolvedSegments);
         return $out === '' ? '.' : $out;
     }
 
     public function isUnder(string $path, string $root): bool
     {
-        $p = $this->normalize($path);
-        $r = $this->normalize($root);
-        return $p === $r || str_starts_with($p, $r . '/');
+        $normalizedPath = $this->normalize($path);
+        $normalizedRoot = $this->normalize($root);
+        return $normalizedPath === $normalizedRoot || str_starts_with($normalizedPath, $normalizedRoot . '/');
     }
 
     public function match(string $pattern, string $path): bool
     {
-        $pat = $this->normalize($pattern);
-        $pth = $this->normalize($path);
+        $normalizedPattern = $this->normalize($pattern);
+        $normalizedPath    = $this->normalize($path);
 
         // Split into tokens while keeping the delimiters (** , * , ?)
-        $parts = preg_split('/(\*\*|\*|\?)/', $pat, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
-        if ($parts === false) {
+        $tokens = preg_split('/(\*\*|\*|\?)/', $normalizedPattern, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+        if ($tokens === false) {
             return false;
         }
 
         $regex = '';
-        foreach ($parts as $part) {
-            if ($part === '**') {
+        foreach ($tokens as $token) {
+            if ($token === '**') {
                 $regex .= '.*';        // can cross slashes, zero or more
-            } elseif ($part === '*') {
+            } elseif ($token === '*') {
                 $regex .= '[^/]*';     // single segment
-            } elseif ($part === '?') {
+            } elseif ($token === '?') {
                 $regex .= '[^/]';      // one char in a segment
             } else {
-                $regex .= preg_quote($part, '#'); // literal
+                $regex .= preg_quote($token, '#'); // literal
             }
         }
 
         // full-string, case-sensitive; add 'i' if you want case-insensitive
-        return (bool) preg_match('#^' . $regex . '$#u', $pth);
+        return (bool) preg_match('#^' . $regex . '$#u', $normalizedPath);
     }
 
     public function leaf(string $path): string
     {
-        $p = $this->normalize($path);
-        $pos = strrpos($p, '/');
-        return $pos === false ? $p : substr($p, $pos + 1);
+        $normalizedPath = $this->normalize($path);
+        $pos = strrpos($normalizedPath, '/');
+        return $pos === false ? $normalizedPath : substr($normalizedPath, $pos + 1);
     }
 }

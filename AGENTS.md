@@ -19,7 +19,9 @@ This repository is a PHP monorepo containing many packages under `src/`. This gu
 - Prefer minimal, targeted changes; avoid refactors beyond the task scope.
 - Never edit anything under any `vendor/` directory or generated artifacts like `dist/`.
 - Maintain backward compatibility for public APIs unless explicitly instructed otherwise.
-- Update relevant docs under `docs/` when behavior or public APIs change.
+- Update relevant docs under `docs/` when behavior, commands, or public APIs change.
+- When adding flags or changing CLI behavior, update command help and the related
+  pages under `docs/tools/` (e.g., Chorale) and link new pages in `docs/SUMMARY.md`.
 - Keep code style consistent; use provided tooling to format, lint, and check types.
 
 ## Setup
