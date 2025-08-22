@@ -34,6 +34,7 @@ final readonly class PlanBuilder implements PlanBuilderInterface
     {
         $opts = [
             'paths'         => (array) ($options['paths'] ?? []),
+            'package'       => (string) ($options['package'] ?? ''),
             'show_all'      => (bool) ($options['show_all'] ?? false),
             'force_split'   => (bool) ($options['force_split'] ?? false),
             'verify_remote' => (bool) ($options['verify_remote'] ?? false),
@@ -93,6 +94,12 @@ final readonly class PlanBuilder implements PlanBuilderInterface
             // Composer name (prefer composer.json)
             $pcJson = $this->composerReader->read($projectRoot . '/' . $pkgPath . '/composer.json');
             $pkgName = is_string($pcJson['name'] ?? null) ? strtolower($pcJson['name']) : strtolower($def['repo_vendor'] . '/' . $this->paths->kebab($nameLeaf));
+
+            // Optional: focus on a single package by name
+            if ($opts['package'] !== '' && strtolower($opts['package']) !== $pkgName) {
+                continue;
+            }
+
             $packageNames[$pkgPath] = $pkgName;
 
             // 1) Version sync
@@ -100,7 +107,7 @@ final readonly class PlanBuilder implements PlanBuilderInterface
                 $current = is_string($pcJson['version'] ?? null) ? $pcJson['version'] : null;
                 if ($current !== $rootVersion) {
                     $reason = $current === null ? 'missing' : 'mismatch';
-                    $steps[] = new PackageVersionUpdateStep($pkgPath, $pkgName, $rootVersion, $reason);
+                    $steps[] = new PackageVersionUpdateStep($pkgPath, $pkgName, $rootVersion, $reason, $current);
                 } elseif ($opts['show_all']) {
                     $noop['version'][] = $pkgName;
                 }
@@ -174,7 +181,12 @@ final readonly class PlanBuilder implements PlanBuilderInterface
                 'root_version' => (string) ($rootComposer['version'] ?? ($rootVersion ?? '')),
             ];
             if ($this->diffs->changed($current, $desired, ['require','replace','root','root_version'])) {
-                $aggStep = new ComposerRootUpdateStep($rootName, $rootVersion, $require, $replace, ['version_strategy' => 'lockstep-root']);
+                $meta = [
+                    'version_strategy' => 'lockstep-root',
+                    'delta_require' => $this->computeMapDelta($current['require'], $require),
+                    'delta_replace' => $this->computeMapDelta($current['replace'], $replace),
+                ];
+                $aggStep = new ComposerRootUpdateStep($rootName, $rootVersion, $require, $replace, $meta);
                 $steps[] = $aggStep;
             } elseif ($opts['show_all']) {
                 $noop['root-agg'][] = 'composer.json';
@@ -199,10 +211,13 @@ final readonly class PlanBuilder implements PlanBuilderInterface
                 'require-dev' => (array) ($merge['require-dev'] ?? []),
             ];
             if ($this->diffs->changed($current, $desired, ['require','require-dev'])) {
+                $deltaReq = $this->computeMapDelta($current['require'], $desired['require']);
+                $deltaDev = $this->computeMapDelta($current['require-dev'], $desired['require-dev']);
                 $steps[] = new RootDependencyMergeStep(
                     (array) $merge['require'],
                     (array) $merge['require-dev'],
-                    (array) ($merge['conflicts'] ?? [])
+                    (array) ($merge['conflicts'] ?? []),
+                    ['delta_require' => $deltaReq, 'delta_require_dev' => $deltaDev]
                 );
                 if (!empty($merge['conflicts']) && $opts['strict']) {
                     $exit = $exit !== 0 ? $exit : 1;
@@ -276,5 +291,30 @@ final readonly class PlanBuilder implements PlanBuilderInterface
         }
 
         return $apply;
+    }
+
+    /**
+     * @param array<string,string> $current
+     * @param array<string,string> $desired
+     * @return array{added:int,removed:int,changed:int}
+     */
+    private function computeMapDelta(array $current, array $desired): array
+    {
+        $added = 0;
+        $removed = 0;
+        $changed = 0;
+        $curKeys = array_keys($current);
+        $desKeys = array_keys($desired);
+        $removed = count(array_diff($curKeys, $desKeys));
+        $added   = count(array_diff($desKeys, $curKeys));
+        foreach (array_intersect($curKeys, $desKeys) as $k) {
+            $a = (string) $current[$k];
+            $b = (string) $desired[$k];
+            if ($a !== $b) {
+                $changed++;
+            }
+        }
+
+        return ['added' => $added, 'removed' => $removed, 'changed' => $changed];
     }
 }

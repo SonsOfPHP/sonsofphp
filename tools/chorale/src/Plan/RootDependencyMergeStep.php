@@ -17,7 +17,8 @@ final readonly class RootDependencyMergeStep implements PlanStepInterface
     public function __construct(
         private array $require,
         private array $requireDev,
-        private array $conflicts = []
+        private array $conflicts = [],
+        private array $meta = []
     ) {}
 
     public function type(): string
@@ -37,6 +38,7 @@ final readonly class RootDependencyMergeStep implements PlanStepInterface
             'require'     => $this->require,
             'require-dev' => $this->requireDev,
             'conflicts'   => $this->conflicts,
+            'meta'        => $this->meta,
         ];
     }
 }
