@@ -1,7 +1,7 @@
 {
     "require": {
-        "vimeo/psalm": "^5",
-        "psalm/plugin-phpunit": "^0.18"
+        "vimeo/psalm": "^6",
+        "psalm/plugin-phpunit": "^0.19"
     },
     "config": {
         "allow-plugins": {
