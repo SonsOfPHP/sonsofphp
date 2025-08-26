@@ -60,6 +60,7 @@
         "sonsofphp/pager-implementation": "0.3.x-dev",
         "sonsofphp/registry-implementation": "0.3.x-dev",
         "sonsofphp/state-machine-implementation": "0.3.x-dev",
+        "sonsofphp/vault-implementation": "0.3.x-dev",
         "sonsofphp/version-implementation": "0.3.x-dev"
     },
     "require": {
@@ -136,6 +137,7 @@
         "sonsofphp/registry-contract": "self.version",
         "sonsofphp/state-machine": "self.version",
         "sonsofphp/state-machine-contract": "self.version",
+        "sonsofphp/vault": "self.version",
         "sonsofphp/version": "self.version",
         "sonsofphp/version-contract": "self.version"
     },
@@ -172,7 +174,8 @@
             "src/SonsOfPHP/Bridge/Doctrine/DBAL/Pager/Tests",
             "src/SonsOfPHP/Bridge/Doctrine/ORM/Pager/Tests",
             "src/SonsOfPHP/Component/Version/Tests",
-            "src/SonsOfPHP/Component/Registry/Tests"
+            "src/SonsOfPHP/Component/Registry/Tests",
+            "src/SonsOfPHP/Component/Vault/Tests"
         ],
         "psr-4": {
             "SonsOfPHP\\Bard\\": "src/SonsOfPHP/Bard/src",
@@ -206,6 +209,7 @@
             "SonsOfPHP\\Component\\Pager\\": "src/SonsOfPHP/Component/Pager",
             "SonsOfPHP\\Component\\Registry\\": "src/SonsOfPHP/Component/Registry",
             "SonsOfPHP\\Component\\StateMachine\\": "src/SonsOfPHP/Component/StateMachine",
+            "SonsOfPHP\\Component\\Vault\\": "src/SonsOfPHP/Component/Vault",
             "SonsOfPHP\\Component\\Version\\": "src/SonsOfPHP/Component/Version",
             "SonsOfPHP\\Contract\\Common\\": "src/SonsOfPHP/Contract/Common",
             "SonsOfPHP\\Contract\\Cookie\\": "src/SonsOfPHP/Contract/Cookie",
