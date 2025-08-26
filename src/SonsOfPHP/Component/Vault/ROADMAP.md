@@ -23,13 +23,6 @@
   - Redis adapter encrypts secrets and handles expirations.
   - Implementation meets the Global DoD.
 
-### Add secret versioning
-- [ ] Provide APIs to maintain secret history across updates.
-- **Acceptance Criteria**
-  - All Global DoR items are satisfied before implementation begins.
-  - Previous versions of a secret remain accessible.
-  - Implementation meets the Global DoD.
-
 ### Provide CLI tools for managing secrets
 - [ ] Expose commands to set, get, and rotate secrets.
 - **Acceptance Criteria**

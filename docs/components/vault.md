@@ -6,13 +6,18 @@ The Vault component securely stores secrets using pluggable storage backends and
 
 ```php
 use SonsOfPHP\Component\Vault\Cipher\OpenSSLCipher;
+use SonsOfPHP\Component\Vault\KeyRing\InMemoryKeyRing;
 use SonsOfPHP\Component\Vault\Storage\InMemoryStorage;
 use SonsOfPHP\Component\Vault\Vault;
 
-$keys  = ['v1' => '32_byte_master_key_example!!'];
-$vault = new Vault(new InMemoryStorage(), new OpenSSLCipher(), $keys, 'v1');
-$vault->set('db_password', 'secret', 'app');
-$secret = $vault->get('db_password', 'app');
+$keyRing = new InMemoryKeyRing(['v1' => '32_byte_master_key_example!!'], 'v1');
+$vault   = new Vault(new InMemoryStorage(), new OpenSSLCipher(), $keyRing);
+$vault->set('db_password', 'secret', ['app']);
+$secret = $vault->get('db_password', ['app']);
+
+// Store a new version of the secret
+$vault->set('db_password', 'new-secret', ['app']);
+$oldSecret = $vault->get('db_password', ['app'], 1); // retrieve version 1
 
 // Rotate the master key
 $vault->rotateKey('v2', 'another_32_byte_master_key!!');
