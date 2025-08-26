@@ -29,3 +29,10 @@
   - All Global DoR items are satisfied before implementation begins.
   - CLI allows basic secret management tasks.
   - Implementation meets the Global DoD.
+
+### Add Symfony Serializer marshaller
+- [ ] Support complex object graphs using Symfony's Serializer component.
+- **Acceptance Criteria**
+  - All Global DoR items are satisfied before implementation begins.
+  - Marshaller encodes and decodes objects using Symfony Serializer.
+  - Implementation meets the Global DoD.

@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Vault\Cipher;
 
-use RuntimeException;
 use SensitiveParameter;
+use SonsOfPHP\Component\Vault\Exception\DecryptionFailedException;
+use SonsOfPHP\Component\Vault\Exception\EncryptionFailedException;
+use SonsOfPHP\Component\Vault\Exception\InvalidCiphertextException;
 
 /**
  * Encrypts and decrypts secrets using OpenSSL.
@@ -17,7 +19,11 @@ class OpenSSLCipher implements CipherInterface
      */
     public function __construct(private readonly string $cipherMethod = 'aes-256-gcm') {}
 
-    /** @param array<array-key, mixed> $aad */
+    /**
+     * @param array<array-key, mixed> $aad Additional authenticated data.
+     *
+     * @throws EncryptionFailedException
+     */
     public function encrypt(#[SensitiveParameter] string $plaintext, #[SensitiveParameter] string $key, array $aad = []): string
     {
         $ivLength   = openssl_cipher_iv_length($this->cipherMethod);
@@ -26,18 +32,23 @@ class OpenSSLCipher implements CipherInterface
         $encodedAad = json_encode($aad);
         $encrypted  = openssl_encrypt($plaintext, $this->cipherMethod, $key, OPENSSL_RAW_DATA, $iv, $tag, $encodedAad, 16);
         if (false === $encrypted) {
-            throw new RuntimeException('Unable to encrypt secret.');
+            throw new EncryptionFailedException('Unable to encrypt secret.');
         }
 
         return base64_encode($iv . $tag . $encrypted);
     }
 
-    /** @param array<array-key, mixed> $aad */
+    /**
+     * @param array<array-key, mixed> $aad Additional authenticated data.
+     *
+     * @throws InvalidCiphertextException
+     * @throws DecryptionFailedException
+     */
     public function decrypt(#[SensitiveParameter] string $ciphertext, #[SensitiveParameter] string $key, array $aad = []): string
     {
         $data = base64_decode($ciphertext, true);
         if (false === $data) {
-            throw new RuntimeException('Invalid ciphertext.');
+            throw new InvalidCiphertextException('Invalid ciphertext.');
         }
 
         $ivLength  = openssl_cipher_iv_length($this->cipherMethod);
@@ -48,7 +59,7 @@ class OpenSSLCipher implements CipherInterface
         $encodedAad = json_encode($aad);
         $decrypted  = openssl_decrypt($payload, $this->cipherMethod, $key, OPENSSL_RAW_DATA, $iv, $tag, $encodedAad);
         if (false === $decrypted) {
-            throw new RuntimeException('Unable to decrypt secret.');
+            throw new DecryptionFailedException('Unable to decrypt secret.');
         }
 
         return $decrypted;

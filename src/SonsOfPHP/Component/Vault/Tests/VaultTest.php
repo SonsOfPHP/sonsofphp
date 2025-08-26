@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace SonsOfPHP\Component\Vault\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use RuntimeException;
 use SonsOfPHP\Component\Vault\Cipher\OpenSSLCipher;
+use SonsOfPHP\Component\Vault\Exception\DecryptionFailedException;
+use SonsOfPHP\Component\Vault\Exception\UnknownKeyException;
 use SonsOfPHP\Component\Vault\KeyRing\InMemoryKeyRing;
+use SonsOfPHP\Component\Vault\Marshaller\JsonMarshaller;
 use SonsOfPHP\Component\Vault\Storage\InMemoryStorage;
 use SonsOfPHP\Component\Vault\Vault;
 
-/**
- * @covers \SonsOfPHP\Component\Vault\Vault
- * @internal
- */
+#[CoversClass(Vault::class)]
 class VaultTest extends TestCase
 {
     /**
@@ -22,11 +22,12 @@ class VaultTest extends TestCase
      */
     private function createVault(?InMemoryStorage &$storage = null): Vault
     {
-        $storage ??= new InMemoryStorage();
-        $cipher  = new OpenSSLCipher();
-        $keyRing = new InMemoryKeyRing(['v1' => 'test_encryption_key_32_bytes!'], 'v1');
+        $storage    ??= new InMemoryStorage();
+        $cipher      = new OpenSSLCipher();
+        $keyRing     = new InMemoryKeyRing(['v1' => 'test_encryption_key_32_bytes!'], 'v1');
+        $marshaller  = new JsonMarshaller();
 
-        return new Vault($storage, $cipher, $keyRing);
+        return new Vault($storage, $cipher, $keyRing, $marshaller);
     }
 
     public function testSecretCanBeRetrieved(): void
@@ -74,7 +75,7 @@ class VaultTest extends TestCase
         $vault = $this->createVault();
         $vault->set('token', 'secret', ['aad']);
 
-        $this->expectException(RuntimeException::class);
+        $this->expectException(DecryptionFailedException::class);
         $vault->get('token', ['bad']);
     }
 
@@ -95,7 +96,7 @@ class VaultTest extends TestCase
         $vault->set('current', 'secret');
 
         $stored   = $storage->get('current');
-        $versions = unserialize($stored, ['allowed_classes' => false]);
+        $versions = json_decode((string) $stored, true, 512, JSON_THROW_ON_ERROR);
         $this->assertStringStartsWith('v2:', $versions['1']);
     }
 
@@ -115,5 +116,19 @@ class VaultTest extends TestCase
         $vault->set('name', 'second');
 
         $this->assertSame('first', $vault->get('name', [], 1));
+    }
+
+    public function testGetThrowsWhenKeyIsUnknown(): void
+    {
+        $storage = new InMemoryStorage();
+        $vault   = $this->createVault($storage);
+        $vault->set('secret', 'value');
+
+        $otherKeyRing = new InMemoryKeyRing(['v2' => 'another_32_byte_encryption_key!!'], 'v2');
+        $marshaller   = new JsonMarshaller();
+        $otherVault   = new Vault($storage, new OpenSSLCipher(), $otherKeyRing, $marshaller);
+
+        $this->expectException(UnknownKeyException::class);
+        $otherVault->get('secret');
     }
 }
