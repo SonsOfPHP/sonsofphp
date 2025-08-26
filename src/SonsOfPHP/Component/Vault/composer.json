@@ -1,0 +1,57 @@
+{
+    "name": "sonsofphp/vault",
+    "type": "library",
+    "description": "Secure secret storage for PHP applications",
+    "keywords": [
+        "vault",
+        "secret",
+        "encryption"
+    ],
+    "homepage": "https://github.com/SonsOfPHP/vault",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sons of PHP Community",
+            "homepage": "https://github.com/SonsOfPHP/sonsofphp/graphs/contributors"
+        },
+        {
+            "name": "Joshua Estes",
+            "email": "joshua@sonsofphp.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/SonsOfPHP/sonsofphp/issues",
+        "forum": "https://github.com/orgs/SonsOfPHP/discussions",
+        "docs": "https://docs.sonsofphp.com"
+    },
+    "autoload": {
+        "psr-4": {
+            "SonsOfPHP\\Component\\Vault\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.3",
+        "ext-openssl": "*"
+    },
+    "extra": {
+        "sort-packages": true,
+        "branch-alias": {
+            "dev-main": "0.3.x-dev"
+        }
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/JoshuaEstes"
+        },
+        {
+            "type": "tidelift",
+            "url": "https://tidelift.com/subscription/pkg/packagist-sonsofphp-sonsofphp"
+        }
+    ]
+}

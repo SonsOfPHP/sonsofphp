@@ -74,6 +74,7 @@
   * [Adapters](components/pager/adapters.md)
 * [Registry](components/registry.md)
 * [State Machine](components/state-machine.md)
+* [Vault](components/vault.md)
 * [Version](components/version.md)
 
 ## 💁 Contributing
