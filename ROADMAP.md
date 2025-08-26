@@ -121,35 +121,6 @@ This roadmap outlines planned libraries and updates for the Sons of PHP monorepo
     - Release notes highlight Symfony 7 support.
     - Implementation meets the Global DoD.
 
-### Epic: Introduce Vault Component
-**Description:** Provide secure secret storage with pluggable backends.
-
-- [ ] Add filesystem storage adapter.
-  - **Acceptance Criteria**
-    - All Global DoR items are satisfied before implementation begins.
-    - Filesystem adapter encrypts and retrieves secrets reliably.
-    - Implementation meets the Global DoD.
-- [ ] Add database storage adapter.
-  - **Acceptance Criteria**
-    - All Global DoR items are satisfied before implementation begins.
-    - Database adapter persists encrypted secrets.
-    - Implementation meets the Global DoD.
-- [ ] Add Redis storage adapter.
-  - **Acceptance Criteria**
-    - All Global DoR items are satisfied before implementation begins.
-    - Redis adapter stores encrypted secrets and respects expirations.
-    - Implementation meets the Global DoD.
-- [ ] Support key rotation and secret versioning.
-  - **Acceptance Criteria**
-    - All Global DoR items are satisfied before implementation begins.
-    - Secrets can be rotated without loss using new keys.
-    - Implementation meets the Global DoD.
-- [ ] Provide CLI tools for managing secrets.
-  - **Acceptance Criteria**
-    - All Global DoR items are satisfied before implementation begins.
-    - CLI allows setting, retrieving, and rotating secrets.
-    - Implementation meets the Global DoD.
-
 ## Suggestions
 
 - Automate dependency updates with a scheduled tool (e.g., Renovate or Dependabot).

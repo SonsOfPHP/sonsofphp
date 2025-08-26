@@ -1,6 +1,8 @@
 Sons of PHP - Vault
 ===================
 
+Secure secret storage with pluggable backends, key rotation, and support for additional authenticated data.
+
 ## Learn More
 
 * [Documentation][docs]
