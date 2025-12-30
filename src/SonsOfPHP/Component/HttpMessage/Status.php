@@ -82,23 +82,28 @@ enum Status: int
     case NOT_EXTENDED                    = 510;
     case NETWORK_AUTHENTICATION_REQUIRED = 511;
 
-    //public function isInformational(): bool
-    //{
-    //}
+    public function isInformational(): bool
+    {
+        return $this->value >= 100 && $this->value < 200;
+    }
 
-    //public function isSuccessful(): bool
-    //{
-    //}
+    public function isSuccessful(): bool
+    {
+        return $this->value >= 200 && $this->value < 300;
+    }
 
-    //public function isRedirection(): bool
-    //{
-    //}
+    public function isRedirection(): bool
+    {
+        return $this->value >= 300 && $this->value < 400;
+    }
 
-    //public function isClientError(): bool
-    //{
-    //}
+    public function isClientError(): bool
+    {
+        return $this->value >= 400 && $this->value < 500;
+    }
 
-    //public function isServerError(): bool
-    //{
-    //}
+    public function isServerError(): bool
+    {
+        return $this->value >= 500 && $this->value < 600;
+    }
 }

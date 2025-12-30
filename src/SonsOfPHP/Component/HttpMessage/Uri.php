@@ -44,7 +44,7 @@ class Uri implements UriInterface, Stringable
             $this->path     = $parts['path'] ?? null;
             $this->fragment = $parts['fragment'] ?? null;
 
-            if (isset($parts['query']) && ($parts['query'] !== '' && $parts['query'] !== '0')) {
+            if (isset($parts['query']) && $parts['query'] !== '') {
                 parse_str($parts['query'], $this->queryParams);
             }
         }
@@ -124,8 +124,6 @@ class Uri implements UriInterface, Stringable
      */
     public function getQuery(): string
     {
-        //return http_build_query($this->queryParams, '', null, \PHP_QUERY_RFC3986);
-
         $query = '';
         foreach ($this->queryParams as $key => $value) {
             if (is_array($value)) {
@@ -256,8 +254,6 @@ class Uri implements UriInterface, Stringable
         parse_str($query, $output);
 
         $that = clone $this;
-
-        //$that->query = $query;
         $that->queryParams = $output;
 
         return $that;

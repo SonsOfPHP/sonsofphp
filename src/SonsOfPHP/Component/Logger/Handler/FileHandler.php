@@ -42,6 +42,17 @@ class FileHandler extends AbstractHandler
             return;
         }
 
+        $dir = dirname($this->filename);
+        if (!is_dir($dir)) {
+            if (!mkdir($dir, 0o777, true) && !is_dir($dir)) {
+                throw new RuntimeException(sprintf('Log directory "%s" could not be created', $dir));
+            }
+        }
+
+        if (!is_writable($dir)) {
+            throw new RuntimeException(sprintf('Log directory "%s" is not writable', $dir));
+        }
+
         if (false === $this->handle = fopen($this->filename, 'a')) {
             throw new RuntimeException(sprintf('"%s" could not be opened', $this->filename));
         }

@@ -14,9 +14,19 @@ use Psr\Http\Message\ResponseInterface;
  */
 class Response extends Message implements ResponseInterface
 {
-    private int $statusCode;
+    private int $statusCode = 200;
 
     private string $reasonPhrase = '';
+
+    public function __construct(int $statusCode = 200, string $reasonPhrase = '')
+    {
+        if (!Status::tryFrom($statusCode) instanceof Status) {
+            throw new InvalidArgumentException(sprintf('The status code "%d" is invalid', $statusCode));
+        }
+
+        $this->statusCode = $statusCode;
+        $this->reasonPhrase = $reasonPhrase;
+    }
 
     /**
      * {@inheritdoc}
@@ -35,7 +45,7 @@ class Response extends Message implements ResponseInterface
             throw new InvalidArgumentException(sprintf('The status code "%d" is invalid', $code));
         }
 
-        if (isset($this->statusCode) && $this->statusCode === $code && $this->reasonPhrase === $reasonPhrase) {
+        if ($this->statusCode === $code && $this->reasonPhrase === $reasonPhrase) {
             return $this;
         }
 

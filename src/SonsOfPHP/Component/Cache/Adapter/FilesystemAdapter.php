@@ -33,7 +33,9 @@ final class FilesystemAdapter extends AbstractAdapter
         }
 
         if (!is_dir($this->directory)) {
-            @mkdir($this->directory, $this->defaultPermission, true);
+            if (!mkdir($this->directory, $this->defaultPermission, true) && !is_dir($this->directory)) {
+                throw new \RuntimeException(sprintf('Directory "%s" could not be created', $this->directory));
+            }
         }
 
         $this->directory .= \DIRECTORY_SEPARATOR;
@@ -134,7 +136,12 @@ final class FilesystemAdapter extends AbstractAdapter
     {
         $hash = str_replace('/', '-', base64_encode(hash('xxh128', self::class . $key, true)));
         $dir = $this->directory . strtoupper($hash[0] . \DIRECTORY_SEPARATOR . $hash[1] . \DIRECTORY_SEPARATOR);
-        @mkdir($dir, $this->defaultPermission, true);
+
+        if (!is_dir($dir)) {
+            if (!mkdir($dir, $this->defaultPermission, true) && !is_dir($dir)) {
+                throw new \RuntimeException(sprintf('Cache directory "%s" could not be created', $dir));
+            }
+        }
 
         return $dir . substr($hash, 2, 20);
     }

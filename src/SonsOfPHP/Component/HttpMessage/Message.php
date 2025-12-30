@@ -100,12 +100,8 @@ class Message implements MessageInterface
             $value = [$value];
         }
 
-        $that->normalizedHeaders[$name] = $value;
-
-        array_walk($value, function (&$val, $key): void {
-            $val = strtolower($val);
-        });
-        $that->headers[strtolower($name)] = $value;
+        $that->headers[$name] = $value;
+        $that->normalizedHeaders[strtolower($name)] = $value;
 
         return $that;
     }
@@ -128,13 +124,13 @@ class Message implements MessageInterface
         }
 
         $that = clone $this;
-        $that->normalizedHeaders[$name][] = $value;
 
-        $values = $value;
-        array_walk($values, function (&$val, $key): void {
-            $val = strtolower($val);
-        });
-        $that->headers[strtolower($name)][] = $value;
+        $normalizedName = strtolower($name);
+        $existingValues = $that->normalizedHeaders[$normalizedName] ?? [];
+        $mergedValues = array_merge($existingValues, $value);
+
+        $that->headers[$name] = $mergedValues;
+        $that->normalizedHeaders[$normalizedName] = $mergedValues;
 
         return $that;
     }
