@@ -92,9 +92,19 @@ jobs:
               env:
                   MONOREPO_SPLIT_TOKEN: ${{ steps.app-token.outputs.token }}
               run: |
-                  authenticated_url="https://x-access-token:${MONOREPO_SPLIT_TOKEN}@github.com/"
-                  git config --global "url.${authenticated_url}.insteadOf" "git@github.com:"
-                  git config --global "url.${authenticated_url}.insteadOf" "ssh://git@github.com/"
+                  askpass="$RUNNER_TEMP/monorepo-split-git-askpass.sh"
+                  {
+                      echo '#!/usr/bin/env sh'
+                      echo 'case "$1" in'
+                      echo '    *Username*) printf "%s\n" "x-access-token" ;;'
+                      echo '    *Password*) printf "%s\n" "$MONOREPO_SPLIT_TOKEN" ;;'
+                      echo '    *) printf "\n" ;;'
+                      echo 'esac'
+                  } > "$askpass"
+                  chmod 700 "$askpass"
+                  echo "GIT_ASKPASS=$askpass" >> "$GITHUB_ENV"
+                  echo "GIT_TERMINAL_PROMPT=0" >> "$GITHUB_ENV"
+                  echo "MONOREPO_SPLIT_TOKEN=$MONOREPO_SPLIT_TOKEN" >> "$GITHUB_ENV"
             - name: Validate split config
               run: php .github/scripts/monorepo-split-plan.php
             - name: Plan pull request package splits

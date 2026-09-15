@@ -454,16 +454,17 @@ function publishSplit(array $package, string $sha, ?string $tag, array &$errors)
 {
     $name = (string) $package['name'];
     $repository = (string) $package['repository'];
+    $publishRepository = publishRepositoryUrl($repository);
 
     if (null !== $tag) {
-        publishTag($name, $repository, $sha, $tag, $errors);
+        publishTag($name, $repository, $publishRepository, $sha, $tag, $errors);
 
         return;
     }
 
     $branch = (string) $package['branch'];
     $refspec = sprintf('%s:refs/heads/%s', $sha, $branch);
-    $command = sprintf('git push %s %s 2>&1', escapeshellarg($repository), escapeshellarg($refspec));
+    $command = sprintf('git push %s %s 2>&1', escapeshellarg($publishRepository), escapeshellarg($refspec));
     exec($command, $output, $exitCode);
     if (0 !== $exitCode) {
         $errors[] = sprintf('%s branch publish failed: %s', $name, implode(PHP_EOL, $output));
@@ -474,12 +475,12 @@ function publishSplit(array $package, string $sha, ?string $tag, array &$errors)
     fwrite(STDOUT, sprintf('    pushed: %s -> %s:%s', $sha, $repository, $branch) . PHP_EOL);
 }
 
-function publishTag(string $name, string $repository, string $sha, string $tag, array &$errors): void
+function publishTag(string $name, string $repository, string $publishRepository, string $sha, string $tag, array &$errors): void
 {
     $remoteTagRef = 'refs/tags/' . $tag;
     $lookupCommand = sprintf(
         'git ls-remote --tags --refs %s %s 2>&1',
-        escapeshellarg($repository),
+        escapeshellarg($publishRepository),
         escapeshellarg($remoteTagRef),
     );
     exec($lookupCommand, $lookupOutput, $lookupExitCode);
@@ -503,7 +504,7 @@ function publishTag(string $name, string $repository, string $sha, string $tag, 
     }
 
     $refspec = sprintf('%s:%s', $sha, $remoteTagRef);
-    $pushCommand = sprintf('git push %s %s 2>&1', escapeshellarg($repository), escapeshellarg($refspec));
+    $pushCommand = sprintf('git push %s %s 2>&1', escapeshellarg($publishRepository), escapeshellarg($refspec));
     exec($pushCommand, $pushOutput, $pushExitCode);
     if (0 !== $pushExitCode) {
         $errors[] = sprintf('%s tag publish failed for %s: %s', $name, $tag, implode(PHP_EOL, $pushOutput));
@@ -512,6 +513,19 @@ function publishTag(string $name, string $repository, string $sha, string $tag, 
     }
 
     fwrite(STDOUT, sprintf('    pushed tag: %s -> %s:%s', $sha, $repository, $tag) . PHP_EOL);
+}
+
+function publishRepositoryUrl(string $repository): string
+{
+    if (preg_match('#^git@github\.com:([^/]+/[^/]+?)(?:\.git)?$#', $repository, $matches)) {
+        return 'https://github.com/' . $matches[1] . '.git';
+    }
+
+    if (preg_match('#^ssh://git@github\.com/([^/]+/[^/]+?)(?:\.git)?$#', $repository, $matches)) {
+        return 'https://github.com/' . $matches[1] . '.git';
+    }
+
+    return $repository;
 }
 
 function commandExists(string $command): bool
