@@ -1,7 +1,7 @@
 {
     "name": "sonsofphp/clock",
     "type": "library",
-    "description": "Provides a standard way of accessing datetime functions",
+    "description": "Provides a standard way of accessing date and time functions",
     "keywords": [
         "clock",
         "datetime",
