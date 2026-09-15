@@ -52,7 +52,6 @@ jobs:
               with:
                   fetch-depth: 0
                   persist-credentials: false
-                  ref: ${{ github.event_name == 'workflow_dispatch' && inputs.head || github.ref }}
             - uses: shivammathur/setup-php@v2
               with:
                   php-version: '8.3'
@@ -128,6 +127,7 @@ jobs:
                   PUBLISH_SPLITS: ${{ inputs.publish }}
               run: |
                   if [ -n "$TAG_NAME" ]; then
+                      git fetch --force origin "refs/tags/$TAG_NAME:refs/tags/$TAG_NAME"
                       command=(php .github/scripts/monorepo-split-plan.php --tag="$TAG_NAME" --origin="refs/tags/$TAG_NAME")
                   else
                       if [ -z "$BASE_REF" ]; then
@@ -135,7 +135,8 @@ jobs:
                           exit 1
                       fi
 
-                      command=(php .github/scripts/monorepo-split-plan.php --base="$BASE_REF" --head="$HEAD_REF" --origin=HEAD)
+                      git update-ref refs/heads/monorepo-split-replay-head "$HEAD_REF"
+                      command=(php .github/scripts/monorepo-split-plan.php --base="$BASE_REF" --head="$HEAD_REF" --origin=refs/heads/monorepo-split-replay-head)
                   fi
 
                   if [ "$PUBLISH_SPLITS" = "true" ]; then
