@@ -61,26 +61,21 @@ jobs:
                   GOBIN="$RUNNER_TEMP/bin" go install github.com/splitsh/lite@master
                   sudo mv "$RUNNER_TEMP/bin/lite" /usr/local/bin/splitsh-lite
                   splitsh-lite --help
-            - name: Configure read-only repo SSH
+            - uses: actions/create-github-app-token@v3
+              id: app-token
+              if: github.event_name == 'push'
+              with:
+                  client-id: ${{ vars.MONOREPO_SPLIT_APP_CLIENT_ID }}
+                  private-key: ${{ secrets.MONOREPO_SPLIT_APP_PRIVATE_KEY }}
+                  owner: ${{ github.repository_owner }}
+                  permission-contents: write
+            - name: Configure read-only repo token auth
               if: github.event_name == 'push'
               env:
-                  MONOREPO_SPLIT_SSH_KEY: ${{ secrets.MONOREPO_SPLIT_SSH_KEY }}
+                  MONOREPO_SPLIT_TOKEN: ${{ steps.app-token.outputs.token }}
               run: |
-                  if [ -z "$MONOREPO_SPLIT_SSH_KEY" ]; then
-                      echo "::error::Missing MONOREPO_SPLIT_SSH_KEY secret for read-only repo publishing."
-                      exit 1
-                  fi
-
-                  mkdir -p ~/.ssh
-                  printf '%s\n' "$MONOREPO_SPLIT_SSH_KEY" > ~/.ssh/monorepo_split
-                  chmod 600 ~/.ssh/monorepo_split
-                  ssh-keyscan github.com >> ~/.ssh/known_hosts
-                  {
-                      echo 'Host github.com'
-                      echo '    IdentityFile ~/.ssh/monorepo_split'
-                      echo '    IdentitiesOnly yes'
-                      echo '    StrictHostKeyChecking yes'
-                  } >> ~/.ssh/config
+                  git config --global url."https://x-access-token:${MONOREPO_SPLIT_TOKEN}@github.com/".insteadOf "git@github.com:"
+                  git config --global url."https://x-access-token:${MONOREPO_SPLIT_TOKEN}@github.com/".insteadOf "ssh://git@github.com/"
             - name: Validate split config
               run: php .github/scripts/monorepo-split-plan.php
             - name: Plan pull request package splits
