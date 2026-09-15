@@ -8,6 +8,7 @@
         "date",
         "time",
         "timekeeping",
+        "wall-clock",
         "psr20",
         "psr-20",
         "clock-interface",

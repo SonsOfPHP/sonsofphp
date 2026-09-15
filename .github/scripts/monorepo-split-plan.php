@@ -466,8 +466,27 @@ function publishSplit(array $package, string $sha, ?string $tag, array &$errors)
     }
 
     $branch = (string) $package['branch'];
+    $remoteBranchRef = 'refs/heads/' . $branch;
+    $remoteSha = remoteBranchSha($name, $publishRepository, $remoteBranchRef, $errors);
+    if (null === $remoteSha && [] !== $errors) {
+        return;
+    }
+
+    if ($remoteSha === $sha) {
+        fwrite(STDOUT, sprintf('    branch exists: %s -> %s:%s', $sha, $repository, $branch) . PHP_EOL);
+
+        return;
+    }
+
     $refspec = sprintf('%s:refs/heads/%s', $sha, $branch);
-    $command = sprintf('git push %s %s 2>&1', escapeshellarg($publishRepository), escapeshellarg($refspec));
+    $command = null === $remoteSha
+        ? sprintf('git push %s %s 2>&1', escapeshellarg($publishRepository), escapeshellarg($refspec))
+        : sprintf(
+            'git push --force-with-lease=%s %s %s 2>&1',
+            escapeshellarg($remoteBranchRef . ':' . $remoteSha),
+            escapeshellarg($publishRepository),
+            escapeshellarg($refspec),
+        );
     exec($command, $output, $exitCode);
     if (0 !== $exitCode) {
         $errors[] = sprintf('%s branch publish failed: %s', $name, implode(PHP_EOL, $output));
@@ -476,6 +495,27 @@ function publishSplit(array $package, string $sha, ?string $tag, array &$errors)
     }
 
     fwrite(STDOUT, sprintf('    pushed: %s -> %s:%s', $sha, $repository, $branch) . PHP_EOL);
+}
+
+function remoteBranchSha(string $name, string $publishRepository, string $remoteBranchRef, array &$errors): ?string
+{
+    $command = sprintf(
+        'git ls-remote --heads --refs %s %s 2>&1',
+        escapeshellarg($publishRepository),
+        escapeshellarg($remoteBranchRef),
+    );
+    exec($command, $output, $exitCode);
+    if (0 !== $exitCode) {
+        $errors[] = sprintf('%s branch lookup failed for %s: %s', $name, $remoteBranchRef, implode(PHP_EOL, $output));
+
+        return null;
+    }
+
+    if ([] === $output) {
+        return null;
+    }
+
+    return strtok(trim($output[0]), " \t") ?: null;
 }
 
 function publishTag(string $name, string $repository, string $publishRepository, string $sha, string $tag, array &$errors): void
