@@ -65,7 +65,7 @@ jobs:
               id: app-token
               if: github.event_name == 'push'
               with:
-                  client-id: ${{ vars.MONOREPO_SPLIT_APP_CLIENT_ID }}
+                  client-id: ${{ secrets.MONOREPO_SPLIT_APP_CLIENT_ID }}
                   private-key: ${{ secrets.MONOREPO_SPLIT_APP_PRIVATE_KEY }}
                   owner: ${{ github.repository_owner }}
                   permission-contents: write
