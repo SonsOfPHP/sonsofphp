@@ -7,13 +7,14 @@ $options = getopt('', [
     'config::',
     'base::',
     'head::',
+    'tag::',
     'help',
 ]);
 
 if (isset($options['help'])) {
     fwrite(STDOUT, <<<'HELP'
 Usage:
-  php .github/scripts/monorepo-split-plan.php [--config=.github/monorepo-split.json] [--base=<git-ref>] [--head=<git-ref>]
+  php .github/scripts/monorepo-split-plan.php [--config=.github/monorepo-split.json] [--base=<git-ref>] [--head=<git-ref>] [--tag=<tag>]
 
 Validates the monorepo split map and prints the read-only repository split plan.
 This is a dry-run planner only. It does not run splitsh-lite and never pushes.
@@ -27,6 +28,7 @@ $configPath = (string) ($options['config'] ?? '.github/monorepo-split.json');
 $configFile = str_starts_with($configPath, '/') ? $configPath : $root . '/' . $configPath;
 $base = isset($options['base']) ? (string) $options['base'] : null;
 $head = isset($options['head']) ? (string) $options['head'] : null;
+$tag = isset($options['tag']) ? (string) $options['tag'] : null;
 
 $errors = [];
 $warnings = [];
@@ -136,6 +138,10 @@ foreach ($extraConfiguredPaths as $path) {
 }
 
 $changedFiles = [];
+if (null !== $tag && '' === $tag) {
+    $errors[] = 'Tag cannot be empty when --tag is provided.';
+}
+
 if (null !== $base || null !== $head) {
     if (null === $base || null === $head) {
         $errors[] = 'Both --base and --head are required when checking changed paths.';
@@ -145,12 +151,12 @@ if (null !== $base || null !== $head) {
 }
 
 if ([] !== $errors) {
-    printSummary($configFile, $packages, $statusCounts, $warnings, $changedFiles, [], []);
+    printSummary($configFile, $packages, $statusCounts, $warnings, $changedFiles, [], [], $tag);
     fail($errors);
 }
 
-[$plannedPackages, $skippedPackages] = planPackages($packages, $changedFiles);
-printSummary($configFile, $packages, $statusCounts, $warnings, $changedFiles, $plannedPackages, $skippedPackages);
+[$plannedPackages, $skippedPackages] = planPackages($packages, $changedFiles, null !== $tag);
+printSummary($configFile, $packages, $statusCounts, $warnings, $changedFiles, $plannedPackages, $skippedPackages, $tag);
 
 exit(0);
 
@@ -241,11 +247,11 @@ function changedFiles(string $root, string $base, string $head, array &$errors):
  *
  * @return array{0: list<array<string, mixed>>, 1: list<array{name: string, reason: string}>}
  */
-function planPackages(array $packages, array $changedFiles): array
+function planPackages(array $packages, array $changedFiles, bool $isTagPlan): array
 {
     $planned = [];
     $skipped = [];
-    $hasChangeSet = [] !== $changedFiles;
+    $hasChangeSet = [] !== $changedFiles && !$isTagPlan;
 
     foreach ($packages as $package) {
         if (!is_array($package)) {
@@ -294,10 +300,13 @@ function packageChanged(string $path, array $changedFiles): bool
  * @param list<array<string, mixed>>                 $plannedPackages
  * @param list<array{name: string, reason: string}>  $skippedPackages
  */
-function printSummary(string $configFile, array $packages, array $statusCounts, array $warnings, array $changedFiles, array $plannedPackages, array $skippedPackages): void
+function printSummary(string $configFile, array $packages, array $statusCounts, array $warnings, array $changedFiles, array $plannedPackages, array $skippedPackages, ?string $tag): void
 {
     fwrite(STDOUT, 'Monorepo split dry-run plan' . PHP_EOL);
     fwrite(STDOUT, 'Config: ' . $configFile . PHP_EOL);
+    if (null !== $tag) {
+        fwrite(STDOUT, 'Release tag: ' . $tag . PHP_EOL);
+    }
     fwrite(STDOUT, sprintf('Packages: %d active=%d pending=%d archived=%d disabled=%d',
         count($packages),
         $statusCounts['active'],
@@ -313,7 +322,9 @@ function printSummary(string $configFile, array $packages, array $statusCounts, 
         }
     }
 
-    if ([] !== $changedFiles) {
+    if (null !== $tag) {
+        fwrite(STDOUT, PHP_EOL . 'Changed files considered: none, release tags plan every active package' . PHP_EOL);
+    } elseif ([] !== $changedFiles) {
         fwrite(STDOUT, PHP_EOL . sprintf('Changed files considered: %d', count($changedFiles)) . PHP_EOL);
     } else {
         fwrite(STDOUT, PHP_EOL . 'Changed files considered: none, planning every active package' . PHP_EOL);
@@ -321,13 +332,18 @@ function printSummary(string $configFile, array $packages, array $statusCounts, 
 
     fwrite(STDOUT, PHP_EOL . sprintf('Would split/publish: %d package(s)', count($plannedPackages)) . PHP_EOL);
     foreach ($plannedPackages as $package) {
-        fwrite(STDOUT, sprintf(
+        $line = sprintf(
             '  - %s | path=%s | repository=%s | branch=%s',
             (string) $package['name'],
             (string) $package['path'],
             (string) $package['repository'],
             (string) $package['branch'],
-        ) . PHP_EOL);
+        );
+        if (null !== $tag) {
+            $line .= ' | tag=' . $tag;
+        }
+
+        fwrite(STDOUT, $line . PHP_EOL);
     }
 
     $skipCounts = [];

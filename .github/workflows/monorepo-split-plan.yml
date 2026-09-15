@@ -2,6 +2,8 @@ name: Monorepo Split Plan
 on:
     push:
         branches: [main]
+        tags:
+            - 'v*'
         paths:
             - '.github/monorepo-split.json'
             - '.github/scripts/monorepo-split-plan.php'
@@ -45,8 +47,11 @@ jobs:
                       --base='${{ github.event.pull_request.base.sha }}' \
                       --head='${{ github.event.pull_request.head.sha }}'
             - name: Plan mainline package splits
-              if: github.event_name == 'push'
+              if: github.event_name == 'push' && !startsWith(github.ref, 'refs/tags/')
               run: |
                   php .github/scripts/monorepo-split-plan.php \
                       --base='${{ github.event.before }}' \
                       --head='${{ github.sha }}'
+            - name: Plan release tag package splits
+              if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+              run: php .github/scripts/monorepo-split-plan.php --tag='${{ github.ref_name }}'
