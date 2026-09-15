@@ -41,6 +41,7 @@ jobs:
             - uses: actions/setup-go@v5
               with:
                   go-version: '1.22'
+                  cache: false
             - name: Install splitsh-lite
               run: |
                   sudo apt-get update
