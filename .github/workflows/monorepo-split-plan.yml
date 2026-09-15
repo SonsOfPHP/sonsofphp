@@ -1,0 +1,37 @@
+name: Monorepo Split Plan
+on:
+    pull_request:
+        branches: [main]
+        paths:
+            - '.github/monorepo-split.json'
+            - '.github/scripts/monorepo-split-plan.php'
+            - '.github/workflows/monorepo-split-plan.yml'
+            - 'src/SonsOfPHP/**/composer.json'
+            - 'src/**'
+
+permissions:
+    contents: read
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+    cancel-in-progress: true
+
+jobs:
+    plan:
+        name: Dry-run split plan
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '8.3'
+                  coverage: none
+            - name: Validate split config
+              run: php .github/scripts/monorepo-split-plan.php
+            - name: Plan changed package splits
+              run: |
+                  php .github/scripts/monorepo-split-plan.php \
+                      --base='${{ github.event.pull_request.base.sha }}' \
+                      --head='${{ github.event.pull_request.head.sha }}'
