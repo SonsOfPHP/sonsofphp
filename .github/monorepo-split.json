@@ -1,0 +1,349 @@
+{
+    "schema_version": 1,
+    "default_branch": "main",
+    "packages": [
+        {
+            "name": "sonsofphp/bard",
+            "path": "src/SonsOfPHP/Bard",
+            "repository": "git@github.com:SonsOfPHP/bard.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/filesystem-aws",
+            "path": "src/SonsOfPHP/Bridge/Aws/Filesystem",
+            "repository": "git@github.com:SonsOfPHP/filesystem-aws.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/pager-doctrine-collections",
+            "path": "src/SonsOfPHP/Bridge/Doctrine/Collections/Pager",
+            "repository": "git@github.com:SonsOfPHP/pager-doctrine-collections.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/pager-doctrine-dbal",
+            "path": "src/SonsOfPHP/Bridge/Doctrine/DBAL/Pager",
+            "repository": "git@github.com:SonsOfPHP/pager-doctrine-dbal.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/event-sourcing-doctrine",
+            "path": "src/SonsOfPHP/Bridge/Doctrine/EventSourcing",
+            "repository": "git@github.com:SonsOfPHP/event-sourcing-doctrine.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/pager-doctrine-orm",
+            "path": "src/SonsOfPHP/Bridge/Doctrine/ORM/Pager",
+            "repository": "git@github.com:SonsOfPHP/pager-doctrine-orm.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/filesystem-liip-imagine",
+            "path": "src/SonsOfPHP/Bridge/LiipImagine/Filesystem",
+            "repository": "git@github.com:SonsOfPHP/filesystem-liip-imagine.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/cqrs-symfony",
+            "path": "src/SonsOfPHP/Bridge/Symfony/Cqrs",
+            "repository": "git@github.com:SonsOfPHP/cqrs-symfony.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/event-sourcing-symfony",
+            "path": "src/SonsOfPHP/Bridge/Symfony/EventSourcing",
+            "repository": "git@github.com:SonsOfPHP/event-sourcing-symfony.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/money-twig",
+            "path": "src/SonsOfPHP/Bridge/Twig/Money",
+            "repository": "git@github.com:SonsOfPHP/money-twig.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/cqrs-bundle",
+            "path": "src/SonsOfPHP/Bundle/Cqrs",
+            "repository": "git@github.com:SonsOfPHP/cqrs-bundle.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/feature-toggle-bundle",
+            "path": "src/SonsOfPHP/Bundle/FeatureToggleBundle",
+            "repository": "git@github.com:SonsOfPHP/feature-toggle-bundle.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/assert",
+            "path": "src/SonsOfPHP/Component/Assert",
+            "repository": "git@github.com:SonsOfPHP/assert.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/cache",
+            "path": "src/SonsOfPHP/Component/Cache",
+            "repository": "git@github.com:SonsOfPHP/cache.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/clock",
+            "path": "src/SonsOfPHP/Component/Clock",
+            "repository": "git@github.com:SonsOfPHP/clock.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/container",
+            "path": "src/SonsOfPHP/Component/Container",
+            "repository": "git@github.com:SonsOfPHP/container.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/cookie",
+            "path": "src/SonsOfPHP/Component/Cookie",
+            "repository": "git@github.com:SonsOfPHP/cookie.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/cqrs",
+            "path": "src/SonsOfPHP/Component/Cqrs",
+            "repository": "git@github.com:SonsOfPHP/cqrs.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/event-dispatcher",
+            "path": "src/SonsOfPHP/Component/EventDispatcher",
+            "repository": "git@github.com:SonsOfPHP/event-dispatcher.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/event-sourcing",
+            "path": "src/SonsOfPHP/Component/EventSourcing",
+            "repository": "git@github.com:SonsOfPHP/event-sourcing.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/feature-toggle",
+            "path": "src/SonsOfPHP/Component/FeatureToggle",
+            "repository": "git@github.com:SonsOfPHP/feature-toggle.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/filesystem",
+            "path": "src/SonsOfPHP/Component/Filesystem",
+            "repository": "git@github.com:SonsOfPHP/filesystem.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/http-factory",
+            "path": "src/SonsOfPHP/Component/HttpFactory",
+            "repository": "git@github.com:SonsOfPHP/http-factory.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/http-handler",
+            "path": "src/SonsOfPHP/Component/HttpHandler",
+            "repository": "git@github.com:SonsOfPHP/http-handler.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/http-message",
+            "path": "src/SonsOfPHP/Component/HttpMessage",
+            "repository": "git@github.com:SonsOfPHP/http-message.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/json",
+            "path": "src/SonsOfPHP/Component/Json",
+            "repository": "git@github.com:SonsOfPHP/json.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/link",
+            "path": "src/SonsOfPHP/Component/Link",
+            "repository": "git@github.com:SonsOfPHP/link.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/logger",
+            "path": "src/SonsOfPHP/Component/Logger",
+            "repository": "git@github.com:SonsOfPHP/logger.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/mailer",
+            "path": "src/SonsOfPHP/Component/Mailer",
+            "repository": "git@github.com:SonsOfPHP/mailer.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/money",
+            "path": "src/SonsOfPHP/Component/Money",
+            "repository": "git@github.com:SonsOfPHP/money.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/pager",
+            "path": "src/SonsOfPHP/Component/Pager",
+            "repository": "git@github.com:SonsOfPHP/pager.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/registry",
+            "path": "src/SonsOfPHP/Component/Registry",
+            "repository": "git@github.com:SonsOfPHP/registry.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/state-machine",
+            "path": "src/SonsOfPHP/Component/StateMachine",
+            "repository": "git@github.com:SonsOfPHP/state-machine.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/version",
+            "path": "src/SonsOfPHP/Component/Version",
+            "repository": "git@github.com:SonsOfPHP/version.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/common-contract",
+            "path": "src/SonsOfPHP/Contract/Common",
+            "repository": "git@github.com:SonsOfPHP/common-contract.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/cookie-contract",
+            "path": "src/SonsOfPHP/Contract/Cookie",
+            "repository": "git@github.com:SonsOfPHP/cookie-contract.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/cqrs-contract",
+            "path": "src/SonsOfPHP/Contract/Cqrs",
+            "repository": "git@github.com:SonsOfPHP/cqrs-contract.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/event-sourcing-contract",
+            "path": "src/SonsOfPHP/Contract/EventSourcing",
+            "repository": "git@github.com:SonsOfPHP/event-sourcing-contract.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/feature-toggle-contract",
+            "path": "src/SonsOfPHP/Contract/FeatureToggle",
+            "repository": "git@github.com:SonsOfPHP/feature-toggle-contract.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/filesystem-contract",
+            "path": "src/SonsOfPHP/Contract/Filesystem",
+            "repository": "git@github.com:SonsOfPHP/filesystem-contract.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/http-handler-contract",
+            "path": "src/SonsOfPHP/Contract/HttpHandler",
+            "repository": "git@github.com:SonsOfPHP/http-handler-contract.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/logger-contract",
+            "path": "src/SonsOfPHP/Contract/Logger",
+            "repository": "git@github.com:SonsOfPHP/logger-contract.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/mailer-contract",
+            "path": "src/SonsOfPHP/Contract/Mailer",
+            "repository": "git@github.com:SonsOfPHP/mailer-contract.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/money-contract",
+            "path": "src/SonsOfPHP/Contract/Money",
+            "repository": "git@github.com:SonsOfPHP/money-contract.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/pager-contract",
+            "path": "src/SonsOfPHP/Contract/Pager",
+            "repository": "git@github.com:SonsOfPHP/pager-contract.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/registry-contract",
+            "path": "src/SonsOfPHP/Contract/Registry",
+            "repository": "git@github.com:SonsOfPHP/registry-contract.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/state-machine-contract",
+            "path": "src/SonsOfPHP/Contract/StateMachine",
+            "repository": "git@github.com:SonsOfPHP/state-machine-contract.git",
+            "branch": "main",
+            "status": "active"
+        },
+        {
+            "name": "sonsofphp/stdlib-contract",
+            "path": "src/SonsOfPHP/Contract/Stdlib",
+            "repository": null,
+            "branch": "main",
+            "status": "pending"
+        },
+        {
+            "name": "sonsofphp/version-contract",
+            "path": "src/SonsOfPHP/Contract/Version",
+            "repository": "git@github.com:SonsOfPHP/version-contract.git",
+            "branch": "main",
+            "status": "active"
+        }
+    ]
+}
