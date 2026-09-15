@@ -84,7 +84,7 @@ jobs:
                   php .github/scripts/monorepo-split-plan.php \
                       --base='${{ github.event.pull_request.base.sha }}' \
                       --head='${{ github.event.pull_request.head.sha }}' \
-                      --origin='${{ github.event.pull_request.head.sha }}' \
+                      --origin=HEAD \
                       --calculate-splits
             - name: Publish mainline package splits
               if: github.event_name == 'push' && !startsWith(github.ref, 'refs/tags/')
@@ -92,7 +92,7 @@ jobs:
                   php .github/scripts/monorepo-split-plan.php \
                       --base='${{ github.event.before }}' \
                       --head='${{ github.sha }}' \
-                      --origin='${{ github.sha }}' \
+                      --origin=HEAD \
                       --publish
             - name: Publish release tag package splits
               if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
