@@ -7,6 +7,7 @@ $options = getopt('', [
     'config::',
     'base::',
     'head::',
+    'origin::',
     'tag::',
     'help',
 ]);
@@ -14,10 +15,11 @@ $options = getopt('', [
 if (isset($options['help'])) {
     fwrite(STDOUT, <<<'HELP'
 Usage:
-  php .github/scripts/monorepo-split-plan.php [--config=.github/monorepo-split.json] [--base=<git-ref>] [--head=<git-ref>] [--tag=<tag>]
+  php .github/scripts/monorepo-split-plan.php [--config=.github/monorepo-split.json] [--base=<git-ref>] [--head=<git-ref>] [--origin=<git-ref>] [--tag=<tag>]
 
 Validates the monorepo split map and prints the read-only repository split plan.
-This is a dry-run planner only. It does not run splitsh-lite and never pushes.
+This is a dry-run planner only. It prints splitsh-lite commands but never runs
+them and never pushes.
 
 HELP);
     exit(0);
@@ -28,6 +30,7 @@ $configPath = (string) ($options['config'] ?? '.github/monorepo-split.json');
 $configFile = str_starts_with($configPath, '/') ? $configPath : $root . '/' . $configPath;
 $base = isset($options['base']) ? (string) $options['base'] : null;
 $head = isset($options['head']) ? (string) $options['head'] : null;
+$origin = isset($options['origin']) ? (string) $options['origin'] : 'HEAD';
 $tag = isset($options['tag']) ? (string) $options['tag'] : null;
 
 $errors = [];
@@ -142,6 +145,10 @@ if (null !== $tag && '' === $tag) {
     $errors[] = 'Tag cannot be empty when --tag is provided.';
 }
 
+if ('' === $origin) {
+    $errors[] = 'Origin cannot be empty when --origin is provided.';
+}
+
 if (null !== $base || null !== $head) {
     if (null === $base || null === $head) {
         $errors[] = 'Both --base and --head are required when checking changed paths.';
@@ -151,12 +158,12 @@ if (null !== $base || null !== $head) {
 }
 
 if ([] !== $errors) {
-    printSummary($configFile, $packages, $statusCounts, $warnings, $changedFiles, [], [], $tag);
+    printSummary($configFile, $packages, $statusCounts, $warnings, $changedFiles, [], [], $origin, $tag, $root);
     fail($errors);
 }
 
 [$plannedPackages, $skippedPackages] = planPackages($packages, $changedFiles, null !== $tag);
-printSummary($configFile, $packages, $statusCounts, $warnings, $changedFiles, $plannedPackages, $skippedPackages, $tag);
+printSummary($configFile, $packages, $statusCounts, $warnings, $changedFiles, $plannedPackages, $skippedPackages, $origin, $tag, $root);
 
 exit(0);
 
@@ -300,10 +307,11 @@ function packageChanged(string $path, array $changedFiles): bool
  * @param list<array<string, mixed>>                 $plannedPackages
  * @param list<array{name: string, reason: string}>  $skippedPackages
  */
-function printSummary(string $configFile, array $packages, array $statusCounts, array $warnings, array $changedFiles, array $plannedPackages, array $skippedPackages, ?string $tag): void
+function printSummary(string $configFile, array $packages, array $statusCounts, array $warnings, array $changedFiles, array $plannedPackages, array $skippedPackages, string $origin, ?string $tag, string $root): void
 {
     fwrite(STDOUT, 'Monorepo split dry-run plan' . PHP_EOL);
     fwrite(STDOUT, 'Config: ' . $configFile . PHP_EOL);
+    fwrite(STDOUT, 'Split origin: ' . $origin . PHP_EOL);
     if (null !== $tag) {
         fwrite(STDOUT, 'Release tag: ' . $tag . PHP_EOL);
     }
@@ -344,6 +352,7 @@ function printSummary(string $configFile, array $packages, array $statusCounts, 
         }
 
         fwrite(STDOUT, $line . PHP_EOL);
+        fwrite(STDOUT, '    split: ' . splitshCommand((string) $package['path'], $origin, $root) . PHP_EOL);
     }
 
     $skipCounts = [];
@@ -360,5 +369,15 @@ function printSummary(string $configFile, array $packages, array $statusCounts, 
         }
     }
 
-    fwrite(STDOUT, PHP_EOL . 'Dry run only. No splitsh-lite command was run and nothing was pushed.' . PHP_EOL);
+    fwrite(STDOUT, PHP_EOL . 'Dry run only. splitsh-lite commands were printed but not run, and nothing was pushed.' . PHP_EOL);
+}
+
+function splitshCommand(string $path, string $origin, string $root): string
+{
+    return sprintf(
+        'splitsh-lite --prefix=%s --origin=%s --path=%s',
+        escapeshellarg(rtrim($path, '/') . '/'),
+        escapeshellarg($origin),
+        escapeshellarg($root),
+    );
 }

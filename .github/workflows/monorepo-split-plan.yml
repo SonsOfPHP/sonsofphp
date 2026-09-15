@@ -45,13 +45,18 @@ jobs:
               run: |
                   php .github/scripts/monorepo-split-plan.php \
                       --base='${{ github.event.pull_request.base.sha }}' \
-                      --head='${{ github.event.pull_request.head.sha }}'
+                      --head='${{ github.event.pull_request.head.sha }}' \
+                      --origin='${{ github.event.pull_request.head.sha }}'
             - name: Plan mainline package splits
               if: github.event_name == 'push' && !startsWith(github.ref, 'refs/tags/')
               run: |
                   php .github/scripts/monorepo-split-plan.php \
                       --base='${{ github.event.before }}' \
-                      --head='${{ github.sha }}'
+                      --head='${{ github.sha }}' \
+                      --origin='${{ github.sha }}'
             - name: Plan release tag package splits
               if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
-              run: php .github/scripts/monorepo-split-plan.php --tag='${{ github.ref_name }}'
+              run: |
+                  php .github/scripts/monorepo-split-plan.php \
+                      --tag='${{ github.ref_name }}' \
+                      --origin='${{ github.ref }}'
