@@ -38,6 +38,17 @@ jobs:
               with:
                   php-version: '8.3'
                   coverage: none
+            - uses: actions/setup-go@v5
+              with:
+                  go-version: '1.22'
+            - name: Install splitsh-lite
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install -y libgit2-dev pkg-config
+                  go install github.com/splitsh/lite@master
+                  echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+                  export PATH="$(go env GOPATH)/bin:$PATH"
+                  splitsh-lite --help
             - name: Validate split config
               run: php .github/scripts/monorepo-split-plan.php
             - name: Plan pull request package splits
@@ -46,17 +57,20 @@ jobs:
                   php .github/scripts/monorepo-split-plan.php \
                       --base='${{ github.event.pull_request.base.sha }}' \
                       --head='${{ github.event.pull_request.head.sha }}' \
-                      --origin='${{ github.event.pull_request.head.sha }}'
+                      --origin='${{ github.event.pull_request.head.sha }}' \
+                      --calculate-splits
             - name: Plan mainline package splits
               if: github.event_name == 'push' && !startsWith(github.ref, 'refs/tags/')
               run: |
                   php .github/scripts/monorepo-split-plan.php \
                       --base='${{ github.event.before }}' \
                       --head='${{ github.sha }}' \
-                      --origin='${{ github.sha }}'
+                      --origin='${{ github.sha }}' \
+                      --calculate-splits
             - name: Plan release tag package splits
               if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
               run: |
                   php .github/scripts/monorepo-split-plan.php \
                       --tag='${{ github.ref_name }}' \
-                      --origin='${{ github.ref }}'
+                      --origin='${{ github.ref }}' \
+                      --calculate-splits

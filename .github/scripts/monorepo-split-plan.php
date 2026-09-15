@@ -9,17 +9,19 @@ $options = getopt('', [
     'head::',
     'origin::',
     'tag::',
+    'calculate-splits',
     'help',
 ]);
 
 if (isset($options['help'])) {
     fwrite(STDOUT, <<<'HELP'
 Usage:
-  php .github/scripts/monorepo-split-plan.php [--config=.github/monorepo-split.json] [--base=<git-ref>] [--head=<git-ref>] [--origin=<git-ref>] [--tag=<tag>]
+  php .github/scripts/monorepo-split-plan.php [--config=.github/monorepo-split.json] [--base=<git-ref>] [--head=<git-ref>] [--origin=<git-ref>] [--tag=<tag>] [--calculate-splits]
 
 Validates the monorepo split map and prints the read-only repository split plan.
-This is a dry-run planner only. It prints splitsh-lite commands but never runs
-them and never pushes.
+This is a dry-run planner only. By default it prints splitsh-lite commands but
+does not run them. With --calculate-splits it runs splitsh-lite and prints split
+SHAs, but still never pushes.
 
 HELP);
     exit(0);
@@ -32,6 +34,7 @@ $base = isset($options['base']) ? (string) $options['base'] : null;
 $head = isset($options['head']) ? (string) $options['head'] : null;
 $origin = isset($options['origin']) ? (string) $options['origin'] : 'HEAD';
 $tag = isset($options['tag']) ? (string) $options['tag'] : null;
+$calculateSplits = isset($options['calculate-splits']);
 
 $errors = [];
 $warnings = [];
@@ -149,6 +152,10 @@ if ('' === $origin) {
     $errors[] = 'Origin cannot be empty when --origin is provided.';
 }
 
+if ($calculateSplits && !commandExists('splitsh-lite')) {
+    $errors[] = 'splitsh-lite is required when --calculate-splits is provided.';
+}
+
 if (null !== $base || null !== $head) {
     if (null === $base || null === $head) {
         $errors[] = 'Both --base and --head are required when checking changed paths.';
@@ -158,12 +165,17 @@ if (null !== $base || null !== $head) {
 }
 
 if ([] !== $errors) {
-    printSummary($configFile, $packages, $statusCounts, $warnings, $changedFiles, [], [], $origin, $tag, $root);
+    printSummary($configFile, $packages, $statusCounts, $warnings, $changedFiles, [], [], $origin, $tag, $root, $calculateSplits, $errors);
     fail($errors);
 }
 
 [$plannedPackages, $skippedPackages] = planPackages($packages, $changedFiles, null !== $tag);
-printSummary($configFile, $packages, $statusCounts, $warnings, $changedFiles, $plannedPackages, $skippedPackages, $origin, $tag, $root);
+$splitErrors = [];
+printSummary($configFile, $packages, $statusCounts, $warnings, $changedFiles, $plannedPackages, $skippedPackages, $origin, $tag, $root, $calculateSplits, $splitErrors);
+
+if ([] !== $splitErrors) {
+    fail($splitErrors);
+}
 
 exit(0);
 
@@ -307,7 +319,7 @@ function packageChanged(string $path, array $changedFiles): bool
  * @param list<array<string, mixed>>                 $plannedPackages
  * @param list<array{name: string, reason: string}>  $skippedPackages
  */
-function printSummary(string $configFile, array $packages, array $statusCounts, array $warnings, array $changedFiles, array $plannedPackages, array $skippedPackages, string $origin, ?string $tag, string $root): void
+function printSummary(string $configFile, array $packages, array $statusCounts, array $warnings, array $changedFiles, array $plannedPackages, array $skippedPackages, string $origin, ?string $tag, string $root, bool $calculateSplits, array &$splitErrors): void
 {
     fwrite(STDOUT, 'Monorepo split dry-run plan' . PHP_EOL);
     fwrite(STDOUT, 'Config: ' . $configFile . PHP_EOL);
@@ -352,7 +364,15 @@ function printSummary(string $configFile, array $packages, array $statusCounts, 
         }
 
         fwrite(STDOUT, $line . PHP_EOL);
-        fwrite(STDOUT, '    split: ' . splitshCommand((string) $package['path'], $origin, $root) . PHP_EOL);
+        $command = splitshCommand((string) $package['path'], $origin, $root);
+        fwrite(STDOUT, '    split: ' . $command . PHP_EOL);
+
+        if ($calculateSplits) {
+            $sha = splitshSha((string) $package['path'], $origin, $root, $splitErrors);
+            if (null !== $sha) {
+                fwrite(STDOUT, '    sha: ' . $sha . PHP_EOL);
+            }
+        }
     }
 
     $skipCounts = [];
@@ -369,6 +389,12 @@ function printSummary(string $configFile, array $packages, array $statusCounts, 
         }
     }
 
+    if ($calculateSplits) {
+        fwrite(STDOUT, PHP_EOL . 'Dry run only. splitsh-lite calculated split SHAs, but nothing was pushed.' . PHP_EOL);
+
+        return;
+    }
+
     fwrite(STDOUT, PHP_EOL . 'Dry run only. splitsh-lite commands were printed but not run, and nothing was pushed.' . PHP_EOL);
 }
 
@@ -380,4 +406,31 @@ function splitshCommand(string $path, string $origin, string $root): string
         escapeshellarg($origin),
         escapeshellarg($root),
     );
+}
+
+function splitshSha(string $path, string $origin, string $root, array &$errors): ?string
+{
+    $command = splitshCommand($path, $origin, $root) . ' 2>&1';
+    exec($command, $output, $exitCode);
+    if (0 !== $exitCode) {
+        $errors[] = sprintf('splitsh-lite failed for %s: %s', $path, implode(PHP_EOL, $output));
+
+        return null;
+    }
+
+    $sha = trim((string) end($output));
+    if (!preg_match('/^[a-f0-9]{40}$/', $sha)) {
+        $errors[] = sprintf('splitsh-lite returned an invalid SHA for %s: %s', $path, $sha);
+
+        return null;
+    }
+
+    return $sha;
+}
+
+function commandExists(string $command): bool
+{
+    exec(sprintf('command -v %s >/dev/null 2>&1', escapeshellarg($command)), $output, $exitCode);
+
+    return 0 === $exitCode;
 }
