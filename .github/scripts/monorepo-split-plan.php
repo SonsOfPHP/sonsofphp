@@ -455,6 +455,9 @@ function publishSplit(array $package, string $sha, ?string $tag, array &$errors)
     $name = (string) $package['name'];
     $repository = (string) $package['repository'];
     $publishRepository = publishRepositoryUrl($repository);
+    if ($publishRepository !== $repository) {
+        fwrite(STDOUT, '    publish-url: ' . $publishRepository . PHP_EOL);
+    }
 
     if (null !== $tag) {
         publishTag($name, $repository, $publishRepository, $sha, $tag, $errors);
