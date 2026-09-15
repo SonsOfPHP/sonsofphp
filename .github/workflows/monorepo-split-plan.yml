@@ -44,7 +44,18 @@ jobs:
             - name: Install splitsh-lite
               run: |
                   sudo apt-get update
-                  sudo apt-get install -y libgit2-dev pkg-config
+                  sudo apt-get install -y build-essential cmake libssh2-1-dev libssl-dev pkg-config zlib1g-dev
+                  curl -LsSf https://github.com/libgit2/libgit2/archive/refs/tags/v1.5.0.tar.gz | tar -xz
+                  cmake -S libgit2-1.5.0 -B libgit2-1.5.0/build \
+                      -DCMAKE_BUILD_TYPE=Release \
+                      -DCMAKE_INSTALL_PREFIX=/usr/local/libgit2-1.5 \
+                      -DBUILD_TESTS=OFF
+                  cmake --build libgit2-1.5.0/build --parallel 2
+                  sudo cmake --install libgit2-1.5.0/build
+                  echo "PKG_CONFIG_PATH=/usr/local/libgit2-1.5/lib/pkgconfig" >> "$GITHUB_ENV"
+                  echo "LD_LIBRARY_PATH=/usr/local/libgit2-1.5/lib" >> "$GITHUB_ENV"
+                  export PKG_CONFIG_PATH=/usr/local/libgit2-1.5/lib/pkgconfig
+                  export LD_LIBRARY_PATH=/usr/local/libgit2-1.5/lib
                   go install github.com/splitsh/lite@master
                   echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
                   export PATH="$(go env GOPATH)/bin:$PATH"
