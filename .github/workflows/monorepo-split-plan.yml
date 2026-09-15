@@ -1,5 +1,13 @@
 name: Monorepo Split Plan
 on:
+    push:
+        branches: [main]
+        paths:
+            - '.github/monorepo-split.json'
+            - '.github/scripts/monorepo-split-plan.php'
+            - '.github/workflows/monorepo-split-plan.yml'
+            - 'src/SonsOfPHP/**/composer.json'
+            - 'src/**'
     pull_request:
         branches: [main]
         paths:
@@ -30,8 +38,15 @@ jobs:
                   coverage: none
             - name: Validate split config
               run: php .github/scripts/monorepo-split-plan.php
-            - name: Plan changed package splits
+            - name: Plan pull request package splits
+              if: github.event_name == 'pull_request'
               run: |
                   php .github/scripts/monorepo-split-plan.php \
                       --base='${{ github.event.pull_request.base.sha }}' \
                       --head='${{ github.event.pull_request.head.sha }}'
+            - name: Plan mainline package splits
+              if: github.event_name == 'push'
+              run: |
+                  php .github/scripts/monorepo-split-plan.php \
+                      --base='${{ github.event.before }}' \
+                      --head='${{ github.sha }}'
