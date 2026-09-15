@@ -1,4 +1,4 @@
-name: Monorepo Split Plan
+name: Monorepo Split
 on:
     push:
         branches: [main]
@@ -28,12 +28,13 @@ concurrency:
 
 jobs:
     plan:
-        name: Dry-run split plan
+        name: Split packages
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v7
               with:
                   fetch-depth: 0
+                  persist-credentials: false
             - uses: shivammathur/setup-php@v2
               with:
                   php-version: '8.3'
@@ -60,6 +61,26 @@ jobs:
                   GOBIN="$RUNNER_TEMP/bin" go install github.com/splitsh/lite@master
                   sudo mv "$RUNNER_TEMP/bin/lite" /usr/local/bin/splitsh-lite
                   splitsh-lite --help
+            - name: Configure read-only repo SSH
+              if: github.event_name == 'push'
+              env:
+                  MONOREPO_SPLIT_SSH_KEY: ${{ secrets.MONOREPO_SPLIT_SSH_KEY }}
+              run: |
+                  if [ -z "$MONOREPO_SPLIT_SSH_KEY" ]; then
+                      echo "::error::Missing MONOREPO_SPLIT_SSH_KEY secret for read-only repo publishing."
+                      exit 1
+                  fi
+
+                  mkdir -p ~/.ssh
+                  printf '%s\n' "$MONOREPO_SPLIT_SSH_KEY" > ~/.ssh/monorepo_split
+                  chmod 600 ~/.ssh/monorepo_split
+                  ssh-keyscan github.com >> ~/.ssh/known_hosts
+                  {
+                      echo 'Host github.com'
+                      echo '    IdentityFile ~/.ssh/monorepo_split'
+                      echo '    IdentitiesOnly yes'
+                      echo '    StrictHostKeyChecking yes'
+                  } >> ~/.ssh/config
             - name: Validate split config
               run: php .github/scripts/monorepo-split-plan.php
             - name: Plan pull request package splits
@@ -70,18 +91,18 @@ jobs:
                       --head='${{ github.event.pull_request.head.sha }}' \
                       --origin='${{ github.event.pull_request.head.sha }}' \
                       --calculate-splits
-            - name: Plan mainline package splits
+            - name: Publish mainline package splits
               if: github.event_name == 'push' && !startsWith(github.ref, 'refs/tags/')
               run: |
                   php .github/scripts/monorepo-split-plan.php \
                       --base='${{ github.event.before }}' \
                       --head='${{ github.sha }}' \
                       --origin='${{ github.sha }}' \
-                      --calculate-splits
-            - name: Plan release tag package splits
+                      --publish
+            - name: Publish release tag package splits
               if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
               run: |
                   php .github/scripts/monorepo-split-plan.php \
                       --tag='${{ github.ref_name }}' \
                       --origin='${{ github.ref }}' \
-                      --calculate-splits
+                      --publish

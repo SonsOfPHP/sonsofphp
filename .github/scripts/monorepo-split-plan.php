@@ -10,18 +10,20 @@ $options = getopt('', [
     'origin::',
     'tag::',
     'calculate-splits',
+    'publish',
     'help',
 ]);
 
 if (isset($options['help'])) {
     fwrite(STDOUT, <<<'HELP'
 Usage:
-  php .github/scripts/monorepo-split-plan.php [--config=.github/monorepo-split.json] [--base=<git-ref>] [--head=<git-ref>] [--origin=<git-ref>] [--tag=<tag>] [--calculate-splits]
+  php .github/scripts/monorepo-split-plan.php [--config=.github/monorepo-split.json] [--base=<git-ref>] [--head=<git-ref>] [--origin=<git-ref>] [--tag=<tag>] [--calculate-splits] [--publish]
 
 Validates the monorepo split map and prints the read-only repository split plan.
 This is a dry-run planner only. By default it prints splitsh-lite commands but
 does not run them. With --calculate-splits it runs splitsh-lite and prints split
-SHAs, but still never pushes.
+SHAs, but still never pushes. With --publish it calculates split SHAs and pushes
+branch or tag refs to configured active read-only repositories.
 
 HELP);
     exit(0);
@@ -35,6 +37,10 @@ $head = isset($options['head']) ? (string) $options['head'] : null;
 $origin = isset($options['origin']) ? (string) $options['origin'] : 'HEAD';
 $tag = isset($options['tag']) ? (string) $options['tag'] : null;
 $calculateSplits = isset($options['calculate-splits']);
+$publish = isset($options['publish']);
+if ($publish) {
+    $calculateSplits = true;
+}
 
 $errors = [];
 $warnings = [];
@@ -156,6 +162,10 @@ if ($calculateSplits && !commandExists('splitsh-lite')) {
     $errors[] = 'splitsh-lite is required when --calculate-splits is provided.';
 }
 
+if ($publish && !commandExists('git')) {
+    $errors[] = 'git is required when --publish is provided.';
+}
+
 if (null !== $base || null !== $head) {
     if (null === $base || null === $head) {
         $errors[] = 'Both --base and --head are required when checking changed paths.';
@@ -165,13 +175,13 @@ if (null !== $base || null !== $head) {
 }
 
 if ([] !== $errors) {
-    printSummary($configFile, $packages, $statusCounts, $warnings, $changedFiles, [], [], $origin, $tag, $root, $calculateSplits, $errors);
+    printSummary($configFile, $packages, $statusCounts, $warnings, $changedFiles, [], [], $origin, $tag, $root, $calculateSplits, $publish, $errors);
     fail($errors);
 }
 
 [$plannedPackages, $skippedPackages] = planPackages($packages, $changedFiles, null !== $tag);
 $splitErrors = [];
-printSummary($configFile, $packages, $statusCounts, $warnings, $changedFiles, $plannedPackages, $skippedPackages, $origin, $tag, $root, $calculateSplits, $splitErrors);
+printSummary($configFile, $packages, $statusCounts, $warnings, $changedFiles, $plannedPackages, $skippedPackages, $origin, $tag, $root, $calculateSplits, $publish, $splitErrors);
 
 if ([] !== $splitErrors) {
     fail($splitErrors);
@@ -319,9 +329,9 @@ function packageChanged(string $path, array $changedFiles): bool
  * @param list<array<string, mixed>>                 $plannedPackages
  * @param list<array{name: string, reason: string}>  $skippedPackages
  */
-function printSummary(string $configFile, array $packages, array $statusCounts, array $warnings, array $changedFiles, array $plannedPackages, array $skippedPackages, string $origin, ?string $tag, string $root, bool $calculateSplits, array &$splitErrors): void
+function printSummary(string $configFile, array $packages, array $statusCounts, array $warnings, array $changedFiles, array $plannedPackages, array $skippedPackages, string $origin, ?string $tag, string $root, bool $calculateSplits, bool $publish, array &$splitErrors): void
 {
-    fwrite(STDOUT, 'Monorepo split dry-run plan' . PHP_EOL);
+    fwrite(STDOUT, $publish ? 'Monorepo split publish plan' . PHP_EOL : 'Monorepo split dry-run plan' . PHP_EOL);
     fwrite(STDOUT, 'Config: ' . $configFile . PHP_EOL);
     fwrite(STDOUT, 'Split origin: ' . $origin . PHP_EOL);
     if (null !== $tag) {
@@ -350,7 +360,7 @@ function printSummary(string $configFile, array $packages, array $statusCounts, 
         fwrite(STDOUT, PHP_EOL . 'Changed files considered: none, planning every active package' . PHP_EOL);
     }
 
-    fwrite(STDOUT, PHP_EOL . sprintf('Would split/publish: %d package(s)', count($plannedPackages)) . PHP_EOL);
+    fwrite(STDOUT, PHP_EOL . sprintf('%s split/publish: %d package(s)', $publish ? 'Will' : 'Would', count($plannedPackages)) . PHP_EOL);
     foreach ($plannedPackages as $package) {
         $line = sprintf(
             '  - %s | path=%s | repository=%s | branch=%s',
@@ -371,6 +381,9 @@ function printSummary(string $configFile, array $packages, array $statusCounts, 
             $sha = splitshSha((string) $package['path'], $origin, $root, $splitErrors);
             if (null !== $sha) {
                 fwrite(STDOUT, '    sha: ' . $sha . PHP_EOL);
+                if ($publish) {
+                    publishSplit($package, $sha, $tag, $splitErrors);
+                }
             }
         }
     }
@@ -387,6 +400,12 @@ function printSummary(string $configFile, array $packages, array $statusCounts, 
         foreach ($skipCounts as $reason => $count) {
             fwrite(STDOUT, sprintf('  - %s: %d', $reason, $count) . PHP_EOL);
         }
+    }
+
+    if ($publish) {
+        fwrite(STDOUT, PHP_EOL . 'Publish mode enabled. Planned split refs were pushed when no errors occurred.' . PHP_EOL);
+
+        return;
     }
 
     if ($calculateSplits) {
@@ -426,6 +445,73 @@ function splitshSha(string $path, string $origin, string $root, array &$errors):
     }
 
     return $sha;
+}
+
+/**
+ * @param array<string, mixed> $package
+ */
+function publishSplit(array $package, string $sha, ?string $tag, array &$errors): void
+{
+    $name = (string) $package['name'];
+    $repository = (string) $package['repository'];
+
+    if (null !== $tag) {
+        publishTag($name, $repository, $sha, $tag, $errors);
+
+        return;
+    }
+
+    $branch = (string) $package['branch'];
+    $refspec = sprintf('%s:refs/heads/%s', $sha, $branch);
+    $command = sprintf('git push %s %s 2>&1', escapeshellarg($repository), escapeshellarg($refspec));
+    exec($command, $output, $exitCode);
+    if (0 !== $exitCode) {
+        $errors[] = sprintf('%s branch publish failed: %s', $name, implode(PHP_EOL, $output));
+
+        return;
+    }
+
+    fwrite(STDOUT, sprintf('    pushed: %s -> %s:%s', $sha, $repository, $branch) . PHP_EOL);
+}
+
+function publishTag(string $name, string $repository, string $sha, string $tag, array &$errors): void
+{
+    $remoteTagRef = 'refs/tags/' . $tag;
+    $lookupCommand = sprintf(
+        'git ls-remote --tags --refs %s %s 2>&1',
+        escapeshellarg($repository),
+        escapeshellarg($remoteTagRef),
+    );
+    exec($lookupCommand, $lookupOutput, $lookupExitCode);
+    if (0 !== $lookupExitCode) {
+        $errors[] = sprintf('%s tag lookup failed for %s: %s', $name, $tag, implode(PHP_EOL, $lookupOutput));
+
+        return;
+    }
+
+    if ([] !== $lookupOutput) {
+        $remoteSha = strtok(trim($lookupOutput[0]), " \t");
+        if ($remoteSha === $sha) {
+            fwrite(STDOUT, sprintf('    tag exists: %s -> %s:%s', $sha, $repository, $tag) . PHP_EOL);
+
+            return;
+        }
+
+        $errors[] = sprintf('%s tag %s already exists on %s at %s, expected %s', $name, $tag, $repository, $remoteSha, $sha);
+
+        return;
+    }
+
+    $refspec = sprintf('%s:%s', $sha, $remoteTagRef);
+    $pushCommand = sprintf('git push %s %s 2>&1', escapeshellarg($repository), escapeshellarg($refspec));
+    exec($pushCommand, $pushOutput, $pushExitCode);
+    if (0 !== $pushExitCode) {
+        $errors[] = sprintf('%s tag publish failed for %s: %s', $name, $tag, implode(PHP_EOL, $pushOutput));
+
+        return;
+    }
+
+    fwrite(STDOUT, sprintf('    pushed tag: %s -> %s:%s', $sha, $repository, $tag) . PHP_EOL);
 }
 
 function commandExists(string $command): bool
