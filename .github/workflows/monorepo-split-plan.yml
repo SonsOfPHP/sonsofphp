@@ -18,6 +18,23 @@ on:
             - '.github/workflows/monorepo-split-plan.yml'
             - 'src/SonsOfPHP/**/composer.json'
             - 'src/**'
+    workflow_dispatch:
+        inputs:
+            base:
+                description: 'Base git ref for changed-package replay'
+                required: false
+            head:
+                description: 'Head git ref to check out and publish'
+                required: true
+                default: 'main'
+            tag:
+                description: 'Optional release tag to publish instead of a branch range'
+                required: false
+            publish:
+                description: 'Actually push split refs instead of calculating only'
+                required: true
+                type: boolean
+                default: false
 
 permissions:
     contents: read
@@ -35,6 +52,7 @@ jobs:
               with:
                   fetch-depth: 0
                   persist-credentials: false
+                  ref: ${{ github.event_name == 'workflow_dispatch' && inputs.head || github.ref }}
             - uses: shivammathur/setup-php@v2
               with:
                   php-version: '8.3'
@@ -63,14 +81,14 @@ jobs:
                   splitsh-lite --help
             - uses: actions/create-github-app-token@v3
               id: app-token
-              if: github.event_name == 'push'
+              if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish)
               with:
                   client-id: ${{ secrets.MONOREPO_SPLIT_APP_CLIENT_ID }}
                   private-key: ${{ secrets.MONOREPO_SPLIT_APP_PRIVATE_KEY }}
                   owner: ${{ github.repository_owner }}
                   permission-contents: write
             - name: Configure read-only repo token auth
-              if: github.event_name == 'push'
+              if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish)
               env:
                   MONOREPO_SPLIT_TOKEN: ${{ steps.app-token.outputs.token }}
               run: |
@@ -101,3 +119,29 @@ jobs:
                       --tag='${{ github.ref_name }}' \
                       --origin='${{ github.ref }}' \
                       --publish
+            - name: Run manual split replay
+              if: github.event_name == 'workflow_dispatch'
+              env:
+                  BASE_REF: ${{ inputs.base }}
+                  HEAD_REF: ${{ inputs.head }}
+                  TAG_NAME: ${{ inputs.tag }}
+                  PUBLISH_SPLITS: ${{ inputs.publish }}
+              run: |
+                  if [ -n "$TAG_NAME" ]; then
+                      command=(php .github/scripts/monorepo-split-plan.php --tag="$TAG_NAME" --origin="refs/tags/$TAG_NAME")
+                  else
+                      if [ -z "$BASE_REF" ]; then
+                          echo "::error::Manual branch replay requires the base input."
+                          exit 1
+                      fi
+
+                      command=(php .github/scripts/monorepo-split-plan.php --base="$BASE_REF" --head="$HEAD_REF" --origin=HEAD)
+                  fi
+
+                  if [ "$PUBLISH_SPLITS" = "true" ]; then
+                      command+=(--publish)
+                  else
+                      command+=(--calculate-splits)
+                  fi
+
+                  "${command[@]}"
