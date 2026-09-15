@@ -57,9 +57,8 @@ jobs:
                   echo "LD_LIBRARY_PATH=/usr/local/libgit2-1.5/lib" >> "$GITHUB_ENV"
                   export PKG_CONFIG_PATH=/usr/local/libgit2-1.5/lib/pkgconfig
                   export LD_LIBRARY_PATH=/usr/local/libgit2-1.5/lib
-                  go install github.com/splitsh/lite@master
-                  echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
-                  export PATH="$(go env GOPATH)/bin:$PATH"
+                  go build -o /tmp/splitsh-lite github.com/splitsh/lite
+                  sudo mv /tmp/splitsh-lite /usr/local/bin/splitsh-lite
                   splitsh-lite --help
             - name: Validate split config
               run: php .github/scripts/monorepo-split-plan.php
