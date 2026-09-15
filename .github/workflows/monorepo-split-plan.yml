@@ -92,7 +92,8 @@ jobs:
                   GH_TOKEN: ${{ steps.app-token.outputs.token }}
               run: |
                   echo "GIT_TERMINAL_PROMPT=0" >> "$GITHUB_ENV"
-                  gh auth setup-git
+                  auth_header="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)"
+                  git config --global http.https://github.com/.extraheader "$auth_header"
             - name: Validate split config
               run: php .github/scripts/monorepo-split-plan.php
             - name: Plan pull request package splits
