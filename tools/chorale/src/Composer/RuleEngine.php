@@ -57,13 +57,15 @@ final readonly class RuleEngine implements RuleEngineInterface
     /** @return array<string,string> */
     private function resolveRules(array $config, array $context): array
     {
+        // Default is fully opt-in. Nothing is mirrored or merged unless
+        // explicitly configured in chorale.yaml or via per-package overrides.
         $defaults = [
-            'homepage'    => 'mirror-unless-overridden',
-            'authors'     => 'mirror',
-            'license'     => 'mirror',
-            'support'     => 'merge-object',
-            'funding'     => 'merge-object',
-            'keywords'    => 'append-unique',
+            'homepage'    => 'ignore',
+            'authors'     => 'ignore',
+            'license'     => 'ignore',
+            'support'     => 'ignore',
+            'funding'     => 'ignore',
+            'keywords'    => 'ignore',
             'extra'       => 'ignore',
             'description' => 'ignore',
         ];

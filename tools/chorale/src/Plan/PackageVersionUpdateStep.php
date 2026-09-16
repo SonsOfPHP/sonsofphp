@@ -10,7 +10,8 @@ final readonly class PackageVersionUpdateStep implements PlanStepInterface
         private string $path,
         private string $name,    // full composer name, e.g. "sonsofphp/cookie"
         private string $version, // e.g. "1.4.0"
-        private string $reason = 'mismatch' // or 'missing'
+        private string $reason = 'mismatch', // or 'missing'
+        private ?string $currentVersion = null
     ) {}
 
     public function type(): string
@@ -25,12 +26,17 @@ final readonly class PackageVersionUpdateStep implements PlanStepInterface
 
     public function toArray(): array
     {
-        return [
+        $out = [
             'type'    => $this->type(),
             'path'    => $this->path,
             'name'    => $this->name,
             'version' => $this->version,
             'reason'  => $this->reason,
         ];
+        if ($this->currentVersion !== null) {
+            $out['current_version'] = $this->currentVersion;
+        }
+
+        return $out;
     }
 }

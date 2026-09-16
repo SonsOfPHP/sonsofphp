@@ -16,16 +16,16 @@ final class Sorting implements SortingInterface
     public function sortPatterns(array $patterns): array
     {
         usort($patterns, static function (array $a, array $b): int {
-            $am = (string) ($a['match'] ?? '');
-            $bm = (string) ($b['match'] ?? '');
-            $al = strlen($am);
-            $bl = strlen($bm);
-            if ($al === $bl) {
-                return $am <=> $bm;
+            $matchA = (string) ($a['match'] ?? '');
+            $matchB = (string) ($b['match'] ?? '');
+            $lenA = strlen($matchA);
+            $lenB = strlen($matchB);
+            if ($lenA === $lenB) {
+                return $matchA <=> $matchB;
             }
 
             // longer match first (more specific wins)
-            return $bl <=> $al;
+            return $lenB <=> $lenA;
         });
 
         return $patterns;
@@ -34,15 +34,15 @@ final class Sorting implements SortingInterface
     public function sortTargets(array $targets): array
     {
         usort($targets, static function (array $a, array $b): int {
-            $ap = (string) ($a['path'] ?? '');
-            $bp = (string) ($b['path'] ?? '');
-            if ($ap === $bp) {
-                $an = (string) ($a['name'] ?? '');
-                $bn = (string) ($b['name'] ?? '');
-                return $an <=> $bn;
+            $pathA = (string) ($a['path'] ?? '');
+            $pathB = (string) ($b['path'] ?? '');
+            if ($pathA === $pathB) {
+                $nameA = (string) ($a['name'] ?? '');
+                $nameB = (string) ($b['name'] ?? '');
+                return $nameA <=> $nameB;
             }
 
-            return $ap <=> $bp;
+            return $pathA <=> $pathB;
         });
 
         return $targets;
